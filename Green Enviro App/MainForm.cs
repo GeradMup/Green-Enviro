@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
-        public Form1()
+        public Main_Form()
         {
             InitializeComponent();
+        }
+
+        private void Main_Form_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
