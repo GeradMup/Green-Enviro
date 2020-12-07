@@ -60,5 +60,16 @@ namespace Green_Enviro_App
         {
 
         }
+
+        private void usernameField_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clear_button_Click(object sender, EventArgs e)
+        {
+            usernameField.Clear();
+            passwordField.Clear();
+        }
     }
 }
