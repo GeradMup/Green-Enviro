@@ -9,3 +9,15 @@ C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\G
 C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro 1.0\Green-Enviro\Green Enviro App\obj\Debug\Green Enviro App.csproj.CoreCompileInputs.cache
 C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro 1.0\Green-Enviro\Green Enviro App\obj\Debug\Green Enviro App.exe
 C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro 1.0\Green-Enviro\Green Enviro App\obj\Debug\Green Enviro App.pdb
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro App.exe.config
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro App.exe
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro App.pdb
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.csprojAssemblyReference.cache
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.CreateAccount.resources
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.LoginForm.resources
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.Main_Form.resources
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.Properties.Resources.resources
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.csproj.GenerateResource.cache
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.csproj.CoreCompileInputs.cache
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.exe
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.pdb
