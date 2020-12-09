@@ -87,6 +87,7 @@ namespace Green_Enviro_App
             this.passwordField.Name = "passwordField";
             this.passwordField.Size = new System.Drawing.Size(208, 22);
             this.passwordField.TabIndex = 6;
+            this.passwordField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordField_KeyPress);
             // 
             // label3
             // 
@@ -114,6 +115,7 @@ namespace Green_Enviro_App
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login Form";
             this.Load += new System.EventHandler(this.LoginForm_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginForm_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

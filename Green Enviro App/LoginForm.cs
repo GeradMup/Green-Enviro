@@ -24,7 +24,48 @@ namespace Green_Enviro_App
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
+            login();
+        }
 
+        private void LoginForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Try to login if the uses presses the enter key while the login form is active
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                login();
+            }
+        }
+
+        private void passwordField_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Try to Login if the user presses the enter key while the password field is active
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                login();
+            }
+        }
+
+        private bool verifyCredentials() 
+        {
+            if ((usernameField.Text == "Eli") && (passwordField.Text == "Eli"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            } 
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void login() 
+        {
             bool validLogin = verifyCredentials();
 
             if (validLogin)
@@ -40,25 +81,7 @@ namespace Green_Enviro_App
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
             }
-   
         }
 
-        private bool verifyCredentials() 
-        {
-
-            if ((usernameField.Text == "Eli") && (passwordField.Text == "Eli"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            } 
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
