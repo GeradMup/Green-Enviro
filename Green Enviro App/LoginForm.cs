@@ -92,5 +92,13 @@ namespace Green_Enviro_App
             usernameField.Clear();
             passwordField.Clear();
         }
+
+        private void createAccountButton_Click(object sender, EventArgs e)
+        {
+            CreateAccount _new_account = new CreateAccount();
+            _new_account.Activate();
+            _new_account.Show();
+            this.Hide();
+        }
     }
 }
