@@ -32,13 +32,13 @@ namespace Green_Enviro_App
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.ReceiptPage = new System.Windows.Forms.TabPage();
+            this.itemList = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.addItemBtn = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.PurchasesPage = new System.Windows.Forms.TabPage();
             this.SalesPage = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.addItemBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.itemList = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.ReceiptPage.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,46 @@ namespace Green_Enviro_App
             this.ReceiptPage.UseVisualStyleBackColor = true;
             this.ReceiptPage.Click += new System.EventHandler(this.ReceiptPage_Click);
             // 
+            // itemList
+            // 
+            this.itemList.DropDownHeight = 300;
+            this.itemList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.itemList.FormattingEnabled = true;
+            this.itemList.IntegralHeight = false;
+            this.itemList.ItemHeight = 23;
+            this.itemList.Location = new System.Drawing.Point(115, 50);
+            this.itemList.Name = "itemList";
+            this.itemList.Size = new System.Drawing.Size(178, 31);
+            this.itemList.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(26, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 23);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Item";
+            // 
+            // addItemBtn
+            // 
+            this.addItemBtn.AllowDrop = true;
+            this.addItemBtn.Location = new System.Drawing.Point(23, 582);
+            this.addItemBtn.Name = "addItemBtn";
+            this.addItemBtn.Size = new System.Drawing.Size(143, 51);
+            this.addItemBtn.TabIndex = 1;
+            this.addItemBtn.Text = "Add Item";
+            this.addItemBtn.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(622, 26);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(441, 645);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
             // PurchasesPage
             // 
             this.PurchasesPage.Location = new System.Drawing.Point(4, 32);
@@ -89,51 +129,11 @@ namespace Green_Enviro_App
             this.SalesPage.Text = "Sales";
             this.SalesPage.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(622, 26);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(441, 645);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            // 
-            // addItemBtn
-            // 
-            this.addItemBtn.AllowDrop = true;
-            this.addItemBtn.Location = new System.Drawing.Point(23, 582);
-            this.addItemBtn.Name = "addItemBtn";
-            this.addItemBtn.Size = new System.Drawing.Size(143, 51);
-            this.addItemBtn.TabIndex = 1;
-            this.addItemBtn.Text = "Add Item";
-            this.addItemBtn.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 23);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Item";
-            // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // itemList
-            // 
-            this.itemList.DropDownHeight = 300;
-            this.itemList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.itemList.FormattingEnabled = true;
-            this.itemList.IntegralHeight = false;
-            this.itemList.ItemHeight = 23;
-            this.itemList.Location = new System.Drawing.Point(115, 50);
-            this.itemList.Name = "itemList";
-            this.itemList.Size = new System.Drawing.Size(178, 31);
-            this.itemList.TabIndex = 7;
             // 
             // Main_Form
             // 
@@ -142,7 +142,7 @@ namespace Green_Enviro_App
             this.ClientSize = new System.Drawing.Size(1095, 817);
             this.Controls.Add(this.tabControl);
             this.Name = "Main_Form";
-            this.Text = "MainForm";
+            this.Text = "Green Enviro";
             this.Load += new System.EventHandler(this.Main_Form_Load);
             this.tabControl.ResumeLayout(false);
             this.ReceiptPage.ResumeLayout(false);
