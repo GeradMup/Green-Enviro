@@ -34,13 +34,14 @@ namespace Green_Enviro_App
             this.newPasswordField = new System.Windows.Forms.TextBox();
             this.confirmPasswordField = new System.Windows.Forms.TextBox();
             this.emailAddressField = new System.Windows.Forms.TextBox();
-            this.securityQuestionField = new System.Windows.Forms.TextBox();
+            this.masterPasswordField = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.newAccountButton = new System.Windows.Forms.Button();
+            this.cancelBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -82,12 +83,12 @@ namespace Green_Enviro_App
             this.emailAddressField.Size = new System.Drawing.Size(169, 20);
             this.emailAddressField.TabIndex = 4;
             // 
-            // securityQuestionField
+            // masterPasswordField
             // 
-            this.securityQuestionField.Location = new System.Drawing.Point(386, 262);
-            this.securityQuestionField.Name = "securityQuestionField";
-            this.securityQuestionField.Size = new System.Drawing.Size(169, 20);
-            this.securityQuestionField.TabIndex = 5;
+            this.masterPasswordField.Location = new System.Drawing.Point(386, 262);
+            this.masterPasswordField.Name = "masterPasswordField";
+            this.masterPasswordField.Size = new System.Drawing.Size(169, 20);
+            this.masterPasswordField.TabIndex = 5;
             // 
             // label2
             // 
@@ -130,31 +131,42 @@ namespace Green_Enviro_App
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(247, 265);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 13);
+            this.label6.Size = new System.Drawing.Size(88, 13);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Security Question";
+            this.label6.Text = "Master Password";
             // 
             // newAccountButton
             // 
-            this.newAccountButton.Location = new System.Drawing.Point(567, 334);
+            this.newAccountButton.Location = new System.Drawing.Point(452, 325);
             this.newAccountButton.Name = "newAccountButton";
             this.newAccountButton.Size = new System.Drawing.Size(168, 36);
             this.newAccountButton.TabIndex = 11;
             this.newAccountButton.Text = "Register Account";
             this.newAccountButton.UseVisualStyleBackColor = true;
             // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Location = new System.Drawing.Point(646, 325);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(168, 36);
+            this.cancelBtn.TabIndex = 12;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            // 
             // CreateAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 410);
+            this.ClientSize = new System.Drawing.Size(839, 410);
+            this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.newAccountButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.securityQuestionField);
+            this.Controls.Add(this.masterPasswordField);
             this.Controls.Add(this.emailAddressField);
             this.Controls.Add(this.confirmPasswordField);
             this.Controls.Add(this.newPasswordField);
@@ -174,12 +186,13 @@ namespace Green_Enviro_App
         private System.Windows.Forms.TextBox newPasswordField;
         private System.Windows.Forms.TextBox confirmPasswordField;
         private System.Windows.Forms.TextBox emailAddressField;
-        private System.Windows.Forms.TextBox securityQuestionField;
+        private System.Windows.Forms.TextBox masterPasswordField;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button newAccountButton;
+        private System.Windows.Forms.Button cancelBtn;
     }
 }

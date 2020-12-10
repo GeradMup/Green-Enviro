@@ -21,3 +21,4 @@ C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.csproj.CoreCompileInputs.cache
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.exe
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.pdb
+C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro 1.0\Green-Enviro\Green Enviro App\bin\Debug\Green Enviro App.pdb
