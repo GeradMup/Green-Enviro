@@ -12,6 +12,7 @@ namespace Green_Enviro_App
 {
     public partial class LoginForm : Form
     {
+
         public LoginForm()
         {
             InitializeComponent();
@@ -21,7 +22,14 @@ namespace Green_Enviro_App
         {
 
         }
-
+        private void LoginForm_KeyPress(object sender, KeyEventArgs e)
+        {
+            this.KeyPreview = true;
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
         private void loginBtn_Click(object sender, EventArgs e)
         {
             login();
@@ -47,7 +55,34 @@ namespace Green_Enviro_App
 
         private bool verifyCredentials() 
         {
-            if ((usernameField.Text == "Eli") && (passwordField.Text == "Eli"))
+            // Coorelation or interaction between the CreateAccount class and LoginForm class 
+            // To enable account to register and hence to login into the main form
+            string _user_name = "";
+            string _password = "";
+            CreateAccount _account_created = new CreateAccount();
+            List<string> userNameList = _account_created._user_name_list;
+            List<string> passwordList = _account_created._password_list;
+            for (int i = 0; i < userNameList.Count; i++)
+            {
+
+                if (userNameList[i].Contains(usernameField.Text))
+                {
+                    _user_name = userNameList[i];
+                    break;
+                }
+
+            }            
+            for (int i = 0; i < passwordList.Count; i++)
+            {
+
+                if (passwordList[i].Contains(passwordField.Text))
+                {
+                    _password = passwordList[i];
+                    break;
+                }
+
+            }
+            if (((usernameField.Text == "Eli") && (passwordField.Text == "Eli")) || ((usernameField.Text == _user_name) && (passwordField.Text == _password)))
             {
                 return true;
             }
