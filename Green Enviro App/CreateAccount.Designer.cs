@@ -143,6 +143,7 @@ namespace Green_Enviro_App
             this.newAccountButton.TabIndex = 11;
             this.newAccountButton.Text = "Register Account";
             this.newAccountButton.UseVisualStyleBackColor = true;
+            this.newAccountButton.Click += new System.EventHandler(this.newAccountButton_Click);
             // 
             // cancelBtn
             // 
