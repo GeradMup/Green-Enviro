@@ -71,7 +71,9 @@ namespace Green_Enviro_App
                     break;
                 }
 
-            }            
+            }   
+            //I think we should not be iterating through the password list as well
+            //I think that once we know the index for the username, the password should be stored at the same index in the passwordList?
             for (int i = 0; i < passwordList.Count; i++)
             {
 
@@ -121,7 +123,7 @@ namespace Green_Enviro_App
         {
 
         }
-
+        
         private void clear_button_Click(object sender, EventArgs e)
         {
             usernameField.Clear();

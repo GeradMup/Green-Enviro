@@ -16,6 +16,7 @@ namespace Green_Enviro_App
         const string _empty_txtbox = "";
         public List<string> _user_name_list = new List<string>();
         public List<string> _password_list = new List<string>();
+        //Why do we need a confirm password list?
         List<string> _confirm_password_list = new List<string>();
         List<string> _email_address_list = new List<string>();
         List<string> _master_password_list = new List<string>();
@@ -44,6 +45,8 @@ namespace Green_Enviro_App
         }
         private bool verifyAccountCreation()
         {
+            //Maybe you can split these checks into different functions so that the code becomes easy to read.
+            //Or we can maybe find a different way of doing this part so that the code becomes a little more readable.
             if (newUserNameField.Text == _empty_txtbox || newPasswordField.Text == _empty_txtbox || confirmPasswordField.Text == _empty_txtbox || emailAddressField.Text == _empty_txtbox || masterPasswordField.Text == _empty_txtbox || newPasswordField.Text != confirmPasswordField.Text)
             {
                 return false;
@@ -59,6 +62,7 @@ namespace Green_Enviro_App
 
             if (_acc_creation_validity)
             {
+                //How about we have only one place within this function that does the message box pop. Right now you are repeating code. 
                 string _message = "Account Succesfully Created";
                 string _title = "Create Account";
                 MessageBoxButtons _buttons = MessageBoxButtons.OK;
@@ -85,6 +89,7 @@ namespace Green_Enviro_App
             }
 
         }
+        
 
         private void returnToLoginForm()
         {
@@ -94,6 +99,7 @@ namespace Green_Enviro_App
             this.Hide();
         }
         
+        //Maybe this function could be named differently. Maybe "addNewUser?"
         private void newAccountCredentials()
         {
             _user_name_list.Add(newUserNameField.Text);
@@ -106,6 +112,11 @@ namespace Green_Enviro_App
             _confirm_password_list.ForEach(Console.WriteLine);
             _email_address_list.ForEach(Console.WriteLine);
             _master_password_list.ForEach(Console.WriteLine);
+        }
+
+        private void CreateAccount_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
