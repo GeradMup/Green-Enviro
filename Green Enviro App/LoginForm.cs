@@ -10,12 +10,31 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
+
+    public struct Credentials 
+    {
+        public Credentials(string _name, string psword, string mail) 
+        {
+            user_name = _name;
+            password = psword;
+            email = mail;
+        }
+
+        public string user_name;
+        public string password;
+        public string email;
+    }
     public partial class LoginForm : Form
     {
+
+        //Creates a single instance of the CreateAccount class
+        CreateAccount _account = new CreateAccount();
+        
 
         public LoginForm()
         {
             InitializeComponent();
+            
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -59,21 +78,49 @@ namespace Green_Enviro_App
             // To enable account to register and hence to login into the main form
             string _user_name = "";
             string _password = "";
-            CreateAccount _account_created = new CreateAccount();
-            List<string> userNameList = _account_created._user_name_list;
-            List<string> passwordList = _account_created._password_list;
+            List<string> userNameList = _account._user_name_list;
+            List<string> passwordList = _account._password_list;
+            List<Credentials> _all_credentials = _account._credentials;
+
+            int index = 0;
+
+            while (index < _all_credentials.Count) 
+            {
+
+                if (_all_credentials[index].user_name.Contains(usernameField.Text)) 
+                {
+                    _user_name = _all_credentials[index].user_name;
+                    break;
+                }
+                Console.WriteLine(index);
+                index++;
+            }
+
+            Console.WriteLine(index);
+            if (_all_credentials[index].password == passwordField.Text)
+            {
+                return true;
+            }
+
+            int user_name_index = 0;
             for (int i = 0; i < userNameList.Count; i++)
             {
 
                 if (userNameList[i].Contains(usernameField.Text))
                 {
                     _user_name = userNameList[i];
+                    user_name_index = i;
                     break;
                 }
 
-            }   
+            }
+
+            if (passwordField.Text == passwordList[user_name_index]) 
+            { 
+            
+            }
             //I think we should not be iterating through the password list as well
-            //I think that once we know the index for the username, the password should be stored at the same index in the passwordList?
+            //I think that once we know the index for  username, the password should be stored at the same index in the passwordList?
             for (int i = 0; i < passwordList.Count; i++)
             {
 
@@ -132,10 +179,10 @@ namespace Green_Enviro_App
 
         private void createAccountButton_Click(object sender, EventArgs e)
         {
-            CreateAccount _new_account = new CreateAccount();
-            _new_account.Activate();
-            _new_account.Show();
-            this.Hide();
+            //Creates a new instance everytime the new account button is clicked.
+            _account.Activate();
+            _account.Show();
+            //this.Hide();
         }
     }
 }

@@ -13,6 +13,12 @@ namespace Green_Enviro_App
     
     public partial class CreateAccount : Form
     {
+        
+
+        //Error messages
+        const string _error = "Error!";
+        const string _empty_user_name_entered = "User name field cannot be empty";
+
         const string _empty_txtbox = "";
         public List<string> _user_name_list = new List<string>();
         public List<string> _password_list = new List<string>();
@@ -20,6 +26,8 @@ namespace Green_Enviro_App
         List<string> _confirm_password_list = new List<string>();
         List<string> _email_address_list = new List<string>();
         List<string> _master_password_list = new List<string>();
+
+        public List<Credentials> _credentials = new List<Credentials>();
 
         public CreateAccount()
         {
@@ -55,6 +63,28 @@ namespace Green_Enviro_App
             {
                 return true;
             }
+        }
+
+        //Suggested alternative
+        private Tuple<bool, string, string> verifyAccount()
+        {
+            string _message_type = "";
+            string _message = "";
+            bool _all_good = false;
+
+            if (newUserNameField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = _empty_user_name_entered;
+                _all_good = false;
+            }
+            else if (newPasswordField.Text == _empty_txtbox) 
+            { 
+            
+            }
+
+            Tuple<bool, string, string> _new_tuple = new Tuple<bool, string, string>(_all_good, _message_type, _message);
+            return _new_tuple;
         }
         private void accountCreationVerification()
         {
@@ -93,9 +123,10 @@ namespace Green_Enviro_App
 
         private void returnToLoginForm()
         {
-            LoginForm _accform_to_loginform = new LoginForm();
-            _accform_to_loginform.Activate();
-            _accform_to_loginform.Show();
+            
+            //_accform_to_loginform.Activate();
+            //_accform_to_loginform.Show();
+            //Clear all fields before returning to log in form.
             this.Hide();
         }
         
@@ -107,6 +138,11 @@ namespace Green_Enviro_App
             _confirm_password_list.Add(confirmPasswordField.Text);
             _email_address_list.Add(emailAddressField.Text);
             _master_password_list.Add(masterPasswordField.Text);
+
+            Credentials _new_user = new Credentials(newUserNameField.Text, newPasswordField.Text, emailAddressField.Text);
+            _credentials.Add(_new_user);
+
+            //Printing all credentials that have been added
             _user_name_list.ForEach(Console.WriteLine);
             _password_list.ForEach(Console.WriteLine);
             _confirm_password_list.ForEach(Console.WriteLine);
