@@ -13,9 +13,14 @@ namespace Green_Enviro_App
     
     public partial class CreateAccount : Form
     {
+        //Variables
+        string _message = "";
+        string _title = "";
+
         //Error messages
         const string _error = "Error!";
         const string _empty_user_name_entered = "User name field cannot be empty";
+        const string _user_name_error =  "User name already exist";
         const string _empty_password_entered = "Password field cannot be empty";
         const string _empty_confirm_password_entered = "Confirm password field cannot be empty";
         const string _password_error = "Passwords do not match";
@@ -57,7 +62,7 @@ namespace Green_Enviro_App
             }
         }
 
-        //Suggested alternative
+        // Function verifying the validity of all information inputted
         private Tuple<bool, string, string> verifyAccount()
         {
             string _message_type = "";
@@ -82,6 +87,12 @@ namespace Green_Enviro_App
                 _message = _empty_confirm_password_entered;
                 _all_good = false;
             }
+            else if (confirmPasswordField.Text != newPasswordField.Text)
+            {
+                _message_type = _error;
+                _message = _password_error;
+                _all_good = false;
+            }
             else if (emailAddressField.Text == _empty_txtbox)
             {
                 _message_type = _error;
@@ -94,10 +105,10 @@ namespace Green_Enviro_App
                 _message = _empty_master_password_entered;
                 _all_good = false;
             }
-            else if (confirmPasswordField.Text != newPasswordField.Text)
+            else if (isUserNameRepeated()== true)
             {
                 _message_type = _error;
-                _message = _password_error;
+                _message = _user_name_error;
                 _all_good = false;
             }
             else
@@ -113,10 +124,7 @@ namespace Green_Enviro_App
         }
         private void accountCreationVerification()
         {
-            //bool _acc_creation_validity = verifyAccountCreation();
             var _acc_creation_validity = verifyAccount();
-            string _message = "";
-            string _title = "";
             MessageBoxButtons _buttons;
             MessageBoxIcon _icon;
 
@@ -126,7 +134,7 @@ namespace Green_Enviro_App
                 _title = _acc_creation_validity.Item2;
                 _buttons = MessageBoxButtons.OK;
                 MessageBox.Show(_message, _title,_buttons);
-                newAccountCredentials();
+                addNewUser();
                 returnToLoginForm();
             }
             else
@@ -146,11 +154,37 @@ namespace Green_Enviro_App
             this.Hide();
         }
         
-        //Maybe this function could be named differently. Maybe "addNewUser?"
-        private void newAccountCredentials()
+        private void addNewUser()
         {
             Credentials _new_user = new Credentials(newUserNameField.Text, newPasswordField.Text, emailAddressField.Text);
             _credentials.Add(_new_user);
+        }
+        private bool isUserNameRepeated()
+        {
+            int index = 0;
+            bool _user_name_exist = true;
+            bool isEmpty = !_credentials.Any();
+            //If The list of credentials is empty then there are no user name that exist
+            if (isEmpty)
+            {
+                _user_name_exist = false;
+            }
+            //If the list of credentials is not empty then verify if the user name exist already
+            else
+            {
+                for (index = 0; index < _credentials.Count; index++)
+                {
+                    if (_credentials[index].user_name.Contains(newUserNameField.Text))
+                    {
+                        _user_name_exist = true;
+                        break;
+                    }
+                    else _user_name_exist = false;
+                }
+
+            }
+
+            return _user_name_exist;
         }
 
         private void CreateAccount_Load(object sender, EventArgs e)
