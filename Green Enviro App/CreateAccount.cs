@@ -17,15 +17,19 @@ namespace Green_Enviro_App
         string _message = "";
         string _title = "";
 
+        //Master Password
+        const string _admin_master_password = "1234";
+
         //Error messages
         const string _error = "Error!";
-        const string _empty_user_name_entered = "User name field cannot be empty";
+        const string _empty_user_name_entered = "User name cannot be empty";
         const string _user_name_error =  "User name already exist";
-        const string _empty_password_entered = "Password field cannot be empty";
-        const string _empty_confirm_password_entered = "Confirm password field cannot be empty";
+        const string _empty_password_entered = "Password cannot be empty";
+        const string _empty_confirm_password_entered = "Confirm password cannot be empty";
         const string _password_error = "Passwords do not match";
-        const string _empty_email_entered = "Email field cannot be empty";
-        const string _empty_master_password_entered = "Master password field cannot be empty";
+        const string _empty_email_entered = "Email cannot be empty";
+        const string _empty_master_password_entered = "Master password cannot be empty";
+        const string _incorrect_master_psword = "Incorrect Admin password entered";
 
         //Successfull messages
         const string _success = "Complete!";
@@ -34,7 +38,7 @@ namespace Green_Enviro_App
         // Empty textbox
         const string _empty_txtbox = "";
 
-        // Credentials struct
+        // Credentials instance created
         public List<Credentials> _credentials = new List<Credentials>();
 
         public CreateAccount()
@@ -109,6 +113,12 @@ namespace Green_Enviro_App
             {
                 _message_type = _error;
                 _message = _user_name_error;
+                _all_good = false;
+            }
+            else if (masterPasswordField.Text != _admin_master_password)
+            {
+                _message_type = _error;
+                _message = _incorrect_master_psword;
                 _all_good = false;
             }
             else
