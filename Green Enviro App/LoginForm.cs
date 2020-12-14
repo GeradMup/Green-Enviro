@@ -78,8 +78,6 @@ namespace Green_Enviro_App
             // To enable account to register and hence to login into the main form
             string _user_name = "";
             string _password = "";
-            List<string> userNameList = _account._user_name_list;
-            List<string> passwordList = _account._password_list;
             List<Credentials> _all_credentials = _account._credentials;
 
             int index = 0;
@@ -92,53 +90,15 @@ namespace Green_Enviro_App
                     _user_name = _all_credentials[index].user_name;
                     break;
                 }
-                Console.WriteLine(index);
                 index++;
             }
 
-            Console.WriteLine(index);
             if (_all_credentials[index].password == passwordField.Text)
             {
                 return true;
             }
+            else return false;
 
-            int user_name_index = 0;
-            for (int i = 0; i < userNameList.Count; i++)
-            {
-
-                if (userNameList[i].Contains(usernameField.Text))
-                {
-                    _user_name = userNameList[i];
-                    user_name_index = i;
-                    break;
-                }
-
-            }
-
-            if (passwordField.Text == passwordList[user_name_index]) 
-            { 
-            
-            }
-            //I think we should not be iterating through the password list as well
-            //I think that once we know the index for  username, the password should be stored at the same index in the passwordList?
-            for (int i = 0; i < passwordList.Count; i++)
-            {
-
-                if (passwordList[i].Contains(passwordField.Text))
-                {
-                    _password = passwordList[i];
-                    break;
-                }
-
-            }
-            if (((usernameField.Text == "Eli") && (passwordField.Text == "Eli")) || ((usernameField.Text == _user_name) && (passwordField.Text == _password)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            } 
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -182,7 +142,6 @@ namespace Green_Enviro_App
             //Creates a new instance everytime the new account button is clicked.
             _account.Activate();
             _account.Show();
-            //this.Hide();
         }
     }
 }

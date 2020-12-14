@@ -13,20 +13,13 @@ namespace Green_Enviro_App
     
     public partial class CreateAccount : Form
     {
-        
-
+       
         //Error messages
         const string _error = "Error!";
         const string _empty_user_name_entered = "User name field cannot be empty";
-
+        // Empty textbox
         const string _empty_txtbox = "";
-        public List<string> _user_name_list = new List<string>();
-        public List<string> _password_list = new List<string>();
-        //Why do we need a confirm password list?
-        List<string> _confirm_password_list = new List<string>();
-        List<string> _email_address_list = new List<string>();
-        List<string> _master_password_list = new List<string>();
-
+        // Credentials struct
         public List<Credentials> _credentials = new List<Credentials>();
 
         public CreateAccount()
@@ -42,6 +35,7 @@ namespace Green_Enviro_App
         private void newAccountButton_Click(object sender, EventArgs e)
         {
             accountCreationVerification();
+            ClearCredentials();
         }
         private void newAccountBtn_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -49,6 +43,7 @@ namespace Green_Enviro_App
             if (e.KeyChar == (char)Keys.Enter)
             {
                 accountCreationVerification();
+                ClearCredentials();
             }
         }
         private bool verifyAccountCreation()
@@ -89,13 +84,17 @@ namespace Green_Enviro_App
         private void accountCreationVerification()
         {
             bool _acc_creation_validity = verifyAccountCreation();
+            string _message = "";
+            string _title = "";
+            MessageBoxButtons _buttons;
+            MessageBoxIcon _icon;
 
             if (_acc_creation_validity)
             {
                 //How about we have only one place within this function that does the message box pop. Right now you are repeating code. 
-                string _message = "Account Succesfully Created";
-                string _title = "Create Account";
-                MessageBoxButtons _buttons = MessageBoxButtons.OK;
+                _message = "Account Succesfully Created";
+                _title = "Create Account";
+                _buttons = MessageBoxButtons.OK;
                 MessageBox.Show(_message, _title,_buttons);
                 newAccountCredentials();
                 returnToLoginForm();
@@ -103,18 +102,18 @@ namespace Green_Enviro_App
             } 
             else if (newPasswordField.Text != confirmPasswordField.Text)
             {
-                string _message = "Passwords do not match";
-                string _title = "ERROR!";
-                MessageBoxButtons _buttons = MessageBoxButtons.OK;
-                MessageBoxIcon _icon = MessageBoxIcon.Exclamation;
+                _message = "Passwords do not match";
+                _title = "ERROR!";
+                _buttons = MessageBoxButtons.OK;
+                _icon = MessageBoxIcon.Exclamation;
                 MessageBox.Show(_message, _title, _buttons, _icon);
             }
             else
             {
-                string _message = "Missing Credentials";
-                string _title = "ERROR!";
-                MessageBoxButtons _buttons = MessageBoxButtons.OK;
-                MessageBoxIcon _icon = MessageBoxIcon.Exclamation;
+                _message = "Missing Credentials";
+                _title = "ERROR!";
+                _buttons = MessageBoxButtons.OK;
+                _icon = MessageBoxIcon.Exclamation;
                 MessageBox.Show(_message, _title,_buttons,_icon);
             }
 
@@ -123,36 +122,27 @@ namespace Green_Enviro_App
 
         private void returnToLoginForm()
         {
-            
-            //_accform_to_loginform.Activate();
-            //_accform_to_loginform.Show();
-            //Clear all fields before returning to log in form.
             this.Hide();
         }
         
         //Maybe this function could be named differently. Maybe "addNewUser?"
         private void newAccountCredentials()
         {
-            _user_name_list.Add(newUserNameField.Text);
-            _password_list.Add(newPasswordField.Text);
-            _confirm_password_list.Add(confirmPasswordField.Text);
-            _email_address_list.Add(emailAddressField.Text);
-            _master_password_list.Add(masterPasswordField.Text);
-
             Credentials _new_user = new Credentials(newUserNameField.Text, newPasswordField.Text, emailAddressField.Text);
             _credentials.Add(_new_user);
-
-            //Printing all credentials that have been added
-            _user_name_list.ForEach(Console.WriteLine);
-            _password_list.ForEach(Console.WriteLine);
-            _confirm_password_list.ForEach(Console.WriteLine);
-            _email_address_list.ForEach(Console.WriteLine);
-            _master_password_list.ForEach(Console.WriteLine);
         }
 
         private void CreateAccount_Load(object sender, EventArgs e)
         {
 
+        }
+        private void ClearCredentials()
+        {
+            newUserNameField.Clear();
+            newPasswordField.Clear();
+            confirmPasswordField.Clear();
+            emailAddressField.Clear();
+            masterPasswordField.Clear();
         }
     }
 }
