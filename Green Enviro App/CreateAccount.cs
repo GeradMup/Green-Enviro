@@ -13,12 +13,22 @@ namespace Green_Enviro_App
     
     public partial class CreateAccount : Form
     {
-       
         //Error messages
         const string _error = "Error!";
         const string _empty_user_name_entered = "User name field cannot be empty";
+        const string _empty_password_entered = "Password field cannot be empty";
+        const string _empty_confirm_password_entered = "Confirm password field cannot be empty";
+        const string _password_error = "Passwords do not match";
+        const string _empty_email_entered = "Email field cannot be empty";
+        const string _empty_master_password_entered = "Master password field cannot be empty";
+
+        //Successfull messages
+        const string _success = "Complete!";
+        const string _all_fields_entered = "Accounts succesfully created";
+        
         // Empty textbox
         const string _empty_txtbox = "";
+
         // Credentials struct
         public List<Credentials> _credentials = new List<Credentials>();
 
@@ -46,19 +56,6 @@ namespace Green_Enviro_App
                 ClearCredentials();
             }
         }
-        private bool verifyAccountCreation()
-        {
-            //Maybe you can split these checks into different functions so that the code becomes easy to read.
-            //Or we can maybe find a different way of doing this part so that the code becomes a little more readable.
-            if (newUserNameField.Text == _empty_txtbox || newPasswordField.Text == _empty_txtbox || confirmPasswordField.Text == _empty_txtbox || emailAddressField.Text == _empty_txtbox || masterPasswordField.Text == _empty_txtbox || newPasswordField.Text != confirmPasswordField.Text)
-            {
-                return false;
-            } 
-            else
-            {
-                return true;
-            }
-        }
 
         //Suggested alternative
         private Tuple<bool, string, string> verifyAccount()
@@ -74,44 +71,68 @@ namespace Green_Enviro_App
                 _all_good = false;
             }
             else if (newPasswordField.Text == _empty_txtbox) 
-            { 
-            
+            {
+                _message_type = _error;
+                _message = _empty_password_entered;
+                _all_good = false;
+            }
+            else if (confirmPasswordField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = _empty_confirm_password_entered;
+                _all_good = false;
+            }
+            else if (emailAddressField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = _empty_email_entered;
+                _all_good = false;
+            }
+            else if (masterPasswordField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = _empty_master_password_entered;
+                _all_good = false;
+            }
+            else if (confirmPasswordField.Text != newPasswordField.Text)
+            {
+                _message_type = _error;
+                _message = _password_error;
+                _all_good = false;
+            }
+            else
+            {
+                _message_type = _success;
+                _message = _all_fields_entered;
+                _all_good = true;
             }
 
             Tuple<bool, string, string> _new_tuple = new Tuple<bool, string, string>(_all_good, _message_type, _message);
             return _new_tuple;
+
         }
         private void accountCreationVerification()
         {
-            bool _acc_creation_validity = verifyAccountCreation();
+            //bool _acc_creation_validity = verifyAccountCreation();
+            var _acc_creation_validity = verifyAccount();
             string _message = "";
             string _title = "";
             MessageBoxButtons _buttons;
             MessageBoxIcon _icon;
 
-            if (_acc_creation_validity)
+            if (_acc_creation_validity.Item1)
             {
-                //How about we have only one place within this function that does the message box pop. Right now you are repeating code. 
-                _message = "Account Succesfully Created";
-                _title = "Create Account";
+                _message = _acc_creation_validity.Item3;
+                _title = _acc_creation_validity.Item2;
                 _buttons = MessageBoxButtons.OK;
                 MessageBox.Show(_message, _title,_buttons);
                 newAccountCredentials();
                 returnToLoginForm();
-
-            } 
-            else if (newPasswordField.Text != confirmPasswordField.Text)
-            {
-                _message = "Passwords do not match";
-                _title = "ERROR!";
-                _buttons = MessageBoxButtons.OK;
-                _icon = MessageBoxIcon.Exclamation;
-                MessageBox.Show(_message, _title, _buttons, _icon);
             }
             else
             {
-                _message = "Missing Credentials";
-                _title = "ERROR!";
+                _message = _acc_creation_validity.Item3;
+                _title = _acc_creation_validity.Item2;
                 _buttons = MessageBoxButtons.OK;
                 _icon = MessageBoxIcon.Exclamation;
                 MessageBox.Show(_message, _title,_buttons,_icon);
