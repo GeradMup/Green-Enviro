@@ -44,6 +44,8 @@ namespace Green_Enviro_App
         public CreateAccount()
         {
             InitializeComponent();
+            //Creates username and password G,G for development purposes
+            defaultUser();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -169,6 +171,12 @@ namespace Green_Enviro_App
         private void addNewUser()
         {
             Credentials _new_user = new Credentials(newUserNameField.Text, newPasswordField.Text, emailAddressField.Text);
+            _credentials.Add(_new_user);
+        }
+
+        private void defaultUser()
+        {
+            Credentials _new_user = new Credentials("G","G","G");
             _credentials.Add(_new_user);
         }
         private bool isUserNameRepeated()

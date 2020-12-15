@@ -35,11 +35,13 @@ namespace Green_Enviro_App
             this.itemList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.addItemBtn = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.receiptBox = new System.Windows.Forms.RichTextBox();
             this.PurchasesPage = new System.Windows.Forms.TabPage();
             this.SalesPage = new System.Windows.Forms.TabPage();
+            this.logo = new System.Windows.Forms.PictureBox();
             this.mainTabControl.SuspendLayout();
             this.ReceiptPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -59,10 +61,11 @@ namespace Green_Enviro_App
             // 
             // ReceiptPage
             // 
+            this.ReceiptPage.Controls.Add(this.logo);
             this.ReceiptPage.Controls.Add(this.itemList);
             this.ReceiptPage.Controls.Add(this.label1);
             this.ReceiptPage.Controls.Add(this.addItemBtn);
-            this.ReceiptPage.Controls.Add(this.richTextBox1);
+            this.ReceiptPage.Controls.Add(this.receiptBox);
             this.ReceiptPage.Location = new System.Drawing.Point(4, 32);
             this.ReceiptPage.Name = "ReceiptPage";
             this.ReceiptPage.Padding = new System.Windows.Forms.Padding(3);
@@ -103,15 +106,15 @@ namespace Green_Enviro_App
             this.addItemBtn.Text = "Add Item";
             this.addItemBtn.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // receiptBox
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(778, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(441, 645);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.receiptBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.receiptBox.Location = new System.Drawing.Point(778, 3);
+            this.receiptBox.Name = "receiptBox";
+            this.receiptBox.Size = new System.Drawing.Size(441, 645);
+            this.receiptBox.TabIndex = 0;
+            this.receiptBox.Text = "";
+            this.receiptBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // PurchasesPage
             // 
@@ -132,6 +135,18 @@ namespace Green_Enviro_App
             this.SalesPage.Text = "Sales";
             this.SalesPage.UseVisualStyleBackColor = true;
             // 
+            // logo
+            // 
+            this.logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("logo.BackgroundImage")));
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.InitialImage = ((System.Drawing.Image)(resources.GetObject("logo.InitialImage")));
+            this.logo.Location = new System.Drawing.Point(787, 16);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(422, 136);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 8;
+            this.logo.TabStop = false;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -147,6 +162,7 @@ namespace Green_Enviro_App
             this.mainTabControl.ResumeLayout(false);
             this.ReceiptPage.ResumeLayout(false);
             this.ReceiptPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -156,10 +172,11 @@ namespace Green_Enviro_App
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.TabPage ReceiptPage;
         private System.Windows.Forms.Button addItemBtn;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox receiptBox;
         private System.Windows.Forms.TabPage PurchasesPage;
         private System.Windows.Forms.TabPage SalesPage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox itemList;
+        private System.Windows.Forms.PictureBox logo;
     }
 }

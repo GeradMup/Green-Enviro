@@ -20,11 +20,9 @@ namespace Green_Enviro_App
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
-            //This function sets the size of the main form to maximum size allowable by the PC
-            int _screen_width = Screen.PrimaryScreen.Bounds.Width;
-            int _screen_height = Screen.PrimaryScreen.Bounds.Height;
-            this.Location = new Point(0, 0);
-            this.Size = new Size(_screen_height, _screen_width);
+            setFormSize();
+            receiptBox.Controls.Add(logo);
+
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -49,6 +47,16 @@ namespace Green_Enviro_App
             itemList.Items.Add("Can");
             itemList.Items.Add("Lead");
             itemList.Items.Add("Battery");
+        }
+
+        private void setFormSize()
+        {
+            //This function sets the size of the main form to maximum size allowable by the PC
+            int _screen_width = Screen.PrimaryScreen.Bounds.Width;
+            int _screen_height = Screen.PrimaryScreen.Bounds.Height;
+            this.Location = new Point(0, 0);
+            this.Size = new Size(_screen_height, _screen_width);
+
         }
     }
 }
