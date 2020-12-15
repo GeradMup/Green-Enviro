@@ -109,11 +109,16 @@ namespace Green_Enviro_App
             // receiptBox
             // 
             this.receiptBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.receiptBox.Location = new System.Drawing.Point(778, 3);
+            this.receiptBox.BackColor = System.Drawing.Color.White;
+            this.receiptBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.receiptBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.receiptBox.Location = new System.Drawing.Point(774, 6);
             this.receiptBox.Name = "receiptBox";
-            this.receiptBox.Size = new System.Drawing.Size(441, 645);
+            this.receiptBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.receiptBox.Size = new System.Drawing.Size(400, 645);
             this.receiptBox.TabIndex = 0;
             this.receiptBox.Text = "";
+            this.receiptBox.WordWrap = false;
             this.receiptBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // PurchasesPage
@@ -137,15 +142,16 @@ namespace Green_Enviro_App
             // 
             // logo
             // 
-            this.logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("logo.BackgroundImage")));
+            this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.logo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.InitialImage = ((System.Drawing.Image)(resources.GetObject("logo.InitialImage")));
-            this.logo.Location = new System.Drawing.Point(787, 16);
+            this.logo.InitialImage = null;
+            this.logo.Location = new System.Drawing.Point(780, 9);
             this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(422, 136);
-            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.Size = new System.Drawing.Size(319, 136);
             this.logo.TabIndex = 8;
             this.logo.TabStop = false;
+            this.logo.Visible = false;
             // 
             // Main_Form
             // 
