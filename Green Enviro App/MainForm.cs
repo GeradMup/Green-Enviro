@@ -12,7 +12,7 @@ namespace Green_Enviro_App
 {
     public partial class Main_Form : Form
     {
-        string _receipt_content = "\n\n";
+        string _receipt_content = "";
         public Main_Form()
         {
             InitializeComponent();
@@ -57,14 +57,18 @@ namespace Green_Enviro_App
             int _screen_height = Screen.PrimaryScreen.Bounds.Height;
             this.Location = new Point(0, 0);
             this.Size = new Size(_screen_height, _screen_width);
+            this.MinimumSize = new Size(_screen_height, _screen_width);
 
         }
 
         private void setUpReceipt()
         {
-            string _tabspace = "      ";
+            receiptBox.ReadOnly = false;
+            receiptBox.Clear();
+            string _tabspace = "     ";
             string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + DateTime.Now.ToString("hh:mm") + "\n";
-            string _customer_details = " Gerry, 100\n" + " ID: 123455\n";
+            string _customer_details = " Customer: Gerry, 100\n" + " ID: 123455\n";
+
             
             Clipboard.SetImage(logo.Image);
             receiptBox.Paste();
@@ -77,13 +81,35 @@ namespace Green_Enviro_App
             receiptBox.AppendText(" ---------------------------------------------------------\n");
             receiptBox.AppendText(_date);
             receiptBox.AppendText(_customer_details);
-            receiptBox.AppendText("\n ---------------------------------------------------------\n");
+            receiptBox.AppendText(" ---------------------------------------------------------\n");
             receiptBox.AppendText(" ITEMS" + _tabspace + "PRICE" + _tabspace + "KGs" + _tabspace + "AMOUNT\n");
             receiptBox.AppendText(" ---------------------------------------------------------\n");
             receiptBox.AppendText(_receipt_content);
             receiptBox.AppendText(" ---------------------------------------------------------\n");
             receiptBox.AppendText("THANK YOU!");
+
+            //Scrolls the entire receipt down when new entries are added
+            receiptBox.SelectionStart = receiptBox.Text.Length;
+            receiptBox.ScrollToCaret();
+
             receiptBox.ReadOnly = true;
+        }
+
+        private void addItemBtn_Click(object sender, EventArgs e)
+        {
+            string _tabspace = "     ";
+
+            //Checks if there is nothing selected from the item list
+            if (itemList.SelectedItem == null)
+            {
+                return;
+            }
+
+            string _itemName = itemList.SelectedItem.ToString();
+      
+            string _new_content = _itemName + _tabspace + "10     " + _tabspace + "10      " + _tabspace + "12     \n";
+            _receipt_content += _new_content;
+            setUpReceipt();
         }
     }
 }
