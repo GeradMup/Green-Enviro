@@ -81,6 +81,7 @@ namespace Green_Enviro_App
             // Coorelation or interaction between the CreateAccount class and LoginForm class 
             // To enable account to register and hence to login into the main form
             string _user_name = "";
+            bool _user_exists = false;
             List<Credentials> _all_credentials = _account._credentials;
 
             int index = 0;
@@ -91,17 +92,20 @@ namespace Green_Enviro_App
                 if (_all_credentials[index].user_name.Contains(usernameField.Text)) 
                 {
                     _user_name = _all_credentials[index].user_name;
+                    _user_exists = true;
                     break;
                 }
                 index++;
             }
 
-            if (_all_credentials[index].password == passwordField.Text)
+			if (_user_exists) 
             {
-                return true;
+                if (_all_credentials[index].password == passwordField.Text)
+                {
+                    return true;
+                }
             }
-            else return false;
-
+            return false;
         }
 
         private void LoginForm_Load(object sender, EventArgs e)

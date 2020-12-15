@@ -140,26 +140,23 @@ namespace Green_Enviro_App
             MessageBoxButtons _buttons;
             MessageBoxIcon _icon;
 
+            _message = _acc_creation_validity.Item3;
+            _title = _acc_creation_validity.Item2;
+            _buttons = MessageBoxButtons.OK;
 
-            //We can actually assign the message boxes outside the if statements here.
             if (_acc_creation_validity.Item1)
             {
-                _message = _acc_creation_validity.Item3;
-                _title = _acc_creation_validity.Item2;
-                _buttons = MessageBoxButtons.OK;
-                MessageBox.Show(_message, _title,_buttons);
+                _icon = MessageBoxIcon.None;
                 addNewUser();
+                MessageBox.Show(_message, _title, _buttons, _icon);
                 returnToLoginForm();
             }
             else
             {
-                _message = _acc_creation_validity.Item3;
-                _title = _acc_creation_validity.Item2;
-                _buttons = MessageBoxButtons.OK;
-                _icon = MessageBoxIcon.Exclamation;
-                MessageBox.Show(_message, _title,_buttons,_icon);
+                _icon = MessageBoxIcon.Error;
+                MessageBox.Show(_message, _title, _buttons, _icon);
             }
-
+            
         }
         
 
