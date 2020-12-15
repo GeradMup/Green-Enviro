@@ -11,7 +11,6 @@ using Microsoft.VisualBasic;
 
 namespace Green_Enviro_App
 {
-
     public struct Credentials 
     {
         public Credentials(string _name, string psword, string mail) 
@@ -100,6 +99,7 @@ namespace Green_Enviro_App
 
 			if (_user_exists) 
             {
+                // First Decrypt the password at the correct index and the check if the enetered password matches
                 if (_all_credentials[index].password == passwordField.Text)
                 {
                     return true;

@@ -46,6 +46,8 @@ namespace Green_Enviro_App
             InitializeComponent();
             //Creates username and password G,G for development purposes
             defaultUser();
+
+            //LOAD UP USER INFO FROM HE DATABASE
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -171,6 +173,13 @@ namespace Green_Enviro_App
             _credentials.Add(_new_user);
         }
 
+        private string encryptPassword() 
+        {
+            string _encrypted_password = "";
+            return _encrypted_password;
+        }
+
+        //This function needs to be deleted
         private void defaultUser()
         {
             Credentials _new_user = new Credentials("G","G","G");
