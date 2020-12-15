@@ -29,9 +29,8 @@ namespace Green_Enviro_App
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
-            this.tabControl = new System.Windows.Forms.TabControl();
+            this.mainTabControl = new System.Windows.Forms.TabControl();
             this.ReceiptPage = new System.Windows.Forms.TabPage();
             this.itemList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,22 +38,24 @@ namespace Green_Enviro_App
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.PurchasesPage = new System.Windows.Forms.TabPage();
             this.SalesPage = new System.Windows.Forms.TabPage();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.tabControl.SuspendLayout();
+            this.mainTabControl.SuspendLayout();
             this.ReceiptPage.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl
+            // mainTabControl
             // 
-            this.tabControl.Controls.Add(this.ReceiptPage);
-            this.tabControl.Controls.Add(this.PurchasesPage);
-            this.tabControl.Controls.Add(this.SalesPage);
-            this.tabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl.Location = new System.Drawing.Point(0, 0);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1096, 816);
-            this.tabControl.TabIndex = 0;
+            this.mainTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainTabControl.Controls.Add(this.ReceiptPage);
+            this.mainTabControl.Controls.Add(this.PurchasesPage);
+            this.mainTabControl.Controls.Add(this.SalesPage);
+            this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainTabControl.Location = new System.Drawing.Point(0, 0);
+            this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.Size = new System.Drawing.Size(1227, 816);
+            this.mainTabControl.TabIndex = 0;
             // 
             // ReceiptPage
             // 
@@ -65,7 +66,7 @@ namespace Green_Enviro_App
             this.ReceiptPage.Location = new System.Drawing.Point(4, 32);
             this.ReceiptPage.Name = "ReceiptPage";
             this.ReceiptPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ReceiptPage.Size = new System.Drawing.Size(1088, 780);
+            this.ReceiptPage.Size = new System.Drawing.Size(1219, 780);
             this.ReceiptPage.TabIndex = 0;
             this.ReceiptPage.Text = "Receipt";
             this.ReceiptPage.UseVisualStyleBackColor = true;
@@ -104,7 +105,8 @@ namespace Green_Enviro_App
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(622, 26);
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(778, 3);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(441, 645);
             this.richTextBox1.TabIndex = 0;
@@ -130,25 +132,19 @@ namespace Green_Enviro_App
             this.SalesPage.Text = "Sales";
             this.SalesPage.UseVisualStyleBackColor = true;
             // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1095, 817);
-            this.Controls.Add(this.tabControl);
+            this.ClientSize = new System.Drawing.Size(1236, 817);
+            this.Controls.Add(this.mainTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Green Enviro";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Form_Load);
-            this.tabControl.ResumeLayout(false);
+            this.mainTabControl.ResumeLayout(false);
             this.ReceiptPage.ResumeLayout(false);
             this.ReceiptPage.PerformLayout();
             this.ResumeLayout(false);
@@ -157,14 +153,13 @@ namespace Green_Enviro_App
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.TabPage ReceiptPage;
         private System.Windows.Forms.Button addItemBtn;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TabPage PurchasesPage;
         private System.Windows.Forms.TabPage SalesPage;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ComboBox itemList;
     }
 }
