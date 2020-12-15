@@ -30,6 +30,7 @@ namespace Green_Enviro_App
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.loginBtn = new System.Windows.Forms.Button();
             this.usernameField = new System.Windows.Forms.TextBox();
@@ -109,7 +110,7 @@ namespace Green_Enviro_App
             // clear_button
             // 
             this.clear_button.Location = new System.Drawing.Point(675, 389);
-            this.clear_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clear_button.Margin = new System.Windows.Forms.Padding(4);
             this.clear_button.Name = "clear_button";
             this.clear_button.Size = new System.Drawing.Size(241, 52);
             this.clear_button.TabIndex = 8;
@@ -141,6 +142,7 @@ namespace Green_Enviro_App
             this.Controls.Add(this.label1);
             this.Controls.Add(this.usernameField);
             this.Controls.Add(this.loginBtn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

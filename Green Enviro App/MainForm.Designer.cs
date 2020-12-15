@@ -30,6 +30,7 @@ namespace Green_Enviro_App
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.ReceiptPage = new System.Windows.Forms.TabPage();
             this.itemList = new System.Windows.Forms.ComboBox();
@@ -141,8 +142,11 @@ namespace Green_Enviro_App
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1095, 817);
             this.Controls.Add(this.tabControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Green Enviro";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Form_Load);
             this.tabControl.ResumeLayout(false);
             this.ReceiptPage.ResumeLayout(false);

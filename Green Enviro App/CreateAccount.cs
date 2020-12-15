@@ -138,6 +138,8 @@ namespace Green_Enviro_App
             MessageBoxButtons _buttons;
             MessageBoxIcon _icon;
 
+
+            //We can actually assign the message boxes outside the if statements here.
             if (_acc_creation_validity.Item1)
             {
                 _message = _acc_creation_validity.Item3;

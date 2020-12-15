@@ -81,7 +81,6 @@ namespace Green_Enviro_App
             // Coorelation or interaction between the CreateAccount class and LoginForm class 
             // To enable account to register and hence to login into the main form
             string _user_name = "";
-            string _password = "";
             List<Credentials> _all_credentials = _account._credentials;
 
             int index = 0;
