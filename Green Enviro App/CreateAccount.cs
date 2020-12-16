@@ -28,8 +28,9 @@ namespace Green_Enviro_App
         const string _empty_confirm_password_entered = "Confirm password cannot be empty";
         const string _password_error = "Passwords do not match";
         const string _empty_email_entered = "Email cannot be empty";
+        const string _email_address_error = "Email address already used by another account";
         const string _empty_master_password_entered = "Master password cannot be empty";
-        const string _incorrect_master_psword = "Incorrect Admin password entered";
+        const string _incorrect_master_psword = "Incorrect Master password entered";
 
         //Successfull messages
         const string _success = "Complete!";
@@ -58,7 +59,6 @@ namespace Green_Enviro_App
         private void newAccountButton_Click(object sender, EventArgs e)
         {
             accountCreationVerification();
-            ClearCredentials();
         }
         private void newAccountBtn_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -66,7 +66,6 @@ namespace Green_Enviro_App
             if (e.KeyChar == (char)Keys.Enter)
             {
                 accountCreationVerification();
-                ClearCredentials();
             }
         }
 
@@ -76,6 +75,7 @@ namespace Green_Enviro_App
             string _message_type = "";
             string _message = "";
             bool _all_good = false;
+            var _repeated_accounts = isAccountInfoRepeated();
 
             if (newUserNameField.Text == _empty_txtbox)
             {
@@ -113,10 +113,16 @@ namespace Green_Enviro_App
                 _message = _empty_master_password_entered;
                 _all_good = false;
             }
-            else if (isUserNameRepeated()== true)
+            else if (_repeated_accounts.Item1 == true)
             {
                 _message_type = _error;
                 _message = _user_name_error;
+                _all_good = false;
+            }
+            else if (_repeated_accounts.Item2 == true)
+            {
+                _message_type = _error;
+                _message = _email_address_error;
                 _all_good = false;
             }
             else if (masterPasswordField.Text != _admin_master_password)
@@ -165,6 +171,7 @@ namespace Green_Enviro_App
         private void returnToLoginForm()
         {
             this.Hide();
+            ClearCredentials();
         }
         
         private void addNewUser()
@@ -185,15 +192,17 @@ namespace Green_Enviro_App
             Credentials _new_user = new Credentials("G","G","G");
             _credentials.Add(_new_user);
         }
-        private bool isUserNameRepeated()
+        private Tuple<bool,bool> isAccountInfoRepeated()
         {
             int index = 0;
             bool _user_name_exist = true;
+            bool _email_address_exist = true;
             bool isEmpty = !_credentials.Any();
             //If The list of credentials is empty then there are no user name that exist
             if (isEmpty)
             {
                 _user_name_exist = false;
+                _email_address_exist = false;
             }
             //If the list of credentials is not empty then verify if the user name exist already
             else
@@ -205,12 +214,23 @@ namespace Green_Enviro_App
                         _user_name_exist = true;
                         break;
                     }
-                    else _user_name_exist = false;
+                    else if (_credentials[index].email.Contains(emailAddressField.Text))
+                    {
+                        _email_address_exist = true;
+                        break;
+                    }
+                    else 
+                    {
+                        _user_name_exist = false;
+                        _email_address_exist = false;
+
+                    } 
                 }
 
             }
 
-            return _user_name_exist;
+            Tuple<bool, bool> _account_info = new Tuple<bool, bool>(_user_name_exist, _email_address_exist);
+            return _account_info;
         }
 
         private void CreateAccount_Load(object sender, EventArgs e)
