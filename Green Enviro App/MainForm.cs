@@ -34,8 +34,6 @@ namespace Green_Enviro_App
         {
 
         }
-
-
         private void setFormSize()
         {
             //This function sets the size of the main form to maximum size allowable by the PC
@@ -52,5 +50,5 @@ namespace Green_Enviro_App
         }
 
 
-    }
+	}
 }

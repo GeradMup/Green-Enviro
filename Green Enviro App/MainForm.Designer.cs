@@ -33,6 +33,7 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.label2 = new System.Windows.Forms.Label();
 			this.logo = new System.Windows.Forms.PictureBox();
 			this.itemList = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@ namespace Green_Enviro_App
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
 			this.SalesPage = new System.Windows.Forms.TabPage();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.quantityBox = new System.Windows.Forms.TextBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -64,6 +66,8 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.quantityBox);
+			this.ReceiptPage.Controls.Add(this.label2);
 			this.ReceiptPage.Controls.Add(this.logo);
 			this.ReceiptPage.Controls.Add(this.itemList);
 			this.ReceiptPage.Controls.Add(this.label1);
@@ -76,7 +80,15 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
-			
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(29, 117);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(98, 23);
+			this.label2.TabIndex = 9;
+			this.label2.Text = "Quantity";
 			// 
 			// logo
 			// 
@@ -98,9 +110,9 @@ namespace Green_Enviro_App
 			this.itemList.FormattingEnabled = true;
 			this.itemList.IntegralHeight = false;
 			this.itemList.ItemHeight = 23;
-			this.itemList.Location = new System.Drawing.Point(115, 50);
+			this.itemList.Location = new System.Drawing.Point(186, 46);
 			this.itemList.Name = "itemList";
-			this.itemList.Size = new System.Drawing.Size(178, 31);
+			this.itemList.Size = new System.Drawing.Size(203, 31);
 			this.itemList.TabIndex = 7;
 			// 
 			// label1
@@ -157,6 +169,13 @@ namespace Green_Enviro_App
 			this.SalesPage.Text = "Sales";
 			this.SalesPage.UseVisualStyleBackColor = true;
 			// 
+			// quantityBox
+			// 
+			this.quantityBox.Location = new System.Drawing.Point(189, 114);
+			this.quantityBox.Name = "quantityBox";
+			this.quantityBox.Size = new System.Drawing.Size(199, 31);
+			this.quantityBox.TabIndex = 10;
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -192,5 +211,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.BindingSource bindingSource1;
 		public System.Windows.Forms.RichTextBox receiptBox;
 		public System.Windows.Forms.ComboBox itemList;
+		private System.Windows.Forms.Label label2;
+		public System.Windows.Forms.TextBox quantityBox;
 	}
 }

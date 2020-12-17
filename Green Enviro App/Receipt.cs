@@ -16,11 +16,11 @@ namespace Green_Enviro_App
 
         Main_Form _main_form;
 		string _receipt_content = "";
-        List<ItemsNPrices> _items = new List<ItemsNPrices>();
+        List<ItemNPrice> _items = new List<ItemNPrice>();
 
-        public struct ItemsNPrices
+        public struct ItemNPrice
         {
-            public ItemsNPrices(string name, int price)
+            public ItemNPrice(string name, int price)
             {
                 _item_name = name;
                 _price = price;
@@ -39,6 +39,7 @@ namespace Green_Enviro_App
 
         public void setupPriceList()
         {
+
             _main_form.itemList.Items.Add("Cu Mix");
             _main_form.itemList.Items.Add("Steel");
             _main_form.itemList.Items.Add("A Grade");
@@ -69,10 +70,10 @@ namespace Green_Enviro_App
             _main_form.receiptBox.AppendText(_date);
             _main_form.receiptBox.AppendText(_customer_details);
             _main_form.receiptBox.AppendText(" ----------------------------\n ");
-            _main_form.receiptBox.AppendText(string.Format("{0,-8}", "ITEMS"));
+            _main_form.receiptBox.AppendText(string.Format("{0,-10}", "ITEMS"));
             _main_form.receiptBox.AppendText(string.Format("{0,-5}", "KGs"));
             _main_form.receiptBox.AppendText(string.Format("{0,-6}", "PRICE"));
-            _main_form.receiptBox.AppendText(string.Format("{0,8}", "AMOUNT"));
+            _main_form.receiptBox.AppendText(string.Format("{0,7}", "AMOUNT"));
             _main_form.receiptBox.AppendText("\n");
             _main_form.receiptBox.AppendText(" ----------------------------\n");
             _main_form.receiptBox.AppendText(_receipt_content);
@@ -95,15 +96,15 @@ namespace Green_Enviro_App
             }
 
             string _itemName = " " + _main_form.itemList.SelectedItem.ToString();
-            string _price = "10";
-            string _kilos = "10";
-            string _amount = "10";
+            float _price = 10.00F;
+            float _kilos = float.Parse(_main_form.quantityBox.Text);
+            float _amount = _price * _kilos;
 
 
-            _receipt_content += string.Format("{0,-9}", _itemName);
-            _receipt_content += string.Format("{0,-6}", _kilos);
-            _receipt_content += string.Format("{0,-8}", _price);
-            _receipt_content += string.Format("{0,-10}", _amount);
+            _receipt_content += string.Format("{0,-11}", _itemName);
+            _receipt_content += string.Format("{0,-7}", _kilos);
+            _receipt_content += string.Format("{0,-5}", _price);
+            _receipt_content += string.Format("{0,-8}", _amount);
             _receipt_content += "\n";
             setupReceipt();
         }
