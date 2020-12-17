@@ -76,7 +76,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
-			this.ReceiptPage.Click += new System.EventHandler(this.ReceiptPage_Click);
+			
 			// 
 			// logo
 			// 
@@ -185,12 +185,12 @@ namespace Green_Enviro_App
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.TabPage ReceiptPage;
         private System.Windows.Forms.Button addItemBtn;
-        private System.Windows.Forms.RichTextBox receiptBox;
         private System.Windows.Forms.TabPage PurchasesPage;
         private System.Windows.Forms.TabPage SalesPage;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox itemList;
         private System.Windows.Forms.PictureBox logo;
 		private System.Windows.Forms.BindingSource bindingSource1;
+		public System.Windows.Forms.RichTextBox receiptBox;
+		public System.Windows.Forms.ComboBox itemList;
 	}
 }
