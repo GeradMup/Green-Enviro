@@ -29,6 +29,7 @@ namespace Green_Enviro_App
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
@@ -39,9 +40,11 @@ namespace Green_Enviro_App
 			this.receiptBox = new System.Windows.Forms.RichTextBox();
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
 			this.SalesPage = new System.Windows.Forms.TabPage();
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -125,7 +128,7 @@ namespace Green_Enviro_App
 			this.receiptBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.receiptBox.BackColor = System.Drawing.Color.White;
 			this.receiptBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.receiptBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.receiptBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.receiptBox.Location = new System.Drawing.Point(774, 6);
 			this.receiptBox.Name = "receiptBox";
 			this.receiptBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -172,6 +175,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -187,5 +191,6 @@ namespace Green_Enviro_App
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox itemList;
         private System.Windows.Forms.PictureBox logo;
-    }
+		private System.Windows.Forms.BindingSource bindingSource1;
+	}
 }
