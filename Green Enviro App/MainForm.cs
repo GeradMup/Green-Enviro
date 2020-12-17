@@ -82,11 +82,11 @@ namespace Green_Enviro_App
             receiptBox.AppendText(_date);
             receiptBox.AppendText(_customer_details);
             receiptBox.AppendText(" ---------------------------------------------------------\n");
-            receiptBox.AppendText(" ITEMS" + _tabspace + "PRICE" + _tabspace + "KGs" + _tabspace + "AMOUNT\n");
+            receiptBox.AppendText(" ITEMS" + _tabspace + "KGs" + _tabspace + "PRICE" + _tabspace + "AMOUNT\n");
             receiptBox.AppendText(" ---------------------------------------------------------\n");
             receiptBox.AppendText(_receipt_content);
             receiptBox.AppendText(" ---------------------------------------------------------\n");
-            receiptBox.AppendText("THANK YOU!");
+            receiptBox.AppendText(" THANK YOU!");
 
             //Scrolls the entire receipt down when new entries are added
             receiptBox.SelectionStart = receiptBox.Text.Length;
@@ -106,10 +106,23 @@ namespace Green_Enviro_App
             }
 
             string _itemName = itemList.SelectedItem.ToString();
+            string _price = "10";
+            string _kilos = "10";
+            string _amount = "10";
+
+            //sixCharacters(ref _itemName);
       
-            string _new_content = _itemName + _tabspace + "10     " + _tabspace + "10      " + _tabspace + "12     \n";
+            string _new_content = " " + _itemName + "\t" + _kilos + _tabspace + _price + _tabspace + _amount + "\n";
             _receipt_content += _new_content;
             setUpReceipt();
+        }
+
+        private void sixCharacters(ref string _string) 
+        { 
+            while(_string.Length < 6)
+            {
+                _string += "a";
+            }
         }
     }
 }
