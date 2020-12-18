@@ -32,7 +32,7 @@ namespace Green_Enviro_App
 
 			if (client != null)
 			{
-				MessageBox.Show("Connection Successful");
+				//MessageBox.Show("Connection Successful");
 			}
 
 

@@ -30,6 +30,7 @@ namespace Green_Enviro_App
             public int _price;
         }
 
+        //Constructor
         public Receipt(Main_Form form) 
         {
             _main_form = form;
