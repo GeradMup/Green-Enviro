@@ -136,13 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="green-leaf.ico" />
-    <Content Include="GreenEnviroStorage.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GreenEnviroStorage_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>GreenEnviroStorage.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
