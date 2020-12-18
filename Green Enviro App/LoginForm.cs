@@ -24,8 +24,12 @@ namespace Green_Enviro_App
         public string password;
         public string email;
     }
+
+    
     public partial class LoginForm : Form
     {
+        //Creates an Instance of the Database class
+        Database _database = new Database();
 
         //Creates a single instance of the CreateAccount class
         CreateAccount _account = new CreateAccount();

@@ -57,7 +57,7 @@ namespace Green_Enviro_App
             string _customer_details = " Customer: Gerry, 100\n" + " ID: 123455\n";
 
 
-            //Clipboard.SetImage(logo.Image);
+            Clipboard.SetImage(_main_form.logo.Image);
             _main_form.receiptBox.Paste();
             _main_form.receiptBox.AppendText(" \n");
             _main_form.receiptBox.AppendText(" ----------------------------\n");
@@ -92,6 +92,13 @@ namespace Green_Enviro_App
             //Checks if there is nothing selected from the item list
             if (_main_form.itemList.SelectedItem == null)
             {
+                return;
+            }
+
+            //Checks if there is something in the Quantity textbox
+            if (_main_form.quantityBox.Text == "") 
+            {
+                MessageBox.Show("Please insert the Quantity");
                 return;
             }
 

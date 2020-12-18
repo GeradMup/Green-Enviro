@@ -13,12 +13,12 @@ namespace Green_Enviro_App
     public partial class Main_Form : Form
     {
         Receipt _receipt;
+        
         public Main_Form()
         {
             InitializeComponent();
             //initialiseItemList();
             _receipt = new Receipt(this);
-           
         }
 
         private void Main_Form_Load(object sender, EventArgs e)

@@ -34,3 +34,12 @@ C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\G
 C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\obj\Debug\Green Enviro App.csproj.CoreCompileInputs.cache
 C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\obj\Debug\Green Enviro App.exe
 C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\obj\Debug\Green Enviro App.pdb
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\GreenEnviroStorage.mdf
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\GreenEnviroStorage_log.ldf
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\FireSharp.dll
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\FireSharp.Serialization.JsonNet.dll
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\RestSharp.dll
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\RestSharp.xml
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.csproj.CopyComplete
