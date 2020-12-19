@@ -41,7 +41,8 @@ namespace Green_Enviro_App
         public LoginForm()
         {
             InitializeComponent();
-            
+            //This is in order to render passwords into characters as to hide them
+            //passwordField.PasswordChar = '*';
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -164,6 +165,18 @@ namespace Green_Enviro_App
             else
             {
                 MessageBox.Show("Incorrect master password", "Administrator", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void checkBox_Show_Hide_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Show_Hide.Checked)
+            {
+                passwordField.UseSystemPasswordChar = true;
+            }
+            else
+            {
+                passwordField.UseSystemPasswordChar = false;
             }
         }
     }
