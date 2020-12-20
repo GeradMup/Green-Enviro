@@ -16,5 +16,10 @@ namespace Green_Enviro_App
 		{
 			InitializeComponent();
 		}
+
+		private void CustomMessageBox_Load(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

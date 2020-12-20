@@ -13,6 +13,7 @@ using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using System.Net;
+using System.Data.SqlClient;
 
 namespace Green_Enviro_App
 {
@@ -24,19 +25,94 @@ namespace Green_Enviro_App
 		static string _path_to_file = _path_to_directory + "\\Green Enviro Data.mdf";
 		static string _data_bucket_name = "green-enviro-app.appspot.com";
 		static Main_Form _main_form;
+		static CustomMsgBox _custom_msg_box;
 
-		static CustomMessageBox _custom_msg_box;
+		//static CustomMessageBox _custom_msg_box;
 
+		//Database info
+		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\resources\Data\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
+		static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
+
+		SqlConnection _connection = new SqlConnection(_connection_string);
+		static SqlCommand _command;
+
+		static IFirebaseClient _fb_client;
+		static string _firebase_node = "Database Url";
 
 		public Database() 
 		{
-			//CreateProgressBar();
-			//uploadDatabaseAsync();
-			_custom_msg_box = new CustomMessageBox();
+			//Sets up the first Database which stores the URL of the actual database file
+			SetupFirebaseDatabase();
+
+			try
+			{
+				_connection.Open();
+				_command = _connection.CreateCommand();
+				_command.CommandType = CommandType.Text;
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show("Failed To Connect To DB: " + ex.Message);
+			}
+		}
+
+		
+		// ************************************************************************************************************
+		
+		private void SetupFirebaseDatabase() 
+		{
+			//Create the destination folder if it does not already exist
+			IFirebaseConfig config = new FirebaseConfig
+			{
+				AuthSecret = "SAn2zMDU2KlQ626lxLPOlO8JUlhdWJQvFqq0Yv3H",
+				BasePath = "https://green-enviro-app-default-rtdb.firebaseio.com/"
+			};
+
+			_fb_client = new FireSharp.FirebaseClient(config);
+
+			if (_fb_client != null)
+			{
+				MessageBox.Show("Connected to Firebase Database");
+			}
+		}
+
+		internal class Data 
+		{ 
+			public int index { get; set; }
+			public string downloadUrl { get; set; }
+		}
+		private static async void InsertIntoFirebase(Data _data) 
+		{
+			SetResponse _response = await _fb_client.SetTaskAsync(_firebase_node, _data);
+
+			Data _result = _response.ResultAs<Data>();
+
+			_custom_msg_box = new CustomMsgBox(_main_form);
+			_custom_msg_box.DisplayMsg("Saved Download URL");
 
 		}
 
-		private static async void uploadDatabaseAsync()
+		private static async void RetrieveFromFirebase(string _nodeName) 
+		{
+			FirebaseResponse _response = await _fb_client.GetTaskAsync(_nodeName);
+			Data _data = _response.ResultAs<Data>();
+			database_address = _data.downloadUrl;
+			DownloadDatabase();
+
+		}
+		// ****************************************************************************************************************
+
+		public static void DownloadDatabase()
+		{
+			System.IO.Directory.CreateDirectory(_path_to_directory);
+
+			WebClient _client = new WebClient();
+			Uri _url_address = new Uri(database_address);
+			_client.DownloadFileAsync(_url_address, _path_to_file);
+			Completed("Successfully Synchronized!");
+		}
+
+		private static async void UploadDatabaseAsync()
 		{
 			var uploadStream = File.Open(_path_to_file, FileMode.Open);
 
@@ -45,56 +121,93 @@ namespace Green_Enviro_App
 				.Child("Green Enviro Data.mdf")			//Actual File Name
 				.PutAsync(uploadStream);
 
+			
 			task.Progress.ProgressChanged += (s, e) => UploadProgress();
 
 			database_address = await task;
+	
 
-			Console.WriteLine(database_address);
 
-			_main_form.UpDownProgressBar.Visible = false;
-			UploadCompleted();
-			downloadDatabase();
-		}
-
-		private static void UploadProgress() 
-		{
-			_main_form.UpDownProgressBar.Visible = true;
-			//MessageBox.Show("Progress Bar Made Visible");
-
-			if (_main_form.UpDownProgressBar.Value >= 95) 
+			Data _data = new Data
 			{
-				_main_form.UpDownProgressBar.Value = 0;
-			}
-			_main_form.UpDownProgressBar.Value += 10;
+				index = 1,
+				downloadUrl = database_address
+			};
 
+			InsertIntoFirebase(_data);
+			//DownloadDatabase();
+			//UpdateURL(database_address);
+			Completed("Upload Successful");
 		}
 
-		private static void UploadCompleted() 
-		{
-			_custom_msg_box.Activate();
-			_custom_msg_box.Show();
-			_custom_msg_box.Refresh();
-			System.Threading.Thread.Sleep(2000);
-			_custom_msg_box.Close();
-
-		}
-
-		private static void downloadDatabase()
-		{
-			//Create the destination folder if it does not already exist
-			
-			System.IO.Directory.CreateDirectory(_path_to_directory);
-
-			WebClient _client = new WebClient();
-			_client.DownloadFile(database_address, _path_to_file);
-			MessageBox.Show("Download Complete");
-		}
-
-		public void SynchroniseData(Main_Form _main) 
+		public void SynchroniseData(Main_Form _main)
 		{
 			_main_form = _main;
 			_main_form.UpDownProgressBar.Visible = true;
-			uploadDatabaseAsync();
+			//DownloadDatabase();
+			RetrieveFromFirebase(_firebase_node);
+			
+			
+		}
+
+
+		private static void UploadProgress() 
+		{
+			UpDownProgress();
+		}
+
+		private static void DownloadProgress(object sender, DownloadProgressChangedEventArgs e) 
+		{
+			UpDownProgress();
+		}
+
+		private static void UpDownProgress() 
+		{
+			//Activates the progress bar
+			_main_form.UpDownProgressBar.Visible = true;
+			//MessageBox.Show("Progress Bar Made Visible");
+			_main_form.UpDownProgressBar.Value += 10;
+			if (_main_form.UpDownProgressBar.Value >= 95)
+			{
+				_main_form.UpDownProgressBar.Value = 0;
+			}
+		}
+
+		private static void Completed(string _msg) 
+		{
+			//Deactivate the progress
+			_main_form.UpDownProgressBar.Value = 0;
+			_main_form.UpDownProgressBar.Visible = false;
+
+			//Show results message
+			_custom_msg_box = new CustomMsgBox(_main_form);
+			_custom_msg_box.DisplayMsg(_msg);
+		}
+
+
+
+		public void UploadData(Main_Form _main) 
+		{
+			_main_form = _main;    
+			UploadDatabaseAsync();		
+		}
+
+		private static void insertIntoDB() 
+		{
+			//string _table_name = "DatabaseURL";
+			//string _column = "address";
+			//string _values = "Value";
+			//_command.CommandText = "insert into ['" + _table_name + "'] ('" + _columns + "') values ('" + _values + "')";
+		}
+
+		private static void UpdateURL(string newURL) 
+		{
+			string _table_name = "DatabaseURL";
+			string _column = "address";
+			string _value = newURL;
+			int _id = 1;
+			_command.CommandText = "UPDATE "+ _table_name + " set "+ _column +" = '"+ _value +"' where id = "+ _id +"";
+			_command.ExecuteNonQuery();
 		}
 	}
 }

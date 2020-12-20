@@ -42,16 +42,16 @@ namespace Green_Enviro_App
 			this.receiptBox = new System.Windows.Forms.RichTextBox();
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
 			this.SalesPage = new System.Windows.Forms.TabPage();
-			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.SyncDataBtn = new System.Windows.Forms.Button();
 			this.UpDownProgressBar = new System.Windows.Forms.ProgressBar();
 			this.UploadDataBtn = new System.Windows.Forms.Button();
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.tabPage1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -224,6 +224,7 @@ namespace Green_Enviro_App
 			this.UploadDataBtn.TabIndex = 2;
 			this.UploadDataBtn.Text = "Upload Data";
 			this.UploadDataBtn.UseVisualStyleBackColor = true;
+			this.UploadDataBtn.Click += new System.EventHandler(this.UploadDataBtn_Click);
 			// 
 			// Main_Form
 			// 
@@ -243,8 +244,8 @@ namespace Green_Enviro_App
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.tabPage1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
 
         }

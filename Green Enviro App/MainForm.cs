@@ -56,5 +56,10 @@ namespace Green_Enviro_App
             //This function wants to make changes to the controls, thefore it needs the object of the main form
             _database.SynchroniseData(this);
 		}
+
+		private void UploadDataBtn_Click(object sender, EventArgs e)
+		{
+            _database.UploadData(this);
+		}
 	}
 }

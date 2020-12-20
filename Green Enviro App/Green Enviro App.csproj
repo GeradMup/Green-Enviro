@@ -228,11 +228,17 @@
     <Compile Include="CustomMessageBox.Designer.cs">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomMsgBox.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="GreenEnviroDataDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GreenEnviroDataDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Green_Enviro_DataDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -280,6 +286,17 @@
     </None>
     <None Include="GreenEnviroDataDataSet.xss">
       <DependentUpon>GreenEnviroDataDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Green_Enviro_DataDataSet.xsc">
+      <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Green_Enviro_DataDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Green_Enviro_DataDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Green_Enviro_DataDataSet.xss">
+      <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
