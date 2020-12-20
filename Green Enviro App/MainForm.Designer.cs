@@ -33,6 +33,7 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.quantityBox = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.logo = new System.Windows.Forms.PictureBox();
 			this.itemList = new System.Windows.Forms.ComboBox();
@@ -42,7 +43,7 @@ namespace Green_Enviro_App
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
 			this.SalesPage = new System.Windows.Forms.TabPage();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.quantityBox = new System.Windows.Forms.TextBox();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -57,6 +58,7 @@ namespace Green_Enviro_App
 			this.mainTabControl.Controls.Add(this.ReceiptPage);
 			this.mainTabControl.Controls.Add(this.PurchasesPage);
 			this.mainTabControl.Controls.Add(this.SalesPage);
+			this.mainTabControl.Controls.Add(this.tabPage1);
 			this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mainTabControl.Location = new System.Drawing.Point(0, 0);
 			this.mainTabControl.Name = "mainTabControl";
@@ -80,6 +82,13 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
+			// 
+			// quantityBox
+			// 
+			this.quantityBox.Location = new System.Drawing.Point(189, 114);
+			this.quantityBox.Name = "quantityBox";
+			this.quantityBox.Size = new System.Drawing.Size(199, 31);
+			this.quantityBox.TabIndex = 10;
 			// 
 			// label2
 			// 
@@ -169,12 +178,14 @@ namespace Green_Enviro_App
 			this.SalesPage.Text = "Sales";
 			this.SalesPage.UseVisualStyleBackColor = true;
 			// 
-			// quantityBox
+			// tabPage1
 			// 
-			this.quantityBox.Location = new System.Drawing.Point(189, 114);
-			this.quantityBox.Name = "quantityBox";
-			this.quantityBox.Size = new System.Drawing.Size(199, 31);
-			this.quantityBox.TabIndex = 10;
+			this.tabPage1.Location = new System.Drawing.Point(4, 32);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Size = new System.Drawing.Size(1219, 780);
+			this.tabPage1.TabIndex = 3;
+			this.tabPage1.Text = "Sync ";
+			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// Main_Form
 			// 
@@ -213,5 +224,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label2;
 		public System.Windows.Forms.TextBox quantityBox;
 		public System.Windows.Forms.PictureBox logo;
+		private System.Windows.Forms.TabPage tabPage1;
 	}
 }

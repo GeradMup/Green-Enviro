@@ -48,8 +48,6 @@ C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\G
 C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\bin\Debug\Newtonsoft.Json.xml
 C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\bin\Debug\RestSharp.xml
 C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\obj\Debug\Green Enviro App.csproj.CopyComplete
-C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\GreenData.mdf
-C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\GreenData_log.ldf
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Firebase.Auth.dll
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Firebase.Storage.dll
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\System.Diagnostics.DiagnosticSource.dll

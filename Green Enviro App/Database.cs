@@ -24,7 +24,6 @@ namespace Green_Enviro_App
 		public Database() 
 		{
 			uploadDatabaseAsync();
-			
 		}
 
 		private static async void uploadDatabaseAsync()
@@ -41,23 +40,21 @@ namespace Green_Enviro_App
 			database_address = await task;
 
 			Console.WriteLine(database_address);
-			MessageBox.Show("Update Complete");
+			MessageBox.Show("Upload Complete");
 			downloadDatabase();
-
 		}
 
 		private static void downloadDatabase()
 		{
-
 			//Create the destination folder if it does not already exist
-			string _path_string = @"C:\Green Enviro";
-			System.IO.Directory.CreateDirectory(_path_string);
-
+			string _path_to_directory = @"..\\..\\resources\\Data";
+			string _path_to_file = _path_to_directory + "\\Nothing.txt";
+			
+			System.IO.Directory.CreateDirectory(_path_to_directory);
 
 			WebClient _client = new WebClient();
-			_client.DownloadFile(database_address, @"C:\Green Enviro\Nothing.txt");
-			MessageBox.Show("Update Complete");
+			_client.DownloadFile(database_address, _path_to_file);
+			MessageBox.Show("Download Complete");
 		}
-
 	}
 }
