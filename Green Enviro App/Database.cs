@@ -47,7 +47,7 @@ namespace Green_Enviro_App
 			SetupFirebaseDatabase();
 		}
 		
-		// ************************************************************************************************************
+		// ***************************************************************************************************************
 		
 		private void SetupFirebaseDatabase() 
 		{
@@ -91,7 +91,6 @@ namespace Green_Enviro_App
 			_response = await _fb_client.GetTaskAsync(_firebase_node + 2);
 			_data = _response.ResultAs<Data>();
 			database_address2 = _data.downloadUrl;
-
 
 			DownloadDatabase();
 
@@ -201,12 +200,16 @@ namespace Green_Enviro_App
 		public void UploadData(Main_Form _main) 
 		{
 			_main_form = _main;    
-			UploadDatabaseAsync();		
+			UploadDatabaseAsync();
+			SetupDatabase();
+			InsertIntoDB();
 		}
 
 
 		// ***************************************************************************************************************************
 		//SQL Database stuff
+
+		//Loads of Tutorials on w3schools.com
 
 		private void SetupDatabase() 
 		{
@@ -230,13 +233,12 @@ namespace Green_Enviro_App
 			//_command.CommandText = "insert into ['" + _table_name + "'] ('" + _columns + "') values ('" + _values + "')";
 		}
 
-		private static void UpdateURL(string newURL) 
+		private static void InsertIntoDB() 
 		{
-			string _table_name = "DatabaseURL";
-			string _column = "address";
-			string _value = newURL;
-			int _id = 1;
-			_command.CommandText = "UPDATE "+ _table_name + " set "+ _column +" = '"+ _value +"' where id = "+ _id +"";
+		
+			_command.CommandText = "insert into FirstTable (Id, Name) values (30, 'Mike')";
+
+			//Please use a try and catch, so that we can handle exceptions
 			_command.ExecuteNonQuery();
 		}
 	}
