@@ -44,10 +44,14 @@ namespace Green_Enviro_App
 			this.SalesPage = new System.Windows.Forms.TabPage();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.SyncDataBtn = new System.Windows.Forms.Button();
+			this.UpDownProgressBar = new System.Windows.Forms.ProgressBar();
+			this.UploadDataBtn = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -180,12 +184,46 @@ namespace Green_Enviro_App
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.UploadDataBtn);
+			this.tabPage1.Controls.Add(this.UpDownProgressBar);
+			this.tabPage1.Controls.Add(this.SyncDataBtn);
 			this.tabPage1.Location = new System.Drawing.Point(4, 32);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Size = new System.Drawing.Size(1219, 780);
 			this.tabPage1.TabIndex = 3;
 			this.tabPage1.Text = "Sync ";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// SyncDataBtn
+			// 
+			this.SyncDataBtn.Location = new System.Drawing.Point(131, 55);
+			this.SyncDataBtn.Name = "SyncDataBtn";
+			this.SyncDataBtn.Size = new System.Drawing.Size(354, 144);
+			this.SyncDataBtn.TabIndex = 0;
+			this.SyncDataBtn.Text = "Sync Data";
+			this.SyncDataBtn.UseVisualStyleBackColor = true;
+			this.SyncDataBtn.Click += new System.EventHandler(this.SyncDataBtn_Click);
+			// 
+			// UpDownProgressBar
+			// 
+			this.UpDownProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.UpDownProgressBar.BackColor = System.Drawing.SystemColors.Control;
+			this.UpDownProgressBar.Location = new System.Drawing.Point(62, 576);
+			this.UpDownProgressBar.MarqueeAnimationSpeed = 1000;
+			this.UpDownProgressBar.Name = "UpDownProgressBar";
+			this.UpDownProgressBar.Size = new System.Drawing.Size(1109, 153);
+			this.UpDownProgressBar.TabIndex = 1;
+			this.UpDownProgressBar.Visible = false;
+			// 
+			// UploadDataBtn
+			// 
+			this.UploadDataBtn.Location = new System.Drawing.Point(692, 55);
+			this.UploadDataBtn.Name = "UploadDataBtn";
+			this.UploadDataBtn.Size = new System.Drawing.Size(354, 144);
+			this.UploadDataBtn.TabIndex = 2;
+			this.UploadDataBtn.Text = "Upload Data";
+			this.UploadDataBtn.UseVisualStyleBackColor = true;
 			// 
 			// Main_Form
 			// 
@@ -206,6 +244,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+			this.tabPage1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -225,5 +264,8 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.TextBox quantityBox;
 		public System.Windows.Forms.PictureBox logo;
 		private System.Windows.Forms.TabPage tabPage1;
+		public System.Windows.Forms.Button SyncDataBtn;
+		public System.Windows.Forms.ProgressBar UpDownProgressBar;
+		public System.Windows.Forms.Button UploadDataBtn;
 	}
 }

@@ -13,12 +13,14 @@ namespace Green_Enviro_App
     public partial class Main_Form : Form
     {
         Receipt _receipt;
+        Database _database;
         
-        public Main_Form()
+        public Main_Form(Database _data)
         {
             InitializeComponent();
             //initialiseItemList();
             _receipt = new Receipt(this);
+            _database = _data;
         }
 
         private void Main_Form_Load(object sender, EventArgs e)
@@ -49,6 +51,10 @@ namespace Green_Enviro_App
             _receipt.addItems();
         }
 
-
+		private void SyncDataBtn_Click(object sender, EventArgs e)
+		{
+            //This function wants to make changes to the controls, thefore it needs the object of the main form
+            _database.SynchroniseData(this);
+		}
 	}
 }

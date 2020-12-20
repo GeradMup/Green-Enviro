@@ -28,15 +28,19 @@ namespace Green_Enviro_App
     
     public partial class LoginForm : Form
     {
+     
         //Creates an Instance of the Database class
-        Database _database = new Database();
+        static Database _database = new Database();
+
+        //Creates the main form for the program
+        Main_Form _mainForm = new Main_Form(_database);
+
 
         //Creates a single instance of the CreateAccount class
         CreateAccount _account = new CreateAccount();
 
         //Master Password (Changeable depending on the devs)
         const string _master_password = "1234";
-        
 
         public LoginForm()
         {
@@ -125,7 +129,7 @@ namespace Green_Enviro_App
 
             if (validLogin)
             {
-                Main_Form _mainForm = new Main_Form();
+                
                 _mainForm.Activate();
                 _mainForm.Show();
                 this.Hide();
