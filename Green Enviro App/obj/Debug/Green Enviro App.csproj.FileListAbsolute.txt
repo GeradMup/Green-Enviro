@@ -52,6 +52,6 @@ C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Firebase.Storage.dll
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\System.Diagnostics.DiagnosticSource.dll
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.CustomMessageBox.resources
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro Data.mdf
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro Data_log.ldf
-C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.CustomMessageBox.resources

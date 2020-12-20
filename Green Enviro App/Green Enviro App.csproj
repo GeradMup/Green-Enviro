@@ -230,11 +230,6 @@
     </Compile>
     <Compile Include="CustomMsgBox.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="GreenEnviroDataDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GreenEnviroDataDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Green_Enviro_DataDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -276,17 +271,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="GreenEnviroDataDataSet.xsc">
-      <DependentUpon>GreenEnviroDataDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GreenEnviroDataDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GreenEnviroDataDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GreenEnviroDataDataSet.xss">
-      <DependentUpon>GreenEnviroDataDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Green_Enviro_DataDataSet.xsc">
       <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </None>

@@ -21,8 +21,10 @@ namespace Green_Enviro_App
 	public class Database
 	{
 		static string database_address;
+		static string database_address2;
 		static string _path_to_directory = @"..\\..\\";
-		static string _path_to_file = _path_to_directory + "\\Green Enviro Data.mdf";
+		static string _path_to_db_file = _path_to_directory + "\\Green Enviro Data.mdf";
+		static string _path_to_log_file = _path_to_directory + "\\Green Enviro Data_log.ldf";
 		static string _data_bucket_name = "green-enviro-app.appspot.com";
 		static Main_Form _main_form;
 		static CustomMsgBox _custom_msg_box;
@@ -33,7 +35,7 @@ namespace Green_Enviro_App
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\resources\Data\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
 		static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
 
-		SqlConnection _connection = new SqlConnection(_connection_string);
+		SqlConnection _connection;
 		static SqlCommand _command;
 
 		static IFirebaseClient _fb_client;
@@ -43,19 +45,7 @@ namespace Green_Enviro_App
 		{
 			//Sets up the first Database which stores the URL of the actual database file
 			SetupFirebaseDatabase();
-
-			try
-			{
-				_connection.Open();
-				_command = _connection.CreateCommand();
-				_command.CommandType = CommandType.Text;
-			}
-			catch(Exception ex)
-			{
-				MessageBox.Show("Failed To Connect To DB: " + ex.Message);
-			}
 		}
-
 		
 		// ************************************************************************************************************
 		
@@ -83,20 +73,26 @@ namespace Green_Enviro_App
 		}
 		private static async void InsertIntoFirebase(Data _data) 
 		{
-			SetResponse _response = await _fb_client.SetTaskAsync(_firebase_node, _data);
+			SetResponse _response = await _fb_client.SetTaskAsync(_firebase_node + _data.index, _data);
 
 			Data _result = _response.ResultAs<Data>();
 
 			_custom_msg_box = new CustomMsgBox(_main_form);
-			_custom_msg_box.DisplayMsg("Saved Download URL");
+			_custom_msg_box.DisplayMsg("Saved Download URL: " + _result.index);
 
 		}
 
 		private static async void RetrieveFromFirebase(string _nodeName) 
 		{
-			FirebaseResponse _response = await _fb_client.GetTaskAsync(_nodeName);
+			FirebaseResponse _response = await _fb_client.GetTaskAsync(_firebase_node+1);
 			Data _data = _response.ResultAs<Data>();
 			database_address = _data.downloadUrl;
+
+			_response = await _fb_client.GetTaskAsync(_firebase_node + 2);
+			_data = _response.ResultAs<Data>();
+			database_address2 = _data.downloadUrl;
+
+
 			DownloadDatabase();
 
 		}
@@ -108,25 +104,25 @@ namespace Green_Enviro_App
 
 			WebClient _client = new WebClient();
 			Uri _url_address = new Uri(database_address);
-			_client.DownloadFileAsync(_url_address, _path_to_file);
+			_client.DownloadFileAsync(_url_address, _path_to_db_file);
+
+			//_url_address = new Uri(database_address2);
+			//_client.DownloadFileAsync(_url_address, _path_to_log_file);
+
 			Completed("Successfully Synchronized!");
 		}
 
 		private static async void UploadDatabaseAsync()
 		{
-			var uploadStream = File.Open(_path_to_file, FileMode.Open);
+			var uploadStream = File.Open(_path_to_db_file, FileMode.Open);
 
 			var task = new FirebaseStorage(_data_bucket_name)
 				.Child("Database File")					//Parent Directory
 				.Child("Green Enviro Data.mdf")			//Actual File Name
 				.PutAsync(uploadStream);
 
-			
 			task.Progress.ProgressChanged += (s, e) => UploadProgress();
-
 			database_address = await task;
-	
-
 
 			Data _data = new Data
 			{
@@ -134,7 +130,23 @@ namespace Green_Enviro_App
 				downloadUrl = database_address
 			};
 
+			uploadStream = File.Open(_path_to_log_file, FileMode.Open);
+			task = new FirebaseStorage(_data_bucket_name)
+				.Child("Database File")                 //Parent Directory
+				.Child("Green Enviro Data_log.ldf")         //Actual File Name
+				.PutAsync(uploadStream);
+
+			task.Progress.ProgressChanged += (s, e) => UploadProgress();
+			string database_address_log = await task;
+	
+			Data _data2 = new Data
+			{
+				index = 2,
+				downloadUrl = database_address_log
+			};
+
 			InsertIntoFirebase(_data);
+			InsertIntoFirebase(_data2);
 			//DownloadDatabase();
 			//UpdateURL(database_address);
 			Completed("Upload Successful");
@@ -192,6 +204,24 @@ namespace Green_Enviro_App
 			UploadDatabaseAsync();		
 		}
 
+
+		// ***************************************************************************************************************************
+		//SQL Database stuff
+
+		private void SetupDatabase() 
+		{
+			try
+			{
+				_connection = new SqlConnection(_connection_string);
+				_connection.Open();
+				_command = _connection.CreateCommand();
+				_command.CommandType = CommandType.Text;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Failed To Connect To DB: " + ex.Message);
+			}
+		}
 		private static void insertIntoDB() 
 		{
 			//string _table_name = "DatabaseURL";
