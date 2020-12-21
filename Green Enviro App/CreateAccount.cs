@@ -176,14 +176,11 @@ namespace Green_Enviro_App
         
         private void addNewUser()
         {
-            Credentials _new_user = new Credentials(newUserNameField.Text, newPasswordField.Text, emailAddressField.Text);
+            //Encrypting the password and storing not the password itself but its encryption using a 196 bit cipher key
+            InformationEncryption __encryption = new InformationEncryption();
+            string _encrypted_user_password = __encryption.Encrypt(newPasswordField.Text);
+            Credentials _new_user = new Credentials(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text);
             _credentials.Add(_new_user);
-        }
-
-        private string encryptPassword() 
-        {
-            string _encrypted_password = "";
-            return _encrypted_password;
         }
 
         //This function needs to be deleted

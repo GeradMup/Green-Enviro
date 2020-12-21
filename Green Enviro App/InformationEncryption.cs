@@ -20,12 +20,12 @@ namespace Green_Enviro_App
         //Generated preventing encryption, this is because 16 bytes = 128 bits and 24 bytes = 196
         //Which are the bits value only accepted when converting using a Base64
 
-        //Cipher key for 128 bits
-        const string _cipher_key = "JesusYouAreKing!";
-        //Cipher  key for 196 bits
-        const string _196_cipher_key = "ElijahisTheProphetofFire";
+        //Cipher key for 128 bits (changeable depending on devs) !!!! 16 characters
+        private const string _128_cipher_key = "JesusYouAreKing!";
+        //Cipher  key for 196 bits (changeable depending on devs) !!!! 24 characters
+        private const string _196_cipher_key = "ElijahisTheProphetofFire";
 
-        public static string Encrypt(string plaintext, string key)
+        public string Encrypt(string plaintext)
         {
             //Storing the psword or plaintext into a byte array as the content is converted into bytes
             byte[] input_array = UTF8Encoding.UTF8.GetBytes(plaintext);
@@ -33,7 +33,7 @@ namespace Green_Enviro_App
             //Triple DES process where the key is used in order to create encryption
             TripleDESCryptoServiceProvider triple_DES = new TripleDESCryptoServiceProvider
             {
-                Key = UTF8Encoding.UTF8.GetBytes(key),
+                Key = UTF8Encoding.UTF8.GetBytes(_128_cipher_key),
                 Mode = CipherMode.ECB,
                 Padding = PaddingMode.PKCS7
             };
@@ -44,12 +44,12 @@ namespace Green_Enviro_App
             string encryption = Convert.ToBase64String(output_array, 0, output_array.Length);
             return encryption;
         }
-        public static string Decrypt(string input, string key)
+        public string Decrypt(string input)
         {
             byte[] input_array = Convert.FromBase64String(input);
             TripleDESCryptoServiceProvider triple_DES = new TripleDESCryptoServiceProvider
             {
-                Key = UTF8Encoding.UTF8.GetBytes(key),
+                Key = UTF8Encoding.UTF8.GetBytes(_128_cipher_key),
                 Mode = CipherMode.ECB,
                 Padding = PaddingMode.PKCS7
             };
@@ -61,15 +61,15 @@ namespace Green_Enviro_App
             return decryption;
         }
 
-        public void PrintCryptography(string plaintext)
+        /*public void PrintCryptography(string plaintext)
         {
-            string ciphertext = Encrypt(plaintext, _cipher_key);
-            string decrypted_text = Decrypt(ciphertext, _cipher_key);
+            string ciphertext = Encrypt(plaintext, _128_cipher_key);
+            string decrypted_text = Decrypt(ciphertext, _128_cipher_key);
             Console.WriteLine(plaintext);
             Console.WriteLine("");
             Console.WriteLine(ciphertext);
             Console.WriteLine("");
             Console.WriteLine(decrypted_text);
-        }
+        }*/
     }
 }

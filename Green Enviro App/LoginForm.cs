@@ -93,6 +93,7 @@ namespace Green_Enviro_App
             // To enable account to register and hence to login into the main form
             string _user_name = "";
             bool _user_exists = false;
+            InformationEncryption _decryption = new InformationEncryption();
             List<Credentials> _all_credentials = _account._credentials;
 
             int index = 0;
@@ -111,8 +112,9 @@ namespace Green_Enviro_App
 
 			if (_user_exists) 
             {
-                // First Decrypt the password at the correct index and the check if the enetered password matches
-                if (_all_credentials[index].password == passwordField.Text)
+                // First Decrypt the password at the correct index and the check if the entered password matches
+                string _decrypted_psword = _decryption.Decrypt(_all_credentials[index].password);
+                if (_decrypted_psword == passwordField.Text)
                 {
                     return true;
                 }
@@ -142,7 +144,7 @@ namespace Green_Enviro_App
                 MessageBox.Show("Incorrect Credentials", "ERROR!",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
-                _client_password.PrintCryptography(passwordField.Text);
+                //_client_password.PrintCryptography(passwordField.Text);
             }
         }
 
