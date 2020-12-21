@@ -20,16 +20,24 @@ namespace Green_Enviro_App
         //Generated preventing encryption, this is because 16 bytes = 128 bits and 24 bytes = 196
         //Which are the bits value only accepted when converting using a Base64
 
+        //Cipher key for 128 bits
+        const string _cipher_key = "JesusYouAreKing!";
+        //Cipher  key for 196 bits
+        const string _196_cipher_key = "ElijahisTheProphetofFire";
+
         public static string Encrypt(string plaintext, string key)
         {
+            //Storing the psword or plaintext into a byte array as the content is converted into bytes
             byte[] input_array = UTF8Encoding.UTF8.GetBytes(plaintext);
            
+            //Triple DES process where the key is used in order to create encryption
             TripleDESCryptoServiceProvider triple_DES = new TripleDESCryptoServiceProvider
             {
                 Key = UTF8Encoding.UTF8.GetBytes(key),
                 Mode = CipherMode.ECB,
                 Padding = PaddingMode.PKCS7
             };
+            //Encryption process or cryptograhy process
             ICryptoTransform crypto_encryption = triple_DES.CreateEncryptor();
             byte[] output_array = crypto_encryption.TransformFinalBlock(input_array, 0, input_array.Length);
             triple_DES.Clear();
@@ -45,6 +53,7 @@ namespace Green_Enviro_App
                 Mode = CipherMode.ECB,
                 Padding = PaddingMode.PKCS7
             };
+            //Decryption process returning the cryptographic content
             ICryptoTransform crypto_decryption = triple_DES.CreateDecryptor();
             byte[] output_array = crypto_decryption.TransformFinalBlock(input_array, 0, input_array.Length);
             triple_DES.Clear();
@@ -54,11 +63,8 @@ namespace Green_Enviro_App
 
         public void PrintCryptography(string plaintext)
         {
-            string key = "Elijahistheprophetoffire";
-            string ciphertext = "";
-            string decrypted_text = "";
-            ciphertext = Encrypt(plaintext, key);
-            decrypted_text = Decrypt(ciphertext, key);
+            string ciphertext = Encrypt(plaintext, _cipher_key);
+            string decrypted_text = Decrypt(ciphertext, _cipher_key);
             Console.WriteLine(plaintext);
             Console.WriteLine("");
             Console.WriteLine(ciphertext);
