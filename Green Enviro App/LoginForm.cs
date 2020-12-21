@@ -42,6 +42,9 @@ namespace Green_Enviro_App
         //Master Password (Changeable depending on the devs)
         const string _master_password = "1234";
 
+        //Encryption instantiation 
+        InformationEncryption _client_password = new InformationEncryption();
+
         public LoginForm()
         {
             InitializeComponent();
@@ -139,6 +142,7 @@ namespace Green_Enviro_App
                 MessageBox.Show("Incorrect Credentials", "ERROR!",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
+                _client_password.PrintCryptography(passwordField.Text);
             }
         }
 

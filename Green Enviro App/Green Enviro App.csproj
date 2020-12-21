@@ -246,6 +246,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="InformationEncryption.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
