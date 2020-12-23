@@ -34,9 +34,9 @@ namespace Green_Enviro_App
 
 		//Database info
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\resources\Data\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
-		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
-		static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ _absolute_path_to_db +";Integrated Security = True; Connect Timeout = 30";
-
+		static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
+		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ _absolute_path_to_db +";Integrated Security = True; Connect Timeout = 30";
+		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\Green Enviro Data.mdf;Integrated Security=True;Connect Timeout=30";
 		SqlConnection _connection;
 		static SqlCommand _command;
 
@@ -47,10 +47,32 @@ namespace Green_Enviro_App
 		{
 			//Sets up the first Database which stores the URL of the actual database file
 			SetupFirebaseDatabase();
+			initialiseDB();
 		}
-		
+
+		//****************************************************************************************************************
+
+		private void initialiseDB() 
+		{
+
+			string targetPath = _path_to_directory + "\\bin\\Debug";
+			string destinationFile = System.IO.Path.Combine(targetPath, "Green Enviro Data.mdf");
+			System.IO.File.Copy(_path_to_db_file, destinationFile, true);
+
+		}
+
+		public void saveDB() 
+		{
+
+			CloseDatabase();
+			string degubFilePath = _path_to_directory + "\\bin\\Debug\\Green Enviro Data.mdf";
+			string targetPath = _path_to_directory;
+			string destinationFile = System.IO.Path.Combine(targetPath, "Green Enviro Data.mdf");
+			System.IO.File.Copy(degubFilePath, destinationFile, true);
+		}
+
 		// ***************************************************************************************************************
-		
+
 		private void SetupFirebaseDatabase() 
 		{
 			//Create the destination folder if it does not already exist
@@ -203,7 +225,7 @@ namespace Green_Enviro_App
 		{
 			_main_form = _main;    
 			UploadDatabaseAsync();
-			SetupDatabase();
+			OpenDatabase();
 			InsertIntoDB();
 		}
 
@@ -213,7 +235,7 @@ namespace Green_Enviro_App
 
 		//Loads of Tutorials on w3schools.com
 
-		private void SetupDatabase() 
+		private void OpenDatabase() 
 		{
 			try
 			{
@@ -227,6 +249,20 @@ namespace Green_Enviro_App
 				MessageBox.Show("Failed To Connect To DB: " + ex.Message);
 			}
 		}
+
+		//Checks if a Database connection was made and tries to close it before exiting the application.
+		private void CloseDatabase() 
+		{
+			if (_connection == null) 
+			{
+				return;
+			}
+
+			if (_connection.State == ConnectionState.Open) 
+			{
+				_connection.Close();
+			}
+		}
 		private static void insertIntoDB() 
 		{
 			//string _table_name = "DatabaseURL";
@@ -238,7 +274,7 @@ namespace Green_Enviro_App
 		private static void InsertIntoDB() 
 		{
 		
-			_command.CommandText = "insert into FirstTable (Id, Name) values (30, 'Mike')";
+			_command.CommandText = "insert into FirstTable (Id, Name) values (22, 'Gerry')";
 
 			//Please use a try and catch, so that we can handle exceptions
 			_command.ExecuteNonQuery();

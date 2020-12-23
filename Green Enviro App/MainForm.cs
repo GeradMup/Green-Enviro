@@ -61,5 +61,11 @@ namespace Green_Enviro_App
 		{
             _database.UploadData(this);
 		}
+
+		private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
+		{
+                _database.saveDB();
+            
+        }
 	}
 }
