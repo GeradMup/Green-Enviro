@@ -26,6 +26,7 @@ namespace Green_Enviro_App
 		static string _path_to_db_file = _path_to_directory + "\\Green Enviro Data.mdf";
 		static string _path_to_log_file = _path_to_directory + "\\Green Enviro Data_log.ldf";
 		static string _data_bucket_name = "green-enviro-app.appspot.com";
+		static string _absolute_path_to_db = Path.GetFullPath(_path_to_db_file);
 		static Main_Form _main_form;
 		static CustomMsgBox _custom_msg_box;
 
@@ -33,7 +34,8 @@ namespace Green_Enviro_App
 
 		//Database info
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\resources\Data\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
-		static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
+		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
+		static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ _absolute_path_to_db +";Integrated Security = True; Connect Timeout = 30";
 
 		SqlConnection _connection;
 		static SqlCommand _command;

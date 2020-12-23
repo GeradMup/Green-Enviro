@@ -186,7 +186,9 @@ namespace Green_Enviro_App
         //This function needs to be deleted
         private void defaultUser()
         {
-            Credentials _new_user = new Credentials("G","G","G");
+            InformationEncryption __encryption = new InformationEncryption();
+            string _encrypted_user_password = __encryption.Encrypt("G");
+            Credentials _new_user = new Credentials("G", _encrypted_user_password, "G");
             _credentials.Add(_new_user);
         }
         private Tuple<bool,bool> isAccountInfoRepeated()
