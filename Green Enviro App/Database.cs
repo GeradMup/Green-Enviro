@@ -21,10 +21,8 @@ namespace Green_Enviro_App
 	public class Database
 	{
 		static string database_address;
-		static string database_address2;
 		static string _path_to_directory = @"..\\..\\";
 		static string _path_to_db_file = _path_to_directory + "\\Green Enviro Data.mdf";
-		static string _path_to_log_file = _path_to_directory + "\\Green Enviro Data_log.ldf";
 		static string _data_bucket_name = "green-enviro-app.appspot.com";
 		static string _absolute_path_to_db = Path.GetFullPath(_path_to_db_file);
 		static Main_Form _main_form;
@@ -37,7 +35,8 @@ namespace Green_Enviro_App
 		static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ _absolute_path_to_db +";Integrated Security = True; Connect Timeout = 30";
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\Green Enviro Data.mdf;Integrated Security=True;Connect Timeout=30";
-		SqlConnection _connection;
+		
+		static SqlConnection _connection;
 		static SqlCommand _command;
 
 		static IFirebaseClient _fb_client;
@@ -47,28 +46,7 @@ namespace Green_Enviro_App
 		{
 			//Sets up the first Database which stores the URL of the actual database file
 			SetupFirebaseDatabase();
-			initialiseDB();
-		}
-
-		//****************************************************************************************************************
-
-		private void initialiseDB() 
-		{
-
-			string targetPath = _path_to_directory + "\\bin\\Debug";
-			string destinationFile = System.IO.Path.Combine(targetPath, "Green Enviro Data.mdf");
-			System.IO.File.Copy(_path_to_db_file, destinationFile, true);
-
-		}
-
-		public void saveDB() 
-		{
-
-			CloseDatabase();
-			string degubFilePath = _path_to_directory + "\\bin\\Debug\\Green Enviro Data.mdf";
-			string targetPath = _path_to_directory;
-			string destinationFile = System.IO.Path.Combine(targetPath, "Green Enviro Data.mdf");
-			System.IO.File.Copy(degubFilePath, destinationFile, true);
+			
 		}
 
 		// ***************************************************************************************************************
@@ -112,10 +90,6 @@ namespace Green_Enviro_App
 			Data _data = _response.ResultAs<Data>();
 			database_address = _data.downloadUrl;
 
-			_response = await _fb_client.GetTaskAsync(_firebase_node + 2);
-			_data = _response.ResultAs<Data>();
-			database_address2 = _data.downloadUrl;
-
 			DownloadDatabase();
 
 		}
@@ -127,16 +101,17 @@ namespace Green_Enviro_App
 
 			WebClient _client = new WebClient();
 			Uri _url_address = new Uri(database_address);
-			_client.DownloadFileAsync(_url_address, _path_to_db_file);
-
-			//_url_address = new Uri(database_address2);
-			//_client.DownloadFileAsync(_url_address, _path_to_log_file);
-
+			_client.DownloadFile(_url_address, _path_to_db_file);
 			Completed("Successfully Synchronized!");
 		}
 
 		private static async void UploadDatabaseAsync()
 		{
+			//First close the Database before trying to upload
+
+			CloseDatabase();
+
+			//Now try to upload the database
 			var uploadStream = File.Open(_path_to_db_file, FileMode.Open);
 
 			var task = new FirebaseStorage(_data_bucket_name)
@@ -153,23 +128,7 @@ namespace Green_Enviro_App
 				downloadUrl = database_address
 			};
 
-			uploadStream = File.Open(_path_to_log_file, FileMode.Open);
-			task = new FirebaseStorage(_data_bucket_name)
-				.Child("Database File")                 //Parent Directory
-				.Child("Green Enviro Data_log.ldf")         //Actual File Name
-				.PutAsync(uploadStream);
-
-			task.Progress.ProgressChanged += (s, e) => UploadProgress();
-			string database_address_log = await task;
-	
-			Data _data2 = new Data
-			{
-				index = 2,
-				downloadUrl = database_address_log
-			};
-
 			InsertIntoFirebase(_data);
-			InsertIntoFirebase(_data2);
 			//DownloadDatabase();
 			//UpdateURL(database_address);
 			Completed("Upload Successful");
@@ -237,6 +196,14 @@ namespace Green_Enviro_App
 
 		private void OpenDatabase() 
 		{
+			if (_connection != null) 
+			{
+				if (_connection.State == ConnectionState.Open) 
+				{
+					return;
+				}
+			}
+
 			try
 			{
 				_connection = new SqlConnection(_connection_string);
@@ -251,7 +218,7 @@ namespace Green_Enviro_App
 		}
 
 		//Checks if a Database connection was made and tries to close it before exiting the application.
-		private void CloseDatabase() 
+		private static void CloseDatabase() 
 		{
 			if (_connection == null) 
 			{
@@ -261,6 +228,7 @@ namespace Green_Enviro_App
 			if (_connection.State == ConnectionState.Open) 
 			{
 				_connection.Close();
+				_connection = null;
 			}
 		}
 		private static void insertIntoDB() 
@@ -271,13 +239,21 @@ namespace Green_Enviro_App
 			//_command.CommandText = "insert into ['" + _table_name + "'] ('" + _columns + "') values ('" + _values + "')";
 		}
 
-		private static void InsertIntoDB() 
+		private void InsertIntoDB() 
 		{
+
+			//Check that the DB is open before trying to make an insertion
+			OpenDatabase();
 		
 			_command.CommandText = "insert into FirstTable (Id, Name) values (22, 'Gerry')";
-
-			//Please use a try and catch, so that we can handle exceptions
-			_command.ExecuteNonQuery();
+			try
+			{
+				_command.ExecuteNonQuery();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Failed To Connect To DB: " + ex.Message);
+			}
 		}
 	}
 }
