@@ -8,11 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
+using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace Green_Enviro_Sync
 {
 	public partial class Sync : Form
 	{
+		[DllImport("wininet.dll")]
+		private extern static bool InternetGetConnectedState(out int description, int resultValue);
 
 		ErrorMsgBox _errorBox;
 		public Sync()
@@ -34,20 +38,11 @@ namespace Green_Enviro_Sync
 
 		private bool CheckConnectivity() 
 		{
-			//We will check for interntet connectivity by pining the IP Address where our database is stored.
-			string host = "https://firebase.google.com/";  
-			bool _isConnected = false;
-			Ping _ping = new Ping();
-			try
-			{
-				PingReply _reply = _ping.Send(host);
-				if (_reply.Status == IPStatus.Success)
-					_isConnected = true;
-			}
-			catch { }
-			
+			int _description;
+			bool _isConnected = InternetGetConnectedState(out _description, 0);
 
-			if (_isConnected == false) 
+
+			if (_isConnected == false)
 			{
 				_errorBox = new ErrorMsgBox();
 				_errorBox.Activate();

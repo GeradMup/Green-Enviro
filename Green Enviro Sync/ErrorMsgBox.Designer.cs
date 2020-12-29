@@ -88,7 +88,7 @@ namespace Green_Enviro_Sync
 			this.Controls.Add(this.label1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ErrorMsgBox";
-			this.Text = "ErrorMsgBox";
+			this.Text = "Green Enviro Synchronizer";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
