@@ -47,6 +47,8 @@ namespace Green_Enviro_App
 			this.UpDownProgressBar = new System.Windows.Forms.ProgressBar();
 			this.SyncDataBtn = new System.Windows.Forms.Button();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.label3 = new System.Windows.Forms.Label();
+			this.PriceBox = new System.Windows.Forms.TextBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -72,6 +74,8 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.PriceBox);
+			this.ReceiptPage.Controls.Add(this.label3);
 			this.ReceiptPage.Controls.Add(this.quantityBox);
 			this.ReceiptPage.Controls.Add(this.label2);
 			this.ReceiptPage.Controls.Add(this.logo);
@@ -89,7 +93,7 @@ namespace Green_Enviro_App
 			// 
 			// quantityBox
 			// 
-			this.quantityBox.Location = new System.Drawing.Point(189, 114);
+			this.quantityBox.Location = new System.Drawing.Point(190, 185);
 			this.quantityBox.Name = "quantityBox";
 			this.quantityBox.Size = new System.Drawing.Size(199, 31);
 			this.quantityBox.TabIndex = 10;
@@ -97,7 +101,7 @@ namespace Green_Enviro_App
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(29, 117);
+			this.label2.Location = new System.Drawing.Point(26, 193);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(98, 23);
 			this.label2.TabIndex = 9;
@@ -226,6 +230,22 @@ namespace Green_Enviro_App
 			this.SyncDataBtn.UseVisualStyleBackColor = true;
 			this.SyncDataBtn.Click += new System.EventHandler(this.SyncDataBtn_Click);
 			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(26, 122);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(65, 23);
+			this.label3.TabIndex = 11;
+			this.label3.Text = "Price";
+			// 
+			// PriceBox
+			// 
+			this.PriceBox.Location = new System.Drawing.Point(190, 122);
+			this.PriceBox.Name = "PriceBox";
+			this.PriceBox.Size = new System.Drawing.Size(199, 31);
+			this.PriceBox.TabIndex = 12;
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -269,5 +289,7 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.Button SyncDataBtn;
 		public System.Windows.Forms.ProgressBar UpDownProgressBar;
 		public System.Windows.Forms.Button UploadDataBtn;
+		public System.Windows.Forms.TextBox PriceBox;
+		private System.Windows.Forms.Label label3;
 	}
 }

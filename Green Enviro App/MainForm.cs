@@ -19,8 +19,9 @@ namespace Green_Enviro_App
         {
             InitializeComponent();
             //initialiseItemList();
-            _receipt = new Receipt(this);
             _database = _data;
+            _receipt = new Receipt(this, _data);
+           
         }
 
         private void Main_Form_Load(object sender, EventArgs e)
@@ -53,8 +54,6 @@ namespace Green_Enviro_App
 
 		private void SyncDataBtn_Click(object sender, EventArgs e)
 		{
-            //This function wants to make changes to the controls, thefore it needs the object of the main form
-            _database.SynchroniseData(this);
 		}
 
 		private void UploadDataBtn_Click(object sender, EventArgs e)

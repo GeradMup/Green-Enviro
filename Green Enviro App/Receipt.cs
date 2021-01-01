@@ -10,13 +10,31 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
+
+    public struct Stock
+    {
+        public Stock(string name, int price, int dealerPrice)
+        {
+            _name = name;
+            _price = price;
+            _dealer_price = dealerPrice;
+        }
+
+        public string _name;
+        public int _price;
+        public int _dealer_price;
+    }
+
     
+
     class Receipt
 	{
 
         Main_Form _main_form;
+        Database _database;
 		string _receipt_content = "";
         List<ItemNPrice> _items = new List<ItemNPrice>();
+        List<Stock> AllStock = new List<Stock>();
 
         public struct ItemNPrice
         {
@@ -31,16 +49,16 @@ namespace Green_Enviro_App
         }
 
         //Constructor
-        public Receipt(Main_Form form) 
+        public Receipt(Main_Form form, Database data) 
         {
             _main_form = form;
+            _database = data;
             setupPriceList();
             setupReceipt();
         }
 
         public void setupPriceList()
         {
-
             _main_form.itemList.Items.Add("Cu Mix");
             _main_form.itemList.Items.Add("Steel");
             _main_form.itemList.Items.Add("A Grade");
