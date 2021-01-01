@@ -32,7 +32,7 @@ namespace Green_Enviro_Sync
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sync));
 			this.UploadBtn = new System.Windows.Forms.Button();
 			this.DownloadBtn = new System.Windows.Forms.Button();
-			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.UpDownPgBar = new System.Windows.Forms.ProgressBar();
 			this.SuspendLayout();
 			// 
 			// UploadBtn
@@ -57,23 +57,25 @@ namespace Green_Enviro_Sync
 			this.DownloadBtn.UseVisualStyleBackColor = true;
 			this.DownloadBtn.Click += new System.EventHandler(this.DownloadBtn_Click);
 			// 
-			// progressBar1
+			// UpDownPgBar
 			// 
-			this.progressBar1.Location = new System.Drawing.Point(67, 343);
-			this.progressBar1.Name = "progressBar1";
-			this.progressBar1.Size = new System.Drawing.Size(769, 131);
-			this.progressBar1.TabIndex = 2;
+			this.UpDownPgBar.Location = new System.Drawing.Point(67, 343);
+			this.UpDownPgBar.Name = "UpDownPgBar";
+			this.UpDownPgBar.Size = new System.Drawing.Size(769, 131);
+			this.UpDownPgBar.TabIndex = 2;
+			this.UpDownPgBar.Visible = false;
 			// 
 			// Sync
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(868, 509);
-			this.Controls.Add(this.progressBar1);
+			this.Controls.Add(this.UpDownPgBar);
 			this.Controls.Add(this.DownloadBtn);
 			this.Controls.Add(this.UploadBtn);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Sync";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Green Enviro Synchronizer";
 			this.ResumeLayout(false);
 
@@ -83,7 +85,7 @@ namespace Green_Enviro_Sync
 
 		private System.Windows.Forms.Button UploadBtn;
 		private System.Windows.Forms.Button DownloadBtn;
-		private System.Windows.Forms.ProgressBar progressBar1;
+		private System.Windows.Forms.ProgressBar UpDownPgBar;
 	}
 }
 

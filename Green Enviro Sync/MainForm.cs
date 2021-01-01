@@ -10,15 +10,32 @@ using System.Windows.Forms;
 using System.Net.NetworkInformation;
 using System.Runtime;
 using System.Runtime.InteropServices;
+using Firebase.Storage;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using System.Net;
+using System.IO;
+using System.Diagnostics;
 
 namespace Green_Enviro_Sync
 {
 	public partial class Sync : Form
 	{
+		//Importing the package that will allow us to check for an internet connection before attempting to perform any downloads
 		[DllImport("wininet.dll")]
 		private extern static bool InternetGetConnectedState(out int description, int resultValue);
 
+		static IFirebaseClient _fb_client;
+		static string _firebase_node = "Database Url";
+		static string database_address;
+		static string _path_to_db_file = "../../../Green Enviro App/bin/Debug/Green Enviro Data.mdf";
+		static string _data_bucket_name = "green-enviro-app.appspot.com";
+
+
+		Stopwatch _stopwatch;
 		ErrorMsgBox _errorBox;
+		
 		public Sync()
 		{
 			InitializeComponent();
@@ -27,13 +44,15 @@ namespace Green_Enviro_Sync
 		private void UploadBtn_Click(object sender, EventArgs e)
 		{
 			CheckConnectivity();
-
-			
+			SetupFirebaseDatabase();
+			UploadDatabase();
 		}
 
 		private void DownloadBtn_Click(object sender, EventArgs e)
 		{
 			CheckConnectivity();
+			SetupFirebaseDatabase();
+			RetrieveFromFirebase();
 		}
 
 		private bool CheckConnectivity() 
@@ -50,6 +69,118 @@ namespace Green_Enviro_Sync
 			}
 
 			return _isConnected;
+		}
+
+		private void SetupFirebaseDatabase()
+		{
+			//Create the destination folder if it does not already exist
+			IFirebaseConfig config = new FirebaseConfig
+			{
+				AuthSecret = "SAn2zMDU2KlQ626lxLPOlO8JUlhdWJQvFqq0Yv3H",
+				BasePath = "https://green-enviro-app-default-rtdb.firebaseio.com/"
+			};
+
+			_fb_client = new FireSharp.FirebaseClient(config);
+
+			if (_fb_client == null)
+			{
+				_errorBox = new ErrorMsgBox();
+				_errorBox.Activate();
+				_errorBox.Show();
+			}
+		}
+
+
+		internal class Data
+		{
+			public int index { get; set; }
+			public string downloadUrl { get; set; }
+		}
+
+		private async void UploadDatabase()
+		{
+			//First close the Database before trying to upload
+
+			//Now try to upload the database
+			var uploadStream = File.Open(_path_to_db_file, FileMode.Open);
+
+			var task = new FirebaseStorage(_data_bucket_name)
+				.Child("Database File")                 //Parent Directory
+				.Child("Green Enviro Data.mdf")         //Actual File Name
+				.PutAsync(uploadStream);
+
+			task.Progress.ProgressChanged += (s, e) => ProgressBar();
+			database_address = await task;
+
+			Data _data = new Data
+			{
+				index = 1,
+				downloadUrl = database_address
+			};
+			
+			InsertIntoFirebase(_data);
+		}
+
+		private async void InsertIntoFirebase(Data _data)
+		{
+			SetResponse _response = await _fb_client.SetTaskAsync(_firebase_node + _data.index, _data);
+			Data _result = _response.ResultAs<Data>();
+			UpDownPgBar.Visible = false;
+			MessageBox.Show("Upload Completed");
+			this.Close();
+		}
+
+		private async void RetrieveFromFirebase()
+		{
+			FirebaseResponse _response = await _fb_client.GetTaskAsync(_firebase_node + 1);
+			Data _data = _response.ResultAs<Data>();
+			database_address = _data.downloadUrl;
+
+			DownloadDatabase();
+		}
+		// ****************************************************************************************************************
+
+		public void DownloadDatabase()
+		{
+			_stopwatch = Stopwatch.StartNew();
+			//Downloading the Database file and saving it in the Debug folder of the main application
+
+			WebClient _client = new WebClient();
+			Uri _url_address = new Uri(database_address);
+			_client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressBar);
+			_client.DownloadFileCompleted += (sender, e) => DownloadCompleted();
+			_client.DownloadFileAsync(_url_address, _path_to_db_file);
+		}
+
+		//************************************************************************************************************************
+		//Progress bar
+		private void ProgressBar(object sender, DownloadProgressChangedEventArgs e) 
+		{
+				//some other processing to do possible
+				if (_stopwatch.ElapsedMilliseconds >= 200)
+				{
+					ProgressBar();
+					_stopwatch.Restart();
+				}
+		}
+		private void ProgressBar ()
+		{
+			//Activates the progress bar
+			UpDownPgBar.Visible = true;
+			//MessageBox.Show("Progress Bar Made Visible");
+			
+			UpDownPgBar.Value += 5;
+			if (UpDownPgBar.Value >= 100)
+			{
+				UpDownPgBar.Value = 0;
+			}
+		}
+
+		private void DownloadCompleted() 
+		{
+			UpDownPgBar.Visible = false;
+			MessageBox.Show("Download Completed");
+			this.Close();
 		}
 	}
 }
