@@ -32,8 +32,8 @@ namespace Green_Enviro_App
 
         Main_Form _main_form;
         Database _database;
-		string _receipt_content = "";
-        List<ItemNPrice> _items = new List<ItemNPrice>();
+        DataTable _items;
+        string _receipt_content = "";
         List<Stock> AllStock = new List<Stock>();
 
         public struct ItemNPrice
@@ -61,14 +61,7 @@ namespace Green_Enviro_App
 
         public void setupPriceList()
         {
-            
-/*            _main_form.itemList.Items.Add("Steel");
-            _main_form.itemList.Items.Add("A Grade");
-            _main_form.itemList.Items.Add("Can");
-            _main_form.itemList.Items.Add("Lead");
-            _main_form.itemList.Items.Add("Batt");*/
-
-            DataTable _items = _database.SelectAll("Items");
+            _items = _database.SelectAll("Items");
 
             MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
 
@@ -78,8 +71,6 @@ namespace Green_Enviro_App
             {
                 _main_form.itemList.Items.Add(row[_name_column]);
             }
-                
-            
         }
 
         public void setupReceipt()
@@ -136,20 +127,45 @@ namespace Green_Enviro_App
                 return;
             }
 
-            string _itemName = " " + _main_form.itemList.SelectedItem.ToString();
-            float _price = 10.00F;
+
+
+            string _item_name = _main_form.itemList.SelectedItem.ToString();
+            float _price = getPrice(_item_name);
+            _item_name = " " + _item_name;
+            //Converts the string value into a floating point value
             float _kilos = float.Parse(_main_form.quantityBox.Text);
             float _amount = _price * _kilos;
 
-
-            _receipt_content += string.Format("{0,-11}", _itemName);
-            _receipt_content += string.Format("{0,-7}", _kilos);
-            _receipt_content += string.Format("{0,-5}", _price);
+            _receipt_content += string.Format("{0,-11}", _item_name);
+            _receipt_content += string.Format("{0,-5}", _kilos);
+            _receipt_content += string.Format("{0,-7}", _price);
             _receipt_content += string.Format("{0,-8}", _amount);
             _receipt_content += "\n";
             setupReceipt();
+            ClearReceipt();
+            
+        }
+
+        private float getPrice(string itemName) 
+        {
+            string _filter_expression = "Name = '" + itemName + "'";
+
+            DataView dataView = _items.DefaultView;
+            //Selects all the rows were the filter value matches
+            DataRow[] _row = _items.Select(_filter_expression);
+
+            //We are only interested in the first value. 
+            //There will be only one row since all the rows have unique names
+            float _price = float.Parse(_row[0][2].ToString());
+
+            return _price;
+        }
+
+        private void ClearReceipt() 
+        {
+            _main_form.PriceBox.Clear();
+            _main_form.itemList.SelectedItem = null;
+            _main_form.quantityBox.Clear();
         }
 	}
-
-
 }
