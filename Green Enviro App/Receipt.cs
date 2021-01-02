@@ -38,14 +38,16 @@ namespace Green_Enviro_App
 
         public struct ItemNPrice
         {
-            public ItemNPrice(string name, int price)
+            public ItemNPrice(string name, float price, float Dprice)
             {
                 _item_name = name;
                 _price = price;
+                _dealerPrice = Dprice;
             }
 
             public string _item_name;
-            public int _price;
+            public float _price;
+            public float _dealerPrice;
         }
 
         //Constructor
@@ -59,20 +61,22 @@ namespace Green_Enviro_App
 
         public void setupPriceList()
         {
-            _main_form.itemList.Items.Add("Cu Mix");
-            _main_form.itemList.Items.Add("Steel");
+            
+/*            _main_form.itemList.Items.Add("Steel");
             _main_form.itemList.Items.Add("A Grade");
             _main_form.itemList.Items.Add("Can");
             _main_form.itemList.Items.Add("Lead");
-            _main_form.itemList.Items.Add("Batt");
+            _main_form.itemList.Items.Add("Batt");*/
 
             DataTable _items = _database.SelectAll("Items");
 
             MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
 
+            int _name_column = 1;
+
             foreach (DataRow row in _items.Rows) 
             {
-                Console.WriteLine(row[3]);
+                _main_form.itemList.Items.Add(row[_name_column]);
             }
                 
             
