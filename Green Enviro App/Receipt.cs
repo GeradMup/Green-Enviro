@@ -9,24 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Green_Enviro_App
-{
-
-    public struct Stock
-    {
-        public Stock(string name, int price, int dealerPrice)
-        {
-            _name = name;
-            _price = price;
-            _dealer_price = dealerPrice;
-        }
-
-        public string _name;
-        public int _price;
-        public int _dealer_price;
-    }
-
-    
-
+{    
     class Receipt
 	{
 
@@ -34,21 +17,7 @@ namespace Green_Enviro_App
         Database _database;
         DataTable _items;
         string _receipt_content = "";
-        List<Stock> AllStock = new List<Stock>();
-
-        public struct ItemNPrice
-        {
-            public ItemNPrice(string name, float price, float Dprice)
-            {
-                _item_name = name;
-                _price = price;
-                _dealerPrice = Dprice;
-            }
-
-            public string _item_name;
-            public float _price;
-            public float _dealerPrice;
-        }
+        float _running_total = 0;
 
         //Constructor
         public Receipt(Main_Form form, Database data) 
@@ -102,6 +71,9 @@ namespace Green_Enviro_App
             _main_form.receiptBox.AppendText("\n");
             _main_form.receiptBox.AppendText(" ----------------------------\n");
             _main_form.receiptBox.AppendText(_receipt_content);
+            _main_form.receiptBox.AppendText("\n");
+            _main_form.receiptBox.AppendText(" Total\t:\tR " + _running_total.ToString());
+            _main_form.receiptBox.AppendText("\n");
             _main_form.receiptBox.AppendText(" ----------------------------\n");
             _main_form.receiptBox.AppendText(" THANK YOU!");
 
@@ -135,6 +107,7 @@ namespace Green_Enviro_App
             //Converts the string value into a floating point value
             float _kilos = float.Parse(_main_form.quantityBox.Text);
             float _amount = _price * _kilos;
+            _running_total += _amount;
 
             _receipt_content += string.Format("{0,-11}", _item_name);
             _receipt_content += string.Format("{0,-5}", _kilos);
@@ -156,7 +129,10 @@ namespace Green_Enviro_App
 
             //We are only interested in the first value. 
             //There will be only one row since all the rows have unique names
-            float _price = float.Parse(_row[0][2].ToString());
+
+            int _only_row = 0;
+            int _price_column = 2;
+            float _price = float.Parse(_row[_only_row][_price_column].ToString());
 
             return _price;
         }
