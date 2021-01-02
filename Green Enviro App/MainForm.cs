@@ -66,5 +66,17 @@ namespace Green_Enviro_App
                 
             
         }
+
+		private void PriceOverrideCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+            if (PriceOverrideCheckBox.CheckState == CheckState.Checked)
+            {
+                PriceBox.ReadOnly = false;
+            }
+            else 
+            {
+                PriceBox.ReadOnly = true;
+            }
+		}
 	}
 }

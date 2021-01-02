@@ -99,10 +99,40 @@ namespace Green_Enviro_App
                 return;
             }
 
-
-
             string _item_name = _main_form.itemList.SelectedItem.ToString();
-            float _price = getPrice(_item_name);
+            float _price;
+            //Checks if manual price override is selected
+            //Determines whether to read the price from the user or from the database
+            if (_main_form.PriceOverrideCheckBox.CheckState == CheckState.Checked)
+            {
+                //Start by checking that the user entered a price
+                if (_main_form.PriceBox.Text == "") 
+                {
+                    MessageBox.Show("Please insert the Price");
+                    return;
+                }
+                _price = float.Parse(_main_form.PriceBox.Text);
+            }
+            else 
+            {
+                //Gets the prices from the items DataTable
+                bool isDealer;
+
+                //Check if the customer is getting dealer prices or not
+                if (_main_form.DealerPriceCheckBox.CheckState == CheckState.Checked)
+                {
+                    isDealer = true;
+                }
+                else 
+                {
+                    isDealer = false;
+                }
+
+                _price = getPrice(_item_name, isDealer);
+            }
+
+
+            
             _item_name = " " + _item_name;
             //Converts the string value into a floating point value
             float _kilos = float.Parse(_main_form.quantityBox.Text);
@@ -115,11 +145,16 @@ namespace Green_Enviro_App
             _receipt_content += string.Format("{0,-8}", _amount);
             _receipt_content += "\n";
             setupReceipt();
-            ClearReceipt();
+            
+            //Clear the input fields and get them ready for the next entry
+            ClearFields();
+            _main_form.DealerPriceCheckBox.CheckState = CheckState.Unchecked;
+            _main_form.PriceOverrideCheckBox.CheckState = CheckState.Unchecked;
+            _main_form.PriceBox.ReadOnly = true;
             
         }
 
-        private float getPrice(string itemName) 
+        private float getPrice(string itemName, bool isDealer) 
         {
             string _filter_expression = "Name = '" + itemName + "'";
 
@@ -131,13 +166,24 @@ namespace Green_Enviro_App
             //There will be only one row since all the rows have unique names
 
             int _only_row = 0;
-            int _price_column = 2;
+            int _price_column;
+            if (isDealer)
+            {
+                //Coloumn 3 contains dealer prices
+                _price_column = 3;
+            }
+            else 
+            {
+                //Column 2 contains regular prices
+                _price_column = 2;
+            }
+            
             float _price = float.Parse(_row[_only_row][_price_column].ToString());
 
             return _price;
         }
 
-        private void ClearReceipt() 
+        private void ClearFields() 
         {
             _main_form.PriceBox.Clear();
             _main_form.itemList.SelectedItem = null;

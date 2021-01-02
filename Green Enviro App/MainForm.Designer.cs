@@ -33,6 +33,10 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.DealerPriceCheckBox = new System.Windows.Forms.CheckBox();
+			this.PriceOverrideCheckBox = new System.Windows.Forms.CheckBox();
+			this.PriceBox = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.quantityBox = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.logo = new System.Windows.Forms.PictureBox();
@@ -47,8 +51,6 @@ namespace Green_Enviro_App
 			this.UpDownProgressBar = new System.Windows.Forms.ProgressBar();
 			this.SyncDataBtn = new System.Windows.Forms.Button();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.label3 = new System.Windows.Forms.Label();
-			this.PriceBox = new System.Windows.Forms.TextBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -74,6 +76,8 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.DealerPriceCheckBox);
+			this.ReceiptPage.Controls.Add(this.PriceOverrideCheckBox);
 			this.ReceiptPage.Controls.Add(this.PriceBox);
 			this.ReceiptPage.Controls.Add(this.label3);
 			this.ReceiptPage.Controls.Add(this.quantityBox);
@@ -91,9 +95,47 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
 			// 
+			// DealerPriceCheckBox
+			// 
+			this.DealerPriceCheckBox.AutoSize = true;
+			this.DealerPriceCheckBox.Location = new System.Drawing.Point(249, 118);
+			this.DealerPriceCheckBox.Name = "DealerPriceCheckBox";
+			this.DealerPriceCheckBox.Size = new System.Drawing.Size(164, 27);
+			this.DealerPriceCheckBox.TabIndex = 14;
+			this.DealerPriceCheckBox.Text = "Dealer Price";
+			this.DealerPriceCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// PriceOverrideCheckBox
+			// 
+			this.PriceOverrideCheckBox.AutoSize = true;
+			this.PriceOverrideCheckBox.Location = new System.Drawing.Point(30, 118);
+			this.PriceOverrideCheckBox.Name = "PriceOverrideCheckBox";
+			this.PriceOverrideCheckBox.Size = new System.Drawing.Size(186, 27);
+			this.PriceOverrideCheckBox.TabIndex = 13;
+			this.PriceOverrideCheckBox.Text = "Override Price";
+			this.PriceOverrideCheckBox.UseVisualStyleBackColor = true;
+			this.PriceOverrideCheckBox.CheckedChanged += new System.EventHandler(this.PriceOverrideCheckBox_CheckedChanged);
+			// 
+			// PriceBox
+			// 
+			this.PriceBox.Location = new System.Drawing.Point(206, 184);
+			this.PriceBox.Name = "PriceBox";
+			this.PriceBox.ReadOnly = true;
+			this.PriceBox.Size = new System.Drawing.Size(199, 31);
+			this.PriceBox.TabIndex = 12;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(26, 187);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(65, 23);
+			this.label3.TabIndex = 11;
+			this.label3.Text = "Price";
+			// 
 			// quantityBox
 			// 
-			this.quantityBox.Location = new System.Drawing.Point(190, 185);
+			this.quantityBox.Location = new System.Drawing.Point(206, 245);
 			this.quantityBox.Name = "quantityBox";
 			this.quantityBox.Size = new System.Drawing.Size(199, 31);
 			this.quantityBox.TabIndex = 10;
@@ -101,7 +143,7 @@ namespace Green_Enviro_App
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(26, 193);
+			this.label2.Location = new System.Drawing.Point(26, 248);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(98, 23);
 			this.label2.TabIndex = 9;
@@ -127,7 +169,7 @@ namespace Green_Enviro_App
 			this.itemList.FormattingEnabled = true;
 			this.itemList.IntegralHeight = false;
 			this.itemList.ItemHeight = 23;
-			this.itemList.Location = new System.Drawing.Point(186, 46);
+			this.itemList.Location = new System.Drawing.Point(202, 46);
 			this.itemList.Name = "itemList";
 			this.itemList.Size = new System.Drawing.Size(203, 31);
 			this.itemList.TabIndex = 7;
@@ -230,22 +272,6 @@ namespace Green_Enviro_App
 			this.SyncDataBtn.UseVisualStyleBackColor = true;
 			this.SyncDataBtn.Click += new System.EventHandler(this.SyncDataBtn_Click);
 			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(26, 122);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(65, 23);
-			this.label3.TabIndex = 11;
-			this.label3.Text = "Price";
-			// 
-			// PriceBox
-			// 
-			this.PriceBox.Location = new System.Drawing.Point(190, 122);
-			this.PriceBox.Name = "PriceBox";
-			this.PriceBox.Size = new System.Drawing.Size(199, 31);
-			this.PriceBox.TabIndex = 12;
-			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -291,5 +317,7 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.Button UploadDataBtn;
 		public System.Windows.Forms.TextBox PriceBox;
 		private System.Windows.Forms.Label label3;
+		public System.Windows.Forms.CheckBox DealerPriceCheckBox;
+		public System.Windows.Forms.CheckBox PriceOverrideCheckBox;
 	}
 }
