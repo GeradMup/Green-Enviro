@@ -36,7 +36,6 @@ namespace Green_Enviro_App
 		public Database() 
 		{
 			//Sets up the first Database which stores the URL of the actual database file
-			SelectAll();
 		}
 		// ****************************************************************************************************************
 
@@ -104,22 +103,26 @@ namespace Green_Enviro_App
 			}
 		}
 
-		public void SelectAll() 
+		public DataTable SelectAll(string tableName) 
 		{
 			OpenDatabase();
-			/*
-			_command.CommandText = "Select * From Items";
+			DataTable _table = new DataTable();
+			
+			_command.CommandText = "Select * From " + tableName ;
 
 			try
 			{
-				_command.ExecuteNonQuery();
+				SqlDataAdapter sda = new SqlDataAdapter(_command.CommandText, _connection);
+				sda.Fill(_table);
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show("Failed to Select from DB : " + ex.Message);
+				
 			}
-			*/
+
 			CloseDatabase();
+			return _table;
 		}
 	}
 }

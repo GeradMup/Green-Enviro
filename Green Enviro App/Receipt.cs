@@ -65,6 +65,17 @@ namespace Green_Enviro_App
             _main_form.itemList.Items.Add("Can");
             _main_form.itemList.Items.Add("Lead");
             _main_form.itemList.Items.Add("Batt");
+
+            DataTable _items = _database.SelectAll("Items");
+
+            MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
+
+            foreach (DataRow row in _items.Rows) 
+            {
+                Console.WriteLine(row[3]);
+            }
+                
+            
         }
 
         public void setupReceipt()
