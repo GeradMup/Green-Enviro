@@ -36,7 +36,7 @@ namespace Green_Enviro_App
 		public Database() 
 		{
 			//Sets up the first Database which stores the URL of the actual database file
-			
+			SelectAll();
 		}
 		// ****************************************************************************************************************
 
@@ -105,8 +105,20 @@ namespace Green_Enviro_App
 		}
 
 		public void SelectAll() 
-		{ 
-			
+		{
+			OpenDatabase();
+			_command.CommandText = "Select * From Stock";
+
+			try
+			{
+				_command.ExecuteNonQuery();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Failed To Connect To DB: " + ex.Message);
+			}
+
+			CloseDatabase();
 		}
 	}
 }

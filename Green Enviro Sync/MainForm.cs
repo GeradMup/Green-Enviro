@@ -33,7 +33,7 @@ namespace Green_Enviro_Sync
 		static string _data_bucket_name = "green-enviro-app.appspot.com";
 
 
-		Stopwatch _stopwatch;
+		static Stopwatch _stopwatch;
 		ErrorMsgBox _errorBox;
 		
 		public Sync()
@@ -136,11 +136,11 @@ namespace Green_Enviro_Sync
 			Data _data = _response.ResultAs<Data>();
 			database_address = _data.downloadUrl;
 
-			DownloadDatabase();
+			await DownloadDatabase();
 		}
 		// ****************************************************************************************************************
 
-		public void DownloadDatabase()
+		public async Task DownloadDatabase()
 		{
 			_stopwatch = Stopwatch.StartNew();
 			//Downloading the Database file and saving it in the Debug folder of the main application
@@ -149,7 +149,8 @@ namespace Green_Enviro_Sync
 			Uri _url_address = new Uri(database_address);
 			_client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressBar);
 			_client.DownloadFileCompleted += (sender, e) => DownloadCompleted();
-			_client.DownloadFileAsync(_url_address, _path_to_db_file);
+			//_client.DownloadFileAsync(_url_address, _path_to_db_file);
+			await _client.DownloadFileTaskAsync(_url_address, _path_to_db_file);
 		}
 
 		//************************************************************************************************************************

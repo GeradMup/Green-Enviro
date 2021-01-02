@@ -242,8 +242,8 @@
     <Compile Include="CustomMsgBox.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Green_Enviro_DataDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="InformationEncryption.cs" />
@@ -309,8 +309,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Green Enviro Data.mdf" />
+    <Content Include="Green Enviro Data.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Green Enviro Data_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Green Enviro Data.mdf</DependentUpon>
     </Content>
     <Content Include="green-leaf.ico" />
