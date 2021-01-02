@@ -68,7 +68,7 @@ namespace Green_Enviro_App
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Failed To Connect To DB: " + ex.Message);
+				MessageBox.Show("Failed To open database file: " + ex.Message);
 			}
 		}
 
@@ -107,7 +107,8 @@ namespace Green_Enviro_App
 		public void SelectAll() 
 		{
 			OpenDatabase();
-			_command.CommandText = "Select * From Stock";
+			/*
+			_command.CommandText = "Select * From Items";
 
 			try
 			{
@@ -115,9 +116,9 @@ namespace Green_Enviro_App
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Failed To Connect To DB: " + ex.Message);
+				MessageBox.Show("Failed to Select from DB : " + ex.Message);
 			}
-
+			*/
 			CloseDatabase();
 		}
 	}
