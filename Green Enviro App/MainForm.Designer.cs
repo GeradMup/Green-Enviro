@@ -33,6 +33,15 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
+			this.CustomerSurnameTextBox = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.CustomerIDNumberTextBox = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.customerNumbersList = new System.Windows.Forms.ComboBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.DealerPriceCheckBox = new System.Windows.Forms.CheckBox();
 			this.PriceOverrideCheckBox = new System.Windows.Forms.CheckBox();
 			this.PriceBox = new System.Windows.Forms.TextBox();
@@ -53,6 +62,7 @@ namespace Green_Enviro_App
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -76,6 +86,15 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.CustomerNameTextBox);
+			this.ReceiptPage.Controls.Add(this.CustomerSurnameTextBox);
+			this.ReceiptPage.Controls.Add(this.label7);
+			this.ReceiptPage.Controls.Add(this.label6);
+			this.ReceiptPage.Controls.Add(this.CustomerIDNumberTextBox);
+			this.ReceiptPage.Controls.Add(this.label5);
+			this.ReceiptPage.Controls.Add(this.label4);
+			this.ReceiptPage.Controls.Add(this.customerNumbersList);
+			this.ReceiptPage.Controls.Add(this.pictureBox1);
 			this.ReceiptPage.Controls.Add(this.DealerPriceCheckBox);
 			this.ReceiptPage.Controls.Add(this.PriceOverrideCheckBox);
 			this.ReceiptPage.Controls.Add(this.PriceBox);
@@ -95,10 +114,101 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
 			// 
+			// CustomerNameTextBox
+			// 
+			this.CustomerNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.CustomerNameTextBox.Location = new System.Drawing.Point(511, 184);
+			this.CustomerNameTextBox.Name = "CustomerNameTextBox";
+			this.CustomerNameTextBox.ReadOnly = true;
+			this.CustomerNameTextBox.Size = new System.Drawing.Size(257, 31);
+			this.CustomerNameTextBox.TabIndex = 22;
+			// 
+			// CustomerSurnameTextBox
+			// 
+			this.CustomerSurnameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.CustomerSurnameTextBox.Location = new System.Drawing.Point(534, 250);
+			this.CustomerSurnameTextBox.Name = "CustomerSurnameTextBox";
+			this.CustomerSurnameTextBox.ReadOnly = true;
+			this.CustomerSurnameTextBox.Size = new System.Drawing.Size(234, 31);
+			this.CustomerSurnameTextBox.TabIndex = 21;
+			// 
+			// label7
+			// 
+			this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(422, 187);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(54, 23);
+			this.label7.TabIndex = 20;
+			this.label7.Text = "Name";
+			// 
+			// label6
+			// 
+			this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(422, 253);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(87, 23);
+			this.label6.TabIndex = 19;
+			this.label6.Text = "Surname";
+			// 
+			// CustomerIDNumberTextBox
+			// 
+			this.CustomerIDNumberTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(479, 116);
+			this.CustomerIDNumberTextBox.Name = "CustomerIDNumberTextBox";
+			this.CustomerIDNumberTextBox.ReadOnly = true;
+			this.CustomerIDNumberTextBox.Size = new System.Drawing.Size(289, 31);
+			this.CustomerIDNumberTextBox.TabIndex = 18;
+			// 
+			// label5
+			// 
+			this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(422, 122);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(32, 23);
+			this.label5.TabIndex = 17;
+			this.label5.Text = "ID";
+			// 
+			// label4
+			// 
+			this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(422, 49);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(175, 23);
+			this.label4.TabIndex = 16;
+			this.label4.Text = "Customer Number";
+			this.label4.Click += new System.EventHandler(this.label4_Click);
+			// 
+			// customerNumbersList
+			// 
+			this.customerNumbersList.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.customerNumbersList.DropDownHeight = 300;
+			this.customerNumbersList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.customerNumbersList.FormattingEnabled = true;
+			this.customerNumbersList.IntegralHeight = false;
+			this.customerNumbersList.ItemHeight = 23;
+			this.customerNumbersList.Location = new System.Drawing.Point(629, 46);
+			this.customerNumbersList.Name = "customerNumbersList";
+			this.customerNumbersList.Size = new System.Drawing.Size(73, 31);
+			this.customerNumbersList.TabIndex = 15;
+			this.customerNumbersList.SelectedIndexChanged += new System.EventHandler(this.customerNumbersList_SelectedIndexChanged);
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.pictureBox1.Location = new System.Drawing.Point(228, 328);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(540, 405);
+			this.pictureBox1.TabIndex = 1;
+			this.pictureBox1.TabStop = false;
+			// 
 			// DealerPriceCheckBox
 			// 
 			this.DealerPriceCheckBox.AutoSize = true;
-			this.DealerPriceCheckBox.Location = new System.Drawing.Point(249, 118);
+			this.DealerPriceCheckBox.Location = new System.Drawing.Point(228, 118);
 			this.DealerPriceCheckBox.Name = "DealerPriceCheckBox";
 			this.DealerPriceCheckBox.Size = new System.Drawing.Size(164, 27);
 			this.DealerPriceCheckBox.TabIndex = 14;
@@ -118,7 +228,7 @@ namespace Green_Enviro_App
 			// 
 			// PriceBox
 			// 
-			this.PriceBox.Location = new System.Drawing.Point(206, 184);
+			this.PriceBox.Location = new System.Drawing.Point(185, 184);
 			this.PriceBox.Name = "PriceBox";
 			this.PriceBox.ReadOnly = true;
 			this.PriceBox.Size = new System.Drawing.Size(199, 31);
@@ -135,7 +245,7 @@ namespace Green_Enviro_App
 			// 
 			// quantityBox
 			// 
-			this.quantityBox.Location = new System.Drawing.Point(206, 245);
+			this.quantityBox.Location = new System.Drawing.Point(185, 245);
 			this.quantityBox.Name = "quantityBox";
 			this.quantityBox.Size = new System.Drawing.Size(199, 31);
 			this.quantityBox.TabIndex = 10;
@@ -169,7 +279,7 @@ namespace Green_Enviro_App
 			this.itemList.FormattingEnabled = true;
 			this.itemList.IntegralHeight = false;
 			this.itemList.ItemHeight = 23;
-			this.itemList.Location = new System.Drawing.Point(202, 46);
+			this.itemList.Location = new System.Drawing.Point(181, 46);
 			this.itemList.Name = "itemList";
 			this.itemList.Size = new System.Drawing.Size(203, 31);
 			this.itemList.TabIndex = 7;
@@ -290,6 +400,7 @@ namespace Green_Enviro_App
 			this.mainTabControl.ResumeLayout(false);
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
 			this.tabPage1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -319,5 +430,14 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label3;
 		public System.Windows.Forms.CheckBox DealerPriceCheckBox;
 		public System.Windows.Forms.CheckBox PriceOverrideCheckBox;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		public System.Windows.Forms.TextBox CustomerIDNumberTextBox;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label4;
+		public System.Windows.Forms.ComboBox customerNumbersList;
+		public System.Windows.Forms.TextBox CustomerNameTextBox;
+		public System.Windows.Forms.TextBox CustomerSurnameTextBox;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label6;
 	}
 }

@@ -16,8 +16,10 @@ namespace Green_Enviro_App
         Main_Form _main_form;
         Database _database;
         DataTable _items;
+        DataTable _customers;
         string _receipt_content = "";
         float _running_total = 0;
+        string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
 
         //Constructor
         public Receipt(Main_Form form, Database data) 
@@ -26,10 +28,12 @@ namespace Green_Enviro_App
             _database = data;
             setupPriceList();
             setupReceipt();
+            setupCustomerList();
         }
 
-        public void setupPriceList()
+        private void setupPriceList()
         {
+            //Gets all items from the database and stores them in a DataTable named _items
             _items = _database.SelectAll("Items");
 
             MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
@@ -38,17 +42,34 @@ namespace Green_Enviro_App
 
             foreach (DataRow row in _items.Rows) 
             {
+                //Selects only the name of the items and stores them in a drop down list that will appear on the receipt page
                 _main_form.itemList.Items.Add(row[_name_column]);
             }
         }
 
-        public void setupReceipt()
+        private void setupCustomerList() 
+        {
+            //Gets all customer details and stores them in a DataTable name _customers
+            _customers = _database.SelectAll("Customers");
+
+            MessageBox.Show("All Customers: " + _customers.Rows.Count.ToString());
+
+            int _customer_number_column = 0;
+
+            foreach (DataRow row in _customers.Rows)
+            {
+                //Selects the customer numbers and adds to the drop down list on the receipt page
+                _main_form.customerNumbersList.Items.Add(row[_customer_number_column]);
+            }
+        }
+
+        private void setupReceipt()
 		{
             _main_form.receiptBox.ReadOnly = false;
             _main_form.receiptBox.Clear();
 
             string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + DateTime.Now.ToString("hh:mm") + "\n";
-            string _customer_details = " Customer: Gerry, 100\n" + " ID: 123455\n";
+            
 
 
             Clipboard.SetImage(_main_form.logo.Image);
@@ -188,6 +209,33 @@ namespace Green_Enviro_App
             _main_form.PriceBox.Clear();
             _main_form.itemList.SelectedItem = null;
             _main_form.quantityBox.Clear();
+        }
+
+        public void UpdateCustomerDetails() 
+        {
+            string _customer_number = _main_form.customerNumbersList.SelectedItem.ToString();
+            string _filter_expression = "CustomerNumber = '" + _customer_number + "'";
+
+            DataView _data_view = _customers.DefaultView;
+            DataRow[] _row = _customers.Select(_filter_expression);
+
+            int _only_row = 0;
+            int ID_column = 1;
+            int _name_column = 2;
+            int _surname_column = 3;
+
+             
+            string _customer_id_number = _row[_only_row][ID_column].ToString();
+            string _customer_name = _row[_only_row][_name_column].ToString();
+            string _customer_surname = _row[_only_row][_surname_column].ToString();
+
+            _main_form.CustomerIDNumberTextBox.Text = _customer_id_number;
+            _main_form.CustomerNameTextBox.Text = _customer_name;
+            _main_form.CustomerSurnameTextBox.Text = _customer_surname;
+            _customer_details = " Customer: " + _customer_name + ", " + _customer_number + "\n" + " ID: " + _customer_id_number+ "\n";
+
+            //Call this function update the info on the receipt
+            setupReceipt();
         }
 	}
 }

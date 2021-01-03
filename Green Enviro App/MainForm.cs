@@ -78,5 +78,15 @@ namespace Green_Enviro_App
                 PriceBox.ReadOnly = true;
             }
 		}
+
+		private void label4_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void customerNumbersList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+            _receipt.UpdateCustomerDetails();
+		}
 	}
 }
