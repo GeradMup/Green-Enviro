@@ -242,5 +242,10 @@ namespace Green_Enviro_App
             //Call this function update the info on the receipt
             setupReceipt();
         }
+
+        public void CompletePurchase() 
+        {
+            
+        }
 	}
 }

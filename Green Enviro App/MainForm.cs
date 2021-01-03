@@ -14,12 +14,14 @@ namespace Green_Enviro_App
     {
         Receipt _receipt;
         Database _database;
+        Logs _logs;
         
         public Main_Form(Database _data)
         {
             InitializeComponent();
             //initialiseItemList();
             _database = _data;
+            _logs = new Logs();
             _receipt = new Receipt(this, _data);
            
         }
@@ -87,6 +89,11 @@ namespace Green_Enviro_App
 		private void customerNumbersList_SelectedIndexChanged(object sender, EventArgs e)
 		{
             _receipt.UpdateCustomerDetails();
+		}
+
+		private void PurchaseBtn_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

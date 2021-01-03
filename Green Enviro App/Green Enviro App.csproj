@@ -258,6 +258,7 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logs.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

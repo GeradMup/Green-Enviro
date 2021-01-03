@@ -60,6 +60,7 @@ namespace Green_Enviro_App
 			this.UpDownProgressBar = new System.Windows.Forms.ProgressBar();
 			this.SyncDataBtn = new System.Windows.Forms.Button();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.PurchaseBtn = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
@@ -86,6 +87,7 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.PurchaseBtn);
 			this.ReceiptPage.Controls.Add(this.CustomerNameTextBox);
 			this.ReceiptPage.Controls.Add(this.CustomerSurnameTextBox);
 			this.ReceiptPage.Controls.Add(this.label7);
@@ -199,9 +201,9 @@ namespace Green_Enviro_App
 			// IDPictureBox
 			// 
 			this.IDPictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.IDPictureBox.Location = new System.Drawing.Point(228, 328);
+			this.IDPictureBox.Location = new System.Drawing.Point(185, 328);
 			this.IDPictureBox.Name = "IDPictureBox";
-			this.IDPictureBox.Size = new System.Drawing.Size(540, 405);
+			this.IDPictureBox.Size = new System.Drawing.Size(583, 428);
 			this.IDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.IDPictureBox.TabIndex = 1;
 			this.IDPictureBox.TabStop = false;
@@ -209,7 +211,7 @@ namespace Green_Enviro_App
 			// DealerPriceCheckBox
 			// 
 			this.DealerPriceCheckBox.AutoSize = true;
-			this.DealerPriceCheckBox.Location = new System.Drawing.Point(228, 118);
+			this.DealerPriceCheckBox.Location = new System.Drawing.Point(30, 102);
 			this.DealerPriceCheckBox.Name = "DealerPriceCheckBox";
 			this.DealerPriceCheckBox.Size = new System.Drawing.Size(164, 27);
 			this.DealerPriceCheckBox.TabIndex = 14;
@@ -219,7 +221,7 @@ namespace Green_Enviro_App
 			// PriceOverrideCheckBox
 			// 
 			this.PriceOverrideCheckBox.AutoSize = true;
-			this.PriceOverrideCheckBox.Location = new System.Drawing.Point(30, 118);
+			this.PriceOverrideCheckBox.Location = new System.Drawing.Point(30, 135);
 			this.PriceOverrideCheckBox.Name = "PriceOverrideCheckBox";
 			this.PriceOverrideCheckBox.Size = new System.Drawing.Size(186, 27);
 			this.PriceOverrideCheckBox.TabIndex = 13;
@@ -383,6 +385,17 @@ namespace Green_Enviro_App
 			this.SyncDataBtn.UseVisualStyleBackColor = true;
 			this.SyncDataBtn.Click += new System.EventHandler(this.SyncDataBtn_Click);
 			// 
+			// PurchaseBtn
+			// 
+			this.PurchaseBtn.AllowDrop = true;
+			this.PurchaseBtn.Location = new System.Drawing.Point(23, 657);
+			this.PurchaseBtn.Name = "PurchaseBtn";
+			this.PurchaseBtn.Size = new System.Drawing.Size(143, 51);
+			this.PurchaseBtn.TabIndex = 23;
+			this.PurchaseBtn.Text = "Purchase";
+			this.PurchaseBtn.UseVisualStyleBackColor = true;
+			this.PurchaseBtn.Click += new System.EventHandler(this.PurchaseBtn_Click);
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -440,5 +453,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label6;
 		public System.Windows.Forms.PictureBox IDPictureBox;
+		private System.Windows.Forms.Button PurchaseBtn;
 	}
 }
