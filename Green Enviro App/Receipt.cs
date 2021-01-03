@@ -232,6 +232,11 @@ namespace Green_Enviro_App
             _main_form.CustomerIDNumberTextBox.Text = _customer_id_number;
             _main_form.CustomerNameTextBox.Text = _customer_name;
             _main_form.CustomerSurnameTextBox.Text = _customer_surname;
+
+            string _path_to_id_picture = @"..//..//resources//Customers//"+ _customer_number +".jpg";
+            Image _id_picture = Image.FromFile(_path_to_id_picture);
+            _main_form.IDPictureBox.Image = _id_picture;
+           
             _customer_details = " Customer: " + _customer_name + ", " + _customer_number + "\n" + " ID: " + _customer_id_number+ "\n";
 
             //Call this function update the info on the receipt

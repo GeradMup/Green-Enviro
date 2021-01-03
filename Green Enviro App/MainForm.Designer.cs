@@ -41,7 +41,7 @@ namespace Green_Enviro_App
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.customerNumbersList = new System.Windows.Forms.ComboBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.IDPictureBox = new System.Windows.Forms.PictureBox();
 			this.DealerPriceCheckBox = new System.Windows.Forms.CheckBox();
 			this.PriceOverrideCheckBox = new System.Windows.Forms.CheckBox();
 			this.PriceBox = new System.Windows.Forms.TextBox();
@@ -62,7 +62,7 @@ namespace Green_Enviro_App
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -94,7 +94,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Controls.Add(this.label5);
 			this.ReceiptPage.Controls.Add(this.label4);
 			this.ReceiptPage.Controls.Add(this.customerNumbersList);
-			this.ReceiptPage.Controls.Add(this.pictureBox1);
+			this.ReceiptPage.Controls.Add(this.IDPictureBox);
 			this.ReceiptPage.Controls.Add(this.DealerPriceCheckBox);
 			this.ReceiptPage.Controls.Add(this.PriceOverrideCheckBox);
 			this.ReceiptPage.Controls.Add(this.PriceBox);
@@ -196,14 +196,15 @@ namespace Green_Enviro_App
 			this.customerNumbersList.TabIndex = 15;
 			this.customerNumbersList.SelectedIndexChanged += new System.EventHandler(this.customerNumbersList_SelectedIndexChanged);
 			// 
-			// pictureBox1
+			// IDPictureBox
 			// 
-			this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.pictureBox1.Location = new System.Drawing.Point(228, 328);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(540, 405);
-			this.pictureBox1.TabIndex = 1;
-			this.pictureBox1.TabStop = false;
+			this.IDPictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.IDPictureBox.Location = new System.Drawing.Point(228, 328);
+			this.IDPictureBox.Name = "IDPictureBox";
+			this.IDPictureBox.Size = new System.Drawing.Size(540, 405);
+			this.IDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.IDPictureBox.TabIndex = 1;
+			this.IDPictureBox.TabStop = false;
 			// 
 			// DealerPriceCheckBox
 			// 
@@ -400,7 +401,7 @@ namespace Green_Enviro_App
 			this.mainTabControl.ResumeLayout(false);
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
 			this.tabPage1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -430,7 +431,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label3;
 		public System.Windows.Forms.CheckBox DealerPriceCheckBox;
 		public System.Windows.Forms.CheckBox PriceOverrideCheckBox;
-		private System.Windows.Forms.PictureBox pictureBox1;
 		public System.Windows.Forms.TextBox CustomerIDNumberTextBox;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;
@@ -439,5 +439,6 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.TextBox CustomerSurnameTextBox;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label6;
+		public System.Windows.Forms.PictureBox IDPictureBox;
 	}
 }
