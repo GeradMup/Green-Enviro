@@ -9,23 +9,36 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Green_Enviro_App
-{    
+{
     class Receipt
-	{
+    {
 
         Main_Form _main_form;
         Database _database;
+        Logs _logs;
+
         DataTable _items;
         DataTable _customers;
+        List<string> _purchased_items = new List<string>();
+
         string _receipt_content = "";
         float _running_total = 0;
         string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
-
+        string _single_purchase_entry;
         //Constructor
-        public Receipt(Main_Form form, Database data) 
+
+        //Customer information
+        string _customer_number = "";
+        string _customer_id_number = "";
+        string _customer_name = "";
+        string _customer_surname = "";
+        bool _customer_selected = false;
+        public Receipt(Main_Form form, Database data, Logs logs) 
         {
             _main_form = form;
             _database = data;
+            _logs = logs;
+
             setupPriceList();
             setupReceipt();
             setupCustomerList();
@@ -70,8 +83,6 @@ namespace Green_Enviro_App
 
             string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + DateTime.Now.ToString("hh:mm") + "\n";
             
-
-
             Clipboard.SetImage(_main_form.logo.Image);
             _main_form.receiptBox.Paste();
             _main_form.receiptBox.AppendText(" \n");
@@ -107,6 +118,13 @@ namespace Green_Enviro_App
 
         public void addItems() 
         {
+            //First check if customer details have been selected
+            if (_main_form.customerNumbersList.SelectedItem == null) 
+            {
+                MessageBox.Show("Please select customer number");
+                return;
+            }
+
             //Checks if there is nothing selected from the item list
             if (_main_form.itemList.SelectedItem == null)
             {
@@ -152,21 +170,27 @@ namespace Green_Enviro_App
                 _price = getPrice(_item_name, isDealer);
             }
 
-
-            
-            _item_name = " " + _item_name;
             //Converts the string value into a floating point value
             float _kilos = float.Parse(_main_form.quantityBox.Text);
             float _amount = _price * _kilos;
             _running_total += _amount;
 
-            _receipt_content += string.Format("{0,-11}", _item_name);
+            _receipt_content += string.Format("{0,-11}", " " + _item_name);
             _receipt_content += string.Format("{0,-5}", _kilos);
             _receipt_content += string.Format("{0,-7}", _price);
             _receipt_content += string.Format("{0,-8}", _amount);
             _receipt_content += "\n";
             setupReceipt();
-            
+
+            //Create the record for Logging
+            string _date = DateTime.Now.ToString("dd MMMM yyyy");
+            string _item_type = ItemType(_item_name);
+            _single_purchase_entry += _date + "," + _customer_name + "," + _customer_surname + "," + _customer_id_number + "," + _customer_number + ",";
+            _single_purchase_entry += _item_name + "," + _kilos.ToString() + "," + _price.ToString() + "," + _amount.ToString() + "," + _item_type;
+            _purchased_items.Add(_single_purchase_entry);
+           //Clear the _single_purchase_entry to make it ready for the next entry
+            _single_purchase_entry = "";
+
             //Clear the input fields and get them ready for the next entry
             ClearFields();
             _main_form.DealerPriceCheckBox.CheckState = CheckState.Unchecked;
@@ -213,7 +237,7 @@ namespace Green_Enviro_App
 
         public void UpdateCustomerDetails() 
         {
-            string _customer_number = _main_form.customerNumbersList.SelectedItem.ToString();
+            _customer_number = _main_form.customerNumbersList.SelectedItem.ToString();
             string _filter_expression = "CustomerNumber = '" + _customer_number + "'";
 
             DataView _data_view = _customers.DefaultView;
@@ -225,9 +249,9 @@ namespace Green_Enviro_App
             int _surname_column = 3;
 
              
-            string _customer_id_number = _row[_only_row][ID_column].ToString();
-            string _customer_name = _row[_only_row][_name_column].ToString();
-            string _customer_surname = _row[_only_row][_surname_column].ToString();
+            _customer_id_number = _row[_only_row][ID_column].ToString();
+            _customer_name = _row[_only_row][_name_column].ToString();
+            _customer_surname = _row[_only_row][_surname_column].ToString();
 
             _main_form.CustomerIDNumberTextBox.Text = _customer_id_number;
             _main_form.CustomerNameTextBox.Text = _customer_name;
@@ -245,7 +269,29 @@ namespace Green_Enviro_App
 
         public void CompletePurchase() 
         {
-            
+            _logs.AddPurchase(_purchased_items);
+        }
+
+        private string ItemType(string itemName) 
+        {
+            return "F";
+        }
+
+        public void CustomerSelected() 
+        {
+            _customer_selected = true;
+        }
+
+        public void ManualPrice() 
+        {
+            if (_main_form.PriceOverrideCheckBox.CheckState == CheckState.Checked)
+            {
+                _main_form.PriceBox.ReadOnly = false;
+            }
+            else
+            {
+               _main_form.PriceBox.ReadOnly = true;
+            }
         }
 	}
 }

@@ -22,7 +22,7 @@ namespace Green_Enviro_App
             //initialiseItemList();
             _database = _data;
             _logs = new Logs();
-            _receipt = new Receipt(this, _data);
+            _receipt = new Receipt(this, _database, _logs);
            
         }
 
@@ -30,15 +30,7 @@ namespace Green_Enviro_App
         {
             setFormSize();
         }
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         private void setFormSize()
         {
             //This function sets the size of the main form to maximum size allowable by the PC
@@ -49,42 +41,18 @@ namespace Green_Enviro_App
             this.MinimumSize = new Size(_screen_height, _screen_width);
 
         }
+
+        //RECEIPT RELATED CALLS
+        //******************************************************************************************************************************************
         private void addItemBtn_Click(object sender, EventArgs e)
         {
             _receipt.addItems();
         }
 
-		private void SyncDataBtn_Click(object sender, EventArgs e)
-		{
-		}
-
-		private void UploadDataBtn_Click(object sender, EventArgs e)
-		{
-            _database.UploadData(this);
-		}
-
-		private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
-		{
-                
-            
-        }
-
 		private void PriceOverrideCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-            if (PriceOverrideCheckBox.CheckState == CheckState.Checked)
-            {
-                PriceBox.ReadOnly = false;
-            }
-            else 
-            {
-                PriceBox.ReadOnly = true;
-            }
-		}
-
-		private void label4_Click(object sender, EventArgs e)
-		{
-
-		}
+            _receipt.ManualPrice();
+        }
 
 		private void customerNumbersList_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -93,7 +61,8 @@ namespace Green_Enviro_App
 
 		private void PurchaseBtn_Click(object sender, EventArgs e)
 		{
-
+            _receipt.CompletePurchase();
 		}
+        //*****************************************************************************************************************************************
 	}
 }
