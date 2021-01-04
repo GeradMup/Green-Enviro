@@ -237,6 +237,24 @@ namespace Green_Enviro_App
 
         public void UpdateCustomerDetails() 
         {
+            //Check if the purchase has been cancelled. Reset the customer details if purchase was cancelled
+            if (_main_form.customerNumbersList.SelectedItem == null) 
+            {
+                _main_form.CustomerIDNumberTextBox.Text = "";
+                _main_form.CustomerNameTextBox.Text = "";
+                _main_form.CustomerSurnameTextBox.Text = "";
+                _main_form.IDPictureBox.Image = null;
+                _customer_selected = false;
+                return;
+            }
+
+            //Check if the customer is already selected. You cannot change the customer details in the middle of a purchase
+            if (_customer_selected == true) 
+            {
+                MessageBox.Show("Error! \n Can not change customer details during purchase. \n Cancel purchase and start from the begining!");
+                return;
+            }
+
             _customer_number = _main_form.customerNumbersList.SelectedItem.ToString();
             string _filter_expression = "CustomerNumber = '" + _customer_number + "'";
 
@@ -265,21 +283,29 @@ namespace Green_Enviro_App
 
             //Call this function update the info on the receipt
             setupReceipt();
+            _customer_selected = true;
         }
 
         public void CompletePurchase() 
         {
             _logs.AddPurchase(_purchased_items);
+            ResetReceipt();
+        }
+
+        public void ResetReceipt() 
+        {
+            _main_form.itemList.SelectedItem = null;
+            _main_form.customerNumbersList.SelectedItem = null;
+
+            _receipt_content = "";
+            _running_total = 0;
+            _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
+            setupReceipt();
         }
 
         private string ItemType(string itemName) 
         {
             return "F";
-        }
-
-        public void CustomerSelected() 
-        {
-            _customer_selected = true;
         }
 
         public void ManualPrice() 

@@ -97,9 +97,40 @@ namespace Green_Enviro_App
 			
 		}
 
-		private void ActionCompleted(string message) 
+		public void DisplayLog(Main_Form _main_form) 
 		{
-			
+			DataTable _data_table = new DataTable();
+			string[] lines = System.IO.File.ReadAllLines(_path_to_purchases);
+			if (lines.Length > 0)
+			{
+				//first line to create header
+				string _first_line = lines[0];
+				string[] _header_labels = _first_line.Split(',');
+				foreach (string _header_word in _header_labels)
+				{
+					_data_table.Columns.Add(new DataColumn(_header_word));
+				}
+				//For Data
+				for (int i = 1; i < lines.Length; i++)
+				{
+					string[] dataWords = lines[i].Split(',');
+					DataRow _data_row = _data_table.NewRow();
+					int columnIndex = 0;
+					foreach (string headerWord in _header_labels)
+					{
+						_data_row[headerWord] = dataWords[columnIndex++];
+					}
+					_data_table.Rows.Add(_data_row);
+				}
+			}
+			if (_data_table.Rows.Count > 0)
+			{
+				
+				_main_form.PurchseLogGridView.DataSource = _data_table;
+			}
+
+			_main_form.PurchseLogGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+			_main_form.PurchseLogGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 		}
 	}
 }

@@ -33,6 +33,8 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.CancelPurchaseBtn = new System.Windows.Forms.Button();
+			this.PurchaseBtn = new System.Windows.Forms.Button();
 			this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
 			this.CustomerSurnameTextBox = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -54,18 +56,24 @@ namespace Green_Enviro_App
 			this.addItemBtn = new System.Windows.Forms.Button();
 			this.receiptBox = new System.Windows.Forms.RichTextBox();
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
+			this.PurchseLogGridView = new System.Windows.Forms.DataGridView();
+			this.GenerateLogBtn = new System.Windows.Forms.Button();
+			this.label11 = new System.Windows.Forms.Label();
+			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.comboBox3 = new System.Windows.Forms.ComboBox();
+			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.SalesPage = new System.Windows.Forms.TabPage();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.UploadDataBtn = new System.Windows.Forms.Button();
-			this.UpDownProgressBar = new System.Windows.Forms.ProgressBar();
-			this.SyncDataBtn = new System.Windows.Forms.Button();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.PurchaseBtn = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
-			this.tabPage1.SuspendLayout();
+			this.PurchasesPage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -77,7 +85,6 @@ namespace Green_Enviro_App
 			this.mainTabControl.Controls.Add(this.ReceiptPage);
 			this.mainTabControl.Controls.Add(this.PurchasesPage);
 			this.mainTabControl.Controls.Add(this.SalesPage);
-			this.mainTabControl.Controls.Add(this.tabPage1);
 			this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mainTabControl.Location = new System.Drawing.Point(0, 0);
 			this.mainTabControl.Name = "mainTabControl";
@@ -87,6 +94,7 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.CancelPurchaseBtn);
 			this.ReceiptPage.Controls.Add(this.PurchaseBtn);
 			this.ReceiptPage.Controls.Add(this.CustomerNameTextBox);
 			this.ReceiptPage.Controls.Add(this.CustomerSurnameTextBox);
@@ -115,6 +123,28 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
+			// 
+			// CancelPurchaseBtn
+			// 
+			this.CancelPurchaseBtn.AllowDrop = true;
+			this.CancelPurchaseBtn.Location = new System.Drawing.Point(185, 657);
+			this.CancelPurchaseBtn.Name = "CancelPurchaseBtn";
+			this.CancelPurchaseBtn.Size = new System.Drawing.Size(212, 51);
+			this.CancelPurchaseBtn.TabIndex = 24;
+			this.CancelPurchaseBtn.Text = "Cancel Purchase";
+			this.CancelPurchaseBtn.UseVisualStyleBackColor = true;
+			this.CancelPurchaseBtn.Click += new System.EventHandler(this.CancelPurchaseBtn_Click);
+			// 
+			// PurchaseBtn
+			// 
+			this.PurchaseBtn.AllowDrop = true;
+			this.PurchaseBtn.Location = new System.Drawing.Point(23, 657);
+			this.PurchaseBtn.Name = "PurchaseBtn";
+			this.PurchaseBtn.Size = new System.Drawing.Size(143, 51);
+			this.PurchaseBtn.TabIndex = 23;
+			this.PurchaseBtn.Text = "Purchase";
+			this.PurchaseBtn.UseVisualStyleBackColor = true;
+			this.PurchaseBtn.Click += new System.EventHandler(this.PurchaseBtn_Click);
 			// 
 			// CustomerNameTextBox
 			// 
@@ -319,81 +349,145 @@ namespace Green_Enviro_App
 			this.receiptBox.TabIndex = 0;
 			this.receiptBox.Text = "";
 			this.receiptBox.WordWrap = false;
-			
 			// 
 			// PurchasesPage
 			// 
+			this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
+			this.PurchasesPage.Controls.Add(this.GenerateLogBtn);
+			this.PurchasesPage.Controls.Add(this.label11);
+			this.PurchasesPage.Controls.Add(this.comboBox4);
+			this.PurchasesPage.Controls.Add(this.label10);
+			this.PurchasesPage.Controls.Add(this.label9);
+			this.PurchasesPage.Controls.Add(this.label8);
+			this.PurchasesPage.Controls.Add(this.comboBox3);
+			this.PurchasesPage.Controls.Add(this.comboBox2);
+			this.PurchasesPage.Controls.Add(this.comboBox1);
 			this.PurchasesPage.Location = new System.Drawing.Point(4, 32);
 			this.PurchasesPage.Name = "PurchasesPage";
 			this.PurchasesPage.Padding = new System.Windows.Forms.Padding(3);
-			this.PurchasesPage.Size = new System.Drawing.Size(1219, 780);
+			this.PurchasesPage.Size = new System.Drawing.Size(1506, 780);
 			this.PurchasesPage.TabIndex = 1;
-			this.PurchasesPage.Text = "Purchases";
+			this.PurchasesPage.Text = "Purchases Logs";
 			this.PurchasesPage.UseVisualStyleBackColor = true;
+			// 
+			// PurchseLogGridView
+			// 
+			this.PurchseLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.PurchseLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.PurchseLogGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+			this.PurchseLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.PurchseLogGridView.Location = new System.Drawing.Point(8, 167);
+			this.PurchseLogGridView.Name = "PurchseLogGridView";
+			this.PurchseLogGridView.ReadOnly = true;
+			this.PurchseLogGridView.RowHeadersWidth = 51;
+			this.PurchseLogGridView.RowTemplate.Height = 24;
+			this.PurchseLogGridView.Size = new System.Drawing.Size(1492, 606);
+			this.PurchseLogGridView.TabIndex = 17;
+			// 
+			// GenerateLogBtn
+			// 
+			this.GenerateLogBtn.Location = new System.Drawing.Point(49, 97);
+			this.GenerateLogBtn.Name = "GenerateLogBtn";
+			this.GenerateLogBtn.Size = new System.Drawing.Size(199, 45);
+			this.GenerateLogBtn.TabIndex = 16;
+			this.GenerateLogBtn.Text = "Generate Log";
+			this.GenerateLogBtn.UseVisualStyleBackColor = true;
+			this.GenerateLogBtn.Click += new System.EventHandler(this.GenerateLogBtn_Click);
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(45, 21);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(65, 23);
+			this.label11.TabIndex = 15;
+			this.label11.Text = "Month";
+			// 
+			// comboBox4
+			// 
+			this.comboBox4.DropDownHeight = 300;
+			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox4.FormattingEnabled = true;
+			this.comboBox4.IntegralHeight = false;
+			this.comboBox4.ItemHeight = 23;
+			this.comboBox4.Location = new System.Drawing.Point(49, 47);
+			this.comboBox4.Name = "comboBox4";
+			this.comboBox4.Size = new System.Drawing.Size(203, 31);
+			this.comboBox4.TabIndex = 14;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(915, 21);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(54, 23);
+			this.label10.TabIndex = 13;
+			this.label10.Text = "Type";
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(625, 21);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(98, 23);
+			this.label9.TabIndex = 12;
+			this.label9.Text = "End Date";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(334, 21);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(120, 23);
+			this.label8.TabIndex = 11;
+			this.label8.Text = "Start Date";
+			// 
+			// comboBox3
+			// 
+			this.comboBox3.DropDownHeight = 300;
+			this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox3.FormattingEnabled = true;
+			this.comboBox3.IntegralHeight = false;
+			this.comboBox3.ItemHeight = 23;
+			this.comboBox3.Location = new System.Drawing.Point(919, 47);
+			this.comboBox3.Name = "comboBox3";
+			this.comboBox3.Size = new System.Drawing.Size(203, 31);
+			this.comboBox3.TabIndex = 10;
+			// 
+			// comboBox2
+			// 
+			this.comboBox2.DropDownHeight = 300;
+			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox2.FormattingEnabled = true;
+			this.comboBox2.IntegralHeight = false;
+			this.comboBox2.ItemHeight = 23;
+			this.comboBox2.Location = new System.Drawing.Point(629, 47);
+			this.comboBox2.Name = "comboBox2";
+			this.comboBox2.Size = new System.Drawing.Size(203, 31);
+			this.comboBox2.TabIndex = 9;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.DropDownHeight = 300;
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.IntegralHeight = false;
+			this.comboBox1.ItemHeight = 23;
+			this.comboBox1.Location = new System.Drawing.Point(338, 47);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(203, 31);
+			this.comboBox1.TabIndex = 8;
 			// 
 			// SalesPage
 			// 
 			this.SalesPage.Location = new System.Drawing.Point(4, 32);
 			this.SalesPage.Name = "SalesPage";
-			this.SalesPage.Size = new System.Drawing.Size(1219, 780);
+			this.SalesPage.Size = new System.Drawing.Size(1506, 780);
 			this.SalesPage.TabIndex = 2;
-			this.SalesPage.Text = "Sales";
+			this.SalesPage.Text = "Sales Logs";
 			this.SalesPage.UseVisualStyleBackColor = true;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.UploadDataBtn);
-			this.tabPage1.Controls.Add(this.UpDownProgressBar);
-			this.tabPage1.Controls.Add(this.SyncDataBtn);
-			this.tabPage1.Location = new System.Drawing.Point(4, 32);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Size = new System.Drawing.Size(1219, 780);
-			this.tabPage1.TabIndex = 3;
-			this.tabPage1.Text = "Sync ";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// UploadDataBtn
-			// 
-			this.UploadDataBtn.Location = new System.Drawing.Point(692, 55);
-			this.UploadDataBtn.Name = "UploadDataBtn";
-			this.UploadDataBtn.Size = new System.Drawing.Size(354, 144);
-			this.UploadDataBtn.TabIndex = 2;
-			this.UploadDataBtn.Text = "Upload Data";
-			this.UploadDataBtn.UseVisualStyleBackColor = true;
-			
-			// 
-			// UpDownProgressBar
-			// 
-			this.UpDownProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.UpDownProgressBar.BackColor = System.Drawing.SystemColors.Control;
-			this.UpDownProgressBar.Location = new System.Drawing.Point(62, 576);
-			this.UpDownProgressBar.MarqueeAnimationSpeed = 1000;
-			this.UpDownProgressBar.Name = "UpDownProgressBar";
-			this.UpDownProgressBar.Size = new System.Drawing.Size(1109, 153);
-			this.UpDownProgressBar.TabIndex = 1;
-			this.UpDownProgressBar.Visible = false;
-			// 
-			// SyncDataBtn
-			// 
-			this.SyncDataBtn.Location = new System.Drawing.Point(131, 55);
-			this.SyncDataBtn.Name = "SyncDataBtn";
-			this.SyncDataBtn.Size = new System.Drawing.Size(354, 144);
-			this.SyncDataBtn.TabIndex = 0;
-			this.SyncDataBtn.Text = "Sync Data";
-			this.SyncDataBtn.UseVisualStyleBackColor = true;
-			
-			// 
-			// PurchaseBtn
-			// 
-			this.PurchaseBtn.AllowDrop = true;
-			this.PurchaseBtn.Location = new System.Drawing.Point(23, 657);
-			this.PurchaseBtn.Name = "PurchaseBtn";
-			this.PurchaseBtn.Size = new System.Drawing.Size(143, 51);
-			this.PurchaseBtn.TabIndex = 23;
-			this.PurchaseBtn.Text = "Purchase";
-			this.PurchaseBtn.UseVisualStyleBackColor = true;
-			this.PurchaseBtn.Click += new System.EventHandler(this.PurchaseBtn_Click);
 			// 
 			// Main_Form
 			// 
@@ -414,7 +508,9 @@ namespace Green_Enviro_App
 			this.ReceiptPage.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
-			this.tabPage1.ResumeLayout(false);
+			this.PurchasesPage.ResumeLayout(false);
+			this.PurchasesPage.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
 
@@ -434,10 +530,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label2;
 		public System.Windows.Forms.TextBox quantityBox;
 		public System.Windows.Forms.PictureBox logo;
-		private System.Windows.Forms.TabPage tabPage1;
-		public System.Windows.Forms.Button SyncDataBtn;
-		public System.Windows.Forms.ProgressBar UpDownProgressBar;
-		public System.Windows.Forms.Button UploadDataBtn;
 		public System.Windows.Forms.TextBox PriceBox;
 		private System.Windows.Forms.Label label3;
 		public System.Windows.Forms.CheckBox DealerPriceCheckBox;
@@ -452,5 +544,16 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label6;
 		public System.Windows.Forms.PictureBox IDPictureBox;
 		private System.Windows.Forms.Button PurchaseBtn;
+		private System.Windows.Forms.Button CancelPurchaseBtn;
+		public System.Windows.Forms.ComboBox comboBox3;
+		public System.Windows.Forms.ComboBox comboBox2;
+		public System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Button GenerateLogBtn;
+		private System.Windows.Forms.Label label11;
+		public System.Windows.Forms.ComboBox comboBox4;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label8;
+		public System.Windows.Forms.DataGridView PurchseLogGridView;
 	}
 }

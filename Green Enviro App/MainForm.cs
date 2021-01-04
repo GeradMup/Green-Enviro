@@ -63,6 +63,19 @@ namespace Green_Enviro_App
 		{
             _receipt.CompletePurchase();
 		}
+
+		private void CancelPurchaseBtn_Click(object sender, EventArgs e)
+		{
+            _receipt.ResetReceipt();
+		}
+
         //*****************************************************************************************************************************************
-	}
+        //PURCHASE LOG RELATED CALLS
+        //*****************************************************************************************************************************************
+
+        private void GenerateLogBtn_Click(object sender, EventArgs e)
+        {
+            _logs.DisplayLog(this);
+        }
+    }
 }
