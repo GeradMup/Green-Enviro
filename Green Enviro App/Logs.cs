@@ -125,12 +125,12 @@ namespace Green_Enviro_App
 			}
 			if (_data_table.Rows.Count > 0)
 			{
-				
 				_main_form.PurchseLogGridView.DataSource = _data_table;
+				_main_form.PurchseLogGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+				_main_form.PurchseLogGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 			}
 
-			_main_form.PurchseLogGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-			_main_form.PurchseLogGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
 		}
 	}
 }

@@ -290,6 +290,7 @@ namespace Green_Enviro_App
         {
             _logs.AddPurchase(_purchased_items);
             ResetReceipt();
+            _purchased_items.Clear();
         }
 
         public void ResetReceipt() 
