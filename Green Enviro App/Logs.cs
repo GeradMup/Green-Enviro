@@ -70,7 +70,7 @@ namespace Green_Enviro_App
 		public void AddPurchase(List<string> purchasedItems)
 		{
 			StringBuilder _csv_content = new StringBuilder();
-			
+
 			foreach (string _purchase_entry in purchasedItems)
 			{
 				_csv_content.AppendLine(_purchase_entry);
@@ -81,34 +81,28 @@ namespace Green_Enviro_App
 				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
 				MessageBox.Show("Purchase Completed!");
 			}
-			catch (Exception ex) 
+			catch (Exception ex)
 			{
 				MessageBox.Show("Error! \n" + ex.Message);
 			}
 		}
 
-		public void AddSale() 
-		{ 
-		
-		}
-
-		public void AddExpense() 
-		{ 
-		
-		}
-
-		public void AddWage() 
+		public void DisplayPurchaseLog()
 		{
-			
-		}
 
-		public void DisplayLog() 
-		{
+			if (_main_form.PurchaseLogMonth.SelectedItem == null)
+			{
+				//Do nothing is the user has not selected what month they want to view
+				return;
+			}
 			_purchases_data_table.Clear();
-			string[] lines = System.IO.File.ReadAllLines(_path_to_purchases);
+			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
+			string _path_to_log_file = @"..//..//resources//Logs//Purchases//" + _selected_month + ".csv";
+
+			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
 			if (lines.Length > 0)
 			{
-				//first line to create header
+				//first line to create the table headers
 				string _first_line = lines[0];
 				string[] _header_labels = _first_line.Split(',');
 				if (!_purchases_data_table.Columns.Contains(_header_labels[0]))
@@ -119,10 +113,11 @@ namespace Green_Enviro_App
 					}
 				}
 
-				//For Data
-				for (int i = 1; i < lines.Length; i++)
+				//Now we populate the table with the rest of the information that we want to view
+				for (int _row = 1; _row < lines.Length; _row++)
 				{
-					string[] dataWords = lines[i].Split(',');
+					//For each line, we want a list of the words on the line seperated by the comma
+					string[] dataWords = lines[_row].Split(',');
 					DataRow _data_row = _purchases_data_table.NewRow();
 					int columnIndex = 0;
 					foreach (string headerWord in _header_labels)
@@ -142,7 +137,7 @@ namespace Green_Enviro_App
 
 		}
 
-		public void SetupPurchaseLogs() 
+		public void SetupPurchaseLogs()
 		{
 			//This function will get the names of all the purchase log files that exists in the purchases folder
 			string _purchase_logs_path = @"..//..//resources//Logs//Purchases";
@@ -150,10 +145,55 @@ namespace Green_Enviro_App
 			FileInfo[] _files = _directory.GetFiles("*.csv"); //Getting Text files
 			foreach (FileInfo _file in _files)
 			{
-				char[] _remove_chars = {'c','s','v','.' };
+				char[] _remove_chars = { 'c', 's', 'v', '.' };
 				string _file_name = _file.Name.TrimEnd(_remove_chars);
 				_main_form.PurchaseLogMonth.Items.Add(_file_name);
 			}
+			//Now we need to look indside the file and extract only the dates which are in the first column
+		}
+
+		public void MonthSelected() 
+		{
+			if (_main_form.PurchaseLogMonth.SelectedItem == null) 
+			{
+				//Do nothing if no month is selected
+				return;
+			}
+
+			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
+			string _path_to_log_file = @"..//..//resources//Logs//Purchases//" + _selected_month + ".csv";
+
+			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
+			HashSet<string> _dates = new HashSet<string>();
+
+			if (lines.Length > 0) 
+			{
+				for (int _row = 1; _row < lines.Length; _row++) 
+				{
+					//For each line, we want a list of the words on the line seperated by the comma
+					string[] dataWords = lines[_row].Split(',');
+
+					//Now we want to add only the first word to a list of days if it is unique
+					//In order to make sure that we do not repeat strings, we use a HashSet string
+					_dates.Add(dataWords[0]);
+				}
+			}
+
+
+			//First Clear the start and end date fields to prepare them for the new entry
+			_main_form.PurchaseLogStartDate.Items.Clear();
+			_main_form.PurchaseLogEndDate.Items.Clear();
+
+			//Now Populate the drop down list with available dates only.
+			foreach (string _date in _dates) 
+			{
+				_main_form.PurchaseLogStartDate.Items.Add(_date);
+				_main_form.PurchaseLogEndDate.Items.Add(_date);
+			}
+
+			//Change the contents displayed in the log if the month selected changes
+			DisplayPurchaseLog();
+			
 		}
 	}
 }

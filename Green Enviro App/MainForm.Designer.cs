@@ -57,7 +57,7 @@ namespace Green_Enviro_App
 			this.receiptBox = new System.Windows.Forms.RichTextBox();
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
 			this.PurchseLogGridView = new System.Windows.Forms.DataGridView();
-			this.GenerateLogBtn = new System.Windows.Forms.Button();
+			this.GeneratePurchaseLogBtn = new System.Windows.Forms.Button();
 			this.label11 = new System.Windows.Forms.Label();
 			this.PurchaseLogMonth = new System.Windows.Forms.ComboBox();
 			this.label10 = new System.Windows.Forms.Label();
@@ -353,7 +353,7 @@ namespace Green_Enviro_App
 			// PurchasesPage
 			// 
 			this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
-			this.PurchasesPage.Controls.Add(this.GenerateLogBtn);
+			this.PurchasesPage.Controls.Add(this.GeneratePurchaseLogBtn);
 			this.PurchasesPage.Controls.Add(this.label11);
 			this.PurchasesPage.Controls.Add(this.PurchaseLogMonth);
 			this.PurchasesPage.Controls.Add(this.label10);
@@ -386,15 +386,15 @@ namespace Green_Enviro_App
 			this.PurchseLogGridView.Size = new System.Drawing.Size(1492, 606);
 			this.PurchseLogGridView.TabIndex = 17;
 			// 
-			// GenerateLogBtn
+			// GeneratePurchaseLogBtn
 			// 
-			this.GenerateLogBtn.Location = new System.Drawing.Point(49, 97);
-			this.GenerateLogBtn.Name = "GenerateLogBtn";
-			this.GenerateLogBtn.Size = new System.Drawing.Size(199, 45);
-			this.GenerateLogBtn.TabIndex = 16;
-			this.GenerateLogBtn.Text = "Generate Log";
-			this.GenerateLogBtn.UseVisualStyleBackColor = true;
-			this.GenerateLogBtn.Click += new System.EventHandler(this.GenerateLogBtn_Click);
+			this.GeneratePurchaseLogBtn.Location = new System.Drawing.Point(49, 97);
+			this.GeneratePurchaseLogBtn.Name = "GeneratePurchaseLogBtn";
+			this.GeneratePurchaseLogBtn.Size = new System.Drawing.Size(199, 45);
+			this.GeneratePurchaseLogBtn.TabIndex = 16;
+			this.GeneratePurchaseLogBtn.Text = "Generate Log";
+			this.GeneratePurchaseLogBtn.UseVisualStyleBackColor = true;
+			this.GeneratePurchaseLogBtn.Click += new System.EventHandler(this.GeneratePurchaseLogBtn_Click);
 			// 
 			// label11
 			// 
@@ -416,11 +416,12 @@ namespace Green_Enviro_App
 			this.PurchaseLogMonth.Name = "PurchaseLogMonth";
 			this.PurchaseLogMonth.Size = new System.Drawing.Size(203, 31);
 			this.PurchaseLogMonth.TabIndex = 14;
+			this.PurchaseLogMonth.SelectedIndexChanged += new System.EventHandler(this.PurchaseLogMonth_SelectedIndexChanged);
 			// 
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(915, 21);
+			this.label10.Location = new System.Drawing.Point(1123, 21);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(54, 23);
 			this.label10.TabIndex = 13;
@@ -429,7 +430,7 @@ namespace Green_Enviro_App
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(625, 21);
+			this.label9.Location = new System.Drawing.Point(747, 21);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(98, 23);
 			this.label9.TabIndex = 12;
@@ -451,7 +452,7 @@ namespace Green_Enviro_App
 			this.PurchaseLogType.FormattingEnabled = true;
 			this.PurchaseLogType.IntegralHeight = false;
 			this.PurchaseLogType.ItemHeight = 23;
-			this.PurchaseLogType.Location = new System.Drawing.Point(919, 47);
+			this.PurchaseLogType.Location = new System.Drawing.Point(1127, 47);
 			this.PurchaseLogType.Name = "PurchaseLogType";
 			this.PurchaseLogType.Size = new System.Drawing.Size(203, 31);
 			this.PurchaseLogType.TabIndex = 10;
@@ -463,9 +464,9 @@ namespace Green_Enviro_App
 			this.PurchaseLogEndDate.FormattingEnabled = true;
 			this.PurchaseLogEndDate.IntegralHeight = false;
 			this.PurchaseLogEndDate.ItemHeight = 23;
-			this.PurchaseLogEndDate.Location = new System.Drawing.Point(629, 47);
+			this.PurchaseLogEndDate.Location = new System.Drawing.Point(751, 47);
 			this.PurchaseLogEndDate.Name = "PurchaseLogEndDate";
-			this.PurchaseLogEndDate.Size = new System.Drawing.Size(203, 31);
+			this.PurchaseLogEndDate.Size = new System.Drawing.Size(291, 31);
 			this.PurchaseLogEndDate.TabIndex = 9;
 			// 
 			// PurchaseLogStartDate
@@ -477,7 +478,7 @@ namespace Green_Enviro_App
 			this.PurchaseLogStartDate.ItemHeight = 23;
 			this.PurchaseLogStartDate.Location = new System.Drawing.Point(338, 47);
 			this.PurchaseLogStartDate.Name = "PurchaseLogStartDate";
-			this.PurchaseLogStartDate.Size = new System.Drawing.Size(203, 31);
+			this.PurchaseLogStartDate.Size = new System.Drawing.Size(316, 31);
 			this.PurchaseLogStartDate.TabIndex = 8;
 			// 
 			// SalesPage
@@ -548,7 +549,7 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.ComboBox PurchaseLogType;
 		public System.Windows.Forms.ComboBox PurchaseLogEndDate;
 		public System.Windows.Forms.ComboBox PurchaseLogStartDate;
-		private System.Windows.Forms.Button GenerateLogBtn;
+		private System.Windows.Forms.Button GeneratePurchaseLogBtn;
 		private System.Windows.Forms.Label label11;
 		public System.Windows.Forms.ComboBox PurchaseLogMonth;
 		private System.Windows.Forms.Label label10;
