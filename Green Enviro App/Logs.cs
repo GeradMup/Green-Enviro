@@ -23,6 +23,7 @@ namespace Green_Enviro_App
 		Main_Form _main_form;
 
 		DataTable _purchases_data_table = new DataTable();
+		BindingSource _binding_source = new BindingSource();
 		public Logs(Main_Form _main)
 		{
 			_main_form = _main;
@@ -96,6 +97,7 @@ namespace Green_Enviro_App
 				return;
 			}
 			_purchases_data_table.Clear();
+
 			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
 			string _path_to_log_file = @"..//..//resources//Logs//Purchases//" + _selected_month + ".csv";
 
@@ -130,7 +132,22 @@ namespace Green_Enviro_App
 
 			if (_purchases_data_table.Rows.Count > 0)
 			{
-				_main_form.PurchseLogGridView.DataSource = _purchases_data_table;
+				_binding_source.DataSource = _purchases_data_table;
+
+				//Filter according to the date rages if the dates have been selected correctly
+				if (isDateFiltered() == true)
+				{
+					string _start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
+					string _end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
+
+					_binding_source.Filter = string.Format("Date >= '{0}' AND Date <= '{1}'", _start_date, _end_date);
+				}
+				else 
+				{
+					_binding_source.RemoveFilter();
+				}
+
+				_main_form.PurchseLogGridView.DataSource = _binding_source;
 				_main_form.PurchseLogGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 				_main_form.PurchseLogGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 			}
@@ -194,6 +211,46 @@ namespace Green_Enviro_App
 			//Change the contents displayed in the log if the month selected changes
 			DisplayPurchaseLog();
 			
+		}
+
+		private bool isDateFiltered() 
+		{
+			if ((_main_form.PurchaseLogStartDate.SelectedItem == null) && (_main_form.PurchaseLogEndDate.SelectedItem == null)) 
+			{
+				//Do nothing if there are not filters selected
+				return false;
+			}
+
+			if ((_main_form.PurchaseLogStartDate.SelectedItem != null) && (_main_form.PurchaseLogEndDate.SelectedItem == null))
+			{
+				//Do nothing if there are not filters selected
+				CustomMessageBox msg = new CustomMessageBox ("Error!","INVALID DATE RANGE!");
+				_main_form.PurchaseLogStartDate.SelectedItem = null;
+				_main_form.PurchaseLogEndDate.SelectedItem = null;
+				return false;
+			}
+
+			if ((_main_form.PurchaseLogStartDate.SelectedItem == null) && (_main_form.PurchaseLogEndDate.SelectedItem != null))
+			{
+				//Do nothing if there are not filters selected
+				CustomMessageBox msg = new CustomMessageBox("Error!","INVALID DATE RANGE!");
+				_main_form.PurchaseLogStartDate.SelectedItem = null;
+				_main_form.PurchaseLogEndDate.SelectedItem = null;
+				return false;
+			}
+
+			DateTime _start_date = Convert.ToDateTime(_main_form.PurchaseLogStartDate.SelectedItem.ToString());
+			DateTime _end_date = Convert.ToDateTime(_main_form.PurchaseLogEndDate.SelectedItem.ToString());
+
+			if (_start_date > _end_date) 
+			{
+				CustomMessageBox msg = new CustomMessageBox("Error!","INVALID DATE RANGE!");
+				_main_form.PurchaseLogStartDate.SelectedItem = null;
+				_main_form.PurchaseLogEndDate.SelectedItem = null;
+				return false;
+			}
+
+			return true;
 		}
 	}
 }
