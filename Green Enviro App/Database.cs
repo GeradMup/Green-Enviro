@@ -118,7 +118,6 @@ namespace Green_Enviro_App
 			catch (Exception ex)
 			{
 				MessageBox.Show("Failed to Select from DB : " + ex.Message);
-				
 			}
 
 			CloseDatabase();
