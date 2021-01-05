@@ -21,7 +21,7 @@ namespace Green_Enviro_App
             InitializeComponent();
             //initialiseItemList();
             _database = _data;
-            _logs = new Logs();
+            _logs = new Logs(this);
             _receipt = new Receipt(this, _database, _logs);
            
         }
@@ -75,7 +75,7 @@ namespace Green_Enviro_App
 
         private void GenerateLogBtn_Click(object sender, EventArgs e)
         {
-            _logs.DisplayLog(this);
+            _logs.DisplayLog();
         }
-    }
+	}
 }

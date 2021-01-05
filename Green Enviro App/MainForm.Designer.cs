@@ -59,13 +59,13 @@ namespace Green_Enviro_App
 			this.PurchseLogGridView = new System.Windows.Forms.DataGridView();
 			this.GenerateLogBtn = new System.Windows.Forms.Button();
 			this.label11 = new System.Windows.Forms.Label();
-			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.PurchaseLogMonth = new System.Windows.Forms.ComboBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.PurchaseLogType = new System.Windows.Forms.ComboBox();
+			this.PurchaseLogEndDate = new System.Windows.Forms.ComboBox();
+			this.PurchaseLogStartDate = new System.Windows.Forms.ComboBox();
 			this.SalesPage = new System.Windows.Forms.TabPage();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
@@ -355,13 +355,13 @@ namespace Green_Enviro_App
 			this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
 			this.PurchasesPage.Controls.Add(this.GenerateLogBtn);
 			this.PurchasesPage.Controls.Add(this.label11);
-			this.PurchasesPage.Controls.Add(this.comboBox4);
+			this.PurchasesPage.Controls.Add(this.PurchaseLogMonth);
 			this.PurchasesPage.Controls.Add(this.label10);
 			this.PurchasesPage.Controls.Add(this.label9);
 			this.PurchasesPage.Controls.Add(this.label8);
-			this.PurchasesPage.Controls.Add(this.comboBox3);
-			this.PurchasesPage.Controls.Add(this.comboBox2);
-			this.PurchasesPage.Controls.Add(this.comboBox1);
+			this.PurchasesPage.Controls.Add(this.PurchaseLogType);
+			this.PurchasesPage.Controls.Add(this.PurchaseLogEndDate);
+			this.PurchasesPage.Controls.Add(this.PurchaseLogStartDate);
 			this.PurchasesPage.Location = new System.Drawing.Point(4, 32);
 			this.PurchasesPage.Name = "PurchasesPage";
 			this.PurchasesPage.Padding = new System.Windows.Forms.Padding(3);
@@ -405,17 +405,17 @@ namespace Green_Enviro_App
 			this.label11.TabIndex = 15;
 			this.label11.Text = "Month";
 			// 
-			// comboBox4
+			// PurchaseLogMonth
 			// 
-			this.comboBox4.DropDownHeight = 300;
-			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox4.FormattingEnabled = true;
-			this.comboBox4.IntegralHeight = false;
-			this.comboBox4.ItemHeight = 23;
-			this.comboBox4.Location = new System.Drawing.Point(49, 47);
-			this.comboBox4.Name = "comboBox4";
-			this.comboBox4.Size = new System.Drawing.Size(203, 31);
-			this.comboBox4.TabIndex = 14;
+			this.PurchaseLogMonth.DropDownHeight = 300;
+			this.PurchaseLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchaseLogMonth.FormattingEnabled = true;
+			this.PurchaseLogMonth.IntegralHeight = false;
+			this.PurchaseLogMonth.ItemHeight = 23;
+			this.PurchaseLogMonth.Location = new System.Drawing.Point(49, 47);
+			this.PurchaseLogMonth.Name = "PurchaseLogMonth";
+			this.PurchaseLogMonth.Size = new System.Drawing.Size(203, 31);
+			this.PurchaseLogMonth.TabIndex = 14;
 			// 
 			// label10
 			// 
@@ -444,41 +444,41 @@ namespace Green_Enviro_App
 			this.label8.TabIndex = 11;
 			this.label8.Text = "Start Date";
 			// 
-			// comboBox3
+			// PurchaseLogType
 			// 
-			this.comboBox3.DropDownHeight = 300;
-			this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.IntegralHeight = false;
-			this.comboBox3.ItemHeight = 23;
-			this.comboBox3.Location = new System.Drawing.Point(919, 47);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(203, 31);
-			this.comboBox3.TabIndex = 10;
+			this.PurchaseLogType.DropDownHeight = 300;
+			this.PurchaseLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchaseLogType.FormattingEnabled = true;
+			this.PurchaseLogType.IntegralHeight = false;
+			this.PurchaseLogType.ItemHeight = 23;
+			this.PurchaseLogType.Location = new System.Drawing.Point(919, 47);
+			this.PurchaseLogType.Name = "PurchaseLogType";
+			this.PurchaseLogType.Size = new System.Drawing.Size(203, 31);
+			this.PurchaseLogType.TabIndex = 10;
 			// 
-			// comboBox2
+			// PurchaseLogEndDate
 			// 
-			this.comboBox2.DropDownHeight = 300;
-			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.IntegralHeight = false;
-			this.comboBox2.ItemHeight = 23;
-			this.comboBox2.Location = new System.Drawing.Point(629, 47);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(203, 31);
-			this.comboBox2.TabIndex = 9;
+			this.PurchaseLogEndDate.DropDownHeight = 300;
+			this.PurchaseLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchaseLogEndDate.FormattingEnabled = true;
+			this.PurchaseLogEndDate.IntegralHeight = false;
+			this.PurchaseLogEndDate.ItemHeight = 23;
+			this.PurchaseLogEndDate.Location = new System.Drawing.Point(629, 47);
+			this.PurchaseLogEndDate.Name = "PurchaseLogEndDate";
+			this.PurchaseLogEndDate.Size = new System.Drawing.Size(203, 31);
+			this.PurchaseLogEndDate.TabIndex = 9;
 			// 
-			// comboBox1
+			// PurchaseLogStartDate
 			// 
-			this.comboBox1.DropDownHeight = 300;
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.IntegralHeight = false;
-			this.comboBox1.ItemHeight = 23;
-			this.comboBox1.Location = new System.Drawing.Point(338, 47);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(203, 31);
-			this.comboBox1.TabIndex = 8;
+			this.PurchaseLogStartDate.DropDownHeight = 300;
+			this.PurchaseLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchaseLogStartDate.FormattingEnabled = true;
+			this.PurchaseLogStartDate.IntegralHeight = false;
+			this.PurchaseLogStartDate.ItemHeight = 23;
+			this.PurchaseLogStartDate.Location = new System.Drawing.Point(338, 47);
+			this.PurchaseLogStartDate.Name = "PurchaseLogStartDate";
+			this.PurchaseLogStartDate.Size = new System.Drawing.Size(203, 31);
+			this.PurchaseLogStartDate.TabIndex = 8;
 			// 
 			// SalesPage
 			// 
@@ -545,12 +545,12 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.PictureBox IDPictureBox;
 		private System.Windows.Forms.Button PurchaseBtn;
 		private System.Windows.Forms.Button CancelPurchaseBtn;
-		public System.Windows.Forms.ComboBox comboBox3;
-		public System.Windows.Forms.ComboBox comboBox2;
-		public System.Windows.Forms.ComboBox comboBox1;
+		public System.Windows.Forms.ComboBox PurchaseLogType;
+		public System.Windows.Forms.ComboBox PurchaseLogEndDate;
+		public System.Windows.Forms.ComboBox PurchaseLogStartDate;
 		private System.Windows.Forms.Button GenerateLogBtn;
 		private System.Windows.Forms.Label label11;
-		public System.Windows.Forms.ComboBox comboBox4;
+		public System.Windows.Forms.ComboBox PurchaseLogMonth;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label8;
