@@ -129,14 +129,14 @@ namespace Green_Enviro_App
 					_purchases_data_table.Rows.Add(_data_row);
 				}
 			}
+
 			if (_purchases_data_table.Rows.Count > 0)
 			{
-				
 				_main_form.PurchseLogGridView.DataSource = _purchases_data_table;
-
 				_main_form.PurchseLogGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 				_main_form.PurchseLogGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 			}
+
 		}
 	}
 }
