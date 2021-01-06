@@ -88,5 +88,10 @@ namespace Green_Enviro_App
 		{
             _logs.RemoveFilters();
 		}
+
+		private void TotalsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
 	}
 }

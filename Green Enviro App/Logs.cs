@@ -24,6 +24,7 @@ namespace Green_Enviro_App
 
 		DataTable _purchases_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
+		string _empty_string = " ";
 
 		string _ferrous;
 		string _non_ferrous;
@@ -145,6 +146,11 @@ namespace Green_Enviro_App
 			if (_purchases_data_table.Rows.Count > 0)
 			{
 				_binding_source.DataSource = _purchases_data_table;
+				_main_form.PurchseLogGridView.DataSource = _binding_source;
+				_main_form.PurchseLogGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+				_main_form.PurchseLogGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+				AddTotalsRow();
+
 
 				//Filter according to the date ranges if the dates have been selected correctly
 				if (isDateFiltered() == true)
@@ -155,30 +161,75 @@ namespace Green_Enviro_App
 					if (isTypeFiltered() == true)
 					{
 						string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
-						_binding_source.Filter = string.Format("Date >= '{0}' AND Date <= '{1}' AND Type = '{2}'", _start_date, _end_date, _item_type);
+						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}' AND Type = '{3}'", " ", _start_date, _end_date, _item_type);
 					}
-					else 
+					else
 					{
-						_binding_source.Filter = string.Format("Date >= '{0}' AND Date <= '{1}'", _start_date, _end_date);
+						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}'", _empty_string, _start_date, _end_date);
 					}
-
-					
 				}
-				else 
+				else
 				{
 					_binding_source.RemoveFilter();
 
 					if (isTypeFiltered() == true)
 					{
 						string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
-						_binding_source.Filter = string.Format("Type = '{0}'", _item_type);
+						_binding_source.Filter = string.Format("Name = '{0}' OR Type = '{1}'", _empty_string, _item_type);
 					}
 				}
-				
-				_main_form.PurchseLogGridView.DataSource = _binding_source;
-				_main_form.PurchseLogGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-				_main_form.PurchseLogGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+				_main_form.PurchseLogGridView.Refresh();
 			}
+
+		}
+
+		private void AddTotalsRow() 
+		{
+			float _total_kg = 0;
+			float _total_amount = 0;
+			int _kg_column = 6;
+			int _amount_column = 8;
+
+
+			for (int _row = 0; _row < _main_form.PurchseLogGridView.Rows.Count - 1; _row++)
+			{
+				_total_amount += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_amount_column].Value.ToString());
+				_total_kg += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_kg_column].Value.ToString());
+			}
+			CustomMessageBox box = new CustomMessageBox("Total", "Kg's : " + _total_kg.ToString() + "\n" + "Amount : " + _total_amount.ToString());
+
+			DataTable _totals_table = new DataTable();
+
+			for (int _cols = 0; _cols < _main_form.PurchseLogGridView.Columns.Count; _cols++) 
+			{
+				DataColumn _new_column = new DataColumn();
+				_totals_table.Columns.Add(_new_column);
+			}
+
+			DataRow _last_row = _purchases_data_table.NewRow();
+			DataRow _empty_row = _purchases_data_table.NewRow();
+
+			_last_row[0] = "TOTALS";
+			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
+			{
+				_empty_row[_cell] = _empty_string;
+				if (_cell == _amount_column)
+				{
+					_last_row[_cell] = _total_amount;
+				}
+				else if (_cell == _kg_column)
+				{
+					_last_row[_cell] = _total_kg;
+				}
+				else
+				{
+					_last_row[_cell] = _empty_string;
+				}
+			}
+
+			_purchases_data_table.Rows.Add(_empty_row);
+			_purchases_data_table.Rows.Add(_last_row);
 
 		}
 

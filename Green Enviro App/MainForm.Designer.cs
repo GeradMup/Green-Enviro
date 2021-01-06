@@ -56,6 +56,7 @@ namespace Green_Enviro_App
 			this.addItemBtn = new System.Windows.Forms.Button();
 			this.receiptBox = new System.Windows.Forms.RichTextBox();
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
+			this.removeFiltersBtn = new System.Windows.Forms.Button();
 			this.PurchseLogGridView = new System.Windows.Forms.DataGridView();
 			this.GeneratePurchaseLogBtn = new System.Windows.Forms.Button();
 			this.label11 = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@ namespace Green_Enviro_App
 			this.PurchaseLogStartDate = new System.Windows.Forms.ComboBox();
 			this.SalesPage = new System.Windows.Forms.TabPage();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.removeFiltersBtn = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
@@ -372,6 +372,16 @@ namespace Green_Enviro_App
 			this.PurchasesPage.Text = "Purchases Logs";
 			this.PurchasesPage.UseVisualStyleBackColor = true;
 			// 
+			// removeFiltersBtn
+			// 
+			this.removeFiltersBtn.Location = new System.Drawing.Point(338, 97);
+			this.removeFiltersBtn.Name = "removeFiltersBtn";
+			this.removeFiltersBtn.Size = new System.Drawing.Size(316, 45);
+			this.removeFiltersBtn.TabIndex = 18;
+			this.removeFiltersBtn.Text = "Remove Filters";
+			this.removeFiltersBtn.UseVisualStyleBackColor = true;
+			this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
+			// 
 			// PurchseLogGridView
 			// 
 			this.PurchseLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -379,13 +389,14 @@ namespace Green_Enviro_App
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.PurchseLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.PurchseLogGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+			this.PurchseLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.PurchseLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.PurchseLogGridView.Location = new System.Drawing.Point(8, 167);
+			this.PurchseLogGridView.Location = new System.Drawing.Point(8, 164);
 			this.PurchseLogGridView.Name = "PurchseLogGridView";
 			this.PurchseLogGridView.ReadOnly = true;
 			this.PurchseLogGridView.RowHeadersWidth = 51;
 			this.PurchseLogGridView.RowTemplate.Height = 24;
-			this.PurchseLogGridView.Size = new System.Drawing.Size(1492, 606);
+			this.PurchseLogGridView.Size = new System.Drawing.Size(1492, 609);
 			this.PurchseLogGridView.TabIndex = 17;
 			// 
 			// GeneratePurchaseLogBtn
@@ -491,16 +502,6 @@ namespace Green_Enviro_App
 			this.SalesPage.TabIndex = 2;
 			this.SalesPage.Text = "Sales Logs";
 			this.SalesPage.UseVisualStyleBackColor = true;
-			// 
-			// removeFiltersBtn
-			// 
-			this.removeFiltersBtn.Location = new System.Drawing.Point(338, 97);
-			this.removeFiltersBtn.Name = "removeFiltersBtn";
-			this.removeFiltersBtn.Size = new System.Drawing.Size(316, 45);
-			this.removeFiltersBtn.TabIndex = 18;
-			this.removeFiltersBtn.Text = "Remove Filters";
-			this.removeFiltersBtn.UseVisualStyleBackColor = true;
-			this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
 			// 
 			// Main_Form
 			// 
