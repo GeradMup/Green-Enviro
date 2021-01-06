@@ -68,6 +68,7 @@ namespace Green_Enviro_App
 			this.PurchaseLogStartDate = new System.Windows.Forms.ComboBox();
 			this.SalesPage = new System.Windows.Forms.TabPage();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.removeFiltersBtn = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
@@ -352,6 +353,7 @@ namespace Green_Enviro_App
 			// 
 			// PurchasesPage
 			// 
+			this.PurchasesPage.Controls.Add(this.removeFiltersBtn);
 			this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
 			this.PurchasesPage.Controls.Add(this.GeneratePurchaseLogBtn);
 			this.PurchasesPage.Controls.Add(this.label11);
@@ -392,7 +394,7 @@ namespace Green_Enviro_App
 			this.GeneratePurchaseLogBtn.Name = "GeneratePurchaseLogBtn";
 			this.GeneratePurchaseLogBtn.Size = new System.Drawing.Size(199, 45);
 			this.GeneratePurchaseLogBtn.TabIndex = 16;
-			this.GeneratePurchaseLogBtn.Text = "Generate Log";
+			this.GeneratePurchaseLogBtn.Text = "Filter";
 			this.GeneratePurchaseLogBtn.UseVisualStyleBackColor = true;
 			this.GeneratePurchaseLogBtn.Click += new System.EventHandler(this.GeneratePurchaseLogBtn_Click);
 			// 
@@ -490,6 +492,16 @@ namespace Green_Enviro_App
 			this.SalesPage.Text = "Sales Logs";
 			this.SalesPage.UseVisualStyleBackColor = true;
 			// 
+			// removeFiltersBtn
+			// 
+			this.removeFiltersBtn.Location = new System.Drawing.Point(338, 97);
+			this.removeFiltersBtn.Name = "removeFiltersBtn";
+			this.removeFiltersBtn.Size = new System.Drawing.Size(316, 45);
+			this.removeFiltersBtn.TabIndex = 18;
+			this.removeFiltersBtn.Text = "Remove Filters";
+			this.removeFiltersBtn.UseVisualStyleBackColor = true;
+			this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -556,5 +568,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label8;
 		public System.Windows.Forms.DataGridView PurchseLogGridView;
+		private System.Windows.Forms.Button removeFiltersBtn;
 	}
 }

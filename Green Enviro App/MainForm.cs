@@ -83,5 +83,10 @@ namespace Green_Enviro_App
 		{
             _logs.MonthSelected();
 		}
+
+		private void removeFiltersBtn_Click(object sender, EventArgs e)
+		{
+            _logs.RemoveFilters();
+		}
 	}
 }

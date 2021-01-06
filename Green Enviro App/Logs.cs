@@ -24,6 +24,9 @@ namespace Green_Enviro_App
 
 		DataTable _purchases_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
+
+		string _ferrous;
+		string _non_ferrous;
 		public Logs(Main_Form _main)
 		{
 			_main_form = _main;
@@ -31,6 +34,15 @@ namespace Green_Enviro_App
 			SetupPurchaseLogs();
 		}
 
+		public void setTypes(string F, string N) 
+		{
+			_ferrous = F;
+			_non_ferrous = N;
+
+			//Also setup the Ferrous or Non-Ferrous Selector
+			_main_form.PurchaseLogType.Items.Add(_ferrous);
+			_main_form.PurchaseLogType.Items.Add(_non_ferrous);
+		}
 
 		//Create purchase and sales logs for each month if they don't already exist
 		private void CreateLogFiles()
@@ -38,13 +50,13 @@ namespace Green_Enviro_App
 			//First Check if the files exist for each month
 			if (!File.Exists(_path_to_purchases))
 			{
-				string _purchases_file_headers = "Date,Name,Surname,ID,Number,Item,Quantity,Price,Amount,F/N";
+				string _purchases_file_headers = "Date,Name,Surname,ID,Number,Item,Quantity,Price,Amount,Type";
 				CreateFile(_path_to_purchases, _purchases_file_headers);
 			}
 
 			if (!File.Exists(_path_to_sales))
 			{
-				string _sales_file_headers = "Date,Company,Quantity,Amount,F/N";
+				string _sales_file_headers = "Date,Company,Quantity,Amount,Type";
 				CreateFile(_path_to_sales, _sales_file_headers);
 			}
 
@@ -134,19 +146,35 @@ namespace Green_Enviro_App
 			{
 				_binding_source.DataSource = _purchases_data_table;
 
-				//Filter according to the date rages if the dates have been selected correctly
+				//Filter according to the date ranges if the dates have been selected correctly
 				if (isDateFiltered() == true)
 				{
 					string _start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
 					string _end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
 
-					_binding_source.Filter = string.Format("Date >= '{0}' AND Date <= '{1}'", _start_date, _end_date);
+					if (isTypeFiltered() == true)
+					{
+						string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
+						_binding_source.Filter = string.Format("Date >= '{0}' AND Date <= '{1}' AND Type = '{2}'", _start_date, _end_date, _item_type);
+					}
+					else 
+					{
+						_binding_source.Filter = string.Format("Date >= '{0}' AND Date <= '{1}'", _start_date, _end_date);
+					}
+
+					
 				}
 				else 
 				{
 					_binding_source.RemoveFilter();
-				}
 
+					if (isTypeFiltered() == true)
+					{
+						string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
+						_binding_source.Filter = string.Format("Type = '{0}'", _item_type);
+					}
+				}
+				
 				_main_form.PurchseLogGridView.DataSource = _binding_source;
 				_main_form.PurchseLogGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 				_main_form.PurchseLogGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -166,7 +194,6 @@ namespace Green_Enviro_App
 				string _file_name = _file.Name.TrimEnd(_remove_chars);
 				_main_form.PurchaseLogMonth.Items.Add(_file_name);
 			}
-			//Now we need to look indside the file and extract only the dates which are in the first column
 		}
 
 		public void MonthSelected() 
@@ -251,6 +278,26 @@ namespace Green_Enviro_App
 			}
 
 			return true;
+		}
+
+		private bool isTypeFiltered() 
+		{
+			if (_main_form.PurchaseLogType.SelectedItem == null)
+			{
+				return false;
+			}
+			else 
+			{
+				return true;
+			}
+		}
+		public void RemoveFilters() 
+		{
+			_main_form.PurchaseLogStartDate.SelectedItem = null;
+			_main_form.PurchaseLogEndDate.SelectedItem = null;
+			_main_form.PurchaseLogType.SelectedItem = null;
+
+			DisplayPurchaseLog();
 		}
 	}
 }
