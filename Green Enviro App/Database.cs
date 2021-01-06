@@ -123,5 +123,37 @@ namespace Green_Enviro_App
 			CloseDatabase();
 			return _table;
 		}
+
+
+		// Insertion function adding new users to the database yet not updating the database
+		public void InsertNewUser(string username,string password, string email_address)
+        {
+			
+			OpenDatabase();
+			
+			string _insertion_command = "Insert into Users (Username,Password,Email) values (@Username,@Password,@Email)";
+
+			using (SqlConnection _insertion_connection = new SqlConnection(_connection_string))
+			{
+				SqlCommand _command = new SqlCommand(_insertion_command, _insertion_connection);
+				_command.Parameters.AddWithValue("@Username", username);
+				_command.Parameters.AddWithValue("@Password", password);
+				_command.Parameters.AddWithValue("@Email", email_address);
+
+				try
+				{
+					_insertion_connection.Open();
+					Int32 rowsAffected = _command.ExecuteNonQuery();
+					Console.WriteLine("RowsAffected: {0}", rowsAffected);
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Failed to Insert into DB : " + ex.Message);
+				}
+
+				_insertion_connection.Close();
+			}
+			CloseDatabase();
+		}
 	}
 }

@@ -42,6 +42,10 @@ namespace Green_Enviro_App
         // Credentials instance created
         public List<Credentials> _credentials = new List<Credentials>();
 
+        // Lets make a Data Table for the new user
+        public Database _database = new Database();
+        DataTable _user;
+
         public CreateAccount()
         {
             InitializeComponent();
@@ -49,6 +53,8 @@ namespace Green_Enviro_App
             defaultUser();
 
             //LOAD UP USER INFO FROM HE DATABASE
+            
+            ShowUsers();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -59,6 +65,7 @@ namespace Green_Enviro_App
         private void newAccountButton_Click(object sender, EventArgs e)
         {
             accountCreationVerification();
+            PrintDataTable();
         }
         private void newAccountBtn_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -66,6 +73,7 @@ namespace Green_Enviro_App
             if (e.KeyChar == (char)Keys.Enter)
             {
                 accountCreationVerification();
+                PrintDataTable();
             }
         }
 
@@ -179,6 +187,21 @@ namespace Green_Enviro_App
             //Encrypting the password and storing not the password itself but its encryption using a 196 bit cipher key
             InformationEncryption __encryption = new InformationEncryption();
             string _encrypted_user_password = __encryption.Encrypt(newPasswordField.Text);
+            // Alright here we will add the code so that we insert into the DB once we enter a new user
+            /*_user = _database.SelectAll("Users");
+            // To add a new user its the same principle as adding a row
+
+            // Create a new row
+            DataRow _new_user_db = _user.NewRow();
+            _new_user_db[1] = newUserNameField.Text;
+            _new_user_db[2] = _encrypted_user_password;
+            _new_user_db[3] = emailAddressField.Text;*/
+            _database.InsertNewUser(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text);
+
+            // Add the row to the SalesHistory DataTable
+            //_user.Rows.Add(_new_user_db);
+
+            //This is still the original list storage way to keep track of new users
             Credentials _new_user = new Credentials(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text);
             _credentials.Add(_new_user);
         }
@@ -243,6 +266,37 @@ namespace Green_Enviro_App
             confirmPasswordField.Clear();
             emailAddressField.Clear();
             masterPasswordField.Clear();
+        }
+
+        private void ShowUsers()
+        {
+            //Display the amount of user currently in the Database
+            _user = _database.SelectAll("Users");
+            MessageBox.Show("All Current Users " + _user.Rows.Count.ToString());
+        }
+        private void PrintDataTable()
+        {
+            _user = _database.SelectAll("Users");
+            DataRow[] currentRows = _user.Select(
+    null, null, DataViewRowState.CurrentRows);
+
+            if (currentRows.Length < 1)
+                Console.WriteLine("No Current Rows Found");
+            else
+            {
+                foreach (DataColumn column in _user.Columns)
+                    Console.Write("\t{0}", column.ColumnName);
+
+                Console.WriteLine("\tRowState");
+
+                foreach (DataRow row in currentRows)
+                {
+                    foreach (DataColumn column in _user.Columns)
+                        Console.Write("\t{0}", row[column]);
+
+                    Console.WriteLine("\t" + row.RowState);
+                }
+            }
         }
     }
 }
