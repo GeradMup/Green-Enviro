@@ -146,10 +146,8 @@ namespace Green_Enviro_App
 			if (_purchases_data_table.Rows.Count > 0)
 			{
 				_binding_source.DataSource = _purchases_data_table;
-				_main_form.PurchseLogGridView.DataSource = _binding_source;
-				_main_form.PurchseLogGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-				_main_form.PurchseLogGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-				AddTotalsRow();
+
+				
 
 
 				//Filter according to the date ranges if the dates have been selected correctly
@@ -179,6 +177,11 @@ namespace Green_Enviro_App
 					}
 				}
 
+				_main_form.PurchseLogGridView.DataSource = _binding_source;
+				_main_form.PurchseLogGridView.Columns[0].FillWeight = 120F;
+				_main_form.PurchseLogGridView.Columns[3].FillWeight = 150F;
+
+				AddTotalsRow();
 				_main_form.PurchseLogGridView.Refresh();
 			}
 
@@ -287,7 +290,7 @@ namespace Green_Enviro_App
 			}
 
 			//Change the contents displayed in the log if the month selected changes
-			DisplayPurchaseLog();
+			RemoveFilters();
 			
 		}
 

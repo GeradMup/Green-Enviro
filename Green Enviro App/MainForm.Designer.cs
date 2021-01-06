@@ -509,8 +509,10 @@ namespace Green_Enviro_App
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1523, 817);
 			this.Controls.Add(this.mainTabControl);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(800, 600);
 			this.Name = "Main_Form";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
