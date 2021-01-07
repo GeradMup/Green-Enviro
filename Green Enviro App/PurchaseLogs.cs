@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace Green_Enviro_App
 {
-	class Logs
+	class PurchaseLogs
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
@@ -28,7 +28,7 @@ namespace Green_Enviro_App
 
 		string _ferrous;
 		string _non_ferrous;
-		public Logs(Main_Form _main)
+		public PurchaseLogs(Main_Form _main)
 		{
 			_main_form = _main;
 			CreateLogFiles();
@@ -187,6 +187,8 @@ namespace Green_Enviro_App
 
 		}
 
+
+		//This function will add up the KG's and Amount column on the Data Grid View and adds a row to show the totals
 		private void AddTotalsRow() 
 		{
 			float _total_kg = 0;
@@ -200,7 +202,8 @@ namespace Green_Enviro_App
 				_total_amount += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_amount_column].Value.ToString());
 				_total_kg += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_kg_column].Value.ToString());
 			}
-			CustomMessageBox box = new CustomMessageBox("Total", "Kg's : " + _total_kg.ToString() + "\n" + "Amount : " + _total_amount.ToString());
+
+			//CustomMessageBox box = new CustomMessageBox("Total", "Kg's : " + _total_kg.ToString() + "\n" + "Amount : " + _total_amount.ToString());
 
 			DataTable _totals_table = new DataTable();
 

@@ -14,15 +14,15 @@ namespace Green_Enviro_App
     {
         Receipt _receipt;
         Database _database;
-        Logs _logs;
+        PurchaseLogs _purchase_logs;
         
         public Main_Form(Database _data)
         {
             InitializeComponent();
             //initialiseItemList();
             _database = _data;
-            _logs = new Logs(this);
-            _receipt = new Receipt(this, _database, _logs);
+            _purchase_logs = new PurchaseLogs(this);
+            _receipt = new Receipt(this, _database, _purchase_logs);
         }
 
         //This function makes it impossible to move the main form around or to resize it
@@ -77,17 +77,17 @@ namespace Green_Enviro_App
 
         private void GeneratePurchaseLogBtn_Click(object sender, EventArgs e)
         {
-            _logs.DisplayPurchaseLog();
+            _purchase_logs.DisplayPurchaseLog();
         }
 
 		private void PurchaseLogMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            _logs.MonthSelected();
+            _purchase_logs.MonthSelected();
 		}
 
 		private void removeFiltersBtn_Click(object sender, EventArgs e)
 		{
-            _logs.RemoveFilters();
+            _purchase_logs.RemoveFilters();
 		}
 
 		private void TotalsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
