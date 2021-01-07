@@ -41,6 +41,7 @@ namespace Green_Enviro_App
             this.clear_button = new System.Windows.Forms.Button();
             this.createAccountButton = new System.Windows.Forms.Button();
             this.checkBox_Show_Hide = new System.Windows.Forms.CheckBox();
+            this.AccountRemovalField = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -53,7 +54,7 @@ namespace Green_Enviro_App
             // loginBtn
             // 
             this.loginBtn.Location = new System.Drawing.Point(116, 316);
-            this.loginBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.loginBtn.Margin = new System.Windows.Forms.Padding(2);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(177, 42);
             this.loginBtn.TabIndex = 2;
@@ -64,7 +65,7 @@ namespace Green_Enviro_App
             // usernameField
             // 
             this.usernameField.Location = new System.Drawing.Point(198, 177);
-            this.usernameField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.usernameField.Margin = new System.Windows.Forms.Padding(2);
             this.usernameField.Name = "usernameField";
             this.usernameField.Size = new System.Drawing.Size(158, 20);
             this.usernameField.TabIndex = 3;
@@ -94,7 +95,7 @@ namespace Green_Enviro_App
             // passwordField
             // 
             this.passwordField.Location = new System.Drawing.Point(198, 219);
-            this.passwordField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passwordField.Margin = new System.Windows.Forms.Padding(2);
             this.passwordField.Multiline = true;
             this.passwordField.Name = "passwordField";
             this.passwordField.PasswordChar = '*';
@@ -128,7 +129,7 @@ namespace Green_Enviro_App
             // createAccountButton
             // 
             this.createAccountButton.Location = new System.Drawing.Point(312, 316);
-            this.createAccountButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.createAccountButton.Margin = new System.Windows.Forms.Padding(2);
             this.createAccountButton.Name = "createAccountButton";
             this.createAccountButton.Size = new System.Drawing.Size(177, 42);
             this.createAccountButton.TabIndex = 9;
@@ -147,11 +148,23 @@ namespace Green_Enviro_App
             this.checkBox_Show_Hide.UseVisualStyleBackColor = true;
             this.checkBox_Show_Hide.CheckedChanged += new System.EventHandler(this.checkBox_Show_Hide_CheckedChanged);
             // 
+            // AccountRemovalField
+            // 
+            this.AccountRemovalField.AutoSize = true;
+            this.AccountRemovalField.Location = new System.Drawing.Point(574, 228);
+            this.AccountRemovalField.Name = "AccountRemovalField";
+            this.AccountRemovalField.Size = new System.Drawing.Size(96, 13);
+            this.AccountRemovalField.TabIndex = 11;
+            this.AccountRemovalField.TabStop = true;
+            this.AccountRemovalField.Text = "Remove Account?";
+            this.AccountRemovalField.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AccountRemovalField_LinkClicked);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 430);
+            this.Controls.Add(this.AccountRemovalField);
             this.Controls.Add(this.checkBox_Show_Hide);
             this.Controls.Add(this.createAccountButton);
             this.Controls.Add(this.clear_button);
@@ -162,7 +175,7 @@ namespace Green_Enviro_App
             this.Controls.Add(this.usernameField);
             this.Controls.Add(this.loginBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login Form";
@@ -184,6 +197,7 @@ namespace Green_Enviro_App
         private System.Windows.Forms.Button clear_button;
         private System.Windows.Forms.Button createAccountButton;
         private System.Windows.Forms.CheckBox checkBox_Show_Hide;
+        private System.Windows.Forms.LinkLabel AccountRemovalField;
     }
 }
 

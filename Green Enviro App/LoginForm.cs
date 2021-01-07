@@ -37,7 +37,7 @@ namespace Green_Enviro_App
 
 
         //Creates a single instance of the CreateAccount class
-        CreateAccount _account = new CreateAccount();
+        CreateAccount _account = new CreateAccount(_database);
 
         //Master Password (Changeable depending on the devs)
         const string _master_password = "1234";
@@ -161,12 +161,26 @@ namespace Green_Enviro_App
 
         private void createAccountButton_Click(object sender, EventArgs e)
         {
-            AdminPass();
+            bool _entered_admin_psword = AdminPass();
+            OpenCreateAccountFrom(_entered_admin_psword);
         }
-        private void AdminPass()
+        private bool AdminPass()
         {
             string content = Interaction.InputBox("Enter Master Password: ", "Administrator", default);
             if (content == _master_password)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void OpenCreateAccountFrom(bool _pswrd)
+        {
+            bool _correct_admin_psword = _pswrd;
+            if (_correct_admin_psword)
             {
                 //Creates a new instance everytime the new account button is clicked.
                 _account.Activate();
@@ -177,7 +191,6 @@ namespace Green_Enviro_App
                 MessageBox.Show("Incorrect master password", "Administrator", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
         private void checkBox_Show_Hide_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox_Show_Hide.Checked)
@@ -187,6 +200,27 @@ namespace Green_Enviro_App
             else
             {
                 passwordField.UseSystemPasswordChar = false;
+            }
+        }
+
+        private void AccountRemovalField_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //Firstly when the link is clicked upon request
+            bool _admin_password = AdminPass();
+            OpenDeleteAccountForm(_admin_password);
+
+        }
+
+        private void OpenDeleteAccountForm(bool _pswrd)
+        {
+            bool _correct_admin_psword = _pswrd;
+            if (_correct_admin_psword)
+            {
+                MessageBox.Show("Correct master Password", "Administrator", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Incorrect master password", "Administrator", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

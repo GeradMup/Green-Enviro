@@ -130,19 +130,19 @@ namespace Green_Enviro_App
         {
 			
 			OpenDatabase();
-			
+
+			//Here is two ways to insert the new user into the database command, the commented line on line 140 is the other method
+			_command.Parameters.AddWithValue("@Username", username);
+			_command.Parameters.AddWithValue("@Password", password);
+			_command.Parameters.AddWithValue("@Email", email_address);
 			string _insertion_command = "Insert into Users (Username,Password,Email) values (@Username,@Password,@Email)";
 
-			using (SqlConnection _insertion_connection = new SqlConnection(_connection_string))
-			{
-				SqlCommand _command = new SqlCommand(_insertion_command, _insertion_connection);
-				_command.Parameters.AddWithValue("@Username", username);
-				_command.Parameters.AddWithValue("@Password", password);
-				_command.Parameters.AddWithValue("@Email", email_address);
-
+			//string _insertion_command = "Insert into Users (Username,Password,Email) values ('"+username+ "','" + password + "','" + email_address + "')";
+			
+			_command.CommandText = _insertion_command;
+			//Determine if the command was succesfully executed or not 
 				try
 				{
-					_insertion_connection.Open();
 					Int32 rowsAffected = _command.ExecuteNonQuery();
 					Console.WriteLine("RowsAffected: {0}", rowsAffected);
 				}
@@ -151,8 +151,6 @@ namespace Green_Enviro_App
 					MessageBox.Show("Failed to Insert into DB : " + ex.Message);
 				}
 
-				_insertion_connection.Close();
-			}
 			CloseDatabase();
 		}
 	}

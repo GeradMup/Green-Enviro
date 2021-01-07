@@ -329,10 +329,6 @@
     <Content Include="Green Enviro Data.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Green Enviro Data_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Green Enviro Data.mdf</DependentUpon>
-    </Content>
     <Content Include="green-leaf.ico" />
   </ItemGroup>
   <ItemGroup>
