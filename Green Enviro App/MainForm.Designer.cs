@@ -80,17 +80,15 @@ namespace Green_Enviro_App
 			// 
 			// mainTabControl
 			// 
-			this.mainTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.mainTabControl.Controls.Add(this.ReceiptPage);
 			this.mainTabControl.Controls.Add(this.PurchasesPage);
 			this.mainTabControl.Controls.Add(this.SalesPage);
+			this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mainTabControl.Location = new System.Drawing.Point(0, 0);
 			this.mainTabControl.Name = "mainTabControl";
 			this.mainTabControl.SelectedIndex = 0;
-			this.mainTabControl.Size = new System.Drawing.Size(1514, 816);
+			this.mainTabControl.Size = new System.Drawing.Size(1523, 817);
 			this.mainTabControl.TabIndex = 0;
 			// 
 			// ReceiptPage
@@ -120,7 +118,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Location = new System.Drawing.Point(4, 32);
 			this.ReceiptPage.Name = "ReceiptPage";
 			this.ReceiptPage.Padding = new System.Windows.Forms.Padding(3);
-			this.ReceiptPage.Size = new System.Drawing.Size(1506, 780);
+			this.ReceiptPage.Size = new System.Drawing.Size(1515, 781);
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
@@ -150,7 +148,7 @@ namespace Green_Enviro_App
 			// CustomerNameTextBox
 			// 
 			this.CustomerNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.CustomerNameTextBox.Location = new System.Drawing.Point(729, 184);
+			this.CustomerNameTextBox.Location = new System.Drawing.Point(733, 184);
 			this.CustomerNameTextBox.Name = "CustomerNameTextBox";
 			this.CustomerNameTextBox.ReadOnly = true;
 			this.CustomerNameTextBox.Size = new System.Drawing.Size(257, 31);
@@ -159,7 +157,7 @@ namespace Green_Enviro_App
 			// CustomerSurnameTextBox
 			// 
 			this.CustomerSurnameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.CustomerSurnameTextBox.Location = new System.Drawing.Point(752, 250);
+			this.CustomerSurnameTextBox.Location = new System.Drawing.Point(756, 250);
 			this.CustomerSurnameTextBox.Name = "CustomerSurnameTextBox";
 			this.CustomerSurnameTextBox.ReadOnly = true;
 			this.CustomerSurnameTextBox.Size = new System.Drawing.Size(234, 31);
@@ -169,7 +167,7 @@ namespace Green_Enviro_App
 			// 
 			this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(640, 187);
+			this.label7.Location = new System.Drawing.Point(644, 187);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(54, 23);
 			this.label7.TabIndex = 20;
@@ -179,7 +177,7 @@ namespace Green_Enviro_App
 			// 
 			this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(640, 253);
+			this.label6.Location = new System.Drawing.Point(644, 253);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(87, 23);
 			this.label6.TabIndex = 19;
@@ -188,7 +186,7 @@ namespace Green_Enviro_App
 			// CustomerIDNumberTextBox
 			// 
 			this.CustomerIDNumberTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(697, 116);
+			this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(701, 116);
 			this.CustomerIDNumberTextBox.Name = "CustomerIDNumberTextBox";
 			this.CustomerIDNumberTextBox.ReadOnly = true;
 			this.CustomerIDNumberTextBox.Size = new System.Drawing.Size(289, 31);
@@ -198,7 +196,7 @@ namespace Green_Enviro_App
 			// 
 			this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(640, 122);
+			this.label5.Location = new System.Drawing.Point(644, 122);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(32, 23);
 			this.label5.TabIndex = 17;
@@ -208,7 +206,7 @@ namespace Green_Enviro_App
 			// 
 			this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(640, 49);
+			this.label4.Location = new System.Drawing.Point(644, 49);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(175, 23);
 			this.label4.TabIndex = 16;
@@ -222,7 +220,7 @@ namespace Green_Enviro_App
 			this.customerNumbersList.FormattingEnabled = true;
 			this.customerNumbersList.IntegralHeight = false;
 			this.customerNumbersList.ItemHeight = 23;
-			this.customerNumbersList.Location = new System.Drawing.Point(847, 46);
+			this.customerNumbersList.Location = new System.Drawing.Point(851, 46);
 			this.customerNumbersList.Name = "customerNumbersList";
 			this.customerNumbersList.Size = new System.Drawing.Size(73, 31);
 			this.customerNumbersList.TabIndex = 15;
@@ -231,7 +229,7 @@ namespace Green_Enviro_App
 			// IDPictureBox
 			// 
 			this.IDPictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.IDPictureBox.Location = new System.Drawing.Point(403, 328);
+			this.IDPictureBox.Location = new System.Drawing.Point(407, 328);
 			this.IDPictureBox.Name = "IDPictureBox";
 			this.IDPictureBox.Size = new System.Drawing.Size(583, 428);
 			this.IDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -343,7 +341,7 @@ namespace Green_Enviro_App
 			this.receiptBox.BackColor = System.Drawing.Color.White;
 			this.receiptBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.receiptBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.receiptBox.Location = new System.Drawing.Point(1095, 6);
+			this.receiptBox.Location = new System.Drawing.Point(1104, 6);
 			this.receiptBox.Name = "receiptBox";
 			this.receiptBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.receiptBox.Size = new System.Drawing.Size(400, 645);
