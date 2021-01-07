@@ -14,36 +14,38 @@ namespace Green_Enviro_App
     {
         Receipt _receipt;
         Database _database;
-        Logs _logs;
+        PurchaseLogs _purchase_logs;
         
         public Main_Form(Database _data)
         {
             InitializeComponent();
             //initialiseItemList();
             _database = _data;
-            _logs = new Logs();
-            _receipt = new Receipt(this, _database, _logs);
-           
+            _purchase_logs = new PurchaseLogs(this);
+            _receipt = new Receipt(this, _database, _purchase_logs);
         }
 
-        private void Main_Form_Load(object sender, EventArgs e)
+        //This function makes it impossible to move the main form around or to resize it
+        protected override void WndProc(ref Message message)
         {
-            setFormSize();
+            const int WM_SYSCOMMAND = 0x0112;
+            const int SC_MOVE = 0xF010;
+
+            switch (message.Msg)
+            {
+                case WM_SYSCOMMAND:
+                    int command = message.WParam.ToInt32() & 0xfff0;
+                    if (command == SC_MOVE)
+                        return;
+                    break;
+            }
+
+            base.WndProc(ref message);
         }
 
-        private void setFormSize()
-        {
-            //This function sets the size of the main form to maximum size allowable by the PC
-            int _screen_width = Screen.PrimaryScreen.Bounds.Width;
-            int _screen_height = Screen.PrimaryScreen.Bounds.Height;
-            this.Location = new Point(0, 0);
-            this.Size = new Size(_screen_height, _screen_width);
-            this.MinimumSize = new Size(_screen_height, _screen_width);
-
-        }
-
+        //*************************************************************************************************************************
         //RECEIPT RELATED CALLS
-        //******************************************************************************************************************************************
+        //*************************************************************************************************************************
         private void addItemBtn_Click(object sender, EventArgs e)
         {
             _receipt.addItems();
@@ -69,13 +71,28 @@ namespace Green_Enviro_App
             _receipt.ResetReceipt();
 		}
 
-        //*****************************************************************************************************************************************
+        //******************************************************************************************************************************
         //PURCHASE LOG RELATED CALLS
-        //*****************************************************************************************************************************************
+        //******************************************************************************************************************************
 
-        private void GenerateLogBtn_Click(object sender, EventArgs e)
+        private void GeneratePurchaseLogBtn_Click(object sender, EventArgs e)
         {
-            _logs.DisplayLog(this);
+            _purchase_logs.DisplayPurchaseLog();
         }
-    }
+
+		private void PurchaseLogMonth_SelectedIndexChanged(object sender, EventArgs e)
+		{
+            _purchase_logs.MonthSelected();
+		}
+
+		private void removeFiltersBtn_Click(object sender, EventArgs e)
+		{
+            _purchase_logs.RemoveFilters();
+		}
+
+		private void TotalsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+	}
 }

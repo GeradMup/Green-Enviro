@@ -15,7 +15,7 @@ namespace Green_Enviro_App
 
         Main_Form _main_form;
         Database _database;
-        Logs _logs;
+        PurchaseLogs _logs;
 
         DataTable _items;
         DataTable _customers;
@@ -33,7 +33,7 @@ namespace Green_Enviro_App
         string _customer_name = "";
         string _customer_surname = "";
         bool _customer_selected = false;
-        public Receipt(Main_Form form, Database data, Logs logs) 
+        public Receipt(Main_Form form, Database data, PurchaseLogs logs) 
         {
             _main_form = form;
             _database = data;
@@ -52,12 +52,34 @@ namespace Green_Enviro_App
             MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
 
             int _name_column = 1;
+            int _type_column = 4;
+
+            HashSet<string> _types = new HashSet<string>();
 
             foreach (DataRow row in _items.Rows) 
             {
                 //Selects only the name of the items and stores them in a drop down list that will appear on the receipt page
                 _main_form.itemList.Items.Add(row[_name_column]);
+                _types.Add(row[_type_column].ToString());
             }
+
+            string _first_arg = "";
+            string _second_arg = "";
+
+            foreach (string type in _types) 
+            {
+                if (type[0] == 'F') 
+                {
+                    _first_arg = type;
+                }
+
+                if (type[0] == 'N') 
+                {
+                    _second_arg = type;
+                }
+            }
+
+            _logs.setTypes(_first_arg, _second_arg);
         }
 
         private void setupCustomerList() 
@@ -306,7 +328,17 @@ namespace Green_Enviro_App
 
         private string ItemType(string itemName) 
         {
-            return "F";
+            string _filter_expression = "Name = '" + itemName + "'";
+
+            DataView dataView = _items.DefaultView;
+            //Selects all the rows were the filter value matches
+            DataRow[] _row = _items.Select(_filter_expression);
+
+            int _only_row = 0;
+            int _type_column = 4;
+            string type = _row[_only_row][_type_column].ToString();
+
+            return type;
         }
 
         public void ManualPrice() 

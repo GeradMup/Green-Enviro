@@ -246,11 +246,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Green_Enviro_DataDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Green_Enviro_DataDataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="InformationEncryption.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -258,7 +253,7 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logs.cs" />
+    <Compile Include="PurchaseLogs.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,17 +295,6 @@
     <None Include="Green_Enviro_DataDataSet.xss">
       <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Green_Enviro_DataDataSet1.xsc">
-      <DependentUpon>Green_Enviro_DataDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="Green_Enviro_DataDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Green_Enviro_DataDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Green_Enviro_DataDataSet1.xss">
-      <DependentUpon>Green_Enviro_DataDataSet1.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -327,7 +311,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Green Enviro Data.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="green-leaf.ico" />
   </ItemGroup>
