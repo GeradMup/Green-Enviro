@@ -23,23 +23,24 @@ namespace Green_Enviro_App
             _database = _data;
             _logs = new Logs(this);
             _receipt = new Receipt(this, _database, _logs);
-           
         }
 
-        private void Main_Form_Load(object sender, EventArgs e)
+        //This function makes it impossible to move the main form around or to resize it
+        protected override void WndProc(ref Message message)
         {
-            setFormSize();
-        }
+            const int WM_SYSCOMMAND = 0x0112;
+            const int SC_MOVE = 0xF010;
 
-        private void setFormSize()
-        {
-            //This function sets the size of the main form to maximum size allowable by the PC
-            int _screen_width = Screen.PrimaryScreen.Bounds.Width;
-            int _screen_height = Screen.PrimaryScreen.Bounds.Height;
-            this.Location = new Point(0, 0);
-            this.Size = new Size(_screen_height, _screen_width);
-            this.MinimumSize = new Size(_screen_height, _screen_width);
+            switch (message.Msg)
+            {
+                case WM_SYSCOMMAND:
+                    int command = message.WParam.ToInt32() & 0xfff0;
+                    if (command == SC_MOVE)
+                        return;
+                    break;
+            }
 
+            base.WndProc(ref message);
         }
 
         //*************************************************************************************************************************

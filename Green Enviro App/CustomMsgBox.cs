@@ -9,7 +9,6 @@ namespace Green_Enviro_App
 	class CustomMsgBox
 	{
 		Main_Form _main_form;
-		CustomMessageBox _custom_msg_box;
 		public CustomMsgBox(Main_Form _form)
 		{
 			//Default constructor
