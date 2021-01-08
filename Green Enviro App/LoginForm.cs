@@ -38,6 +38,8 @@ namespace Green_Enviro_App
 
         //Creates a single instance of the CreateAccount class
         CreateAccount _account = new CreateAccount(_database);
+        //Instance to view user data table for deletion
+        UserDatabaseForm _user_db_deletion = new UserDatabaseForm(_database);
 
         //Master Password (Changeable depending on the devs)
         const string _master_password = "1234";
@@ -216,7 +218,11 @@ namespace Green_Enviro_App
             bool _correct_admin_psword = _pswrd;
             if (_correct_admin_psword)
             {
-                MessageBox.Show("Correct master Password", "Administrator", MessageBoxButtons.OK);
+                // MessageBox.Show("Correct master Password", "Administrator", MessageBoxButtons.OK);
+                //_user_db_deletion.BindDataGridToUserTable();
+                _user_db_deletion.Activate();
+
+                _user_db_deletion.Show();
             }
             else
             {

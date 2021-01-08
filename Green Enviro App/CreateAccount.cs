@@ -169,8 +169,8 @@ namespace Green_Enviro_App
             {
                 _icon = MessageBoxIcon.None;
                 addNewUser();
-                MessageBox.Show(_message, _title, _buttons, _icon);
-                // CustomMessageBox msg = new CustomMessageBox(_title,_message);
+                //MessageBox.Show(_message, _title, _buttons, _icon);
+                CustomMessageBox msg = new CustomMessageBox(_title,_message);
                 returnToLoginForm();
             }
             else
