@@ -153,5 +153,26 @@ namespace Green_Enviro_App
 
 			CloseDatabase();
 		}
+
+		public void DeleteFromDatabase(string _table,string _condition)
+        {
+			OpenDatabase();
+			//The Delete command goes as follow
+			string _deletion_cmd = "delete from " + _table + " where " + _condition;
+			//Making the SQL command
+			_command.CommandText = _deletion_cmd;
+			//View if the changes where succesfully done on the console
+			try
+			{
+				Int32 rowsAffected = _command.ExecuteNonQuery();
+				Console.WriteLine("RowsAffected: {0}", rowsAffected);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Failed to Insert into DB : " + ex.Message);
+			}
+
+			CloseDatabase();
+        }
 	}
 }

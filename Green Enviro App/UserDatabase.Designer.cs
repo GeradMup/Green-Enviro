@@ -80,6 +80,7 @@ namespace Green_Enviro_App
             this.accountIdList.Name = "accountIdList";
             this.accountIdList.Size = new System.Drawing.Size(153, 21);
             this.accountIdList.TabIndex = 8;
+            this.accountIdList.SelectedIndexChanged += new System.EventHandler(this.accountIdList_SelectedIndexChanged);
             // 
             // usernameSelectedForDeletionField
             // 
@@ -110,6 +111,7 @@ namespace Green_Enviro_App
             this.userDeletionBtn.TabIndex = 12;
             this.userDeletionBtn.Text = "Delete";
             this.userDeletionBtn.UseVisualStyleBackColor = true;
+            this.userDeletionBtn.Click += new System.EventHandler(this.userDeletionBtn_Click);
             // 
             // userDeletionCancelBtn
             // 
