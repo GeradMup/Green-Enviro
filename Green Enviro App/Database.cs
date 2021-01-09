@@ -18,6 +18,10 @@ using System.Data.SqlClient;
 namespace Green_Enviro_App
 {
 
+	/// <summary>
+	///  Class for handling all the Database related work
+	///   <br />
+	/// </summary>
 	public class Database
 	{
 		static string _path_to_directory = @"..\\..\\";
@@ -33,6 +37,7 @@ namespace Green_Enviro_App
 		static SqlConnection _connection;
 		static SqlCommand _command;
 
+		/// <summary>Initializes a new instance of the <see cref="Database" /> class.</summary>
 		public Database() 
 		{
 			//Sets up the first Database which stores the URL of the actual database file

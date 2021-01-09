@@ -30,6 +30,13 @@ namespace Green_Enviro_Sync
 		static string _firebase_node = "Database Url";
 		static string database_address;
 		static string _path_to_db_file = "../../../Green Enviro App/bin/Debug/Green Enviro Data.mdf";
+		static string _path_to_db_file_main = "../../../Green Enviro App/Green Enviro Data.mdf";
+		
+		string _db_file_name = "Green Enviro Data.mdf";
+		string _path_to_debug_directory = @"../../../Green Enviro App/bin/Debug";
+		string _path_to_source_code_directory = @"../../../Green Enviro App";
+
+
 		static string _data_bucket_name = "green-enviro-app.appspot.com";
 
 
@@ -179,9 +186,24 @@ namespace Green_Enviro_Sync
 
 		private void DownloadCompleted() 
 		{
+
+			string sourceFile = System.IO.Path.Combine(_path_to_debug_directory, _db_file_name);
+			string destFile = System.IO.Path.Combine(_path_to_source_code_directory, _db_file_name);
+
+			try
+			{
+				System.IO.File.Copy(sourceFile, destFile, true);
+				MessageBox.Show("Download Completed");
+				this.Close();
+			}
+			catch (Exception ex) 
+			{
+				MessageBox.Show("Process Failed : " + ex.Message);
+			}
+
 			UpDownPgBar.Visible = false;
-			MessageBox.Show("Download Completed");
-			this.Close();
+			
+			
 		}
 	}
 }

@@ -1,0 +1,588 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="accountCreationVerification method" Url="html/36fcd6f2-59d9-d354-ef2f-c77d21175978.htm" />
+  <HelpKINode Title="addItemBtn field" Url="html/ddaa1b3a-4369-c2ed-5ad6-bd9ec69a7987.htm" />
+  <HelpKINode Title="addItemBtn_Click method" Url="html/522c2e02-60fb-8689-77ef-33c5f5d18fb6.htm" />
+  <HelpKINode Title="addItems method" Url="html/e13bf8c9-dd79-5f26-13ef-6d6776ee960a.htm" />
+  <HelpKINode Title="addNewUser method" Url="html/8a3741c7-d3c2-1837-0ff9-57e943717140.htm" />
+  <HelpKINode Title="AddPurchase method" Url="html/1293d998-9b0b-4247-2f61-27183f5c65d1.htm" />
+  <HelpKINode Title="AddTotalsRow method" Url="html/bc987bcb-47b2-3c9d-6000-2ce9b5b12ad0.htm" />
+  <HelpKINode Title="AdminPass method" Url="html/d5e5ba42-8566-8fbc-557c-658c781fd0db.htm" />
+  <HelpKINode Title="bindingSource1 field" Url="html/4d3b2e32-2a91-599a-f825-dad493e3ca18.htm" />
+  <HelpKINode Title="button1 field" Url="html/8a730947-05cc-e2df-6015-aa9210239ede.htm" />
+  <HelpKINode Title="button2 field" Url="html/c2c5c2bf-f93a-f18c-f324-2fd645a5faac.htm" />
+  <HelpKINode Title="button3 field" Url="html/3fc3590e-b396-5ae2-0de4-e60fea3ccd0a.htm" />
+  <HelpKINode Title="button4 field" Url="html/752c1bff-e55a-210b-96ab-ae76e4ff045d.htm" />
+  <HelpKINode Title="cancelBtn field" Url="html/0bedb0fe-f113-56dc-f3f1-00965e906d2d.htm" />
+  <HelpKINode Title="cancelBtn_Click method" Url="html/27b398a3-99ba-25d0-9b90-97ea96738aca.htm" />
+  <HelpKINode Title="CancelPurchaseBtn field" Url="html/fa02280a-08c5-6a4d-0faf-4825c3d33fc9.htm" />
+  <HelpKINode Title="CancelPurchaseBtn_Click method" Url="html/7f8a3ad6-d595-b97b-3b3d-3b8657c2b00b.htm" />
+  <HelpKINode Title="checkBox_Show_Hide field" Url="html/48ef9fa8-6b13-f688-8319-d0d4df7f9118.htm" />
+  <HelpKINode Title="checkBox_Show_Hide_CheckedChanged method" Url="html/6f020ca5-779c-59f2-0887-e9e207d140ea.htm" />
+  <HelpKINode Title="ClearCredentials method" Url="html/6ab3fde0-50f0-ee6d-9467-c80b8c638891.htm" />
+  <HelpKINode Title="ClearFields method" Url="html/cb364467-e268-d8c2-2c16-ffe9f9e919ca.htm" />
+  <HelpKINode Title="clear_button field" Url="html/93f0b2ba-5527-6d0b-5cbf-dbeb7358fda0.htm" />
+  <HelpKINode Title="clear_button_Click method" Url="html/dbbd6d1f-e487-57af-36eb-3cf199ec94f6.htm" />
+  <HelpKINode Title="CloseDatabase method" Url="html/c413ada5-778a-354d-b1ef-481f31981cd5.htm" />
+  <HelpKINode Title="comboBox1 field" Url="html/cbe36fb8-a539-a864-c874-de9e0b4d05cb.htm" />
+  <HelpKINode Title="comboBox2 field" Url="html/d9ac70d3-3a06-f8a1-3327-17e340205bbc.htm" />
+  <HelpKINode Title="comboBox3 field" Url="html/1f981beb-cacd-a127-d1d5-ccea97171a1e.htm" />
+  <HelpKINode Title="comboBox4 field" Url="html/82dbfc79-6c10-e06b-8aff-08c3f8919680.htm" />
+  <HelpKINode Title="comboBox5 field" Url="html/23f5776b-322e-115d-412f-0dd983d99d43.htm" />
+  <HelpKINode Title="comboBox6 field" Url="html/5749e512-f0e7-a885-8ccd-c2d9b03034f1.htm" />
+  <HelpKINode Title="comboBox7 field" Url="html/f2c49612-3d90-1c89-d4a8-960713385b8c.htm" />
+  <HelpKINode Title="CompletePurchase method" Url="html/de998a62-2331-7e03-edff-8a1966f8521e.htm" />
+  <HelpKINode Title="components field">
+    <HelpKINode Title="CreateAccount.components Field" Url="html/2052d2f7-3a96-7de9-6ba9-9fb1bcf25939.htm" />
+    <HelpKINode Title="CustomMessageBox.components Field" Url="html/fc6ab367-1473-ffd4-1ce2-989abf4d108b.htm" />
+    <HelpKINode Title="LoginForm.components Field" Url="html/e89bc9e8-01e3-3322-1725-a93780054cba.htm" />
+    <HelpKINode Title="Main_Form.components Field" Url="html/627161ac-fa12-b734-7078-f88d096da0b6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="confirmPasswordField field" Url="html/c80c99fe-6630-0c77-c02d-398b9e31c134.htm" />
+  <HelpKINode Title="contextMenuStrip1 field" Url="html/779b638f-6148-afd1-7966-8b4897efdaf3.htm" />
+  <HelpKINode Title="contextMenuStrip1_Opening method" Url="html/98c5c7e1-c33e-b096-5615-4dab1ac6f7d8.htm" />
+  <HelpKINode Title="CreateAccount class">
+    <HelpKINode Title="CreateAccount Class" Url="html/261f0485-208a-b37a-dd35-3b8ab2d89edf.htm" />
+    <HelpKINode Title="constructor" Url="html/a861a749-aa24-c6a7-5deb-fb885caed8c6.htm" />
+    <HelpKINode Title="fields" Url="html/5634b797-f2b2-049a-5c22-6fc86b97ab40.htm" />
+    <HelpKINode Title="methods" Url="html/d419f9da-1750-f270-2759-45d73dbf3e64.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CreateAccount.accountCreationVerification method" Url="html/36fcd6f2-59d9-d354-ef2f-c77d21175978.htm" />
+  <HelpKINode Title="CreateAccount.addNewUser method" Url="html/8a3741c7-d3c2-1837-0ff9-57e943717140.htm" />
+  <HelpKINode Title="CreateAccount.cancelBtn field" Url="html/0bedb0fe-f113-56dc-f3f1-00965e906d2d.htm" />
+  <HelpKINode Title="CreateAccount.cancelBtn_Click method" Url="html/27b398a3-99ba-25d0-9b90-97ea96738aca.htm" />
+  <HelpKINode Title="CreateAccount.ClearCredentials method" Url="html/6ab3fde0-50f0-ee6d-9467-c80b8c638891.htm" />
+  <HelpKINode Title="CreateAccount.components field" Url="html/2052d2f7-3a96-7de9-6ba9-9fb1bcf25939.htm" />
+  <HelpKINode Title="CreateAccount.confirmPasswordField field" Url="html/c80c99fe-6630-0c77-c02d-398b9e31c134.htm" />
+  <HelpKINode Title="CreateAccount.CreateAccount constructor" Url="html/a861a749-aa24-c6a7-5deb-fb885caed8c6.htm" />
+  <HelpKINode Title="CreateAccount.CreateAccount_Load method" Url="html/3440dd08-1256-d2ca-be8e-ce685e0a76c2.htm" />
+  <HelpKINode Title="CreateAccount.defaultUser method" Url="html/b9614094-3179-0e7c-279d-764b8ffc9489.htm" />
+  <HelpKINode Title="CreateAccount.Dispose method" Url="html/cfc1ef1e-5239-fdce-b991-595d934e43ec.htm" />
+  <HelpKINode Title="CreateAccount.emailAddressField field" Url="html/570f3e0a-0459-9486-5428-7edac133c512.htm" />
+  <HelpKINode Title="CreateAccount.InitializeComponent method" Url="html/80064206-c247-4773-bf73-5456710f14c7.htm" />
+  <HelpKINode Title="CreateAccount.isAccountInfoRepeated method" Url="html/a0a2b0fe-fe27-5be5-4b19-38e61792c300.htm" />
+  <HelpKINode Title="CreateAccount.label1 field" Url="html/4444546a-75a4-2dec-038b-f5addde9cc9e.htm" />
+  <HelpKINode Title="CreateAccount.label2 field" Url="html/4d22833c-276c-461c-8e29-bdd9b4b82686.htm" />
+  <HelpKINode Title="CreateAccount.label3 field" Url="html/082d39c6-120b-c297-c814-3dbdb7e19f48.htm" />
+  <HelpKINode Title="CreateAccount.label4 field" Url="html/94e5d719-a733-e9c7-8d9a-e68a8dea043a.htm" />
+  <HelpKINode Title="CreateAccount.label5 field" Url="html/11887467-c1a7-cc3e-f6d5-526bad17b642.htm" />
+  <HelpKINode Title="CreateAccount.label6 field" Url="html/8224c1a0-3e17-8aaf-e319-82747bf5e34e.htm" />
+  <HelpKINode Title="CreateAccount.masterPasswordField field" Url="html/adc48624-758b-5171-d820-b6931f7b5626.htm" />
+  <HelpKINode Title="CreateAccount.newAccountBtn_KeyPress method" Url="html/e27e1656-8d00-3bd2-ae0b-16707ae8e33a.htm" />
+  <HelpKINode Title="CreateAccount.newAccountButton field" Url="html/325ff2ba-4d6a-7bcc-8873-e690f4286486.htm" />
+  <HelpKINode Title="CreateAccount.newAccountButton_Click method" Url="html/40ca98ff-ddcd-d375-7d75-dd26a6399ebb.htm" />
+  <HelpKINode Title="CreateAccount.newPasswordField field" Url="html/b3e470d0-9903-226e-a8ca-fe5c425e33dd.htm" />
+  <HelpKINode Title="CreateAccount.newUserNameField field" Url="html/2f331c03-5e1c-cf50-662d-881e65be2553.htm" />
+  <HelpKINode Title="CreateAccount.PrintDataTable method" Url="html/ea349354-a2f9-12f4-24da-2e50fd9980c7.htm" />
+  <HelpKINode Title="CreateAccount.returnToLoginForm method" Url="html/f42c1515-f352-231f-cba3-36b3938b4cfc.htm" />
+  <HelpKINode Title="CreateAccount.ShowUsers method" Url="html/43a16765-981f-80cf-42e9-b17f37ddf10d.htm" />
+  <HelpKINode Title="CreateAccount.verifyAccount method" Url="html/cbe3c7fd-60dc-5cbd-7c72-3719591566d5.htm" />
+  <HelpKINode Title="CreateAccount._admin_master_password field" Url="html/7783bc68-6340-2128-34cb-03dee07a1835.htm" />
+  <HelpKINode Title="CreateAccount._all_fields_entered field" Url="html/7fc32e21-d5e4-6580-4a04-be55e2cdc65d.htm" />
+  <HelpKINode Title="CreateAccount._credentials field" Url="html/1c8456d3-10d9-b4d0-437b-d0653cdf3441.htm" />
+  <HelpKINode Title="CreateAccount._database field" Url="html/77c46585-1abe-e44b-2ad5-80b70ca3d24b.htm" />
+  <HelpKINode Title="CreateAccount._email_address_error field" Url="html/79d511d9-d0d1-1fa0-d793-22e8f6ac39a5.htm" />
+  <HelpKINode Title="CreateAccount._empty_confirm_password_entered field" Url="html/ddc1b982-4f14-ff8e-178b-b2a67a993d51.htm" />
+  <HelpKINode Title="CreateAccount._empty_email_entered field" Url="html/0596465c-9b69-a985-d8ba-419be9e6ec6e.htm" />
+  <HelpKINode Title="CreateAccount._empty_master_password_entered field" Url="html/3d0b6213-3e7e-9490-482b-63ab47da5a7a.htm" />
+  <HelpKINode Title="CreateAccount._empty_password_entered field" Url="html/2332df8e-e18c-261b-68b1-837d53df34f6.htm" />
+  <HelpKINode Title="CreateAccount._empty_txtbox field" Url="html/761fba4f-f7a2-198a-7588-7db5b3dfbcdc.htm" />
+  <HelpKINode Title="CreateAccount._empty_user_name_entered field" Url="html/c0ffd5d5-53cb-f49e-854a-b863f06f2ef7.htm" />
+  <HelpKINode Title="CreateAccount._error field" Url="html/bd5e07da-186d-8c7d-b671-5e7d94c66eaf.htm" />
+  <HelpKINode Title="CreateAccount._incorrect_master_psword field" Url="html/1a4f591c-6549-aa4b-74ed-57c9a825587c.htm" />
+  <HelpKINode Title="CreateAccount._message field" Url="html/1ef91c59-7ed0-3b83-5937-1164e75fc054.htm" />
+  <HelpKINode Title="CreateAccount._password_error field" Url="html/25b33d12-b5b6-bd18-c9d9-1b641f94a8f7.htm" />
+  <HelpKINode Title="CreateAccount._success field" Url="html/d5c6db3e-6dcb-9cf4-ffb6-30772b32dd7d.htm" />
+  <HelpKINode Title="CreateAccount._title field" Url="html/015c1890-5261-3e29-1c32-50eea3e4e269.htm" />
+  <HelpKINode Title="CreateAccount._user field" Url="html/000aea01-f301-15b9-282a-4b86d50a8441.htm" />
+  <HelpKINode Title="CreateAccount._user_name_error field" Url="html/9e30359c-0446-5e14-244d-a58b9b3a354b.htm" />
+  <HelpKINode Title="createAccountButton field" Url="html/89d400bb-509f-5f35-3eee-0e4dad42e519.htm" />
+  <HelpKINode Title="createAccountButton_Click method" Url="html/4b6b641c-fe22-5eb6-df3c-4d31502d0d63.htm" />
+  <HelpKINode Title="CreateAccount_Load method" Url="html/3440dd08-1256-d2ca-be8e-ce685e0a76c2.htm" />
+  <HelpKINode Title="CreateFile method" Url="html/eb6caefc-3e13-79fe-5087-69a3d99bd238.htm" />
+  <HelpKINode Title="CreateLogFiles method" Url="html/5e66fa84-e9be-de57-8325-9c243cd9f7b2.htm" />
+  <HelpKINode Title="Credentials structure">
+    <HelpKINode Title="Credentials Structure" Url="html/a8ecd063-48d7-53d7-0a24-be76f60cf6e6.htm" />
+    <HelpKINode Title="constructor" Url="html/f0a1fcf2-0c83-8a93-de59-af4c9733db00.htm" />
+    <HelpKINode Title="fields" Url="html/1aa4057d-723d-732d-f302-6b081417f3c8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Credentials.Credentials constructor" Url="html/f0a1fcf2-0c83-8a93-de59-af4c9733db00.htm" />
+  <HelpKINode Title="Credentials.email field" Url="html/c47457f9-26a7-4bd2-f701-5ec079ba05f9.htm" />
+  <HelpKINode Title="Credentials.password field" Url="html/04818a68-9924-a551-f776-a1cf2b4268ee.htm" />
+  <HelpKINode Title="Credentials.user_name field" Url="html/7283d07a-e389-18ec-a58b-82261cbdc461.htm" />
+  <HelpKINode Title="CustomerIDNumberTextBox field" Url="html/b8c81ced-c47a-3af0-1f25-b9cee04ed3b5.htm" />
+  <HelpKINode Title="CustomerNameTextBox field" Url="html/57c754f5-27c6-95c6-4a01-52948b6bd197.htm" />
+  <HelpKINode Title="customerNumbersList field" Url="html/a493784f-fdcd-a138-262f-ccbebb46b44b.htm" />
+  <HelpKINode Title="customerNumbersList_SelectedIndexChanged method" Url="html/0ca7dc11-d5b9-76d9-78e7-ff01527a8241.htm" />
+  <HelpKINode Title="CustomerSurnameTextBox field" Url="html/52d9bb6c-636a-ccc7-2236-b807587fafd7.htm" />
+  <HelpKINode Title="CustomMessageBox class">
+    <HelpKINode Title="CustomMessageBox Class" Url="html/0dd4ccf7-8893-5a13-1a02-1f04deafacee.htm" />
+    <HelpKINode Title="constructor" Url="html/76a17d46-b341-fcce-22e6-ea44b6cc9cc1.htm" />
+    <HelpKINode Title="fields" Url="html/81ec8534-d6c2-3d99-6c46-22ef613a58f4.htm" />
+    <HelpKINode Title="methods" Url="html/08679b6a-a85d-d9e8-6527-4b4412656472.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CustomMessageBox.components field" Url="html/fc6ab367-1473-ffd4-1ce2-989abf4d108b.htm" />
+  <HelpKINode Title="CustomMessageBox.CustomMessageBox constructor" Url="html/76a17d46-b341-fcce-22e6-ea44b6cc9cc1.htm" />
+  <HelpKINode Title="CustomMessageBox.CustomMsg field" Url="html/e2f858c8-7c90-eb10-54c6-d9aff57afa17.htm" />
+  <HelpKINode Title="CustomMessageBox.CustomMsgBox field" Url="html/704d0d88-a054-a6c8-8227-60c96af0a8c6.htm" />
+  <HelpKINode Title="CustomMessageBox.Dispose method" Url="html/9b1f4a80-3beb-a68e-dbb5-be694cbb0243.htm" />
+  <HelpKINode Title="CustomMessageBox.InitializeComponent method" Url="html/af0ad33b-1d78-a805-de94-d725ebb42d9e.htm" />
+  <HelpKINode Title="CustomMessageBox.OkBtn field" Url="html/d6854945-dac5-abcb-84ef-e7c0758d31ce.htm" />
+  <HelpKINode Title="CustomMessageBox.OkBtn_Click method" Url="html/88b52240-dcc8-f517-0654-002ed7dfc22c.htm" />
+  <HelpKINode Title="CustomMsg field" Url="html/e2f858c8-7c90-eb10-54c6-d9aff57afa17.htm" />
+  <HelpKINode Title="CustomMsgBox class">
+    <HelpKINode Title="CustomMsgBox Class" Url="html/3255ffeb-c200-471e-44ec-e23bf85887b4.htm" />
+    <HelpKINode Title="constructor" Url="html/225f38df-6192-3f18-d4d3-5f0816f525ed.htm" />
+    <HelpKINode Title="fields" Url="html/3f95b2d4-3a98-784d-928c-918caada59a9.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CustomMsgBox field" Url="html/704d0d88-a054-a6c8-8227-60c96af0a8c6.htm" />
+  <HelpKINode Title="CustomMsgBox.CustomMsgBox constructor" Url="html/225f38df-6192-3f18-d4d3-5f0816f525ed.htm" />
+  <HelpKINode Title="CustomMsgBox._main_form field" Url="html/80893fbd-aa76-c446-552c-8908e92c8d35.htm" />
+  <HelpKINode Title="Database class">
+    <HelpKINode Title="Database Class" Url="html/efbc842e-fdb7-5492-0ace-93bef3cfb828.htm" />
+    <HelpKINode Title="constructor" Url="html/5ed32057-4688-170b-d79f-363b6650ea3d.htm" />
+    <HelpKINode Title="constructor" Url="html/129bd92a-68d2-8f03-ef67-d25097fb7c1d.htm" />
+    <HelpKINode Title="fields" Url="html/065c6eaf-ef64-151a-76a0-db0c4ff18144.htm" />
+    <HelpKINode Title="methods" Url="html/016808d6-3df2-0134-4e27-ddfb7ec2baa4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Database.CloseDatabase method" Url="html/c413ada5-778a-354d-b1ef-481f31981cd5.htm" />
+  <HelpKINode Title="Database.Database constructor">
+    <HelpKINode Title="Database Constructor " Url="html/5ed32057-4688-170b-d79f-363b6650ea3d.htm" />
+    <HelpKINode Title="Database Constructor " Url="html/129bd92a-68d2-8f03-ef67-d25097fb7c1d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Database.InsertIntoDB method" Url="html/38011906-f230-8fd9-ae06-c6981d375161.htm" />
+  <HelpKINode Title="Database.InsertNewUser method" Url="html/e98a94cd-acf8-02f7-8217-89f6ba5df685.htm" />
+  <HelpKINode Title="Database.OpenDatabase method" Url="html/ef352e80-b025-5122-7709-c23a063df264.htm" />
+  <HelpKINode Title="Database.SelectAll method" Url="html/b4dc42f8-12d8-a6b0-8a2d-bf0e632feac5.htm" />
+  <HelpKINode Title="Database.UploadData method" Url="html/b534b53c-79a5-9b40-2160-c9e8651ff286.htm" />
+  <HelpKINode Title="Database._command field" Url="html/ab97a13a-49c6-61f9-5e75-0827d932607c.htm" />
+  <HelpKINode Title="Database._connection field" Url="html/70c1803c-e5e1-9418-18a6-36f6a5112c2d.htm" />
+  <HelpKINode Title="Database._connection_string field" Url="html/8244b5d0-d408-5a9c-475c-32e574e0b32e.htm" />
+  <HelpKINode Title="Database._main_form field" Url="html/14c1c18d-9f7f-fdf2-0a5f-2d1819d3dcd3.htm" />
+  <HelpKINode Title="Database._path_to_db_file field" Url="html/9dc86960-d88d-d723-dd8c-2442da20c3f8.htm" />
+  <HelpKINode Title="Database._path_to_directory field" Url="html/762702ef-5c7f-bae8-2b0d-93c0edb6edbd.htm" />
+  <HelpKINode Title="DealerPriceCheckBox field" Url="html/2e9badd0-f431-93b2-fc95-4bf4f82b0eb8.htm" />
+  <HelpKINode Title="Decrypt method" Url="html/42fb7f44-fe63-35d6-d2fe-c8d03bf91af2.htm" />
+  <HelpKINode Title="defaultUser method" Url="html/b9614094-3179-0e7c-279d-764b8ffc9489.htm" />
+  <HelpKINode Title="DisplayPurchaseLog method" Url="html/6e4fc215-9d28-0b33-c21e-d83783ee0494.htm" />
+  <HelpKINode Title="Dispose method">
+    <HelpKINode Title="CreateAccount.Dispose Method " Url="html/cfc1ef1e-5239-fdce-b991-595d934e43ec.htm" />
+    <HelpKINode Title="CustomMessageBox.Dispose Method " Url="html/9b1f4a80-3beb-a68e-dbb5-be694cbb0243.htm" />
+    <HelpKINode Title="LoginForm.Dispose Method " Url="html/25ef8582-b3a0-7222-f015-cb4cc038cbd1.htm" />
+    <HelpKINode Title="Main_Form.Dispose Method " Url="html/c7caf734-fd3b-d837-0bd0-d0c6519e205e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="email field" Url="html/c47457f9-26a7-4bd2-f701-5ec079ba05f9.htm" />
+  <HelpKINode Title="emailAddressField field" Url="html/570f3e0a-0459-9486-5428-7edac133c512.htm" />
+  <HelpKINode Title="Encrypt method" Url="html/4a6e31e9-1ccb-c993-3b7d-d400ecd6e4e5.htm" />
+  <HelpKINode Title="GeneratePurchaseLogBtn field" Url="html/39e4a435-6ce3-2e09-c538-8950667ddd4c.htm" />
+  <HelpKINode Title="GeneratePurchaseLogBtn_Click method" Url="html/8263bfa8-7c26-2ced-346f-648dab4b5708.htm" />
+  <HelpKINode Title="getPrice method" Url="html/6865deef-4d2f-c07f-4b55-3c7c9ac70b9a.htm" />
+  <HelpKINode Title="Green_Enviro_App namespace" Url="html/79811ce8-7ea0-9c17-0a6e-3c115784fec6.htm" />
+  <HelpKINode Title="Green_Enviro_App.CreateAccount class" Url="html/261f0485-208a-b37a-dd35-3b8ab2d89edf.htm" />
+  <HelpKINode Title="Green_Enviro_App.Credentials structure" Url="html/a8ecd063-48d7-53d7-0a24-be76f60cf6e6.htm" />
+  <HelpKINode Title="Green_Enviro_App.CustomMessageBox class" Url="html/0dd4ccf7-8893-5a13-1a02-1f04deafacee.htm" />
+  <HelpKINode Title="Green_Enviro_App.CustomMsgBox class" Url="html/3255ffeb-c200-471e-44ec-e23bf85887b4.htm" />
+  <HelpKINode Title="Green_Enviro_App.Database class" Url="html/efbc842e-fdb7-5492-0ace-93bef3cfb828.htm" />
+  <HelpKINode Title="Green_Enviro_App.InformationEncryption class" Url="html/7bad1650-1ac8-4129-1e42-6daa844bba53.htm" />
+  <HelpKINode Title="Green_Enviro_App.LoginForm class" Url="html/a19fd2f9-b123-bf82-a36d-a78c88912c8b.htm" />
+  <HelpKINode Title="Green_Enviro_App.Main_Form class" Url="html/1582f505-74d4-4d92-3f50-ca10507343c6.htm" />
+  <HelpKINode Title="Green_Enviro_App.Program class" Url="html/23783da7-2a28-0a78-2317-2a054110c141.htm" />
+  <HelpKINode Title="Green_Enviro_App.PurchaseLogs class" Url="html/eae6815f-a39a-1aed-921a-2a9e3ab463c7.htm" />
+  <HelpKINode Title="Green_Enviro_App.Receipt class" Url="html/344fbacd-7e67-cf10-9c8d-05825368e788.htm" />
+  <HelpKINode Title="IDPictureBox field" Url="html/ebfab5f2-09db-4e61-6961-74b591ad958b.htm" />
+  <HelpKINode Title="InformationEncryption class">
+    <HelpKINode Title="InformationEncryption Class" Url="html/7bad1650-1ac8-4129-1e42-6daa844bba53.htm" />
+    <HelpKINode Title="constructor" Url="html/74663eea-b8d0-4fb1-6f3a-19fbd0d01f91.htm" />
+    <HelpKINode Title="fields" Url="html/bab12c0e-455a-5140-4324-c96a66687e3b.htm" />
+    <HelpKINode Title="methods" Url="html/403386be-a1bb-7cc2-d78f-3cf75c8183a8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="InformationEncryption.Decrypt method" Url="html/42fb7f44-fe63-35d6-d2fe-c8d03bf91af2.htm" />
+  <HelpKINode Title="InformationEncryption.Encrypt method" Url="html/4a6e31e9-1ccb-c993-3b7d-d400ecd6e4e5.htm" />
+  <HelpKINode Title="InformationEncryption.InformationEncryption constructor" Url="html/74663eea-b8d0-4fb1-6f3a-19fbd0d01f91.htm" />
+  <HelpKINode Title="InformationEncryption._128_cipher_key field" Url="html/e898359a-a349-669e-6ca9-8c157fdd4f54.htm" />
+  <HelpKINode Title="InformationEncryption._196_cipher_key field" Url="html/09925631-57ea-7892-2d5b-259136590935.htm" />
+  <HelpKINode Title="InitializeComponent method">
+    <HelpKINode Title="CreateAccount.InitializeComponent Method " Url="html/80064206-c247-4773-bf73-5456710f14c7.htm" />
+    <HelpKINode Title="CustomMessageBox.InitializeComponent Method " Url="html/af0ad33b-1d78-a805-de94-d725ebb42d9e.htm" />
+    <HelpKINode Title="LoginForm.InitializeComponent Method " Url="html/82ae1b8b-c8ca-415d-4f2c-457dc9c0577c.htm" />
+    <HelpKINode Title="Main_Form.InitializeComponent Method " Url="html/b714ce44-2c5d-a212-f107-07a538235175.htm" />
+  </HelpKINode>
+  <HelpKINode Title="InsertIntoDB method" Url="html/38011906-f230-8fd9-ae06-c6981d375161.htm" />
+  <HelpKINode Title="InsertNewUser method" Url="html/e98a94cd-acf8-02f7-8217-89f6ba5df685.htm" />
+  <HelpKINode Title="isAccountInfoRepeated method" Url="html/a0a2b0fe-fe27-5be5-4b19-38e61792c300.htm" />
+  <HelpKINode Title="isDateFiltered method" Url="html/8e364b67-1199-e3c9-f5f5-088ca940100d.htm" />
+  <HelpKINode Title="isTypeFiltered method" Url="html/fb3d687b-2eb6-b969-2518-28eee01a7576.htm" />
+  <HelpKINode Title="itemList field" Url="html/a5dc06df-890e-9a03-fb8e-1bab8b22df2a.htm" />
+  <HelpKINode Title="ItemType method" Url="html/dbff493c-9f5d-fadd-8cde-9cb86e827833.htm" />
+  <HelpKINode Title="label1 field">
+    <HelpKINode Title="CreateAccount.label1 Field" Url="html/4444546a-75a4-2dec-038b-f5addde9cc9e.htm" />
+    <HelpKINode Title="LoginForm.label1 Field" Url="html/da22a356-c9a0-6ea0-b7a9-75f0840c7c9a.htm" />
+    <HelpKINode Title="Main_Form.label1 Field" Url="html/24f9970f-9ec9-7921-0273-050c846eea31.htm" />
+  </HelpKINode>
+  <HelpKINode Title="label10 field" Url="html/38b78ab3-1c41-19d5-3244-b529bc9d3484.htm" />
+  <HelpKINode Title="label11 field" Url="html/0cb2013e-25d9-f13d-31aa-d1f15a0e1ccb.htm" />
+  <HelpKINode Title="label12 field" Url="html/94380ad1-b91f-17f6-c4d5-38025a4d6a20.htm" />
+  <HelpKINode Title="label13 field" Url="html/cdc048f6-fa66-f60d-2077-e8b3f606bb9b.htm" />
+  <HelpKINode Title="label14 field" Url="html/5842171d-096c-d69f-0aa6-9f7083df9908.htm" />
+  <HelpKINode Title="label15 field" Url="html/45966a9f-6895-4bc6-0b0f-966b9007923d.htm" />
+  <HelpKINode Title="label16 field" Url="html/245db3cf-e8d2-0f4d-7379-d1af9da73b6f.htm" />
+  <HelpKINode Title="label17 field" Url="html/59347b0d-bca2-78fa-27f7-7dafd8d15840.htm" />
+  <HelpKINode Title="label18 field" Url="html/e523e3c8-cb1a-d0ae-7bec-c8b1b4ccc6a8.htm" />
+  <HelpKINode Title="label19 field" Url="html/ab0ddf18-1c12-3986-96f9-222086a53a21.htm" />
+  <HelpKINode Title="label2 field">
+    <HelpKINode Title="CreateAccount.label2 Field" Url="html/4d22833c-276c-461c-8e29-bdd9b4b82686.htm" />
+    <HelpKINode Title="LoginForm.label2 Field" Url="html/4daa977d-0206-397e-ff17-bb98ebc2b71d.htm" />
+    <HelpKINode Title="Main_Form.label2 Field" Url="html/7f1707cd-789c-30ed-4649-99f78ac798b1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="label20 field" Url="html/47dbd37a-f5d3-3b89-495c-89f6a798e894.htm" />
+  <HelpKINode Title="label3 field">
+    <HelpKINode Title="CreateAccount.label3 Field" Url="html/082d39c6-120b-c297-c814-3dbdb7e19f48.htm" />
+    <HelpKINode Title="LoginForm.label3 Field" Url="html/4044c267-fca4-5abd-4776-d53d11d40dc8.htm" />
+    <HelpKINode Title="Main_Form.label3 Field" Url="html/4e965d5e-8d2e-88e5-3df4-7f1197536002.htm" />
+  </HelpKINode>
+  <HelpKINode Title="label4 field">
+    <HelpKINode Title="CreateAccount.label4 Field" Url="html/94e5d719-a733-e9c7-8d9a-e68a8dea043a.htm" />
+    <HelpKINode Title="Main_Form.label4 Field" Url="html/c75af200-8fc7-4bbf-ce24-0889c7d8cf01.htm" />
+  </HelpKINode>
+  <HelpKINode Title="label5 field">
+    <HelpKINode Title="CreateAccount.label5 Field" Url="html/11887467-c1a7-cc3e-f6d5-526bad17b642.htm" />
+    <HelpKINode Title="Main_Form.label5 Field" Url="html/ba73f0e2-fc46-9cf1-64fc-6abc530298eb.htm" />
+  </HelpKINode>
+  <HelpKINode Title="label6 field">
+    <HelpKINode Title="CreateAccount.label6 Field" Url="html/8224c1a0-3e17-8aaf-e319-82747bf5e34e.htm" />
+    <HelpKINode Title="Main_Form.label6 Field" Url="html/7d848e9d-34c3-a259-2855-284317468458.htm" />
+  </HelpKINode>
+  <HelpKINode Title="label7 field" Url="html/2b129d90-d6f8-d338-87e7-d72f08be8527.htm" />
+  <HelpKINode Title="label8 field" Url="html/e8f065b4-64a8-f469-5e2f-3562b2ae5e23.htm" />
+  <HelpKINode Title="label9 field" Url="html/b7a37005-a173-09ea-7ef6-4a1b69dfb429.htm" />
+  <HelpKINode Title="login method" Url="html/c1182e10-5068-5895-2f21-a46136214027.htm" />
+  <HelpKINode Title="loginBtn field" Url="html/b59e3d37-5b69-2d1c-3172-5b26e5da0bbe.htm" />
+  <HelpKINode Title="loginBtn_Click method" Url="html/85ad0ae4-3404-71e2-df36-742295902050.htm" />
+  <HelpKINode Title="LoginForm class">
+    <HelpKINode Title="LoginForm Class" Url="html/a19fd2f9-b123-bf82-a36d-a78c88912c8b.htm" />
+    <HelpKINode Title="constructor" Url="html/66e45b9a-5a18-bcf9-45ab-282a7b5e1b18.htm" />
+    <HelpKINode Title="constructor" Url="html/b7533253-aefc-5842-b781-c73f18c2bd3b.htm" />
+    <HelpKINode Title="fields" Url="html/2d93f7a9-bdd9-3715-7dae-aac6bf407d5c.htm" />
+    <HelpKINode Title="methods" Url="html/885e2156-b039-d23a-dda4-09898332651b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LoginForm.AdminPass method" Url="html/d5e5ba42-8566-8fbc-557c-658c781fd0db.htm" />
+  <HelpKINode Title="LoginForm.checkBox_Show_Hide field" Url="html/48ef9fa8-6b13-f688-8319-d0d4df7f9118.htm" />
+  <HelpKINode Title="LoginForm.checkBox_Show_Hide_CheckedChanged method" Url="html/6f020ca5-779c-59f2-0887-e9e207d140ea.htm" />
+  <HelpKINode Title="LoginForm.clear_button field" Url="html/93f0b2ba-5527-6d0b-5cbf-dbeb7358fda0.htm" />
+  <HelpKINode Title="LoginForm.clear_button_Click method" Url="html/dbbd6d1f-e487-57af-36eb-3cf199ec94f6.htm" />
+  <HelpKINode Title="LoginForm.components field" Url="html/e89bc9e8-01e3-3322-1725-a93780054cba.htm" />
+  <HelpKINode Title="LoginForm.contextMenuStrip1 field" Url="html/779b638f-6148-afd1-7966-8b4897efdaf3.htm" />
+  <HelpKINode Title="LoginForm.contextMenuStrip1_Opening method" Url="html/98c5c7e1-c33e-b096-5615-4dab1ac6f7d8.htm" />
+  <HelpKINode Title="LoginForm.createAccountButton field" Url="html/89d400bb-509f-5f35-3eee-0e4dad42e519.htm" />
+  <HelpKINode Title="LoginForm.createAccountButton_Click method" Url="html/4b6b641c-fe22-5eb6-df3c-4d31502d0d63.htm" />
+  <HelpKINode Title="LoginForm.Dispose method" Url="html/25ef8582-b3a0-7222-f015-cb4cc038cbd1.htm" />
+  <HelpKINode Title="LoginForm.InitializeComponent method" Url="html/82ae1b8b-c8ca-415d-4f2c-457dc9c0577c.htm" />
+  <HelpKINode Title="LoginForm.label1 field" Url="html/da22a356-c9a0-6ea0-b7a9-75f0840c7c9a.htm" />
+  <HelpKINode Title="LoginForm.label2 field" Url="html/4daa977d-0206-397e-ff17-bb98ebc2b71d.htm" />
+  <HelpKINode Title="LoginForm.label3 field" Url="html/4044c267-fca4-5abd-4776-d53d11d40dc8.htm" />
+  <HelpKINode Title="LoginForm.login method" Url="html/c1182e10-5068-5895-2f21-a46136214027.htm" />
+  <HelpKINode Title="LoginForm.loginBtn field" Url="html/b59e3d37-5b69-2d1c-3172-5b26e5da0bbe.htm" />
+  <HelpKINode Title="LoginForm.loginBtn_Click method" Url="html/85ad0ae4-3404-71e2-df36-742295902050.htm" />
+  <HelpKINode Title="LoginForm.LoginForm constructor">
+    <HelpKINode Title="LoginForm Constructor " Url="html/66e45b9a-5a18-bcf9-45ab-282a7b5e1b18.htm" />
+    <HelpKINode Title="LoginForm Constructor " Url="html/b7533253-aefc-5842-b781-c73f18c2bd3b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LoginForm.LoginForm_KeyPress method" Url="html/58388cfc-f2b2-dee0-7714-70f7c19244ae.htm" />
+  <HelpKINode Title="LoginForm.LoginForm_Load method" Url="html/dbbe7a77-cb0c-250c-688d-1891592a8194.htm" />
+  <HelpKINode Title="LoginForm.passwordField field" Url="html/ef2fe9db-442e-9cd3-b37f-09244b289cce.htm" />
+  <HelpKINode Title="LoginForm.passwordField_KeyPress method" Url="html/9f61d7cf-1821-48fa-6467-2c0da4bab6cb.htm" />
+  <HelpKINode Title="LoginForm.usernameField field" Url="html/2ed4a09d-f190-a254-6d51-8229c7fcf94f.htm" />
+  <HelpKINode Title="LoginForm.usernameField_TextChanged method" Url="html/dfd8f714-417e-adad-807b-de1685393947.htm" />
+  <HelpKINode Title="LoginForm.verifyCredentials method" Url="html/45566386-614c-dcf3-0c6d-afe00827baab.htm" />
+  <HelpKINode Title="LoginForm._account field" Url="html/7dc34cc0-9e3f-0164-2ca5-bc12448dcc70.htm" />
+  <HelpKINode Title="LoginForm._client_password field" Url="html/8bef9c5e-7bb8-96ea-c86e-3e9396cdffdf.htm" />
+  <HelpKINode Title="LoginForm._database field" Url="html/dc1d3c70-e6d4-68fe-f033-deaa84ab74c3.htm" />
+  <HelpKINode Title="LoginForm._mainForm field" Url="html/7b8249b6-a8b8-00f4-7113-8ee238c1fbbf.htm" />
+  <HelpKINode Title="LoginForm._master_password field" Url="html/44889a3f-e3e4-b3fa-c0e1-894863175b4f.htm" />
+  <HelpKINode Title="LoginForm_KeyPress method" Url="html/58388cfc-f2b2-dee0-7714-70f7c19244ae.htm" />
+  <HelpKINode Title="LoginForm_Load method" Url="html/dbbe7a77-cb0c-250c-688d-1891592a8194.htm" />
+  <HelpKINode Title="logo field" Url="html/32b46227-7061-2519-0132-568d77c64b90.htm" />
+  <HelpKINode Title="Main method" Url="html/a818502e-9598-ff67-87ba-f9ce8a507d7d.htm" />
+  <HelpKINode Title="mainTabControl field" Url="html/3717635c-a1d4-2fc2-8377-e3b77b15e36a.htm" />
+  <HelpKINode Title="Main_Form class">
+    <HelpKINode Title="Main_Form Class" Url="html/1582f505-74d4-4d92-3f50-ca10507343c6.htm" />
+    <HelpKINode Title="constructor" Url="html/b56337e7-49b9-6ee7-e868-09099453aecf.htm" />
+    <HelpKINode Title="fields" Url="html/00338bc9-9615-07b6-e395-28b9e069fac3.htm" />
+    <HelpKINode Title="methods" Url="html/54d6dc5d-459f-eda8-0b3a-ce7da4242fd1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Main_Form.addItemBtn field" Url="html/ddaa1b3a-4369-c2ed-5ad6-bd9ec69a7987.htm" />
+  <HelpKINode Title="Main_Form.addItemBtn_Click method" Url="html/522c2e02-60fb-8689-77ef-33c5f5d18fb6.htm" />
+  <HelpKINode Title="Main_Form.bindingSource1 field" Url="html/4d3b2e32-2a91-599a-f825-dad493e3ca18.htm" />
+  <HelpKINode Title="Main_Form.button1 field" Url="html/8a730947-05cc-e2df-6015-aa9210239ede.htm" />
+  <HelpKINode Title="Main_Form.button2 field" Url="html/c2c5c2bf-f93a-f18c-f324-2fd645a5faac.htm" />
+  <HelpKINode Title="Main_Form.button3 field" Url="html/3fc3590e-b396-5ae2-0de4-e60fea3ccd0a.htm" />
+  <HelpKINode Title="Main_Form.button4 field" Url="html/752c1bff-e55a-210b-96ab-ae76e4ff045d.htm" />
+  <HelpKINode Title="Main_Form.CancelPurchaseBtn field" Url="html/fa02280a-08c5-6a4d-0faf-4825c3d33fc9.htm" />
+  <HelpKINode Title="Main_Form.CancelPurchaseBtn_Click method" Url="html/7f8a3ad6-d595-b97b-3b3d-3b8657c2b00b.htm" />
+  <HelpKINode Title="Main_Form.comboBox1 field" Url="html/cbe36fb8-a539-a864-c874-de9e0b4d05cb.htm" />
+  <HelpKINode Title="Main_Form.comboBox2 field" Url="html/d9ac70d3-3a06-f8a1-3327-17e340205bbc.htm" />
+  <HelpKINode Title="Main_Form.comboBox3 field" Url="html/1f981beb-cacd-a127-d1d5-ccea97171a1e.htm" />
+  <HelpKINode Title="Main_Form.comboBox4 field" Url="html/82dbfc79-6c10-e06b-8aff-08c3f8919680.htm" />
+  <HelpKINode Title="Main_Form.comboBox5 field" Url="html/23f5776b-322e-115d-412f-0dd983d99d43.htm" />
+  <HelpKINode Title="Main_Form.comboBox6 field" Url="html/5749e512-f0e7-a885-8ccd-c2d9b03034f1.htm" />
+  <HelpKINode Title="Main_Form.comboBox7 field" Url="html/f2c49612-3d90-1c89-d4a8-960713385b8c.htm" />
+  <HelpKINode Title="Main_Form.components field" Url="html/627161ac-fa12-b734-7078-f88d096da0b6.htm" />
+  <HelpKINode Title="Main_Form.CustomerIDNumberTextBox field" Url="html/b8c81ced-c47a-3af0-1f25-b9cee04ed3b5.htm" />
+  <HelpKINode Title="Main_Form.CustomerNameTextBox field" Url="html/57c754f5-27c6-95c6-4a01-52948b6bd197.htm" />
+  <HelpKINode Title="Main_Form.customerNumbersList field" Url="html/a493784f-fdcd-a138-262f-ccbebb46b44b.htm" />
+  <HelpKINode Title="Main_Form.customerNumbersList_SelectedIndexChanged method" Url="html/0ca7dc11-d5b9-76d9-78e7-ff01527a8241.htm" />
+  <HelpKINode Title="Main_Form.CustomerSurnameTextBox field" Url="html/52d9bb6c-636a-ccc7-2236-b807587fafd7.htm" />
+  <HelpKINode Title="Main_Form.DealerPriceCheckBox field" Url="html/2e9badd0-f431-93b2-fc95-4bf4f82b0eb8.htm" />
+  <HelpKINode Title="Main_Form.Dispose method" Url="html/c7caf734-fd3b-d837-0bd0-d0c6519e205e.htm" />
+  <HelpKINode Title="Main_Form.GeneratePurchaseLogBtn field" Url="html/39e4a435-6ce3-2e09-c538-8950667ddd4c.htm" />
+  <HelpKINode Title="Main_Form.GeneratePurchaseLogBtn_Click method" Url="html/8263bfa8-7c26-2ced-346f-648dab4b5708.htm" />
+  <HelpKINode Title="Main_Form.IDPictureBox field" Url="html/ebfab5f2-09db-4e61-6961-74b591ad958b.htm" />
+  <HelpKINode Title="Main_Form.InitializeComponent method" Url="html/b714ce44-2c5d-a212-f107-07a538235175.htm" />
+  <HelpKINode Title="Main_Form.itemList field" Url="html/a5dc06df-890e-9a03-fb8e-1bab8b22df2a.htm" />
+  <HelpKINode Title="Main_Form.label1 field" Url="html/24f9970f-9ec9-7921-0273-050c846eea31.htm" />
+  <HelpKINode Title="Main_Form.label10 field" Url="html/38b78ab3-1c41-19d5-3244-b529bc9d3484.htm" />
+  <HelpKINode Title="Main_Form.label11 field" Url="html/0cb2013e-25d9-f13d-31aa-d1f15a0e1ccb.htm" />
+  <HelpKINode Title="Main_Form.label12 field" Url="html/94380ad1-b91f-17f6-c4d5-38025a4d6a20.htm" />
+  <HelpKINode Title="Main_Form.label13 field" Url="html/cdc048f6-fa66-f60d-2077-e8b3f606bb9b.htm" />
+  <HelpKINode Title="Main_Form.label14 field" Url="html/5842171d-096c-d69f-0aa6-9f7083df9908.htm" />
+  <HelpKINode Title="Main_Form.label15 field" Url="html/45966a9f-6895-4bc6-0b0f-966b9007923d.htm" />
+  <HelpKINode Title="Main_Form.label16 field" Url="html/245db3cf-e8d2-0f4d-7379-d1af9da73b6f.htm" />
+  <HelpKINode Title="Main_Form.label17 field" Url="html/59347b0d-bca2-78fa-27f7-7dafd8d15840.htm" />
+  <HelpKINode Title="Main_Form.label18 field" Url="html/e523e3c8-cb1a-d0ae-7bec-c8b1b4ccc6a8.htm" />
+  <HelpKINode Title="Main_Form.label19 field" Url="html/ab0ddf18-1c12-3986-96f9-222086a53a21.htm" />
+  <HelpKINode Title="Main_Form.label2 field" Url="html/7f1707cd-789c-30ed-4649-99f78ac798b1.htm" />
+  <HelpKINode Title="Main_Form.label20 field" Url="html/47dbd37a-f5d3-3b89-495c-89f6a798e894.htm" />
+  <HelpKINode Title="Main_Form.label3 field" Url="html/4e965d5e-8d2e-88e5-3df4-7f1197536002.htm" />
+  <HelpKINode Title="Main_Form.label4 field" Url="html/c75af200-8fc7-4bbf-ce24-0889c7d8cf01.htm" />
+  <HelpKINode Title="Main_Form.label5 field" Url="html/ba73f0e2-fc46-9cf1-64fc-6abc530298eb.htm" />
+  <HelpKINode Title="Main_Form.label6 field" Url="html/7d848e9d-34c3-a259-2855-284317468458.htm" />
+  <HelpKINode Title="Main_Form.label7 field" Url="html/2b129d90-d6f8-d338-87e7-d72f08be8527.htm" />
+  <HelpKINode Title="Main_Form.label8 field" Url="html/e8f065b4-64a8-f469-5e2f-3562b2ae5e23.htm" />
+  <HelpKINode Title="Main_Form.label9 field" Url="html/b7a37005-a173-09ea-7ef6-4a1b69dfb429.htm" />
+  <HelpKINode Title="Main_Form.logo field" Url="html/32b46227-7061-2519-0132-568d77c64b90.htm" />
+  <HelpKINode Title="Main_Form.mainTabControl field" Url="html/3717635c-a1d4-2fc2-8377-e3b77b15e36a.htm" />
+  <HelpKINode Title="Main_Form.Main_Form constructor" Url="html/b56337e7-49b9-6ee7-e868-09099453aecf.htm" />
+  <HelpKINode Title="Main_Form.PriceBox field" Url="html/df59460b-815d-7f1f-47e3-7854fafaf295.htm" />
+  <HelpKINode Title="Main_Form.PriceOverrideCheckBox field" Url="html/77cbe90d-2206-2881-9e6c-742cd1b13802.htm" />
+  <HelpKINode Title="Main_Form.PriceOverrideCheckBox_CheckedChanged method" Url="html/6998094e-3a35-585c-1682-cbec40c83e0c.htm" />
+  <HelpKINode Title="Main_Form.PurchaseBtn field" Url="html/b95b138a-2df7-6f20-e790-d751c4f84cc1.htm" />
+  <HelpKINode Title="Main_Form.PurchaseBtn_Click method" Url="html/00873bb4-ec1e-9e67-4ea3-ac6a62519007.htm" />
+  <HelpKINode Title="Main_Form.PurchaseLogEndDate field" Url="html/48e5aeec-cb69-22f3-f70b-72c90f17df46.htm" />
+  <HelpKINode Title="Main_Form.PurchaseLogMonth field" Url="html/a44684a7-be98-1dd4-38aa-233f6d6d669f.htm" />
+  <HelpKINode Title="Main_Form.PurchaseLogMonth_SelectedIndexChanged method" Url="html/9505265f-cb28-e4e3-002e-8931f16d6ce4.htm" />
+  <HelpKINode Title="Main_Form.PurchaseLogStartDate field" Url="html/94744830-12b6-ec50-9b5d-76944777a436.htm" />
+  <HelpKINode Title="Main_Form.PurchaseLogType field" Url="html/5fed6474-83c1-1f91-fcc2-b7b3a563df0f.htm" />
+  <HelpKINode Title="Main_Form.PurchasesPage field" Url="html/08c53ee2-3011-936f-b1d3-52ef316e1233.htm" />
+  <HelpKINode Title="Main_Form.PurchseLogGridView field" Url="html/ad22d6dd-b0f1-d8bf-4bc5-4ca44a7c7ea3.htm" />
+  <HelpKINode Title="Main_Form.quantityBox field" Url="html/40aa9923-0604-279c-f019-a3282713605d.htm" />
+  <HelpKINode Title="Main_Form.receiptBox field" Url="html/3589522c-9fb2-311a-04ac-1631d2306739.htm" />
+  <HelpKINode Title="Main_Form.ReceiptPage field" Url="html/cf50e6a3-a58d-5b5b-f8c9-7b6d18bd1407.htm" />
+  <HelpKINode Title="Main_Form.removeFiltersBtn field" Url="html/5ce4584d-9e24-29a0-e3f2-40f5ff29d991.htm" />
+  <HelpKINode Title="Main_Form.removeFiltersBtn_Click method" Url="html/8743bb63-7f99-38b7-b82e-a0fed88d6906.htm" />
+  <HelpKINode Title="Main_Form.SalesLogGridView field" Url="html/4fc7ffa1-2982-bd0b-b6ea-fa3ab9e554dc.htm" />
+  <HelpKINode Title="Main_Form.SalesPage field" Url="html/d25f88f6-05ce-ad37-bcbd-0cfb16656922.htm" />
+  <HelpKINode Title="Main_Form.textBox1 field" Url="html/a695fb15-b4b0-3a11-05f0-08170877352b.htm" />
+  <HelpKINode Title="Main_Form.textBox3 field" Url="html/af561be8-42d0-55a6-efab-d799f938ad61.htm" />
+  <HelpKINode Title="Main_Form.TotalsDataGridView_CellContentClick method" Url="html/165a1e88-565a-b442-61d8-8c6a512646a4.htm" />
+  <HelpKINode Title="Main_Form.WndProc method" Url="html/4f5517de-3e35-c946-ca69-bf405bd29ae5.htm" />
+  <HelpKINode Title="Main_Form._database field" Url="html/c32a8255-fc66-39df-162f-1006fcdce288.htm" />
+  <HelpKINode Title="Main_Form._purchase_logs field" Url="html/1ccc70d6-724f-1c20-3dbe-067d2eb0a9f0.htm" />
+  <HelpKINode Title="Main_Form._receipt field" Url="html/1e8148a1-1fe9-eb9c-e981-65319d07c176.htm" />
+  <HelpKINode Title="ManualPrice method" Url="html/be721388-ac7e-31a8-80ad-50f2383b1482.htm" />
+  <HelpKINode Title="masterPasswordField field" Url="html/adc48624-758b-5171-d820-b6931f7b5626.htm" />
+  <HelpKINode Title="MonthSelected method" Url="html/0e8e1e7b-7f70-13ca-4e81-fea2e9855143.htm" />
+  <HelpKINode Title="newAccountBtn_KeyPress method" Url="html/e27e1656-8d00-3bd2-ae0b-16707ae8e33a.htm" />
+  <HelpKINode Title="newAccountButton field" Url="html/325ff2ba-4d6a-7bcc-8873-e690f4286486.htm" />
+  <HelpKINode Title="newAccountButton_Click method" Url="html/40ca98ff-ddcd-d375-7d75-dd26a6399ebb.htm" />
+  <HelpKINode Title="newPasswordField field" Url="html/b3e470d0-9903-226e-a8ca-fe5c425e33dd.htm" />
+  <HelpKINode Title="newUserNameField field" Url="html/2f331c03-5e1c-cf50-662d-881e65be2553.htm" />
+  <HelpKINode Title="OkBtn field" Url="html/d6854945-dac5-abcb-84ef-e7c0758d31ce.htm" />
+  <HelpKINode Title="OkBtn_Click method" Url="html/88b52240-dcc8-f517-0654-002ed7dfc22c.htm" />
+  <HelpKINode Title="OpenDatabase method" Url="html/ef352e80-b025-5122-7709-c23a063df264.htm" />
+  <HelpKINode Title="password field" Url="html/04818a68-9924-a551-f776-a1cf2b4268ee.htm" />
+  <HelpKINode Title="passwordField field" Url="html/ef2fe9db-442e-9cd3-b37f-09244b289cce.htm" />
+  <HelpKINode Title="passwordField_KeyPress method" Url="html/9f61d7cf-1821-48fa-6467-2c0da4bab6cb.htm" />
+  <HelpKINode Title="PriceBox field" Url="html/df59460b-815d-7f1f-47e3-7854fafaf295.htm" />
+  <HelpKINode Title="PriceOverrideCheckBox field" Url="html/77cbe90d-2206-2881-9e6c-742cd1b13802.htm" />
+  <HelpKINode Title="PriceOverrideCheckBox_CheckedChanged method" Url="html/6998094e-3a35-585c-1682-cbec40c83e0c.htm" />
+  <HelpKINode Title="PrintDataTable method" Url="html/ea349354-a2f9-12f4-24da-2e50fd9980c7.htm" />
+  <HelpKINode Title="Program class">
+    <HelpKINode Title="Program Class" Url="html/23783da7-2a28-0a78-2317-2a054110c141.htm" />
+    <HelpKINode Title="methods" Url="html/5472c21e-673e-cc9a-29bd-371293041f3d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Program.Main method" Url="html/a818502e-9598-ff67-87ba-f9ce8a507d7d.htm" />
+  <HelpKINode Title="PurchaseBtn field" Url="html/b95b138a-2df7-6f20-e790-d751c4f84cc1.htm" />
+  <HelpKINode Title="PurchaseBtn_Click method" Url="html/00873bb4-ec1e-9e67-4ea3-ac6a62519007.htm" />
+  <HelpKINode Title="PurchaseLogEndDate field" Url="html/48e5aeec-cb69-22f3-f70b-72c90f17df46.htm" />
+  <HelpKINode Title="PurchaseLogMonth field" Url="html/a44684a7-be98-1dd4-38aa-233f6d6d669f.htm" />
+  <HelpKINode Title="PurchaseLogMonth_SelectedIndexChanged method" Url="html/9505265f-cb28-e4e3-002e-8931f16d6ce4.htm" />
+  <HelpKINode Title="PurchaseLogs class">
+    <HelpKINode Title="PurchaseLogs Class" Url="html/eae6815f-a39a-1aed-921a-2a9e3ab463c7.htm" />
+    <HelpKINode Title="constructor" Url="html/ce5c0cb3-dfc5-7d43-4aa8-aefb5bba1203.htm" />
+    <HelpKINode Title="constructor" Url="html/2ba2ac8d-5bdf-25bb-7745-52db4a5734b1.htm" />
+    <HelpKINode Title="fields" Url="html/72cdfe68-cbf0-ff0a-e5fe-36bf4720fa7b.htm" />
+    <HelpKINode Title="methods" Url="html/eff189bb-8a56-9ca2-d643-e9ef6a7b3f96.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PurchaseLogs.AddPurchase method" Url="html/1293d998-9b0b-4247-2f61-27183f5c65d1.htm" />
+  <HelpKINode Title="PurchaseLogs.AddTotalsRow method" Url="html/bc987bcb-47b2-3c9d-6000-2ce9b5b12ad0.htm" />
+  <HelpKINode Title="PurchaseLogs.CreateFile method" Url="html/eb6caefc-3e13-79fe-5087-69a3d99bd238.htm" />
+  <HelpKINode Title="PurchaseLogs.CreateLogFiles method" Url="html/5e66fa84-e9be-de57-8325-9c243cd9f7b2.htm" />
+  <HelpKINode Title="PurchaseLogs.DisplayPurchaseLog method" Url="html/6e4fc215-9d28-0b33-c21e-d83783ee0494.htm" />
+  <HelpKINode Title="PurchaseLogs.isDateFiltered method" Url="html/8e364b67-1199-e3c9-f5f5-088ca940100d.htm" />
+  <HelpKINode Title="PurchaseLogs.isTypeFiltered method" Url="html/fb3d687b-2eb6-b969-2518-28eee01a7576.htm" />
+  <HelpKINode Title="PurchaseLogs.MonthSelected method" Url="html/0e8e1e7b-7f70-13ca-4e81-fea2e9855143.htm" />
+  <HelpKINode Title="PurchaseLogs.PurchaseLogs constructor">
+    <HelpKINode Title="PurchaseLogs Constructor " Url="html/ce5c0cb3-dfc5-7d43-4aa8-aefb5bba1203.htm" />
+    <HelpKINode Title="PurchaseLogs Constructor " Url="html/2ba2ac8d-5bdf-25bb-7745-52db4a5734b1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PurchaseLogs.RemoveFilters method" Url="html/a5dad0fa-f253-c3de-6689-ffaa02466652.htm" />
+  <HelpKINode Title="PurchaseLogs.setTypes method" Url="html/b1838ca8-3fcb-f5f1-c76a-dff9aea30b4c.htm" />
+  <HelpKINode Title="PurchaseLogs.SetupPurchaseLogs method" Url="html/48a5ff83-5ea1-0826-2e6a-308943fa5e31.htm" />
+  <HelpKINode Title="PurchaseLogs._binding_source field" Url="html/1ef532f8-748f-3b50-62ee-5c5c5b6ec089.htm" />
+  <HelpKINode Title="PurchaseLogs._empty_string field" Url="html/4e4adc3c-a3d2-b456-84d9-cebbbb985b71.htm" />
+  <HelpKINode Title="PurchaseLogs._ferrous field" Url="html/924fa727-b920-b20b-f253-7ca0b62ffae9.htm" />
+  <HelpKINode Title="PurchaseLogs._main_form field" Url="html/e0b17a45-5d28-3d56-0704-b941d4bdc309.htm" />
+  <HelpKINode Title="PurchaseLogs._month field" Url="html/e037bbee-92bb-f888-5c4c-8d0ef4e580a6.htm" />
+  <HelpKINode Title="PurchaseLogs._non_ferrous field" Url="html/9f3346cd-fe64-e52a-a33a-a674362e1048.htm" />
+  <HelpKINode Title="PurchaseLogs._path_to_expenses field" Url="html/aedbab62-c2ce-f468-e207-ec2bf6fdfc33.htm" />
+  <HelpKINode Title="PurchaseLogs._path_to_purchases field" Url="html/3f772043-7345-e388-e9e6-2a3a8cd5cc7a.htm" />
+  <HelpKINode Title="PurchaseLogs._path_to_sales field" Url="html/9e5e0ee4-9861-f9ce-594a-f43969cadcdf.htm" />
+  <HelpKINode Title="PurchaseLogs._path_to_wages field" Url="html/41363f5c-00f8-f990-5a1c-ee2884d7eb3d.htm" />
+  <HelpKINode Title="PurchaseLogs._purchases_data_table field" Url="html/bbbf3758-97d3-fb98-755d-aba78670f9e6.htm" />
+  <HelpKINode Title="PurchaseLogStartDate field" Url="html/94744830-12b6-ec50-9b5d-76944777a436.htm" />
+  <HelpKINode Title="PurchaseLogType field" Url="html/5fed6474-83c1-1f91-fcc2-b7b3a563df0f.htm" />
+  <HelpKINode Title="PurchasesPage field" Url="html/08c53ee2-3011-936f-b1d3-52ef316e1233.htm" />
+  <HelpKINode Title="PurchseLogGridView field" Url="html/ad22d6dd-b0f1-d8bf-4bc5-4ca44a7c7ea3.htm" />
+  <HelpKINode Title="quantityBox field" Url="html/40aa9923-0604-279c-f019-a3282713605d.htm" />
+  <HelpKINode Title="Receipt class">
+    <HelpKINode Title="Receipt Class" Url="html/344fbacd-7e67-cf10-9c8d-05825368e788.htm" />
+    <HelpKINode Title="constructor" Url="html/40df8c51-6b3a-4e0d-b3dc-1c9894bd9bb4.htm" />
+    <HelpKINode Title="fields" Url="html/6a36b8cc-c637-0d4a-2304-1e344f69f2d7.htm" />
+    <HelpKINode Title="methods" Url="html/e1a27a00-e346-c80f-036f-0ed043a9ff48.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Receipt.addItems method" Url="html/e13bf8c9-dd79-5f26-13ef-6d6776ee960a.htm" />
+  <HelpKINode Title="Receipt.ClearFields method" Url="html/cb364467-e268-d8c2-2c16-ffe9f9e919ca.htm" />
+  <HelpKINode Title="Receipt.CompletePurchase method" Url="html/de998a62-2331-7e03-edff-8a1966f8521e.htm" />
+  <HelpKINode Title="Receipt.getPrice method" Url="html/6865deef-4d2f-c07f-4b55-3c7c9ac70b9a.htm" />
+  <HelpKINode Title="Receipt.ItemType method" Url="html/dbff493c-9f5d-fadd-8cde-9cb86e827833.htm" />
+  <HelpKINode Title="Receipt.ManualPrice method" Url="html/be721388-ac7e-31a8-80ad-50f2383b1482.htm" />
+  <HelpKINode Title="Receipt.Receipt constructor" Url="html/40df8c51-6b3a-4e0d-b3dc-1c9894bd9bb4.htm" />
+  <HelpKINode Title="Receipt.ResetReceipt method" Url="html/5283e16d-6e98-0ab0-f9bc-3e61c860fca2.htm" />
+  <HelpKINode Title="Receipt.setupCustomerList method" Url="html/4e64a4c8-c743-27f6-2d9c-a588ddf9cd16.htm" />
+  <HelpKINode Title="Receipt.setupPriceList method" Url="html/1d041d68-c87f-4379-0843-d3a13ae96343.htm" />
+  <HelpKINode Title="Receipt.setupReceipt method" Url="html/aa30d540-6c54-f035-5e40-4fd4d440bd74.htm" />
+  <HelpKINode Title="Receipt.UpdateCustomerDetails method" Url="html/90e1e0d1-4a70-f6c5-cb2e-4c5f82786f57.htm" />
+  <HelpKINode Title="Receipt._customers field" Url="html/d1256545-e126-e750-0969-f48b6110a735.htm" />
+  <HelpKINode Title="Receipt._customer_details field" Url="html/ce4bf2d0-085d-1498-9545-8a4025d20112.htm" />
+  <HelpKINode Title="Receipt._customer_id_number field" Url="html/04a2057f-72a3-0ab8-641d-d183ef2b1b41.htm" />
+  <HelpKINode Title="Receipt._customer_name field" Url="html/75f74fd6-ca6f-5ce5-cce8-41dd81a55369.htm" />
+  <HelpKINode Title="Receipt._customer_number field" Url="html/89a70d5b-c1be-3187-c8af-315596625c1a.htm" />
+  <HelpKINode Title="Receipt._customer_selected field" Url="html/54af4bff-fc05-e867-de06-2ed1f73c5ca0.htm" />
+  <HelpKINode Title="Receipt._customer_surname field" Url="html/5cf9ea51-6520-b828-db72-edc4084ee998.htm" />
+  <HelpKINode Title="Receipt._database field" Url="html/6bafc0ec-94d8-54ec-7fde-594efab3c63c.htm" />
+  <HelpKINode Title="Receipt._items field" Url="html/06df17da-fc24-b755-ba26-c614ccadfb78.htm" />
+  <HelpKINode Title="Receipt._logs field" Url="html/c6a01d74-55c8-9fbd-1520-4aa765f49641.htm" />
+  <HelpKINode Title="Receipt._main_form field" Url="html/f250674e-d245-605a-fa15-e6f360d0e135.htm" />
+  <HelpKINode Title="Receipt._purchased_items field" Url="html/2af7c262-2ea3-e234-9b9b-8a0c22114af7.htm" />
+  <HelpKINode Title="Receipt._receipt_content field" Url="html/51da7162-2c1a-7a87-ce41-d4bbcf7b4ed8.htm" />
+  <HelpKINode Title="Receipt._running_total field" Url="html/22763147-3fcd-8db4-bfa7-0ed8262cb5dc.htm" />
+  <HelpKINode Title="Receipt._single_purchase_entry field" Url="html/4393bc38-5e55-5237-be11-3e09d73b81f4.htm" />
+  <HelpKINode Title="receiptBox field" Url="html/3589522c-9fb2-311a-04ac-1631d2306739.htm" />
+  <HelpKINode Title="ReceiptPage field" Url="html/cf50e6a3-a58d-5b5b-f8c9-7b6d18bd1407.htm" />
+  <HelpKINode Title="RemoveFilters method" Url="html/a5dad0fa-f253-c3de-6689-ffaa02466652.htm" />
+  <HelpKINode Title="removeFiltersBtn field" Url="html/5ce4584d-9e24-29a0-e3f2-40f5ff29d991.htm" />
+  <HelpKINode Title="removeFiltersBtn_Click method" Url="html/8743bb63-7f99-38b7-b82e-a0fed88d6906.htm" />
+  <HelpKINode Title="ResetReceipt method" Url="html/5283e16d-6e98-0ab0-f9bc-3e61c860fca2.htm" />
+  <HelpKINode Title="returnToLoginForm method" Url="html/f42c1515-f352-231f-cba3-36b3938b4cfc.htm" />
+  <HelpKINode Title="SalesLogGridView field" Url="html/4fc7ffa1-2982-bd0b-b6ea-fa3ab9e554dc.htm" />
+  <HelpKINode Title="SalesPage field" Url="html/d25f88f6-05ce-ad37-bcbd-0cfb16656922.htm" />
+  <HelpKINode Title="SelectAll method" Url="html/b4dc42f8-12d8-a6b0-8a2d-bf0e632feac5.htm" />
+  <HelpKINode Title="setTypes method" Url="html/b1838ca8-3fcb-f5f1-c76a-dff9aea30b4c.htm" />
+  <HelpKINode Title="setupCustomerList method" Url="html/4e64a4c8-c743-27f6-2d9c-a588ddf9cd16.htm" />
+  <HelpKINode Title="setupPriceList method" Url="html/1d041d68-c87f-4379-0843-d3a13ae96343.htm" />
+  <HelpKINode Title="SetupPurchaseLogs method" Url="html/48a5ff83-5ea1-0826-2e6a-308943fa5e31.htm" />
+  <HelpKINode Title="setupReceipt method" Url="html/aa30d540-6c54-f035-5e40-4fd4d440bd74.htm" />
+  <HelpKINode Title="ShowUsers method" Url="html/43a16765-981f-80cf-42e9-b17f37ddf10d.htm" />
+  <HelpKINode Title="textBox1 field" Url="html/a695fb15-b4b0-3a11-05f0-08170877352b.htm" />
+  <HelpKINode Title="textBox3 field" Url="html/af561be8-42d0-55a6-efab-d799f938ad61.htm" />
+  <HelpKINode Title="TotalsDataGridView_CellContentClick method" Url="html/165a1e88-565a-b442-61d8-8c6a512646a4.htm" />
+  <HelpKINode Title="UpdateCustomerDetails method" Url="html/90e1e0d1-4a70-f6c5-cb2e-4c5f82786f57.htm" />
+  <HelpKINode Title="UploadData method" Url="html/b534b53c-79a5-9b40-2160-c9e8651ff286.htm" />
+  <HelpKINode Title="usernameField field" Url="html/2ed4a09d-f190-a254-6d51-8229c7fcf94f.htm" />
+  <HelpKINode Title="usernameField_TextChanged method" Url="html/dfd8f714-417e-adad-807b-de1685393947.htm" />
+  <HelpKINode Title="user_name field" Url="html/7283d07a-e389-18ec-a58b-82261cbdc461.htm" />
+  <HelpKINode Title="verifyAccount method" Url="html/cbe3c7fd-60dc-5cbd-7c72-3719591566d5.htm" />
+  <HelpKINode Title="verifyCredentials method" Url="html/45566386-614c-dcf3-0c6d-afe00827baab.htm" />
+  <HelpKINode Title="version">
+    <HelpKINode Title="1.0.0.0" Url="html/8dccf0e8-70d5-432c-a2ff-fcf493895f58.htm" />
+    <HelpKINode Title="history" Url="html/09841191-9560-4af0-9863-345f9e152308.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Welcome" Url="html/146d023d-ea4c-4d96-8a29-51a4d44bde64.htm" />
+  <HelpKINode Title="WndProc method" Url="html/4f5517de-3e35-c946-ca69-bf405bd29ae5.htm" />
+  <HelpKINode Title="_128_cipher_key field" Url="html/e898359a-a349-669e-6ca9-8c157fdd4f54.htm" />
+  <HelpKINode Title="_196_cipher_key field" Url="html/09925631-57ea-7892-2d5b-259136590935.htm" />
+  <HelpKINode Title="_account field" Url="html/7dc34cc0-9e3f-0164-2ca5-bc12448dcc70.htm" />
+  <HelpKINode Title="_admin_master_password field" Url="html/7783bc68-6340-2128-34cb-03dee07a1835.htm" />
+  <HelpKINode Title="_all_fields_entered field" Url="html/7fc32e21-d5e4-6580-4a04-be55e2cdc65d.htm" />
+  <HelpKINode Title="_binding_source field" Url="html/1ef532f8-748f-3b50-62ee-5c5c5b6ec089.htm" />
+  <HelpKINode Title="_client_password field" Url="html/8bef9c5e-7bb8-96ea-c86e-3e9396cdffdf.htm" />
+  <HelpKINode Title="_command field" Url="html/ab97a13a-49c6-61f9-5e75-0827d932607c.htm" />
+  <HelpKINode Title="_connection field" Url="html/70c1803c-e5e1-9418-18a6-36f6a5112c2d.htm" />
+  <HelpKINode Title="_connection_string field" Url="html/8244b5d0-d408-5a9c-475c-32e574e0b32e.htm" />
+  <HelpKINode Title="_credentials field" Url="html/1c8456d3-10d9-b4d0-437b-d0653cdf3441.htm" />
+  <HelpKINode Title="_customers field" Url="html/d1256545-e126-e750-0969-f48b6110a735.htm" />
+  <HelpKINode Title="_customer_details field" Url="html/ce4bf2d0-085d-1498-9545-8a4025d20112.htm" />
+  <HelpKINode Title="_customer_id_number field" Url="html/04a2057f-72a3-0ab8-641d-d183ef2b1b41.htm" />
+  <HelpKINode Title="_customer_name field" Url="html/75f74fd6-ca6f-5ce5-cce8-41dd81a55369.htm" />
+  <HelpKINode Title="_customer_number field" Url="html/89a70d5b-c1be-3187-c8af-315596625c1a.htm" />
+  <HelpKINode Title="_customer_selected field" Url="html/54af4bff-fc05-e867-de06-2ed1f73c5ca0.htm" />
+  <HelpKINode Title="_customer_surname field" Url="html/5cf9ea51-6520-b828-db72-edc4084ee998.htm" />
+  <HelpKINode Title="_database field">
+    <HelpKINode Title="CreateAccount._database Field" Url="html/77c46585-1abe-e44b-2ad5-80b70ca3d24b.htm" />
+    <HelpKINode Title="LoginForm._database Field" Url="html/dc1d3c70-e6d4-68fe-f033-deaa84ab74c3.htm" />
+    <HelpKINode Title="Main_Form._database Field" Url="html/c32a8255-fc66-39df-162f-1006fcdce288.htm" />
+    <HelpKINode Title="Receipt._database Field" Url="html/6bafc0ec-94d8-54ec-7fde-594efab3c63c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="_email_address_error field" Url="html/79d511d9-d0d1-1fa0-d793-22e8f6ac39a5.htm" />
+  <HelpKINode Title="_empty_confirm_password_entered field" Url="html/ddc1b982-4f14-ff8e-178b-b2a67a993d51.htm" />
+  <HelpKINode Title="_empty_email_entered field" Url="html/0596465c-9b69-a985-d8ba-419be9e6ec6e.htm" />
+  <HelpKINode Title="_empty_master_password_entered field" Url="html/3d0b6213-3e7e-9490-482b-63ab47da5a7a.htm" />
+  <HelpKINode Title="_empty_password_entered field" Url="html/2332df8e-e18c-261b-68b1-837d53df34f6.htm" />
+  <HelpKINode Title="_empty_string field" Url="html/4e4adc3c-a3d2-b456-84d9-cebbbb985b71.htm" />
+  <HelpKINode Title="_empty_txtbox field" Url="html/761fba4f-f7a2-198a-7588-7db5b3dfbcdc.htm" />
+  <HelpKINode Title="_empty_user_name_entered field" Url="html/c0ffd5d5-53cb-f49e-854a-b863f06f2ef7.htm" />
+  <HelpKINode Title="_error field" Url="html/bd5e07da-186d-8c7d-b671-5e7d94c66eaf.htm" />
+  <HelpKINode Title="_ferrous field" Url="html/924fa727-b920-b20b-f253-7ca0b62ffae9.htm" />
+  <HelpKINode Title="_incorrect_master_psword field" Url="html/1a4f591c-6549-aa4b-74ed-57c9a825587c.htm" />
+  <HelpKINode Title="_items field" Url="html/06df17da-fc24-b755-ba26-c614ccadfb78.htm" />
+  <HelpKINode Title="_logs field" Url="html/c6a01d74-55c8-9fbd-1520-4aa765f49641.htm" />
+  <HelpKINode Title="_mainForm field" Url="html/7b8249b6-a8b8-00f4-7113-8ee238c1fbbf.htm" />
+  <HelpKINode Title="_main_form field">
+    <HelpKINode Title="CustomMsgBox._main_form Field" Url="html/80893fbd-aa76-c446-552c-8908e92c8d35.htm" />
+    <HelpKINode Title="Database._main_form Field" Url="html/14c1c18d-9f7f-fdf2-0a5f-2d1819d3dcd3.htm" />
+    <HelpKINode Title="PurchaseLogs._main_form Field" Url="html/e0b17a45-5d28-3d56-0704-b941d4bdc309.htm" />
+    <HelpKINode Title="Receipt._main_form Field" Url="html/f250674e-d245-605a-fa15-e6f360d0e135.htm" />
+  </HelpKINode>
+  <HelpKINode Title="_master_password field" Url="html/44889a3f-e3e4-b3fa-c0e1-894863175b4f.htm" />
+  <HelpKINode Title="_message field" Url="html/1ef91c59-7ed0-3b83-5937-1164e75fc054.htm" />
+  <HelpKINode Title="_month field" Url="html/e037bbee-92bb-f888-5c4c-8d0ef4e580a6.htm" />
+  <HelpKINode Title="_non_ferrous field" Url="html/9f3346cd-fe64-e52a-a33a-a674362e1048.htm" />
+  <HelpKINode Title="_password_error field" Url="html/25b33d12-b5b6-bd18-c9d9-1b641f94a8f7.htm" />
+  <HelpKINode Title="_path_to_db_file field" Url="html/9dc86960-d88d-d723-dd8c-2442da20c3f8.htm" />
+  <HelpKINode Title="_path_to_directory field" Url="html/762702ef-5c7f-bae8-2b0d-93c0edb6edbd.htm" />
+  <HelpKINode Title="_path_to_expenses field" Url="html/aedbab62-c2ce-f468-e207-ec2bf6fdfc33.htm" />
+  <HelpKINode Title="_path_to_purchases field" Url="html/3f772043-7345-e388-e9e6-2a3a8cd5cc7a.htm" />
+  <HelpKINode Title="_path_to_sales field" Url="html/9e5e0ee4-9861-f9ce-594a-f43969cadcdf.htm" />
+  <HelpKINode Title="_path_to_wages field" Url="html/41363f5c-00f8-f990-5a1c-ee2884d7eb3d.htm" />
+  <HelpKINode Title="_purchased_items field" Url="html/2af7c262-2ea3-e234-9b9b-8a0c22114af7.htm" />
+  <HelpKINode Title="_purchases_data_table field" Url="html/bbbf3758-97d3-fb98-755d-aba78670f9e6.htm" />
+  <HelpKINode Title="_purchase_logs field" Url="html/1ccc70d6-724f-1c20-3dbe-067d2eb0a9f0.htm" />
+  <HelpKINode Title="_receipt field" Url="html/1e8148a1-1fe9-eb9c-e981-65319d07c176.htm" />
+  <HelpKINode Title="_receipt_content field" Url="html/51da7162-2c1a-7a87-ce41-d4bbcf7b4ed8.htm" />
+  <HelpKINode Title="_running_total field" Url="html/22763147-3fcd-8db4-bfa7-0ed8262cb5dc.htm" />
+  <HelpKINode Title="_single_purchase_entry field" Url="html/4393bc38-5e55-5237-be11-3e09d73b81f4.htm" />
+  <HelpKINode Title="_success field" Url="html/d5c6db3e-6dcb-9cf4-ffb6-30772b32dd7d.htm" />
+  <HelpKINode Title="_title field" Url="html/015c1890-5261-3e29-1c32-50eea3e4e269.htm" />
+  <HelpKINode Title="_user field" Url="html/000aea01-f301-15b9-282a-4b86d50a8441.htm" />
+  <HelpKINode Title="_user_name_error field" Url="html/9e30359c-0446-5e14-244d-a58b9b3a354b.htm" />
+</HelpKI>

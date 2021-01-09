@@ -1,7 +1,12 @@
 ﻿
 namespace Green_Enviro_App
 {
-    partial class Main_Form
+	/// <summary>
+	/// Main file that initializes all the project compenents.
+	/// Entry point for interaction with form controls in the Main_Form
+	///   <br />
+	/// </summary>
+	partial class Main_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -69,13 +74,38 @@ namespace Green_Enviro_App
 			this.PurchaseLogStartDate = new System.Windows.Forms.ComboBox();
 			this.SalesPage = new System.Windows.Forms.TabPage();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.label13 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.comboBox3 = new System.Windows.Forms.ComboBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.label16 = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.SalesLogGridView = new System.Windows.Forms.DataGridView();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
+			this.label17 = new System.Windows.Forms.Label();
+			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label19 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.comboBox5 = new System.Windows.Forms.ComboBox();
+			this.comboBox6 = new System.Windows.Forms.ComboBox();
+			this.comboBox7 = new System.Windows.Forms.ComboBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
 			this.PurchasesPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).BeginInit();
+			this.SalesPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -296,7 +326,7 @@ namespace Green_Enviro_App
 			this.logo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
 			this.logo.InitialImage = null;
-			this.logo.Location = new System.Drawing.Point(1095, 6);
+			this.logo.Location = new System.Drawing.Point(1104, 6);
 			this.logo.Name = "logo";
 			this.logo.Size = new System.Drawing.Size(319, 136);
 			this.logo.TabIndex = 8;
@@ -365,7 +395,7 @@ namespace Green_Enviro_App
 			this.PurchasesPage.Location = new System.Drawing.Point(4, 32);
 			this.PurchasesPage.Name = "PurchasesPage";
 			this.PurchasesPage.Padding = new System.Windows.Forms.Padding(3);
-			this.PurchasesPage.Size = new System.Drawing.Size(1506, 780);
+			this.PurchasesPage.Size = new System.Drawing.Size(1515, 781);
 			this.PurchasesPage.TabIndex = 1;
 			this.PurchasesPage.Text = "Purchases Logs";
 			this.PurchasesPage.UseVisualStyleBackColor = true;
@@ -494,12 +524,261 @@ namespace Green_Enviro_App
 			// 
 			// SalesPage
 			// 
+			this.SalesPage.Controls.Add(this.button3);
+			this.SalesPage.Controls.Add(this.button4);
+			this.SalesPage.Controls.Add(this.label17);
+			this.SalesPage.Controls.Add(this.comboBox4);
+			this.SalesPage.Controls.Add(this.label18);
+			this.SalesPage.Controls.Add(this.label19);
+			this.SalesPage.Controls.Add(this.label20);
+			this.SalesPage.Controls.Add(this.comboBox5);
+			this.SalesPage.Controls.Add(this.comboBox6);
+			this.SalesPage.Controls.Add(this.comboBox7);
+			this.SalesPage.Controls.Add(this.SalesLogGridView);
+			this.SalesPage.Controls.Add(this.button2);
+			this.SalesPage.Controls.Add(this.button1);
+			this.SalesPage.Controls.Add(this.label16);
+			this.SalesPage.Controls.Add(this.textBox1);
+			this.SalesPage.Controls.Add(this.comboBox3);
+			this.SalesPage.Controls.Add(this.comboBox2);
+			this.SalesPage.Controls.Add(this.comboBox1);
+			this.SalesPage.Controls.Add(this.label15);
+			this.SalesPage.Controls.Add(this.label14);
+			this.SalesPage.Controls.Add(this.label13);
+			this.SalesPage.Controls.Add(this.label12);
+			this.SalesPage.Controls.Add(this.textBox3);
 			this.SalesPage.Location = new System.Drawing.Point(4, 32);
 			this.SalesPage.Name = "SalesPage";
-			this.SalesPage.Size = new System.Drawing.Size(1506, 780);
+			this.SalesPage.Size = new System.Drawing.Size(1515, 781);
 			this.SalesPage.TabIndex = 2;
 			this.SalesPage.Text = "Sales Logs";
 			this.SalesPage.UseVisualStyleBackColor = true;
+			// 
+			// textBox3
+			// 
+			this.textBox3.Location = new System.Drawing.Point(127, 120);
+			this.textBox3.Name = "textBox3";
+			this.textBox3.Size = new System.Drawing.Size(140, 31);
+			this.textBox3.TabIndex = 2;
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(8, 20);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(54, 23);
+			this.label12.TabIndex = 4;
+			this.label12.Text = "Date";
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(8, 70);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(87, 23);
+			this.label13.TabIndex = 5;
+			this.label13.Text = "Company";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(8, 123);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(98, 23);
+			this.label14.TabIndex = 6;
+			this.label14.Text = "Quantity";
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(8, 172);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(54, 23);
+			this.label15.TabIndex = 7;
+			this.label15.Text = "Type";
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(127, 17);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(212, 31);
+			this.comboBox1.TabIndex = 8;
+			// 
+			// comboBox2
+			// 
+			this.comboBox2.FormattingEnabled = true;
+			this.comboBox2.Location = new System.Drawing.Point(127, 67);
+			this.comboBox2.Name = "comboBox2";
+			this.comboBox2.Size = new System.Drawing.Size(212, 31);
+			this.comboBox2.TabIndex = 9;
+			// 
+			// comboBox3
+			// 
+			this.comboBox3.FormattingEnabled = true;
+			this.comboBox3.Location = new System.Drawing.Point(127, 169);
+			this.comboBox3.Name = "comboBox3";
+			this.comboBox3.Size = new System.Drawing.Size(140, 31);
+			this.comboBox3.TabIndex = 10;
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(127, 219);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(140, 31);
+			this.textBox1.TabIndex = 11;
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Location = new System.Drawing.Point(8, 219);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(76, 23);
+			this.label16.TabIndex = 12;
+			this.label16.Text = "Amount";
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(12, 279);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(130, 47);
+			this.button1.TabIndex = 13;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(195, 279);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(130, 47);
+			this.button2.TabIndex = 14;
+			this.button2.Text = "button2";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
+			// SalesLogGridView
+			// 
+			this.SalesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.SalesLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.SalesLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.SalesLogGridView.Location = new System.Drawing.Point(364, 172);
+			this.SalesLogGridView.Name = "SalesLogGridView";
+			this.SalesLogGridView.RowHeadersWidth = 51;
+			this.SalesLogGridView.RowTemplate.Height = 24;
+			this.SalesLogGridView.Size = new System.Drawing.Size(1151, 606);
+			this.SalesLogGridView.TabIndex = 15;
+			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.Location = new System.Drawing.Point(672, 94);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(231, 45);
+			this.button3.TabIndex = 28;
+			this.button3.Text = "Remove Filters";
+			this.button3.UseVisualStyleBackColor = true;
+			// 
+			// button4
+			// 
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button4.Location = new System.Drawing.Point(383, 94);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(199, 45);
+			this.button4.TabIndex = 27;
+			this.button4.Text = "Filter";
+			this.button4.UseVisualStyleBackColor = true;
+			// 
+			// label17
+			// 
+			this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label17.AutoSize = true;
+			this.label17.Location = new System.Drawing.Point(379, 18);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(65, 23);
+			this.label17.TabIndex = 26;
+			this.label17.Text = "Month";
+			// 
+			// comboBox4
+			// 
+			this.comboBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox4.DropDownHeight = 300;
+			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox4.FormattingEnabled = true;
+			this.comboBox4.IntegralHeight = false;
+			this.comboBox4.ItemHeight = 23;
+			this.comboBox4.Location = new System.Drawing.Point(383, 44);
+			this.comboBox4.Name = "comboBox4";
+			this.comboBox4.Size = new System.Drawing.Size(203, 31);
+			this.comboBox4.TabIndex = 25;
+			// 
+			// label18
+			// 
+			this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(1267, 18);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(54, 23);
+			this.label18.TabIndex = 24;
+			this.label18.Text = "Type";
+			// 
+			// label19
+			// 
+			this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(978, 18);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(98, 23);
+			this.label19.TabIndex = 23;
+			this.label19.Text = "End Date";
+			// 
+			// label20
+			// 
+			this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(668, 18);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(120, 23);
+			this.label20.TabIndex = 22;
+			this.label20.Text = "Start Date";
+			// 
+			// comboBox5
+			// 
+			this.comboBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox5.DropDownHeight = 300;
+			this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox5.FormattingEnabled = true;
+			this.comboBox5.IntegralHeight = false;
+			this.comboBox5.ItemHeight = 23;
+			this.comboBox5.Location = new System.Drawing.Point(1271, 44);
+			this.comboBox5.Name = "comboBox5";
+			this.comboBox5.Size = new System.Drawing.Size(203, 31);
+			this.comboBox5.TabIndex = 21;
+			// 
+			// comboBox6
+			// 
+			this.comboBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox6.DropDownHeight = 300;
+			this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox6.FormattingEnabled = true;
+			this.comboBox6.IntegralHeight = false;
+			this.comboBox6.ItemHeight = 23;
+			this.comboBox6.Location = new System.Drawing.Point(982, 44);
+			this.comboBox6.Name = "comboBox6";
+			this.comboBox6.Size = new System.Drawing.Size(218, 31);
+			this.comboBox6.TabIndex = 20;
+			// 
+			// comboBox7
+			// 
+			this.comboBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox7.DropDownHeight = 300;
+			this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox7.FormattingEnabled = true;
+			this.comboBox7.IntegralHeight = false;
+			this.comboBox7.ItemHeight = 23;
+			this.comboBox7.Location = new System.Drawing.Point(672, 44);
+			this.comboBox7.Name = "comboBox7";
+			this.comboBox7.Size = new System.Drawing.Size(231, 31);
+			this.comboBox7.TabIndex = 19;
 			// 
 			// Main_Form
 			// 
@@ -523,7 +802,10 @@ namespace Green_Enviro_App
 			this.PurchasesPage.ResumeLayout(false);
 			this.PurchasesPage.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).EndInit();
+			this.SalesPage.ResumeLayout(false);
+			this.SalesPage.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -537,36 +819,142 @@ namespace Green_Enviro_App
         private System.Windows.Forms.TabPage SalesPage;
         private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.BindingSource bindingSource1;
+		
+		/// <summary>
+		/// ComboBox for containing the design and contents of the receipt
+		/// </summary>
 		public System.Windows.Forms.RichTextBox receiptBox;
+		
+		/// <summary>
+		/// List of Items that the company buys
+		/// </summary>
 		public System.Windows.Forms.ComboBox itemList;
 		private System.Windows.Forms.Label label2;
+		
+		/// <summary>
+		/// Field for entering the purchased quantity when adding to the receipt
+		/// </summary>
 		public System.Windows.Forms.TextBox quantityBox;
+
+		/// <summary>
+		/// Picturebox for inserting the company logo that will go on the receipt
+		/// </summary>
 		public System.Windows.Forms.PictureBox logo;
+
+		/// <summary>
+		/// A field where the price of items will appear or can be inserted before inserting into the receipt
+		/// </summary>
 		public System.Windows.Forms.TextBox PriceBox;
+		
 		private System.Windows.Forms.Label label3;
+
+		/// <summary>
+		///  Check box that will allow users to chose whether to use dealer prices or not
+		/// </summary>
 		public System.Windows.Forms.CheckBox DealerPriceCheckBox;
+
+		/// <summary>
+		/// Check box for selecting whether users can manually insert the price of items or not
+		/// </summary>
 		public System.Windows.Forms.CheckBox PriceOverrideCheckBox;
+
+		/// <summary>
+		/// Field that will show the ID Number of the selected customer
+		/// </summary>
 		public System.Windows.Forms.TextBox CustomerIDNumberTextBox;
+		
 		private System.Windows.Forms.Label label5;
+		
 		private System.Windows.Forms.Label label4;
+
+		/// <summary>
+		/// Combo box from where the customer numbers can be selected
+		/// </summary>
 		public System.Windows.Forms.ComboBox customerNumbersList;
+
+		/// <summary>
+		/// Field that will show the name of the selected customer. 
+		/// Selecting customers can only be done using the customer numbers combo box
+		/// </summary>
 		public System.Windows.Forms.TextBox CustomerNameTextBox;
+
+		/// <summary>
+		/// Field that will show the surname of the selected customer. 
+		/// Selecting customers can only be done using the customer numbers combo box
+		/// </summary>
 		public System.Windows.Forms.TextBox CustomerSurnameTextBox;
+		
 		private System.Windows.Forms.Label label7;
+		
 		private System.Windows.Forms.Label label6;
+
+		/// <summary>
+		/// Picture box that will show the ID Picture of the selected customer. 
+		/// Selecting customers can only be done using the customer numbers combo box
+		/// </summary>
 		public System.Windows.Forms.PictureBox IDPictureBox;
+		
 		private System.Windows.Forms.Button PurchaseBtn;
+		
 		private System.Windows.Forms.Button CancelPurchaseBtn;
+
+		/// <summary>
+		/// Combo box used to set the log filter to either ferrous or non ferrous
+		/// </summary>
 		public System.Windows.Forms.ComboBox PurchaseLogType;
+
+		/// <summary>
+		/// Combo box used to set the start date for the log filter.
+		/// When set, the Data Grid View will filter out all entries that were made before this date
+		/// </summary>
 		public System.Windows.Forms.ComboBox PurchaseLogEndDate;
+
+		/// <summary>
+		/// Combo box used to set the end date for the log filter.
+		/// When set, the Data Grid View will filter out all entries that were made after this date
+		/// </summary>
 		public System.Windows.Forms.ComboBox PurchaseLogStartDate;
+		
 		private System.Windows.Forms.Button GeneratePurchaseLogBtn;
+		
 		private System.Windows.Forms.Label label11;
+
+
+		/// <summary>
+		/// Combo box used to select the month for which the user wants to view purchase logs
+		/// </summary>
 		public System.Windows.Forms.ComboBox PurchaseLogMonth;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label8;
+
+		/// <summary>
+		/// Data Grid View for viewing all the purchase logs
+		/// </summary>
 		public System.Windows.Forms.DataGridView PurchseLogGridView;
 		private System.Windows.Forms.Button removeFiltersBtn;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.ComboBox comboBox3;
+		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.DataGridView SalesLogGridView;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Label label17;
+		public System.Windows.Forms.ComboBox comboBox4;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Label label20;
+		public System.Windows.Forms.ComboBox comboBox5;
+		public System.Windows.Forms.ComboBox comboBox6;
+		public System.Windows.Forms.ComboBox comboBox7;
 	}
 }

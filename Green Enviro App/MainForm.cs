@@ -15,8 +15,10 @@ namespace Green_Enviro_App
         Receipt _receipt;
         Database _database;
         PurchaseLogs _purchase_logs;
-        
-        public Main_Form(Database _data)
+
+		/// <summary>Initializes a new instance of the <see cref="Main_Form" /> class.</summary>
+		/// <param name="_data">The data.</param>
+		public Main_Form(Database _data)
         {
             InitializeComponent();
             //initialiseItemList();
@@ -25,8 +27,12 @@ namespace Green_Enviro_App
             _receipt = new Receipt(this, _database, _purchase_logs);
         }
 
-        //This function makes it impossible to move the main form around or to resize it
-        protected override void WndProc(ref Message message)
+
+		/// <summary>
+        /// Method for making sure that the Main_Form's size cannot be changed and the Main_Form cannot be moved
+        /// </summary>
+		/// <param name="message">The message.</param>
+		protected override void WndProc(ref Message message)
         {
             const int WM_SYSCOMMAND = 0x0112;
             const int SC_MOVE = 0xF010;
