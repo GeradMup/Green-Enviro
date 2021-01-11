@@ -15,7 +15,8 @@ namespace Green_Enviro_App
         Receipt _receipt;
         Database _database;
         PurchaseLogs _purchase_logs;
-        
+        DestructionCertificate _destruction_certificate;
+
         public Main_Form(Database _data)
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace Green_Enviro_App
             _database = _data;
             _purchase_logs = new PurchaseLogs(this);
             _receipt = new Receipt(this, _database, _purchase_logs);
+            _destruction_certificate = new DestructionCertificate(this);
         }
 
         //This function makes it impossible to move the main form around or to resize it
@@ -94,5 +96,21 @@ namespace Green_Enviro_App
 		{
 
 		}
-	}
+
+
+        //******************************************************************************************************************************
+        //DESTRUCTION CERTIFICATE RELATED CALLS
+        //******************************************************************************************************************************
+
+
+        private void DestrctCertificatePage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void generateDCBtn_Click(object sender, EventArgs e)
+        {
+            _destruction_certificate.ExportToPdf();
+        }
+    }
 }
