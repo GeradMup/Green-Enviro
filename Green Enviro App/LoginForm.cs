@@ -35,11 +35,12 @@ namespace Green_Enviro_App
         //Creates the main form for the program
         Main_Form _mainForm = new Main_Form(_database);
 
+        //Instance to view user data table for deletion
+        static UserDatabaseForm _user_db_deletion = new UserDatabaseForm(_database);
+
 
         //Creates a single instance of the CreateAccount class
-        CreateAccount _account = new CreateAccount(_database);
-        //Instance to view user data table for deletion
-        UserDatabaseForm _user_db_deletion = new UserDatabaseForm(_database);
+        CreateAccount _account = new CreateAccount(_database,_user_db_deletion);
 
         //Master Password (Changeable depending on the devs)
         const string _master_password = "1234";

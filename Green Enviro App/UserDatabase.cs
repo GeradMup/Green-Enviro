@@ -41,10 +41,6 @@ namespace Green_Enviro_App
         {
             _data_table = _database.SelectAll("Users");
             userTableDataGridView.DataSource = _data_table.DefaultView;
-            // fill the gridview to its container
-            //userTableDataGridView.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
-            //userTableDataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            // userTableDataGridView.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
         }
 
         private void userDeletionCancelBtn_Click(object sender, EventArgs e)
@@ -52,7 +48,7 @@ namespace Green_Enviro_App
             this.Hide();
         }
 
-        private void LoadUserDataTable()
+        public void LoadUserDataTable()
         {
             //Gets all user details and stores them in a DataTable 
             _data_table = _database.SelectAll("Users");
@@ -139,13 +135,13 @@ namespace Green_Enviro_App
                 MessageBox.Show("No Account Id selected");
             }
         }
-        public void RefreshDataGridTable()
+       /* public void RefreshDataGridTable()
         {
             _data_table = _database.SelectAll("Users");
             //DataTable t = new DataTable();
             //_data_table.Fill(t);
             userTableDataGridView.DataSource = _data_table;
-        }
+        }*/
         private void ClearUserDBFields()
         {
             accountIdList.SelectedItem = null;

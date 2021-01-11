@@ -45,14 +45,15 @@ namespace Green_Enviro_App
         // Lets make a Data Table for the new user
         Database _database;
         DataTable _user;
-        //UserDatabaseForm _user_database = new UserDatabaseForm();
-        public CreateAccount(Database _db)
+        UserDatabaseForm _user_database ;
+        public CreateAccount(Database _db,UserDatabaseForm _user_db)
         {
             InitializeComponent();
             //Creates username and password G,G for development purposes
             defaultUser();
 
             _database = _db;
+            _user_database = _user_db;
 
             //LOAD UP USER INFO FROM HE DATABASE
 
@@ -169,9 +170,8 @@ namespace Green_Enviro_App
             {
                 _icon = MessageBoxIcon.None;
                 addNewUser();
-                //MessageBox.Show(_message, _title, _buttons, _icon);
                 CustomMessageBox msg = new CustomMessageBox(_title,_message);
-                //_user_database.RefreshDataGridTable();
+                _user_database.LoadUserDataTable();
                 returnToLoginForm();
             }
             else
