@@ -23,12 +23,12 @@ namespace Green_Enviro_App
         bool _accountId_selected = false;
         string _db_table = "Users";
         string _deletion_information = "";
+        int _deleted_row_index = 0;
 
         public UserDatabaseForm(Database _db)
         {
             InitializeComponent();
             _database = _db;
-            //BindDataGridToUserTable();
             LoadUserDataTable();
         }
 
@@ -44,8 +44,7 @@ namespace Green_Enviro_App
             // fill the gridview to its container
             //userTableDataGridView.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
             //userTableDataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-           // userTableDataGridView.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
-
+            // userTableDataGridView.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
         }
 
         private void userDeletionCancelBtn_Click(object sender, EventArgs e)
@@ -57,6 +56,8 @@ namespace Green_Enviro_App
         {
             //Gets all user details and stores them in a DataTable 
             _data_table = _database.SelectAll("Users");
+
+            accountIdList.Items.Clear();
 
             int _accountId_number_column = 0;
 
@@ -86,10 +87,16 @@ namespace Green_Enviro_App
 
             string _user_account_id = accountIdList.SelectedItem.ToString();
             _db_table = "Users";
-            _deletion_information = "AccountId = '" + _user_account_id+ "'";
+            _deletion_information = "AccountId = '" + _user_account_id + "'";
             _data_table = _database.SelectAll(_db_table);
             DataView _data_view = _data_table.DefaultView;
             DataRow[] _row = _data_table.Select(_deletion_information);
+
+            foreach(DataRow _deleting_row in _row)
+            {
+                _deleted_row_index = _data_table.Rows.IndexOf(_deleting_row);
+            }
+
 
             int _index = 0;
 
@@ -115,10 +122,15 @@ namespace Green_Enviro_App
                 if (d == DialogResult.Yes)
                 {
                     _database.DeleteFromDatabase(_db_table, _deletion_information);
+                    userTableDataGridView.Rows.RemoveAt(_deleted_row_index);
+                    ClearUserDBFields();
+                    MessageBox.Show("Account succesfully deleted");
+                    LoadUserDataTable();
+                    this.Hide();
                 }
                 if (d == DialogResult.No)
                 {
-                    this.Show();
+                    return;
                 }
 
             }
@@ -126,6 +138,20 @@ namespace Green_Enviro_App
             {
                 MessageBox.Show("No Account Id selected");
             }
+        }
+        public void RefreshDataGridTable()
+        {
+            _data_table = _database.SelectAll("Users");
+            //DataTable t = new DataTable();
+            //_data_table.Fill(t);
+            userTableDataGridView.DataSource = _data_table;
+        }
+        private void ClearUserDBFields()
+        {
+            accountIdList.SelectedItem = null;
+            usernameSelectedForDeletionField.Clear();
+            passwordSelectedForDeletionField.Clear();
+            emailSelectedForDeletionField.Clear();
         }
     }
 }
