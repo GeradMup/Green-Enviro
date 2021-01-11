@@ -225,6 +225,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CopyDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CopyDB.Designer.cs">
+      <DependentUpon>CopyDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="ErrorMsgBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CopyDB.resx">
+      <DependentUpon>CopyDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ErrorMsgBox.resx">
       <DependentUpon>ErrorMsgBox.cs</DependentUpon>
     </EmbeddedResource>

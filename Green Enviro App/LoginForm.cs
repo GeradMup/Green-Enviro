@@ -28,12 +28,12 @@ namespace Green_Enviro_App
     
     public partial class LoginForm : Form
     {
-     
+
         //Creates an Instance of the Database class
-        static Database _database = new Database();
+        static Database _database;
 
         //Creates the main form for the program
-        Main_Form _mainForm = new Main_Form(_database);
+        Main_Form _mainForm;
 
 
         //Creates a single instance of the CreateAccount class
@@ -47,10 +47,26 @@ namespace Green_Enviro_App
 
         public LoginForm()
         {
+
+
+
             InitializeComponent();
+
+            //Creates an Instance of the Database class
+            _database = new Database();
+
+            //Creates the main form for the program
+            _mainForm = new Main_Form(_database);
+
             //This is in order to render passwords into characters as to hide them
             //passwordField.PasswordChar = '*';
         }
+
+        //********************************************************************************************************
+
+
+
+        //********************************************************************************************************
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {

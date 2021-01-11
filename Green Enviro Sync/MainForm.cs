@@ -31,8 +31,10 @@ namespace Green_Enviro_Sync
 		static string database_address;
 		static string _path_to_db_file = "../../../Green Enviro App/bin/Debug/Green Enviro Data.mdf";
 		static string _path_to_db_file_main = "../../../Green Enviro App/Green Enviro Data.mdf";
-		
+		static string _path_to_log_file = "../../../Green Enviro App/Green Enviro Data_log.ldf";
+
 		string _db_file_name = "Green Enviro Data.mdf";
+		string _log_file_name = "Green Enviro Data_log.ldf";
 		string _path_to_debug_directory = @"../../../Green Enviro App/bin/Debug";
 		string _path_to_source_code_directory = @"../../../Green Enviro App";
 
@@ -52,14 +54,21 @@ namespace Green_Enviro_Sync
 		{
 			CheckConnectivity();
 			SetupFirebaseDatabase();
-			UploadDatabase();
+
+			//First Upload the .mdf file
+			//The log file will be uploaded via a recursive function call
+			UploadDatabase(1,_path_to_db_file_main, _db_file_name,"Database File");
+
 		}
 
 		private void DownloadBtn_Click(object sender, EventArgs e)
 		{
 			CheckConnectivity();
 			SetupFirebaseDatabase();
-			RetrieveFromFirebase();
+			//First get the .mdf file
+			//The .ldf will be downloaded via a recursive function call
+			RetrieveFromFirebase(_path_to_db_file_main, 1);
+			
 		}
 
 		private bool CheckConnectivity() 
@@ -104,60 +113,81 @@ namespace Green_Enviro_Sync
 			public string downloadUrl { get; set; }
 		}
 
-		private async void UploadDatabase()
+		private async void UploadDatabase(int _index, string pathToLocalFile, string nameOfFile, string parentDirectory)
 		{
 			//First close the Database before trying to upload
 
 			//Now try to upload the database
-			var uploadStream = File.Open(_path_to_db_file, FileMode.Open);
+			var uploadStream = File.Open(pathToLocalFile, FileMode.Open);
 
 			var task = new FirebaseStorage(_data_bucket_name)
-				.Child("Database File")                 //Parent Directory
-				.Child("Green Enviro Data.mdf")         //Actual File Name
+				.Child(parentDirectory)                 //Parent Directory
+				.Child(nameOfFile)         //Actual File Name
 				.PutAsync(uploadStream);
 
 			task.Progress.ProgressChanged += (s, e) => ProgressBar();
-			database_address = await task;
+			string download_address = await task;
 
 			Data _data = new Data
 			{
-				index = 1,
-				downloadUrl = database_address
+				index = _index,
+				downloadUrl = download_address
 			};
 			
 			InsertIntoFirebase(_data);
+
+			if (_index == 1)
+			{
+				//Second upload the log file(.ldf)
+				UploadDatabase(2, _path_to_log_file, _log_file_name, "Database File");
+			}
+			else 
+			{
+				InsertionCompleted();
+			}
 		}
 
 		private async void InsertIntoFirebase(Data _data)
 		{
-			SetResponse _response = await _fb_client.SetTaskAsync(_firebase_node + _data.index, _data);
-			Data _result = _response.ResultAs<Data>();
+			try
+			{
+				SetResponse _response = await _fb_client.SetTaskAsync(_firebase_node + _data.index, _data);
+			}
+			catch (Exception ex) 
+			{
+				MessageBox.Show("Upload Failed : " + ex.Message);
+			}
+		}
+
+		private void InsertionCompleted() 
+		{
 			UpDownPgBar.Visible = false;
 			MessageBox.Show("Upload Completed");
 			this.Close();
 		}
 
-		private async void RetrieveFromFirebase()
+		private async void RetrieveFromFirebase(string savePath, int nodeNum)
 		{
-			FirebaseResponse _response = await _fb_client.GetTaskAsync(_firebase_node + 1);
+			FirebaseResponse _response = await _fb_client.GetTaskAsync(_firebase_node + nodeNum);
 			Data _data = _response.ResultAs<Data>();
-			database_address = _data.downloadUrl;
+			string _download_address = _data.downloadUrl;
+			int _download_index = _data.index;
 
-			await DownloadDatabase();
+			await DownloadDatabase(_download_index, _download_address, savePath);
 		}
 		// ****************************************************************************************************************
 
-		public async Task DownloadDatabase()
+		public async Task DownloadDatabase(int index, string _downloadUrl, string _savePath)
 		{
 			_stopwatch = Stopwatch.StartNew();
 			//Downloading the Database file and saving it in the Debug folder of the main application
 
 			WebClient _client = new WebClient();
-			Uri _url_address = new Uri(database_address);
+			Uri _url_address = new Uri(_downloadUrl);
 			_client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressBar);
-			_client.DownloadFileCompleted += (sender, e) => DownloadCompleted();
+			_client.DownloadFileCompleted += (sender, e) => DownloadCompleted(index);
 			//_client.DownloadFileAsync(_url_address, _path_to_db_file);
-			await _client.DownloadFileTaskAsync(_url_address, _path_to_db_file);
+			await _client.DownloadFileTaskAsync(_url_address, _savePath);
 		}
 
 		//************************************************************************************************************************
@@ -184,26 +214,38 @@ namespace Green_Enviro_Sync
 			}
 		}
 
-		private void DownloadCompleted() 
+		private void DownloadCompleted(int _index) 
 		{
 
-			string sourceFile = System.IO.Path.Combine(_path_to_debug_directory, _db_file_name);
-			string destFile = System.IO.Path.Combine(_path_to_source_code_directory, _db_file_name);
+			/*			string sourceFile = System.IO.Path.Combine(_path_to_debug_directory, _db_file_name);
+						string destFile = System.IO.Path.Combine(_path_to_source_code_directory, _db_file_name);
 
-			try
+						try
+						{
+							System.IO.File.Copy(sourceFile, destFile, true);
+							MessageBox.Show("Download Completed");
+							this.Close();
+						}
+						catch (Exception ex) 
+						{
+							MessageBox.Show("Process Failed : " + ex.Message);
+						}*/
+
+			if (_index == 1)
 			{
-				System.IO.File.Copy(sourceFile, destFile, true);
+				//Do nothing because we sting need to download the second file
+				RetrieveFromFirebase(_path_to_log_file, 2);
+				return;
+			}
+			else 
+			{
+				UpDownPgBar.Visible = false;
 				MessageBox.Show("Download Completed");
 				this.Close();
 			}
-			catch (Exception ex) 
-			{
-				MessageBox.Show("Process Failed : " + ex.Message);
-			}
+			
 
-			UpDownPgBar.Visible = false;
-			
-			
+
 		}
 	}
 }

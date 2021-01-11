@@ -48,11 +48,22 @@ namespace Green_Enviro_App.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Green Enviro" +
-            " Data.mdf\";Integrated Security=True;Connect Timeout=30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\.mdf;Integrat" +
+            "ed Security=True;Connect Timeout=30")]
         public string GreenEnviroDataConnectionStringSecond {
             get {
                 return ((string)(this["GreenEnviroDataConnectionStringSecond"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Green Enviro" +
+            " Data.mdf\";Integrated Security=True")]
+        public string Green_Enviro_DataConnectionString {
+            get {
+                return ((string)(this["Green_Enviro_DataConnectionString"]));
             }
         }
     }
