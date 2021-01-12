@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EnvDTE;
+using System.Diagnostics;
 using Paket;
-
+using System.IO;
 namespace Green_Enviro_App
 {
     static class Program
@@ -14,18 +14,11 @@ namespace Green_Enviro_App
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            AddDatabaseFile();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
-        }
-
-        static void AddDatabaseFile()
-        {
-           
+            Application.Run(new LoginForm(args));
         }
     }
 }
