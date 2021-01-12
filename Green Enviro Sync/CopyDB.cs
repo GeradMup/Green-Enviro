@@ -27,6 +27,8 @@ namespace Green_Enviro_Sync
 
 		private void NoBtn_Click(object sender, EventArgs e)
 		{
+			Sync _sync_prog = new Sync();
+			_sync_prog.LaunchMainApp();
 			this.Close();
 		}
 	}

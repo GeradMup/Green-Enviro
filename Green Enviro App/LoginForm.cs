@@ -47,7 +47,7 @@ namespace Green_Enviro_App
         //Encryption instantiation 
         InformationEncryption _client_password = new InformationEncryption();
 
-        static string _sync_exe_path = @"..//..//..//Green Enviro Sync//bin//Debug//Green Enviro Sync.exe";
+        string _sync_exe_path = @"..//..//..//Green Enviro Sync//bin//Debug//Green Enviro Sync.exe";
 
         bool _main_program_pass = false;
         public LoginForm(string[] args)

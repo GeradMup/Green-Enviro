@@ -163,6 +163,7 @@ namespace Green_Enviro_Sync
 		{
 			UpDownPgBar.Visible = false;
 			MessageBox.Show("Upload Completed");
+			LaunchMainApp();
 			this.Close();
 		}
 
@@ -217,35 +218,28 @@ namespace Green_Enviro_Sync
 		private void DownloadCompleted(int _index) 
 		{
 
-			/*			string sourceFile = System.IO.Path.Combine(_path_to_debug_directory, _db_file_name);
-						string destFile = System.IO.Path.Combine(_path_to_source_code_directory, _db_file_name);
-
-						try
-						{
-							System.IO.File.Copy(sourceFile, destFile, true);
-							MessageBox.Show("Download Completed");
-							this.Close();
-						}
-						catch (Exception ex) 
-						{
-							MessageBox.Show("Process Failed : " + ex.Message);
-						}*/
-
 			if (_index == 1)
 			{
 				//Do nothing because we sting need to download the second file
 				RetrieveFromFirebase(_path_to_log_file, 2);
 				return;
 			}
-			else 
+			else
 			{
 				UpDownPgBar.Visible = false;
 				MessageBox.Show("Download Completed");
+				LaunchMainApp();
 				this.Close();
 			}
-			
+		}
 
-
+		public void LaunchMainApp() 
+		{
+			string _main_exe_path = @"..//..//..//Green Enviro App//bin//Debug//Green Enviro App.exe";
+			//Run the main application after data syncronization is completed
+			string _absolute_path = Path.GetFullPath(_main_exe_path);
+			Process.Start(_absolute_path, "Open Main Application");
+			this.Close();
 		}
 	}
 }

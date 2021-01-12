@@ -78,7 +78,7 @@ namespace Green_Enviro_Sync
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "CopyDB";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "CopyDB";
+			this.Text = "Green Enviro Synchronizer";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
