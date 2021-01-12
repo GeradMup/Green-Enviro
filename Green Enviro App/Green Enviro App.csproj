@@ -55,6 +55,9 @@
     <ApplicationIcon>green-leaf.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="Chessie, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Chessie.0.6.0\lib\net40\Chessie.dll</HintPath>
     </Reference>
@@ -76,6 +79,9 @@
     </Reference>
     <Reference Include="FireSharp.Serialization.JsonNet, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\FireSharp.Serialization.JsonNet.1.1.0\lib\net45\FireSharp.Serialization.JsonNet.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="FSharp.Core, Version=4.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\FSharp.Core.4.3.1\lib\net45\FSharp.Core.dll</HintPath>
@@ -271,6 +277,13 @@
     </Compile>
     <Compile Include="CustomMsgBox.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="DestructionCertificate.cs" />
+    <Compile Include="UserDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserDatabase.Designer.cs">
+      <DependentUpon>UserDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Green_Enviro_DataDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -298,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserDatabase.resx">
+      <DependentUpon>UserDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -341,10 +357,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Green Enviro Data.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Green Enviro Data_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Green Enviro Data.mdf</DependentUpon>
     </Content>
     <Content Include="green-leaf.ico" />

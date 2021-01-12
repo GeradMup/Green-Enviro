@@ -2179,7 +2179,7 @@ SELECT CustomerNumber, ID, Name, Surname FROM Customers WHERE (CustomerNumber = 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Green_Enviro_App.Properties.Settings.Default.Green_Enviro_DataConnectionString;
+            this._connection.ConnectionString = global::Green_Enviro_App.Properties.Settings.Default.GreenEnviroDataConnectionStringSecond;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2541,7 +2541,7 @@ SELECT Id, Name, Price, DealerPrice, Type FROM Items WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Green_Enviro_App.Properties.Settings.Default.Green_Enviro_DataConnectionString;
+            this._connection.ConnectionString = global::Green_Enviro_App.Properties.Settings.Default.GreenEnviroDataConnectionStringSecond;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2902,7 +2902,7 @@ SELECT Id, Name, Price, DealerPrice FROM Stock WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Green_Enviro_App.Properties.Settings.Default.Green_Enviro_DataConnectionString;
+            this._connection.ConnectionString = global::Green_Enviro_App.Properties.Settings.Default.GreenEnviroDataConnectionStringSecond;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3239,7 +3239,7 @@ SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @Accou
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Green_Enviro_App.Properties.Settings.Default.Green_Enviro_DataConnectionString;
+            this._connection.ConnectionString = global::Green_Enviro_App.Properties.Settings.Default.GreenEnviroDataConnectionStringSecond;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

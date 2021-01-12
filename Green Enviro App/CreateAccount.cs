@@ -43,18 +43,24 @@ namespace Green_Enviro_App
         public List<Credentials> _credentials = new List<Credentials>();
 
         // Lets make a Data Table for the new user
-        public Database _database = new Database();
+        Database _database;
         DataTable _user;
-
-        public CreateAccount()
+        UserDatabaseForm _user_database ;
+        public CreateAccount(Database _db,UserDatabaseForm _user_db)
         {
             InitializeComponent();
             //Creates username and password G,G for development purposes
             defaultUser();
 
+            _database = _db;
+            _user_database = _user_db;
+
             //LOAD UP USER INFO FROM HE DATABASE
-            
+
+            LoadDataBase();
             ShowUsers();
+
+            
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -164,7 +170,8 @@ namespace Green_Enviro_App
             {
                 _icon = MessageBoxIcon.None;
                 addNewUser();
-                MessageBox.Show(_message, _title, _buttons, _icon);
+                CustomMessageBox msg = new CustomMessageBox(_title,_message);
+                _user_database.LoadUserDataTable();
                 returnToLoginForm();
             }
             else
@@ -187,21 +194,12 @@ namespace Green_Enviro_App
             //Encrypting the password and storing not the password itself but its encryption using a 196 bit cipher key
             InformationEncryption __encryption = new InformationEncryption();
             string _encrypted_user_password = __encryption.Encrypt(newPasswordField.Text);
+            
             // Alright here we will add the code so that we insert into the DB once we enter a new user
-            /*_user = _database.SelectAll("Users");
-            // To add a new user its the same principle as adding a row
-
-            // Create a new row
-            DataRow _new_user_db = _user.NewRow();
-            _new_user_db[1] = newUserNameField.Text;
-            _new_user_db[2] = _encrypted_user_password;
-            _new_user_db[3] = emailAddressField.Text;*/
+            // To add a new user its the same principle as adding a row 
             _database.InsertNewUser(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text);
 
-            // Add the row to the SalesHistory DataTable
-            //_user.Rows.Add(_new_user_db);
-
-            //This is still the original list storage way to keep track of new users
+            // This is still the original list storage way to keep track of new users
             Credentials _new_user = new Credentials(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text);
             _credentials.Add(_new_user);
         }
@@ -220,6 +218,8 @@ namespace Green_Enviro_App
             bool _user_name_exist = true;
             bool _email_address_exist = true;
             bool isEmpty = !_credentials.Any();
+            List<string> _store_user_name = new List<string>();
+
             //If The list of credentials is empty then there are no user name that exist
             if (isEmpty)
             {
@@ -229,15 +229,18 @@ namespace Green_Enviro_App
             //If the list of credentials is not empty then verify if the user name exist already
             else
             {
+           
                 for (index = 0; index < _credentials.Count; index++)
-                {
+                { 
                     if (_credentials[index].user_name.Contains(newUserNameField.Text))
                     {
+                        Console.WriteLine("input user info is the same as in db");
                         _user_name_exist = true;
                         break;
                     }
                     else if (_credentials[index].email.Contains(emailAddressField.Text))
                     {
+                        Console.WriteLine("input email info is the same as in db");
                         _email_address_exist = true;
                         break;
                     }
@@ -246,7 +249,7 @@ namespace Green_Enviro_App
                         _user_name_exist = false;
                         _email_address_exist = false;
 
-                    } 
+                    }
                 }
 
             }
@@ -296,6 +299,25 @@ namespace Green_Enviro_App
 
                     Console.WriteLine("\t" + row.RowState);
                 }
+            }
+        }
+        private void LoadDataBase()
+        {
+            _user = _database.SelectAll("Users");
+            string _db_username = "";
+            string _db_email = "";
+            string _db_psword = "";
+            int index = 0;
+
+            foreach (DataRow row in _user.Rows)
+            {
+                //Here we are checking the username and email address of people using the database and the user already within
+                _db_username = _user.Rows[index].Field<string>("Username");
+                _db_psword = _user.Rows[index].Field<string>("Password");
+                _db_email = _user.Rows[index].Field<string>("Email");
+                Credentials _load_user_from_db = new Credentials(_db_username,_db_psword,_db_email);
+                _credentials.Add(_load_user_from_db);
+                index++;
             }
         }
     }

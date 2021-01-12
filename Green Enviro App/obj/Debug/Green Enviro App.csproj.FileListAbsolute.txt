@@ -75,6 +75,11 @@ C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\G
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro App.xml
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro Data.mdf
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro Data_log.ldf
+C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\bin\Debug\Green Enviro Data_log.ldf
+C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\obj\Debug\Green_Enviro_App.UserDatabaseForm.resources
+C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\bin\Debug\itextsharp.dll
+C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\Green-Enviro\Green Enviro App\bin\Debug\itextsharp.xml
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Chessie.dll
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\FSharp.Core.dll
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Mono.Cecil.dll
