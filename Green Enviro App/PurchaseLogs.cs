@@ -297,6 +297,15 @@ namespace Green_Enviro_App
 			
 		}
 
+		/// <summary>
+		/// Determines whether a valid date range is select for filtering the Purchase Log.
+		/// </summary>
+		/// <returns>
+		///   <c>true</c> if a valid date range is selected; otherwise, <c>false</c>.
+		/// </returns>
+		/// <remark>
+		/// If an invalid date range is selected, the date fields are set back to null
+		/// </remark>
 		private bool isDateFiltered() 
 		{
 			if ((_main_form.PurchaseLogStartDate.SelectedItem == null) && (_main_form.PurchaseLogEndDate.SelectedItem == null)) 
@@ -337,6 +346,12 @@ namespace Green_Enviro_App
 			return true;
 		}
 
+		/// <summary>
+		/// Determines whether the purchase box is type filtered or not
+		/// </summary>
+		/// <returns>
+		///   <c>true</c> if either Ferrous or Non-Ferrous is selected; otherwise, <c>false</c>.
+		/// </returns>
 		private bool isTypeFiltered() 
 		{
 			if (_main_form.PurchaseLogType.SelectedItem == null)
@@ -348,6 +363,10 @@ namespace Green_Enviro_App
 				return true;
 			}
 		}
+
+		/// <summary>
+		/// Removes all the filters in the purchase log and displays all the existing entries
+		/// </summary>
 		public void RemoveFilters() 
 		{
 			_main_form.PurchaseLogStartDate.SelectedItem = null;

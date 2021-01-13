@@ -16,7 +16,7 @@ namespace Green_Enviro_Sync
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Sync());
+			Application.Run(new CopyDB());
 		}
 	}
 }

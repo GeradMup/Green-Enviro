@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.IO;
+using System.Diagnostics;
 
 namespace Green_Enviro_App
 {
@@ -28,12 +30,12 @@ namespace Green_Enviro_App
     
     public partial class LoginForm : Form
     {
-     
+
         //Creates an Instance of the Database class
-        static Database _database = new Database();
+        static Database _database;
 
         //Creates the main form for the program
-        Main_Form _mainForm = new Main_Form(_database);
+        Main_Form _mainForm;
 
         //Instance to view user data table for deletion
         static UserDatabaseForm _user_db_deletion = new UserDatabaseForm(_database);
@@ -48,12 +50,40 @@ namespace Green_Enviro_App
         //Encryption instantiation 
         InformationEncryption _client_password = new InformationEncryption();
 
-        public LoginForm()
+        string _sync_exe_path = @"..//..//..//Green Enviro Sync//bin//Debug//Green Enviro Sync.exe";
+
+        bool _main_program_pass = false;
+        public LoginForm(string[] args)
         {
+
+            if (args.Length > 0)
+            {
+                _main_program_pass = true;
+            }
+
             InitializeComponent();
+
+            //Creates an Instance of the Database class
+            _database = new Database();
+
+            //Creates the main form for the program
+            _mainForm = new Main_Form(_database);
+
             //This is in order to render passwords into characters as to hide them
             //passwordField.PasswordChar = '*';
         }
+
+        //********************************************************************************************************
+
+        void PromptDatabaseSnyc()
+        {
+            //First open the Sync App to prompt users if they want to synchronize data 
+            string _absolute_path = Path.GetFullPath(_sync_exe_path);
+            Process.Start(_absolute_path);
+            this.Close();
+        }
+
+        //********************************************************************************************************
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
@@ -135,12 +165,17 @@ namespace Green_Enviro_App
         {
             bool validLogin = verifyCredentials();
 
-            if (validLogin)
+            if (_main_program_pass == true) 
             {
-                
                 _mainForm.Activate();
                 _mainForm.Show();
                 this.Hide();
+                return;
+            }
+
+            if ((validLogin == true) && (_main_program_pass == false))
+            {
+                PromptDatabaseSnyc();
             }
             else
             {

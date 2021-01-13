@@ -27,8 +27,12 @@ namespace Green_Enviro_App
             _destruction_certificate = new DestructionCertificate(this);
         }
 
-        //This function makes it impossible to move the main form around or to resize it
-        protected override void WndProc(ref Message message)
+
+		/// <summary>
+        /// Method for making sure that the Main_Form's size cannot be changed and the Main_Form cannot be moved
+        /// </summary>
+		/// <param name="message">The message.</param>
+		protected override void WndProc(ref Message message)
         {
             const int WM_SYSCOMMAND = 0x0112;
             const int SC_MOVE = 0xF010;
