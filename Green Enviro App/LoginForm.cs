@@ -13,7 +13,10 @@ using System.Diagnostics;
 
 namespace Green_Enviro_App
 {
-    public struct Credentials 
+	/// <summary>
+	///   <br />
+	/// </summary>
+	public struct Credentials 
     {
         public Credentials(string _name, string psword, string mail) 
         {
@@ -27,22 +30,26 @@ namespace Green_Enviro_App
         public string email;
     }
 
-    
-    public partial class LoginForm : Form
+
+	/// <summary>
+	/// Class for handling all the Login related tasks.  
+    /// <br />
+	/// </summary>
+	public partial class LoginForm : Form
     {
 
-        //Creates an Instance of the Database class
+        //Creates a variable of type Database
         static Database _database;
 
         //Creates the main form for the program
         Main_Form _mainForm;
 
         //Instance to view user data table for deletion
-        static UserDatabaseForm _user_db_deletion = new UserDatabaseForm(_database);
+        static UserDatabaseForm _user_db_deletion;
 
 
         //Creates a single instance of the CreateAccount class
-        CreateAccount _account = new CreateAccount(_database,_user_db_deletion);
+        CreateAccount _account;
 
         //Master Password (Changeable depending on the devs)
         const string _master_password = "1234";
@@ -68,6 +75,12 @@ namespace Green_Enviro_App
 
             //Creates the main form for the program
             _mainForm = new Main_Form(_database);
+
+            //Creates a new instances of UserDatabaseForm class
+            _user_db_deletion = new UserDatabaseForm(_database);
+
+            //Creates a new instance of CreateAccoutn class
+            _account = new CreateAccount(_database, _user_db_deletion);
 
             //This is in order to render passwords into characters as to hide them
             //passwordField.PasswordChar = '*';

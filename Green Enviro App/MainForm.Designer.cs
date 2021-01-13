@@ -428,12 +428,12 @@ namespace Green_Enviro_App
             this.removeFiltersBtn.Text = "Remove Filters";
             this.removeFiltersBtn.UseVisualStyleBackColor = true;
             this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
-            // 
-            // PurchseLogGridView
-            // 
-            this.PurchseLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			// 
+			// PurchseLogGridView
+			// 
+			this.PurchseLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom))))); 
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
+			
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
 			this.CancelPurchaseBtn = new System.Windows.Forms.Button();
@@ -1655,13 +1655,8 @@ namespace Green_Enviro_App
         private System.Windows.Forms.TextBox emailAddressDCField;
         private System.Windows.Forms.TextBox contactPersonDCField;
         private System.Windows.Forms.Label label15;
-    }
-		private System.Windows.Forms.Label label15;
-		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.Label label13;
-		private System.Windows.Forms.Label label12;
+   
 		private System.Windows.Forms.TextBox textBox3;
-		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.ComboBox comboBox3;
 		private System.Windows.Forms.ComboBox comboBox2;
@@ -1671,9 +1666,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Label label17;
 		public System.Windows.Forms.ComboBox comboBox4;
-		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.Label label20;
 		public System.Windows.Forms.ComboBox comboBox5;

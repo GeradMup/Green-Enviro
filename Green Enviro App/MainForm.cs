@@ -15,16 +15,20 @@ namespace Green_Enviro_App
         Receipt _receipt;
         Database _database;
         PurchaseLogs _purchase_logs;
-        DestructionCertificate _destruction_certificate;
+		//DestructionCertificate _destruction_certificate;
 
-        public Main_Form(Database _data)
+		/// <summary>
+        /// This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.
+        /// </summary>
+		/// <param name="_data">Database</param>
+		public Main_Form(Database _data)
         {
             InitializeComponent();
             //initialiseItemList();
             _database = _data;
             _purchase_logs = new PurchaseLogs(this);
             _receipt = new Receipt(this, _database, _purchase_logs);
-            _destruction_certificate = new DestructionCertificate(this);
+            //_destruction_certificate = new DestructionCertificate(this);
         }
 
 
@@ -114,7 +118,7 @@ namespace Green_Enviro_App
 
         private void generateDCBtn_Click(object sender, EventArgs e)
         {
-            _destruction_certificate.ExportToPdf();
+            //_destruction_certificate.ExportToPdf();
         }
     }
 }

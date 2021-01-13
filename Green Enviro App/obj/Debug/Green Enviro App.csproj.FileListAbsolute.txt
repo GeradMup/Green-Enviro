@@ -12,7 +12,6 @@ C:\Users\ELIJAH\Documents\Vacation Work Project - Desktop App\Green Enviro App\G
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro App.exe.config
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro App.exe
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\Green Enviro App.pdb
-C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green Enviro App.csprojAssemblyReference.cache
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.CreateAccount.resources
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.LoginForm.resources
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.Main_Form.resources
@@ -106,3 +105,6 @@ C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\zh-Hans\FSharp.Core.resources.dll
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\zh-Hant\FSharp.Core.resources.dll
 C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\obj\Debug\Green_Enviro_App.UserDatabaseForm.resources
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\itextsharp.dll
+C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\bin\Debug\itextsharp.xml

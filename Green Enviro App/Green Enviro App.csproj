@@ -120,7 +120,9 @@
       <HintPath>packages\stdole.16.7.30508.193\lib\net45\stdole.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
       <Private>True</Private>
@@ -277,7 +279,6 @@
     </Compile>
     <Compile Include="CustomMsgBox.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="DestructionCertificate.cs" />
     <Compile Include="UserDatabase.cs">
       <SubType>Form</SubType>
     </Compile>
