@@ -138,7 +138,7 @@ namespace Green_Enviro_App
             this.mainTabControl.Margin = new System.Windows.Forms.Padding(2);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1064, 609);
+            this.mainTabControl.Size = new System.Drawing.Size(971, 609);
             this.mainTabControl.TabIndex = 0;
             // 
             // ReceiptPage
@@ -169,7 +169,7 @@ namespace Green_Enviro_App
             this.ReceiptPage.Margin = new System.Windows.Forms.Padding(2);
             this.ReceiptPage.Name = "ReceiptPage";
             this.ReceiptPage.Padding = new System.Windows.Forms.Padding(2);
-            this.ReceiptPage.Size = new System.Drawing.Size(1020, 577);
+            this.ReceiptPage.Size = new System.Drawing.Size(1056, 577);
             this.ReceiptPage.TabIndex = 0;
             this.ReceiptPage.Text = "Receipt";
             this.ReceiptPage.UseVisualStyleBackColor = true;
@@ -439,7 +439,7 @@ namespace Green_Enviro_App
             this.PurchasesPage.Margin = new System.Windows.Forms.Padding(2);
             this.PurchasesPage.Name = "PurchasesPage";
             this.PurchasesPage.Padding = new System.Windows.Forms.Padding(2);
-            this.PurchasesPage.Size = new System.Drawing.Size(1020, 577);
+            this.PurchasesPage.Size = new System.Drawing.Size(1056, 577);
             this.PurchasesPage.TabIndex = 1;
             this.PurchasesPage.Text = "Purchases Logs";
             this.PurchasesPage.UseVisualStyleBackColor = true;
@@ -605,7 +605,7 @@ namespace Green_Enviro_App
             this.SalesPage.Location = new System.Drawing.Point(4, 28);
             this.SalesPage.Margin = new System.Windows.Forms.Padding(2);
             this.SalesPage.Name = "SalesPage";
-            this.SalesPage.Size = new System.Drawing.Size(1020, 577);
+            this.SalesPage.Size = new System.Drawing.Size(1056, 577);
             this.SalesPage.TabIndex = 2;
             this.SalesPage.Text = "Sales Logs";
             this.SalesPage.UseVisualStyleBackColor = true;
@@ -879,7 +879,7 @@ namespace Green_Enviro_App
             this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1056, 577);
+            this.tabPage1.Size = new System.Drawing.Size(963, 577);
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Destruction Certificate";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -887,7 +887,7 @@ namespace Green_Enviro_App
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(632, 363);
+            this.label21.Location = new System.Drawing.Point(70, 364);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(81, 19);
@@ -897,7 +897,7 @@ namespace Green_Enviro_App
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(632, 53);
+            this.label22.Location = new System.Drawing.Point(70, 211);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(72, 19);
@@ -907,7 +907,7 @@ namespace Green_Enviro_App
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(70, 366);
+            this.label23.Location = new System.Drawing.Point(70, 318);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(207, 19);
@@ -917,7 +917,7 @@ namespace Green_Enviro_App
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(632, 158);
+            this.label24.Location = new System.Drawing.Point(70, 266);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(126, 19);
@@ -927,7 +927,7 @@ namespace Green_Enviro_App
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(70, 265);
+            this.label25.Location = new System.Drawing.Point(70, 158);
             this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(135, 19);
@@ -938,7 +938,7 @@ namespace Green_Enviro_App
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(70, 158);
+            this.label26.Location = new System.Drawing.Point(70, 104);
             this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(135, 19);
@@ -958,7 +958,7 @@ namespace Green_Enviro_App
             // dstrctCertCntactPersonField
             // 
             this.dstrctCertCntactPersonField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dstrctCertCntactPersonField.Location = new System.Drawing.Point(236, 155);
+            this.dstrctCertCntactPersonField.Location = new System.Drawing.Point(281, 104);
             this.dstrctCertCntactPersonField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertCntactPersonField.Name = "dstrctCertCntactPersonField";
             this.dstrctCertCntactPersonField.ReadOnly = true;
@@ -968,7 +968,7 @@ namespace Green_Enviro_App
             // dstrctCertExtrctDateField
             // 
             this.dstrctCertExtrctDateField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dstrctCertExtrctDateField.Location = new System.Drawing.Point(236, 50);
+            this.dstrctCertExtrctDateField.Location = new System.Drawing.Point(281, 53);
             this.dstrctCertExtrctDateField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertExtrctDateField.Name = "dstrctCertExtrctDateField";
             this.dstrctCertExtrctDateField.ReadOnly = true;
@@ -978,7 +978,7 @@ namespace Green_Enviro_App
             // dstrctCertCntactNumField
             // 
             this.dstrctCertCntactNumField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dstrctCertCntactNumField.Location = new System.Drawing.Point(236, 258);
+            this.dstrctCertCntactNumField.Location = new System.Drawing.Point(281, 158);
             this.dstrctCertCntactNumField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertCntactNumField.Name = "dstrctCertCntactNumField";
             this.dstrctCertCntactNumField.ReadOnly = true;
@@ -988,17 +988,17 @@ namespace Green_Enviro_App
             // dstrctCertQuantityField
             // 
             this.dstrctCertQuantityField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dstrctCertQuantityField.Location = new System.Drawing.Point(736, 363);
+            this.dstrctCertQuantityField.Location = new System.Drawing.Point(232, 360);
             this.dstrctCertQuantityField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertQuantityField.Name = "dstrctCertQuantityField";
             this.dstrctCertQuantityField.ReadOnly = true;
-            this.dstrctCertQuantityField.Size = new System.Drawing.Size(238, 26);
+            this.dstrctCertQuantityField.Size = new System.Drawing.Size(129, 26);
             this.dstrctCertQuantityField.TabIndex = 26;
             // 
             // dstrctCertDescripOfProdField
             // 
             this.dstrctCertDescripOfProdField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dstrctCertDescripOfProdField.Location = new System.Drawing.Point(310, 363);
+            this.dstrctCertDescripOfProdField.Location = new System.Drawing.Point(281, 311);
             this.dstrctCertDescripOfProdField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertDescripOfProdField.Name = "dstrctCertDescripOfProdField";
             this.dstrctCertDescripOfProdField.ReadOnly = true;
@@ -1008,7 +1008,7 @@ namespace Green_Enviro_App
             // dstrctCertEmailAddressField
             // 
             this.dstrctCertEmailAddressField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dstrctCertEmailAddressField.Location = new System.Drawing.Point(780, 155);
+            this.dstrctCertEmailAddressField.Location = new System.Drawing.Point(281, 259);
             this.dstrctCertEmailAddressField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertEmailAddressField.Name = "dstrctCertEmailAddressField";
             this.dstrctCertEmailAddressField.ReadOnly = true;
@@ -1018,7 +1018,7 @@ namespace Green_Enviro_App
             // dstrctCertCompanyField
             // 
             this.dstrctCertCompanyField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dstrctCertCompanyField.Location = new System.Drawing.Point(736, 50);
+            this.dstrctCertCompanyField.Location = new System.Drawing.Point(237, 208);
             this.dstrctCertCompanyField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertCompanyField.Name = "dstrctCertCompanyField";
             this.dstrctCertCompanyField.ReadOnly = true;
@@ -1027,12 +1027,13 @@ namespace Green_Enviro_App
             // 
             // generateDstrCertBtn
             // 
-            this.generateDstrCertBtn.Location = new System.Drawing.Point(654, 458);
+            this.generateDstrCertBtn.Location = new System.Drawing.Point(74, 487);
             this.generateDstrCertBtn.Name = "generateDstrCertBtn";
             this.generateDstrCertBtn.Size = new System.Drawing.Size(263, 73);
             this.generateDstrCertBtn.TabIndex = 30;
             this.generateDstrCertBtn.Text = "Generate Certificate";
             this.generateDstrCertBtn.UseVisualStyleBackColor = true;
+            this.generateDstrCertBtn.Click += new System.EventHandler(this.generateDstrCertBtn_Click);
             // 
             // dstrctCertQuantityUnit
             // 
@@ -1042,17 +1043,17 @@ namespace Green_Enviro_App
             this.dstrctCertQuantityUnit.FormattingEnabled = true;
             this.dstrctCertQuantityUnit.IntegralHeight = false;
             this.dstrctCertQuantityUnit.ItemHeight = 19;
-            this.dstrctCertQuantityUnit.Location = new System.Drawing.Point(978, 362);
+            this.dstrctCertQuantityUnit.Location = new System.Drawing.Point(172, 360);
             this.dstrctCertQuantityUnit.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertQuantityUnit.Name = "dstrctCertQuantityUnit";
-            this.dstrctCertQuantityUnit.Size = new System.Drawing.Size(109, 27);
+            this.dstrctCertQuantityUnit.Size = new System.Drawing.Size(105, 27);
             this.dstrctCertQuantityUnit.TabIndex = 31;
             // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 609);
+            this.ClientSize = new System.Drawing.Size(971, 609);
             this.Controls.Add(this.mainTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

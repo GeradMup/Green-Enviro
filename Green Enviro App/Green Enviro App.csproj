@@ -279,6 +279,7 @@
     </Compile>
     <Compile Include="CustomMsgBox.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Destruction_Certificate.cs" />
     <Compile Include="UserDatabase.cs">
       <SubType>Form</SubType>
     </Compile>
