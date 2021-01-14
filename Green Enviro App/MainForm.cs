@@ -120,5 +120,10 @@ namespace Green_Enviro_App
         {
             //_destruction_certificate.ExportToPdf();
         }
+
+        private void label25_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
