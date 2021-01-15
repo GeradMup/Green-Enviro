@@ -21,8 +21,9 @@ namespace Green_Enviro_App
             _main_form = _form;
         }
 
-        public void ExportToPdf()
+        private void GenerateDestructionCertificate()
         {
+
             try
             {
                 // Pdf Document type and size
@@ -35,7 +36,7 @@ namespace Green_Enviro_App
                 PdfWriter writer = PdfWriter.GetInstance(pdfDocument, fs);
 
                 //Here when uncommenting you can add meta information 
-                
+
                 /*
                 // Add meta information to the document  
                 pdfDocument.AddAuthor("Micke Blomquist");  
@@ -75,12 +76,12 @@ namespace Green_Enviro_App
 
                 //-----------------------------------------------------
                 //Here we are writing the context of the pdf file
-                
+
                 //-----------------------------------------------------------------------------------------------------------
                 //Coordinates for exact placement
-                var y_coordinates = (pdfDocument.Top - 180f)-30;
+                var y_coordinates = (pdfDocument.Top - 180f) - 30;
                 var x_coordinates = 55;
-                
+
                 //-----------------------------------------------------------------------------------------------------------
                 //Content of the pdf in strings
                 string _date_of_certificate = DateTime.Now.ToString("dd MMMM yyyy       ");
@@ -129,29 +130,29 @@ namespace Green_Enviro_App
                 cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Contact Numbers: ", x_coordinates, y_coordinates, 0);
                 cb.SetFontAndSize(bfTimes, 12);
                 cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, _contact_person_number_of_certificate, x_coordinates + 97, y_coordinates, 0);
-                
+
                 y_coordinates -= 25;
 
                 //----------------------------------------------------------------------------------------------------------------------
                 // Paragraph certifying the date and the materials the company recycled or scrapped
                 cb.SetFontAndSize(bfTimes, 12);
-                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, introduction_text, x_coordinates, y_coordinates, 0) ;
+                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, introduction_text, x_coordinates, y_coordinates, 0);
                 y_coordinates -= 15;
-                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, continuation_of_introduction_text, x_coordinates, y_coordinates, 0) ;
+                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, continuation_of_introduction_text, x_coordinates, y_coordinates, 0);
 
                 y_coordinates -= 35;
 
                 //------------------------------------------------------------------------------------------------------------------------
                 // Description of products and quantity
                 cb.SetFontAndSize(bold_times, 12);
-                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Description of products: ", x_coordinates , y_coordinates, 0);
+                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Description of products: ", x_coordinates, y_coordinates, 0);
                 cb.SetFontAndSize(bfTimes, 12);
-                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, _contact_person_email_for_certificate, x_coordinates + 82, y_coordinates, 0);
+                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, _description_of_product_for_certificate, x_coordinates + 128, y_coordinates, 0);
                 y_coordinates -= 15;
                 cb.SetFontAndSize(bold_times, 12);
-                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Quantity: ", x_coordinates , y_coordinates, 0);
+                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Quantity: ", x_coordinates, y_coordinates, 0);
                 cb.SetFontAndSize(bfTimes, 12);
-                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, _contact_person_email_for_certificate, x_coordinates + 50, y_coordinates, 0);
+                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, _product_quantity, x_coordinates + 53, y_coordinates, 0);
                 y_coordinates -= 45;
 
                 //------------------------------------------------------------------------------------------------------------------------
@@ -169,16 +170,16 @@ namespace Green_Enviro_App
 
                 cb.SetFontAndSize(bold_times, 12);
                 cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, _date_of_certificate, x_coordinates + 335, y_coordinates, 0);
-                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Operations Director", x_coordinates , y_coordinates, 0);
+                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Operations Director", x_coordinates, y_coordinates, 0);
                 y_coordinates -= 15;
-                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Nicholas Mupfumisi", x_coordinates , y_coordinates, 0);
+                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Nicholas Mupfumisi", x_coordinates, y_coordinates, 0);
 
                 //Insert picture of signature (can be improved)
                 y_coordinates -= 60;
                 string signauture_image_path = @"..//..//resources//Green Enviro Signature.png";
                 iTextSharp.text.Image _signature_img = iTextSharp.text.Image.GetInstance(signauture_image_path);
                 _signature_img.ScalePercent(75f);
-                _signature_img.SetAbsolutePosition(x_coordinates-10, y_coordinates);
+                _signature_img.SetAbsolutePosition(x_coordinates - 10, y_coordinates);
                 cb.AddImage(_signature_img);
 
 
@@ -191,9 +192,109 @@ namespace Green_Enviro_App
             {
 
             }
+        }
+
+        public void ExportToPdf()
+        {
+
+            var _generate_DC = verifyGenerateDestructionCertificate();
+            MessageBoxButtons _buttons;
+            MessageBoxIcon _icon;
+
+            string _message = _generate_DC.Item3;
+            string _title = _generate_DC.Item2;
+            _buttons = MessageBoxButtons.OK;
+
+            if (_generate_DC.Item1)
+            {
+                _icon = MessageBoxIcon.None;
+                CustomMessageBox msg = new CustomMessageBox(_title, _message);
+                GenerateDestructionCertificate();
+                ClearDCFields();
+            }
+            else
+            {
+                _icon = MessageBoxIcon.Error;
+                MessageBox.Show(_message, _title, _buttons, _icon);
+            }
 
 
         }
 
+        // Function verifying the validity of all information inputted
+        private Tuple<bool, string, string> verifyGenerateDestructionCertificate()
+        {
+            string _error = "Error";
+            string _success = "Success";
+            string _empty_txtbox = "";
+            string _message_type = "";
+            string _message = "";
+            bool _all_good = false;
+
+            if (_main_form.dstrctCertExtrctDateField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = "Extraction Date not entered";
+                _all_good = false;
+            }
+            else if (_main_form.dstrctCertCompanyField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = "Company not entered";
+                _all_good = false;
+            }
+            else if (_main_form.dstrctCertCntactPersonField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = "Contact Person not entered";
+                _all_good = false;
+            }
+            else if (_main_form.dstrctCertCntactNumField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = "Contact number not entered";
+                _all_good = false;
+            }
+            else if (_main_form.dstrctCertEmailAddressField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = "Email Address not entered";
+                _all_good = false;
+            }
+            else if (_main_form.dstrctCertDescripOfProdField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = "No product has been entered";
+                _all_good = false;
+            }
+            else if (_main_form.dstrctCertQuantityField.Text == _empty_txtbox)
+            {
+                _message_type = _error;
+                _message = "Quantity not entered";
+                _all_good = false;
+            }
+            else
+            {
+                _message_type = _success;
+                _message = "Destruction Certificate has been successfuilly generated";
+                _all_good = true;
+            }
+
+            Tuple<bool, string, string> _new_tuple = new Tuple<bool, string, string>(_all_good, _message_type, _message);
+            return _new_tuple;
+
+        }
+
+
+        private void ClearDCFields()
+        {
+            _main_form.dstrctCertExtrctDateField.Clear();
+            _main_form.dstrctCertCompanyField.Clear();
+            _main_form.dstrctCertCntactPersonField.Clear();
+            _main_form.dstrctCertCntactNumField.Clear();
+            _main_form.dstrctCertEmailAddressField.Clear();
+            _main_form.dstrctCertDescripOfProdField.Clear();
+            _main_form.dstrctCertQuantityField.Clear();
+        }
     }
 }
