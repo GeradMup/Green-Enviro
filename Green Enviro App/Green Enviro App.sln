@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Green Enviro App", "Green Enviro App.csproj", "{CA14CAC1-ABD0-4777-9900-F9D95ACC4D24}"
 EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Documentation", "..\Documentation\Documentation.shfbproj", "{AD5AD4EF-BCF1-4841-81C0-B485B0DCD644}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{CA14CAC1-ABD0-4777-9900-F9D95ACC4D24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA14CAC1-ABD0-4777-9900-F9D95ACC4D24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA14CAC1-ABD0-4777-9900-F9D95ACC4D24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD5AD4EF-BCF1-4841-81C0-B485B0DCD644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD5AD4EF-BCF1-4841-81C0-B485B0DCD644}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD5AD4EF-BCF1-4841-81C0-B485B0DCD644}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD5AD4EF-BCF1-4841-81C0-B485B0DCD644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
