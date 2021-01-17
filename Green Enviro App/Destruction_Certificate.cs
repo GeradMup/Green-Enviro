@@ -24,6 +24,7 @@ namespace Green_Enviro_App
         {
             _main_form = _form;
             GenerateExtractionDateList();
+            QuantityOfProducts();
         }
         private void GenerateDestructionCertificate(string _pdf_save_path)
         {
@@ -222,7 +223,6 @@ namespace Green_Enviro_App
                 MessageBox.Show(_message, _title, _buttons, _icon);
             }
 
-
         }
 
         // Function verifying the validity of all information inputted
@@ -299,7 +299,7 @@ namespace Green_Enviro_App
             else
             {
                 _message_type = _success;
-                _message = "Destruction Certificate has been successfuilly generated";
+                _message = "Destruction Certificate has been successfully generated";
                 _all_good = true;
             }
 
@@ -324,6 +324,8 @@ namespace Green_Enviro_App
         {
             // Make a list for the item
             System.Web.UI.WebControls.ListItem _date;
+
+            //-----------------------------------------------------------------------------------------------------
             //First lets generate the days of the month
             for (int day = 1; day <= System.DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);day++)
             {
@@ -331,7 +333,8 @@ namespace Green_Enviro_App
             }
             _main_form.dstrctCertificateDayList.Items.Insert(0, "Select");
             _main_form.dstrctCertificateDayList.SelectedIndex = 0;
-            //-----------------------------------------------------------------------------------------------
+
+            //------------------------------------------------------------------------------------------------------
             //Generating the months
             foreach (var months in DateTimeFormatInfo.CurrentInfo.MonthNames)
             {
@@ -355,6 +358,13 @@ namespace Green_Enviro_App
             _main_form.dstrctCertificateYearList.Items.Insert(0, "Select");
             _main_form.dstrctCertificateYearList.SelectedIndex = 0;
 
+        }
+        private void QuantityOfProducts()
+        {
+            _main_form.dstrctCertQuantityUnit.Items.Add("PALLETS");
+            _main_form.dstrctCertQuantityUnit.Items.Add("Kg");
+            _main_form.dstrctCertQuantityUnit.Items.Insert(0, "Select");
+            _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
         }
     }
 }
