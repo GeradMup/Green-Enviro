@@ -95,7 +95,7 @@ namespace Green_Enviro_App
                 string _contact_person_number_of_certificate = _main_form.dstrctCertCntactNumField.Text;
                 string _contact_person_email_for_certificate = _main_form.dstrctCertEmailAddressField.Text;
                 string _description_of_product_for_certificate = _main_form.dstrctCertDescripOfProdField.Text;
-                string _product_quantity = _main_form.dstrctCertQuantityField.Text;
+                string _product_quantity = _main_form.dstrctCertQuantityNumBox.Text;
 
                 //----------------------------------------------------------------------------------------------------------------
                 //Constant paragraphs of the destruction certificate
@@ -284,7 +284,7 @@ namespace Green_Enviro_App
                 _message = "No product has been entered";
                 _all_good = false;
             }
-            else if (_main_form.dstrctCertQuantityField.Text == _empty_txtbox)
+            else if (_main_form.dstrctCertQuantityNumBox.Text == "0.000")
             {
                 _message_type = _error;
                 _message = "Quantity not entered";
@@ -309,15 +309,16 @@ namespace Green_Enviro_App
 
         private void ClearDCFields()
         {
-            _main_form.dstrctCertificateDayList.SelectedItem = null;
-            _main_form.dstrctCertificateMonthList.SelectedItem = null;
-            _main_form.dstrctCertificateYearList.SelectedItem = null;
+            _main_form.dstrctCertificateDayList.SelectedIndex = 0;
+            _main_form.dstrctCertificateMonthList.SelectedIndex = 0;
+            _main_form.dstrctCertificateYearList.SelectedIndex = 0;
             _main_form.dstrctCertCompanyField.Clear();
             _main_form.dstrctCertCntactPersonField.Clear();
             _main_form.dstrctCertCntactNumField.Clear();
             _main_form.dstrctCertEmailAddressField.Clear();
             _main_form.dstrctCertDescripOfProdField.Clear();
-            _main_form.dstrctCertQuantityField.Clear();
+            _main_form.dstrctCertQuantityNumBox.ResetText();
+            _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
         }
 
         private void GenerateExtractionDateList()

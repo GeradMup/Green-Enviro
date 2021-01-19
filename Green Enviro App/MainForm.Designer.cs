@@ -97,12 +97,14 @@ namespace Green_Enviro_App
             this.label12 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dstrctCertificateYearList = new System.Windows.Forms.ComboBox();
+            this.dstrctCertificateMonthList = new System.Windows.Forms.ComboBox();
+            this.dstrctCertificateDayList = new System.Windows.Forms.ComboBox();
             this.dstrctCertQuantityUnit = new System.Windows.Forms.ComboBox();
             this.generateDstrCertBtn = new System.Windows.Forms.Button();
             this.dstrctCertCompanyField = new System.Windows.Forms.TextBox();
             this.dstrctCertEmailAddressField = new System.Windows.Forms.TextBox();
             this.dstrctCertDescripOfProdField = new System.Windows.Forms.TextBox();
-            this.dstrctCertQuantityField = new System.Windows.Forms.TextBox();
             this.dstrctCertCntactNumField = new System.Windows.Forms.TextBox();
             this.dstrctCertCntactPersonField = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -113,9 +115,7 @@ namespace Green_Enviro_App
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.dstrctCertificateDayList = new System.Windows.Forms.ComboBox();
-            this.dstrctCertificateMonthList = new System.Windows.Forms.ComboBox();
-            this.dstrctCertificateYearList = new System.Windows.Forms.ComboBox();
+            this.dstrctCertQuantityNumBox = new System.Windows.Forms.NumericUpDown();
             this.mainTabControl.SuspendLayout();
             this.ReceiptPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
@@ -126,6 +126,7 @@ namespace Green_Enviro_App
             ((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -863,6 +864,7 @@ namespace Green_Enviro_App
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dstrctCertQuantityNumBox);
             this.tabPage1.Controls.Add(this.dstrctCertificateYearList);
             this.tabPage1.Controls.Add(this.dstrctCertificateMonthList);
             this.tabPage1.Controls.Add(this.dstrctCertificateDayList);
@@ -871,7 +873,6 @@ namespace Green_Enviro_App
             this.tabPage1.Controls.Add(this.dstrctCertCompanyField);
             this.tabPage1.Controls.Add(this.dstrctCertEmailAddressField);
             this.tabPage1.Controls.Add(this.dstrctCertDescripOfProdField);
-            this.tabPage1.Controls.Add(this.dstrctCertQuantityField);
             this.tabPage1.Controls.Add(this.dstrctCertCntactNumField);
             this.tabPage1.Controls.Add(this.dstrctCertCntactPersonField);
             this.tabPage1.Controls.Add(this.label27);
@@ -887,6 +888,48 @@ namespace Green_Enviro_App
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Destruction Certificate";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dstrctCertificateYearList
+            // 
+            this.dstrctCertificateYearList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dstrctCertificateYearList.DropDownHeight = 300;
+            this.dstrctCertificateYearList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dstrctCertificateYearList.FormattingEnabled = true;
+            this.dstrctCertificateYearList.IntegralHeight = false;
+            this.dstrctCertificateYearList.ItemHeight = 19;
+            this.dstrctCertificateYearList.Location = new System.Drawing.Point(187, 53);
+            this.dstrctCertificateYearList.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertificateYearList.Name = "dstrctCertificateYearList";
+            this.dstrctCertificateYearList.Size = new System.Drawing.Size(90, 27);
+            this.dstrctCertificateYearList.TabIndex = 34;
+            // 
+            // dstrctCertificateMonthList
+            // 
+            this.dstrctCertificateMonthList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dstrctCertificateMonthList.DropDownHeight = 300;
+            this.dstrctCertificateMonthList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dstrctCertificateMonthList.FormattingEnabled = true;
+            this.dstrctCertificateMonthList.IntegralHeight = false;
+            this.dstrctCertificateMonthList.ItemHeight = 19;
+            this.dstrctCertificateMonthList.Location = new System.Drawing.Point(39, 53);
+            this.dstrctCertificateMonthList.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertificateMonthList.Name = "dstrctCertificateMonthList";
+            this.dstrctCertificateMonthList.Size = new System.Drawing.Size(144, 27);
+            this.dstrctCertificateMonthList.TabIndex = 33;
+            // 
+            // dstrctCertificateDayList
+            // 
+            this.dstrctCertificateDayList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dstrctCertificateDayList.DropDownHeight = 300;
+            this.dstrctCertificateDayList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dstrctCertificateDayList.FormattingEnabled = true;
+            this.dstrctCertificateDayList.IntegralHeight = false;
+            this.dstrctCertificateDayList.ItemHeight = 19;
+            this.dstrctCertificateDayList.Location = new System.Drawing.Point(-60, 53);
+            this.dstrctCertificateDayList.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertificateDayList.Name = "dstrctCertificateDayList";
+            this.dstrctCertificateDayList.Size = new System.Drawing.Size(95, 27);
+            this.dstrctCertificateDayList.TabIndex = 32;
             // 
             // dstrctCertQuantityUnit
             // 
@@ -938,15 +981,6 @@ namespace Green_Enviro_App
             this.dstrctCertDescripOfProdField.Name = "dstrctCertDescripOfProdField";
             this.dstrctCertDescripOfProdField.Size = new System.Drawing.Size(238, 26);
             this.dstrctCertDescripOfProdField.TabIndex = 27;
-            // 
-            // dstrctCertQuantityField
-            // 
-            this.dstrctCertQuantityField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dstrctCertQuantityField.Location = new System.Drawing.Point(232, 360);
-            this.dstrctCertQuantityField.Margin = new System.Windows.Forms.Padding(2);
-            this.dstrctCertQuantityField.Name = "dstrctCertQuantityField";
-            this.dstrctCertQuantityField.Size = new System.Drawing.Size(129, 26);
-            this.dstrctCertQuantityField.TabIndex = 26;
             // 
             // dstrctCertCntactNumField
             // 
@@ -1037,47 +1071,19 @@ namespace Green_Enviro_App
             this.label21.TabIndex = 5;
             this.label21.Text = "Quantity";
             // 
-            // dstrctCertificateDayList
+            // dstrctCertQuantityNumBox
             // 
-            this.dstrctCertificateDayList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dstrctCertificateDayList.DropDownHeight = 300;
-            this.dstrctCertificateDayList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dstrctCertificateDayList.FormattingEnabled = true;
-            this.dstrctCertificateDayList.IntegralHeight = false;
-            this.dstrctCertificateDayList.ItemHeight = 19;
-            this.dstrctCertificateDayList.Location = new System.Drawing.Point(-60, 53);
-            this.dstrctCertificateDayList.Margin = new System.Windows.Forms.Padding(2);
-            this.dstrctCertificateDayList.Name = "dstrctCertificateDayList";
-            this.dstrctCertificateDayList.Size = new System.Drawing.Size(95, 27);
-            this.dstrctCertificateDayList.TabIndex = 32;
-            // 
-            // dstrctCertificateMonthList
-            // 
-            this.dstrctCertificateMonthList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dstrctCertificateMonthList.DropDownHeight = 300;
-            this.dstrctCertificateMonthList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dstrctCertificateMonthList.FormattingEnabled = true;
-            this.dstrctCertificateMonthList.IntegralHeight = false;
-            this.dstrctCertificateMonthList.ItemHeight = 19;
-            this.dstrctCertificateMonthList.Location = new System.Drawing.Point(39, 53);
-            this.dstrctCertificateMonthList.Margin = new System.Windows.Forms.Padding(2);
-            this.dstrctCertificateMonthList.Name = "dstrctCertificateMonthList";
-            this.dstrctCertificateMonthList.Size = new System.Drawing.Size(144, 27);
-            this.dstrctCertificateMonthList.TabIndex = 33;
-            // 
-            // dstrctCertificateYearList
-            // 
-            this.dstrctCertificateYearList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dstrctCertificateYearList.DropDownHeight = 300;
-            this.dstrctCertificateYearList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dstrctCertificateYearList.FormattingEnabled = true;
-            this.dstrctCertificateYearList.IntegralHeight = false;
-            this.dstrctCertificateYearList.ItemHeight = 19;
-            this.dstrctCertificateYearList.Location = new System.Drawing.Point(187, 53);
-            this.dstrctCertificateYearList.Margin = new System.Windows.Forms.Padding(2);
-            this.dstrctCertificateYearList.Name = "dstrctCertificateYearList";
-            this.dstrctCertificateYearList.Size = new System.Drawing.Size(90, 27);
-            this.dstrctCertificateYearList.TabIndex = 34;
+            this.dstrctCertQuantityNumBox.DecimalPlaces = 3;
+            this.dstrctCertQuantityNumBox.Location = new System.Drawing.Point(431, 361);
+            this.dstrctCertQuantityNumBox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.dstrctCertQuantityNumBox.Name = "dstrctCertQuantityNumBox";
+            this.dstrctCertQuantityNumBox.Size = new System.Drawing.Size(129, 26);
+            this.dstrctCertQuantityNumBox.TabIndex = 35;
+            this.dstrctCertQuantityNumBox.ThousandsSeparator = true;
             // 
             // Main_Form
             // 
@@ -1108,6 +1114,7 @@ namespace Green_Enviro_App
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -1263,7 +1270,6 @@ namespace Green_Enviro_App
         public System.Windows.Forms.TextBox dstrctCertCompanyField;
         public System.Windows.Forms.TextBox dstrctCertEmailAddressField;
         public System.Windows.Forms.TextBox dstrctCertDescripOfProdField;
-        public System.Windows.Forms.TextBox dstrctCertQuantityField;
         public System.Windows.Forms.TextBox dstrctCertCntactNumField;
         public System.Windows.Forms.TextBox dstrctCertCntactPersonField;
         private System.Windows.Forms.Label label27;
@@ -1277,5 +1283,6 @@ namespace Green_Enviro_App
         public System.Windows.Forms.ComboBox dstrctCertificateYearList;
         public System.Windows.Forms.ComboBox dstrctCertificateMonthList;
         public System.Windows.Forms.ComboBox dstrctCertificateDayList;
+        public System.Windows.Forms.NumericUpDown dstrctCertQuantityNumBox;
     }
 }
