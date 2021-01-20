@@ -416,6 +416,7 @@ namespace Green_Enviro_App
             {
                 MessageBox.Show("You selected Kg");
                 _value_in_kg = _main_form.dstrctCertQuantityNumBox.Value.ToString();
+                //There a change
             }
             else MessageBox.Show("Nothing occuring");
 
