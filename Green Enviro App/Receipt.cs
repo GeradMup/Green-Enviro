@@ -49,7 +49,7 @@ namespace Green_Enviro_App
             //Gets all items from the database and stores them in a DataTable named _items
             _items = _database.SelectAll("Items");
 
-            MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
+            //MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
 
             int _name_column = 1;
             int _type_column = 4;
@@ -87,7 +87,7 @@ namespace Green_Enviro_App
             //Gets all customer details and stores them in a DataTable name _customers
             _customers = _database.SelectAll("Customers");
 
-            MessageBox.Show("All Customers: " + _customers.Rows.Count.ToString());
+            //MessageBox.Show("All Customers: " + _customers.Rows.Count.ToString());
 
             int _customer_number_column = 0;
 

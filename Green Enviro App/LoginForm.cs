@@ -66,6 +66,7 @@ namespace Green_Enviro_App
             if (args.Length > 0)
             {
                 _main_program_pass = true;
+                
             }
 
             InitializeComponent();
@@ -168,27 +169,24 @@ namespace Green_Enviro_App
             return false;
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void login() 
         {
-            bool validLogin = verifyCredentials();
-
             if (_main_program_pass == true) 
             {
+                this.Hide();
                 _mainForm.Activate();
                 _mainForm.Show();
-                this.Hide();
                 return;
             }
 
-            if ((validLogin == true) && (_main_program_pass == false))
+            if (_main_program_pass == false)
             {
-                PromptDatabaseSnyc();
+                bool validLogin = verifyCredentials();
+				if (validLogin) 
+                {
+                    PromptDatabaseSnyc();
+                }
+                
             }
             else
             {
@@ -278,5 +276,13 @@ namespace Green_Enviro_App
                 MessageBox.Show("Incorrect master password", "Administrator", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-    }
+
+		private void LoginForm_Activated(object sender, EventArgs e)
+		{
+            if (_main_program_pass) 
+            {
+                login();
+            }
+		}
+	}
 }
