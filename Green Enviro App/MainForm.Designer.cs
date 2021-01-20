@@ -97,6 +97,7 @@ namespace Green_Enviro_App
             this.label12 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dstrctCertQuantityNumBox = new System.Windows.Forms.NumericUpDown();
             this.dstrctCertificateYearList = new System.Windows.Forms.ComboBox();
             this.dstrctCertificateMonthList = new System.Windows.Forms.ComboBox();
             this.dstrctCertificateDayList = new System.Windows.Forms.ComboBox();
@@ -115,7 +116,6 @@ namespace Green_Enviro_App
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.dstrctCertQuantityNumBox = new System.Windows.Forms.NumericUpDown();
             this.mainTabControl.SuspendLayout();
             this.ReceiptPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
@@ -125,8 +125,8 @@ namespace Green_Enviro_App
             this.SalesPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -889,6 +889,20 @@ namespace Green_Enviro_App
             this.tabPage1.Text = "Destruction Certificate";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dstrctCertQuantityNumBox
+            // 
+            this.dstrctCertQuantityNumBox.DecimalPlaces = 3;
+            this.dstrctCertQuantityNumBox.Location = new System.Drawing.Point(431, 361);
+            this.dstrctCertQuantityNumBox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.dstrctCertQuantityNumBox.Name = "dstrctCertQuantityNumBox";
+            this.dstrctCertQuantityNumBox.Size = new System.Drawing.Size(129, 26);
+            this.dstrctCertQuantityNumBox.TabIndex = 35;
+            this.dstrctCertQuantityNumBox.ThousandsSeparator = true;
+            // 
             // dstrctCertificateYearList
             // 
             this.dstrctCertificateYearList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -944,6 +958,7 @@ namespace Green_Enviro_App
             this.dstrctCertQuantityUnit.Name = "dstrctCertQuantityUnit";
             this.dstrctCertQuantityUnit.Size = new System.Drawing.Size(105, 27);
             this.dstrctCertQuantityUnit.TabIndex = 31;
+            this.dstrctCertQuantityUnit.SelectedIndexChanged += new System.EventHandler(this.dstrctCertQuantityUnit_SelectedIndexChanged);
             // 
             // generateDstrCertBtn
             // 
@@ -1071,20 +1086,6 @@ namespace Green_Enviro_App
             this.label21.TabIndex = 5;
             this.label21.Text = "Quantity";
             // 
-            // dstrctCertQuantityNumBox
-            // 
-            this.dstrctCertQuantityNumBox.DecimalPlaces = 3;
-            this.dstrctCertQuantityNumBox.Location = new System.Drawing.Point(431, 361);
-            this.dstrctCertQuantityNumBox.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.dstrctCertQuantityNumBox.Name = "dstrctCertQuantityNumBox";
-            this.dstrctCertQuantityNumBox.Size = new System.Drawing.Size(129, 26);
-            this.dstrctCertQuantityNumBox.TabIndex = 35;
-            this.dstrctCertQuantityNumBox.ThousandsSeparator = true;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1113,8 +1114,8 @@ namespace Green_Enviro_App
             ((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
 		}

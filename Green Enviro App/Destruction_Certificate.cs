@@ -12,6 +12,7 @@ using iTextSharp.text.pdf;
 using System.IO;
 using System.Globalization;
 using System.Web.UI.WebControls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 //using Microsoft.SharePoint.Client;
 
 namespace Green_Enviro_App
@@ -25,6 +26,7 @@ namespace Green_Enviro_App
             _main_form = _form;
             GenerateExtractionDateList();
             QuantityOfProducts();
+            //CalculateQuantityOfProduct();
         }
         private void GenerateDestructionCertificate(string _pdf_save_path)
         {
@@ -86,6 +88,10 @@ namespace Green_Enviro_App
                 var y_coordinates = (pdfDocument.Top - 180f) - 30;
                 var x_coordinates = 55;
 
+                //----------------------------------------------------------------------------------------------------------
+                //Using the Tuple for the Unit
+                var _quantity_unit = GetQuantity();
+
                 //-----------------------------------------------------------------------------------------------------------
                 //Content of the pdf in strings
                 string _date_of_certificate = DateTime.Now.ToString("dd MMMM yyyy       ");
@@ -95,7 +101,7 @@ namespace Green_Enviro_App
                 string _contact_person_number_of_certificate = _main_form.dstrctCertCntactNumField.Text;
                 string _contact_person_email_for_certificate = _main_form.dstrctCertEmailAddressField.Text;
                 string _description_of_product_for_certificate = _main_form.dstrctCertDescripOfProdField.Text;
-                string _product_quantity = _main_form.dstrctCertQuantityNumBox.Text;
+                string _product_quantity = _quantity_unit.Item1 + " kg ( " + _quantity_unit.Item2 + " PALLETS )"; //_main_form.dstrctCertQuantityNumBox.Text;
 
                 //----------------------------------------------------------------------------------------------------------------
                 //Constant paragraphs of the destruction certificate
@@ -236,22 +242,22 @@ namespace Green_Enviro_App
             string _save_pdf_path = @"..//..//resources//Logs//Destruction Certificates//" + _main_form.dstrctCertCompanyField.Text + ".pdf";
             bool _all_good = false;
 
-            if (_main_form.dstrctCertificateDayList.SelectedItem == null)
+            if (_main_form.dstrctCertificateDayList.SelectedIndex == 0)
             {
                 _message_type = _error;
-                _message = "Extraction Date day not selected";
+                _message = "Day for Extraction Date not selected";
                 _all_good = false;
             }
-            else if (_main_form.dstrctCertificateMonthList.SelectedItem == null)
+            else if (_main_form.dstrctCertificateMonthList.SelectedIndex == 0)
             {
                 _message_type = _error;
-                _message = "Extraction Date month not selected";
+                _message = "Month of the Extraction Date not selected";
                 _all_good = false;
             }
-            else if (_main_form.dstrctCertificateYearList.SelectedItem == null)
+            else if (_main_form.dstrctCertificateYearList.SelectedIndex == 0)
             {
                 _message_type = _error;
-                _message = "Extraction Date year not selected";
+                _message = "Year of the Extraction Date not selected";
                 _all_good = false;
             }
             else if (_main_form.dstrctCertCompanyField.Text == _empty_txtbox)
@@ -362,10 +368,59 @@ namespace Green_Enviro_App
         }
         private void QuantityOfProducts()
         {
-            _main_form.dstrctCertQuantityUnit.Items.Add("PALLETS");
-            _main_form.dstrctCertQuantityUnit.Items.Add("Kg");
             _main_form.dstrctCertQuantityUnit.Items.Insert(0, "Select");
+            _main_form.dstrctCertQuantityUnit.Items.Insert(1,"PALLETS");
+            _main_form.dstrctCertQuantityUnit.Items.Insert(2,"Kg");
             _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
+            Console.WriteLine("In");
+            if (_main_form.dstrctCertQuantityUnit.SelectedIndex > 0)
+            {
+                Console.WriteLine("First in");
+                MessageBox.Show("You selected PALLETS");
+                Console.WriteLine("First out");
+            }/*
+            if (_main_form.dstrctCertQuantityUnit.SelectedIndex == 2)
+            {
+                MessageBox.Show("You selected Kg");
+            }*/
+            //CalculateQuantityOfProduct();
+        }
+
+        private void CalculateQuantityOfProduct()
+        {
+            string _pallet = "PALLETS";
+            string _kg = "Kg";
+            string _object = _main_form.dstrctCertQuantityUnit.GetItemText(_main_form.dstrctCertQuantityUnit.SelectedItem);
+
+            if (_main_form.dstrctCertQuantityUnit.SelectedIndex == 1 )
+            {
+                MessageBox.Show("You selected PALLETS");
+            }
+            if (_main_form.dstrctCertQuantityUnit.SelectedIndex == 2)
+            {
+                MessageBox.Show("You selected Kg");
+            }
+        }
+        private Tuple<string,string> GetQuantity()
+        {
+            string _value_in_kg = "";
+            string _value_in_pallets = "";
+
+            if (_main_form.dstrctCertQuantityUnit.SelectedItem.ToString() == "PALLETS")
+            {
+                MessageBox.Show("You selected PALLETS");
+                _value_in_pallets = _main_form.dstrctCertQuantityNumBox.Value.ToString();
+                 
+            }
+            else if (_main_form.dstrctCertQuantityUnit.SelectedItem.ToString() == "Kg")
+            {
+                MessageBox.Show("You selected Kg");
+                _value_in_kg = _main_form.dstrctCertQuantityNumBox.Value.ToString();
+            }
+            else MessageBox.Show("Nothing occuring");
+
+            var _quantity = new Tuple<string, string>(_value_in_kg, _value_in_pallets);
+            return _quantity;
         }
     }
 }
