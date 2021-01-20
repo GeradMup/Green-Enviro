@@ -34,423 +34,433 @@ namespace Green_Enviro_App
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
-			this.mainTabControl = new System.Windows.Forms.TabControl();
-			this.ReceiptPage = new System.Windows.Forms.TabPage();
-			this.CancelPurchaseBtn = new System.Windows.Forms.Button();
-			this.PurchaseBtn = new System.Windows.Forms.Button();
-			this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
-			this.CustomerSurnameTextBox = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.CustomerIDNumberTextBox = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.customerNumbersList = new System.Windows.Forms.ComboBox();
-			this.IDPictureBox = new System.Windows.Forms.PictureBox();
-			this.DealerPriceCheckBox = new System.Windows.Forms.CheckBox();
-			this.PriceOverrideCheckBox = new System.Windows.Forms.CheckBox();
-			this.PriceBox = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.quantityBox = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.logo = new System.Windows.Forms.PictureBox();
-			this.itemList = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.addItemBtn = new System.Windows.Forms.Button();
-			this.receiptBox = new System.Windows.Forms.RichTextBox();
-			this.PurchasesPage = new System.Windows.Forms.TabPage();
-			this.removeFiltersBtn = new System.Windows.Forms.Button();
-			this.PurchseLogGridView = new System.Windows.Forms.DataGridView();
-			this.GeneratePurchaseLogBtn = new System.Windows.Forms.Button();
-			this.label11 = new System.Windows.Forms.Label();
-			this.PurchaseLogMonth = new System.Windows.Forms.ComboBox();
-			this.label10 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.PurchaseLogType = new System.Windows.Forms.ComboBox();
-			this.PurchaseLogEndDate = new System.Windows.Forms.ComboBox();
-			this.PurchaseLogStartDate = new System.Windows.Forms.ComboBox();
-			this.SalesPage = new System.Windows.Forms.TabPage();
-			this.SaleDate = new System.Windows.Forms.DateTimePicker();
-			this.RemoveSalesLogFiltersBtn = new System.Windows.Forms.Button();
-			this.FilterSalesLogBtn = new System.Windows.Forms.Button();
-			this.label17 = new System.Windows.Forms.Label();
-			this.SalesLogMonth = new System.Windows.Forms.ComboBox();
-			this.label18 = new System.Windows.Forms.Label();
-			this.label19 = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
-			this.SalesLogType = new System.Windows.Forms.ComboBox();
-			this.SalesLogEndDate = new System.Windows.Forms.ComboBox();
-			this.SalesLogStartDate = new System.Windows.Forms.ComboBox();
-			this.SalesLogGridView = new System.Windows.Forms.DataGridView();
-			this.ClearSalesFields = new System.Windows.Forms.Button();
-			this.AddSaleBtn = new System.Windows.Forms.Button();
-			this.label16 = new System.Windows.Forms.Label();
-			this.SaleAmount = new System.Windows.Forms.TextBox();
-			this.SaleTypeBx = new System.Windows.Forms.ComboBox();
-			this.CompanyNameList = new System.Windows.Forms.ComboBox();
-			this.label15 = new System.Windows.Forms.Label();
-			this.label14 = new System.Windows.Forms.Label();
-			this.label13 = new System.Windows.Forms.Label();
-			this.label12 = new System.Windows.Forms.Label();
-			this.SaleQuantityBx = new System.Windows.Forms.TextBox();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.dstrctCertQuantityUnit = new System.Windows.Forms.ComboBox();
-			this.generateDstrCertBtn = new System.Windows.Forms.Button();
-			this.dstrctCertCompanyField = new System.Windows.Forms.TextBox();
-			this.dstrctCertEmailAddressField = new System.Windows.Forms.TextBox();
-			this.dstrctCertDescripOfProdField = new System.Windows.Forms.TextBox();
-			this.dstrctCertQuantityField = new System.Windows.Forms.TextBox();
-			this.dstrctCertCntactNumField = new System.Windows.Forms.TextBox();
-			this.dstrctCertExtrctDateField = new System.Windows.Forms.TextBox();
-			this.dstrctCertCntactPersonField = new System.Windows.Forms.TextBox();
-			this.label27 = new System.Windows.Forms.Label();
-			this.label26 = new System.Windows.Forms.Label();
-			this.label25 = new System.Windows.Forms.Label();
-			this.label24 = new System.Windows.Forms.Label();
-			this.label23 = new System.Windows.Forms.Label();
-			this.label22 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
-			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.mainTabControl.SuspendLayout();
-			this.ReceiptPage.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
-			this.PurchasesPage.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).BeginInit();
-			this.SalesPage.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).BeginInit();
-			this.tabPage1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// mainTabControl
-			// 
-			this.mainTabControl.Controls.Add(this.ReceiptPage);
-			this.mainTabControl.Controls.Add(this.PurchasesPage);
-			this.mainTabControl.Controls.Add(this.SalesPage);
-			this.mainTabControl.Controls.Add(this.tabPage1);
-			this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.mainTabControl.Location = new System.Drawing.Point(0, 0);
-			this.mainTabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.mainTabControl.Name = "mainTabControl";
-			this.mainTabControl.SelectedIndex = 0;
-			this.mainTabControl.Size = new System.Drawing.Size(1557, 750);
-			this.mainTabControl.TabIndex = 0;
-			// 
-			// ReceiptPage
-			// 
-			this.ReceiptPage.Controls.Add(this.CancelPurchaseBtn);
-			this.ReceiptPage.Controls.Add(this.PurchaseBtn);
-			this.ReceiptPage.Controls.Add(this.CustomerNameTextBox);
-			this.ReceiptPage.Controls.Add(this.CustomerSurnameTextBox);
-			this.ReceiptPage.Controls.Add(this.label7);
-			this.ReceiptPage.Controls.Add(this.label6);
-			this.ReceiptPage.Controls.Add(this.CustomerIDNumberTextBox);
-			this.ReceiptPage.Controls.Add(this.label5);
-			this.ReceiptPage.Controls.Add(this.label4);
-			this.ReceiptPage.Controls.Add(this.customerNumbersList);
-			this.ReceiptPage.Controls.Add(this.IDPictureBox);
-			this.ReceiptPage.Controls.Add(this.DealerPriceCheckBox);
-			this.ReceiptPage.Controls.Add(this.PriceOverrideCheckBox);
-			this.ReceiptPage.Controls.Add(this.PriceBox);
-			this.ReceiptPage.Controls.Add(this.label3);
-			this.ReceiptPage.Controls.Add(this.quantityBox);
-			this.ReceiptPage.Controls.Add(this.label2);
-			this.ReceiptPage.Controls.Add(this.logo);
-			this.ReceiptPage.Controls.Add(this.itemList);
-			this.ReceiptPage.Controls.Add(this.label1);
-			this.ReceiptPage.Controls.Add(this.addItemBtn);
-			this.ReceiptPage.Controls.Add(this.receiptBox);
-			this.ReceiptPage.Location = new System.Drawing.Point(4, 32);
-			this.ReceiptPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ReceiptPage.Name = "ReceiptPage";
-			this.ReceiptPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ReceiptPage.Size = new System.Drawing.Size(1549, 714);
-			this.ReceiptPage.TabIndex = 0;
-			this.ReceiptPage.Text = "Receipt";
-			this.ReceiptPage.UseVisualStyleBackColor = true;
-			// 
-			// CancelPurchaseBtn
-			// 
-			this.CancelPurchaseBtn.AllowDrop = true;
-			this.CancelPurchaseBtn.Location = new System.Drawing.Point(185, 657);
-			this.CancelPurchaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.CancelPurchaseBtn.Name = "CancelPurchaseBtn";
-			this.CancelPurchaseBtn.Size = new System.Drawing.Size(212, 50);
-			this.CancelPurchaseBtn.TabIndex = 24;
-			this.CancelPurchaseBtn.Text = "Cancel Purchase";
-			this.CancelPurchaseBtn.UseVisualStyleBackColor = true;
-			this.CancelPurchaseBtn.Click += new System.EventHandler(this.CancelPurchaseBtn_Click);
-			// 
-			// PurchaseBtn
-			// 
-			this.PurchaseBtn.AllowDrop = true;
-			this.PurchaseBtn.Location = new System.Drawing.Point(23, 657);
-			this.PurchaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PurchaseBtn.Name = "PurchaseBtn";
-			this.PurchaseBtn.Size = new System.Drawing.Size(143, 50);
-			this.PurchaseBtn.TabIndex = 23;
-			this.PurchaseBtn.Text = "Purchase";
-			this.PurchaseBtn.UseVisualStyleBackColor = true;
-			this.PurchaseBtn.Click += new System.EventHandler(this.PurchaseBtn_Click);
-			// 
-			// CustomerNameTextBox
-			// 
-			this.CustomerNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.CustomerNameTextBox.Location = new System.Drawing.Point(732, 185);
-			this.CustomerNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.CustomerNameTextBox.Name = "CustomerNameTextBox";
-			this.CustomerNameTextBox.ReadOnly = true;
-			this.CustomerNameTextBox.Size = new System.Drawing.Size(257, 31);
-			this.CustomerNameTextBox.TabIndex = 22;
-			// 
-			// CustomerSurnameTextBox
-			// 
-			this.CustomerSurnameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.CustomerSurnameTextBox.Location = new System.Drawing.Point(755, 250);
-			this.CustomerSurnameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.CustomerSurnameTextBox.Name = "CustomerSurnameTextBox";
-			this.CustomerSurnameTextBox.ReadOnly = true;
-			this.CustomerSurnameTextBox.Size = new System.Drawing.Size(233, 31);
-			this.CustomerSurnameTextBox.TabIndex = 21;
-			// 
-			// label7
-			// 
-			this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(643, 187);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(54, 23);
-			this.label7.TabIndex = 20;
-			this.label7.Text = "Name";
-			// 
-			// label6
-			// 
-			this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(643, 254);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(87, 23);
-			this.label6.TabIndex = 19;
-			this.label6.Text = "Surname";
-			// 
-			// CustomerIDNumberTextBox
-			// 
-			this.CustomerIDNumberTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(700, 116);
-			this.CustomerIDNumberTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.CustomerIDNumberTextBox.Name = "CustomerIDNumberTextBox";
-			this.CustomerIDNumberTextBox.ReadOnly = true;
-			this.CustomerIDNumberTextBox.Size = new System.Drawing.Size(289, 31);
-			this.CustomerIDNumberTextBox.TabIndex = 18;
-			// 
-			// label5
-			// 
-			this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(643, 122);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(32, 23);
-			this.label5.TabIndex = 17;
-			this.label5.Text = "ID";
-			// 
-			// label4
-			// 
-			this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(643, 49);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(175, 23);
-			this.label4.TabIndex = 16;
-			this.label4.Text = "Customer Number";
-			// 
-			// customerNumbersList
-			// 
-			this.customerNumbersList.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.customerNumbersList.DropDownHeight = 300;
-			this.customerNumbersList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.customerNumbersList.FormattingEnabled = true;
-			this.customerNumbersList.IntegralHeight = false;
-			this.customerNumbersList.ItemHeight = 23;
-			this.customerNumbersList.Location = new System.Drawing.Point(850, 46);
-			this.customerNumbersList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.customerNumbersList.Name = "customerNumbersList";
-			this.customerNumbersList.Size = new System.Drawing.Size(73, 31);
-			this.customerNumbersList.TabIndex = 15;
-			this.customerNumbersList.SelectedIndexChanged += new System.EventHandler(this.customerNumbersList_SelectedIndexChanged);
-			// 
-			// IDPictureBox
-			// 
-			this.IDPictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.IDPictureBox.Location = new System.Drawing.Point(406, 327);
-			this.IDPictureBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.IDPictureBox.Name = "IDPictureBox";
-			this.IDPictureBox.Size = new System.Drawing.Size(583, 428);
-			this.IDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.IDPictureBox.TabIndex = 1;
-			this.IDPictureBox.TabStop = false;
-			// 
-			// DealerPriceCheckBox
-			// 
-			this.DealerPriceCheckBox.AutoSize = true;
-			this.DealerPriceCheckBox.Location = new System.Drawing.Point(29, 102);
-			this.DealerPriceCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.DealerPriceCheckBox.Name = "DealerPriceCheckBox";
-			this.DealerPriceCheckBox.Size = new System.Drawing.Size(164, 27);
-			this.DealerPriceCheckBox.TabIndex = 14;
-			this.DealerPriceCheckBox.Text = "Dealer Price";
-			this.DealerPriceCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// PriceOverrideCheckBox
-			// 
-			this.PriceOverrideCheckBox.AutoSize = true;
-			this.PriceOverrideCheckBox.Location = new System.Drawing.Point(29, 135);
-			this.PriceOverrideCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PriceOverrideCheckBox.Name = "PriceOverrideCheckBox";
-			this.PriceOverrideCheckBox.Size = new System.Drawing.Size(186, 27);
-			this.PriceOverrideCheckBox.TabIndex = 13;
-			this.PriceOverrideCheckBox.Text = "Override Price";
-			this.PriceOverrideCheckBox.UseVisualStyleBackColor = true;
-			this.PriceOverrideCheckBox.CheckedChanged += new System.EventHandler(this.PriceOverrideCheckBox_CheckedChanged);
-			// 
-			// PriceBox
-			// 
-			this.PriceBox.Location = new System.Drawing.Point(185, 185);
-			this.PriceBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PriceBox.Name = "PriceBox";
-			this.PriceBox.ReadOnly = true;
-			this.PriceBox.Size = new System.Drawing.Size(199, 31);
-			this.PriceBox.TabIndex = 12;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(27, 187);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(65, 23);
-			this.label3.TabIndex = 11;
-			this.label3.Text = "Price";
-			// 
-			// quantityBox
-			// 
-			this.quantityBox.Location = new System.Drawing.Point(185, 245);
-			this.quantityBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.quantityBox.Name = "quantityBox";
-			this.quantityBox.Size = new System.Drawing.Size(199, 31);
-			this.quantityBox.TabIndex = 10;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(27, 249);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(98, 23);
-			this.label2.TabIndex = 9;
-			this.label2.Text = "Quantity";
-			// 
-			// logo
-			// 
-			this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.logo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-			this.logo.InitialImage = null;
-			this.logo.Location = new System.Drawing.Point(1029, 6);
-			this.logo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.logo.Name = "logo";
-			this.logo.Size = new System.Drawing.Size(319, 136);
-			this.logo.TabIndex = 8;
-			this.logo.TabStop = false;
-			this.logo.Visible = false;
-			// 
-			// itemList
-			// 
-			this.itemList.DropDownHeight = 300;
-			this.itemList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.itemList.FormattingEnabled = true;
-			this.itemList.IntegralHeight = false;
-			this.itemList.ItemHeight = 23;
-			this.itemList.Location = new System.Drawing.Point(181, 46);
-			this.itemList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.itemList.Name = "itemList";
-			this.itemList.Size = new System.Drawing.Size(203, 31);
-			this.itemList.TabIndex = 7;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(27, 54);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(54, 23);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Item";
-			// 
-			// addItemBtn
-			// 
-			this.addItemBtn.AllowDrop = true;
-			this.addItemBtn.Location = new System.Drawing.Point(23, 582);
-			this.addItemBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.addItemBtn.Name = "addItemBtn";
-			this.addItemBtn.Size = new System.Drawing.Size(143, 50);
-			this.addItemBtn.TabIndex = 1;
-			this.addItemBtn.Text = "Add Item";
-			this.addItemBtn.UseVisualStyleBackColor = true;
-			this.addItemBtn.Click += new System.EventHandler(this.addItemBtn_Click);
-			// 
-			// receiptBox
-			// 
-			this.receiptBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.receiptBox.BackColor = System.Drawing.Color.White;
-			this.receiptBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.receiptBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.receiptBox.Location = new System.Drawing.Point(1029, 6);
-			this.receiptBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.receiptBox.Name = "receiptBox";
-			this.receiptBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.receiptBox.Size = new System.Drawing.Size(400, 645);
-			this.receiptBox.TabIndex = 0;
-			this.receiptBox.Text = "";
-			this.receiptBox.WordWrap = false;
-			// 
-			// PurchasesPage
-			// 
-			this.PurchasesPage.Controls.Add(this.removeFiltersBtn);
-			this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
-			this.PurchasesPage.Controls.Add(this.GeneratePurchaseLogBtn);
-			this.PurchasesPage.Controls.Add(this.label11);
-			this.PurchasesPage.Controls.Add(this.PurchaseLogMonth);
-			this.PurchasesPage.Controls.Add(this.label10);
-			this.PurchasesPage.Controls.Add(this.label9);
-			this.PurchasesPage.Controls.Add(this.label8);
-			this.PurchasesPage.Controls.Add(this.PurchaseLogType);
-			this.PurchasesPage.Controls.Add(this.PurchaseLogEndDate);
-			this.PurchasesPage.Controls.Add(this.PurchaseLogStartDate);
-			this.PurchasesPage.Location = new System.Drawing.Point(4, 32);
-			this.PurchasesPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PurchasesPage.Name = "PurchasesPage";
-			this.PurchasesPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PurchasesPage.Size = new System.Drawing.Size(1549, 714);
-			this.PurchasesPage.TabIndex = 1;
-			this.PurchasesPage.Text = "Purchases Logs";
-			this.PurchasesPage.UseVisualStyleBackColor = true;
-			// 
-			// removeFiltersBtn
-			// 
-			this.removeFiltersBtn.Location = new System.Drawing.Point(339, 97);
-			this.removeFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.removeFiltersBtn.Name = "removeFiltersBtn";
-			this.removeFiltersBtn.Size = new System.Drawing.Size(316, 46);
-			this.removeFiltersBtn.TabIndex = 18;
-			this.removeFiltersBtn.Text = "Remove Filters";
-			this.removeFiltersBtn.UseVisualStyleBackColor = true;
-			this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
-			// 
-			// PurchseLogGridView
-			// 
-			this.PurchseLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
+            this.mainTabControl = new System.Windows.Forms.TabControl();
+            this.ReceiptPage = new System.Windows.Forms.TabPage();
+            this.CancelPurchaseBtn = new System.Windows.Forms.Button();
+            this.PurchaseBtn = new System.Windows.Forms.Button();
+            this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
+            this.CustomerSurnameTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.CustomerIDNumberTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.customerNumbersList = new System.Windows.Forms.ComboBox();
+            this.IDPictureBox = new System.Windows.Forms.PictureBox();
+            this.DealerPriceCheckBox = new System.Windows.Forms.CheckBox();
+            this.PriceOverrideCheckBox = new System.Windows.Forms.CheckBox();
+            this.PriceBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.quantityBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.logo = new System.Windows.Forms.PictureBox();
+            this.itemList = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.addItemBtn = new System.Windows.Forms.Button();
+            this.receiptBox = new System.Windows.Forms.RichTextBox();
+            this.PurchasesPage = new System.Windows.Forms.TabPage();
+            this.removeFiltersBtn = new System.Windows.Forms.Button();
+            this.PurchseLogGridView = new System.Windows.Forms.DataGridView();
+            this.GeneratePurchaseLogBtn = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.PurchaseLogMonth = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.PurchaseLogType = new System.Windows.Forms.ComboBox();
+            this.PurchaseLogEndDate = new System.Windows.Forms.ComboBox();
+            this.PurchaseLogStartDate = new System.Windows.Forms.ComboBox();
+            this.SalesPage = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.SalesLogGridView = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dstrctCertQuantityNumBox = new System.Windows.Forms.NumericUpDown();
+            this.dstrctCertificateYearList = new System.Windows.Forms.ComboBox();
+            this.dstrctCertificateMonthList = new System.Windows.Forms.ComboBox();
+            this.dstrctCertificateDayList = new System.Windows.Forms.ComboBox();
+            this.dstrctCertQuantityUnit = new System.Windows.Forms.ComboBox();
+            this.generateDstrCertBtn = new System.Windows.Forms.Button();
+            this.dstrctCertCompanyField = new System.Windows.Forms.TextBox();
+            this.dstrctCertEmailAddressField = new System.Windows.Forms.TextBox();
+            this.dstrctCertDescripOfProdField = new System.Windows.Forms.TextBox();
+            this.dstrctCertCntactNumField = new System.Windows.Forms.TextBox();
+            this.dstrctCertCntactPersonField = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.mainTabControl.SuspendLayout();
+            this.ReceiptPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            this.PurchasesPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).BeginInit();
+            this.SalesPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // mainTabControl
+            // 
+            this.mainTabControl.Controls.Add(this.ReceiptPage);
+            this.mainTabControl.Controls.Add(this.PurchasesPage);
+            this.mainTabControl.Controls.Add(this.SalesPage);
+            this.mainTabControl.Controls.Add(this.tabPage1);
+            this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainTabControl.Location = new System.Drawing.Point(0, 0);
+            this.mainTabControl.Margin = new System.Windows.Forms.Padding(2);
+            this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.Size = new System.Drawing.Size(971, 609);
+            this.mainTabControl.TabIndex = 0;
+            // 
+            // ReceiptPage
+            // 
+            this.ReceiptPage.Controls.Add(this.CancelPurchaseBtn);
+            this.ReceiptPage.Controls.Add(this.PurchaseBtn);
+            this.ReceiptPage.Controls.Add(this.CustomerNameTextBox);
+            this.ReceiptPage.Controls.Add(this.CustomerSurnameTextBox);
+            this.ReceiptPage.Controls.Add(this.label7);
+            this.ReceiptPage.Controls.Add(this.label6);
+            this.ReceiptPage.Controls.Add(this.CustomerIDNumberTextBox);
+            this.ReceiptPage.Controls.Add(this.label5);
+            this.ReceiptPage.Controls.Add(this.label4);
+            this.ReceiptPage.Controls.Add(this.customerNumbersList);
+            this.ReceiptPage.Controls.Add(this.IDPictureBox);
+            this.ReceiptPage.Controls.Add(this.DealerPriceCheckBox);
+            this.ReceiptPage.Controls.Add(this.PriceOverrideCheckBox);
+            this.ReceiptPage.Controls.Add(this.PriceBox);
+            this.ReceiptPage.Controls.Add(this.label3);
+            this.ReceiptPage.Controls.Add(this.quantityBox);
+            this.ReceiptPage.Controls.Add(this.label2);
+            this.ReceiptPage.Controls.Add(this.logo);
+            this.ReceiptPage.Controls.Add(this.itemList);
+            this.ReceiptPage.Controls.Add(this.label1);
+            this.ReceiptPage.Controls.Add(this.addItemBtn);
+            this.ReceiptPage.Controls.Add(this.receiptBox);
+            this.ReceiptPage.Location = new System.Drawing.Point(4, 28);
+            this.ReceiptPage.Margin = new System.Windows.Forms.Padding(2);
+            this.ReceiptPage.Name = "ReceiptPage";
+            this.ReceiptPage.Padding = new System.Windows.Forms.Padding(2);
+            this.ReceiptPage.Size = new System.Drawing.Size(963, 577);
+            this.ReceiptPage.TabIndex = 0;
+            this.ReceiptPage.Text = "Receipt";
+            this.ReceiptPage.UseVisualStyleBackColor = true;
+            // 
+            // CancelPurchaseBtn
+            // 
+            this.CancelPurchaseBtn.AllowDrop = true;
+            this.CancelPurchaseBtn.Location = new System.Drawing.Point(139, 534);
+            this.CancelPurchaseBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.CancelPurchaseBtn.Name = "CancelPurchaseBtn";
+            this.CancelPurchaseBtn.Size = new System.Drawing.Size(159, 41);
+            this.CancelPurchaseBtn.TabIndex = 24;
+            this.CancelPurchaseBtn.Text = "Cancel Purchase";
+            this.CancelPurchaseBtn.UseVisualStyleBackColor = true;
+            this.CancelPurchaseBtn.Click += new System.EventHandler(this.CancelPurchaseBtn_Click);
+            // 
+            // PurchaseBtn
+            // 
+            this.PurchaseBtn.AllowDrop = true;
+            this.PurchaseBtn.Location = new System.Drawing.Point(17, 534);
+            this.PurchaseBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.PurchaseBtn.Name = "PurchaseBtn";
+            this.PurchaseBtn.Size = new System.Drawing.Size(107, 41);
+            this.PurchaseBtn.TabIndex = 23;
+            this.PurchaseBtn.Text = "Purchase";
+            this.PurchaseBtn.UseVisualStyleBackColor = true;
+            this.PurchaseBtn.Click += new System.EventHandler(this.PurchaseBtn_Click);
+            // 
+            // CustomerNameTextBox
+            // 
+            this.CustomerNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.CustomerNameTextBox.Location = new System.Drawing.Point(493, 150);
+            this.CustomerNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CustomerNameTextBox.Name = "CustomerNameTextBox";
+            this.CustomerNameTextBox.ReadOnly = true;
+            this.CustomerNameTextBox.Size = new System.Drawing.Size(194, 26);
+            this.CustomerNameTextBox.TabIndex = 22;
+            // 
+            // CustomerSurnameTextBox
+            // 
+            this.CustomerSurnameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.CustomerSurnameTextBox.Location = new System.Drawing.Point(510, 203);
+            this.CustomerSurnameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CustomerSurnameTextBox.Name = "CustomerSurnameTextBox";
+            this.CustomerSurnameTextBox.ReadOnly = true;
+            this.CustomerSurnameTextBox.Size = new System.Drawing.Size(176, 26);
+            this.CustomerSurnameTextBox.TabIndex = 21;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(426, 152);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 19);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Name";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(426, 206);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 19);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Surname";
+            // 
+            // CustomerIDNumberTextBox
+            // 
+            this.CustomerIDNumberTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(469, 94);
+            this.CustomerIDNumberTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CustomerIDNumberTextBox.Name = "CustomerIDNumberTextBox";
+            this.CustomerIDNumberTextBox.ReadOnly = true;
+            this.CustomerIDNumberTextBox.Size = new System.Drawing.Size(218, 26);
+            this.CustomerIDNumberTextBox.TabIndex = 18;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(426, 99);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 19);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "ID";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(426, 40);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(144, 19);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Customer Number";
+            // 
+            // customerNumbersList
+            // 
+            this.customerNumbersList.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.customerNumbersList.DropDownHeight = 300;
+            this.customerNumbersList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.customerNumbersList.FormattingEnabled = true;
+            this.customerNumbersList.IntegralHeight = false;
+            this.customerNumbersList.ItemHeight = 19;
+            this.customerNumbersList.Location = new System.Drawing.Point(581, 37);
+            this.customerNumbersList.Margin = new System.Windows.Forms.Padding(2);
+            this.customerNumbersList.Name = "customerNumbersList";
+            this.customerNumbersList.Size = new System.Drawing.Size(56, 27);
+            this.customerNumbersList.TabIndex = 15;
+            this.customerNumbersList.SelectedIndexChanged += new System.EventHandler(this.customerNumbersList_SelectedIndexChanged);
+            // 
+            // IDPictureBox
+            // 
+            this.IDPictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.IDPictureBox.Location = new System.Drawing.Point(248, 266);
+            this.IDPictureBox.Margin = new System.Windows.Forms.Padding(2);
+            this.IDPictureBox.Name = "IDPictureBox";
+            this.IDPictureBox.Size = new System.Drawing.Size(437, 348);
+            this.IDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.IDPictureBox.TabIndex = 1;
+            this.IDPictureBox.TabStop = false;
+            // 
+            // DealerPriceCheckBox
+            // 
+            this.DealerPriceCheckBox.AutoSize = true;
+            this.DealerPriceCheckBox.Location = new System.Drawing.Point(22, 83);
+            this.DealerPriceCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DealerPriceCheckBox.Name = "DealerPriceCheckBox";
+            this.DealerPriceCheckBox.Size = new System.Drawing.Size(136, 23);
+            this.DealerPriceCheckBox.TabIndex = 14;
+            this.DealerPriceCheckBox.Text = "Dealer Price";
+            this.DealerPriceCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // PriceOverrideCheckBox
+            // 
+            this.PriceOverrideCheckBox.AutoSize = true;
+            this.PriceOverrideCheckBox.Location = new System.Drawing.Point(22, 110);
+            this.PriceOverrideCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.PriceOverrideCheckBox.Name = "PriceOverrideCheckBox";
+            this.PriceOverrideCheckBox.Size = new System.Drawing.Size(154, 23);
+            this.PriceOverrideCheckBox.TabIndex = 13;
+            this.PriceOverrideCheckBox.Text = "Override Price";
+            this.PriceOverrideCheckBox.UseVisualStyleBackColor = true;
+            this.PriceOverrideCheckBox.CheckedChanged += new System.EventHandler(this.PriceOverrideCheckBox_CheckedChanged);
+            // 
+            // PriceBox
+            // 
+            this.PriceBox.Location = new System.Drawing.Point(139, 150);
+            this.PriceBox.Margin = new System.Windows.Forms.Padding(2);
+            this.PriceBox.Name = "PriceBox";
+            this.PriceBox.ReadOnly = true;
+            this.PriceBox.Size = new System.Drawing.Size(150, 26);
+            this.PriceBox.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 152);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 19);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Price";
+            // 
+            // quantityBox
+            // 
+            this.quantityBox.Location = new System.Drawing.Point(139, 199);
+            this.quantityBox.Margin = new System.Windows.Forms.Padding(2);
+            this.quantityBox.Name = "quantityBox";
+            this.quantityBox.Size = new System.Drawing.Size(150, 26);
+            this.quantityBox.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 202);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 19);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Quantity";
+            // 
+            // logo
+            // 
+            this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.logo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.InitialImage = null;
+            this.logo.Location = new System.Drawing.Point(828, 5);
+            this.logo.Margin = new System.Windows.Forms.Padding(2);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(240, 111);
+            this.logo.TabIndex = 8;
+            this.logo.TabStop = false;
+            this.logo.Visible = false;
+            // 
+            // itemList
+            // 
+            this.itemList.DropDownHeight = 300;
+            this.itemList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.itemList.FormattingEnabled = true;
+            this.itemList.IntegralHeight = false;
+            this.itemList.ItemHeight = 19;
+            this.itemList.Location = new System.Drawing.Point(136, 37);
+            this.itemList.Margin = new System.Windows.Forms.Padding(2);
+            this.itemList.Name = "itemList";
+            this.itemList.Size = new System.Drawing.Size(153, 27);
+            this.itemList.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 44);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 19);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Item";
+            // 
+            // addItemBtn
+            // 
+            this.addItemBtn.AllowDrop = true;
+            this.addItemBtn.Location = new System.Drawing.Point(17, 473);
+            this.addItemBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.addItemBtn.Name = "addItemBtn";
+            this.addItemBtn.Size = new System.Drawing.Size(107, 41);
+            this.addItemBtn.TabIndex = 1;
+            this.addItemBtn.Text = "Add Item";
+            this.addItemBtn.UseVisualStyleBackColor = true;
+            this.addItemBtn.Click += new System.EventHandler(this.addItemBtn_Click);
+            // 
+            // receiptBox
+            // 
+            this.receiptBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.receiptBox.BackColor = System.Drawing.Color.White;
+            this.receiptBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.receiptBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.receiptBox.Location = new System.Drawing.Point(714, 5);
+            this.receiptBox.Margin = new System.Windows.Forms.Padding(2);
+            this.receiptBox.Name = "receiptBox";
+            this.receiptBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.receiptBox.Size = new System.Drawing.Size(301, 525);
+            this.receiptBox.TabIndex = 0;
+            this.receiptBox.Text = "";
+            this.receiptBox.WordWrap = false;
+            // 
+            // PurchasesPage
+            // 
+            this.PurchasesPage.Controls.Add(this.removeFiltersBtn);
+            this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
+            this.PurchasesPage.Controls.Add(this.GeneratePurchaseLogBtn);
+            this.PurchasesPage.Controls.Add(this.label11);
+            this.PurchasesPage.Controls.Add(this.PurchaseLogMonth);
+            this.PurchasesPage.Controls.Add(this.label10);
+            this.PurchasesPage.Controls.Add(this.label9);
+            this.PurchasesPage.Controls.Add(this.label8);
+            this.PurchasesPage.Controls.Add(this.PurchaseLogType);
+            this.PurchasesPage.Controls.Add(this.PurchaseLogEndDate);
+            this.PurchasesPage.Controls.Add(this.PurchaseLogStartDate);
+            this.PurchasesPage.Location = new System.Drawing.Point(4, 28);
+            this.PurchasesPage.Margin = new System.Windows.Forms.Padding(2);
+            this.PurchasesPage.Name = "PurchasesPage";
+            this.PurchasesPage.Padding = new System.Windows.Forms.Padding(2);
+            this.PurchasesPage.Size = new System.Drawing.Size(963, 577);
+            this.PurchasesPage.TabIndex = 1;
+            this.PurchasesPage.Text = "Purchases Logs";
+            this.PurchasesPage.UseVisualStyleBackColor = true;
+            // 
+            // removeFiltersBtn
+            // 
+            this.removeFiltersBtn.Location = new System.Drawing.Point(254, 79);
+            this.removeFiltersBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.removeFiltersBtn.Name = "removeFiltersBtn";
+            this.removeFiltersBtn.Size = new System.Drawing.Size(237, 37);
+            this.removeFiltersBtn.TabIndex = 18;
+            this.removeFiltersBtn.Text = "Remove Filters";
+            this.removeFiltersBtn.UseVisualStyleBackColor = true;
+            this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
+            // 
+            // PurchseLogGridView
+            // 
+            this.PurchseLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.PurchseLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -734,323 +744,384 @@ namespace Green_Enviro_App
 			// 
 			this.SalesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.SalesLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.SalesLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.SalesLogGridView.Location = new System.Drawing.Point(395, 151);
-			this.SalesLogGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.SalesLogGridView.Name = "SalesLogGridView";
-			this.SalesLogGridView.RowHeadersWidth = 51;
-			this.SalesLogGridView.RowTemplate.Height = 24;
-			this.SalesLogGridView.Size = new System.Drawing.Size(1151, 556);
-			this.SalesLogGridView.TabIndex = 15;
-			// 
-			// ClearSalesFields
-			// 
-			this.ClearSalesFields.Location = new System.Drawing.Point(195, 279);
-			this.ClearSalesFields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ClearSalesFields.Name = "ClearSalesFields";
-			this.ClearSalesFields.Size = new System.Drawing.Size(131, 47);
-			this.ClearSalesFields.TabIndex = 14;
-			this.ClearSalesFields.Text = "Clear";
-			this.ClearSalesFields.UseVisualStyleBackColor = true;
-			// 
-			// AddSaleBtn
-			// 
-			this.AddSaleBtn.Location = new System.Drawing.Point(12, 279);
-			this.AddSaleBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.AddSaleBtn.Name = "AddSaleBtn";
-			this.AddSaleBtn.Size = new System.Drawing.Size(131, 47);
-			this.AddSaleBtn.TabIndex = 13;
-			this.AddSaleBtn.Text = "Add Sale";
-			this.AddSaleBtn.UseVisualStyleBackColor = true;
-			// 
-			// label16
-			// 
-			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(8, 219);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(76, 23);
-			this.label16.TabIndex = 12;
-			this.label16.Text = "Amount";
-			// 
-			// SaleAmount
-			// 
-			this.SaleAmount.Location = new System.Drawing.Point(127, 219);
-			this.SaleAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.SaleAmount.Name = "SaleAmount";
-			this.SaleAmount.Size = new System.Drawing.Size(140, 31);
-			this.SaleAmount.TabIndex = 11;
-			// 
-			// SaleTypeBx
-			// 
-			this.SaleTypeBx.FormattingEnabled = true;
-			this.SaleTypeBx.Location = new System.Drawing.Point(127, 169);
-			this.SaleTypeBx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.SaleTypeBx.Name = "SaleTypeBx";
-			this.SaleTypeBx.Size = new System.Drawing.Size(140, 31);
-			this.SaleTypeBx.TabIndex = 10;
-			// 
-			// CompanyNameList
-			// 
-			this.CompanyNameList.FormattingEnabled = true;
-			this.CompanyNameList.Location = new System.Drawing.Point(127, 66);
-			this.CompanyNameList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.CompanyNameList.Name = "CompanyNameList";
-			this.CompanyNameList.Size = new System.Drawing.Size(212, 31);
-			this.CompanyNameList.TabIndex = 9;
-			// 
-			// label15
-			// 
-			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(8, 172);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(54, 23);
-			this.label15.TabIndex = 7;
-			this.label15.Text = "Type";
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(8, 123);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(98, 23);
-			this.label14.TabIndex = 6;
-			this.label14.Text = "Quantity";
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(8, 70);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(87, 23);
-			this.label13.TabIndex = 5;
-			this.label13.Text = "Company";
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(8, 20);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(54, 23);
-			this.label12.TabIndex = 4;
-			this.label12.Text = "Date";
-			// 
-			// SaleQuantityBx
-			// 
-			this.SaleQuantityBx.Location = new System.Drawing.Point(127, 121);
-			this.SaleQuantityBx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.SaleQuantityBx.Name = "SaleQuantityBx";
-			this.SaleQuantityBx.Size = new System.Drawing.Size(140, 31);
-			this.SaleQuantityBx.TabIndex = 2;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.dstrctCertQuantityUnit);
-			this.tabPage1.Controls.Add(this.generateDstrCertBtn);
-			this.tabPage1.Controls.Add(this.dstrctCertCompanyField);
-			this.tabPage1.Controls.Add(this.dstrctCertEmailAddressField);
-			this.tabPage1.Controls.Add(this.dstrctCertDescripOfProdField);
-			this.tabPage1.Controls.Add(this.dstrctCertQuantityField);
-			this.tabPage1.Controls.Add(this.dstrctCertCntactNumField);
-			this.tabPage1.Controls.Add(this.dstrctCertExtrctDateField);
-			this.tabPage1.Controls.Add(this.dstrctCertCntactPersonField);
-			this.tabPage1.Controls.Add(this.label27);
-			this.tabPage1.Controls.Add(this.label26);
-			this.tabPage1.Controls.Add(this.label25);
-			this.tabPage1.Controls.Add(this.label24);
-			this.tabPage1.Controls.Add(this.label23);
-			this.tabPage1.Controls.Add(this.label22);
-			this.tabPage1.Controls.Add(this.label21);
-			this.tabPage1.Location = new System.Drawing.Point(4, 32);
-			this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Size = new System.Drawing.Size(1549, 714);
-			this.tabPage1.TabIndex = 3;
-			this.tabPage1.Text = "Destruction Certificate";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// dstrctCertQuantityUnit
-			// 
-			this.dstrctCertQuantityUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.dstrctCertQuantityUnit.DropDownHeight = 300;
-			this.dstrctCertQuantityUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.dstrctCertQuantityUnit.FormattingEnabled = true;
-			this.dstrctCertQuantityUnit.IntegralHeight = false;
-			this.dstrctCertQuantityUnit.ItemHeight = 23;
-			this.dstrctCertQuantityUnit.Location = new System.Drawing.Point(341, 443);
-			this.dstrctCertQuantityUnit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dstrctCertQuantityUnit.Name = "dstrctCertQuantityUnit";
-			this.dstrctCertQuantityUnit.Size = new System.Drawing.Size(139, 31);
-			this.dstrctCertQuantityUnit.TabIndex = 31;
-			// 
-			// generateDstrCertBtn
-			// 
-			this.generateDstrCertBtn.Location = new System.Drawing.Point(99, 599);
-			this.generateDstrCertBtn.Margin = new System.Windows.Forms.Padding(4);
-			this.generateDstrCertBtn.Name = "generateDstrCertBtn";
-			this.generateDstrCertBtn.Size = new System.Drawing.Size(351, 90);
-			this.generateDstrCertBtn.TabIndex = 30;
-			this.generateDstrCertBtn.Text = "Generate Certificate";
-			this.generateDstrCertBtn.UseVisualStyleBackColor = true;
-			this.generateDstrCertBtn.Click += new System.EventHandler(this.generateDstrCertBtn_Click);
-			// 
-			// dstrctCertCompanyField
-			// 
-			this.dstrctCertCompanyField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.dstrctCertCompanyField.Location = new System.Drawing.Point(372, 256);
-			this.dstrctCertCompanyField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dstrctCertCompanyField.Name = "dstrctCertCompanyField";
-			this.dstrctCertCompanyField.Size = new System.Drawing.Size(316, 31);
-			this.dstrctCertCompanyField.TabIndex = 29;
-			// 
-			// dstrctCertEmailAddressField
-			// 
-			this.dstrctCertEmailAddressField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.dstrctCertEmailAddressField.Location = new System.Drawing.Point(372, 319);
-			this.dstrctCertEmailAddressField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dstrctCertEmailAddressField.Name = "dstrctCertEmailAddressField";
-			this.dstrctCertEmailAddressField.Size = new System.Drawing.Size(316, 31);
-			this.dstrctCertEmailAddressField.TabIndex = 28;
-			// 
-			// dstrctCertDescripOfProdField
-			// 
-			this.dstrctCertDescripOfProdField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.dstrctCertDescripOfProdField.Location = new System.Drawing.Point(372, 383);
-			this.dstrctCertDescripOfProdField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dstrctCertDescripOfProdField.Name = "dstrctCertDescripOfProdField";
-			this.dstrctCertDescripOfProdField.Size = new System.Drawing.Size(316, 31);
-			this.dstrctCertDescripOfProdField.TabIndex = 27;
-			// 
-			// dstrctCertQuantityField
-			// 
-			this.dstrctCertQuantityField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.dstrctCertQuantityField.Location = new System.Drawing.Point(365, 443);
-			this.dstrctCertQuantityField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dstrctCertQuantityField.Name = "dstrctCertQuantityField";
-			this.dstrctCertQuantityField.Size = new System.Drawing.Size(171, 31);
-			this.dstrctCertQuantityField.TabIndex = 26;
-			// 
-			// dstrctCertCntactNumField
-			// 
-			this.dstrctCertCntactNumField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.dstrctCertCntactNumField.Location = new System.Drawing.Point(372, 194);
-			this.dstrctCertCntactNumField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dstrctCertCntactNumField.Name = "dstrctCertCntactNumField";
-			this.dstrctCertCntactNumField.Size = new System.Drawing.Size(316, 31);
-			this.dstrctCertCntactNumField.TabIndex = 25;
-			// 
-			// dstrctCertExtrctDateField
-			// 
-			this.dstrctCertExtrctDateField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.dstrctCertExtrctDateField.Location = new System.Drawing.Point(372, 65);
-			this.dstrctCertExtrctDateField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dstrctCertExtrctDateField.Name = "dstrctCertExtrctDateField";
-			this.dstrctCertExtrctDateField.Size = new System.Drawing.Size(316, 31);
-			this.dstrctCertExtrctDateField.TabIndex = 24;
-			// 
-			// dstrctCertCntactPersonField
-			// 
-			this.dstrctCertCntactPersonField.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.dstrctCertCntactPersonField.Location = new System.Drawing.Point(372, 128);
-			this.dstrctCertCntactPersonField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dstrctCertCntactPersonField.Name = "dstrctCertCntactPersonField";
-			this.dstrctCertCntactPersonField.Size = new System.Drawing.Size(316, 31);
-			this.dstrctCertCntactPersonField.TabIndex = 23;
-			// 
-			// label27
-			// 
-			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(93, 65);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(175, 23);
-			this.label27.TabIndex = 11;
-			this.label27.Text = "Extraction Date";
-			// 
-			// label26
-			// 
-			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(93, 128);
-			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(164, 23);
-			this.label26.TabIndex = 10;
-			this.label26.Text = "Contact Person";
-			// 
-			// label25
-			// 
-			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(93, 194);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(164, 23);
-			this.label25.TabIndex = 9;
-			this.label25.Text = "Contact Number";
-			this.label25.Click += new System.EventHandler(this.label25_Click);
-			// 
-			// label24
-			// 
-			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(93, 327);
-			this.label24.Name = "label24";
-			this.label24.Size = new System.Drawing.Size(153, 23);
-			this.label24.TabIndex = 8;
-			this.label24.Text = "Email Address";
-			// 
-			// label23
-			// 
-			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(93, 391);
-			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(252, 23);
-			this.label23.TabIndex = 7;
-			this.label23.Text = "Description of Product";
-			// 
-			// label22
-			// 
-			this.label22.AutoSize = true;
-			this.label22.Location = new System.Drawing.Point(93, 260);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(87, 23);
-			this.label22.TabIndex = 6;
-			this.label22.Text = "Company";
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(93, 448);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(98, 23);
-			this.label21.TabIndex = 5;
-			this.label21.Text = "Quantity";
-			// 
-			// Main_Form
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1557, 750);
-			this.Controls.Add(this.mainTabControl);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.MaximizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(99, 598);
-			this.Name = "Main_Form";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Green Enviro";
-			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-			this.mainTabControl.ResumeLayout(false);
-			this.ReceiptPage.ResumeLayout(false);
-			this.ReceiptPage.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
-			this.PurchasesPage.ResumeLayout(false);
-			this.PurchasesPage.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).EndInit();
-			this.SalesPage.ResumeLayout(false);
-			this.SalesPage.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).EndInit();
-			this.tabPage1.ResumeLayout(false);
-			this.tabPage1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-			this.ResumeLayout(false);
+            this.SalesLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.SalesLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SalesLogGridView.Location = new System.Drawing.Point(273, 140);
+            this.SalesLogGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.SalesLogGridView.Name = "SalesLogGridView";
+            this.SalesLogGridView.RowHeadersWidth = 51;
+            this.SalesLogGridView.RowTemplate.Height = 24;
+            this.SalesLogGridView.Size = new System.Drawing.Size(863, 492);
+            this.SalesLogGridView.TabIndex = 15;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(146, 227);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(98, 38);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 227);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 38);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 178);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(63, 19);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "Amount";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(95, 178);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(106, 26);
+            this.textBox1.TabIndex = 11;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(95, 137);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(106, 27);
+            this.comboBox3.TabIndex = 10;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(95, 54);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(160, 27);
+            this.comboBox2.TabIndex = 9;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(95, 14);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(160, 27);
+            this.comboBox1.TabIndex = 8;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 140);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(45, 19);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "Type";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 100);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(81, 19);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "Quantity";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 57);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(72, 19);
+            this.label13.TabIndex = 5;
+            this.label13.Text = "Company";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 16);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(45, 19);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Date";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(95, 98);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(106, 26);
+            this.textBox3.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dstrctCertQuantityNumBox);
+            this.tabPage1.Controls.Add(this.dstrctCertificateYearList);
+            this.tabPage1.Controls.Add(this.dstrctCertificateMonthList);
+            this.tabPage1.Controls.Add(this.dstrctCertificateDayList);
+            this.tabPage1.Controls.Add(this.dstrctCertQuantityUnit);
+            this.tabPage1.Controls.Add(this.generateDstrCertBtn);
+            this.tabPage1.Controls.Add(this.dstrctCertCompanyField);
+            this.tabPage1.Controls.Add(this.dstrctCertEmailAddressField);
+            this.tabPage1.Controls.Add(this.dstrctCertDescripOfProdField);
+            this.tabPage1.Controls.Add(this.dstrctCertCntactNumField);
+            this.tabPage1.Controls.Add(this.dstrctCertCntactPersonField);
+            this.tabPage1.Controls.Add(this.label27);
+            this.tabPage1.Controls.Add(this.label26);
+            this.tabPage1.Controls.Add(this.label25);
+            this.tabPage1.Controls.Add(this.label24);
+            this.tabPage1.Controls.Add(this.label23);
+            this.tabPage1.Controls.Add(this.label22);
+            this.tabPage1.Controls.Add(this.label21);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(963, 577);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Destruction Certificate";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dstrctCertQuantityNumBox
+            // 
+            this.dstrctCertQuantityNumBox.DecimalPlaces = 3;
+            this.dstrctCertQuantityNumBox.Location = new System.Drawing.Point(431, 361);
+            this.dstrctCertQuantityNumBox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.dstrctCertQuantityNumBox.Name = "dstrctCertQuantityNumBox";
+            this.dstrctCertQuantityNumBox.Size = new System.Drawing.Size(129, 26);
+            this.dstrctCertQuantityNumBox.TabIndex = 35;
+            this.dstrctCertQuantityNumBox.ThousandsSeparator = true;
+            // 
+            // dstrctCertificateYearList
+            // 
+            this.dstrctCertificateYearList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dstrctCertificateYearList.DropDownHeight = 300;
+            this.dstrctCertificateYearList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dstrctCertificateYearList.FormattingEnabled = true;
+            this.dstrctCertificateYearList.IntegralHeight = false;
+            this.dstrctCertificateYearList.ItemHeight = 19;
+            this.dstrctCertificateYearList.Location = new System.Drawing.Point(187, 53);
+            this.dstrctCertificateYearList.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertificateYearList.Name = "dstrctCertificateYearList";
+            this.dstrctCertificateYearList.Size = new System.Drawing.Size(90, 27);
+            this.dstrctCertificateYearList.TabIndex = 34;
+            // 
+            // dstrctCertificateMonthList
+            // 
+            this.dstrctCertificateMonthList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dstrctCertificateMonthList.DropDownHeight = 300;
+            this.dstrctCertificateMonthList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dstrctCertificateMonthList.FormattingEnabled = true;
+            this.dstrctCertificateMonthList.IntegralHeight = false;
+            this.dstrctCertificateMonthList.ItemHeight = 19;
+            this.dstrctCertificateMonthList.Location = new System.Drawing.Point(39, 53);
+            this.dstrctCertificateMonthList.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertificateMonthList.Name = "dstrctCertificateMonthList";
+            this.dstrctCertificateMonthList.Size = new System.Drawing.Size(144, 27);
+            this.dstrctCertificateMonthList.TabIndex = 33;
+            // 
+            // dstrctCertificateDayList
+            // 
+            this.dstrctCertificateDayList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dstrctCertificateDayList.DropDownHeight = 300;
+            this.dstrctCertificateDayList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dstrctCertificateDayList.FormattingEnabled = true;
+            this.dstrctCertificateDayList.IntegralHeight = false;
+            this.dstrctCertificateDayList.ItemHeight = 19;
+            this.dstrctCertificateDayList.Location = new System.Drawing.Point(-60, 53);
+            this.dstrctCertificateDayList.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertificateDayList.Name = "dstrctCertificateDayList";
+            this.dstrctCertificateDayList.Size = new System.Drawing.Size(95, 27);
+            this.dstrctCertificateDayList.TabIndex = 32;
+            // 
+            // dstrctCertQuantityUnit
+            // 
+            this.dstrctCertQuantityUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dstrctCertQuantityUnit.DropDownHeight = 300;
+            this.dstrctCertQuantityUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dstrctCertQuantityUnit.FormattingEnabled = true;
+            this.dstrctCertQuantityUnit.IntegralHeight = false;
+            this.dstrctCertQuantityUnit.ItemHeight = 19;
+            this.dstrctCertQuantityUnit.Location = new System.Drawing.Point(172, 360);
+            this.dstrctCertQuantityUnit.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertQuantityUnit.Name = "dstrctCertQuantityUnit";
+            this.dstrctCertQuantityUnit.Size = new System.Drawing.Size(105, 27);
+            this.dstrctCertQuantityUnit.TabIndex = 31;
+            this.dstrctCertQuantityUnit.SelectedIndexChanged += new System.EventHandler(this.dstrctCertQuantityUnit_SelectedIndexChanged);
+            // 
+            // generateDstrCertBtn
+            // 
+            this.generateDstrCertBtn.Location = new System.Drawing.Point(74, 487);
+            this.generateDstrCertBtn.Name = "generateDstrCertBtn";
+            this.generateDstrCertBtn.Size = new System.Drawing.Size(263, 73);
+            this.generateDstrCertBtn.TabIndex = 30;
+            this.generateDstrCertBtn.Text = "Generate Certificate";
+            this.generateDstrCertBtn.UseVisualStyleBackColor = true;
+            this.generateDstrCertBtn.Click += new System.EventHandler(this.generateDstrCertBtn_Click);
+            // 
+            // dstrctCertCompanyField
+            // 
+            this.dstrctCertCompanyField.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dstrctCertCompanyField.Location = new System.Drawing.Point(237, 208);
+            this.dstrctCertCompanyField.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertCompanyField.Name = "dstrctCertCompanyField";
+            this.dstrctCertCompanyField.Size = new System.Drawing.Size(238, 26);
+            this.dstrctCertCompanyField.TabIndex = 29;
+            // 
+            // dstrctCertEmailAddressField
+            // 
+            this.dstrctCertEmailAddressField.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dstrctCertEmailAddressField.Location = new System.Drawing.Point(237, 259);
+            this.dstrctCertEmailAddressField.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertEmailAddressField.Name = "dstrctCertEmailAddressField";
+            this.dstrctCertEmailAddressField.Size = new System.Drawing.Size(238, 26);
+            this.dstrctCertEmailAddressField.TabIndex = 28;
+            // 
+            // dstrctCertDescripOfProdField
+            // 
+            this.dstrctCertDescripOfProdField.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dstrctCertDescripOfProdField.Location = new System.Drawing.Point(237, 311);
+            this.dstrctCertDescripOfProdField.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertDescripOfProdField.Name = "dstrctCertDescripOfProdField";
+            this.dstrctCertDescripOfProdField.Size = new System.Drawing.Size(238, 26);
+            this.dstrctCertDescripOfProdField.TabIndex = 27;
+            // 
+            // dstrctCertCntactNumField
+            // 
+            this.dstrctCertCntactNumField.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dstrctCertCntactNumField.Location = new System.Drawing.Point(237, 158);
+            this.dstrctCertCntactNumField.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertCntactNumField.Name = "dstrctCertCntactNumField";
+            this.dstrctCertCntactNumField.Size = new System.Drawing.Size(238, 26);
+            this.dstrctCertCntactNumField.TabIndex = 25;
+            // 
+            // dstrctCertCntactPersonField
+            // 
+            this.dstrctCertCntactPersonField.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dstrctCertCntactPersonField.Location = new System.Drawing.Point(237, 104);
+            this.dstrctCertCntactPersonField.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertCntactPersonField.Name = "dstrctCertCntactPersonField";
+            this.dstrctCertCntactPersonField.Size = new System.Drawing.Size(238, 26);
+            this.dstrctCertCntactPersonField.TabIndex = 23;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(70, 53);
+            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(144, 19);
+            this.label27.TabIndex = 11;
+            this.label27.Text = "Extraction Date";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(70, 104);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(135, 19);
+            this.label26.TabIndex = 10;
+            this.label26.Text = "Contact Person";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(70, 158);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(135, 19);
+            this.label25.TabIndex = 9;
+            this.label25.Text = "Contact Number";
+            this.label25.Click += new System.EventHandler(this.label25_Click);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(70, 266);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(126, 19);
+            this.label24.TabIndex = 8;
+            this.label24.Text = "Email Address";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(70, 318);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(207, 19);
+            this.label23.TabIndex = 7;
+            this.label23.Text = "Description of Product";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(70, 211);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(72, 19);
+            this.label22.TabIndex = 6;
+            this.label22.Text = "Company";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(70, 364);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(81, 19);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "Quantity";
+            // 
+            // Main_Form
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(971, 609);
+            this.Controls.Add(this.mainTabControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(79, 495);
+            this.Name = "Main_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Green Enviro";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.mainTabControl.ResumeLayout(false);
+            this.ReceiptPage.ResumeLayout(false);
+            this.ReceiptPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            this.PurchasesPage.ResumeLayout(false);
+            this.PurchasesPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).EndInit();
+            this.SalesPage.ResumeLayout(false);
+            this.SalesPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 
@@ -1204,9 +1275,7 @@ namespace Green_Enviro_App
         public System.Windows.Forms.TextBox dstrctCertCompanyField;
         public System.Windows.Forms.TextBox dstrctCertEmailAddressField;
         public System.Windows.Forms.TextBox dstrctCertDescripOfProdField;
-        public System.Windows.Forms.TextBox dstrctCertQuantityField;
         public System.Windows.Forms.TextBox dstrctCertCntactNumField;
-        public System.Windows.Forms.TextBox dstrctCertExtrctDateField;
         public System.Windows.Forms.TextBox dstrctCertCntactPersonField;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
@@ -1218,4 +1287,9 @@ namespace Green_Enviro_App
         public System.Windows.Forms.ComboBox dstrctCertQuantityUnit;
 		public System.Windows.Forms.DateTimePicker SaleDate;
 	}
+        public System.Windows.Forms.ComboBox dstrctCertificateYearList;
+        public System.Windows.Forms.ComboBox dstrctCertificateMonthList;
+        public System.Windows.Forms.ComboBox dstrctCertificateDayList;
+        public System.Windows.Forms.NumericUpDown dstrctCertQuantityNumBox;
+    }
 }
