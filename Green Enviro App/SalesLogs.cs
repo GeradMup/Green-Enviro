@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Green_Enviro_App
 {
 	class SalesLogs
 	{
-		static string _month = DateTime.Now.ToString("MMMM yyyy");
-		string _path_to_sales = @"..//..//resources//Logs//Sales//" + _month + ".csv";
+		static string _month_n_year = DateTime.Now.ToString("MMMM yyyy");
+		string _path_to_sales = @"..//..//resources//Logs//Sales//" + _month_n_year + ".csv";
 
 		Main_Form _main_form;
 
@@ -35,7 +36,13 @@ namespace Green_Enviro_App
 
 		private void CreateLogFiles() 
 		{
-			
+			if (!File.Exists(_path_to_sales))
+			{
+				string _sales_file_headers = "Date,Company,Quantity,Amount,Type";
+				StringBuilder _csv_content = new StringBuilder();
+				_csv_content.AppendLine(_sales_file_headers);
+				File.AppendAllText(_path_to_sales, _csv_content.ToString());
+			}
 		}
 
 		public void setTypes(string F, string N)
@@ -46,6 +53,11 @@ namespace Green_Enviro_App
 			//Also setup the Ferrous or Non-Ferrous Selector
 			_main_form.PurchaseLogType.Items.Add(_ferrous);
 			_main_form.PurchaseLogType.Items.Add(_non_ferrous);
+		}
+
+		public void AddSale() 
+		{
+
 		}
 	}
 }
