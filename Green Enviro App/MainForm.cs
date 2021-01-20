@@ -130,5 +130,10 @@ namespace Green_Enviro_App
         {
             _destruction_certificate.ExportToPdf();
         }
+
+        private void dstrctCertQuantityUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

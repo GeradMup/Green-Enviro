@@ -24,13 +24,13 @@ namespace Green_Enviro_App
 	/// </summary>
 	public class Database
 	{
-		static string _path_to_directory = @"..\\..\\";
-		static string _path_to_db_file = _path_to_directory + "\\Green Enviro Data.mdf";
-		static Main_Form _main_form;
+		//static readonly string _path_to_directory = @"..\\..\\";
+		//static readonly string _path_to_db_file = _path_to_directory + "\\Green Enviro Data.mdf";
+		//static Main_Form _main_form;
 		//static CustomMsgBox _custom_msg_box;
 
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\resources\Data\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
-		static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
+		static readonly string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ _absolute_path_to_db +";Integrated Security = True; Connect Timeout = 30";
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\Green Enviro Data.mdf;Integrated Security=True;Connect Timeout=30";
 
@@ -46,7 +46,7 @@ namespace Green_Enviro_App
 
 		public void UploadData(Main_Form _main) 
 		{
-			_main_form = _main;    
+			//_main_form = _main;    
 			OpenDatabase();
 			InsertIntoDB();
 		}
