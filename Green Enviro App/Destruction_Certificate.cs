@@ -26,7 +26,16 @@ namespace Green_Enviro_App
             _main_form = _form;
             GenerateExtractionDateList();
             QuantityOfProducts();
-            //CalculateQuantityOfProduct();
+            _main_form.dstrctCertCntactNumField.Left = 180;
+            _main_form.dstrctCertCntactPersonField.Left = 180;
+            _main_form.dstrctCertCompanyField.Left = 180;
+            _main_form.dstrctCertDescripOfProdField.Left = 180;
+            _main_form.dstrctCertEmailAddressField.Left = 180;
+            _main_form.dstrctCertificateDayList.Left = -68;
+            _main_form.dstrctCertificateMonthList.Left = 5;
+            _main_form.dstrctCertificateYearList.Left = 115;
+            _main_form.dstrctCertQuantityNumBox.Left = 340;
+            _main_form.dstrctCertQuantityUnit.Left = 100;
         }
         private void GenerateDestructionCertificate(string _pdf_save_path)
         {
@@ -239,7 +248,9 @@ namespace Green_Enviro_App
             string _empty_txtbox = "";
             string _message_type = "";
             string _message = "";
-            string _save_pdf_path = @"..//..//resources//Logs//Destruction Certificates//" + _main_form.dstrctCertCompanyField.Text + ".pdf";
+            string _company = _main_form.dstrctCertCompanyField.Text;
+            string _extraction_date = _main_form.dstrctCertificateDayList.SelectedItem.ToString() + "_" + _main_form.dstrctCertificateMonthList.SelectedItem.ToString() + "_" + _main_form.dstrctCertificateYearList.SelectedItem.ToString();
+            string _save_pdf_path = @"..//..//resources//Logs//Destruction Certificates//" + _company + "_" + _extraction_date + ".pdf";
             bool _all_good = false;
 
             if (_main_form.dstrctCertificateDayList.SelectedIndex == 0)
@@ -372,51 +383,39 @@ namespace Green_Enviro_App
             _main_form.dstrctCertQuantityUnit.Items.Insert(1,"PALLETS");
             _main_form.dstrctCertQuantityUnit.Items.Insert(2,"Kg");
             _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
-            Console.WriteLine("In");
-            if (_main_form.dstrctCertQuantityUnit.SelectedIndex > 0)
-            {
-                Console.WriteLine("First in");
-                MessageBox.Show("You selected PALLETS");
-                Console.WriteLine("First out");
-            }/*
-            if (_main_form.dstrctCertQuantityUnit.SelectedIndex == 2)
-            {
-                MessageBox.Show("You selected Kg");
-            }*/
-            //CalculateQuantityOfProduct();
         }
 
-        private void CalculateQuantityOfProduct()
-        {
-            string _pallet = "PALLETS";
-            string _kg = "Kg";
-            string _object = _main_form.dstrctCertQuantityUnit.GetItemText(_main_form.dstrctCertQuantityUnit.SelectedItem);
-
-            if (_main_form.dstrctCertQuantityUnit.SelectedIndex == 1 )
-            {
-                MessageBox.Show("You selected PALLETS");
-            }
-            if (_main_form.dstrctCertQuantityUnit.SelectedIndex == 2)
-            {
-                MessageBox.Show("You selected Kg");
-            }
-        }
         private Tuple<string,string> GetQuantity()
         {
             string _value_in_kg = "";
             string _value_in_pallets = "";
+            double _quantity_of_product = Convert.ToDouble(_main_form.dstrctCertQuantityNumBox.Value);
+
 
             if (_main_form.dstrctCertQuantityUnit.SelectedItem.ToString() == "PALLETS")
             {
+                double _conversion = 0;
                 MessageBox.Show("You selected PALLETS");
+                _conversion = _quantity_of_product * 60;
                 _value_in_pallets = _main_form.dstrctCertQuantityNumBox.Value.ToString();
+                _value_in_kg = _conversion.ToString();
                  
             }
             else if (_main_form.dstrctCertQuantityUnit.SelectedItem.ToString() == "Kg")
             {
+                double _conversion = 0;
                 MessageBox.Show("You selected Kg");
-                _value_in_kg = _main_form.dstrctCertQuantityNumBox.Value.ToString();
-                //There a change
+                if (_quantity_of_product > 60)
+                {
+                    _conversion = _quantity_of_product / 60;
+                    _value_in_kg = _main_form.dstrctCertQuantityNumBox.Value.ToString();
+                    _value_in_pallets = _conversion.ToString();
+                }
+                else
+                {
+                    _value_in_kg = _main_form.dstrctCertQuantityNumBox.Value.ToString();
+                    _value_in_pallets = _conversion.ToString();
+                }
             }
             else MessageBox.Show("Nothing occuring");
 
