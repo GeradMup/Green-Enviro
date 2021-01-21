@@ -49,16 +49,13 @@ namespace Green_Enviro_App
 		private void CreateLogFiles()
 		{
 			//First Check if the files exist for each month
+			//If the file does not exist, create it
 			if (!File.Exists(_path_to_purchases))
 			{
 				string _purchases_file_headers = "Date,Name,Surname,ID,Number,Item,Quantity,Price,Amount,Type";
-				CreateFile(_path_to_purchases, _purchases_file_headers);
-			}
-
-			if (!File.Exists(_path_to_sales))
-			{
-				string _sales_file_headers = "Date,Company,Quantity,Amount,Type";
-				CreateFile(_path_to_sales, _sales_file_headers);
+				StringBuilder _csv_content = new StringBuilder();
+				_csv_content.AppendLine(_purchases_file_headers);
+				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
 			}
 
 			if (!File.Exists(_path_to_expenses))
@@ -76,9 +73,7 @@ namespace Green_Enviro_App
 
 		private void CreateFile(string path, string headers)
 		{
-			StringBuilder _csv_content = new StringBuilder();
-			_csv_content.AppendLine(headers);
-			File.AppendAllText(path, _csv_content.ToString());
+
 		}
 
 		public void AddPurchase(List<string> purchasedItems)

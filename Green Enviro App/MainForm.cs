@@ -15,6 +15,7 @@ namespace Green_Enviro_App
         Receipt _receipt;
         Database _database;
         PurchaseLogs _purchase_logs;
+        SalesLogs _sales_logs;
 		Destruction_Certificate _destruction_certificate;
 
 		/// <summary>
@@ -27,6 +28,7 @@ namespace Green_Enviro_App
             //initialiseItemList();
             _database = _data;
             _purchase_logs = new PurchaseLogs(this);
+            _sales_logs = new SalesLogs(this);
             _receipt = new Receipt(this, _database, _purchase_logs);
             _destruction_certificate = new Destruction_Certificate(this);
         }
@@ -135,5 +137,10 @@ namespace Green_Enviro_App
         {
 
         }
-    }
+
+		private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+		{
+            
+        }
+	}
 }
