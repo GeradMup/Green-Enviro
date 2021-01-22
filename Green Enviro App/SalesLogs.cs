@@ -14,19 +14,26 @@ namespace Green_Enviro_App
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
 		string _path_to_sales = @"..//..//resources//Logs//Sales//" + _month + ".csv";
-		Main_Form _main_form;
 
-		DataTable _sales_data_table = new DataTable();
+		//Required objects
+		Main_Form _main_form;
+		Database _database;
+
+		DataTable _sales_data_table = new DataTable();	//All the information about all the products the we have sold.
+		DataTable _companies;	//Companies that we sell and buy from
+
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
 
 		string _ferrous;
 		string _non_ferrous;
-		public SalesLogs(Main_Form _main)
+		public SalesLogs(Main_Form _main, Database data)
 		{
 			_main_form = _main;
+			_database = data;
 			CreateLogFiles();
 			SetupSalesLogs();
+			LoadCompanies();
 		}
 
 		public void setTypes(string F, string N)
@@ -53,13 +60,42 @@ namespace Green_Enviro_App
 			}
 		}
 
+		public void SetupSalesLogs()
+		{
+			//This function will get the names of all the purchase log files that exists in the purchases folder
+			string _purchase_logs_path = @"..//..//resources//Logs//Sales";
+			DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);  //Assuming Test is your Folder
+			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
+			foreach (FileInfo _file in _files)
+			{
+				char[] _remove_chars = { 'c', 's', 'v', '.' };
+				string _file_name = _file.Name.TrimEnd(_remove_chars);
+				_main_form.SalesLogMonth.Items.Add(_file_name);
+			}
+		}
+
+		private void LoadCompanies() 
+		{
+			//Gets all company details and stores them in a DataTable
+			_companies = _database.SelectAll("Companies");
+
+			//MessageBox.Show("All Customers: " + _customers.Rows.Count.ToString());
+
+			int _company_name_index = 1;
+
+			foreach (DataRow row in _companies.Rows)
+			{
+				//Selects the customer numbers and adds to the drop down list on the receipt page
+				_main_form.SaleCompanyNameList.Items.Add(row[_company_name_index]);
+			}
+		}
+
 		public void AddSale()
 		{
 			StringBuilder _csv_content = new StringBuilder();
 			string _new_sale = "";
 				_csv_content.AppendLine(_new_sale);
 			
-
 			try
 			{
 				File.AppendAllText(_path_to_sales, _csv_content.ToString());
@@ -69,6 +105,18 @@ namespace Green_Enviro_App
 			{
 				MessageBox.Show("Error! \n" + ex.Message);
 			}
+		}
+
+		private bool verifyEntries() 
+		{
+			bool _all_good = false;
+
+			if (_main_form.SaleCompanyNameList.SelectedItem == null) 
+			{
+				
+			}
+
+			return _all_good;
 		}
 
 		public void DisplaySalesLog()
@@ -212,19 +260,6 @@ namespace Green_Enviro_App
 
 		}
 
-		public void SetupSalesLogs()
-		{
-			//This function will get the names of all the purchase log files that exists in the purchases folder
-			string _purchase_logs_path = @"..//..//resources//Logs//Sales";
-			DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);  //Assuming Test is your Folder
-			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
-			foreach (FileInfo _file in _files)
-			{
-				char[] _remove_chars = { 'c', 's', 'v', '.' };
-				string _file_name = _file.Name.TrimEnd(_remove_chars);
-				_main_form.SalesLogMonth.Items.Add(_file_name);
-			}
-		}
 
 		public void MonthSelected()
 		{

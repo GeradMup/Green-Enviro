@@ -28,7 +28,7 @@ namespace Green_Enviro_App
             //initialiseItemList();
             _database = _data;
             _purchase_logs = new PurchaseLogs(this);
-            _sales_logs = new SalesLogs(this);
+            _sales_logs = new SalesLogs(this, _database);
             _receipt = new Receipt(this, _database, _purchase_logs);
             _destruction_certificate = new Destruction_Certificate(this);
         }
