@@ -143,9 +143,9 @@ namespace Green_Enviro_App
             
         }
 
-        private void Main_Form_Load(object sender, EventArgs e)
+        private void DCNewCompany_CheckedChanged(object sender, EventArgs e)
         {
-
+            _destruction_certificate.FieldSettings();
         }
 
 
@@ -161,5 +161,12 @@ namespace Green_Enviro_App
 		{
             _sales_logs.MonthSelected();
         }
+
+		private void NewCompanyCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+            _sales_logs.CompanyNameSettings();
+		}
+
+
 	}
 }

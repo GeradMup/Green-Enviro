@@ -383,6 +383,18 @@ namespace Green_Enviro_App
 
 			DisplaySalesLog();
 		}
+
+		public void CompanyNameSettings() 
+		{
+			if (_main_form.NewCompanyCheckBox.CheckState == CheckState.Checked)
+			{
+				_main_form.SaleCompanyNameList.DropDownStyle = ComboBoxStyle.DropDown;
+			}
+			else 
+			{
+				_main_form.SaleCompanyNameList.DropDownStyle = ComboBoxStyle.DropDownList;
+			}
+		}
 	}
 }
 

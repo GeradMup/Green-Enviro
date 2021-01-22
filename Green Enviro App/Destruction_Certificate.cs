@@ -329,13 +329,31 @@ namespace Green_Enviro_App
             _main_form.dstrctCertificateDayList.SelectedIndex = 0;
             _main_form.dstrctCertificateMonthList.SelectedIndex = 0;
             _main_form.dstrctCertificateYearList.SelectedIndex = 0;
-            _main_form.dstrctCertCompanyField.Clear();
+            _main_form.dstrctCertCompanyField.SelectedValue = null;
             _main_form.dstrctCertCntactPersonField.Clear();
             _main_form.dstrctCertCntactNumField.Clear();
             _main_form.dstrctCertEmailAddressField.Clear();
             _main_form.dstrctCertDescripOfProdField.Clear();
             _main_form.dstrctCertQuantityNumBox.ResetText();
             _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
+        }
+
+        public void FieldSettings() 
+        {
+            if (_main_form.DCNewCompany.CheckState == CheckState.Checked)
+            {
+                _main_form.dstrctCertCntactPersonField.ReadOnly = false;
+                _main_form.dstrctCertCntactNumField.ReadOnly = false;
+                _main_form.dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDown;
+                _main_form.dstrctCertEmailAddressField.ReadOnly = false;
+            }
+            else 
+            {
+                _main_form.dstrctCertCntactPersonField.ReadOnly = true;
+                _main_form.dstrctCertCntactNumField.ReadOnly = true;
+                _main_form.dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDownList;
+                _main_form.dstrctCertEmailAddressField.ReadOnly = true;
+            }
         }
 
         private void GenerateExtractionDateList()
