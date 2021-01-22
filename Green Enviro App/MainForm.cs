@@ -87,7 +87,7 @@ namespace Green_Enviro_App
         //PURCHASE LOG RELATED CALLS
         //******************************************************************************************************************************
 
-        private void GeneratePurchaseLogBtn_Click(object sender, EventArgs e)
+        private void FilterPurchaseLogBtn_Click(object sender, EventArgs e)
         {
             _purchase_logs.DisplayPurchaseLog();
         }
@@ -147,5 +147,19 @@ namespace Green_Enviro_App
         {
 
         }
-    }
+
+
+        //******************************************************************************************************************************
+        //SALES LOG RELATED CALLS
+        //******************************************************************************************************************************
+        private void FilterSalesLogBtn_Click(object sender, EventArgs e)
+		{
+            _sales_logs.DisplaySalesLog();
+		}
+
+		private void SalesLogMonth_SelectedIndexChanged(object sender, EventArgs e)
+		{
+            _sales_logs.MonthSelected();
+        }
+	}
 }

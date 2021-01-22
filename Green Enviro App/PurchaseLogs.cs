@@ -17,7 +17,6 @@ namespace Green_Enviro_App
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
 		string _path_to_purchases = @"..//..//resources//Logs//Purchases//" + _month + ".csv";
-		string _path_to_sales = @"..//..//resources//Logs//Sales//" + _month + ".csv";
 		string _path_to_expenses = @"..//..//resources//Logs//Expenses//" + _month + ".csv";
 		string _path_to_wages = @"..//..//resources//Logs//Wages//" + _month + ".csv";
 		Main_Form _main_form;
@@ -56,18 +55,6 @@ namespace Green_Enviro_App
 				StringBuilder _csv_content = new StringBuilder();
 				_csv_content.AppendLine(_purchases_file_headers);
 				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
-			}
-
-			if (!File.Exists(_path_to_expenses))
-			{
-				string _expenses_file_headers = "Date,Description,Amount";
-				CreateFile(_path_to_expenses, _expenses_file_headers);
-			}
-
-			if (!File.Exists(_path_to_wages))
-			{
-				string _wages_file_headers = "Date,Person,Amount";
-				CreateFile(_path_to_wages, _wages_file_headers);
 			}
 		}
 
@@ -148,17 +135,17 @@ namespace Green_Enviro_App
 				//Filter according to the date ranges if the dates have been selected correctly
 				if (isDateFiltered() == true)
 				{
-					string _start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
-					string _end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
+					string _filter_start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
+					string _filter_end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
 
 					if (isTypeFiltered() == true)
 					{
 						string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
-						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}' AND Type = '{3}'", " ", _start_date, _end_date, _item_type);
+						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}' AND Type = '{3}'", _empty_string, _filter_start_date, _filter_end_date, _item_type);
 					}
 					else
 					{
-						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}'", _empty_string, _start_date, _end_date);
+						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}'", _empty_string, _filter_start_date, _filter_end_date);
 					}
 				}
 				else
@@ -238,8 +225,8 @@ namespace Green_Enviro_App
 		{
 			//This function will get the names of all the purchase log files that exists in the purchases folder
 			string _purchase_logs_path = @"..//..//resources//Logs//Purchases";
-			DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);//Assuming Test is your Folder
-			FileInfo[] _files = _directory.GetFiles("*.csv"); //Getting Text files
+			DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);	//Assuming Test is your Folder
+			FileInfo[] _files = _directory.GetFiles("*.csv");	//Getting Text files
 			foreach (FileInfo _file in _files)
 			{
 				char[] _remove_chars = { 'c', 's', 'v', '.' };
