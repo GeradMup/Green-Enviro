@@ -281,17 +281,17 @@
     <Compile Include="CustomMsgBox.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Destruction_Certificate.cs" />
+    <Compile Include="Green_Enviro_DataDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SalesLogs.cs" />
     <Compile Include="UserDatabase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserDatabase.Designer.cs">
       <DependentUpon>UserDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Green_Enviro_DataDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="InformationEncryption.cs" />
     <Compile Include="LoginForm.cs">
@@ -361,10 +361,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Green Enviro Data.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Green Enviro Data_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Green Enviro Data.mdf</DependentUpon>
     </Content>
     <Content Include="green-leaf.ico" />

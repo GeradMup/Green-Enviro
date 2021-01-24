@@ -26,16 +26,16 @@ namespace Green_Enviro_App
             _main_form = _form;
             GenerateExtractionDateList();
             QuantityOfProducts();
-            _main_form.dstrctCertCntactNumField.Left = 180;
-            _main_form.dstrctCertCntactPersonField.Left = 180;
-            _main_form.dstrctCertCompanyField.Left = 180;
-            _main_form.dstrctCertDescripOfProdField.Left = 180;
-            _main_form.dstrctCertEmailAddressField.Left = 180;
-            _main_form.dstrctCertificateDayList.Left = -68;
-            _main_form.dstrctCertificateMonthList.Left = 5;
-            _main_form.dstrctCertificateYearList.Left = 115;
-            _main_form.dstrctCertQuantityNumBox.Left = 340;
-            _main_form.dstrctCertQuantityUnit.Left = 100;
+           _main_form.dstrctCertCntactNumField.Location = new System.Drawing.Point(200,180);
+            _main_form.dstrctCertCntactPersonField.Location = new System.Drawing.Point(200,125);
+            _main_form.dstrctCertCompanyField.Location = new System.Drawing.Point(200,68); 
+            _main_form.dstrctCertDescripOfProdField.Location = new System.Drawing.Point(200,283);
+            _main_form.dstrctCertEmailAddressField.Location = new System.Drawing.Point(200,231);
+            _main_form.dstrctCertificateDayList.Location = new System.Drawing.Point(-49,57);
+            _main_form.dstrctCertificateMonthList.Location = new System.Drawing.Point(25,57);
+            _main_form.dstrctCertificateYearList.Location = new System.Drawing.Point(305,-11);
+            _main_form.dstrctCertQuantityNumBox.Location = new System.Drawing.Point(185,335);
+            _main_form.dstrctCertQuantityUnit.Location = new System.Drawing.Point(285, 335) ;
         }
         private void GenerateDestructionCertificate(string _pdf_save_path)
         {
@@ -340,7 +340,7 @@ namespace Green_Enviro_App
 
         public void FieldSettings() 
         {
-            if (_main_form.DCNewCompany.CheckState == CheckState.Checked)
+            if (_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Checked)
             {
                 _main_form.dstrctCertCntactPersonField.ReadOnly = false;
                 _main_form.dstrctCertCntactNumField.ReadOnly = false;
