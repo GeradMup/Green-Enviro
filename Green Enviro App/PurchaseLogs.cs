@@ -54,6 +54,7 @@ namespace Green_Enviro_App
 				string _purchases_file_headers = "Date,Name,Surname,ID,Number,Item,Quantity,Price,Amount,Type";
 				StringBuilder _csv_content = new StringBuilder();
 				_csv_content.AppendLine(_purchases_file_headers);
+				//_csv_content.AppendLine("\n");
 				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
 			}
 		}
@@ -75,7 +76,8 @@ namespace Green_Enviro_App
 			try
 			{
 				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
-				MessageBox.Show("Purchase Completed!");
+				
+				CustomMessageBox box = new CustomMessageBox("Success!","Purchase Completed!");
 			}
 			catch (Exception ex)
 			{

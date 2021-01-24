@@ -25,25 +25,27 @@ namespace Green_Enviro_App
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
 
-		string _ferrous;
-		string _non_ferrous;
+		string _ferrous = "Ferrous";
+		string _non_ferrous = "Non-Ferrous";
+		bool _unknown_company = false;
 		public SalesLogs(Main_Form _main, Database data)
 		{
 			_main_form = _main;
 			_database = data;
 			CreateLogFiles();
+			SetTypes();
 			SetupSalesLogs();
 			LoadCompanies();
 		}
 
-		public void setTypes(string F, string N)
+		public void SetTypes()
 		{
-			_ferrous = F;
-			_non_ferrous = N;
-
 			//Also setup the Ferrous or Non-Ferrous Selector
-			_main_form.PurchaseLogType.Items.Add(_ferrous);
-			_main_form.PurchaseLogType.Items.Add(_non_ferrous);
+			_main_form.SaleTypeBx.Items.Add(_ferrous);
+			_main_form.SaleTypeBx.Items.Add(_non_ferrous);
+
+			_main_form.SalesLogType.Items.Add(_ferrous);
+			_main_form.SalesLogType.Items.Add(_non_ferrous);
 		}
 
 		//Create purchase and sales logs for each month if they don't already exist
@@ -62,9 +64,9 @@ namespace Green_Enviro_App
 
 		public void SetupSalesLogs()
 		{
-			//This function will get the names of all the purchase log files that exists in the purchases folder
-			string _purchase_logs_path = @"..//..//resources//Logs//Sales";
-			DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);  //Assuming Test is your Folder
+			//This function will get the names of all the sales log files that exists in the Sales folder
+			string _sales_logs_path = @"..//..//resources//Logs//Sales";
+			DirectoryInfo _directory = new DirectoryInfo(_sales_logs_path);  //Assuming Test is your Folder
 			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
 			foreach (FileInfo _file in _files)
 			{
@@ -88,35 +90,6 @@ namespace Green_Enviro_App
 				//Selects the customer numbers and adds to the drop down list on the receipt page
 				_main_form.SaleCompanyNameList.Items.Add(row[_company_name_index]);
 			}
-		}
-
-		public void AddSale()
-		{
-			StringBuilder _csv_content = new StringBuilder();
-			string _new_sale = "";
-				_csv_content.AppendLine(_new_sale);
-			
-			try
-			{
-				File.AppendAllText(_path_to_sales, _csv_content.ToString());
-				MessageBox.Show("Sale Recorded");
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Error! \n" + ex.Message);
-			}
-		}
-
-		private bool verifyEntries() 
-		{
-			bool _all_good = false;
-
-			if (_main_form.SaleCompanyNameList.SelectedItem == null) 
-			{
-				
-			}
-
-			return _all_good;
 		}
 
 		public void DisplaySalesLog()
@@ -179,11 +152,11 @@ namespace Green_Enviro_App
 					if (isTypeFiltered() == true)
 					{
 						string _item_type = _main_form.SalesLogType.SelectedItem.ToString();
-						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}' AND Type = '{3}'", _empty_string, _filter_start_date, _filter_end_date, _item_type);
+						_binding_source.Filter = string.Format("Company = '{0}' OR Date >= '{1}' AND Date <= '{2}' AND Type = '{3}'", _empty_string, _filter_start_date, _filter_end_date, _item_type);
 					}
 					else
 					{
-						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}'", _empty_string, _filter_start_date, _filter_end_date);
+						_binding_source.Filter = string.Format("Company = '{0}' OR Date >= '{1}' AND Date <= '{2}'", _empty_string, _filter_start_date, _filter_end_date);
 					}
 				}
 				else
@@ -193,12 +166,12 @@ namespace Green_Enviro_App
 					if (isTypeFiltered() == true)
 					{
 						string _item_type = _main_form.SalesLogType.SelectedItem.ToString();
-						_binding_source.Filter = string.Format("Name = '{0}' OR Type = '{1}'", _empty_string, _item_type);
+						_binding_source.Filter = string.Format("Company = '{0}' OR Type = '{1}'", _empty_string, _item_type);
 					}
 				}
 
 				_main_form.SalesLogGridView.DataSource = _binding_source;
-				//_main_form.SalesLogGridView.Columns[0].FillWeight = 120F;
+				_main_form.SalesLogGridView.Columns[1].FillWeight = 190F;
 				//_main_form.SalesLogGridView.Columns[3].FillWeight = 150F;
 
 				AddTotalsRow();
@@ -214,7 +187,7 @@ namespace Green_Enviro_App
 			float _total_kg = 0;
 			float _total_amount = 0;
 			int _kg_column = 2;
-			int _amount_column = 2;
+			int _amount_column = 3;
 
 
 			for (int _row = 0; _row < _main_form.SalesLogGridView.Rows.Count - 1; _row++)
@@ -384,16 +357,91 @@ namespace Green_Enviro_App
 			DisplaySalesLog();
 		}
 
-		public void CompanyNameSettings() 
+		public void UnknownCompany() 
 		{
+			
 			if (_main_form.NewCompanyCheckBox.CheckState == CheckState.Checked)
 			{
 				_main_form.SaleCompanyNameList.DropDownStyle = ComboBoxStyle.DropDown;
+				_unknown_company = true;
+				
 			}
 			else 
 			{
 				_main_form.SaleCompanyNameList.DropDownStyle = ComboBoxStyle.DropDownList;
+				_unknown_company = true;
 			}
+		}
+
+
+		public void AddSale()
+		{
+			if (ValidEntries() == false) 
+			{
+				return;
+			}
+
+			StringBuilder _csv_content = new StringBuilder();
+			string _date = _main_form.SaleDate.Value.ToString("dd MMMM yyyy");
+			string _company = _main_form.SaleCompanyNameList.SelectedItem.ToString();
+			string _quantity = _main_form.SaleQuantityBx.Value.ToString();
+			string _amount = _main_form.SaleAmount.Value.ToString();
+			string _type = _main_form.SaleTypeBx.Text;
+			string _new_sale = _date + "," + _company + "," + _quantity + "," + _amount + "," + _type;
+			_csv_content.AppendLine(_new_sale);
+
+			try
+			{
+				File.AppendAllText(_path_to_sales, _csv_content.ToString());
+				CustomMessageBox newBox = new CustomMessageBox("Success!", "Sale Recorded");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error! \n" + ex.Message);
+			}
+		}
+
+		//Validate that the user has entered all the information correctly
+		private bool ValidEntries()
+		{
+			bool _all_good = false;
+			string _title = "Error!";
+			string _error_message = "";
+			string _no_entry_string = "";
+			decimal _zero = (decimal)0.00;
+
+			//First verify that all fields have been filled in correctly
+			if (_main_form.SaleCompanyNameList.SelectedItem == null)
+			{
+				_all_good = false;
+				_error_message = "Please Select the a Company";
+			}
+			else if (_main_form.SaleQuantityBx.Value == _zero)
+			{
+				_all_good = false;
+				_error_message = "Please Insert the Quantity";
+			}
+			else if (_main_form.SaleTypeBx.Text == _no_entry_string)
+			{
+				_all_good = false;
+				_error_message = "Please Select the goods type";
+			}
+			else if (_main_form.SaleAmount.Value == _zero)
+			{
+				_all_good = false;
+				_error_message = "Please Insert the Sale Amount";
+			}
+			else 
+			{
+				_all_good = true;
+			}
+
+			if (_all_good == false) 
+			{
+				CustomMessageBox box = new CustomMessageBox(_title, _error_message);
+			}
+			
+			return _all_good;
 		}
 	}
 }

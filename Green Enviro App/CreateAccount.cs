@@ -275,7 +275,7 @@ namespace Green_Enviro_App
         {
             //Display the amount of user currently in the Database
             _user = _database.SelectAll("Users");
-            MessageBox.Show("All Current Users " + _user.Rows.Count.ToString());
+           //MessageBox.Show("All Current Users " + _user.Rows.Count.ToString());
         }
         private void PrintDataTable()
         {

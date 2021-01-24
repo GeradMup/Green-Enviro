@@ -38,6 +38,8 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.PriceBox = new System.Windows.Forms.NumericUpDown();
+			this.quantityBox = new System.Windows.Forms.NumericUpDown();
 			this.CancelPurchaseBtn = new System.Windows.Forms.Button();
 			this.PurchaseBtn = new System.Windows.Forms.Button();
 			this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
@@ -51,9 +53,7 @@ namespace Green_Enviro_App
 			this.IDPictureBox = new System.Windows.Forms.PictureBox();
 			this.DealerPriceCheckBox = new System.Windows.Forms.CheckBox();
 			this.PriceOverrideCheckBox = new System.Windows.Forms.CheckBox();
-			this.PriceBox = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.quantityBox = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.logo = new System.Windows.Forms.PictureBox();
 			this.itemList = new System.Windows.Forms.ComboBox();
@@ -73,6 +73,8 @@ namespace Green_Enviro_App
 			this.PurchaseLogEndDate = new System.Windows.Forms.ComboBox();
 			this.PurchaseLogStartDate = new System.Windows.Forms.ComboBox();
 			this.SalesPage = new System.Windows.Forms.TabPage();
+			this.SaleAmount = new System.Windows.Forms.NumericUpDown();
+			this.SaleQuantityBx = new System.Windows.Forms.NumericUpDown();
 			this.NewCompanyCheckBox = new System.Windows.Forms.CheckBox();
 			this.SaleDate = new System.Windows.Forms.DateTimePicker();
 			this.RemoveSalesLogFiltersBtn = new System.Windows.Forms.Button();
@@ -89,14 +91,12 @@ namespace Green_Enviro_App
 			this.ClearSalesFields = new System.Windows.Forms.Button();
 			this.AddSaleBtn = new System.Windows.Forms.Button();
 			this.label16 = new System.Windows.Forms.Label();
-			this.SaleAmount = new System.Windows.Forms.TextBox();
 			this.SaleTypeBx = new System.Windows.Forms.ComboBox();
 			this.SaleCompanyNameList = new System.Windows.Forms.ComboBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
-			this.SaleQuantityBx = new System.Windows.Forms.TextBox();
 			this.DestructionCertificates = new System.Windows.Forms.TabPage();
 			this.DCNewCompany = new System.Windows.Forms.CheckBox();
 			this.dstrctCertCompanyField = new System.Windows.Forms.ComboBox();
@@ -118,13 +118,18 @@ namespace Green_Enviro_App
 			this.label22 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.customersTableAdapter1 = new Green_Enviro_App.Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.quantityBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
 			this.PurchasesPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).BeginInit();
 			this.SalesPage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.SaleAmount)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.SaleQuantityBx)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).BeginInit();
 			this.DestructionCertificates.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
@@ -151,6 +156,8 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.PriceBox);
+			this.ReceiptPage.Controls.Add(this.quantityBox);
 			this.ReceiptPage.Controls.Add(this.CancelPurchaseBtn);
 			this.ReceiptPage.Controls.Add(this.PurchaseBtn);
 			this.ReceiptPage.Controls.Add(this.CustomerNameTextBox);
@@ -164,9 +171,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Controls.Add(this.IDPictureBox);
 			this.ReceiptPage.Controls.Add(this.DealerPriceCheckBox);
 			this.ReceiptPage.Controls.Add(this.PriceOverrideCheckBox);
-			this.ReceiptPage.Controls.Add(this.PriceBox);
 			this.ReceiptPage.Controls.Add(this.label3);
-			this.ReceiptPage.Controls.Add(this.quantityBox);
 			this.ReceiptPage.Controls.Add(this.label2);
 			this.ReceiptPage.Controls.Add(this.logo);
 			this.ReceiptPage.Controls.Add(this.itemList);
@@ -181,6 +186,35 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
+			// 
+			// PriceBox
+			// 
+			this.PriceBox.DecimalPlaces = 2;
+			this.PriceBox.Location = new System.Drawing.Point(187, 187);
+			this.PriceBox.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+			this.PriceBox.Name = "PriceBox";
+			this.PriceBox.ReadOnly = true;
+			this.PriceBox.Size = new System.Drawing.Size(197, 31);
+			this.PriceBox.TabIndex = 26;
+			this.PriceBox.ThousandsSeparator = true;
+			// 
+			// quantityBox
+			// 
+			this.quantityBox.DecimalPlaces = 2;
+			this.quantityBox.Location = new System.Drawing.Point(187, 254);
+			this.quantityBox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+			this.quantityBox.Name = "quantityBox";
+			this.quantityBox.Size = new System.Drawing.Size(197, 31);
+			this.quantityBox.TabIndex = 25;
+			this.quantityBox.ThousandsSeparator = true;
 			// 
 			// CancelPurchaseBtn
 			// 
@@ -305,34 +339,26 @@ namespace Green_Enviro_App
 			// DealerPriceCheckBox
 			// 
 			this.DealerPriceCheckBox.AutoSize = true;
-			this.DealerPriceCheckBox.Location = new System.Drawing.Point(29, 102);
+			this.DealerPriceCheckBox.Location = new System.Drawing.Point(185, 104);
 			this.DealerPriceCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.DealerPriceCheckBox.Name = "DealerPriceCheckBox";
 			this.DealerPriceCheckBox.Size = new System.Drawing.Size(164, 27);
 			this.DealerPriceCheckBox.TabIndex = 14;
 			this.DealerPriceCheckBox.Text = "Dealer Price";
 			this.DealerPriceCheckBox.UseVisualStyleBackColor = true;
+			this.DealerPriceCheckBox.CheckedChanged += new System.EventHandler(this.DealerPriceCheckBox_CheckedChanged);
 			// 
 			// PriceOverrideCheckBox
 			// 
 			this.PriceOverrideCheckBox.AutoSize = true;
-			this.PriceOverrideCheckBox.Location = new System.Drawing.Point(29, 135);
+			this.PriceOverrideCheckBox.Location = new System.Drawing.Point(185, 144);
 			this.PriceOverrideCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.PriceOverrideCheckBox.Name = "PriceOverrideCheckBox";
-			this.PriceOverrideCheckBox.Size = new System.Drawing.Size(186, 27);
+			this.PriceOverrideCheckBox.Size = new System.Drawing.Size(164, 27);
 			this.PriceOverrideCheckBox.TabIndex = 13;
-			this.PriceOverrideCheckBox.Text = "Override Price";
+			this.PriceOverrideCheckBox.Text = "Manual Price";
 			this.PriceOverrideCheckBox.UseVisualStyleBackColor = true;
 			this.PriceOverrideCheckBox.CheckedChanged += new System.EventHandler(this.PriceOverrideCheckBox_CheckedChanged);
-			// 
-			// PriceBox
-			// 
-			this.PriceBox.Location = new System.Drawing.Point(185, 185);
-			this.PriceBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PriceBox.Name = "PriceBox";
-			this.PriceBox.ReadOnly = true;
-			this.PriceBox.Size = new System.Drawing.Size(199, 31);
-			this.PriceBox.TabIndex = 12;
 			// 
 			// label3
 			// 
@@ -342,14 +368,6 @@ namespace Green_Enviro_App
 			this.label3.Size = new System.Drawing.Size(65, 23);
 			this.label3.TabIndex = 11;
 			this.label3.Text = "Price";
-			// 
-			// quantityBox
-			// 
-			this.quantityBox.Location = new System.Drawing.Point(185, 245);
-			this.quantityBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.quantityBox.Name = "quantityBox";
-			this.quantityBox.Size = new System.Drawing.Size(199, 31);
-			this.quantityBox.TabIndex = 10;
 			// 
 			// label2
 			// 
@@ -381,11 +399,12 @@ namespace Green_Enviro_App
 			this.itemList.FormattingEnabled = true;
 			this.itemList.IntegralHeight = false;
 			this.itemList.ItemHeight = 23;
-			this.itemList.Location = new System.Drawing.Point(181, 46);
+			this.itemList.Location = new System.Drawing.Point(187, 46);
 			this.itemList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.itemList.Name = "itemList";
 			this.itemList.Size = new System.Drawing.Size(203, 31);
 			this.itemList.TabIndex = 7;
+			this.itemList.SelectedIndexChanged += new System.EventHandler(this.itemList_SelectedIndexChanged);
 			// 
 			// label1
 			// 
@@ -576,6 +595,8 @@ namespace Green_Enviro_App
 			// 
 			// SalesPage
 			// 
+			this.SalesPage.Controls.Add(this.SaleAmount);
+			this.SalesPage.Controls.Add(this.SaleQuantityBx);
 			this.SalesPage.Controls.Add(this.NewCompanyCheckBox);
 			this.SalesPage.Controls.Add(this.SaleDate);
 			this.SalesPage.Controls.Add(this.RemoveSalesLogFiltersBtn);
@@ -592,14 +613,12 @@ namespace Green_Enviro_App
 			this.SalesPage.Controls.Add(this.ClearSalesFields);
 			this.SalesPage.Controls.Add(this.AddSaleBtn);
 			this.SalesPage.Controls.Add(this.label16);
-			this.SalesPage.Controls.Add(this.SaleAmount);
 			this.SalesPage.Controls.Add(this.SaleTypeBx);
 			this.SalesPage.Controls.Add(this.SaleCompanyNameList);
 			this.SalesPage.Controls.Add(this.label15);
 			this.SalesPage.Controls.Add(this.label14);
 			this.SalesPage.Controls.Add(this.label13);
 			this.SalesPage.Controls.Add(this.label12);
-			this.SalesPage.Controls.Add(this.SaleQuantityBx);
 			this.SalesPage.Location = new System.Drawing.Point(4, 32);
 			this.SalesPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.SalesPage.Name = "SalesPage";
@@ -607,6 +626,34 @@ namespace Green_Enviro_App
 			this.SalesPage.TabIndex = 2;
 			this.SalesPage.Text = "Sales Logs";
 			this.SalesPage.UseVisualStyleBackColor = true;
+			// 
+			// SaleAmount
+			// 
+			this.SaleAmount.DecimalPlaces = 2;
+			this.SaleAmount.Location = new System.Drawing.Point(121, 299);
+			this.SaleAmount.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+			this.SaleAmount.Name = "SaleAmount";
+			this.SaleAmount.Size = new System.Drawing.Size(278, 31);
+			this.SaleAmount.TabIndex = 31;
+			this.SaleAmount.ThousandsSeparator = true;
+			// 
+			// SaleQuantityBx
+			// 
+			this.SaleQuantityBx.DecimalPlaces = 2;
+			this.SaleQuantityBx.Location = new System.Drawing.Point(121, 169);
+			this.SaleQuantityBx.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+			this.SaleQuantityBx.Name = "SaleQuantityBx";
+			this.SaleQuantityBx.Size = new System.Drawing.Size(278, 31);
+			this.SaleQuantityBx.TabIndex = 30;
+			this.SaleQuantityBx.ThousandsSeparator = true;
 			// 
 			// NewCompanyCheckBox
 			// 
@@ -642,6 +689,7 @@ namespace Green_Enviro_App
 			this.RemoveSalesLogFiltersBtn.TabIndex = 28;
 			this.RemoveSalesLogFiltersBtn.Text = "Remove Filters";
 			this.RemoveSalesLogFiltersBtn.UseVisualStyleBackColor = true;
+			this.RemoveSalesLogFiltersBtn.Click += new System.EventHandler(this.RemoveSalesLogFiltersBtn_Click);
 			// 
 			// FilterSalesLogBtn
 			// 
@@ -778,6 +826,7 @@ namespace Green_Enviro_App
 			this.AddSaleBtn.TabIndex = 13;
 			this.AddSaleBtn.Text = "Add Sale";
 			this.AddSaleBtn.UseVisualStyleBackColor = true;
+			this.AddSaleBtn.Click += new System.EventHandler(this.AddSaleBtn_Click);
 			// 
 			// label16
 			// 
@@ -788,21 +837,14 @@ namespace Green_Enviro_App
 			this.label16.TabIndex = 12;
 			this.label16.Text = "Amount";
 			// 
-			// SaleAmount
-			// 
-			this.SaleAmount.Location = new System.Drawing.Point(127, 299);
-			this.SaleAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.SaleAmount.Name = "SaleAmount";
-			this.SaleAmount.Size = new System.Drawing.Size(159, 31);
-			this.SaleAmount.TabIndex = 11;
-			// 
 			// SaleTypeBx
 			// 
+			this.SaleTypeBx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.SaleTypeBx.FormattingEnabled = true;
-			this.SaleTypeBx.Location = new System.Drawing.Point(127, 231);
+			this.SaleTypeBx.Location = new System.Drawing.Point(121, 231);
 			this.SaleTypeBx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.SaleTypeBx.Name = "SaleTypeBx";
-			this.SaleTypeBx.Size = new System.Drawing.Size(159, 31);
+			this.SaleTypeBx.Size = new System.Drawing.Size(278, 31);
 			this.SaleTypeBx.TabIndex = 10;
 			// 
 			// SaleCompanyNameList
@@ -850,14 +892,6 @@ namespace Green_Enviro_App
 			this.label12.Size = new System.Drawing.Size(54, 23);
 			this.label12.TabIndex = 4;
 			this.label12.Text = "Date";
-			// 
-			// SaleQuantityBx
-			// 
-			this.SaleQuantityBx.Location = new System.Drawing.Point(127, 163);
-			this.SaleQuantityBx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.SaleQuantityBx.Name = "SaleQuantityBx";
-			this.SaleQuantityBx.Size = new System.Drawing.Size(159, 31);
-			this.SaleQuantityBx.TabIndex = 2;
 			// 
 			// DestructionCertificates
 			// 
@@ -1098,6 +1132,10 @@ namespace Green_Enviro_App
 			this.label21.TabIndex = 5;
 			this.label21.Text = "Quantity";
 			// 
+			// customersTableAdapter1
+			// 
+			this.customersTableAdapter1.ClearBeforeFill = true;
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1111,11 +1149,14 @@ namespace Green_Enviro_App
 			this.MinimumSize = new System.Drawing.Size(98, 596);
 			this.Name = "Main_Form";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Green Enviro";
+			this.Text = "Green Enviro SA Recycling";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_Form_FormClosing);
 			this.mainTabControl.ResumeLayout(false);
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.quantityBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
 			this.PurchasesPage.ResumeLayout(false);
@@ -1123,6 +1164,8 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.PurchseLogGridView)).EndInit();
 			this.SalesPage.ResumeLayout(false);
 			this.SalesPage.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.SaleAmount)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.SaleQuantityBx)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).EndInit();
 			this.DestructionCertificates.ResumeLayout(false);
 			this.DestructionCertificates.PerformLayout();
@@ -1154,19 +1197,9 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label2;
 
 		/// <summary>
-		/// Field for entering the purchased quantity when adding to the receipt
-		/// </summary>
-		public System.Windows.Forms.TextBox quantityBox;
-
-		/// <summary>
 		/// Picturebox for inserting the company logo that will go on the receipt
 		/// </summary>
 		public System.Windows.Forms.PictureBox logo;
-
-		/// <summary>
-		/// A field where the price of items will appear or can be inserted before inserting into the receipt
-		/// </summary>
-		public System.Windows.Forms.TextBox PriceBox;
 
 		private System.Windows.Forms.Label label3;
 
@@ -1291,13 +1324,16 @@ namespace Green_Enviro_App
         public System.Windows.Forms.ComboBox dstrctCertificateMonthList;
         public System.Windows.Forms.ComboBox dstrctCertificateDayList;
         public System.Windows.Forms.NumericUpDown dstrctCertQuantityNumBox;
-		public System.Windows.Forms.TextBox SaleQuantityBx;
-		public System.Windows.Forms.TextBox SaleAmount;
 		public System.Windows.Forms.ComboBox SaleTypeBx;
 		public System.Windows.Forms.ComboBox SaleCompanyNameList;
 		public System.Windows.Forms.DataGridView SalesLogGridView;
 		public System.Windows.Forms.CheckBox NewCompanyCheckBox;
 		public System.Windows.Forms.ComboBox dstrctCertCompanyField;
 		public System.Windows.Forms.CheckBox DCNewCompany;
+		private Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter customersTableAdapter1;
+		public System.Windows.Forms.NumericUpDown SaleQuantityBx;
+		public System.Windows.Forms.NumericUpDown PriceBox;
+		public System.Windows.Forms.NumericUpDown quantityBox;
+		public System.Windows.Forms.NumericUpDown SaleAmount;
 	}
 }

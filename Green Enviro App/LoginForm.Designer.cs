@@ -116,7 +116,7 @@ namespace Green_Enviro_App
 			// clear_button
 			// 
 			this.clear_button.Location = new System.Drawing.Point(675, 389);
-			this.clear_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.clear_button.Margin = new System.Windows.Forms.Padding(4);
 			this.clear_button.Name = "clear_button";
 			this.clear_button.Size = new System.Drawing.Size(241, 52);
 			this.clear_button.TabIndex = 8;
@@ -139,7 +139,7 @@ namespace Green_Enviro_App
 			// 
 			this.checkBox_Show_Hide.AutoSize = true;
 			this.checkBox_Show_Hide.Location = new System.Drawing.Point(545, 272);
-			this.checkBox_Show_Hide.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.checkBox_Show_Hide.Margin = new System.Windows.Forms.Padding(4);
 			this.checkBox_Show_Hide.Name = "checkBox_Show_Hide";
 			this.checkBox_Show_Hide.Size = new System.Drawing.Size(64, 21);
 			this.checkBox_Show_Hide.TabIndex = 10;
@@ -178,7 +178,7 @@ namespace Green_Enviro_App
 			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.Name = "LoginForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Login Form";
+			this.Text = "Green Enviro SA Recycling";
 			this.Activated += new System.EventHandler(this.LoginForm_Activated);
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginForm_KeyPress);
 			this.ResumeLayout(false);

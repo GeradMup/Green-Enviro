@@ -83,6 +83,16 @@ namespace Green_Enviro_App
             _receipt.ResetReceipt();
 		}
 
+        private void itemList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _receipt.ItemChanged();
+        }
+
+        private void DealerPriceCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _receipt.ItemChanged();
+        }
+
         //******************************************************************************************************************************
         //PURCHASE LOG RELATED CALLS
         //******************************************************************************************************************************
@@ -164,7 +174,24 @@ namespace Green_Enviro_App
 
 		private void NewCompanyCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-            _sales_logs.CompanyNameSettings();
+            _sales_logs.UnknownCompany();
+		}
+
+		private void AddSaleBtn_Click(object sender, EventArgs e)
+		{
+            _sales_logs.AddSale();
+		}
+
+        private void RemoveSalesLogFiltersBtn_Click(object sender, EventArgs e)
+        {
+            _sales_logs.RemoveFilters();
+        }
+
+        private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
+		{
+            //Makes sure that the app is completely killed when the form is closing
+            //We do not want the application to end up running in the background
+            Application.Exit();
 		}
 
 

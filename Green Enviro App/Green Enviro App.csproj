@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CA14CAC1-ABD0-4777-9900-F9D95ACC4D24}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Green_Enviro_App</RootNamespace>
     <AssemblyName>Green Enviro App</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>

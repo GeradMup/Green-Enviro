@@ -46,18 +46,17 @@ namespace Green_Enviro_App
 			// 
 			// CustomMsg
 			// 
-			this.CustomMsg.AutoSize = true;
 			this.CustomMsg.Font = new System.Drawing.Font("Consolas", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.CustomMsg.Location = new System.Drawing.Point(36, 44);
+			this.CustomMsg.Location = new System.Drawing.Point(38, 21);
 			this.CustomMsg.Name = "CustomMsg";
-			this.CustomMsg.Size = new System.Drawing.Size(166, 51);
+			this.CustomMsg.Size = new System.Drawing.Size(726, 269);
 			this.CustomMsg.TabIndex = 1;
 			this.CustomMsg.Text = "label1";
 			// 
 			// OkBtn
 			// 
 			this.OkBtn.Font = new System.Drawing.Font("Consolas", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.OkBtn.Location = new System.Drawing.Point(328, 294);
+			this.OkBtn.Location = new System.Drawing.Point(328, 316);
 			this.OkBtn.Name = "OkBtn";
 			this.OkBtn.Size = new System.Drawing.Size(142, 55);
 			this.OkBtn.TabIndex = 2;
@@ -78,7 +77,6 @@ namespace Green_Enviro_App
 			this.Name = "CustomMessageBox";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Response";
-		
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

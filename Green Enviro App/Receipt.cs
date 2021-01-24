@@ -140,23 +140,9 @@ namespace Green_Enviro_App
 
         public void addItems() 
         {
-            //First check if customer details have been selected
-            if (_main_form.customerNumbersList.SelectedItem == null) 
+            //If the user did not enter something correctly, do nothing, only exit
+            if (ValidEntries() == false) 
             {
-                MessageBox.Show("Please select customer number");
-                return;
-            }
-
-            //Checks if there is nothing selected from the item list
-            if (_main_form.itemList.SelectedItem == null)
-            {
-                return;
-            }
-
-            //Checks if there is something in the Quantity textbox
-            if (_main_form.quantityBox.Text == "") 
-            {
-                MessageBox.Show("Please insert the Quantity");
                 return;
             }
 
@@ -167,7 +153,7 @@ namespace Green_Enviro_App
             if (_main_form.PriceOverrideCheckBox.CheckState == CheckState.Checked)
             {
                 //Start by checking that the user entered a price
-                if (_main_form.PriceBox.Text == "") 
+                if (_main_form.PriceBox.Value == (decimal)0.00) 
                 {
                     MessageBox.Show("Please insert the Price");
                     return;
@@ -176,20 +162,8 @@ namespace Green_Enviro_App
             }
             else 
             {
-                //Gets the prices from the items DataTable
-                bool isDealer;
-
                 //Check if the customer is getting dealer prices or not
-                if (_main_form.DealerPriceCheckBox.CheckState == CheckState.Checked)
-                {
-                    isDealer = true;
-                }
-                else 
-                {
-                    isDealer = false;
-                }
-
-                _price = getPrice(_item_name, isDealer);
+                _price = getPrice(_item_name);
             }
 
             //Converts the string value into a floating point value
@@ -221,7 +195,45 @@ namespace Green_Enviro_App
             
         }
 
-        private float getPrice(string itemName, bool isDealer) 
+        private bool ValidEntries() 
+        {
+            string _error_message = "";
+            string _message_title = "Error!";
+            bool _all_good = false;
+            decimal _zero = (decimal)0.00;
+            
+            if (_main_form.customerNumbersList.SelectedItem == null)
+            {
+                //First check if customer details have been selected
+                _error_message = "Please select customer number";
+                _all_good = false;
+            }
+            else if (_main_form.itemList.SelectedItem == null)
+            {
+                //Checks if there is nothing selected from the item list
+                _error_message = "Please Select an Item";
+                _all_good = false;
+            }
+            else if (_main_form.quantityBox.Value == _zero)
+            {
+                //Checks if there is something in the Quantity textbox
+                _error_message = "Please insert the Quantity";
+                _all_good = false;
+            }
+            else 
+            {
+                _all_good = true;
+            }
+
+            if (_all_good == false) 
+            {
+                CustomMessageBox newBox = new CustomMessageBox(_message_title, _error_message);
+            }
+
+            return _all_good;
+        }
+
+        private float getPrice(string itemName) 
         {
             string _filter_expression = "Name = '" + itemName + "'";
 
@@ -234,7 +246,8 @@ namespace Green_Enviro_App
 
             int _only_row = 0;
             int _price_column;
-            if (isDealer)
+
+            if ((_main_form.DealerPriceCheckBox.CheckState == CheckState.Checked))
             {
                 //Coloumn 3 contains dealer prices
                 _price_column = 3;
@@ -252,9 +265,9 @@ namespace Green_Enviro_App
 
         private void ClearFields() 
         {
-            _main_form.PriceBox.Clear();
+            _main_form.PriceBox.Value = 0;
             _main_form.itemList.SelectedItem = null;
-            _main_form.quantityBox.Clear();
+            _main_form.quantityBox.Value = 0;
         }
 
         public void UpdateCustomerDetails() 
@@ -350,6 +363,18 @@ namespace Green_Enviro_App
             else
             {
                _main_form.PriceBox.ReadOnly = true;
+            }
+        }
+
+        public void ItemChanged() 
+        {
+            if (_main_form.itemList.SelectedItem == null)
+            {
+                return;
+            }
+            else 
+            {
+                _main_form.PriceBox.Value = (decimal)getPrice(_main_form.itemList.SelectedItem.ToString());
             }
         }
 	}
