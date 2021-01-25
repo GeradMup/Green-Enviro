@@ -108,7 +108,7 @@ namespace Green_Enviro_App
             //A user account is displayed and therefore can be deleted hence the variable is true
             _accountId_selected = true;
         }
-
+        //
         private void userDeletionBtn_Click(object sender, EventArgs e)
         {
             if (_accountId_selected == true)

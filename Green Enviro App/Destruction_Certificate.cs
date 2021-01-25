@@ -447,6 +447,7 @@ namespace Green_Enviro_App
             var _quantity = new Tuple<string, string>(_value_in_kg, _value_in_pallets);
             return _quantity;
         }
+        //This will be for DB
         private void LoadDBIntoDC()
         {
             _company_dstrctCert = _database.SelectAll("Companies");
