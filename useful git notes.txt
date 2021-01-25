@@ -6,3 +6,10 @@ git merge -s ours master    # merge master's history without changing any files
 git checkout master         # switch back to master
 git merge fixy              # and merge in the fixed branch
 git push                    # done, no need to force push!
+
+HOW TO REMOVE UNWANTED FILES IN THE FROM THE SOURCE CONTROL IF THEY ALREADY EXIST IN THE REMOTE REPO
+IF FILES ALREADY EXIST IN THE REMOTE REPO, THE .gitignore FILE WILL NOT IGNORE THEM!!!
+
+git rm --cached <File Path>
+git rm --cached 'Green Enviro App/bin/Debug/Green Enviro App.exe'
+
