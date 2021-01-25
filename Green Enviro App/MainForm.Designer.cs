@@ -38,6 +38,7 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.ReceiptPriceEditBtn = new System.Windows.Forms.Button();
 			this.PriceBox = new System.Windows.Forms.NumericUpDown();
 			this.quantityBox = new System.Windows.Forms.NumericUpDown();
 			this.CancelPurchaseBtn = new System.Windows.Forms.Button();
@@ -97,6 +98,9 @@ namespace Green_Enviro_App
 			this.label14 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
+			this.Wages = new System.Windows.Forms.TabPage();
+			this.Expenses = new System.Windows.Forms.TabPage();
+			this.Summaries = new System.Windows.Forms.TabPage();
 			this.DestructionCertificates = new System.Windows.Forms.TabPage();
 			this.DCNewCompany = new System.Windows.Forms.CheckBox();
 			this.dstrctCertCompanyField = new System.Windows.Forms.ComboBox();
@@ -141,6 +145,9 @@ namespace Green_Enviro_App
 			this.mainTabControl.Controls.Add(this.ReceiptPage);
 			this.mainTabControl.Controls.Add(this.PurchasesPage);
 			this.mainTabControl.Controls.Add(this.SalesPage);
+			this.mainTabControl.Controls.Add(this.Expenses);
+			this.mainTabControl.Controls.Add(this.Wages);
+			this.mainTabControl.Controls.Add(this.Summaries);
 			this.mainTabControl.Controls.Add(this.DestructionCertificates);
 			this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -156,6 +163,7 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.ReceiptPriceEditBtn);
 			this.ReceiptPage.Controls.Add(this.PriceBox);
 			this.ReceiptPage.Controls.Add(this.quantityBox);
 			this.ReceiptPage.Controls.Add(this.CancelPurchaseBtn);
@@ -186,6 +194,16 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
+			// 
+			// ReceiptPriceEditBtn
+			// 
+			this.ReceiptPriceEditBtn.Location = new System.Drawing.Point(400, 185);
+			this.ReceiptPriceEditBtn.Name = "ReceiptPriceEditBtn";
+			this.ReceiptPriceEditBtn.Size = new System.Drawing.Size(179, 33);
+			this.ReceiptPriceEditBtn.TabIndex = 27;
+			this.ReceiptPriceEditBtn.Text = "Edit Prices";
+			this.ReceiptPriceEditBtn.UseVisualStyleBackColor = true;
+			this.ReceiptPriceEditBtn.Click += new System.EventHandler(this.ReceiptPriceEditBtn_Click);
 			// 
 			// PriceBox
 			// 
@@ -219,10 +237,10 @@ namespace Green_Enviro_App
 			// CancelPurchaseBtn
 			// 
 			this.CancelPurchaseBtn.AllowDrop = true;
-			this.CancelPurchaseBtn.Location = new System.Drawing.Point(185, 657);
+			this.CancelPurchaseBtn.Location = new System.Drawing.Point(193, 502);
 			this.CancelPurchaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.CancelPurchaseBtn.Name = "CancelPurchaseBtn";
-			this.CancelPurchaseBtn.Size = new System.Drawing.Size(212, 50);
+			this.CancelPurchaseBtn.Size = new System.Drawing.Size(228, 50);
 			this.CancelPurchaseBtn.TabIndex = 24;
 			this.CancelPurchaseBtn.Text = "Cancel Purchase";
 			this.CancelPurchaseBtn.UseVisualStyleBackColor = true;
@@ -231,7 +249,7 @@ namespace Green_Enviro_App
 			// PurchaseBtn
 			// 
 			this.PurchaseBtn.AllowDrop = true;
-			this.PurchaseBtn.Location = new System.Drawing.Point(23, 657);
+			this.PurchaseBtn.Location = new System.Drawing.Point(31, 502);
 			this.PurchaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.PurchaseBtn.Name = "PurchaseBtn";
 			this.PurchaseBtn.Size = new System.Drawing.Size(143, 50);
@@ -418,7 +436,7 @@ namespace Green_Enviro_App
 			// addItemBtn
 			// 
 			this.addItemBtn.AllowDrop = true;
-			this.addItemBtn.Location = new System.Drawing.Point(23, 582);
+			this.addItemBtn.Location = new System.Drawing.Point(31, 427);
 			this.addItemBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.addItemBtn.Name = "addItemBtn";
 			this.addItemBtn.Size = new System.Drawing.Size(143, 50);
@@ -461,7 +479,7 @@ namespace Green_Enviro_App
 			this.PurchasesPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.PurchasesPage.Size = new System.Drawing.Size(1538, 714);
 			this.PurchasesPage.TabIndex = 1;
-			this.PurchasesPage.Text = "Purchases Logs";
+			this.PurchasesPage.Text = "Purchase Logs";
 			this.PurchasesPage.UseVisualStyleBackColor = true;
 			// 
 			// removeFiltersBtn
@@ -816,6 +834,7 @@ namespace Green_Enviro_App
 			this.ClearSalesFields.TabIndex = 14;
 			this.ClearSalesFields.Text = "Clear";
 			this.ClearSalesFields.UseVisualStyleBackColor = true;
+			this.ClearSalesFields.Click += new System.EventHandler(this.ClearSalesFields_Click);
 			// 
 			// AddSaleBtn
 			// 
@@ -856,7 +875,7 @@ namespace Green_Enviro_App
 			this.SaleCompanyNameList.Name = "SaleCompanyNameList";
 			this.SaleCompanyNameList.Size = new System.Drawing.Size(396, 31);
 			this.SaleCompanyNameList.TabIndex = 9;
-			// 
+			
 			// label15
 			// 
 			this.label15.AutoSize = true;
@@ -892,6 +911,33 @@ namespace Green_Enviro_App
 			this.label12.Size = new System.Drawing.Size(54, 23);
 			this.label12.TabIndex = 4;
 			this.label12.Text = "Date";
+			// 
+			// Wages
+			// 
+			this.Wages.Location = new System.Drawing.Point(4, 32);
+			this.Wages.Name = "Wages";
+			this.Wages.Size = new System.Drawing.Size(1538, 714);
+			this.Wages.TabIndex = 4;
+			this.Wages.Text = "Wages";
+			this.Wages.UseVisualStyleBackColor = true;
+			// 
+			// Expenses
+			// 
+			this.Expenses.Location = new System.Drawing.Point(4, 32);
+			this.Expenses.Name = "Expenses";
+			this.Expenses.Size = new System.Drawing.Size(1538, 714);
+			this.Expenses.TabIndex = 5;
+			this.Expenses.Text = "Expenses";
+			this.Expenses.UseVisualStyleBackColor = true;
+			// 
+			// Summaries
+			// 
+			this.Summaries.Location = new System.Drawing.Point(4, 32);
+			this.Summaries.Name = "Summaries";
+			this.Summaries.Size = new System.Drawing.Size(1538, 714);
+			this.Summaries.TabIndex = 6;
+			this.Summaries.Text = "Summaries";
+			this.Summaries.UseVisualStyleBackColor = true;
 			// 
 			// DestructionCertificates
 			// 
@@ -1335,5 +1381,9 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.NumericUpDown PriceBox;
 		public System.Windows.Forms.NumericUpDown quantityBox;
 		public System.Windows.Forms.NumericUpDown SaleAmount;
+		private System.Windows.Forms.TabPage Wages;
+		private System.Windows.Forms.TabPage Expenses;
+		private System.Windows.Forms.TabPage Summaries;
+		private System.Windows.Forms.Button ReceiptPriceEditBtn;
 	}
 }

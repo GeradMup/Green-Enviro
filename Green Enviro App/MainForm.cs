@@ -93,6 +93,11 @@ namespace Green_Enviro_App
             _receipt.ItemChanged();
         }
 
+        private void ReceiptPriceEditBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //******************************************************************************************************************************
         //PURCHASE LOG RELATED CALLS
         //******************************************************************************************************************************
@@ -194,6 +199,9 @@ namespace Green_Enviro_App
             Application.Exit();
 		}
 
-
+		private void ClearSalesFields_Click(object sender, EventArgs e)
+		{
+            _sales_logs.ClearFields();
+		}
 	}
 }

@@ -393,6 +393,7 @@ namespace Green_Enviro_App
 			try
 			{
 				File.AppendAllText(_path_to_sales, _csv_content.ToString());
+				ClearFields();
 				CustomMessageBox newBox = new CustomMessageBox("Success!", "Sale Recorded");
 			}
 			catch (Exception ex)
@@ -442,6 +443,16 @@ namespace Green_Enviro_App
 			}
 			
 			return _all_good;
+		}
+
+		public void ClearFields() 
+		{
+			decimal _zero = (decimal)0.00;
+
+			_main_form.SaleDate.Value = DateTime.Now;
+			_main_form.SaleQuantityBx.Value = _zero;
+			_main_form.SaleTypeBx.SelectedItem = null;
+			_main_form.SaleAmount.Value = _zero;
 		}
 	}
 }

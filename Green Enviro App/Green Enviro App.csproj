@@ -281,6 +281,12 @@
     <Compile Include="CustomMsgBox.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Destruction_Certificate.cs" />
+    <Compile Include="PriceEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PriceEditor.Designer.cs">
+      <DependentUpon>PriceEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesLogs.cs" />
     <Compile Include="UserDatabase.cs">
       <SubType>Form</SubType>
@@ -315,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PriceEditor.resx">
+      <DependentUpon>PriceEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDatabase.resx">
       <DependentUpon>UserDatabase.cs</DependentUpon>
