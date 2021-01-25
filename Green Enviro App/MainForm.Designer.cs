@@ -141,7 +141,7 @@ namespace Green_Enviro_App
             this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainTabControl.HotTrack = true;
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
-            this.mainTabControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mainTabControl.Margin = new System.Windows.Forms.Padding(2);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(1028, 609);
@@ -174,9 +174,9 @@ namespace Green_Enviro_App
             this.ReceiptPage.Controls.Add(this.addItemBtn);
             this.ReceiptPage.Controls.Add(this.receiptBox);
             this.ReceiptPage.Location = new System.Drawing.Point(4, 28);
-            this.ReceiptPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ReceiptPage.Margin = new System.Windows.Forms.Padding(2);
             this.ReceiptPage.Name = "ReceiptPage";
-            this.ReceiptPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ReceiptPage.Padding = new System.Windows.Forms.Padding(2);
             this.ReceiptPage.Size = new System.Drawing.Size(1020, 577);
             this.ReceiptPage.TabIndex = 0;
             this.ReceiptPage.Text = "Receipt";
@@ -186,7 +186,7 @@ namespace Green_Enviro_App
             // 
             this.CancelPurchaseBtn.AllowDrop = true;
             this.CancelPurchaseBtn.Location = new System.Drawing.Point(139, 534);
-            this.CancelPurchaseBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CancelPurchaseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CancelPurchaseBtn.Name = "CancelPurchaseBtn";
             this.CancelPurchaseBtn.Size = new System.Drawing.Size(159, 41);
             this.CancelPurchaseBtn.TabIndex = 24;
@@ -198,7 +198,7 @@ namespace Green_Enviro_App
             // 
             this.PurchaseBtn.AllowDrop = true;
             this.PurchaseBtn.Location = new System.Drawing.Point(17, 534);
-            this.PurchaseBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PurchaseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.PurchaseBtn.Name = "PurchaseBtn";
             this.PurchaseBtn.Size = new System.Drawing.Size(107, 41);
             this.PurchaseBtn.TabIndex = 23;
@@ -210,7 +210,7 @@ namespace Green_Enviro_App
             // 
             this.CustomerNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CustomerNameTextBox.Location = new System.Drawing.Point(479, 150);
-            this.CustomerNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomerNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.CustomerNameTextBox.Name = "CustomerNameTextBox";
             this.CustomerNameTextBox.ReadOnly = true;
             this.CustomerNameTextBox.Size = new System.Drawing.Size(194, 26);
@@ -220,7 +220,7 @@ namespace Green_Enviro_App
             // 
             this.CustomerSurnameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CustomerSurnameTextBox.Location = new System.Drawing.Point(496, 203);
-            this.CustomerSurnameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomerSurnameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.CustomerSurnameTextBox.Name = "CustomerSurnameTextBox";
             this.CustomerSurnameTextBox.ReadOnly = true;
             this.CustomerSurnameTextBox.Size = new System.Drawing.Size(176, 26);
@@ -252,7 +252,7 @@ namespace Green_Enviro_App
             // 
             this.CustomerIDNumberTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(455, 94);
-            this.CustomerIDNumberTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomerIDNumberTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.CustomerIDNumberTextBox.Name = "CustomerIDNumberTextBox";
             this.CustomerIDNumberTextBox.ReadOnly = true;
             this.CustomerIDNumberTextBox.Size = new System.Drawing.Size(218, 26);
@@ -289,7 +289,7 @@ namespace Green_Enviro_App
             this.customerNumbersList.IntegralHeight = false;
             this.customerNumbersList.ItemHeight = 19;
             this.customerNumbersList.Location = new System.Drawing.Point(568, 37);
-            this.customerNumbersList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.customerNumbersList.Margin = new System.Windows.Forms.Padding(2);
             this.customerNumbersList.Name = "customerNumbersList";
             this.customerNumbersList.Size = new System.Drawing.Size(56, 27);
             this.customerNumbersList.TabIndex = 15;
@@ -299,7 +299,7 @@ namespace Green_Enviro_App
             // 
             this.IDPictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.IDPictureBox.Location = new System.Drawing.Point(234, 266);
-            this.IDPictureBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IDPictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.IDPictureBox.Name = "IDPictureBox";
             this.IDPictureBox.Size = new System.Drawing.Size(437, 348);
             this.IDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -310,7 +310,7 @@ namespace Green_Enviro_App
             // 
             this.DealerPriceCheckBox.AutoSize = true;
             this.DealerPriceCheckBox.Location = new System.Drawing.Point(22, 83);
-            this.DealerPriceCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DealerPriceCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.DealerPriceCheckBox.Name = "DealerPriceCheckBox";
             this.DealerPriceCheckBox.Size = new System.Drawing.Size(136, 23);
             this.DealerPriceCheckBox.TabIndex = 14;
@@ -321,7 +321,7 @@ namespace Green_Enviro_App
             // 
             this.PriceOverrideCheckBox.AutoSize = true;
             this.PriceOverrideCheckBox.Location = new System.Drawing.Point(22, 110);
-            this.PriceOverrideCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PriceOverrideCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.PriceOverrideCheckBox.Name = "PriceOverrideCheckBox";
             this.PriceOverrideCheckBox.Size = new System.Drawing.Size(154, 23);
             this.PriceOverrideCheckBox.TabIndex = 13;
@@ -332,7 +332,7 @@ namespace Green_Enviro_App
             // PriceBox
             // 
             this.PriceBox.Location = new System.Drawing.Point(139, 150);
-            this.PriceBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PriceBox.Margin = new System.Windows.Forms.Padding(2);
             this.PriceBox.Name = "PriceBox";
             this.PriceBox.ReadOnly = true;
             this.PriceBox.Size = new System.Drawing.Size(150, 26);
@@ -351,7 +351,7 @@ namespace Green_Enviro_App
             // quantityBox
             // 
             this.quantityBox.Location = new System.Drawing.Point(139, 199);
-            this.quantityBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.quantityBox.Margin = new System.Windows.Forms.Padding(2);
             this.quantityBox.Name = "quantityBox";
             this.quantityBox.Size = new System.Drawing.Size(150, 26);
             this.quantityBox.TabIndex = 10;
@@ -373,7 +373,7 @@ namespace Green_Enviro_App
             this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
             this.logo.InitialImage = null;
             this.logo.Location = new System.Drawing.Point(851, 9);
-            this.logo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logo.Margin = new System.Windows.Forms.Padding(2);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(240, 111);
             this.logo.TabIndex = 8;
@@ -388,7 +388,7 @@ namespace Green_Enviro_App
             this.itemList.IntegralHeight = false;
             this.itemList.ItemHeight = 19;
             this.itemList.Location = new System.Drawing.Point(136, 37);
-            this.itemList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.itemList.Margin = new System.Windows.Forms.Padding(2);
             this.itemList.Name = "itemList";
             this.itemList.Size = new System.Drawing.Size(153, 27);
             this.itemList.TabIndex = 7;
@@ -407,7 +407,7 @@ namespace Green_Enviro_App
             // 
             this.addItemBtn.AllowDrop = true;
             this.addItemBtn.Location = new System.Drawing.Point(17, 473);
-            this.addItemBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addItemBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addItemBtn.Name = "addItemBtn";
             this.addItemBtn.Size = new System.Drawing.Size(107, 41);
             this.addItemBtn.TabIndex = 1;
@@ -422,7 +422,7 @@ namespace Green_Enviro_App
             this.receiptBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.receiptBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.receiptBox.Location = new System.Drawing.Point(719, 5);
-            this.receiptBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.receiptBox.Margin = new System.Windows.Forms.Padding(2);
             this.receiptBox.Name = "receiptBox";
             this.receiptBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.receiptBox.Size = new System.Drawing.Size(301, 525);
@@ -444,10 +444,10 @@ namespace Green_Enviro_App
             this.PurchasesPage.Controls.Add(this.PurchaseLogEndDate);
             this.PurchasesPage.Controls.Add(this.PurchaseLogStartDate);
             this.PurchasesPage.Location = new System.Drawing.Point(4, 28);
-            this.PurchasesPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PurchasesPage.Margin = new System.Windows.Forms.Padding(2);
             this.PurchasesPage.Name = "PurchasesPage";
-            this.PurchasesPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.PurchasesPage.Size = new System.Drawing.Size(1152, 577);
+            this.PurchasesPage.Padding = new System.Windows.Forms.Padding(2);
+            this.PurchasesPage.Size = new System.Drawing.Size(1020, 577);
             this.PurchasesPage.TabIndex = 1;
             this.PurchasesPage.Text = "Purchases Logs";
             this.PurchasesPage.UseVisualStyleBackColor = true;
@@ -455,7 +455,7 @@ namespace Green_Enviro_App
             // removeFiltersBtn
             // 
             this.removeFiltersBtn.Location = new System.Drawing.Point(254, 79);
-            this.removeFiltersBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.removeFiltersBtn.Margin = new System.Windows.Forms.Padding(2);
             this.removeFiltersBtn.Name = "removeFiltersBtn";
             this.removeFiltersBtn.Size = new System.Drawing.Size(237, 37);
             this.removeFiltersBtn.TabIndex = 18;
@@ -473,7 +473,7 @@ namespace Green_Enviro_App
             this.PurchseLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.PurchseLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PurchseLogGridView.Location = new System.Drawing.Point(4, 128);
-            this.PurchseLogGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PurchseLogGridView.Margin = new System.Windows.Forms.Padding(2);
             this.PurchseLogGridView.Name = "PurchseLogGridView";
             this.PurchseLogGridView.ReadOnly = true;
             this.PurchseLogGridView.RowHeadersWidth = 51;
@@ -484,7 +484,7 @@ namespace Green_Enviro_App
             // FilterPurchaseLogBtn
             // 
             this.FilterPurchaseLogBtn.Location = new System.Drawing.Point(37, 79);
-            this.FilterPurchaseLogBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FilterPurchaseLogBtn.Margin = new System.Windows.Forms.Padding(2);
             this.FilterPurchaseLogBtn.Name = "FilterPurchaseLogBtn";
             this.FilterPurchaseLogBtn.Size = new System.Drawing.Size(149, 37);
             this.FilterPurchaseLogBtn.TabIndex = 16;
@@ -510,7 +510,7 @@ namespace Green_Enviro_App
             this.PurchaseLogMonth.IntegralHeight = false;
             this.PurchaseLogMonth.ItemHeight = 19;
             this.PurchaseLogMonth.Location = new System.Drawing.Point(37, 38);
-            this.PurchaseLogMonth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PurchaseLogMonth.Margin = new System.Windows.Forms.Padding(2);
             this.PurchaseLogMonth.Name = "PurchaseLogMonth";
             this.PurchaseLogMonth.Size = new System.Drawing.Size(153, 27);
             this.PurchaseLogMonth.TabIndex = 14;
@@ -554,7 +554,7 @@ namespace Green_Enviro_App
             this.PurchaseLogType.IntegralHeight = false;
             this.PurchaseLogType.ItemHeight = 19;
             this.PurchaseLogType.Location = new System.Drawing.Point(845, 38);
-            this.PurchaseLogType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PurchaseLogType.Margin = new System.Windows.Forms.Padding(2);
             this.PurchaseLogType.Name = "PurchaseLogType";
             this.PurchaseLogType.Size = new System.Drawing.Size(153, 27);
             this.PurchaseLogType.TabIndex = 10;
@@ -567,7 +567,7 @@ namespace Green_Enviro_App
             this.PurchaseLogEndDate.IntegralHeight = false;
             this.PurchaseLogEndDate.ItemHeight = 19;
             this.PurchaseLogEndDate.Location = new System.Drawing.Point(563, 38);
-            this.PurchaseLogEndDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PurchaseLogEndDate.Margin = new System.Windows.Forms.Padding(2);
             this.PurchaseLogEndDate.Name = "PurchaseLogEndDate";
             this.PurchaseLogEndDate.Size = new System.Drawing.Size(219, 27);
             this.PurchaseLogEndDate.TabIndex = 9;
@@ -580,7 +580,7 @@ namespace Green_Enviro_App
             this.PurchaseLogStartDate.IntegralHeight = false;
             this.PurchaseLogStartDate.ItemHeight = 19;
             this.PurchaseLogStartDate.Location = new System.Drawing.Point(254, 38);
-            this.PurchaseLogStartDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PurchaseLogStartDate.Margin = new System.Windows.Forms.Padding(2);
             this.PurchaseLogStartDate.Name = "PurchaseLogStartDate";
             this.PurchaseLogStartDate.Size = new System.Drawing.Size(238, 27);
             this.PurchaseLogStartDate.TabIndex = 8;
@@ -612,9 +612,9 @@ namespace Green_Enviro_App
             this.SalesPage.Controls.Add(this.label12);
             this.SalesPage.Controls.Add(this.SaleQuantityBx);
             this.SalesPage.Location = new System.Drawing.Point(4, 28);
-            this.SalesPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SalesPage.Margin = new System.Windows.Forms.Padding(2);
             this.SalesPage.Name = "SalesPage";
-            this.SalesPage.Size = new System.Drawing.Size(1152, 577);
+            this.SalesPage.Size = new System.Drawing.Size(1020, 577);
             this.SalesPage.TabIndex = 2;
             this.SalesPage.Text = "Sales Logs";
             this.SalesPage.UseVisualStyleBackColor = true;
@@ -623,7 +623,7 @@ namespace Green_Enviro_App
             // 
             this.NewCompanyCheckBox.AutoSize = true;
             this.NewCompanyCheckBox.Location = new System.Drawing.Point(97, 52);
-            this.NewCompanyCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NewCompanyCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.NewCompanyCheckBox.Name = "NewCompanyCheckBox";
             this.NewCompanyCheckBox.Size = new System.Drawing.Size(127, 23);
             this.NewCompanyCheckBox.TabIndex = 29;
@@ -635,7 +635,7 @@ namespace Green_Enviro_App
             // 
             this.SaleDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaleDate.Location = new System.Drawing.Point(95, 10);
-            this.SaleDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaleDate.Margin = new System.Windows.Forms.Padding(2);
             this.SaleDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
             this.SaleDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
             this.SaleDate.Name = "SaleDate";
@@ -648,7 +648,7 @@ namespace Green_Enviro_App
             // RemoveSalesLogFiltersBtn
             // 
             this.RemoveSalesLogFiltersBtn.Location = new System.Drawing.Point(656, 72);
-            this.RemoveSalesLogFiltersBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RemoveSalesLogFiltersBtn.Margin = new System.Windows.Forms.Padding(2);
             this.RemoveSalesLogFiltersBtn.Name = "RemoveSalesLogFiltersBtn";
             this.RemoveSalesLogFiltersBtn.Size = new System.Drawing.Size(172, 37);
             this.RemoveSalesLogFiltersBtn.TabIndex = 28;
@@ -658,7 +658,7 @@ namespace Green_Enviro_App
             // FilterSalesLogBtn
             // 
             this.FilterSalesLogBtn.Location = new System.Drawing.Point(458, 72);
-            this.FilterSalesLogBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FilterSalesLogBtn.Margin = new System.Windows.Forms.Padding(2);
             this.FilterSalesLogBtn.Name = "FilterSalesLogBtn";
             this.FilterSalesLogBtn.Size = new System.Drawing.Size(178, 37);
             this.FilterSalesLogBtn.TabIndex = 27;
@@ -684,7 +684,7 @@ namespace Green_Enviro_App
             this.SalesLogMonth.IntegralHeight = false;
             this.SalesLogMonth.ItemHeight = 19;
             this.SalesLogMonth.Location = new System.Drawing.Point(458, 31);
-            this.SalesLogMonth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SalesLogMonth.Margin = new System.Windows.Forms.Padding(2);
             this.SalesLogMonth.Name = "SalesLogMonth";
             this.SalesLogMonth.Size = new System.Drawing.Size(180, 27);
             this.SalesLogMonth.TabIndex = 25;
@@ -728,7 +728,7 @@ namespace Green_Enviro_App
             this.SalesLogType.IntegralHeight = false;
             this.SalesLogType.ItemHeight = 19;
             this.SalesLogType.Location = new System.Drawing.Point(1030, 31);
-            this.SalesLogType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SalesLogType.Margin = new System.Windows.Forms.Padding(2);
             this.SalesLogType.Name = "SalesLogType";
             this.SalesLogType.Size = new System.Drawing.Size(119, 27);
             this.SalesLogType.TabIndex = 21;
@@ -741,7 +741,7 @@ namespace Green_Enviro_App
             this.SalesLogEndDate.IntegralHeight = false;
             this.SalesLogEndDate.ItemHeight = 19;
             this.SalesLogEndDate.Location = new System.Drawing.Point(850, 31);
-            this.SalesLogEndDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SalesLogEndDate.Margin = new System.Windows.Forms.Padding(2);
             this.SalesLogEndDate.Name = "SalesLogEndDate";
             this.SalesLogEndDate.Size = new System.Drawing.Size(158, 27);
             this.SalesLogEndDate.TabIndex = 20;
@@ -754,7 +754,7 @@ namespace Green_Enviro_App
             this.SalesLogStartDate.IntegralHeight = false;
             this.SalesLogStartDate.ItemHeight = 19;
             this.SalesLogStartDate.Location = new System.Drawing.Point(656, 31);
-            this.SalesLogStartDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SalesLogStartDate.Margin = new System.Windows.Forms.Padding(2);
             this.SalesLogStartDate.Name = "SalesLogStartDate";
             this.SalesLogStartDate.Size = new System.Drawing.Size(174, 27);
             this.SalesLogStartDate.TabIndex = 19;
@@ -768,7 +768,7 @@ namespace Green_Enviro_App
             this.SalesLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.SalesLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SalesLogGridView.Location = new System.Drawing.Point(458, 126);
-            this.SalesLogGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SalesLogGridView.Margin = new System.Windows.Forms.Padding(2);
             this.SalesLogGridView.Name = "SalesLogGridView";
             this.SalesLogGridView.RowHeadersWidth = 51;
             this.SalesLogGridView.RowTemplate.Height = 24;
@@ -778,7 +778,7 @@ namespace Green_Enviro_App
             // ClearSalesFields
             // 
             this.ClearSalesFields.Location = new System.Drawing.Point(146, 307);
-            this.ClearSalesFields.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClearSalesFields.Margin = new System.Windows.Forms.Padding(2);
             this.ClearSalesFields.Name = "ClearSalesFields";
             this.ClearSalesFields.Size = new System.Drawing.Size(98, 38);
             this.ClearSalesFields.TabIndex = 14;
@@ -788,7 +788,7 @@ namespace Green_Enviro_App
             // AddSaleBtn
             // 
             this.AddSaleBtn.Location = new System.Drawing.Point(9, 307);
-            this.AddSaleBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddSaleBtn.Margin = new System.Windows.Forms.Padding(2);
             this.AddSaleBtn.Name = "AddSaleBtn";
             this.AddSaleBtn.Size = new System.Drawing.Size(98, 38);
             this.AddSaleBtn.TabIndex = 13;
@@ -808,7 +808,7 @@ namespace Green_Enviro_App
             // SaleAmount
             // 
             this.SaleAmount.Location = new System.Drawing.Point(95, 243);
-            this.SaleAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaleAmount.Margin = new System.Windows.Forms.Padding(2);
             this.SaleAmount.Name = "SaleAmount";
             this.SaleAmount.Size = new System.Drawing.Size(120, 26);
             this.SaleAmount.TabIndex = 11;
@@ -817,7 +817,7 @@ namespace Green_Enviro_App
             // 
             this.SaleTypeBx.FormattingEnabled = true;
             this.SaleTypeBx.Location = new System.Drawing.Point(95, 188);
-            this.SaleTypeBx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaleTypeBx.Margin = new System.Windows.Forms.Padding(2);
             this.SaleTypeBx.Name = "SaleTypeBx";
             this.SaleTypeBx.Size = new System.Drawing.Size(120, 27);
             this.SaleTypeBx.TabIndex = 10;
@@ -827,7 +827,7 @@ namespace Green_Enviro_App
             this.SaleCompanyNameList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SaleCompanyNameList.FormattingEnabled = true;
             this.SaleCompanyNameList.Location = new System.Drawing.Point(95, 78);
-            this.SaleCompanyNameList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaleCompanyNameList.Margin = new System.Windows.Forms.Padding(2);
             this.SaleCompanyNameList.Name = "SaleCompanyNameList";
             this.SaleCompanyNameList.Size = new System.Drawing.Size(298, 27);
             this.SaleCompanyNameList.TabIndex = 9;
@@ -875,7 +875,7 @@ namespace Green_Enviro_App
             // SaleQuantityBx
             // 
             this.SaleQuantityBx.Location = new System.Drawing.Point(95, 132);
-            this.SaleQuantityBx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaleQuantityBx.Margin = new System.Windows.Forms.Padding(2);
             this.SaleQuantityBx.Name = "SaleQuantityBx";
             this.SaleQuantityBx.Size = new System.Drawing.Size(120, 26);
             this.SaleQuantityBx.TabIndex = 2;
@@ -902,7 +902,7 @@ namespace Green_Enviro_App
             this.DestructionCertificates.Controls.Add(this.label22);
             this.DestructionCertificates.Controls.Add(this.label21);
             this.DestructionCertificates.Location = new System.Drawing.Point(4, 28);
-            this.DestructionCertificates.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DestructionCertificates.Margin = new System.Windows.Forms.Padding(2);
             this.DestructionCertificates.Name = "DestructionCertificates";
             this.DestructionCertificates.Size = new System.Drawing.Size(1020, 577);
             this.DestructionCertificates.TabIndex = 3;
@@ -913,8 +913,8 @@ namespace Green_Enviro_App
             // 
             this.dstrctCertNewCompanyCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dstrctCertNewCompanyCheckBox.AutoSize = true;
-            this.dstrctCertNewCompanyCheckBox.Location = new System.Drawing.Point(200, 38);
-            this.dstrctCertNewCompanyCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertNewCompanyCheckBox.Location = new System.Drawing.Point(260, 38);
+            this.dstrctCertNewCompanyCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertNewCompanyCheckBox.Name = "dstrctCertNewCompanyCheckBox";
             this.dstrctCertNewCompanyCheckBox.Size = new System.Drawing.Size(127, 23);
             this.dstrctCertNewCompanyCheckBox.TabIndex = 37;
@@ -927,18 +927,19 @@ namespace Green_Enviro_App
             this.dstrctCertCompanyField.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dstrctCertCompanyField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dstrctCertCompanyField.FormattingEnabled = true;
-            this.dstrctCertCompanyField.Location = new System.Drawing.Point(220, 197);
-            this.dstrctCertCompanyField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertCompanyField.Location = new System.Drawing.Point(147, 197);
+            this.dstrctCertCompanyField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertCompanyField.Name = "dstrctCertCompanyField";
-            this.dstrctCertCompanyField.Size = new System.Drawing.Size(180, 27);
+            this.dstrctCertCompanyField.Size = new System.Drawing.Size(253, 27);
             this.dstrctCertCompanyField.TabIndex = 36;
+            this.dstrctCertCompanyField.SelectedIndexChanged += new System.EventHandler(this.dstrctCertCompanyField_SelectedIndexChanged);
             // 
             // dstrctCertQuantityNumBox
             // 
             this.dstrctCertQuantityNumBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dstrctCertQuantityNumBox.DecimalPlaces = 3;
             this.dstrctCertQuantityNumBox.Location = new System.Drawing.Point(220, 353);
-            this.dstrctCertQuantityNumBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertQuantityNumBox.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertQuantityNumBox.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -958,7 +959,7 @@ namespace Green_Enviro_App
             this.dstrctCertificateYearList.IntegralHeight = false;
             this.dstrctCertificateYearList.ItemHeight = 19;
             this.dstrctCertificateYearList.Location = new System.Drawing.Point(186, 43);
-            this.dstrctCertificateYearList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertificateYearList.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertificateYearList.Name = "dstrctCertificateYearList";
             this.dstrctCertificateYearList.Size = new System.Drawing.Size(77, 27);
             this.dstrctCertificateYearList.TabIndex = 34;
@@ -972,7 +973,7 @@ namespace Green_Enviro_App
             this.dstrctCertificateMonthList.IntegralHeight = false;
             this.dstrctCertificateMonthList.ItemHeight = 19;
             this.dstrctCertificateMonthList.Location = new System.Drawing.Point(-243, 43);
-            this.dstrctCertificateMonthList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertificateMonthList.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertificateMonthList.Name = "dstrctCertificateMonthList";
             this.dstrctCertificateMonthList.Size = new System.Drawing.Size(109, 27);
             this.dstrctCertificateMonthList.TabIndex = 33;
@@ -986,7 +987,7 @@ namespace Green_Enviro_App
             this.dstrctCertificateDayList.IntegralHeight = false;
             this.dstrctCertificateDayList.ItemHeight = 19;
             this.dstrctCertificateDayList.Location = new System.Drawing.Point(-317, 43);
-            this.dstrctCertificateDayList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertificateDayList.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertificateDayList.Name = "dstrctCertificateDayList";
             this.dstrctCertificateDayList.Size = new System.Drawing.Size(72, 27);
             this.dstrctCertificateDayList.TabIndex = 32;
@@ -1000,7 +1001,7 @@ namespace Green_Enviro_App
             this.dstrctCertQuantityUnit.IntegralHeight = false;
             this.dstrctCertQuantityUnit.ItemHeight = 19;
             this.dstrctCertQuantityUnit.Location = new System.Drawing.Point(320, 352);
-            this.dstrctCertQuantityUnit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertQuantityUnit.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertQuantityUnit.Name = "dstrctCertQuantityUnit";
             this.dstrctCertQuantityUnit.Size = new System.Drawing.Size(95, 27);
             this.dstrctCertQuantityUnit.TabIndex = 31;
@@ -1010,7 +1011,7 @@ namespace Green_Enviro_App
             // 
             this.generateDstrCertBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.generateDstrCertBtn.Location = new System.Drawing.Point(79, 419);
-            this.generateDstrCertBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.generateDstrCertBtn.Margin = new System.Windows.Forms.Padding(2);
             this.generateDstrCertBtn.Name = "generateDstrCertBtn";
             this.generateDstrCertBtn.Size = new System.Drawing.Size(197, 59);
             this.generateDstrCertBtn.TabIndex = 30;
@@ -1022,7 +1023,7 @@ namespace Green_Enviro_App
             // 
             this.dstrctCertEmailAddressField.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dstrctCertEmailAddressField.Location = new System.Drawing.Point(220, 245);
-            this.dstrctCertEmailAddressField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertEmailAddressField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertEmailAddressField.Name = "dstrctCertEmailAddressField";
             this.dstrctCertEmailAddressField.ReadOnly = true;
             this.dstrctCertEmailAddressField.Size = new System.Drawing.Size(180, 26);
@@ -1032,7 +1033,7 @@ namespace Green_Enviro_App
             // 
             this.dstrctCertDescripOfProdField.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dstrctCertDescripOfProdField.Location = new System.Drawing.Point(220, 296);
-            this.dstrctCertDescripOfProdField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertDescripOfProdField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertDescripOfProdField.Name = "dstrctCertDescripOfProdField";
             this.dstrctCertDescripOfProdField.Size = new System.Drawing.Size(180, 26);
             this.dstrctCertDescripOfProdField.TabIndex = 27;
@@ -1041,7 +1042,7 @@ namespace Green_Enviro_App
             // 
             this.dstrctCertCntactNumField.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dstrctCertCntactNumField.Location = new System.Drawing.Point(220, 125);
-            this.dstrctCertCntactNumField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertCntactNumField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertCntactNumField.Name = "dstrctCertCntactNumField";
             this.dstrctCertCntactNumField.ReadOnly = true;
             this.dstrctCertCntactNumField.Size = new System.Drawing.Size(180, 26);
@@ -1051,7 +1052,7 @@ namespace Green_Enviro_App
             // 
             this.dstrctCertCntactPersonField.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dstrctCertCntactPersonField.Location = new System.Drawing.Point(220, 81);
-            this.dstrctCertCntactPersonField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dstrctCertCntactPersonField.Margin = new System.Windows.Forms.Padding(2);
             this.dstrctCertCntactPersonField.Name = "dstrctCertCntactPersonField";
             this.dstrctCertCntactPersonField.ReadOnly = true;
             this.dstrctCertCntactPersonField.Size = new System.Drawing.Size(180, 26);
@@ -1136,7 +1137,7 @@ namespace Green_Enviro_App
             this.Controls.Add(this.mainTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(78, 492);
             this.Name = "Main_Form";

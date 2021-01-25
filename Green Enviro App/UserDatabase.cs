@@ -135,13 +135,7 @@ namespace Green_Enviro_App
                 MessageBox.Show("No Account Id selected");
             }
         }
-       /* public void RefreshDataGridTable()
-        {
-            _data_table = _database.SelectAll("Users");
-            //DataTable t = new DataTable();
-            //_data_table.Fill(t);
-            userTableDataGridView.DataSource = _data_table;
-        }*/
+
         private void ClearUserDBFields()
         {
             accountIdList.SelectedItem = null;
