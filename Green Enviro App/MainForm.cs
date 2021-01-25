@@ -30,7 +30,7 @@ namespace Green_Enviro_App
             _purchase_logs = new PurchaseLogs(this);
             _sales_logs = new SalesLogs(this, _database);
             _receipt = new Receipt(this, _database, _purchase_logs);
-            _destruction_certificate = new Destruction_Certificate(this);
+            _destruction_certificate = new Destruction_Certificate(this,_database);
         }
 
 
@@ -161,6 +161,15 @@ namespace Green_Enviro_App
         private void DCNewCompany_CheckedChanged(object sender, EventArgs e)
         {
             _destruction_certificate.FieldSettings();
+        }
+        private void dstrctCertCompanyField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //_destruction_certificate.Test();
+            //if (dstrctCertCompanyField.SelectedItem != null)
+            _destruction_certificate.Company_Selected();
+            Console.WriteLine("It works");
+            //_destruction_certificate.ClearDCFields();
+
         }
 
 

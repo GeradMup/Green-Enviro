@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CA14CAC1-ABD0-4777-9900-F9D95ACC4D24}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Green_Enviro_App</RootNamespace>
     <AssemblyName>Green Enviro App</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -281,11 +281,10 @@
     <Compile Include="CustomMsgBox.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Destruction_Certificate.cs" />
-    <Compile Include="PriceEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PriceEditor.Designer.cs">
-      <DependentUpon>PriceEditor.cs</DependentUpon>
+    <Compile Include="Green_Enviro_DataDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="SalesLogs.cs" />
     <Compile Include="UserDatabase.cs">
@@ -293,11 +292,6 @@
     </Compile>
     <Compile Include="UserDatabase.Designer.cs">
       <DependentUpon>UserDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Green_Enviro_DataDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Green_Enviro_DataDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="InformationEncryption.cs" />
     <Compile Include="LoginForm.cs">
@@ -321,9 +315,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PriceEditor.resx">
-      <DependentUpon>PriceEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDatabase.resx">
       <DependentUpon>UserDatabase.cs</DependentUpon>
@@ -370,10 +361,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Green Enviro Data.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Green Enviro Data_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Green Enviro Data.mdf</DependentUpon>
     </Content>
     <Content Include="green-leaf.ico" />

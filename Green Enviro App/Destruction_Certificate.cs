@@ -13,29 +13,34 @@ using System.IO;
 using System.Globalization;
 using System.Web.UI.WebControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
-//using Microsoft.SharePoint.Client;
 
 namespace Green_Enviro_App
 {
     class Destruction_Certificate
     {
         Main_Form _main_form;
-        
-        public Destruction_Certificate(Main_Form _form)
+        Database _database;
+        DataTable _company_dstrctCert;
+        bool _is_company_exist = false;
+        bool _is_company_selected = false;
+
+        public Destruction_Certificate(Main_Form _form,Database _db)
         {
             _main_form = _form;
+            _database = _db;
             GenerateExtractionDateList();
             QuantityOfProducts();
-            _main_form.dstrctCertCntactNumField.Left = 180;
-            _main_form.dstrctCertCntactPersonField.Left = 180;
-            _main_form.dstrctCertCompanyField.Left = 180;
-            _main_form.dstrctCertDescripOfProdField.Left = 180;
-            _main_form.dstrctCertEmailAddressField.Left = 180;
-            _main_form.dstrctCertificateDayList.Left = -68;
-            _main_form.dstrctCertificateMonthList.Left = 5;
-            _main_form.dstrctCertificateYearList.Left = 115;
-            _main_form.dstrctCertQuantityNumBox.Left = 340;
-            _main_form.dstrctCertQuantityUnit.Left = 100;
+            _main_form.dstrctCertCntactNumField.Location = new System.Drawing.Point(200,180);
+            _main_form.dstrctCertCntactPersonField.Location = new System.Drawing.Point(200,125);
+            _main_form.dstrctCertCompanyField.Location = new System.Drawing.Point(128,68);
+            _main_form.dstrctCertDescripOfProdField.Location = new System.Drawing.Point(200,283);
+            _main_form.dstrctCertEmailAddressField.Location = new System.Drawing.Point(200,231);
+            _main_form.dstrctCertificateDayList.Location = new System.Drawing.Point(-49,57);
+            _main_form.dstrctCertificateMonthList.Location = new System.Drawing.Point(25,57);
+            _main_form.dstrctCertificateYearList.Location = new System.Drawing.Point(305,-11);
+            _main_form.dstrctCertQuantityNumBox.Location = new System.Drawing.Point(185,335);
+            _main_form.dstrctCertQuantityUnit.Location = new System.Drawing.Point(285, 335);
+            LoadDBIntoDC();
         }
         private void GenerateDestructionCertificate(string _pdf_save_path)
         {
@@ -324,12 +329,12 @@ namespace Green_Enviro_App
             return _new_tuple;
         }
 
-        private void ClearDCFields()
+        public void ClearDCFields()
         {
             _main_form.dstrctCertificateDayList.SelectedIndex = 0;
             _main_form.dstrctCertificateMonthList.SelectedIndex = 0;
             _main_form.dstrctCertificateYearList.SelectedIndex = 0;
-            _main_form.dstrctCertCompanyField.SelectedValue = null;
+            _main_form.dstrctCertCompanyField.SelectedIndex = 0;
             _main_form.dstrctCertCntactPersonField.Clear();
             _main_form.dstrctCertCntactNumField.Clear();
             _main_form.dstrctCertEmailAddressField.Clear();
@@ -340,12 +345,13 @@ namespace Green_Enviro_App
 
         public void FieldSettings() 
         {
-            if (_main_form.DCNewCompany.CheckState == CheckState.Checked)
+            if (_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Checked)
             {
                 _main_form.dstrctCertCntactPersonField.ReadOnly = false;
                 _main_form.dstrctCertCntactNumField.ReadOnly = false;
                 _main_form.dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDown;
                 _main_form.dstrctCertEmailAddressField.ReadOnly = false;
+                _main_form.dstrctCertCompanyField.Text = "";
             }
             else 
             {
@@ -353,6 +359,7 @@ namespace Green_Enviro_App
                 _main_form.dstrctCertCntactNumField.ReadOnly = true;
                 _main_form.dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDownList;
                 _main_form.dstrctCertEmailAddressField.ReadOnly = true;
+                _main_form.dstrctCertCompanyField.SelectedIndex = 0;
             }
         }
 
@@ -439,6 +446,54 @@ namespace Green_Enviro_App
 
             var _quantity = new Tuple<string, string>(_value_in_kg, _value_in_pallets);
             return _quantity;
+        }
+        private void LoadDBIntoDC()
+        {
+            _company_dstrctCert = _database.SelectAll("Companies");
+            int _companies_table_name_column = 1;
+
+            _main_form.dstrctCertCompanyField.Items.Clear();
+
+            foreach (DataRow row in _company_dstrctCert.Rows)
+            {
+                _main_form.dstrctCertCompanyField.Items.Add(row[_companies_table_name_column]);
+            }
+            //_main_form.dstrctCertCompanyField.Items.Insert(0, "Select");
+            //_main_form.dstrctCertCompanyField.SelectedIndex = 0;
+        }
+
+        public void Company_Selected()
+        {
+            if (_main_form.dstrctCertCompanyField.SelectedItem == null || _main_form.dstrctCertCompanyField.SelectedIndex == 0)
+            {
+                _main_form.dstrctCertCntactPersonField.Text = "";
+                _main_form.dstrctCertCntactNumField.Text = "";
+                _main_form.dstrctCertEmailAddressField.Text = "";
+                _is_company_selected = false;
+                return;
+            }
+
+            string _company_selected = _main_form.dstrctCertCompanyField.SelectedItem.ToString();
+            string _company_information = "Name = '" + _company_selected + "'";
+            _company_dstrctCert = _database.SelectAll("Companies");
+            DataView _dataview = _company_dstrctCert.DefaultView;
+            DataRow[] _row = _company_dstrctCert.Select(_company_information);
+
+            int index = 0;
+
+            string _company_contact_person = _row[index].Field<string>("ContactPerson");
+            string _company_email = _row[index].Field<string>("Email");
+            string _company_contact_number = _row[index].Field<string>("ContactNumbers");
+
+            _main_form.dstrctCertCntactPersonField.Text = _company_contact_person;
+            _main_form.dstrctCertCntactNumField.Text = _company_contact_number;
+            _main_form.dstrctCertEmailAddressField.Text = _company_email;
+
+            _is_company_selected = true;
+        }
+        public void Test()
+        {
+            Console.WriteLine("Alright Test 1");
         }
     }
 }
