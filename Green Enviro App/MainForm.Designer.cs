@@ -484,8 +484,6 @@ namespace Green_Enviro_App
 			// 
 			// removeFiltersBtn
 			// 
-			this.removeFiltersBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.removeFiltersBtn.Location = new System.Drawing.Point(339, 97);
 			this.removeFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.removeFiltersBtn.Name = "removeFiltersBtn";
