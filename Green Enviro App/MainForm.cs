@@ -16,6 +16,7 @@ namespace Green_Enviro_App
         Database _database;
         PurchaseLogs _purchase_logs;
         SalesLogs _sales_logs;
+        Expenses _expenses;
 		Destruction_Certificate _destruction_certificate;
 
 		/// <summary>
@@ -31,6 +32,7 @@ namespace Green_Enviro_App
             _sales_logs = new SalesLogs(this, _database);
             _receipt = new Receipt(this, _database, _purchase_logs);
             _destruction_certificate = new Destruction_Certificate(this,_database);
+            _expenses = new Expenses(this, _database);
         }
 
 
@@ -54,6 +56,14 @@ namespace Green_Enviro_App
 
             base.WndProc(ref message);
         }
+
+        private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Makes sure that the app is completely killed when the form is closing
+            //We do not want the application to end up running in the background
+            Application.Exit();
+        }
+
 
         //*************************************************************************************************************************
         //RECEIPT RELATED CALLS
@@ -201,16 +211,39 @@ namespace Green_Enviro_App
             _sales_logs.RemoveFilters();
         }
 
-        private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
-		{
-            //Makes sure that the app is completely killed when the form is closing
-            //We do not want the application to end up running in the background
-            Application.Exit();
-		}
-
 		private void ClearSalesFields_Click(object sender, EventArgs e)
 		{
             _sales_logs.ClearFields();
+		}
+
+
+        //*************************************************************************************************************
+        // EXPENSES RELATED CALLS
+        //*************************************************************************************************************
+		private void AddExpenseBtn_Click(object sender, EventArgs e)
+		{
+            _expenses.AddExpense();
+            _expenses.DisplayExpensesLog();
+		}
+
+		private void ExpensesLogMonth_SelectedIndexChanged(object sender, EventArgs e)
+		{
+            _expenses.MonthSelected();
+		}
+
+		private void ExpensesLogFilterBtn_Click(object sender, EventArgs e)
+		{
+            _expenses.DisplayExpensesLog();
+		}
+
+		private void ExpensesLogRemoveFiltersBtn_Click(object sender, EventArgs e)
+		{
+            _expenses.RemoveFilters();
+		}
+
+		private void ClearExpenseFieldsBtn_Click(object sender, EventArgs e)
+		{
+            _expenses.ClearFields();
 		}
 	}
 }

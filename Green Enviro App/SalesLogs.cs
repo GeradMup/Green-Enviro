@@ -172,7 +172,11 @@ namespace Green_Enviro_App
 
 				_main_form.SalesLogGridView.DataSource = _binding_source;
 				_main_form.SalesLogGridView.Columns[1].FillWeight = 190F;
-				//_main_form.SalesLogGridView.Columns[3].FillWeight = 150F;
+
+				foreach (DataGridViewColumn _column in _main_form.SalesLogGridView.Columns)
+				{
+					_column.SortMode = DataGridViewColumnSortMode.NotSortable;
+				}
 
 				AddTotalsRow();
 				_main_form.SalesLogGridView.Refresh();
@@ -400,6 +404,8 @@ namespace Green_Enviro_App
 			{
 				MessageBox.Show("Error! \n" + ex.Message);
 			}
+
+			DisplaySalesLog();
 		}
 
 		//Validate that the user has entered all the information correctly
