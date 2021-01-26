@@ -1427,28 +1427,32 @@ namespace Green_Enviro_App
             // 
             // DestructionCertificates
             // 
-            this.DestructionCertificates.Controls.Add(this.checkBox1);
-            this.DestructionCertificates.Controls.Add(this.comboBox1);
-            this.DestructionCertificates.Controls.Add(this.numericUpDown1);
-            this.DestructionCertificates.Controls.Add(this.comboBox2);
-            this.DestructionCertificates.Controls.Add(this.comboBox3);
-            this.DestructionCertificates.Controls.Add(this.button1);
-            this.DestructionCertificates.Controls.Add(this.textBox1);
-            this.DestructionCertificates.Controls.Add(this.textBox2);
-            this.DestructionCertificates.Controls.Add(this.textBox3);
-            this.DestructionCertificates.Controls.Add(this.textBox4);
-            this.DestructionCertificates.Controls.Add(this.label40);
-            this.DestructionCertificates.Controls.Add(this.label41);
-            this.DestructionCertificates.Controls.Add(this.label42);
-            this.DestructionCertificates.Controls.Add(this.label43);
-            this.DestructionCertificates.Controls.Add(this.label44);
-            this.DestructionCertificates.Controls.Add(this.label45);
-            this.DestructionCertificates.Controls.Add(this.label46);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertNewCompanyCheckBox);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertCompanyField);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertQuantityNumBox);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertificateYearList);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertificateMonthList);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertificateDayList);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertQuantityUnit);
+            this.DestructionCertificates.Controls.Add(this.generateDstrCertBtn);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertEmailAddressField);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertDescripOfProdField);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertCntactNumField);
+            this.DestructionCertificates.Controls.Add(this.dstrctCertCntactPersonField);
+            this.DestructionCertificates.Controls.Add(this.label27);
+            this.DestructionCertificates.Controls.Add(this.label26);
+            this.DestructionCertificates.Controls.Add(this.label25);
+            this.DestructionCertificates.Controls.Add(this.label24);
+            this.DestructionCertificates.Controls.Add(this.label23);
+            this.DestructionCertificates.Controls.Add(this.label22);
+            this.DestructionCertificates.Controls.Add(this.label21);
             this.DestructionCertificates.Location = new System.Drawing.Point(4, 28);
+            this.DestructionCertificates.Margin = new System.Windows.Forms.Padding(2);
             this.DestructionCertificates.Name = "DestructionCertificates";
             this.DestructionCertificates.Size = new System.Drawing.Size(1020, 577);
-            this.DestructionCertificates.TabIndex = 7;
+            this.DestructionCertificates.TabIndex = 3;
             this.DestructionCertificates.Text = "Destruction Certificate";
+            this.DestructionCertificates.UseVisualStyleBackColor = true;
             // 
             // dstrctCertNewCompanyCheckBox
             // 
