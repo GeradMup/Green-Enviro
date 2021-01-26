@@ -83,6 +83,8 @@ namespace Green_Enviro_App
 			{
 				MessageBox.Show("Error! \n" + ex.Message);
 			}
+
+			DisplayPurchaseLog();
 		}
 
 		public void DisplayPurchaseLog()
@@ -164,6 +166,12 @@ namespace Green_Enviro_App
 				_main_form.PurchseLogGridView.DataSource = _binding_source;
 				_main_form.PurchseLogGridView.Columns[0].FillWeight = 120F;
 				_main_form.PurchseLogGridView.Columns[3].FillWeight = 150F;
+
+				//Disables the ability to sort columns using the headers
+				foreach (DataGridViewColumn _column in _main_form.PurchseLogGridView.Columns)
+				{
+					_column.SortMode = DataGridViewColumnSortMode.NotSortable;
+				}
 
 				AddTotalsRow();
 				_main_form.PurchseLogGridView.Refresh();
