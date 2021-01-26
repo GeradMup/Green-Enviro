@@ -99,6 +99,23 @@ namespace Green_Enviro_App
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.Expenses = new System.Windows.Forms.TabPage();
+			this.ExpenseAmount = new System.Windows.Forms.NumericUpDown();
+			this.ExpenseDescriptionBox = new System.Windows.Forms.TextBox();
+			this.ExpenseDate = new System.Windows.Forms.DateTimePicker();
+			this.ExpensesLogRemoveFiltersBtn = new System.Windows.Forms.Button();
+			this.ExpensesLogFilterBtn = new System.Windows.Forms.Button();
+			this.label28 = new System.Windows.Forms.Label();
+			this.ExpensesLogMonth = new System.Windows.Forms.ComboBox();
+			this.label29 = new System.Windows.Forms.Label();
+			this.label30 = new System.Windows.Forms.Label();
+			this.ExpensesLogEndDate = new System.Windows.Forms.ComboBox();
+			this.ExpensesLogStartDate = new System.Windows.Forms.ComboBox();
+			this.ExpensesLogGridView = new System.Windows.Forms.DataGridView();
+			this.ClearExpenseFieldsBtn = new System.Windows.Forms.Button();
+			this.AddExpenseBtn = new System.Windows.Forms.Button();
+			this.label31 = new System.Windows.Forms.Label();
+			this.label33 = new System.Windows.Forms.Label();
+			this.label34 = new System.Windows.Forms.Label();
 			this.Wages = new System.Windows.Forms.TabPage();
 			this.Summaries = new System.Windows.Forms.TabPage();
 			this.DestructionCertificates = new System.Windows.Forms.TabPage();
@@ -123,23 +140,24 @@ namespace Green_Enviro_App
 			this.label21 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.customersTableAdapter1 = new Green_Enviro_App.Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter();
-			this.ExpenseDate = new System.Windows.Forms.DateTimePicker();
-			this.ExpensesLogRemoveFiltersBtn = new System.Windows.Forms.Button();
-			this.ExpensesLogFilterBtn = new System.Windows.Forms.Button();
-			this.label28 = new System.Windows.Forms.Label();
-			this.ExpensesLogMonth = new System.Windows.Forms.ComboBox();
-			this.label29 = new System.Windows.Forms.Label();
-			this.label30 = new System.Windows.Forms.Label();
-			this.ExpensesLogEndDate = new System.Windows.Forms.ComboBox();
-			this.ExpensesLogStartDate = new System.Windows.Forms.ComboBox();
-			this.ExpensesLogGridView = new System.Windows.Forms.DataGridView();
-			this.ClearExpenseFieldsBtn = new System.Windows.Forms.Button();
-			this.AddExpenseBtn = new System.Windows.Forms.Button();
-			this.label31 = new System.Windows.Forms.Label();
-			this.label33 = new System.Windows.Forms.Label();
-			this.label34 = new System.Windows.Forms.Label();
-			this.ExpenseDescriptionBox = new System.Windows.Forms.TextBox();
-			this.ExpenseAmount = new System.Windows.Forms.NumericUpDown();
+			this.WageAmount = new System.Windows.Forms.NumericUpDown();
+			this.WageDate = new System.Windows.Forms.DateTimePicker();
+			this.WageLogRemoveFiltersBtn = new System.Windows.Forms.Button();
+			this.WageLogFilterBtn = new System.Windows.Forms.Button();
+			this.label32 = new System.Windows.Forms.Label();
+			this.WageLogMonth = new System.Windows.Forms.ComboBox();
+			this.label35 = new System.Windows.Forms.Label();
+			this.label36 = new System.Windows.Forms.Label();
+			this.WageLogEndDate = new System.Windows.Forms.ComboBox();
+			this.WageLogStartDate = new System.Windows.Forms.ComboBox();
+			this.WageLogGridView = new System.Windows.Forms.DataGridView();
+			this.ClearWageFieldsBtn = new System.Windows.Forms.Button();
+			this.AddWageBtn = new System.Windows.Forms.Button();
+			this.label37 = new System.Windows.Forms.Label();
+			this.label38 = new System.Windows.Forms.Label();
+			this.label39 = new System.Windows.Forms.Label();
+			this.EmployeeName = new System.Windows.Forms.ComboBox();
+			this.PartTimeEmployeeCheckBox = new System.Windows.Forms.CheckBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -153,11 +171,14 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.SaleQuantityBx)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).BeginInit();
 			this.Expenses.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ExpensesLogGridView)).BeginInit();
+			this.Wages.SuspendLayout();
 			this.DestructionCertificates.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.ExpensesLogGridView)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -965,8 +986,214 @@ namespace Green_Enviro_App
 			this.Expenses.Text = "Expenses";
 			this.Expenses.UseVisualStyleBackColor = true;
 			// 
+			// ExpenseAmount
+			// 
+			this.ExpenseAmount.DecimalPlaces = 2;
+			this.ExpenseAmount.Location = new System.Drawing.Point(176, 175);
+			this.ExpenseAmount.Maximum = new decimal(new int[] {
+            200000,
+            0,
+            0,
+            0});
+			this.ExpenseAmount.Name = "ExpenseAmount";
+			this.ExpenseAmount.Size = new System.Drawing.Size(265, 31);
+			this.ExpenseAmount.TabIndex = 51;
+			// 
+			// ExpenseDescriptionBox
+			// 
+			this.ExpenseDescriptionBox.Location = new System.Drawing.Point(176, 97);
+			this.ExpenseDescriptionBox.Name = "ExpenseDescriptionBox";
+			this.ExpenseDescriptionBox.Size = new System.Drawing.Size(375, 31);
+			this.ExpenseDescriptionBox.TabIndex = 50;
+			// 
+			// ExpenseDate
+			// 
+			this.ExpenseDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ExpenseDate.Location = new System.Drawing.Point(176, 23);
+			this.ExpenseDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ExpenseDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
+			this.ExpenseDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
+			this.ExpenseDate.Name = "ExpenseDate";
+			this.ExpenseDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.ExpenseDate.Size = new System.Drawing.Size(375, 31);
+			this.ExpenseDate.TabIndex = 32;
+			this.ExpenseDate.TabStop = false;
+			this.ExpenseDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
+			// 
+			// ExpensesLogRemoveFiltersBtn
+			// 
+			this.ExpensesLogRemoveFiltersBtn.Location = new System.Drawing.Point(878, 100);
+			this.ExpensesLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ExpensesLogRemoveFiltersBtn.Name = "ExpensesLogRemoveFiltersBtn";
+			this.ExpensesLogRemoveFiltersBtn.Size = new System.Drawing.Size(229, 46);
+			this.ExpensesLogRemoveFiltersBtn.TabIndex = 49;
+			this.ExpensesLogRemoveFiltersBtn.Text = "Remove Filters";
+			this.ExpensesLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
+			this.ExpensesLogRemoveFiltersBtn.Click += new System.EventHandler(this.ExpensesLogRemoveFiltersBtn_Click);
+			// 
+			// ExpensesLogFilterBtn
+			// 
+			this.ExpensesLogFilterBtn.Location = new System.Drawing.Point(614, 100);
+			this.ExpensesLogFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ExpensesLogFilterBtn.Name = "ExpensesLogFilterBtn";
+			this.ExpensesLogFilterBtn.Size = new System.Drawing.Size(237, 46);
+			this.ExpensesLogFilterBtn.TabIndex = 48;
+			this.ExpensesLogFilterBtn.Text = "Filter";
+			this.ExpensesLogFilterBtn.UseVisualStyleBackColor = true;
+			this.ExpensesLogFilterBtn.Click += new System.EventHandler(this.ExpensesLogFilterBtn_Click);
+			// 
+			// label28
+			// 
+			this.label28.AutoSize = true;
+			this.label28.Location = new System.Drawing.Point(610, 22);
+			this.label28.Name = "label28";
+			this.label28.Size = new System.Drawing.Size(65, 23);
+			this.label28.TabIndex = 47;
+			this.label28.Text = "Month";
+			// 
+			// ExpensesLogMonth
+			// 
+			this.ExpensesLogMonth.DropDownHeight = 300;
+			this.ExpensesLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ExpensesLogMonth.FormattingEnabled = true;
+			this.ExpensesLogMonth.IntegralHeight = false;
+			this.ExpensesLogMonth.ItemHeight = 23;
+			this.ExpensesLogMonth.Location = new System.Drawing.Point(614, 49);
+			this.ExpensesLogMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ExpensesLogMonth.Name = "ExpensesLogMonth";
+			this.ExpensesLogMonth.Size = new System.Drawing.Size(239, 31);
+			this.ExpensesLogMonth.TabIndex = 46;
+			this.ExpensesLogMonth.SelectedIndexChanged += new System.EventHandler(this.ExpensesLogMonth_SelectedIndexChanged);
+			// 
+			// label29
+			// 
+			this.label29.AutoSize = true;
+			this.label29.Location = new System.Drawing.Point(1132, 22);
+			this.label29.Name = "label29";
+			this.label29.Size = new System.Drawing.Size(98, 23);
+			this.label29.TabIndex = 45;
+			this.label29.Text = "End Date";
+			// 
+			// label30
+			// 
+			this.label30.AutoSize = true;
+			this.label30.Location = new System.Drawing.Point(874, 22);
+			this.label30.Name = "label30";
+			this.label30.Size = new System.Drawing.Size(120, 23);
+			this.label30.TabIndex = 44;
+			this.label30.Text = "Start Date";
+			// 
+			// ExpensesLogEndDate
+			// 
+			this.ExpensesLogEndDate.DropDownHeight = 300;
+			this.ExpensesLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ExpensesLogEndDate.FormattingEnabled = true;
+			this.ExpensesLogEndDate.IntegralHeight = false;
+			this.ExpensesLogEndDate.ItemHeight = 23;
+			this.ExpensesLogEndDate.Location = new System.Drawing.Point(1136, 49);
+			this.ExpensesLogEndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ExpensesLogEndDate.Name = "ExpensesLogEndDate";
+			this.ExpensesLogEndDate.Size = new System.Drawing.Size(209, 31);
+			this.ExpensesLogEndDate.TabIndex = 43;
+			// 
+			// ExpensesLogStartDate
+			// 
+			this.ExpensesLogStartDate.DropDownHeight = 300;
+			this.ExpensesLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ExpensesLogStartDate.FormattingEnabled = true;
+			this.ExpensesLogStartDate.IntegralHeight = false;
+			this.ExpensesLogStartDate.ItemHeight = 23;
+			this.ExpensesLogStartDate.Location = new System.Drawing.Point(878, 49);
+			this.ExpensesLogStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ExpensesLogStartDate.Name = "ExpensesLogStartDate";
+			this.ExpensesLogStartDate.Size = new System.Drawing.Size(231, 31);
+			this.ExpensesLogStartDate.TabIndex = 42;
+			// 
+			// ExpensesLogGridView
+			// 
+			this.ExpensesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.ExpensesLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.ExpensesLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.ExpensesLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.ExpensesLogGridView.Location = new System.Drawing.Point(614, 166);
+			this.ExpensesLogGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ExpensesLogGridView.Name = "ExpensesLogGridView";
+			this.ExpensesLogGridView.RowHeadersWidth = 51;
+			this.ExpensesLogGridView.RowTemplate.Height = 24;
+			this.ExpensesLogGridView.Size = new System.Drawing.Size(745, 541);
+			this.ExpensesLogGridView.TabIndex = 41;
+			// 
+			// ClearExpenseFieldsBtn
+			// 
+			this.ClearExpenseFieldsBtn.Location = new System.Drawing.Point(268, 389);
+			this.ClearExpenseFieldsBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ClearExpenseFieldsBtn.Name = "ClearExpenseFieldsBtn";
+			this.ClearExpenseFieldsBtn.Size = new System.Drawing.Size(131, 47);
+			this.ClearExpenseFieldsBtn.TabIndex = 40;
+			this.ClearExpenseFieldsBtn.Text = "Clear";
+			this.ClearExpenseFieldsBtn.UseVisualStyleBackColor = true;
+			this.ClearExpenseFieldsBtn.Click += new System.EventHandler(this.ClearExpenseFieldsBtn_Click);
+			// 
+			// AddExpenseBtn
+			// 
+			this.AddExpenseBtn.Location = new System.Drawing.Point(15, 389);
+			this.AddExpenseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.AddExpenseBtn.Name = "AddExpenseBtn";
+			this.AddExpenseBtn.Size = new System.Drawing.Size(200, 47);
+			this.AddExpenseBtn.TabIndex = 39;
+			this.AddExpenseBtn.Text = "Add Expense";
+			this.AddExpenseBtn.UseVisualStyleBackColor = true;
+			this.AddExpenseBtn.Click += new System.EventHandler(this.AddExpenseBtn_Click);
+			// 
+			// label31
+			// 
+			this.label31.AutoSize = true;
+			this.label31.Location = new System.Drawing.Point(11, 183);
+			this.label31.Name = "label31";
+			this.label31.Size = new System.Drawing.Size(76, 23);
+			this.label31.TabIndex = 38;
+			this.label31.Text = "Amount";
+			// 
+			// label33
+			// 
+			this.label33.AutoSize = true;
+			this.label33.Location = new System.Drawing.Point(11, 100);
+			this.label33.Name = "label33";
+			this.label33.Size = new System.Drawing.Size(131, 23);
+			this.label33.TabIndex = 34;
+			this.label33.Text = "Description";
+			// 
+			// label34
+			// 
+			this.label34.AutoSize = true;
+			this.label34.Location = new System.Drawing.Point(11, 31);
+			this.label34.Name = "label34";
+			this.label34.Size = new System.Drawing.Size(54, 23);
+			this.label34.TabIndex = 33;
+			this.label34.Text = "Date";
+			// 
 			// Wages
 			// 
+			this.Wages.Controls.Add(this.PartTimeEmployeeCheckBox);
+			this.Wages.Controls.Add(this.EmployeeName);
+			this.Wages.Controls.Add(this.WageAmount);
+			this.Wages.Controls.Add(this.WageDate);
+			this.Wages.Controls.Add(this.WageLogRemoveFiltersBtn);
+			this.Wages.Controls.Add(this.WageLogFilterBtn);
+			this.Wages.Controls.Add(this.label32);
+			this.Wages.Controls.Add(this.WageLogMonth);
+			this.Wages.Controls.Add(this.label35);
+			this.Wages.Controls.Add(this.label36);
+			this.Wages.Controls.Add(this.WageLogEndDate);
+			this.Wages.Controls.Add(this.WageLogStartDate);
+			this.Wages.Controls.Add(this.WageLogGridView);
+			this.Wages.Controls.Add(this.ClearWageFieldsBtn);
+			this.Wages.Controls.Add(this.AddWageBtn);
+			this.Wages.Controls.Add(this.label37);
+			this.Wages.Controls.Add(this.label38);
+			this.Wages.Controls.Add(this.label39);
 			this.Wages.Location = new System.Drawing.Point(4, 32);
 			this.Wages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.Wages.Name = "Wages";
@@ -1231,193 +1458,200 @@ namespace Green_Enviro_App
 			// 
 			this.customersTableAdapter1.ClearBeforeFill = true;
 			// 
-			// ExpenseDate
+			// WageAmount
 			// 
-			this.ExpenseDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ExpenseDate.Location = new System.Drawing.Point(176, 23);
-			this.ExpenseDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ExpenseDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
-			this.ExpenseDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
-			this.ExpenseDate.Name = "ExpenseDate";
-			this.ExpenseDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.ExpenseDate.Size = new System.Drawing.Size(375, 31);
-			this.ExpenseDate.TabIndex = 32;
-			this.ExpenseDate.TabStop = false;
-			this.ExpenseDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
-			// 
-			// ExpensesLogRemoveFiltersBtn
-			// 
-			this.ExpensesLogRemoveFiltersBtn.Location = new System.Drawing.Point(878, 100);
-			this.ExpensesLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ExpensesLogRemoveFiltersBtn.Name = "ExpensesLogRemoveFiltersBtn";
-			this.ExpensesLogRemoveFiltersBtn.Size = new System.Drawing.Size(229, 46);
-			this.ExpensesLogRemoveFiltersBtn.TabIndex = 49;
-			this.ExpensesLogRemoveFiltersBtn.Text = "Remove Filters";
-			this.ExpensesLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
-			this.ExpensesLogRemoveFiltersBtn.Click += new System.EventHandler(this.ExpensesLogRemoveFiltersBtn_Click);
-			// 
-			// ExpensesLogFilterBtn
-			// 
-			this.ExpensesLogFilterBtn.Location = new System.Drawing.Point(614, 100);
-			this.ExpensesLogFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ExpensesLogFilterBtn.Name = "ExpensesLogFilterBtn";
-			this.ExpensesLogFilterBtn.Size = new System.Drawing.Size(237, 46);
-			this.ExpensesLogFilterBtn.TabIndex = 48;
-			this.ExpensesLogFilterBtn.Text = "Filter";
-			this.ExpensesLogFilterBtn.UseVisualStyleBackColor = true;
-			this.ExpensesLogFilterBtn.Click += new System.EventHandler(this.ExpensesLogFilterBtn_Click);
-			// 
-			// label28
-			// 
-			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(610, 22);
-			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(65, 23);
-			this.label28.TabIndex = 47;
-			this.label28.Text = "Month";
-			// 
-			// ExpensesLogMonth
-			// 
-			this.ExpensesLogMonth.DropDownHeight = 300;
-			this.ExpensesLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ExpensesLogMonth.FormattingEnabled = true;
-			this.ExpensesLogMonth.IntegralHeight = false;
-			this.ExpensesLogMonth.ItemHeight = 23;
-			this.ExpensesLogMonth.Location = new System.Drawing.Point(614, 49);
-			this.ExpensesLogMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ExpensesLogMonth.Name = "ExpensesLogMonth";
-			this.ExpensesLogMonth.Size = new System.Drawing.Size(239, 31);
-			this.ExpensesLogMonth.TabIndex = 46;
-			this.ExpensesLogMonth.SelectedIndexChanged += new System.EventHandler(this.ExpensesLogMonth_SelectedIndexChanged);
-			// 
-			// label29
-			// 
-			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(1132, 22);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(98, 23);
-			this.label29.TabIndex = 45;
-			this.label29.Text = "End Date";
-			// 
-			// label30
-			// 
-			this.label30.AutoSize = true;
-			this.label30.Location = new System.Drawing.Point(874, 22);
-			this.label30.Name = "label30";
-			this.label30.Size = new System.Drawing.Size(120, 23);
-			this.label30.TabIndex = 44;
-			this.label30.Text = "Start Date";
-			// 
-			// ExpensesLogEndDate
-			// 
-			this.ExpensesLogEndDate.DropDownHeight = 300;
-			this.ExpensesLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ExpensesLogEndDate.FormattingEnabled = true;
-			this.ExpensesLogEndDate.IntegralHeight = false;
-			this.ExpensesLogEndDate.ItemHeight = 23;
-			this.ExpensesLogEndDate.Location = new System.Drawing.Point(1136, 49);
-			this.ExpensesLogEndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ExpensesLogEndDate.Name = "ExpensesLogEndDate";
-			this.ExpensesLogEndDate.Size = new System.Drawing.Size(209, 31);
-			this.ExpensesLogEndDate.TabIndex = 43;
-			// 
-			// ExpensesLogStartDate
-			// 
-			this.ExpensesLogStartDate.DropDownHeight = 300;
-			this.ExpensesLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ExpensesLogStartDate.FormattingEnabled = true;
-			this.ExpensesLogStartDate.IntegralHeight = false;
-			this.ExpensesLogStartDate.ItemHeight = 23;
-			this.ExpensesLogStartDate.Location = new System.Drawing.Point(878, 49);
-			this.ExpensesLogStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ExpensesLogStartDate.Name = "ExpensesLogStartDate";
-			this.ExpensesLogStartDate.Size = new System.Drawing.Size(231, 31);
-			this.ExpensesLogStartDate.TabIndex = 42;
-			// 
-			// ExpensesLogGridView
-			// 
-			this.ExpensesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.ExpensesLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.ExpensesLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.ExpensesLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.ExpensesLogGridView.Location = new System.Drawing.Point(614, 166);
-			this.ExpensesLogGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ExpensesLogGridView.Name = "ExpensesLogGridView";
-			this.ExpensesLogGridView.RowHeadersWidth = 51;
-			this.ExpensesLogGridView.RowTemplate.Height = 24;
-			this.ExpensesLogGridView.Size = new System.Drawing.Size(745, 541);
-			this.ExpensesLogGridView.TabIndex = 41;
-			// 
-			// ClearExpenseFieldsBtn
-			// 
-			this.ClearExpenseFieldsBtn.Location = new System.Drawing.Point(268, 389);
-			this.ClearExpenseFieldsBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ClearExpenseFieldsBtn.Name = "ClearExpenseFieldsBtn";
-			this.ClearExpenseFieldsBtn.Size = new System.Drawing.Size(131, 47);
-			this.ClearExpenseFieldsBtn.TabIndex = 40;
-			this.ClearExpenseFieldsBtn.Text = "Clear";
-			this.ClearExpenseFieldsBtn.UseVisualStyleBackColor = true;
-			this.ClearExpenseFieldsBtn.Click += new System.EventHandler(this.ClearExpenseFieldsBtn_Click);
-			// 
-			// AddExpenseBtn
-			// 
-			this.AddExpenseBtn.Location = new System.Drawing.Point(15, 389);
-			this.AddExpenseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.AddExpenseBtn.Name = "AddExpenseBtn";
-			this.AddExpenseBtn.Size = new System.Drawing.Size(200, 47);
-			this.AddExpenseBtn.TabIndex = 39;
-			this.AddExpenseBtn.Text = "Add Expense";
-			this.AddExpenseBtn.UseVisualStyleBackColor = true;
-			this.AddExpenseBtn.Click += new System.EventHandler(this.AddExpenseBtn_Click);
-			// 
-			// label31
-			// 
-			this.label31.AutoSize = true;
-			this.label31.Location = new System.Drawing.Point(11, 183);
-			this.label31.Name = "label31";
-			this.label31.Size = new System.Drawing.Size(76, 23);
-			this.label31.TabIndex = 38;
-			this.label31.Text = "Amount";
-			// 
-			// label33
-			// 
-			this.label33.AutoSize = true;
-			this.label33.Location = new System.Drawing.Point(11, 100);
-			this.label33.Name = "label33";
-			this.label33.Size = new System.Drawing.Size(131, 23);
-			this.label33.TabIndex = 34;
-			this.label33.Text = "Description";
-			// 
-			// label34
-			// 
-			this.label34.AutoSize = true;
-			this.label34.Location = new System.Drawing.Point(11, 31);
-			this.label34.Name = "label34";
-			this.label34.Size = new System.Drawing.Size(54, 23);
-			this.label34.TabIndex = 33;
-			this.label34.Text = "Date";
-			// 
-			// ExpenseDescriptionBox
-			// 
-			this.ExpenseDescriptionBox.Location = new System.Drawing.Point(176, 97);
-			this.ExpenseDescriptionBox.Name = "ExpenseDescriptionBox";
-			this.ExpenseDescriptionBox.Size = new System.Drawing.Size(375, 31);
-			this.ExpenseDescriptionBox.TabIndex = 50;
-			// 
-			// ExpenseAmount
-			// 
-			this.ExpenseAmount.DecimalPlaces = 2;
-			this.ExpenseAmount.Location = new System.Drawing.Point(176, 175);
-			this.ExpenseAmount.Maximum = new decimal(new int[] {
+			this.WageAmount.DecimalPlaces = 2;
+			this.WageAmount.Location = new System.Drawing.Point(172, 212);
+			this.WageAmount.Maximum = new decimal(new int[] {
             200000,
             0,
             0,
             0});
-			this.ExpenseAmount.Name = "ExpenseAmount";
-			this.ExpenseAmount.Size = new System.Drawing.Size(265, 31);
-			this.ExpenseAmount.TabIndex = 51;
+			this.WageAmount.Name = "WageAmount";
+			this.WageAmount.Size = new System.Drawing.Size(265, 31);
+			this.WageAmount.TabIndex = 68;
+			// 
+			// WageDate
+			// 
+			this.WageDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.WageDate.Location = new System.Drawing.Point(172, 16);
+			this.WageDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
+			this.WageDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
+			this.WageDate.Name = "WageDate";
+			this.WageDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.WageDate.Size = new System.Drawing.Size(375, 31);
+			this.WageDate.TabIndex = 52;
+			this.WageDate.TabStop = false;
+			this.WageDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
+			// 
+			// WageLogRemoveFiltersBtn
+			// 
+			this.WageLogRemoveFiltersBtn.Location = new System.Drawing.Point(874, 93);
+			this.WageLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageLogRemoveFiltersBtn.Name = "WageLogRemoveFiltersBtn";
+			this.WageLogRemoveFiltersBtn.Size = new System.Drawing.Size(229, 46);
+			this.WageLogRemoveFiltersBtn.TabIndex = 66;
+			this.WageLogRemoveFiltersBtn.Text = "Remove Filters";
+			this.WageLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
+			// 
+			// WageLogFilterBtn
+			// 
+			this.WageLogFilterBtn.Location = new System.Drawing.Point(610, 93);
+			this.WageLogFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageLogFilterBtn.Name = "WageLogFilterBtn";
+			this.WageLogFilterBtn.Size = new System.Drawing.Size(237, 46);
+			this.WageLogFilterBtn.TabIndex = 65;
+			this.WageLogFilterBtn.Text = "Filter";
+			this.WageLogFilterBtn.UseVisualStyleBackColor = true;
+			// 
+			// label32
+			// 
+			this.label32.AutoSize = true;
+			this.label32.Location = new System.Drawing.Point(606, 15);
+			this.label32.Name = "label32";
+			this.label32.Size = new System.Drawing.Size(65, 23);
+			this.label32.TabIndex = 64;
+			this.label32.Text = "Month";
+			// 
+			// WageLogMonth
+			// 
+			this.WageLogMonth.DropDownHeight = 300;
+			this.WageLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.WageLogMonth.FormattingEnabled = true;
+			this.WageLogMonth.IntegralHeight = false;
+			this.WageLogMonth.ItemHeight = 23;
+			this.WageLogMonth.Location = new System.Drawing.Point(610, 42);
+			this.WageLogMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageLogMonth.Name = "WageLogMonth";
+			this.WageLogMonth.Size = new System.Drawing.Size(239, 31);
+			this.WageLogMonth.TabIndex = 63;
+			// 
+			// label35
+			// 
+			this.label35.AutoSize = true;
+			this.label35.Location = new System.Drawing.Point(1128, 15);
+			this.label35.Name = "label35";
+			this.label35.Size = new System.Drawing.Size(98, 23);
+			this.label35.TabIndex = 62;
+			this.label35.Text = "End Date";
+			// 
+			// label36
+			// 
+			this.label36.AutoSize = true;
+			this.label36.Location = new System.Drawing.Point(870, 15);
+			this.label36.Name = "label36";
+			this.label36.Size = new System.Drawing.Size(120, 23);
+			this.label36.TabIndex = 61;
+			this.label36.Text = "Start Date";
+			// 
+			// WageLogEndDate
+			// 
+			this.WageLogEndDate.DropDownHeight = 300;
+			this.WageLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.WageLogEndDate.FormattingEnabled = true;
+			this.WageLogEndDate.IntegralHeight = false;
+			this.WageLogEndDate.ItemHeight = 23;
+			this.WageLogEndDate.Location = new System.Drawing.Point(1132, 42);
+			this.WageLogEndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageLogEndDate.Name = "WageLogEndDate";
+			this.WageLogEndDate.Size = new System.Drawing.Size(209, 31);
+			this.WageLogEndDate.TabIndex = 60;
+			// 
+			// WageLogStartDate
+			// 
+			this.WageLogStartDate.DropDownHeight = 300;
+			this.WageLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.WageLogStartDate.FormattingEnabled = true;
+			this.WageLogStartDate.IntegralHeight = false;
+			this.WageLogStartDate.ItemHeight = 23;
+			this.WageLogStartDate.Location = new System.Drawing.Point(874, 42);
+			this.WageLogStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageLogStartDate.Name = "WageLogStartDate";
+			this.WageLogStartDate.Size = new System.Drawing.Size(231, 31);
+			this.WageLogStartDate.TabIndex = 59;
+			// 
+			// WageLogGridView
+			// 
+			this.WageLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.WageLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.WageLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.WageLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.WageLogGridView.Location = new System.Drawing.Point(610, 159);
+			this.WageLogGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageLogGridView.Name = "WageLogGridView";
+			this.WageLogGridView.RowHeadersWidth = 51;
+			this.WageLogGridView.RowTemplate.Height = 24;
+			this.WageLogGridView.Size = new System.Drawing.Size(745, 541);
+			this.WageLogGridView.TabIndex = 58;
+			// 
+			// ClearWageFieldsBtn
+			// 
+			this.ClearWageFieldsBtn.Location = new System.Drawing.Point(264, 382);
+			this.ClearWageFieldsBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ClearWageFieldsBtn.Name = "ClearWageFieldsBtn";
+			this.ClearWageFieldsBtn.Size = new System.Drawing.Size(131, 47);
+			this.ClearWageFieldsBtn.TabIndex = 57;
+			this.ClearWageFieldsBtn.Text = "Clear";
+			this.ClearWageFieldsBtn.UseVisualStyleBackColor = true;
+			// 
+			// AddWageBtn
+			// 
+			this.AddWageBtn.Location = new System.Drawing.Point(11, 382);
+			this.AddWageBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.AddWageBtn.Name = "AddWageBtn";
+			this.AddWageBtn.Size = new System.Drawing.Size(200, 47);
+			this.AddWageBtn.TabIndex = 56;
+			this.AddWageBtn.Text = "Add Wage";
+			this.AddWageBtn.UseVisualStyleBackColor = true;
+			// 
+			// label37
+			// 
+			this.label37.AutoSize = true;
+			this.label37.Location = new System.Drawing.Point(8, 220);
+			this.label37.Name = "label37";
+			this.label37.Size = new System.Drawing.Size(76, 23);
+			this.label37.TabIndex = 55;
+			this.label37.Text = "Amount";
+			// 
+			// label38
+			// 
+			this.label38.AutoSize = true;
+			this.label38.Location = new System.Drawing.Point(7, 128);
+			this.label38.Name = "label38";
+			this.label38.Size = new System.Drawing.Size(98, 23);
+			this.label38.TabIndex = 54;
+			this.label38.Text = "Employee";
+			// 
+			// label39
+			// 
+			this.label39.AutoSize = true;
+			this.label39.Location = new System.Drawing.Point(7, 24);
+			this.label39.Name = "label39";
+			this.label39.Size = new System.Drawing.Size(54, 23);
+			this.label39.TabIndex = 53;
+			this.label39.Text = "Date";
+			// 
+			// EmployeeName
+			// 
+			this.EmployeeName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.EmployeeName.FormattingEnabled = true;
+			this.EmployeeName.Location = new System.Drawing.Point(172, 125);
+			this.EmployeeName.Name = "EmployeeName";
+			this.EmployeeName.Size = new System.Drawing.Size(375, 31);
+			this.EmployeeName.TabIndex = 69;
+			// 
+			// PartTimeEmployeeCheckBox
+			// 
+			this.PartTimeEmployeeCheckBox.AutoSize = true;
+			this.PartTimeEmployeeCheckBox.Location = new System.Drawing.Point(172, 80);
+			this.PartTimeEmployeeCheckBox.Name = "PartTimeEmployeeCheckBox";
+			this.PartTimeEmployeeCheckBox.Size = new System.Drawing.Size(230, 27);
+			this.PartTimeEmployeeCheckBox.TabIndex = 70;
+			this.PartTimeEmployeeCheckBox.Text = "Part Time Employee";
+			this.PartTimeEmployeeCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// Main_Form
 			// 
@@ -1452,12 +1686,16 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).EndInit();
 			this.Expenses.ResumeLayout(false);
 			this.Expenses.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ExpensesLogGridView)).EndInit();
+			this.Wages.ResumeLayout(false);
+			this.Wages.PerformLayout();
 			this.DestructionCertificates.ResumeLayout(false);
 			this.DestructionCertificates.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.ExpensesLogGridView)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -1643,5 +1881,23 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label34;
 		public System.Windows.Forms.NumericUpDown ExpenseAmount;
 		public System.Windows.Forms.TextBox ExpenseDescriptionBox;
+		public System.Windows.Forms.NumericUpDown WageAmount;
+		public System.Windows.Forms.DateTimePicker WageDate;
+		private System.Windows.Forms.Button WageLogRemoveFiltersBtn;
+		private System.Windows.Forms.Button WageLogFilterBtn;
+		private System.Windows.Forms.Label label32;
+		public System.Windows.Forms.ComboBox WageLogMonth;
+		private System.Windows.Forms.Label label35;
+		private System.Windows.Forms.Label label36;
+		public System.Windows.Forms.ComboBox WageLogEndDate;
+		public System.Windows.Forms.ComboBox WageLogStartDate;
+		public System.Windows.Forms.DataGridView WageLogGridView;
+		private System.Windows.Forms.Button ClearWageFieldsBtn;
+		private System.Windows.Forms.Button AddWageBtn;
+		private System.Windows.Forms.Label label37;
+		private System.Windows.Forms.Label label38;
+		private System.Windows.Forms.Label label39;
+		private System.Windows.Forms.CheckBox PartTimeEmployeeCheckBox;
+		private System.Windows.Forms.ComboBox EmployeeName;
 	}
 }
