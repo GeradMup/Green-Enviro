@@ -276,7 +276,7 @@ namespace Green_Enviro_App
                 _message = "Year of the Extraction Date not selected";
                 _all_good = false;
             }
-            else if (_main_form.dstrctCertCompanyField.Text == _empty_txtbox)
+            else if (_main_form.dstrctCertCompanyField.SelectedItem == null)
             {
                 _message_type = _error;
                 _message = "Company not entered";
@@ -334,7 +334,7 @@ namespace Green_Enviro_App
             _main_form.dstrctCertificateDayList.SelectedIndex = 0;
             _main_form.dstrctCertificateMonthList.SelectedIndex = 0;
             _main_form.dstrctCertificateYearList.SelectedIndex = 0;
-            _main_form.dstrctCertCompanyField.SelectedIndex = 0;
+            _main_form.dstrctCertCompanyField.SelectedItem = null;
             _main_form.dstrctCertCntactPersonField.Clear();
             _main_form.dstrctCertCntactNumField.Clear();
             _main_form.dstrctCertEmailAddressField.Clear();
@@ -459,13 +459,11 @@ namespace Green_Enviro_App
             {
                 _main_form.dstrctCertCompanyField.Items.Add(row[_companies_table_name_column]);
             }
-            //_main_form.dstrctCertCompanyField.Items.Insert(0, "Select");
-            //_main_form.dstrctCertCompanyField.SelectedIndex = 0;
         }
 
         public void Company_Selected()
         {
-            if (_main_form.dstrctCertCompanyField.SelectedItem == null || _main_form.dstrctCertCompanyField.SelectedIndex == 0)
+            if (_main_form.dstrctCertCompanyField.SelectedItem == null)
             {
                 _main_form.dstrctCertCntactPersonField.Text = "";
                 _main_form.dstrctCertCntactNumField.Text = "";
@@ -492,9 +490,6 @@ namespace Green_Enviro_App
 
             _is_company_selected = true;
         }
-        public void Test()
-        {
-            Console.WriteLine("Alright Test 1");
-        }
+
     }
 }
