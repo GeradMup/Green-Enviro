@@ -111,7 +111,7 @@ namespace Green_Enviro_App
             _main_form.receiptBox.AppendText(" ----------------------------\n");
             _main_form.receiptBox.AppendText(" 5 Shaft Road, Knights,\n");
             _main_form.receiptBox.AppendText(" Germiston, 1401\n");
-            _main_form.receiptBox.AppendText(" Phone: +27 63 236 3034\n");
+            _main_form.receiptBox.AppendText(" Phone: +27 61 588 7074\n");
             _main_form.receiptBox.AppendText(" Tax Number: 9154951249\n");
             _main_form.receiptBox.AppendText(" Reg Number: 2019/528743/07\n");
             _main_form.receiptBox.AppendText(" ----------------------------\n");

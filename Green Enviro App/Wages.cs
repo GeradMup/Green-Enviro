@@ -13,66 +13,66 @@ namespace Green_Enviro_App
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
-		string _path_to_expenses = @"..//..//resources//Logs//Wages//" + _month + ".csv";
+		string _path_to_wages = @"..//..//resources//Logs//Wages//" + _month + ".csv";
 
 		//Required objects
 		Main_Form _main_form;
 		Database _database;
 
-		DataTable _expenses_data_table = new DataTable();  //All the information about all the products the we have sold.
+		DataTable _wages_data_table = new DataTable();  //All the information about all the products the we have sold.
 
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
 
-		public Expenses(Main_Form _main, Database data)
+		public Wages(Main_Form _main, Database data)
 		{
 			_main_form = _main;
 			_database = data;
 			CreateLogFiles();
-			SetupExpensesLogs();
+			SetupWagesLogs();
 		}
 
-		//Create purchase and expenses logs for each month if they don't already exist
+		//Create purchase and wages logs for each month if they don't already exist
 		private void CreateLogFiles()
 		{
 			//First Check if the files exist for each month
 			//If the file does not exist, create it
-			if (!File.Exists(_path_to_expenses))
+			if (!File.Exists(_path_to_wages))
 			{
-				string _expenses_file_headers = "Date,Description,Amount";
+				string _wages_file_headers = "Date,Description,Amount";
 				StringBuilder _csv_content = new StringBuilder();
-				_csv_content.AppendLine(_expenses_file_headers);
-				File.AppendAllText(_path_to_expenses, _csv_content.ToString());
+				_csv_content.AppendLine(_wages_file_headers);
+				File.AppendAllText(_path_to_wages, _csv_content.ToString());
 			}
 		}
 
-		public void SetupExpensesLogs()
+		public void SetupWagesLogs()
 		{
-			//This function will get the names of all the expenses log files that exists in the expenses folder
-			string _expenses_logs_path = @"..//..//resources//Logs//Expenses";
-			DirectoryInfo _directory = new DirectoryInfo(_expenses_logs_path);  //Assuming Test is your Folder
+			//This function will get the names of all the wages log files that exists in the wages folder
+			string _wages_logs_path = @"..//..//resources//Logs//Wages";
+			DirectoryInfo _directory = new DirectoryInfo(_wages_logs_path);  //Assuming Test is your Folder
 			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
 			foreach (FileInfo _file in _files)
 			{
 				char[] _remove_chars = { 'c', 's', 'v', '.' };
 				string _file_name = _file.Name.TrimEnd(_remove_chars);
-				_main_form.ExpensesLogMonth.Items.Add(_file_name);
+				_main_form.WageLogMonth.Items.Add(_file_name);
 			}
 		}
 
-		public void DisplayExpensesLog()
+		public void DisplayWagesLog()
 		{
 
-			if (_main_form.ExpensesLogMonth.SelectedItem == null)
+			if (_main_form.WageLogMonth.SelectedItem == null)
 			{
 				//Do nothing is the user has not selected what month they want to view
 				return;
 			}
 			//Clear the data table so that it can be ready for the next entries
-			_expenses_data_table.Clear();
+			_wages_data_table.Clear();
 
-			string _selected_month = _main_form.ExpensesLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = @"..//..//resources//Logs//Expenses//" + _selected_month + ".csv";
+			string _selected_month = _main_form.WageLogMonth.SelectedItem.ToString();
+			string _path_to_log_file = @"..//..//resources//Logs//Wages//" + _selected_month + ".csv";
 
 			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
 			if (lines.Length > 0)
@@ -80,11 +80,11 @@ namespace Green_Enviro_App
 				//first line to create the table headers
 				string _first_line = lines[0];
 				string[] _header_labels = _first_line.Split(',');
-				if (!_expenses_data_table.Columns.Contains(_header_labels[0]))
+				if (!_wages_data_table.Columns.Contains(_header_labels[0]))
 				{
 					foreach (string _header_word in _header_labels)
 					{
-						_expenses_data_table.Columns.Add(new DataColumn(_header_word));
+						_wages_data_table.Columns.Add(new DataColumn(_header_word));
 					}
 				}
 
@@ -93,7 +93,7 @@ namespace Green_Enviro_App
 				{
 					//For each line, we want a list of the words on the line seperated by the comma
 					string[] dataWords = lines[_row].Split(',');
-					DataRow _data_row = _expenses_data_table.NewRow();
+					DataRow _data_row = _wages_data_table.NewRow();
 					int columnIndex = 0;
 					//Now populate the table one row at a time
 					foreach (string headerWord in _header_labels)
@@ -101,21 +101,21 @@ namespace Green_Enviro_App
 						_data_row[headerWord] = dataWords[columnIndex++];
 					}
 					//Add the completed row to the table
-					_expenses_data_table.Rows.Add(_data_row);
+					_wages_data_table.Rows.Add(_data_row);
 				}
 			}
 
-			if (_expenses_data_table.Rows.Count > 0)
+			if (_wages_data_table.Rows.Count > 0)
 			{
 				//Now we create the binding source for displaying the table information in the DataGridView
-				_binding_source.DataSource = _expenses_data_table;
+				_binding_source.DataSource = _wages_data_table;
 
 
 				//Filter according to the date ranges if the dates have been selected correctly
 				if (isDateFiltered() == true)
 				{
-					string _filter_start_date = _main_form.ExpensesLogStartDate.SelectedItem.ToString();
-					string _filter_end_date = _main_form.ExpensesLogEndDate.SelectedItem.ToString();
+					string _filter_start_date = _main_form.WageLogStartDate.SelectedItem.ToString();
+					string _filter_end_date = _main_form.WageLogEndDate.SelectedItem.ToString();
 
 					_binding_source.Filter = string.Format("Description = '{0}' OR Date >= '{1}' AND Date <= '{2}'", _empty_string, _filter_start_date, _filter_end_date);
 				}
@@ -124,16 +124,16 @@ namespace Green_Enviro_App
 					_binding_source.RemoveFilter();
 				}
 
-				_main_form.ExpensesLogGridView.DataSource = _binding_source;
-				_main_form.ExpensesLogGridView.Columns[1].FillWeight = 190F;
+				_main_form.WageLogGridView.DataSource = _binding_source;
+				_main_form.WageLogGridView.Columns[1].FillWeight = 190F;
 
-				foreach (DataGridViewColumn _column in _main_form.ExpensesLogGridView.Columns)
+				foreach (DataGridViewColumn _column in _main_form.WageLogGridView.Columns)
 				{
 					_column.SortMode = DataGridViewColumnSortMode.NotSortable;
 				}
 
 				AddTotalsRow();
-				_main_form.ExpensesLogGridView.Refresh();
+				_main_form.WageLogGridView.Refresh();
 			}
 
 		}
@@ -146,21 +146,21 @@ namespace Green_Enviro_App
 			int _amount_column = 2;
 
 
-			for (int _row = 0; _row < _main_form.ExpensesLogGridView.Rows.Count - 1; _row++)
+			for (int _row = 0; _row < _main_form.WageLogGridView.Rows.Count - 1; _row++)
 			{
-				_total_amount += float.Parse(_main_form.ExpensesLogGridView.Rows[_row].Cells[_amount_column].Value.ToString());
+				_total_amount += float.Parse(_main_form.WageLogGridView.Rows[_row].Cells[_amount_column].Value.ToString());
 			}
 
 			DataTable _totals_table = new DataTable();
 
-			for (int _cols = 0; _cols < _main_form.ExpensesLogGridView.Columns.Count; _cols++)
+			for (int _cols = 0; _cols < _main_form.WageLogGridView.Columns.Count; _cols++)
 			{
 				DataColumn _new_column = new DataColumn();
 				_totals_table.Columns.Add(_new_column);
 			}
 
-			DataRow _last_row = _expenses_data_table.NewRow();
-			DataRow _empty_row = _expenses_data_table.NewRow();
+			DataRow _last_row = _wages_data_table.NewRow();
+			DataRow _empty_row = _wages_data_table.NewRow();
 
 			_last_row[0] = "TOTALS";
 			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
@@ -177,22 +177,22 @@ namespace Green_Enviro_App
 			}
 
 			//Add the totals rows to the data table
-			_expenses_data_table.Rows.Add(_empty_row);
-			_expenses_data_table.Rows.Add(_last_row);
+			_wages_data_table.Rows.Add(_empty_row);
+			_wages_data_table.Rows.Add(_last_row);
 
 		}
 
 
 		public void MonthSelected()
 		{
-			if (_main_form.ExpensesLogMonth.SelectedItem == null)
+			if (_main_form.WageLogMonth.SelectedItem == null)
 			{
 				//Do nothing if no month is selected
 				return;
 			}
 
-			string _selected_month = _main_form.ExpensesLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = @"..//..//resources//Logs//Expenses//" + _selected_month + ".csv";
+			string _selected_month = _main_form.WageLogMonth.SelectedItem.ToString();
+			string _path_to_log_file = @"..//..//resources//Logs//Wages//" + _selected_month + ".csv";
 
 			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
 			HashSet<string> _dates = new HashSet<string>();
@@ -212,14 +212,14 @@ namespace Green_Enviro_App
 
 
 			//First Clear the start and end date fields to prepare them for the new entry
-			_main_form.ExpensesLogStartDate.Items.Clear();
-			_main_form.ExpensesLogEndDate.Items.Clear();
+			_main_form.WageLogStartDate.Items.Clear();
+			_main_form.WageLogEndDate.Items.Clear();
 
 			//Now Populate the drop down list with available dates only.
 			foreach (string _date in _dates)
 			{
-				_main_form.ExpensesLogStartDate.Items.Add(_date);
-				_main_form.ExpensesLogEndDate.Items.Add(_date);
+				_main_form.WageLogStartDate.Items.Add(_date);
+				_main_form.WageLogEndDate.Items.Add(_date);
 			}
 
 			//Change the contents displayed in the log if the month selected changes
@@ -238,38 +238,38 @@ namespace Green_Enviro_App
 		/// </remark>
 		private bool isDateFiltered()
 		{
-			if ((_main_form.ExpensesLogStartDate.SelectedItem == null) && (_main_form.ExpensesLogEndDate.SelectedItem == null))
+			if ((_main_form.WageLogStartDate.SelectedItem == null) && (_main_form.WageLogEndDate.SelectedItem == null))
 			{
 				//Do nothing if there are not filters selected
 				return false;
 			}
 
-			if ((_main_form.ExpensesLogStartDate.SelectedItem != null) && (_main_form.ExpensesLogEndDate.SelectedItem == null))
-			{
-				//Do nothing if there are not filters selected
-				CustomMessageBox msg = new CustomMessageBox("Error!", "INVALID DATE RANGE!");
-				_main_form.ExpensesLogStartDate.SelectedItem = null;
-				_main_form.ExpensesLogEndDate.SelectedItem = null;
-				return false;
-			}
-
-			if ((_main_form.ExpensesLogStartDate.SelectedItem == null) && (_main_form.ExpensesLogEndDate.SelectedItem != null))
+			if ((_main_form.WageLogStartDate.SelectedItem != null) && (_main_form.WageLogEndDate.SelectedItem == null))
 			{
 				//Do nothing if there are not filters selected
 				CustomMessageBox msg = new CustomMessageBox("Error!", "INVALID DATE RANGE!");
-				_main_form.ExpensesLogStartDate.SelectedItem = null;
-				_main_form.ExpensesLogEndDate.SelectedItem = null;
+				_main_form.WageLogStartDate.SelectedItem = null;
+				_main_form.WageLogEndDate.SelectedItem = null;
 				return false;
 			}
 
-			DateTime _filter_start_date = Convert.ToDateTime(_main_form.ExpensesLogStartDate.SelectedItem.ToString());
-			DateTime _filter_end_date = Convert.ToDateTime(_main_form.ExpensesLogEndDate.SelectedItem.ToString());
+			if ((_main_form.WageLogStartDate.SelectedItem == null) && (_main_form.WageLogEndDate.SelectedItem != null))
+			{
+				//Do nothing if there are not filters selected
+				CustomMessageBox msg = new CustomMessageBox("Error!", "INVALID DATE RANGE!");
+				_main_form.WageLogStartDate.SelectedItem = null;
+				_main_form.WageLogEndDate.SelectedItem = null;
+				return false;
+			}
+
+			DateTime _filter_start_date = Convert.ToDateTime(_main_form.WageLogStartDate.SelectedItem.ToString());
+			DateTime _filter_end_date = Convert.ToDateTime(_main_form.WageLogEndDate.SelectedItem.ToString());
 
 			if (_filter_start_date > _filter_end_date)
 			{
 				CustomMessageBox msg = new CustomMessageBox("Error!", "INVALID DATE RANGE!");
-				_main_form.ExpensesLogStartDate.SelectedItem = null;
-				_main_form.ExpensesLogEndDate.SelectedItem = null;
+				_main_form.WageLogStartDate.SelectedItem = null;
+				_main_form.WageLogEndDate.SelectedItem = null;
 				return false;
 			}
 
@@ -281,13 +281,13 @@ namespace Green_Enviro_App
 		/// </summary>
 		public void RemoveFilters()
 		{
-			_main_form.ExpensesLogStartDate.SelectedItem = null;
-			_main_form.ExpensesLogEndDate.SelectedItem = null;
+			_main_form.WageLogStartDate.SelectedItem = null;
+			_main_form.WageLogEndDate.SelectedItem = null;
 
-			DisplayExpensesLog();
+			DisplayWagesLog();
 		}
 
-		public void AddExpense()
+		public void AddWage()
 		{
 			if (ValidEntries() == false)
 			{
@@ -295,18 +295,18 @@ namespace Green_Enviro_App
 			}
 
 			StringBuilder _csv_content = new StringBuilder();
-			string _date = _main_form.ExpenseDate.Value.ToString("dd MMMM yyyy");
-			string _description = _main_form.ExpenseDescriptionBox.Text;
-			string _amount = _main_form.ExpenseAmount.Value.ToString();
+			string _date = _main_form.WageDate.Value.ToString("dd MMMM yyyy");
+			string _amount = _main_form.WageAmount.Value.ToString();
+			string _employee = _main_form.EmployeeName.SelectedItem.ToString();
 
-			string _new_expense = _date + "," + _description + "," + _amount;
-			_csv_content.AppendLine(_new_expense);
+			string _new_wage = _date + "," + _employee + "," + _amount;
+			_csv_content.AppendLine(_new_wage);
 
 			try
 			{
-				File.AppendAllText(_path_to_expenses, _csv_content.ToString());
+				File.AppendAllText(_path_to_wages, _csv_content.ToString());
 				ClearFields();
-				CustomMessageBox newBox = new CustomMessageBox("Success!", "Expense Recorded");
+				CustomMessageBox newBox = new CustomMessageBox("Success!", "Wage Recorded");
 			}
 			catch (Exception ex)
 			{
@@ -322,18 +322,17 @@ namespace Green_Enviro_App
 			bool _all_good = false;
 			string _title = "Error!";
 			string _error_message = "";
-			string _no_entry_string = "";
 			decimal _zero = (decimal)0.00;
 
-			if (_main_form.ExpenseAmount.Value == _zero)
+			if (_main_form.WageAmount.Value == _zero)
 			{
 				_all_good = false;
 				_error_message = "Please Insert the Amount";
 			}
-			else if (_main_form.ExpenseDescriptionBox.Text == _no_entry_string)
+			else if (_main_form.EmployeeName.SelectedItem == null)
 			{
 				_all_good = false;
-				_error_message = "Please Insert the Description";
+				_error_message = "Please Insert the Employee Name";
 			}
 			else
 			{
@@ -352,9 +351,9 @@ namespace Green_Enviro_App
 		{
 			decimal _zero = (decimal)0.00;
 
-			_main_form.ExpenseDate.Value = DateTime.Now;
-			_main_form.ExpenseAmount.Value = _zero;
-			_main_form.ExpenseDescriptionBox.Text = "";
+			_main_form.WageDate.Value = DateTime.Now;
+			_main_form.WageAmount.Value = _zero;
+			_main_form.EmployeeName.SelectedItem = null;
 		}
 	}
 }
