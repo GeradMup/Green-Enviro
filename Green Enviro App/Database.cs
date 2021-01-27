@@ -174,11 +174,32 @@ namespace Green_Enviro_App
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Failed to Insert into DB : " + ex.Message);
+				MessageBox.Show("Failed to Delete into DB : " + ex.Message);
 			}
 
 			CloseDatabase();
         }
-		//
+
+		public void InsertIntoDatabase(string _table,string _parameters, string _values)
+        {
+			OpenDatabase();
+			//The Delete command goes as follow
+			string _insertion_cmd = "insert into " + _table + "(" + _parameters + ") values (" + _values + ")";
+			//Making the SQL command
+			_command.CommandText = _insertion_cmd;
+			//View if the changes where succesfully done on the console
+			try
+			{
+				Int32 rowsAffected = _command.ExecuteNonQuery();
+				Console.WriteLine("RowsAffected: {0}", rowsAffected);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Failed to Insert into DB : " + ex.Message);
+			}
+
+			CloseDatabase();
+		}
+		
 	}
 }
