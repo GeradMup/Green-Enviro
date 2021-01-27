@@ -131,7 +131,7 @@ namespace Green_Enviro_App
 
 
 		// Insertion function adding new users to the database yet not updating the database
-		public void InsertNewUser(string username,string password, string email_address)
+		public void InsertNewUser(string username,string password, string email_address,int permission_level)
         {
 			
 			OpenDatabase();
@@ -140,7 +140,8 @@ namespace Green_Enviro_App
 			_command.Parameters.AddWithValue("@Username", username);
 			_command.Parameters.AddWithValue("@Password", password);
 			_command.Parameters.AddWithValue("@Email", email_address);
-			string _insertion_command = "Insert into Users (Username,Password,Email) values (@Username,@Password,@Email)";
+			_command.Parameters.AddWithValue("@PermissionLevel", permission_level);
+			string _insertion_command = "Insert into Users (Username,Password,Email,PermissionLevel) values (@Username,@Password,@Email,@PermissionLevel)";
 
 			//string _insertion_command = "Insert into Users (Username,Password,Email) values ('"+username+ "','" + password + "','" + email_address + "')";
 			

@@ -248,6 +248,7 @@ namespace Green_Enviro_App
                 CustomMessageBox msg = new CustomMessageBox(_title, _message);
                 AddNewCompanyToDatabase(_company_exist_in_database);
                 GenerateDestructionCertificate(_store_path_of_pdf);
+                LoadDBIntoDC();
                 ClearDCFields();
             }
             else
@@ -541,10 +542,11 @@ namespace Green_Enviro_App
                 string _new_contact_person = _main_form.dstrctCertCntactPersonField.Text;
                 string _new_contact_number = _main_form.dstrctCertCntactNumField.Text;
                 string _new_email_address = _main_form.dstrctCertEmailAddressField.Text;
-                string _values_for_database = "'" + _new_company + "','" + _new_contact_person + "','" + _new_email_address + "','" + _new_contact_number + "'";
+                string _values_for_database = "'" + _new_company + "','" + _new_contact_person + "','" + _new_email_address + "'," + _new_contact_number ;
                 string _company = "Companies";
                 string _company_database_col = "Name,ContactPerson,Email,ContactNumbers";
                 _database.InsertIntoDatabase(_company, _company_database_col, _values_for_database);
+                MessageBox.Show("New Company inserted into the database");
             }
         }
 
