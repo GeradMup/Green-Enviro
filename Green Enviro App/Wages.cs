@@ -39,7 +39,7 @@ namespace Green_Enviro_App
 			//If the file does not exist, create it
 			if (!File.Exists(_path_to_wages))
 			{
-				string _wages_file_headers = "Date,Description,Amount";
+				string _wages_file_headers = "Date,Name,Amount";
 				StringBuilder _csv_content = new StringBuilder();
 				_csv_content.AppendLine(_wages_file_headers);
 				File.AppendAllText(_path_to_wages, _csv_content.ToString());
@@ -117,7 +117,7 @@ namespace Green_Enviro_App
 					string _filter_start_date = _main_form.WageLogStartDate.SelectedItem.ToString();
 					string _filter_end_date = _main_form.WageLogEndDate.SelectedItem.ToString();
 
-					_binding_source.Filter = string.Format("Description = '{0}' OR Date >= '{1}' AND Date <= '{2}'", _empty_string, _filter_start_date, _filter_end_date);
+					_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}'", _empty_string, _filter_start_date, _filter_end_date);
 				}
 				else
 				{
@@ -297,7 +297,18 @@ namespace Green_Enviro_App
 			StringBuilder _csv_content = new StringBuilder();
 			string _date = _main_form.WageDate.Value.ToString("dd MMMM yyyy");
 			string _amount = _main_form.WageAmount.Value.ToString();
-			string _employee = _main_form.EmployeeName.SelectedItem.ToString();
+			string _employee;
+
+			//Check if new Employee is Selected. If new Employee is selected, read the text, if not, read the 
+			//the selected index
+			if (_main_form.PartTimeEmployeeCheckBox.CheckState == CheckState.Checked)
+			{
+				_employee = _main_form.EmployeeName.Text;
+			}
+			else
+			{
+				_employee = _main_form.EmployeeName.SelectedItem.ToString();
+			}
 
 			string _new_wage = _date + "," + _employee + "," + _amount;
 			_csv_content.AppendLine(_new_wage);
@@ -323,11 +334,16 @@ namespace Green_Enviro_App
 			string _title = "Error!";
 			string _error_message = "";
 			decimal _zero = (decimal)0.00;
+			string _no_text = "";
 
 			if (_main_form.WageAmount.Value == _zero)
 			{
 				_all_good = false;
 				_error_message = "Please Insert the Amount";
+			}
+			else if ((_main_form.EmployeeName.SelectedItem == null) && (_main_form.EmployeeName.Text != _no_text))
+			{
+				_all_good = true;
 			}
 			else if (_main_form.EmployeeName.SelectedItem == null)
 			{
@@ -353,7 +369,21 @@ namespace Green_Enviro_App
 
 			_main_form.WageDate.Value = DateTime.Now;
 			_main_form.WageAmount.Value = _zero;
+			_main_form.PartTimeEmployeeCheckBox.CheckState = CheckState.Unchecked;
+			_main_form.EmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
 			_main_form.EmployeeName.SelectedItem = null;
+		}
+
+		public void PartTimeEmployee() 
+		{
+			if (_main_form.PartTimeEmployeeCheckBox.CheckState == CheckState.Checked)
+			{
+				_main_form.EmployeeName.DropDownStyle = ComboBoxStyle.DropDown;
+			}
+			else 
+			{
+				_main_form.EmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
+			}
 		}
 	}
 }

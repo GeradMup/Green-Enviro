@@ -17,6 +17,7 @@ namespace Green_Enviro_App
         PurchaseLogs _purchase_logs;
         SalesLogs _sales_logs;
         Expenses _expenses;
+        Wages _wages;
 		Destruction_Certificate _destruction_certificate;
 
 		/// <summary>
@@ -33,6 +34,7 @@ namespace Green_Enviro_App
             _receipt = new Receipt(this, _database, _purchase_logs);
             _destruction_certificate = new Destruction_Certificate(this,_database);
             _expenses = new Expenses(this, _database);
+            _wages = new Wages(this, _database);
         }
 
 
@@ -244,6 +246,39 @@ namespace Green_Enviro_App
 		private void ClearExpenseFieldsBtn_Click(object sender, EventArgs e)
 		{
             _expenses.ClearFields();
+		}
+
+        //*************************************************************************************************************
+        // WAGES RELATED CALLS
+        //*************************************************************************************************************
+        private void WageLogMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _wages.MonthSelected();
+        }
+
+		private void WageLogFilterBtn_Click(object sender, EventArgs e)
+		{
+            _wages.DisplayWagesLog();
+		}
+
+		private void WageLogRemoveFiltersBtn_Click(object sender, EventArgs e)
+		{
+            _wages.RemoveFilters();
+		}
+
+		private void ClearWageFieldsBtn_Click(object sender, EventArgs e)
+		{
+            _wages.ClearFields();
+		}
+
+		private void AddWageBtn_Click(object sender, EventArgs e)
+		{
+            _wages.AddWage();
+		}
+
+		private void PartTimeEmployeeCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+            _wages.PartTimeEmployee();
 		}
 	}
 }

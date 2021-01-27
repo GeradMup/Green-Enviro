@@ -1260,6 +1260,7 @@ namespace Green_Enviro_App
 			this.PartTimeEmployeeCheckBox.TabIndex = 70;
 			this.PartTimeEmployeeCheckBox.Text = "Part Time Employee";
 			this.PartTimeEmployeeCheckBox.UseVisualStyleBackColor = true;
+			this.PartTimeEmployeeCheckBox.CheckedChanged += new System.EventHandler(this.PartTimeEmployeeCheckBox_CheckedChanged);
 			// 
 			// EmployeeName
 			// 
@@ -1308,6 +1309,7 @@ namespace Green_Enviro_App
 			this.WageLogRemoveFiltersBtn.TabIndex = 66;
 			this.WageLogRemoveFiltersBtn.Text = "Remove Filters";
 			this.WageLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
+			this.WageLogRemoveFiltersBtn.Click += new System.EventHandler(this.WageLogRemoveFiltersBtn_Click);
 			// 
 			// WageLogFilterBtn
 			// 
@@ -1318,6 +1320,7 @@ namespace Green_Enviro_App
 			this.WageLogFilterBtn.TabIndex = 65;
 			this.WageLogFilterBtn.Text = "Filter";
 			this.WageLogFilterBtn.UseVisualStyleBackColor = true;
+			this.WageLogFilterBtn.Click += new System.EventHandler(this.WageLogFilterBtn_Click);
 			// 
 			// label32
 			// 
@@ -1341,6 +1344,7 @@ namespace Green_Enviro_App
 			this.WageLogMonth.Name = "WageLogMonth";
 			this.WageLogMonth.Size = new System.Drawing.Size(317, 31);
 			this.WageLogMonth.TabIndex = 63;
+			this.WageLogMonth.SelectedIndexChanged += new System.EventHandler(this.WageLogMonth_SelectedIndexChanged);
 			// 
 			// label35
 			// 
@@ -1406,23 +1410,25 @@ namespace Green_Enviro_App
 			// 
 			// ClearWageFieldsBtn
 			// 
-			this.ClearWageFieldsBtn.Location = new System.Drawing.Point(352, 470);
+			this.ClearWageFieldsBtn.Location = new System.Drawing.Point(284, 470);
 			this.ClearWageFieldsBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.ClearWageFieldsBtn.Name = "ClearWageFieldsBtn";
-			this.ClearWageFieldsBtn.Size = new System.Drawing.Size(175, 58);
+			this.ClearWageFieldsBtn.Size = new System.Drawing.Size(182, 58);
 			this.ClearWageFieldsBtn.TabIndex = 57;
 			this.ClearWageFieldsBtn.Text = "Clear";
 			this.ClearWageFieldsBtn.UseVisualStyleBackColor = true;
+			this.ClearWageFieldsBtn.Click += new System.EventHandler(this.ClearWageFieldsBtn_Click);
 			// 
 			// AddWageBtn
 			// 
 			this.AddWageBtn.Location = new System.Drawing.Point(15, 470);
 			this.AddWageBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.AddWageBtn.Name = "AddWageBtn";
-			this.AddWageBtn.Size = new System.Drawing.Size(267, 58);
+			this.AddWageBtn.Size = new System.Drawing.Size(208, 58);
 			this.AddWageBtn.TabIndex = 56;
 			this.AddWageBtn.Text = "Add Wage";
 			this.AddWageBtn.UseVisualStyleBackColor = true;
+			this.AddWageBtn.Click += new System.EventHandler(this.AddWageBtn_Click);
 			// 
 			// label37
 			// 
@@ -2140,7 +2146,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label37;
 		private System.Windows.Forms.Label label38;
 		private System.Windows.Forms.Label label39;
-		private System.Windows.Forms.CheckBox PartTimeEmployeeCheckBox;
         public System.Windows.Forms.CheckBox checkBox1;
         public System.Windows.Forms.ComboBox comboBox1;
         public System.Windows.Forms.NumericUpDown numericUpDown1;
@@ -2159,5 +2164,6 @@ namespace Green_Enviro_App
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label46;
 		public System.Windows.Forms.ComboBox EmployeeName;
+		public System.Windows.Forms.CheckBox PartTimeEmployeeCheckBox;
 	}
 }
