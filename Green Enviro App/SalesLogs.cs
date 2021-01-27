@@ -74,6 +74,8 @@ namespace Green_Enviro_App
 				string _file_name = _file.Name.TrimEnd(_remove_chars);
 				_main_form.SalesLogMonth.Items.Add(_file_name);
 			}
+
+			_main_form.SaleDate.Value = DateTime.Now;
 		}
 
 		private void LoadCompanies() 
@@ -387,7 +389,7 @@ namespace Green_Enviro_App
 
 			StringBuilder _csv_content = new StringBuilder();
 			string _date = _main_form.SaleDate.Value.ToString("dd MMMM yyyy");
-			string _company = _main_form.SaleCompanyNameList.SelectedItem.ToString();
+			string _company = _main_form.SaleCompanyNameList.Text;
 			string _quantity = _main_form.SaleQuantityBx.Value.ToString();
 			string _amount = _main_form.SaleAmount.Value.ToString();
 			string _type = _main_form.SaleTypeBx.Text;
@@ -414,21 +416,17 @@ namespace Green_Enviro_App
 			bool _all_good = false;
 			string _title = "Error!";
 			string _error_message = "";
-			string _no_entry_string = "";
+			string _no_text = "";
 			decimal _zero = (decimal)0.00;
 
 			//First verify that all fields have been filled in correctly
-			if (_main_form.SaleCompanyNameList.SelectedItem == null)
-			{
-				_all_good = false;
-				_error_message = "Please Select the a Company";
-			}
-			else if (_main_form.SaleQuantityBx.Value == _zero)
+
+			if (_main_form.SaleQuantityBx.Value == _zero)
 			{
 				_all_good = false;
 				_error_message = "Please Insert the Quantity";
 			}
-			else if (_main_form.SaleTypeBx.Text == _no_entry_string)
+			else if (_main_form.SaleTypeBx.Text == _no_text)
 			{
 				_all_good = false;
 				_error_message = "Please Select the goods type";
@@ -437,6 +435,11 @@ namespace Green_Enviro_App
 			{
 				_all_good = false;
 				_error_message = "Please Insert the Sale Amount";
+			}
+			else if (_main_form.SaleCompanyNameList.Text == _no_text)
+			{
+				_all_good = false;
+				_error_message = "Please Select the a Company";
 			}
 			else 
 			{
@@ -457,6 +460,8 @@ namespace Green_Enviro_App
 
 			_main_form.SaleDate.Value = DateTime.Now;
 			_main_form.SaleQuantityBx.Value = _zero;
+			_main_form.NewCompanyCheckBox.CheckState = CheckState.Unchecked;
+			_main_form.SaleCompanyNameList.DropDownStyle = ComboBoxStyle.DropDownList;
 			_main_form.SaleTypeBx.SelectedItem = null;
 			_main_form.SaleAmount.Value = _zero;
 		}

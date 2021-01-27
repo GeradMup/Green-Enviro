@@ -58,6 +58,8 @@ namespace Green_Enviro_App
 				string _file_name = _file.Name.TrimEnd(_remove_chars);
 				_main_form.ExpensesLogMonth.Items.Add(_file_name);
 			}
+
+			_main_form.ExpenseDate.Value = DateTime.Now;
 		}
 
 		public void DisplayExpensesLog()

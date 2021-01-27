@@ -256,7 +256,7 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPriceEditBtn
 			// 
-			this.ReceiptPriceEditBtn.Location = new System.Drawing.Point(415, 179);
+			this.ReceiptPriceEditBtn.Location = new System.Drawing.Point(415, 181);
 			this.ReceiptPriceEditBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.ReceiptPriceEditBtn.Name = "ReceiptPriceEditBtn";
 			this.ReceiptPriceEditBtn.Size = new System.Drawing.Size(172, 32);

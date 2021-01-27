@@ -58,6 +58,8 @@ namespace Green_Enviro_App
 				string _file_name = _file.Name.TrimEnd(_remove_chars);
 				_main_form.WageLogMonth.Items.Add(_file_name);
 			}
+
+			_main_form.WageDate.Value = DateTime.Now;
 		}
 
 		public void DisplayWagesLog()
@@ -301,15 +303,7 @@ namespace Green_Enviro_App
 
 			//Check if new Employee is Selected. If new Employee is selected, read the text, if not, read the 
 			//the selected index
-			if (_main_form.PartTimeEmployeeCheckBox.CheckState == CheckState.Checked)
-			{
-				_employee = _main_form.EmployeeName.Text;
-			}
-			else
-			{
-				_employee = _main_form.EmployeeName.SelectedItem.ToString();
-			}
-
+			_employee = _main_form.EmployeeName.Text;
 			string _new_wage = _date + "," + _employee + "," + _amount;
 			_csv_content.AppendLine(_new_wage);
 
@@ -341,11 +335,7 @@ namespace Green_Enviro_App
 				_all_good = false;
 				_error_message = "Please Insert the Amount";
 			}
-			else if ((_main_form.EmployeeName.SelectedItem == null) && (_main_form.EmployeeName.Text != _no_text))
-			{
-				_all_good = true;
-			}
-			else if (_main_form.EmployeeName.SelectedItem == null)
+			else if (_main_form.EmployeeName.Text == _no_text)
 			{
 				_all_good = false;
 				_error_message = "Please Insert the Employee Name";
