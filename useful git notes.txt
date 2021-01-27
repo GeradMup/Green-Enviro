@@ -1,4 +1,4 @@
-REPLACE MASTER WITH AN OLDER COMMIT
+** REPLACE MASTER WITH AN OLDER COMMIT
 
 git checkout 307a5cd        # check out the commit that you want to reset to 
 git checkout -b fixy        # create a branch named fixy to do the work
@@ -7,9 +7,11 @@ git checkout master         # switch back to master
 git merge fixy              # and merge in the fixed branch
 git push                    # done, no need to force push!
 
-HOW TO REMOVE UNWANTED FILES IN THE FROM THE SOURCE CONTROL IF THEY ALREADY EXIST IN THE REMOTE REPO
+**HOW TO REMOVE UNWANTED FILES IN THE FROM THE SOURCE CONTROL IF THEY ALREADY EXIST IN THE REMOTE REPO
 IF FILES ALREADY EXIST IN THE REMOTE REPO, THE .gitignore FILE WILL NOT IGNORE THEM!!!
 
 git rm --cached <File Path>
 git rm --cached 'Green Enviro App/bin/Debug/Green Enviro App.exe'
 
+**Abort merging if you ran into merge conflicts
+git reset --hard HEAD
