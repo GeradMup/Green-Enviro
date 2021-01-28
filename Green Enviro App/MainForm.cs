@@ -172,18 +172,23 @@ namespace Green_Enviro_App
 
         private void DCNewCompany_CheckedChanged(object sender, EventArgs e)
         {
-            _destruction_certificate.FieldSettings();
+            
         }
         private void dstrctCertCompanyField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //_destruction_certificate.Test();
-            //if (dstrctCertCompanyField.SelectedItem != null)
-            _destruction_certificate.Company_Selected();
-            Console.WriteLine("It works");
-            //_destruction_certificate.ClearDCFields();
+
+
+
 
         }
-
+        private void dstrctCertCompanyField_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            _destruction_certificate.Company_Selected();
+        }
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            _destruction_certificate.FieldSettings();
+        }
 
         //******************************************************************************************************************************
         //SALES LOG RELATED CALLS
@@ -281,4 +286,5 @@ namespace Green_Enviro_App
             _wages.PartTimeEmployee();
 		}
 	}
+
 }

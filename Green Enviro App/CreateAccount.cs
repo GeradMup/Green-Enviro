@@ -31,6 +31,7 @@ namespace Green_Enviro_App
         const string _email_address_error = "Email address already used by another account";
         const string _empty_master_password_entered = "Master password cannot be empty";
         const string _incorrect_master_psword = "Incorrect Master password entered";
+        const string _permission_level = "Permission Level not selected";
 
         //Successfull messages
         const string _success = "Complete!";
@@ -51,16 +52,12 @@ namespace Green_Enviro_App
             InitializeComponent();
             //Creates username and password G,G for development purposes
             defaultUser();
-
             _database = _db;
             _user_database = _user_db;
-
             //LOAD UP USER INFO FROM HE DATABASE
-
             LoadDataBase();
-            ShowUsers();
-
-            
+            SelectPermissionLevel();
+            PrintDataTable();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -139,6 +136,12 @@ namespace Green_Enviro_App
                 _message = _email_address_error;
                 _all_good = false;
             }
+            else if (userPermissionLvlBx.SelectedIndex == 0)
+            {
+                _message_type = _error;
+                _message = _permission_level;
+                _all_good = false;
+            }
             else if (masterPasswordField.Text != _admin_master_password)
             {
                 _message_type = _error;
@@ -172,6 +175,7 @@ namespace Green_Enviro_App
                 addNewUser();
                 CustomMessageBox msg = new CustomMessageBox(_title,_message);
                 _user_database.LoadUserDataTable();
+                PrintDataTable();
                 returnToLoginForm();
             }
             else
@@ -194,10 +198,17 @@ namespace Green_Enviro_App
             //Encrypting the password and storing not the password itself but its encryption using a 196 bit cipher key
             InformationEncryption __encryption = new InformationEncryption();
             string _encrypted_user_password = __encryption.Encrypt(newPasswordField.Text);
-            
-            // Alright here we will add the code so that we insert into the DB once we enter a new user
-            // To add a new user its the same principle as adding a row 
-            _database.InsertNewUser(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text);
+            int _permission_level_selected = 0;
+
+            if (userPermissionLvlBx.SelectedItem != null)
+            {
+                 _permission_level_selected = int.Parse(userPermissionLvlBx.SelectedItem.ToString());
+            }
+            else return;
+
+                // Alright here we will add the code so that we insert into the DB once we enter a new user
+                // To add a new user its the same principle as adding a row 
+                _database.InsertNewUser(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text,_permission_level_selected);// Do not know if the list requires permission lvl
 
             // This is still the original list storage way to keep track of new users
             Credentials _new_user = new Credentials(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text);
@@ -234,13 +245,11 @@ namespace Green_Enviro_App
                 { 
                     if (_credentials[index].user_name.Contains(newUserNameField.Text))
                     {
-                        Console.WriteLine("input user info is the same as in db");
                         _user_name_exist = true;
                         break;
                     }
                     else if (_credentials[index].email.Contains(emailAddressField.Text))
                     {
-                        Console.WriteLine("input email info is the same as in db");
                         _email_address_exist = true;
                         break;
                     }
@@ -269,6 +278,7 @@ namespace Green_Enviro_App
             confirmPasswordField.Clear();
             emailAddressField.Clear();
             masterPasswordField.Clear();
+            userPermissionLvlBx.SelectedIndex = 0;
         }
 
         private void ShowUsers()
@@ -308,17 +318,31 @@ namespace Green_Enviro_App
             string _db_email = "";
             string _db_psword = "";
             int index = 0;
-
+            int _db_permission_level = 0;
             foreach (DataRow row in _user.Rows)
             {
                 //Here we are checking the username and email address of people using the database and the user already within
                 _db_username = _user.Rows[index].Field<string>("Username");
                 _db_psword = _user.Rows[index].Field<string>("Password");
                 _db_email = _user.Rows[index].Field<string>("Email");
+                _db_permission_level = _user.Rows[index].Field<int>("PermissionLevel");
                 Credentials _load_user_from_db = new Credentials(_db_username,_db_psword,_db_email);
                 _credentials.Add(_load_user_from_db);
                 index++;
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+        private void SelectPermissionLevel()
+        {
+            userPermissionLvlBx.DropDownStyle = ComboBoxStyle.DropDownList;
+            userPermissionLvlBx.Items.Insert(0, "Select Permission Level");
+            userPermissionLvlBx.Items.Insert(1, "1");
+            userPermissionLvlBx.Items.Insert(2, "2");
+            userPermissionLvlBx.Items.Insert(3, "3");
+            userPermissionLvlBx.SelectedIndex = 0;
         }
     }
 }
