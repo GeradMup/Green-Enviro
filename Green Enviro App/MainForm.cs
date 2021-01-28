@@ -176,10 +176,7 @@ namespace Green_Enviro_App
         }
         private void dstrctCertCompanyField_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
-
-
+            _destruction_certificate.Company_Selected();
         }
         private void dstrctCertCompanyField_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -188,6 +185,11 @@ namespace Green_Enviro_App
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             _destruction_certificate.FieldSettings();
+        }
+
+        private void dstrctCertCompanyField_Leave(object sender, EventArgs e)
+        {
+            _destruction_certificate.Company_Selected();
         }
 
         //******************************************************************************************************************************
@@ -285,6 +287,7 @@ namespace Green_Enviro_App
 		{
             _wages.PartTimeEmployee();
 		}
+
 	}
 
 }

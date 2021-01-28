@@ -30,9 +30,11 @@ namespace Green_Enviro_App
 		//static CustomMsgBox _custom_msg_box;
 
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\resources\Data\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
-		static readonly string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
+		//static readonly string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Green Enviro Data.mdf;Integrated Security = True; Connect Timeout = 30";
 		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ _absolute_path_to_db +";Integrated Security = True; Connect Timeout = 30";
-		//static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gerry\OneDrive\Documents\Work\Green Enviro\App Development\Green Enviro App\Green Enviro Data.mdf;Integrated Security=True;Connect Timeout=30";
+
+		static string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+		static string _connection_string = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\Green Enviro Data.mdf;Integrated Security=True;Connect Timeout=30";
 
 		static SqlConnection _connection;
 		static SqlCommand _command;
@@ -185,7 +187,7 @@ namespace Green_Enviro_App
         {
 			OpenDatabase();
 			//The Delete command goes as follow
-			string _insertion_cmd = "insert into " + _table + "(" + _parameters + ") values (" + _values + ")";
+			string _insertion_cmd = "insert into " + _table + " (" + _parameters + ") values (" + _values + ")";
 			//Making the SQL command
 			_command.CommandText = _insertion_cmd;
 			//View if the changes where succesfully done on the console

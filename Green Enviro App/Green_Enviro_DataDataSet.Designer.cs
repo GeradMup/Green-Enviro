@@ -1694,6 +1694,8 @@ namespace Green_Enviro_App {
             
             private global::System.Data.DataColumn columnEmail;
             
+            private global::System.Data.DataColumn columnPermissionLevel;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public UsersDataTable() {
@@ -1761,6 +1763,14 @@ namespace Green_Enviro_App {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn PermissionLevelColumn {
+                get {
+                    return this.columnPermissionLevel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1796,13 +1806,14 @@ namespace Green_Enviro_App {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public UsersRow AddUsersRow(string Username, string Password, string Email) {
+            public UsersRow AddUsersRow(string Username, string Password, string Email, int PermissionLevel) {
                 UsersRow rowUsersRow = ((UsersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Username,
                         Password,
-                        Email};
+                        Email,
+                        PermissionLevel};
                 rowUsersRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUsersRow);
                 return rowUsersRow;
@@ -1836,6 +1847,7 @@ namespace Green_Enviro_App {
                 this.columnUsername = base.Columns["Username"];
                 this.columnPassword = base.Columns["Password"];
                 this.columnEmail = base.Columns["Email"];
+                this.columnPermissionLevel = base.Columns["PermissionLevel"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1849,6 +1861,8 @@ namespace Green_Enviro_App {
                 base.Columns.Add(this.columnPassword);
                 this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmail);
+                this.columnPermissionLevel = new global::System.Data.DataColumn("PermissionLevel", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPermissionLevel);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnAccountId}, true));
                 this.columnAccountId.AutoIncrement = true;
@@ -1863,6 +1877,7 @@ namespace Green_Enviro_App {
                 this.columnPassword.MaxLength = 50;
                 this.columnEmail.AllowDBNull = false;
                 this.columnEmail.MaxLength = 50;
+                this.columnPermissionLevel.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2302,6 +2317,17 @@ namespace Green_Enviro_App {
                 }
                 set {
                     this[this.tableUsers.EmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int PermissionLevel {
+                get {
+                    return ((int)(this[this.tableUsers.PermissionLevelColumn]));
+                }
+                set {
+                    this[this.tableUsers.PermissionLevelColumn] = value;
                 }
             }
         }
@@ -4071,38 +4097,44 @@ SELECT Id, Name, Price, DealerPrice FROM Stock WHERE (Id = @Id)";
             tableMapping.ColumnMappings.Add("Username", "Username");
             tableMapping.ColumnMappings.Add("Password", "Password");
             tableMapping.ColumnMappings.Add("Email", "Email");
+            tableMapping.ColumnMappings.Add("PermissionLevel", "PermissionLevel");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Users] WHERE (([AccountId] = @Original_AccountId) AND ([Userna" +
                 "me] = @Original_Username) AND ([Password] = @Original_Password) AND ([Email] = @" +
-                "Original_Email))";
+                "Original_Email) AND ([PermissionLevel] = @Original_PermissionLevel))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Username", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PermissionLevel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PermissionLevel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Users] ([Username], [Password], [Email]) VALUES (@Username, @P" +
-                "assword, @Email);\r\nSELECT AccountId, Username, Password, Email FROM Users WHERE " +
-                "(AccountId = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Users] ([Username], [Password], [Email], [PermissionLevel]) VA" +
+                "LUES (@Username, @Password, @Email, @PermissionLevel);\r\nSELECT AccountId, Userna" +
+                "me, Password, Email, PermissionLevel FROM Users WHERE (AccountId = SCOPE_IDENTIT" +
+                "Y())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PermissionLevel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PermissionLevel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Users] SET [Username] = @Username, [Password] = @Password, [Email] = @Email WHERE (([AccountId] = @Original_AccountId) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([Email] = @Original_Email));
-SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @AccountId)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Users] SET [Username] = @Username, [Password] = @Password, [Email] = @Email, [PermissionLevel] = @PermissionLevel WHERE (([AccountId] = @Original_AccountId) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([Email] = @Original_Email) AND ([PermissionLevel] = @Original_PermissionLevel));
+SELECT AccountId, Username, Password, Email, PermissionLevel FROM Users WHERE (AccountId = @AccountId)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PermissionLevel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PermissionLevel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Username", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PermissionLevel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PermissionLevel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "AccountId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -4119,7 +4151,7 @@ SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @Accou
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT AccountId, Username, Password, Email FROM dbo.Users";
+            this._commandCollection[0].CommandText = "SELECT AccountId, Username, Password, Email, PermissionLevel FROM dbo.Users";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4180,7 +4212,7 @@ SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @Accou
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_AccountId, string Original_Username, string Original_Password, string Original_Email) {
+        public virtual int Delete(int Original_AccountId, string Original_Username, string Original_Password, string Original_Email, int Original_PermissionLevel) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_AccountId));
             if ((Original_Username == null)) {
                 throw new global::System.ArgumentNullException("Original_Username");
@@ -4200,6 +4232,7 @@ SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @Accou
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Email));
             }
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_PermissionLevel));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4220,7 +4253,7 @@ SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @Accou
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Username, string Password, string Email) {
+        public virtual int Insert(string Username, string Password, string Email, int PermissionLevel) {
             if ((Username == null)) {
                 throw new global::System.ArgumentNullException("Username");
             }
@@ -4239,6 +4272,7 @@ SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @Accou
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Email));
             }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(PermissionLevel));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4259,7 +4293,7 @@ SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @Accou
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Username, string Password, string Email, int Original_AccountId, string Original_Username, string Original_Password, string Original_Email, int AccountId) {
+        public virtual int Update(string Username, string Password, string Email, int PermissionLevel, int Original_AccountId, string Original_Username, string Original_Password, string Original_Email, int Original_PermissionLevel, int AccountId) {
             if ((Username == null)) {
                 throw new global::System.ArgumentNullException("Username");
             }
@@ -4278,26 +4312,28 @@ SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @Accou
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Email));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_AccountId));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(PermissionLevel));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_AccountId));
             if ((Original_Username == null)) {
                 throw new global::System.ArgumentNullException("Original_Username");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Username));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Username));
             }
             if ((Original_Password == null)) {
                 throw new global::System.ArgumentNullException("Original_Password");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Password));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Password));
             }
             if ((Original_Email == null)) {
                 throw new global::System.ArgumentNullException("Original_Email");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Email));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Email));
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(AccountId));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_PermissionLevel));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(AccountId));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4318,8 +4354,8 @@ SELECT AccountId, Username, Password, Email FROM Users WHERE (AccountId = @Accou
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Username, string Password, string Email, int Original_AccountId, string Original_Username, string Original_Password, string Original_Email) {
-            return this.Update(Username, Password, Email, Original_AccountId, Original_Username, Original_Password, Original_Email, Original_AccountId);
+        public virtual int Update(string Username, string Password, string Email, int PermissionLevel, int Original_AccountId, string Original_Username, string Original_Password, string Original_Email, int Original_PermissionLevel) {
+            return this.Update(Username, Password, Email, PermissionLevel, Original_AccountId, Original_Username, Original_Password, Original_Email, Original_PermissionLevel, Original_AccountId);
         }
     }
     

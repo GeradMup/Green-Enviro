@@ -244,12 +244,17 @@ namespace Green_Enviro_App
 
             if (_generate_DC.Item1)
             {
+
+                if ((_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Checked) && (_company_list.Contains(_main_form.dstrctCertCompanyField.Text) == false))
+                {
+                    AddNewCompanyToDatabase();
+                    LoadDBIntoDC();
+                }
+
+                GenerateDestructionCertificate(_store_path_of_pdf);
+                ClearDCFields();
                 _icon = MessageBoxIcon.None;
                 CustomMessageBox msg = new CustomMessageBox(_title, _message);
-                AddNewCompanyToDatabase(_company_exist_in_database);
-                GenerateDestructionCertificate(_store_path_of_pdf);
-                LoadDBIntoDC();
-                ClearDCFields();
             }
             else
             {
@@ -271,7 +276,7 @@ namespace Green_Enviro_App
             string _extraction_date = _main_form.dstrctCertificateDayList.SelectedItem.ToString() + "_" + _main_form.dstrctCertificateMonthList.SelectedItem.ToString() + "_" + _main_form.dstrctCertificateYearList.SelectedItem.ToString();
             string _save_pdf_path = @"..//..//resources//Logs//Destruction Certificates//" + _company + "_" + _extraction_date + ".pdf";
             bool _all_good = false;
-            bool _is_company_exist_in_db = false;
+            bool _is_company_exist_in_db = false;       //This should not be done here
 
             if (_main_form.dstrctCertificateDayList.SelectedIndex == 0)
             {
@@ -302,15 +307,6 @@ namespace Green_Enviro_App
                 _message_type = _error;
                 _message = "No company selected or new company entered";
                 _all_good = false;
-            }
-            else if (_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Checked && _company_list.Contains(_main_form.dstrctCertCompanyField.Text))
-            {   
-                _message_type = _error;
-                _message = "Company already exists";
-                _is_company_exist_in_db = true;
-                Console.WriteLine("Company exist in DB");
-                _all_good = false;
-
             }
             else if (_main_form.dstrctCertCntactPersonField.Text == _empty_txtbox)
             {
@@ -359,11 +355,16 @@ namespace Green_Enviro_App
             return _new_tuple;
         }
 
+
+        //Gerry Edited from 370 to 372
         public void ClearDCFields()
         {
             _main_form.dstrctCertificateDayList.SelectedIndex = 0;
             _main_form.dstrctCertificateMonthList.SelectedIndex = 0;
             _main_form.dstrctCertificateYearList.SelectedIndex = 0;
+
+            _main_form.dstrctCertNewCompanyCheckBox.CheckState = CheckState.Unchecked;
+            _main_form.dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDownList;
             _main_form.dstrctCertCompanyField.SelectedItem = null;
             _main_form.dstrctCertCntactPersonField.Clear();
             _main_form.dstrctCertCntactNumField.Clear();
@@ -492,9 +493,12 @@ namespace Green_Enviro_App
             }
         }
 
+        //Gerry Edited line 498 and line 507
+        //Gerry Added the leave enent in main_form.cs
+        //Gerry Added the if statement on line 509
         public void Company_Selected()
         {
-            if (_main_form.dstrctCertCompanyField.SelectedItem == null)
+            if (_main_form.dstrctCertCompanyField.Text == "")
             {
                 _main_form.dstrctCertCntactPersonField.Text = "";
                 _main_form.dstrctCertCntactNumField.Text = "";
@@ -503,21 +507,24 @@ namespace Green_Enviro_App
                 return;
             }
 
-            string _company_selected = _main_form.dstrctCertCompanyField.SelectedItem.ToString();
-            string _company_information = "Name = '" + _company_selected + "'";
-            _company_dstrctCert = _database.SelectAll("Companies");
-            DataView _dataview = _company_dstrctCert.DefaultView;
-            DataRow[] _row = _company_dstrctCert.Select(_company_information);
+            if (_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Unchecked) 
+            {
+                string _company_selected = _main_form.dstrctCertCompanyField.Text;
+                string _company_information = "Name = '" + _company_selected + "'";
+                _company_dstrctCert = _database.SelectAll("Companies");
+                DataView _dataview = _company_dstrctCert.DefaultView;
+                DataRow[] _row = _company_dstrctCert.Select(_company_information);
 
-            int index = 0;
+                int index = 0;
 
-            string _company_contact_person = _row[index].Field<string>("ContactPerson");
-            string _company_email = _row[index].Field<string>("Email");
-            string _company_contact_number = _row[index].Field<string>("ContactNumbers");
+                string _company_contact_person = _row[index].Field<string>("ContactPerson");
+                string _company_email = _row[index].Field<string>("Email");
+                string _company_contact_number = _row[index].Field<string>("ContactNumbers");
 
-            _main_form.dstrctCertCntactPersonField.Text = _company_contact_person;
-            _main_form.dstrctCertCntactNumField.Text = _company_contact_number;
-            _main_form.dstrctCertEmailAddressField.Text = _company_email;
+                _main_form.dstrctCertCntactPersonField.Text = _company_contact_person;
+                _main_form.dstrctCertCntactNumField.Text = _company_contact_number;
+                _main_form.dstrctCertEmailAddressField.Text = _company_email;
+            }
 
             _is_company_selected = true;
             is_company_exist = true;
@@ -530,24 +537,17 @@ namespace Green_Enviro_App
             _main_form.dstrctCertEmailAddressField.Clear();
         }
 
-        private void AddNewCompanyToDatabase(bool _is_company_exist_in_db)
+        private void AddNewCompanyToDatabase()
         {
-            if ( is_company_exist == true || _is_company_exist_in_db == true)
-            {
-                return;
-            }
-            else
-            {
                 string _new_company = _main_form.dstrctCertCompanyField.Text;
                 string _new_contact_person = _main_form.dstrctCertCntactPersonField.Text;
                 string _new_contact_number = _main_form.dstrctCertCntactNumField.Text;
                 string _new_email_address = _main_form.dstrctCertEmailAddressField.Text;
-                string _values_for_database = "'" + _new_company + "','" + _new_contact_person + "','" + _new_email_address + "'," + _new_contact_number ;
+                string _values_for_database = "'" + _new_company + "','" + _new_contact_person + "','" + _new_email_address + "','" + _new_contact_number+ "'";
                 string _company = "Companies";
                 string _company_database_col = "Name,ContactPerson,Email,ContactNumbers";
                 _database.InsertIntoDatabase(_company, _company_database_col, _values_for_database);
-                MessageBox.Show("New Company inserted into the database");
-            }
+                CustomMessageBox mb = new CustomMessageBox("Success","New Company inserted into the database");
         }
 
     }
