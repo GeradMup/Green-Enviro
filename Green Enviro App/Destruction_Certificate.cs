@@ -29,9 +29,9 @@ namespace Green_Enviro_App
         {
             _main_form = _form;
             _database = _db;
-            GenerateExtractionDateList();
             QuantityOfProducts();
             LoadDBIntoDC();
+            _main_form.dstrctCertExtractionDate.Value = DateTime.Now;
         }
         private void GenerateDestructionCertificate(string _pdf_save_path)
         {
@@ -102,24 +102,8 @@ namespace Green_Enviro_App
                 string _date_of_certificate = DateTime.Now.ToString("dd MMMM yyyy       ");
                 //-----------------------------------------------------------------------------------------------------------
                 //Exception for extraction date
-                string extraction_day = "";
-                if(_main_form.dstrctCertificateDayList.SelectedItem.ToString() == "1")
-                {
-                    extraction_day = _main_form.dstrctCertificateDayList.SelectedItem.ToString() + "st";
-                }
-                else if(_main_form.dstrctCertificateDayList.SelectedItem.ToString() == "2")
-                {
-                    extraction_day = _main_form.dstrctCertificateDayList.SelectedItem.ToString() + "nd";
-                }
-                else if(_main_form.dstrctCertificateDayList.SelectedItem.ToString() == "3")
-                {
-                    extraction_day = _main_form.dstrctCertificateDayList.SelectedItem.ToString() + "rd";
-                }
-                else
-                {
-                    extraction_day = _main_form.dstrctCertificateDayList.SelectedItem.ToString() + "th";
-                }
-                string extraction_date = extraction_day + " of " + _main_form.dstrctCertificateMonthList.SelectedItem.ToString() + " " + _main_form.dstrctCertificateYearList.SelectedItem.ToString();
+
+                string extraction_date = GenerateExtractionDate();
                 string _company_for_certificate = _main_form.dstrctCertCompanyField.Text;
                 string _contact_person_of_certificate = _main_form.dstrctCertCntactPersonField.Text;
                 string _contact_person_number_of_certificate = _main_form.dstrctCertCntactNumField.Text;
@@ -240,7 +224,6 @@ namespace Green_Enviro_App
             string _store_path_of_pdf = _generate_DC.Item4;
             bool _company_exist_in_database = _generate_DC.Item5;
             _buttons = MessageBoxButtons.OK;
-            Console.WriteLine(_main_form.dstrctCertCompanyField.Text);
 
             if (_generate_DC.Item1)
             {
@@ -273,27 +256,16 @@ namespace Green_Enviro_App
             string _message_type = "";
             string _message = "";
             string _company = _main_form.dstrctCertCompanyField.Text;
-            string _extraction_date = _main_form.dstrctCertificateDayList.SelectedItem.ToString() + "_" + _main_form.dstrctCertificateMonthList.SelectedItem.ToString() + "_" + _main_form.dstrctCertificateYearList.SelectedItem.ToString();
+            string _extraction_date = _main_form.dstrctCertExtractionDate.Value.ToString("dd_MMMM_yyyy");
             string _save_pdf_path = @"..//..//resources//Logs//Destruction Certificates//" + _company + "_" + _extraction_date + ".pdf";
             bool _all_good = false;
             bool _is_company_exist_in_db = false;       //This should not be done here
+            var _quantity_unit_selected = GetQuantity();
 
-            if (_main_form.dstrctCertificateDayList.SelectedIndex == 0)
+            if (_main_form.dstrctCertExtractionDate.Checked == false)
             {
                 _message_type = _error;
-                _message = "Day for Extraction Date not selected";
-                _all_good = false;
-            }
-            else if (_main_form.dstrctCertificateMonthList.SelectedIndex == 0)
-            {
-                _message_type = _error;
-                _message = "Month of the Extraction Date not selected";
-                _all_good = false;
-            }
-            else if (_main_form.dstrctCertificateYearList.SelectedIndex == 0)
-            {
-                _message_type = _error;
-                _message = "Year of the Extraction Date not selected";
+                _message = "Extraction Date has not been selected";
                 _all_good = false;
             }
             else if (_is_company_selected == false)
@@ -338,6 +310,12 @@ namespace Green_Enviro_App
                 _message = "Quantity not entered";
                 _all_good = false;
             }
+            else if(_quantity_unit_selected.Item3 == false)
+            {
+                _message_type = _error;
+                _message = "Unit for the Quantity were not selected";
+                _all_good = false;
+            }
             else if (System.IO.File.Exists(_save_pdf_path))
             {
                 _message_type = _error;
@@ -359,10 +337,7 @@ namespace Green_Enviro_App
         //Gerry Edited from 370 to 372
         public void ClearDCFields()
         {
-            _main_form.dstrctCertificateDayList.SelectedIndex = 0;
-            _main_form.dstrctCertificateMonthList.SelectedIndex = 0;
-            _main_form.dstrctCertificateYearList.SelectedIndex = 0;
-
+            _main_form.dstrctCertExtractionDate.Value = DateTime.Now;
             _main_form.dstrctCertNewCompanyCheckBox.CheckState = CheckState.Unchecked;
             _main_form.dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDownList;
             _main_form.dstrctCertCompanyField.SelectedItem = null;
@@ -396,45 +371,6 @@ namespace Green_Enviro_App
             }
         }
 
-        private void GenerateExtractionDateList()
-        {
-            // Make a list for the item
-            System.Web.UI.WebControls.ListItem _date;
-
-            //-----------------------------------------------------------------------------------------------------
-            //First lets generate the days of the month
-            for (int day = 1; day <= System.DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);day++)
-            {
-                _main_form.dstrctCertificateDayList.Items.Add(day.ToString());
-            }
-            _main_form.dstrctCertificateDayList.Items.Insert(0, "Select");
-            _main_form.dstrctCertificateDayList.SelectedIndex = 0;
-
-            //------------------------------------------------------------------------------------------------------
-            //Generating the months
-            foreach (var months in DateTimeFormatInfo.CurrentInfo.MonthNames)
-            {
-               if (months != "")
-                {
-                    _date = new System.Web.UI.WebControls.ListItem();
-                    _date.Text = months;
-                    _date.Value = months;
-                    _main_form.dstrctCertificateMonthList.Items.Add(_date);
-                }
-            }
-            _main_form.dstrctCertificateMonthList.Items.Insert(0, "Select");
-            _main_form.dstrctCertificateMonthList.SelectedIndex = 0;
-
-            //--------------------------------------------------------------------------------------------------------
-            // Generating the years
-            for (int year = 2000; year <= System.DateTime.Now.Year; year++)
-            {
-                _main_form.dstrctCertificateYearList.Items.Add(year.ToString());
-            }
-            _main_form.dstrctCertificateYearList.Items.Insert(0, "Select");
-            _main_form.dstrctCertificateYearList.SelectedIndex = 0;
-
-        }
         private void QuantityOfProducts()
         {
             _main_form.dstrctCertQuantityUnit.Items.Insert(0, "Select");
@@ -443,11 +379,12 @@ namespace Green_Enviro_App
             _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
         }
 
-        private Tuple<string,string> GetQuantity()
+        private Tuple<string,string,bool> GetQuantity()
         {
             string _value_in_kg = "";
             string _value_in_pallets = "";
             double _quantity_of_product = Convert.ToDouble(_main_form.dstrctCertQuantityNumBox.Value);
+            bool _is_quantity_selected = false;
 
 
             if (_main_form.dstrctCertQuantityUnit.SelectedItem.ToString() == "PALLETS")
@@ -456,6 +393,7 @@ namespace Green_Enviro_App
                 _conversion = _quantity_of_product * 60;
                 _value_in_pallets = _main_form.dstrctCertQuantityNumBox.Value.ToString();
                 _value_in_kg = _conversion.ToString();
+                _is_quantity_selected = true;
 
             }
             else if (_main_form.dstrctCertQuantityUnit.SelectedItem.ToString() == "Kg")
@@ -472,12 +410,14 @@ namespace Green_Enviro_App
                     _value_in_kg = _main_form.dstrctCertQuantityNumBox.Value.ToString();
                     _value_in_pallets = _conversion.ToString();
                 }
+                _is_quantity_selected = true;
             }
-            else _main_form.dstrctCertQuantityUnit.SelectedItem = null;
+            else _is_quantity_selected = false;
 
-            var _quantity = new Tuple<string, string>(_value_in_kg, _value_in_pallets);
+            var _quantity = new Tuple<string, string,bool>(_value_in_kg, _value_in_pallets,_is_quantity_selected);
             return _quantity;
         }
+
         //This will be for DB
         private void LoadDBIntoDC()
         {
@@ -548,6 +488,32 @@ namespace Green_Enviro_App
                 string _company_database_col = "Name,ContactPerson,Email,ContactNumbers";
                 _database.InsertIntoDatabase(_company, _company_database_col, _values_for_database);
                 CustomMessageBox mb = new CustomMessageBox("Success","New Company inserted into the database");
+        }
+        private string GenerateExtractionDate ()
+        {
+            string _extraction_date = "";
+            string _extraction_day = _main_form.dstrctCertExtractionDate.Value.ToString("dd");
+            string _extraction_month = _main_form.dstrctCertExtractionDate.Value.ToString("MMMM");
+            string _extraction_year = _main_form.dstrctCertExtractionDate.Value.ToString("yyyy");
+
+            if (_extraction_day == "1" || _extraction_day == "31" || _extraction_day == "21")
+            {
+                _extraction_date = _extraction_day + "st of " + _extraction_month + " " + _extraction_year;
+            }
+            else if (_extraction_day == "2" || _extraction_day == "22")
+            {
+                _extraction_date = _extraction_day + "nd of " + _extraction_month + " " + _extraction_year;
+            }
+            else if (_extraction_day == "3" || _extraction_day == "23")
+            {
+                _extraction_date = _extraction_day + "rd of " + _extraction_month + " " + _extraction_year;
+            }
+            else
+            {
+                _extraction_date = _extraction_day + "th of " + _extraction_month + " " + _extraction_year;
+            }
+
+            return _extraction_date;
         }
 
     }

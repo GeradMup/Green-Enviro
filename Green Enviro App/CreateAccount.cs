@@ -57,7 +57,6 @@ namespace Green_Enviro_App
             //LOAD UP USER INFO FROM HE DATABASE
             LoadDataBase();
             SelectPermissionLevel();
-            PrintDataTable();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -68,7 +67,6 @@ namespace Green_Enviro_App
         private void newAccountButton_Click(object sender, EventArgs e)
         {
             accountCreationVerification();
-            PrintDataTable();
         }
         private void newAccountBtn_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -76,7 +74,6 @@ namespace Green_Enviro_App
             if (e.KeyChar == (char)Keys.Enter)
             {
                 accountCreationVerification();
-                PrintDataTable();
             }
         }
 
@@ -175,7 +172,6 @@ namespace Green_Enviro_App
                 addNewUser();
                 CustomMessageBox msg = new CustomMessageBox(_title,_message);
                 _user_database.LoadUserDataTable();
-                PrintDataTable();
                 returnToLoginForm();
             }
             else

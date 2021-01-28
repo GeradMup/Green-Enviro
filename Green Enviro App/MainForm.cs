@@ -288,6 +288,10 @@ namespace Green_Enviro_App
             _wages.PartTimeEmployee();
 		}
 
-	}
+        private void ExpenseDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 
 }
