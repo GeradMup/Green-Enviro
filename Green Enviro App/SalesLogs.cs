@@ -20,7 +20,8 @@ namespace Green_Enviro_App
 		Database _database;
 
 		DataTable _sales_data_table = new DataTable();	//All the information about all the products the we have sold.
-		DataTable _companies;	//Companies that we sell and buy from
+		DataTable _buyers;  //Companies that we sell and buy from
+		List<string> _buyers_list = new List<string>();
 
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
@@ -35,7 +36,7 @@ namespace Green_Enviro_App
 			CreateLogFiles();
 			SetTypes();
 			SetupSalesLogs();
-			LoadCompanies();
+			LoadBuyers();
 		}
 
 		public void SetTypes()
@@ -78,19 +79,23 @@ namespace Green_Enviro_App
 			_main_form.SaleDate.Value = DateTime.Now;
 		}
 
-		private void LoadCompanies() 
+		private void LoadBuyers() 
 		{
 			//Gets all company details and stores them in a DataTable
-			_companies = _database.SelectAll("Companies");
+			_buyers = _database.SelectAll("Buyers");
 
 			//MessageBox.Show("All Customers: " + _customers.Rows.Count.ToString());
 
+			_main_form.SaleCompanyNameList.Items.Clear();
+			_buyers_list.Clear();
+
 			int _company_name_index = 1;
 
-			foreach (DataRow row in _companies.Rows)
+			foreach (DataRow row in _buyers.Rows)
 			{
 				//Selects the customer numbers and adds to the drop down list on the receipt page
 				_main_form.SaleCompanyNameList.Items.Add(row[_company_name_index]);
+				_buyers_list.Add(row[_company_name_index].ToString());
 			}
 		}
 
@@ -387,6 +392,15 @@ namespace Green_Enviro_App
 				return;
 			}
 
+			if (_main_form.NewCompanyCheckBox.CheckState == CheckState.Checked) 
+			{
+				if (_buyers_list.Contains(_main_form.SaleCompanyNameList.Text) == false) 
+				{
+					AddNewBuyer();
+					LoadBuyers();
+				}
+			}
+
 			StringBuilder _csv_content = new StringBuilder();
 			string _date = _main_form.SaleDate.Value.ToString("dd MMMM yyyy");
 			string _company = _main_form.SaleCompanyNameList.Text;
@@ -452,6 +466,21 @@ namespace Green_Enviro_App
 			}
 			
 			return _all_good;
+		}
+
+		private void AddNewBuyer() 
+		{
+			string _table_name = "Buyers";
+			string _parameter = "Company";
+			string _company_name = "'" + _main_form.SaleCompanyNameList.Text + "'";
+
+			Int32 _rows_affected = _database.InsertIntoDatabase(_table_name,_parameter,_company_name);
+
+			if (_rows_affected == 1) 
+			{
+				CustomMessageBox mb = new CustomMessageBox("Success", "New Buyer Added");
+			}
+			
 		}
 
 		public void ClearFields() 

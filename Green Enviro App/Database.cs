@@ -183,17 +183,18 @@ namespace Green_Enviro_App
 			CloseDatabase();
         }
 
-		public void InsertIntoDatabase(string _table,string _parameters, string _values)
+		public Int32 InsertIntoDatabase(string _table,string _parameters, string _values)
         {
 			OpenDatabase();
 			//The Delete command goes as follow
 			string _insertion_cmd = "insert into " + _table + " (" + _parameters + ") values (" + _values + ")";
 			//Making the SQL command
 			_command.CommandText = _insertion_cmd;
+			Int32 rowsAffected = 0;
 			//View if the changes where succesfully done on the console
 			try
 			{
-				Int32 rowsAffected = _command.ExecuteNonQuery();
+				rowsAffected = _command.ExecuteNonQuery();
 				Console.WriteLine("RowsAffected: {0}", rowsAffected);
 			}
 			catch (Exception ex)
@@ -202,6 +203,7 @@ namespace Green_Enviro_App
 			}
 
 			CloseDatabase();
+			return rowsAffected;
 		}
 		
 	}
