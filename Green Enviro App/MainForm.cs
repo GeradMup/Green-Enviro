@@ -14,8 +14,8 @@ namespace Green_Enviro_App
     {
         Receipt _receipt;
         Database _database;
-        PurchaseLogs _purchase_logs;
-        SalesLogs _sales_logs;
+        Purchases _purchases;
+        Sales _sales;
         Expenses _expenses;
         Wages _wages;
 		Destruction_Certificate _destruction_certificate;
@@ -29,9 +29,9 @@ namespace Green_Enviro_App
             InitializeComponent();
             //initialiseItemList();
             _database = _data;
-            _purchase_logs = new PurchaseLogs(this);
-            _sales_logs = new SalesLogs(this, _database);
-            _receipt = new Receipt(this, _database, _purchase_logs);
+            _purchases = new Purchases(this);
+            _sales = new Sales(this, _database);
+            _receipt = new Receipt(this, _database, _purchases);
             _destruction_certificate = new Destruction_Certificate(this,_database);
             _expenses = new Expenses(this, _database);
             _wages = new Wages(this, _database);
@@ -116,17 +116,17 @@ namespace Green_Enviro_App
 
         private void FilterPurchaseLogBtn_Click(object sender, EventArgs e)
         {
-            _purchase_logs.DisplayPurchaseLog();
+            _purchases.DisplayPurchaseLog();
         }
 
 		private void PurchaseLogMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            _purchase_logs.MonthSelected();
+            _purchases.MonthSelected();
 		}
 
 		private void removeFiltersBtn_Click(object sender, EventArgs e)
 		{
-            _purchase_logs.RemoveFilters();
+            _purchases.RemoveFilters();
 		}
 
 		private void TotalsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -197,32 +197,32 @@ namespace Green_Enviro_App
         //******************************************************************************************************************************
         private void FilterSalesLogBtn_Click(object sender, EventArgs e)
 		{
-            _sales_logs.DisplaySalesLog();
+            _sales.DisplaySalesLog();
 		}
 
 		private void SalesLogMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            _sales_logs.MonthSelected();
+            _sales.MonthSelected();
         }
 
 		private void NewCompanyCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-            _sales_logs.UnknownCompany();
+            _sales.UnknownCompany();
 		}
 
 		private void AddSaleBtn_Click(object sender, EventArgs e)
 		{
-            _sales_logs.AddSale();
+            _sales.AddSale();
 		}
 
         private void RemoveSalesLogFiltersBtn_Click(object sender, EventArgs e)
         {
-            _sales_logs.RemoveFilters();
+            _sales.RemoveFilters();
         }
 
 		private void ClearSalesFields_Click(object sender, EventArgs e)
 		{
-            _sales_logs.ClearFields();
+            _sales.ClearFields();
 		}
 
 

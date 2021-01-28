@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Green_Enviro_App
 {
-	class SalesLogs
+	class Sales
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
@@ -29,7 +29,7 @@ namespace Green_Enviro_App
 		string _ferrous = "Ferrous";
 		string _non_ferrous = "Non-Ferrous";
 		bool _unknown_company = false;
-		public SalesLogs(Main_Form _main, Database data)
+		public Sales(Main_Form _main, Database data)
 		{
 			_main_form = _main;
 			_database = data;

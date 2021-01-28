@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace Green_Enviro_App
 {
-	class PurchaseLogs
+	class Purchases
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
@@ -27,7 +27,7 @@ namespace Green_Enviro_App
 
 		string _ferrous;
 		string _non_ferrous;
-		public PurchaseLogs(Main_Form _main)
+		public Purchases(Main_Form _main)
 		{
 			_main_form = _main;
 			CreateLogFiles();

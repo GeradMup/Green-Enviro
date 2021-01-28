@@ -15,7 +15,7 @@ namespace Green_Enviro_App
 
         Main_Form _main_form;
         Database _database;
-        PurchaseLogs _logs;
+        Purchases _logs;
 
         DataTable _items;
         DataTable _customers;
@@ -33,7 +33,7 @@ namespace Green_Enviro_App
         string _customer_name = "";
         string _customer_surname = "";
         bool _customer_selected = false;
-        public Receipt(Main_Form form, Database data, PurchaseLogs logs) 
+        public Receipt(Main_Form form, Database data, Purchases logs) 
         {
             _main_form = form;
             _database = data;
