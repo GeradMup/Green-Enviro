@@ -33,7 +33,7 @@ namespace Green_Enviro_App
 		{
 			DataTable items = _database.SelectAll("Items");
 
-			PricesGridView.DataSource = items;
+			/*PricesGridView.DataSource = items;
 			PricesGridView.Columns[0].ReadOnly = true;
 			PricesGridView.Columns[1].ReadOnly = true;
 			PricesGridView.Columns[4].ReadOnly = true;
@@ -45,19 +45,19 @@ namespace Green_Enviro_App
 			foreach (DataGridViewColumn _column in PricesGridView.Columns)
 			{
 				_column.SortMode = DataGridViewColumnSortMode.NotSortable;
-			}
+			}*/
 		}
 
 		private void PricesGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
-			string _item_name = PricesGridView[1, e.RowIndex].Value.ToString();
+			/*string _item_name = PricesGridView[1, e.RowIndex].Value.ToString();
 			string _price = PricesGridView[2, e.RowIndex].Value.ToString();
-			string _dealer_price = PricesGridView[3, e.RowIndex].Value.ToString();
+			string _dealer_price = PricesGridView[3, e.RowIndex].Value.ToString();*/
 
 			DialogResult dialogResult = MessageBox.Show("Are you sure you want to change the price?", "Confirm Edit", MessageBoxButtons.YesNo);
 			if (dialogResult == DialogResult.Yes)
 			{
-				string _table_name = "Items";
+				/*string _table_name = "Items";
 				string _column_value_pairs = "Price = '" + _price + "', DealerPrice = '" + _dealer_price + "'";   
 				string _identification_column = "Name";
 				string _identifier = "'" + _item_name + "'";
@@ -71,18 +71,18 @@ namespace Green_Enviro_App
 				else 
 				{
 					CustomMessageBox mb = new CustomMessageBox("Failure", "Failed to update price");
-				}
+				}*/
 			}
 			else if (dialogResult == DialogResult.No)
 			{
-				PricesGridView[e.ColumnIndex, e.RowIndex].Value = _previous_value;
-				PricesGridView.Refresh();
+				/*PricesGridView[e.ColumnIndex, e.RowIndex].Value = _previous_value;
+				PricesGridView.Refresh();*/
 			}
 		}
 
 		private void PricesGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
 		{
-			_previous_value = PricesGridView[e.ColumnIndex, e.RowIndex].Value.ToString();
+			//_previous_value = PricesGridView[e.ColumnIndex, e.RowIndex].Value.ToString();
 		}
 
 		private void PriceChangeCpltBtn_Click(object sender, EventArgs e)
@@ -92,5 +92,23 @@ namespace Green_Enviro_App
 			this.Enabled = false;
 
 		}
-	}
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Prices
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "Prices";
+            this.Load += new System.EventHandler(this.Prices_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void Prices_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

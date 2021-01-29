@@ -20,6 +20,7 @@ namespace Green_Enviro_App
         Wages _wages;
 		Destruction_Certificate _destruction_certificate;
         Summaries _summaries;
+        Email _email;
 
 		/// <summary>
         /// This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.
@@ -31,6 +32,7 @@ namespace Green_Enviro_App
             //initialiseItemList();
             _database = _data;
             _purchases = new Purchases(this);
+            _email = new Email();
             _sales = new Sales(this, _database);
             _receipt = new Receipt(this, _database, _purchases);
             _destruction_certificate = new Destruction_Certificate(this,_database);
@@ -194,6 +196,12 @@ namespace Green_Enviro_App
             _destruction_certificate.Company_Selected();
         }
 
+        private void SendDstrctCertEmailBtn_Click(object sender, EventArgs e)
+        {
+            _email.Show();
+            //_email.sendEmailUsingGmail();
+        }
+
         //******************************************************************************************************************************
         //SALES LOG RELATED CALLS
         //******************************************************************************************************************************
@@ -304,6 +312,6 @@ namespace Green_Enviro_App
             _summaries.MonthSelected();
 		}
 
-	}
+    }
 
 }
