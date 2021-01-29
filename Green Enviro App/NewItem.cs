@@ -64,6 +64,10 @@ namespace Green_Enviro_App
 				_valid_entries = false;
 				_error_message = "Please select item type";
 			}
+			else 
+			{
+				_valid_entries = true;
+			}
 
 			if (_valid_entries == false) 
 			{
@@ -75,6 +79,11 @@ namespace Green_Enviro_App
 
 		private void Exit() 
 		{
+			NewItemNameBox.Text = "";
+			NewItemPrice.Value = (decimal)0.00;
+			NewItemDealerPrice.Value = (decimal)0.00;
+			NewItemType.SelectedItem = null;
+
 			this.Owner.Enabled = true;
 			this.Hide();
 			this.Enabled = false;

@@ -17,6 +17,7 @@ namespace Green_Enviro_App
 		Receipt _receit;
 		NewItem _new_item;
 		string _previous_value = "";
+		DataTable _items;
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Items" /> class.
 		/// Class/Form used to all the price related editing
@@ -34,9 +35,9 @@ namespace Green_Enviro_App
 
 		public void LoadPrices() 
 		{
-			DataTable items = _database.SelectAll("Items");
+			_items = _database.SelectAll("Items");
 
-			PricesGridView.DataSource = items;
+			PricesGridView.DataSource = _items;
 			PricesGridView.Columns[0].ReadOnly = true;
 			PricesGridView.Columns[1].ReadOnly = true;
 			PricesGridView.Columns[4].ReadOnly = true;
@@ -126,7 +127,34 @@ namespace Green_Enviro_App
 
 		public void AddNewItem(string itemName, float itemPrice, float dealerPrice, string itemType) 
 		{
-		
+			string _table_name = "Items";
+			string _column_names = "Name,Price,DealerPrice,Type";
+			string _values = "'" + itemName + "','" + itemPrice + "','" + dealerPrice + "','" + itemType + "'";
+			bool _item_exist = false;
+
+			foreach (DataRow _row in _items.Rows) 
+			{
+				if (_row[1].ToString() == itemName) 
+				{
+					_item_exist = true;
+				}
+			}
+
+			if (_item_exist == false)
+			{
+				Int32 _rows_affected = _database.InsertIntoDatabase(_table_name, _column_names, _values);
+
+				if (_rows_affected == 1)
+				{
+					CustomMessageBox mb = new CustomMessageBox(this, "Success", "New Item Added");
+					LoadPrices();
+					PricesGridView.Refresh();
+				}
+			}
+			else 
+			{
+				CustomMessageBox mb = new CustomMessageBox(this, "Failed!", "Item Already Exist");
+			}
 		}
 
 		private void PricesNewItemBtn_Click(object sender, EventArgs e)
