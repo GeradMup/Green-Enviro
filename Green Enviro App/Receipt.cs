@@ -10,12 +10,13 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
-    class Receipt
+    public class Receipt
     {
 
         Main_Form _main_form;
         Database _database;
         Purchases _logs;
+        Prices _prices;
 
         DataTable _items;
         DataTable _customers;
@@ -38,13 +39,14 @@ namespace Green_Enviro_App
             _main_form = form;
             _database = data;
             _logs = logs;
+            _prices = new Prices(this,_database);
 
-            setupPriceList();
+            SetupPriceList();
             setupReceipt();
             setupCustomerList();
         }
 
-        private void setupPriceList()
+        public void SetupPriceList()
         {
             //Gets all items from the database and stores them in a DataTable named _items
             _items = _database.SelectAll("Items");
@@ -56,6 +58,7 @@ namespace Green_Enviro_App
 
             HashSet<string> _types = new HashSet<string>();
 
+            _main_form.itemList.Items.Clear();
             foreach (DataRow row in _items.Rows) 
             {
                 //Selects only the name of the items and stores them in a drop down list that will appear on the receipt page
@@ -376,6 +379,14 @@ namespace Green_Enviro_App
             {
                 _main_form.PriceBox.Value = (decimal)getPrice(_main_form.itemList.SelectedItem.ToString());
             }
+        }
+
+        public void EditPrices() 
+        {
+            ClearFields();
+            _prices.Enabled = true;
+            _prices.Activate();
+            _prices.Show();
         }
 	}
 }

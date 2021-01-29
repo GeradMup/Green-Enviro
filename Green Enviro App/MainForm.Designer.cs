@@ -900,6 +900,7 @@ namespace Green_Enviro_App
 			this.SalesLogGridView.Location = new System.Drawing.Point(632, 191);
 			this.SalesLogGridView.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.SalesLogGridView.Name = "SalesLogGridView";
+			this.SalesLogGridView.ReadOnly = true;
 			this.SalesLogGridView.RowHeadersWidth = 51;
 			this.SalesLogGridView.RowTemplate.Height = 24;
 			this.SalesLogGridView.Size = new System.Drawing.Size(1179, 521);
@@ -1028,7 +1029,7 @@ namespace Green_Enviro_App
 			// 
 			this.ExpenseAmount.DecimalPlaces = 2;
 			this.ExpenseAmount.Location = new System.Drawing.Point(235, 215);
-			this.ExpenseAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.ExpenseAmount.Margin = new System.Windows.Forms.Padding(4);
 			this.ExpenseAmount.Maximum = new decimal(new int[] {
             200000,
             0,
@@ -1041,7 +1042,7 @@ namespace Green_Enviro_App
 			// ExpenseDescriptionBox
 			// 
 			this.ExpenseDescriptionBox.Location = new System.Drawing.Point(235, 119);
-			this.ExpenseDescriptionBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.ExpenseDescriptionBox.Margin = new System.Windows.Forms.Padding(4);
 			this.ExpenseDescriptionBox.Name = "ExpenseDescriptionBox";
 			this.ExpenseDescriptionBox.Size = new System.Drawing.Size(407, 31);
 			this.ExpenseDescriptionBox.TabIndex = 50;
@@ -1164,6 +1165,7 @@ namespace Green_Enviro_App
 			this.ExpensesLogGridView.Location = new System.Drawing.Point(753, 203);
 			this.ExpensesLogGridView.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.ExpensesLogGridView.Name = "ExpensesLogGridView";
+			this.ExpensesLogGridView.ReadOnly = true;
 			this.ExpensesLogGridView.RowHeadersWidth = 51;
 			this.ExpensesLogGridView.RowTemplate.Height = 24;
 			this.ExpensesLogGridView.Size = new System.Drawing.Size(601, 505);
@@ -1253,7 +1255,7 @@ namespace Green_Enviro_App
 			// 
 			this.PartTimeEmployeeCheckBox.AutoSize = true;
 			this.PartTimeEmployeeCheckBox.Location = new System.Drawing.Point(229, 98);
-			this.PartTimeEmployeeCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.PartTimeEmployeeCheckBox.Margin = new System.Windows.Forms.Padding(4);
 			this.PartTimeEmployeeCheckBox.Name = "PartTimeEmployeeCheckBox";
 			this.PartTimeEmployeeCheckBox.Size = new System.Drawing.Size(230, 27);
 			this.PartTimeEmployeeCheckBox.TabIndex = 70;
@@ -1266,7 +1268,7 @@ namespace Green_Enviro_App
 			this.EmployeeName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.EmployeeName.FormattingEnabled = true;
 			this.EmployeeName.Location = new System.Drawing.Point(229, 154);
-			this.EmployeeName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.EmployeeName.Margin = new System.Windows.Forms.Padding(4);
 			this.EmployeeName.Name = "EmployeeName";
 			this.EmployeeName.Size = new System.Drawing.Size(401, 31);
 			this.EmployeeName.TabIndex = 69;
@@ -1275,7 +1277,7 @@ namespace Green_Enviro_App
 			// 
 			this.WageAmount.DecimalPlaces = 2;
 			this.WageAmount.Location = new System.Drawing.Point(229, 261);
-			this.WageAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.WageAmount.Margin = new System.Windows.Forms.Padding(4);
 			this.WageAmount.Maximum = new decimal(new int[] {
             200000,
             0,
@@ -1402,6 +1404,7 @@ namespace Green_Enviro_App
 			this.WageLogGridView.Location = new System.Drawing.Point(813, 190);
 			this.WageLogGridView.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.WageLogGridView.Name = "WageLogGridView";
+			this.WageLogGridView.ReadOnly = true;
 			this.WageLogGridView.RowHeadersWidth = 51;
 			this.WageLogGridView.RowTemplate.Height = 24;
 			this.WageLogGridView.Size = new System.Drawing.Size(999, 518);

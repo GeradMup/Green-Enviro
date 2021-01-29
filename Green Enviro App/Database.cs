@@ -195,7 +195,29 @@ namespace Green_Enviro_App
 			try
 			{
 				rowsAffected = _command.ExecuteNonQuery();
-				Console.WriteLine("RowsAffected: {0}", rowsAffected);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Failed to Insert into DB : " + ex.Message);
+			}
+
+			CloseDatabase();
+			return rowsAffected;
+		}
+
+		public Int32 UpdateDatabase(string tableName, string columValuePairs, string identifierColumn, string identifier) 
+		{
+			OpenDatabase();
+			string _update_command_text = "UPDATE " + tableName + " set " + columValuePairs +
+				"where " + identifierColumn + " = " + identifier;
+
+			CustomMessageBox box = new CustomMessageBox("Check: ",_update_command_text);
+			_command.CommandText = _update_command_text;
+			Int32 rowsAffected = 0;
+			
+			try
+			{
+				rowsAffected = _command.ExecuteNonQuery();
 			}
 			catch (Exception ex)
 			{

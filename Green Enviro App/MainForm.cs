@@ -107,7 +107,7 @@ namespace Green_Enviro_App
 
         private void ReceiptPriceEditBtn_Click(object sender, EventArgs e)
         {
-
+            _receipt.EditPrices();
         }
 
         //******************************************************************************************************************************

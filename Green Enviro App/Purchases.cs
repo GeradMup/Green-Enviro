@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace Green_Enviro_App
 {
-	class Purchases
+	public class Purchases
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
@@ -40,6 +40,7 @@ namespace Green_Enviro_App
 			_non_ferrous = N;
 
 			//Also setup the Ferrous or Non-Ferrous Selector
+			_main_form.PurchaseLogType.Items.Clear();
 			_main_form.PurchaseLogType.Items.Add(_ferrous);
 			_main_form.PurchaseLogType.Items.Add(_non_ferrous);
 		}
