@@ -136,6 +136,20 @@ namespace Green_Enviro_App
 			this.label38 = new System.Windows.Forms.Label();
 			this.label39 = new System.Windows.Forms.Label();
 			this.Summaries = new System.Windows.Forms.TabPage();
+			this.label53 = new System.Windows.Forms.Label();
+			this.SummariesMonthSelector = new System.Windows.Forms.ComboBox();
+			this.SummariesExpensesBox = new System.Windows.Forms.RichTextBox();
+			this.SummariesNFSalesBox = new System.Windows.Forms.RichTextBox();
+			this.SummariesFSalesBox = new System.Windows.Forms.RichTextBox();
+			this.SummariesWagesBox = new System.Windows.Forms.RichTextBox();
+			this.SummariesNFPurchasesBox = new System.Windows.Forms.RichTextBox();
+			this.SummariesFPurchasesBox = new System.Windows.Forms.RichTextBox();
+			this.label52 = new System.Windows.Forms.Label();
+			this.label51 = new System.Windows.Forms.Label();
+			this.label50 = new System.Windows.Forms.Label();
+			this.label49 = new System.Windows.Forms.Label();
+			this.label48 = new System.Windows.Forms.Label();
+			this.label47 = new System.Windows.Forms.Label();
 			this.DestructionCertificates = new System.Windows.Forms.TabPage();
 			this.dstrctCertExtractionDate = new System.Windows.Forms.DateTimePicker();
 			this.dstrctCertNewCompanyCheckBox = new System.Windows.Forms.CheckBox();
@@ -173,6 +187,8 @@ namespace Green_Enviro_App
 			this.label44 = new System.Windows.Forms.Label();
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
+			this.SummariesProfitBox = new System.Windows.Forms.RichTextBox();
+			this.label54 = new System.Windows.Forms.Label();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -191,6 +207,7 @@ namespace Green_Enviro_App
 			this.Wages.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).BeginInit();
+			this.Summaries.SuspendLayout();
 			this.DestructionCertificates.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -213,7 +230,7 @@ namespace Green_Enviro_App
 			this.mainTabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.mainTabControl.Name = "mainTabControl";
 			this.mainTabControl.SelectedIndex = 0;
-			this.mainTabControl.Size = new System.Drawing.Size(1371, 750);
+			this.mainTabControl.Size = new System.Drawing.Size(1536, 903);
 			this.mainTabControl.TabIndex = 0;
 			this.mainTabControl.TabStop = false;
 			this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
@@ -1464,13 +1481,163 @@ namespace Green_Enviro_App
 			// 
 			// Summaries
 			// 
+			this.Summaries.Controls.Add(this.label54);
+			this.Summaries.Controls.Add(this.SummariesProfitBox);
+			this.Summaries.Controls.Add(this.label53);
+			this.Summaries.Controls.Add(this.SummariesMonthSelector);
+			this.Summaries.Controls.Add(this.SummariesExpensesBox);
+			this.Summaries.Controls.Add(this.SummariesNFSalesBox);
+			this.Summaries.Controls.Add(this.SummariesFSalesBox);
+			this.Summaries.Controls.Add(this.SummariesWagesBox);
+			this.Summaries.Controls.Add(this.SummariesNFPurchasesBox);
+			this.Summaries.Controls.Add(this.SummariesFPurchasesBox);
+			this.Summaries.Controls.Add(this.label52);
+			this.Summaries.Controls.Add(this.label51);
+			this.Summaries.Controls.Add(this.label50);
+			this.Summaries.Controls.Add(this.label49);
+			this.Summaries.Controls.Add(this.label48);
+			this.Summaries.Controls.Add(this.label47);
+			this.Summaries.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Summaries.Location = new System.Drawing.Point(4, 32);
 			this.Summaries.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.Summaries.Name = "Summaries";
-			this.Summaries.Size = new System.Drawing.Size(1363, 714);
+			this.Summaries.Size = new System.Drawing.Size(1528, 867);
 			this.Summaries.TabIndex = 6;
 			this.Summaries.Text = "Summaries";
 			this.Summaries.UseVisualStyleBackColor = true;
+			// 
+			// label53
+			// 
+			this.label53.AutoSize = true;
+			this.label53.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label53.Location = new System.Drawing.Point(66, 39);
+			this.label53.Name = "label53";
+			this.label53.Size = new System.Drawing.Size(168, 28);
+			this.label53.TabIndex = 13;
+			this.label53.Text = "Select Month";
+			// 
+			// SummariesMonthSelector
+			// 
+			this.SummariesMonthSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.SummariesMonthSelector.FormattingEnabled = true;
+			this.SummariesMonthSelector.Location = new System.Drawing.Point(70, 75);
+			this.SummariesMonthSelector.Name = "SummariesMonthSelector";
+			this.SummariesMonthSelector.Size = new System.Drawing.Size(346, 35);
+			this.SummariesMonthSelector.TabIndex = 12;
+			this.SummariesMonthSelector.SelectedIndexChanged += new System.EventHandler(this.SummariesMonthSelector_SelectedIndexChanged);
+			// 
+			// SummariesExpensesBox
+			// 
+			this.SummariesExpensesBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesExpensesBox.Location = new System.Drawing.Point(582, 685);
+			this.SummariesExpensesBox.Name = "SummariesExpensesBox";
+			this.SummariesExpensesBox.Size = new System.Drawing.Size(414, 177);
+			this.SummariesExpensesBox.TabIndex = 11;
+			this.SummariesExpensesBox.Text = "";
+			// 
+			// SummariesNFSalesBox
+			// 
+			this.SummariesNFSalesBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesNFSalesBox.Location = new System.Drawing.Point(582, 437);
+			this.SummariesNFSalesBox.Name = "SummariesNFSalesBox";
+			this.SummariesNFSalesBox.Size = new System.Drawing.Size(414, 164);
+			this.SummariesNFSalesBox.TabIndex = 10;
+			this.SummariesNFSalesBox.Text = "";
+			// 
+			// SummariesFSalesBox
+			// 
+			this.SummariesFSalesBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesFSalesBox.Location = new System.Drawing.Point(71, 437);
+			this.SummariesFSalesBox.Name = "SummariesFSalesBox";
+			this.SummariesFSalesBox.Size = new System.Drawing.Size(402, 164);
+			this.SummariesFSalesBox.TabIndex = 9;
+			this.SummariesFSalesBox.Text = "";
+			// 
+			// SummariesWagesBox
+			// 
+			this.SummariesWagesBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesWagesBox.Location = new System.Drawing.Point(71, 685);
+			this.SummariesWagesBox.Name = "SummariesWagesBox";
+			this.SummariesWagesBox.Size = new System.Drawing.Size(402, 177);
+			this.SummariesWagesBox.TabIndex = 8;
+			this.SummariesWagesBox.Text = "";
+			// 
+			// SummariesNFPurchasesBox
+			// 
+			this.SummariesNFPurchasesBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesNFPurchasesBox.Location = new System.Drawing.Point(582, 187);
+			this.SummariesNFPurchasesBox.Name = "SummariesNFPurchasesBox";
+			this.SummariesNFPurchasesBox.Size = new System.Drawing.Size(414, 170);
+			this.SummariesNFPurchasesBox.TabIndex = 7;
+			this.SummariesNFPurchasesBox.Text = "";
+			// 
+			// SummariesFPurchasesBox
+			// 
+			this.SummariesFPurchasesBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesFPurchasesBox.Location = new System.Drawing.Point(70, 187);
+			this.SummariesFPurchasesBox.Name = "SummariesFPurchasesBox";
+			this.SummariesFPurchasesBox.Size = new System.Drawing.Size(403, 170);
+			this.SummariesFPurchasesBox.TabIndex = 6;
+			this.SummariesFPurchasesBox.Text = "";
+			// 
+			// label52
+			// 
+			this.label52.AutoSize = true;
+			this.label52.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label52.Location = new System.Drawing.Point(577, 654);
+			this.label52.Name = "label52";
+			this.label52.Size = new System.Drawing.Size(116, 28);
+			this.label52.TabIndex = 5;
+			this.label52.Text = "Expenses";
+			// 
+			// label51
+			// 
+			this.label51.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label51.Location = new System.Drawing.Point(66, 654);
+			this.label51.Name = "label51";
+			this.label51.Size = new System.Drawing.Size(140, 34);
+			this.label51.TabIndex = 4;
+			this.label51.Text = "Wages";
+			// 
+			// label50
+			// 
+			this.label50.AutoSize = true;
+			this.label50.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label50.Location = new System.Drawing.Point(578, 406);
+			this.label50.Name = "label50";
+			this.label50.Size = new System.Drawing.Size(233, 28);
+			this.label50.TabIndex = 3;
+			this.label50.Text = "Non-Ferrous Sales";
+			// 
+			// label49
+			// 
+			this.label49.AutoSize = true;
+			this.label49.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label49.Location = new System.Drawing.Point(577, 161);
+			this.label49.Name = "label49";
+			this.label49.Size = new System.Drawing.Size(285, 28);
+			this.label49.TabIndex = 2;
+			this.label49.Text = "Non-Ferrous Purchases";
+			// 
+			// label48
+			// 
+			this.label48.AutoSize = true;
+			this.label48.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label48.Location = new System.Drawing.Point(66, 399);
+			this.label48.Name = "label48";
+			this.label48.Size = new System.Drawing.Size(181, 28);
+			this.label48.TabIndex = 1;
+			this.label48.Text = "Ferrous Sales";
+			// 
+			// label47
+			// 
+			this.label47.AutoSize = true;
+			this.label47.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label47.Location = new System.Drawing.Point(66, 161);
+			this.label47.Name = "label47";
+			this.label47.Size = new System.Drawing.Size(233, 28);
+			this.label47.TabIndex = 0;
+			this.label47.Text = "Ferrous Purchases";
 			// 
 			// DestructionCertificates
 			// 
@@ -1866,11 +2033,30 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// SummariesProfitBox
+			// 
+			this.SummariesProfitBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesProfitBox.Location = new System.Drawing.Point(1086, 187);
+			this.SummariesProfitBox.Name = "SummariesProfitBox";
+			this.SummariesProfitBox.Size = new System.Drawing.Size(414, 170);
+			this.SummariesProfitBox.TabIndex = 14;
+			this.SummariesProfitBox.Text = "";
+			// 
+			// label54
+			// 
+			this.label54.AutoSize = true;
+			this.label54.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label54.Location = new System.Drawing.Point(1081, 156);
+			this.label54.Name = "label54";
+			this.label54.Size = new System.Drawing.Size(90, 28);
+			this.label54.TabIndex = 15;
+			this.label54.Text = "Profit";
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1371, 750);
+			this.ClientSize = new System.Drawing.Size(1536, 903);
 			this.Controls.Add(this.mainTabControl);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1905,6 +2091,8 @@ namespace Green_Enviro_App
 			this.Wages.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).EndInit();
+			this.Summaries.ResumeLayout(false);
+			this.Summaries.PerformLayout();
 			this.DestructionCertificates.ResumeLayout(false);
 			this.DestructionCertificates.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
@@ -2128,5 +2316,21 @@ namespace Green_Enviro_App
         public System.Windows.Forms.TextBox dstrctCertCntactPersonField;
         public System.Windows.Forms.ComboBox dstrctCertCompanyField;
         public System.Windows.Forms.DateTimePicker dstrctCertExtractionDate;
-    }
+		private System.Windows.Forms.Label label53;
+		private System.Windows.Forms.Label label52;
+		private System.Windows.Forms.Label label51;
+		private System.Windows.Forms.Label label50;
+		private System.Windows.Forms.Label label49;
+		private System.Windows.Forms.Label label48;
+		private System.Windows.Forms.Label label47;
+		public System.Windows.Forms.ComboBox SummariesMonthSelector;
+		public System.Windows.Forms.RichTextBox SummariesExpensesBox;
+		public System.Windows.Forms.RichTextBox SummariesNFSalesBox;
+		public System.Windows.Forms.RichTextBox SummariesFSalesBox;
+		public System.Windows.Forms.RichTextBox SummariesWagesBox;
+		public System.Windows.Forms.RichTextBox SummariesNFPurchasesBox;
+		public System.Windows.Forms.RichTextBox SummariesFPurchasesBox;
+		private System.Windows.Forms.Label label54;
+		public System.Windows.Forms.RichTextBox SummariesProfitBox;
+	}
 }

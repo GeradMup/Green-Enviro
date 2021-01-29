@@ -17,8 +17,6 @@ namespace Green_Enviro_App
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
 		string _path_to_purchases = @"..//..//resources//Logs//Purchases//" + _month + ".csv";
-		string _path_to_expenses = @"..//..//resources//Logs//Expenses//" + _month + ".csv";
-		string _path_to_wages = @"..//..//resources//Logs//Wages//" + _month + ".csv";
 		Main_Form _main_form;
 
 		DataTable _purchases_data_table = new DataTable();
@@ -33,6 +31,21 @@ namespace Green_Enviro_App
 			CreateLogFiles();
 			SetupPurchaseLogs();
 		}
+
+		public void SetupPurchaseLogs()
+		{
+			//This function will get the names of all the purchase log files that exists in the purchases folder
+			string _purchase_logs_path = @"..//..//resources//Logs//Purchases";
+			DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);  //Assuming Test is your Folder
+			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
+			foreach (FileInfo _file in _files)
+			{
+				char[] _remove_chars = { 'c', 's', 'v', '.' };
+				string _file_name = _file.Name.TrimEnd(_remove_chars);
+				_main_form.PurchaseLogMonth.Items.Add(_file_name);
+			}
+		}
+
 
 		public void setTypes(string F, string N) 
 		{
@@ -58,11 +71,6 @@ namespace Green_Enviro_App
 				//_csv_content.AppendLine("\n");
 				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
 			}
-		}
-
-		private void CreateFile(string path, string headers)
-		{
-
 		}
 
 		public void AddPurchase(List<string> purchasedItems)
@@ -230,20 +238,6 @@ namespace Green_Enviro_App
 			_purchases_data_table.Rows.Add(_empty_row);
 			_purchases_data_table.Rows.Add(_last_row);
 
-		}
-
-		public void SetupPurchaseLogs()
-		{
-			//This function will get the names of all the purchase log files that exists in the purchases folder
-			string _purchase_logs_path = @"..//..//resources//Logs//Purchases";
-			DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);	//Assuming Test is your Folder
-			FileInfo[] _files = _directory.GetFiles("*.csv");	//Getting Text files
-			foreach (FileInfo _file in _files)
-			{
-				char[] _remove_chars = { 'c', 's', 'v', '.' };
-				string _file_name = _file.Name.TrimEnd(_remove_chars);
-				_main_form.PurchaseLogMonth.Items.Add(_file_name);
-			}
 		}
 
 		public void MonthSelected() 

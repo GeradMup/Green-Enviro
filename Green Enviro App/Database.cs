@@ -211,7 +211,6 @@ namespace Green_Enviro_App
 			string _update_command_text = "UPDATE " + tableName + " set " + columValuePairs +
 				"where " + identifierColumn + " = " + identifier;
 
-			CustomMessageBox box = new CustomMessageBox("Check: ",_update_command_text);
 			_command.CommandText = _update_command_text;
 			Int32 rowsAffected = 0;
 			
