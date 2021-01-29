@@ -170,7 +170,7 @@ namespace Green_Enviro_App
             {
                 _icon = MessageBoxIcon.None;
                 addNewUser();
-                CustomMessageBox msg = new CustomMessageBox(_title,_message);
+                CustomMessageBox msg = new CustomMessageBox(this, _title,_message);
                 _user_database.LoadUserDataTable();
                 returnToLoginForm();
             }

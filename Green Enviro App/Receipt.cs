@@ -16,7 +16,7 @@ namespace Green_Enviro_App
         Main_Form _main_form;
         Database _database;
         Purchases _logs;
-        Prices _prices;
+        Items _prices;
 
         DataTable _items;
         DataTable _customers;
@@ -39,7 +39,8 @@ namespace Green_Enviro_App
             _main_form = form;
             _database = data;
             _logs = logs;
-            _prices = new Prices(this,_database);
+            _prices = new Items(this,_database);
+            _prices.Owner = _main_form;
 
             SetupPriceList();
             setupReceipt();
@@ -230,7 +231,7 @@ namespace Green_Enviro_App
 
             if (_all_good == false) 
             {
-                CustomMessageBox newBox = new CustomMessageBox(_message_title, _error_message);
+                CustomMessageBox newBox = new CustomMessageBox(_main_form, _message_title, _error_message);
             }
 
             return _all_good;

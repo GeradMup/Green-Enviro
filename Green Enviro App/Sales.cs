@@ -309,7 +309,7 @@ namespace Green_Enviro_App
 			if ((_main_form.SalesLogStartDate.SelectedItem != null) && (_main_form.SalesLogEndDate.SelectedItem == null))
 			{
 				//Do nothing if there are not filters selected
-				CustomMessageBox msg = new CustomMessageBox("Error!", "INVALID DATE RANGE!");
+				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
 				_main_form.SalesLogStartDate.SelectedItem = null;
 				_main_form.SalesLogEndDate.SelectedItem = null;
 				return false;
@@ -318,7 +318,7 @@ namespace Green_Enviro_App
 			if ((_main_form.SalesLogStartDate.SelectedItem == null) && (_main_form.SalesLogEndDate.SelectedItem != null))
 			{
 				//Do nothing if there are not filters selected
-				CustomMessageBox msg = new CustomMessageBox("Error!", "INVALID DATE RANGE!");
+				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
 				_main_form.SalesLogStartDate.SelectedItem = null;
 				_main_form.SalesLogEndDate.SelectedItem = null;
 				return false;
@@ -329,7 +329,7 @@ namespace Green_Enviro_App
 
 			if (_filter_start_date > _filter_end_date)
 			{
-				CustomMessageBox msg = new CustomMessageBox("Error!", "INVALID DATE RANGE!");
+				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
 				_main_form.SalesLogStartDate.SelectedItem = null;
 				_main_form.SalesLogEndDate.SelectedItem = null;
 				return false;
@@ -414,7 +414,7 @@ namespace Green_Enviro_App
 			{
 				File.AppendAllText(_path_to_sales, _csv_content.ToString());
 				ClearFields();
-				CustomMessageBox newBox = new CustomMessageBox("Success!", "Sale Recorded");
+				CustomMessageBox newBox = new CustomMessageBox(_main_form, "Success!", "Sale Recorded");
 			}
 			catch (Exception ex)
 			{
@@ -462,7 +462,7 @@ namespace Green_Enviro_App
 
 			if (_all_good == false) 
 			{
-				CustomMessageBox box = new CustomMessageBox(_title, _error_message);
+				CustomMessageBox box = new CustomMessageBox(_main_form, _title, _error_message);
 			}
 			
 			return _all_good;
@@ -478,7 +478,7 @@ namespace Green_Enviro_App
 
 			if (_rows_affected == 1) 
 			{
-				CustomMessageBox mb = new CustomMessageBox("Success", "New Buyer Added");
+				CustomMessageBox mb = new CustomMessageBox(_main_form, "Success", "New Buyer Added");
 			}
 			
 		}

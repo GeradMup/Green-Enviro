@@ -86,7 +86,7 @@ namespace Green_Enviro_App
 			{
 				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
 				
-				CustomMessageBox box = new CustomMessageBox("Success!","Purchase Completed!");
+				CustomMessageBox box = new CustomMessageBox(_main_form, "Success!", "Purchase Completed!");
 			}
 			catch (Exception ex)
 			{
@@ -304,7 +304,7 @@ namespace Green_Enviro_App
 			if ((_main_form.PurchaseLogStartDate.SelectedItem != null) && (_main_form.PurchaseLogEndDate.SelectedItem == null))
 			{
 				//Do nothing if there are not filters selected
-				CustomMessageBox msg = new CustomMessageBox ("Error!","INVALID DATE RANGE!");
+				CustomMessageBox msg = new CustomMessageBox (_main_form, "Error!", "INVALID DATE RANGE!");
 				_main_form.PurchaseLogStartDate.SelectedItem = null;
 				_main_form.PurchaseLogEndDate.SelectedItem = null;
 				return false;
@@ -313,7 +313,7 @@ namespace Green_Enviro_App
 			if ((_main_form.PurchaseLogStartDate.SelectedItem == null) && (_main_form.PurchaseLogEndDate.SelectedItem != null))
 			{
 				//Do nothing if there are not filters selected
-				CustomMessageBox msg = new CustomMessageBox("Error!","INVALID DATE RANGE!");
+				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
 				_main_form.PurchaseLogStartDate.SelectedItem = null;
 				_main_form.PurchaseLogEndDate.SelectedItem = null;
 				return false;
@@ -324,7 +324,7 @@ namespace Green_Enviro_App
 
 			if (_start_date > _end_date) 
 			{
-				CustomMessageBox msg = new CustomMessageBox("Error!","INVALID DATE RANGE!");
+				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
 				_main_form.PurchaseLogStartDate.SelectedItem = null;
 				_main_form.PurchaseLogEndDate.SelectedItem = null;
 				return false;

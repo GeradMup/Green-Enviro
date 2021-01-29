@@ -12,18 +12,23 @@ namespace Green_Enviro_App
 {
 	public partial class CustomMessageBox : Form
 	{
-		public CustomMessageBox(string title, string message) 
+		public CustomMessageBox(Form parent, string title, string message) 
 		{
 			InitializeComponent();
 
 			this.Text = title;
 			this.CustomMsg.Text = message;
+			this.Owner = parent;
+			this.Owner.Enabled = false;
+			this.Enabled = true;
 			this.Activate();
 			this.Show();
 		}
 
 		private void OkBtn_Click(object sender, EventArgs e)
 		{
+			this.Enabled = false;
+			this.Owner.Enabled = true;
 			this.Close();
 		}
 	}

@@ -237,7 +237,7 @@ namespace Green_Enviro_App
                 GenerateDestructionCertificate(_store_path_of_pdf);
                 ClearDCFields();
                 _icon = MessageBoxIcon.None;
-                CustomMessageBox msg = new CustomMessageBox(_title, _message);
+                CustomMessageBox msg = new CustomMessageBox(_main_form, _title, _message);
             }
             else
             {
@@ -487,7 +487,7 @@ namespace Green_Enviro_App
                 string _company = "Companies";
                 string _company_database_col = "Name,ContactPerson,Email,ContactNumbers";
                 _database.InsertIntoDatabase(_company, _company_database_col, _values_for_database);
-                CustomMessageBox mb = new CustomMessageBox("Success","New Company inserted into the database");
+                CustomMessageBox mb = new CustomMessageBox(_main_form, "Success", "New Company inserted into the database");
         }
         private string GenerateExtractionDate ()
         {

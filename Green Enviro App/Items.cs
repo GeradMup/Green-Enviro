@@ -10,26 +10,29 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
-	public partial class Prices : Form
+	public partial class Items : Form
 	{
 
 		Database _database;
 		Receipt _receit;
+		NewItem _new_item;
 		string _previous_value = "";
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Prices" /> class.
+		/// Initializes a new instance of the <see cref="Items" /> class.
 		/// Class/Form used to all the price related editing
 		/// </summary>
-		public Prices(Receipt rcpt, Database db)
+		public Items(Receipt rcpt, Database db)
 		{
 			InitializeComponent();
 
 			_database = db;
 			_receit = rcpt;
+			_new_item = new NewItem(this);
+			_new_item.Owner = this;
 			LoadPrices();
 		}
 
-		private void LoadPrices() 
+		public void LoadPrices() 
 		{
 			DataTable items = _database.SelectAll("Items");
 
@@ -50,6 +53,12 @@ namespace Green_Enviro_App
 
 		private void PricesGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
+			if (ValidEditEntry(e) == false) 
+			{
+				CancelEdit(e);
+				return;
+			}
+
 			string _item_name = PricesGridView[1, e.RowIndex].Value.ToString();
 			string _price = PricesGridView[2, e.RowIndex].Value.ToString();
 			string _dealer_price = PricesGridView[3, e.RowIndex].Value.ToString();
@@ -66,31 +75,70 @@ namespace Green_Enviro_App
 
 				if (rowsAffected == 1)
 				{
-					CustomMessageBox mb = new CustomMessageBox("Success", "Price has been updated");
+					CustomMessageBox mb = new CustomMessageBox(this, "Success", "Price has been updated");
 				}
 				else 
 				{
-					CustomMessageBox mb = new CustomMessageBox("Failure", "Failed to update price");
+					CustomMessageBox mb = new CustomMessageBox(this, "Failure", "Failed to update price");
 				}
 			}
 			else if (dialogResult == DialogResult.No)
 			{
-				PricesGridView[e.ColumnIndex, e.RowIndex].Value = _previous_value;
-				PricesGridView.Refresh();
+				CancelEdit(e);
 			}
 		}
 
-		private void PricesGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+		private void PricesGridView_CellBeginEdit(object sender, DataGridViewCellEventArgs e)
 		{
 			_previous_value = PricesGridView[e.ColumnIndex, e.RowIndex].Value.ToString();
+		}
+
+		private void CancelEdit(DataGridViewCellEventArgs e) 
+		{
+			PricesGridView[e.ColumnIndex, e.RowIndex].Value = _previous_value;
+			PricesGridView.Refresh();
 		}
 
 		private void PriceChangeCpltBtn_Click(object sender, EventArgs e)
 		{
 			_receit.SetupPriceList();
 			this.Hide();
+			this.Owner.Enabled = true;
 			this.Enabled = false;
+		}
 
+		private bool ValidEditEntry(DataGridViewCellEventArgs e) 
+		{
+			bool _valid_entry = false;
+
+			if (PricesGridView[e.ColumnIndex, e.RowIndex].Value.ToString() == "")
+			{
+				MessageBox.Show("Please insert a price");
+				_valid_entry = false;
+			}
+			else 
+			{
+				_valid_entry = true;
+			}
+
+			return _valid_entry;
+		}
+
+		public void AddNewItem(string itemName, float itemPrice, float dealerPrice, string itemType) 
+		{
+		
+		}
+
+		private void PricesNewItemBtn_Click(object sender, EventArgs e)
+		{
+			_new_item.Activate();
+			_new_item.Enabled = true;
+			_new_item.Show();
+		}
+
+		private void Items_Load(object sender, EventArgs e)
+		{
+			this.Owner.Enabled = false;
 		}
 	}
 }
