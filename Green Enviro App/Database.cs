@@ -162,17 +162,18 @@ namespace Green_Enviro_App
 			CloseDatabase();
 		}
 
-		public void DeleteFromDatabase(string _table,string _condition)
+		public Int32 DeleteFromDatabase(string _table,string _condition)
         {
 			OpenDatabase();
 			//The Delete command goes as follow
 			string _deletion_cmd = "delete from " + _table + " where " + _condition;
+			Int32 rowsAffected = 0;
 			//Making the SQL command
 			_command.CommandText = _deletion_cmd;
 			//View if the changes where succesfully done on the console
 			try
 			{
-				Int32 rowsAffected = _command.ExecuteNonQuery();
+				rowsAffected = _command.ExecuteNonQuery();
 				Console.WriteLine("RowsAffected: {0}", rowsAffected);
 			}
 			catch (Exception ex)
@@ -181,6 +182,7 @@ namespace Green_Enviro_App
 			}
 
 			CloseDatabase();
+			return rowsAffected;
         }
 
 		public Int32 InsertIntoDatabase(string _table,string _parameters, string _values)

@@ -16,6 +16,7 @@ namespace Green_Enviro_App
 		Database _database;
 		Receipt _receit;
 		NewItem _new_item;
+		string _table_name = "Items";
 		string _previous_value = "";
 		DataTable _items;
 		/// <summary>
@@ -30,12 +31,12 @@ namespace Green_Enviro_App
 			_receit = rcpt;
 			_new_item = new NewItem(this);
 			_new_item.Owner = this;
-			LoadPrices();
+			LoadItems();
 		}
 
-		public void LoadPrices() 
+		public void LoadItems() 
 		{
-			_items = _database.SelectAll("Items");
+			_items = _database.SelectAll(_table_name);
 
 			PricesGridView.DataSource = _items;
 			PricesGridView.Columns[0].ReadOnly = true;
@@ -67,7 +68,7 @@ namespace Green_Enviro_App
 			DialogResult dialogResult = MessageBox.Show("Are you sure you want to change the price?", "Confirm Edit", MessageBoxButtons.YesNo);
 			if (dialogResult == DialogResult.Yes)
 			{
-				string _table_name = "Items";
+				
 				string _column_value_pairs = "Price = '" + _price + "', DealerPrice = '" + _dealer_price + "'";   
 				string _identification_column = "Name";
 				string _identifier = "'" + _item_name + "'";
@@ -106,6 +107,8 @@ namespace Green_Enviro_App
 			this.Hide();
 			this.Owner.Enabled = true;
 			this.Enabled = false;
+			this.Owner.Show();
+
 		}
 
 		private bool ValidEditEntry(DataGridViewCellEventArgs e) 
@@ -127,7 +130,6 @@ namespace Green_Enviro_App
 
 		public void AddNewItem(string itemName, float itemPrice, float dealerPrice, string itemType) 
 		{
-			string _table_name = "Items";
 			string _column_names = "Name,Price,DealerPrice,Type";
 			string _values = "'" + itemName + "','" + itemPrice + "','" + dealerPrice + "','" + itemType + "'";
 			bool _item_exist = false;
@@ -147,7 +149,7 @@ namespace Green_Enviro_App
 				if (_rows_affected == 1)
 				{
 					CustomMessageBox mb = new CustomMessageBox(this, "Success", "New Item Added");
-					LoadPrices();
+					LoadItems();
 					PricesGridView.Refresh();
 				}
 			}
@@ -167,6 +169,21 @@ namespace Green_Enviro_App
 		private void Items_Load(object sender, EventArgs e)
 		{
 			this.Owner.Enabled = false;
+		}
+
+		private void ItemsDeleteItemBtn_Click(object sender, EventArgs e)
+		{
+			int _current_row = PricesGridView.CurrentCell.RowIndex;
+			string _item_id = PricesGridView[0,_current_row].Value.ToString();
+			
+			string _deletion_condition = "Id = '" + _item_id + "'";
+
+			Int32 _rows_affected = _database.DeleteFromDatabase(_table_name, _deletion_condition);
+			if (_rows_affected == 1) 
+			{
+				LoadItems();
+				CustomMessageBox mb = new CustomMessageBox(this, "Success", "Item Deleted");
+			}
 		}
 	}
 }

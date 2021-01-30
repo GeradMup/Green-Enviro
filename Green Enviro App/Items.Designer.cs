@@ -31,8 +31,9 @@ namespace Green_Enviro_App
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Items));
 			this.PricesGridView = new System.Windows.Forms.DataGridView();
-			this.PriceChangeCpltBtn = new System.Windows.Forms.Button();
-			this.PricesNewItemBtn = new System.Windows.Forms.Button();
+			this.ItemsChangeCpltBtn = new System.Windows.Forms.Button();
+			this.ItemsNewItemBtn = new System.Windows.Forms.Button();
+			this.ItemsDeleteItemBtn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.PricesGridView)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -54,26 +55,36 @@ namespace Green_Enviro_App
 			this.PricesGridView.TabIndex = 0;
 			this.PricesGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.PricesGridView_CellEndEdit);
 			// 
-			// PriceChangeCpltBtn
+			// ItemsChangeCpltBtn
 			// 
-			this.PriceChangeCpltBtn.Location = new System.Drawing.Point(82, 525);
-			this.PriceChangeCpltBtn.Margin = new System.Windows.Forms.Padding(4);
-			this.PriceChangeCpltBtn.Name = "PriceChangeCpltBtn";
-			this.PriceChangeCpltBtn.Size = new System.Drawing.Size(247, 51);
-			this.PriceChangeCpltBtn.TabIndex = 1;
-			this.PriceChangeCpltBtn.Text = "Done";
-			this.PriceChangeCpltBtn.UseVisualStyleBackColor = true;
-			this.PriceChangeCpltBtn.Click += new System.EventHandler(this.PriceChangeCpltBtn_Click);
+			this.ItemsChangeCpltBtn.Location = new System.Drawing.Point(82, 525);
+			this.ItemsChangeCpltBtn.Margin = new System.Windows.Forms.Padding(4);
+			this.ItemsChangeCpltBtn.Name = "ItemsChangeCpltBtn";
+			this.ItemsChangeCpltBtn.Size = new System.Drawing.Size(247, 51);
+			this.ItemsChangeCpltBtn.TabIndex = 1;
+			this.ItemsChangeCpltBtn.Text = "Done";
+			this.ItemsChangeCpltBtn.UseVisualStyleBackColor = true;
+			this.ItemsChangeCpltBtn.Click += new System.EventHandler(this.PriceChangeCpltBtn_Click);
 			// 
-			// PricesNewItemBtn
+			// ItemsNewItemBtn
 			// 
-			this.PricesNewItemBtn.Location = new System.Drawing.Point(363, 525);
-			this.PricesNewItemBtn.Name = "PricesNewItemBtn";
-			this.PricesNewItemBtn.Size = new System.Drawing.Size(239, 51);
-			this.PricesNewItemBtn.TabIndex = 2;
-			this.PricesNewItemBtn.Text = "New Item";
-			this.PricesNewItemBtn.UseVisualStyleBackColor = true;
-			this.PricesNewItemBtn.Click += new System.EventHandler(this.PricesNewItemBtn_Click);
+			this.ItemsNewItemBtn.Location = new System.Drawing.Point(363, 525);
+			this.ItemsNewItemBtn.Name = "ItemsNewItemBtn";
+			this.ItemsNewItemBtn.Size = new System.Drawing.Size(239, 51);
+			this.ItemsNewItemBtn.TabIndex = 2;
+			this.ItemsNewItemBtn.Text = "New Item";
+			this.ItemsNewItemBtn.UseVisualStyleBackColor = true;
+			this.ItemsNewItemBtn.Click += new System.EventHandler(this.PricesNewItemBtn_Click);
+			// 
+			// ItemsDeleteItemBtn
+			// 
+			this.ItemsDeleteItemBtn.Location = new System.Drawing.Point(635, 525);
+			this.ItemsDeleteItemBtn.Name = "ItemsDeleteItemBtn";
+			this.ItemsDeleteItemBtn.Size = new System.Drawing.Size(239, 51);
+			this.ItemsDeleteItemBtn.TabIndex = 3;
+			this.ItemsDeleteItemBtn.Text = "Delete Item";
+			this.ItemsDeleteItemBtn.UseVisualStyleBackColor = true;
+			this.ItemsDeleteItemBtn.Click += new System.EventHandler(this.ItemsDeleteItemBtn_Click);
 			// 
 			// Items
 			// 
@@ -81,8 +92,9 @@ namespace Green_Enviro_App
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.DarkSlateGray;
 			this.ClientSize = new System.Drawing.Size(982, 589);
-			this.Controls.Add(this.PricesNewItemBtn);
-			this.Controls.Add(this.PriceChangeCpltBtn);
+			this.Controls.Add(this.ItemsDeleteItemBtn);
+			this.Controls.Add(this.ItemsNewItemBtn);
+			this.Controls.Add(this.ItemsChangeCpltBtn);
 			this.Controls.Add(this.PricesGridView);
 			this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -100,7 +112,8 @@ namespace Green_Enviro_App
 		#endregion
 
 		private System.Windows.Forms.DataGridView PricesGridView;
-		private System.Windows.Forms.Button PriceChangeCpltBtn;
-		private System.Windows.Forms.Button PricesNewItemBtn;
+		private System.Windows.Forms.Button ItemsChangeCpltBtn;
+		private System.Windows.Forms.Button ItemsNewItemBtn;
+		private System.Windows.Forms.Button ItemsDeleteItemBtn;
 	}
 }
