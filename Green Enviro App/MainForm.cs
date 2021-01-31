@@ -89,10 +89,10 @@ namespace Green_Enviro_App
             _receipt.UpdateCustomerDetails();
 		}
 
-		private void PurchaseBtn_Click(object sender, EventArgs e)
-		{
+        private void PurchaseBtn_Click(object sender, EventArgs e)
+        {
             _receipt.CompletePurchase();
-		}
+        }
 
 		private void CancelPurchaseBtn_Click(object sender, EventArgs e)
 		{
@@ -309,6 +309,14 @@ namespace Green_Enviro_App
 		private void NewCustomer_Click(object sender, EventArgs e)
 		{
             _customers.NewCustomer();
+		}
+
+		private void PrintReceipt_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+		{
+            Graphics _printing_graphic = this.CreateGraphics();
+            Bitmap map = new Bitmap(receiptBox.Size.Width, receiptBox.Size.Height, _printing_graphic);
+            Graphics _print_image = Graphics.FromImage(map);
+            _print_image.CopyFromScreen(receiptBox.Location.X, receiptBox.Location.Y, 0, 0, receiptBox.Size);
 		}
 	}
 

@@ -38,6 +38,8 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.ReceiptDefaultCustomerCheckBox = new System.Windows.Forms.CheckBox();
+			this.NewCustomer = new System.Windows.Forms.Button();
 			this.ReceiptPriceEditBtn = new System.Windows.Forms.Button();
 			this.PriceBox = new System.Windows.Forms.NumericUpDown();
 			this.quantityBox = new System.Windows.Forms.NumericUpDown();
@@ -188,8 +190,6 @@ namespace Green_Enviro_App
 			this.label44 = new System.Windows.Forms.Label();
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
-			this.NewCustomer = new System.Windows.Forms.Button();
-			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
@@ -239,7 +239,7 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
-			this.ReceiptPage.Controls.Add(this.checkBox3);
+			this.ReceiptPage.Controls.Add(this.ReceiptDefaultCustomerCheckBox);
 			this.ReceiptPage.Controls.Add(this.NewCustomer);
 			this.ReceiptPage.Controls.Add(this.ReceiptPriceEditBtn);
 			this.ReceiptPage.Controls.Add(this.PriceBox);
@@ -272,6 +272,28 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
+			// 
+			// ReceiptDefaultCustomerCheckBox
+			// 
+			this.ReceiptDefaultCustomerCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.ReceiptDefaultCustomerCheckBox.AutoSize = true;
+			this.ReceiptDefaultCustomerCheckBox.Location = new System.Drawing.Point(644, 36);
+			this.ReceiptDefaultCustomerCheckBox.Name = "ReceiptDefaultCustomerCheckBox";
+			this.ReceiptDefaultCustomerCheckBox.Size = new System.Drawing.Size(109, 27);
+			this.ReceiptDefaultCustomerCheckBox.TabIndex = 30;
+			this.ReceiptDefaultCustomerCheckBox.Text = "Default";
+			this.ReceiptDefaultCustomerCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// NewCustomer
+			// 
+			this.NewCustomer.Location = new System.Drawing.Point(888, 269);
+			this.NewCustomer.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.NewCustomer.Name = "NewCustomer";
+			this.NewCustomer.Size = new System.Drawing.Size(172, 32);
+			this.NewCustomer.TabIndex = 28;
+			this.NewCustomer.Text = "New Customer";
+			this.NewCustomer.UseVisualStyleBackColor = true;
+			this.NewCustomer.Click += new System.EventHandler(this.NewCustomer_Click);
 			// 
 			// ReceiptPriceEditBtn
 			// 
@@ -1890,7 +1912,7 @@ namespace Green_Enviro_App
 			this.comboBox1.Location = new System.Drawing.Point(51, 158);
 			this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(191, 24);
+			this.comboBox1.Size = new System.Drawing.Size(191, 25);
 			this.comboBox1.TabIndex = 53;
 			// 
 			// numericUpDown1
@@ -1919,7 +1941,7 @@ namespace Green_Enviro_App
 			this.comboBox2.Location = new System.Drawing.Point(81, 33);
 			this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(59, 24);
+			this.comboBox2.Size = new System.Drawing.Size(59, 25);
 			this.comboBox2.TabIndex = 51;
 			// 
 			// comboBox3
@@ -1933,7 +1955,7 @@ namespace Green_Enviro_App
 			this.comboBox3.Location = new System.Drawing.Point(181, 284);
 			this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(72, 24);
+			this.comboBox3.Size = new System.Drawing.Size(72, 25);
 			this.comboBox3.TabIndex = 50;
 			// 
 			// button1
@@ -2055,28 +2077,6 @@ namespace Green_Enviro_App
 			this.label46.Size = new System.Drawing.Size(81, 19);
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
-			// 
-			// NewCustomer
-			// 
-			this.NewCustomer.Location = new System.Drawing.Point(888, 269);
-			this.NewCustomer.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.NewCustomer.Name = "NewCustomer";
-			this.NewCustomer.Size = new System.Drawing.Size(172, 32);
-			this.NewCustomer.TabIndex = 28;
-			this.NewCustomer.Text = "New Customer";
-			this.NewCustomer.UseVisualStyleBackColor = true;
-			this.NewCustomer.Click += new System.EventHandler(this.NewCustomer_Click);
-			// 
-			// checkBox3
-			// 
-			this.checkBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(644, 36);
-			this.checkBox3.Name = "checkBox3";
-			this.checkBox3.Size = new System.Drawing.Size(109, 27);
-			this.checkBox3.TabIndex = 30;
-			this.checkBox3.Text = "Default";
-			this.checkBox3.UseVisualStyleBackColor = true;
 			// 
 			// Main_Form
 			// 
@@ -2359,6 +2359,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label54;
 		public System.Windows.Forms.RichTextBox SummariesProfitBox;
 		private System.Windows.Forms.Button NewCustomer;
-		private System.Windows.Forms.CheckBox checkBox3;
+		public System.Windows.Forms.CheckBox ReceiptDefaultCustomerCheckBox;
 	}
 }

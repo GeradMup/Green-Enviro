@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -207,7 +208,7 @@ namespace Green_Enviro_App
             bool _all_good = false;
             decimal _zero = (decimal)0.00;
             
-            if (_main_form.customerNumbersList.SelectedItem == null)
+            if ((_main_form.customerNumbersList.SelectedItem == null) && (_main_form.ReceiptDefaultCustomerCheckBox.CheckState == CheckState.Unchecked))
             {
                 //First check if customer details have been selected
                 _error_message = "Please select customer number";
@@ -329,6 +330,7 @@ namespace Green_Enviro_App
         public void CompletePurchase() 
         {
             _logs.AddPurchase(_purchased_items);
+            PrintReceipt();
             ResetReceipt();
             _purchased_items.Clear();
         }
@@ -389,6 +391,27 @@ namespace Green_Enviro_App
             _items_form.Enabled = true;
             _items_form.Activate();
             _items_form.Show();
+        }
+
+        public void PrintReceipt() 
+        {
+            PrintDocument printDocument1 = new PrintDocument();
+            printDocument1.DefaultPageSettings.PaperSize = new PaperSize("Custom", _main_form.receiptBox.Size.Width, _main_form.receiptBox.Size.Height);
+            printDocument1.PrintPage += new PrintPageEventHandler(this.PrintDocument_PrintPage);
+            PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
+            printPreviewDialog1.Document = printDocument1;
+            DialogResult result = printPreviewDialog1.ShowDialog();
+
+            if (result == DialogResult.OK) 
+            {
+                printDocument1.Print();
+            }
+
+        }
+
+        private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e) 
+        {
+            e.Graphics.DrawString(_main_form.receiptBox.Text, new Font("Consolas", _main_form.receiptBox.Font.Size), System.Drawing.Brushes.Black,12,0);
         }
 	}
 }
