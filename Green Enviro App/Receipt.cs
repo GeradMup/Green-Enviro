@@ -395,12 +395,15 @@ namespace Green_Enviro_App
 
         public void PrintReceipt() 
         {
+            int _width_offset = 30;
+            
+            int _height = _main_form.receiptBox.Lines.Count() * 20;
             PrintDocument printDocument1 = new PrintDocument();
-            printDocument1.DefaultPageSettings.PaperSize = new PaperSize("Custom", _main_form.receiptBox.Size.Width, _main_form.receiptBox.Size.Height);
+            printDocument1.DefaultPageSettings.PaperSize = new PaperSize("Custom", _main_form.receiptBox.Size.Width - _width_offset, _height);
             printDocument1.PrintPage += new PrintPageEventHandler(this.PrintDocument_PrintPage);
-            PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
-            printPreviewDialog1.Document = printDocument1;
-            DialogResult result = printPreviewDialog1.ShowDialog();
+            PrintDialog printDialog1 = new PrintDialog();
+            printDialog1.Document = printDocument1;
+            DialogResult result = printDialog1.ShowDialog();
 
             if (result == DialogResult.OK) 
             {
@@ -411,7 +414,8 @@ namespace Green_Enviro_App
 
         private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e) 
         {
-            e.Graphics.DrawString(_main_form.receiptBox.Text, new Font("Consolas", _main_form.receiptBox.Font.Size), System.Drawing.Brushes.Black,12,0);
+            float _font_size = 8.5F;
+            e.Graphics.DrawString(_main_form.receiptBox.Text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black,-5,-20);
         }
 	}
 }
