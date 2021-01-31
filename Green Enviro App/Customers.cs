@@ -16,14 +16,16 @@ namespace Green_Enviro_App
 		Database _database;
 		Main_Form _main_form;
 		DataTable _customers = new DataTable();
+		Receipt _receipt;
 		string _customers_table_name = "Customers";
-		public Customers(Main_Form main, Database data)
+		public Customers(Main_Form main, Database data, Receipt receipt)
 		{
 			InitializeComponent();
 
 			_database = data;
 			this.Owner = main;
 			_main_form = main;
+			_receipt = receipt;
 			LoadCustomers();
 		}
 
@@ -70,6 +72,7 @@ namespace Green_Enviro_App
 
 		private void Exit() 
 		{
+			ClearFields();
 			this.Owner.Enabled = true;
 			this.Owner.Show();
 			this.Hide();
@@ -122,7 +125,8 @@ namespace Green_Enviro_App
 
 			if (_new_dialog.ShowDialog() == DialogResult.OK) 
 			{
-				NewCustomerIdPictureBox.Image = new Bitmap(_new_dialog.FileName);
+				NewCustomerIdPictureBox.Image = Image.FromFile(_new_dialog.FileName);
+				
 			}
 		}
 
@@ -161,17 +165,28 @@ namespace Green_Enviro_App
 			if (_rows_affected == 1) 
 			{
 				string _path_to_main_folder = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-				string _path_to_images_folder = _path_to_main_folder + @"resources/Customers" + _number.ToString() + ".jpg";
-
+				string _path_to_image = _path_to_main_folder + @"\resources\Customers\" + _number.ToString() + ".jpg";
 				try
 				{
-					NewCustomerIdPictureBox.Image.Save(_path_to_images_folder, System.Drawing.Imaging.ImageFormat.Jpeg);
+					NewCustomerIdPictureBox.Image.Save(_path_to_image, System.Drawing.Imaging.ImageFormat.Jpeg);
+					_receipt.setupCustomerList();
+					CustomMessageBox mb = new CustomMessageBox(this, "Success", "New Customer Added Successfully");
+					Exit();
 				}
 				catch (Exception ex) 
 				{
-					MessageBox.Show("Failed to save image");
+					MessageBox.Show("Failed to save image: \n" + ex.Message);
 				}
 			}
+		}
+
+		private void ClearFields() 
+		{
+			NewCustomerNumber.Value = (decimal)0.00;
+			NewCustomerID.Text = "";
+			NewCustomerName.Text = "";
+			NewCustomerSurname.Text = "";
+			NewCustomerIdPictureBox.Image = null;
 		}
 	}
 }

@@ -193,6 +193,7 @@ namespace Green_Enviro_App
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(5);
 			this.Name = "Customers";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Green Envrio SA Recycling";
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerNumber)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPictureBox)).EndInit();

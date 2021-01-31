@@ -38,7 +38,7 @@ namespace Green_Enviro_App
             _expenses = new Expenses(this, _database);
             _wages = new Wages(this, _database);
             _summaries = new Summaries(this);
-            _customers = new Customers(this, _database);
+            _customers = new Customers(this, _database, _receipt);
         }
 
 

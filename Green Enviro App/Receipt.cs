@@ -86,7 +86,7 @@ namespace Green_Enviro_App
             _logs.setTypes(_first_arg, _second_arg);
         }
 
-        private void setupCustomerList() 
+        public void setupCustomerList() 
         {
             //Gets all customer details and stores them in a DataTable name _customers
             _customers = _database.SelectAll("Customers");
@@ -95,6 +95,7 @@ namespace Green_Enviro_App
 
             int _customer_number_column = 0;
 
+            _main_form.customerNumbersList.Items.Clear();
             foreach (DataRow row in _customers.Rows)
             {
                 //Selects the customer numbers and adds to the drop down list on the receipt page
