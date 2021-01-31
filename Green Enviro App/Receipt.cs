@@ -16,7 +16,7 @@ namespace Green_Enviro_App
         Main_Form _main_form;
         Database _database;
         Purchases _logs;
-        Items _prices;
+        Items _items_form;
 
         DataTable _items;
         DataTable _customers;
@@ -39,8 +39,8 @@ namespace Green_Enviro_App
             _main_form = form;
             _database = data;
             _logs = logs;
-            _prices = new Items(this,_database);
-            _prices.Owner = _main_form;
+            _items_form = new Items(this,_database);
+            _items_form.Owner = _main_form;
 
             SetupPriceList();
             setupReceipt();
@@ -385,9 +385,9 @@ namespace Green_Enviro_App
         public void EditPrices() 
         {
             ClearFields();
-            _prices.Enabled = true;
-            _prices.Activate();
-            _prices.Show();
+            _items_form.Enabled = true;
+            _items_form.Activate();
+            _items_form.Show();
         }
 	}
 }

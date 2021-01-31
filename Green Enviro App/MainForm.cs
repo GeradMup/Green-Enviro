@@ -20,6 +20,7 @@ namespace Green_Enviro_App
         Wages _wages;
 		Destruction_Certificate _destruction_certificate;
         Summaries _summaries;
+        Customers _customers;
 
 		/// <summary>
         /// This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.
@@ -37,6 +38,7 @@ namespace Green_Enviro_App
             _expenses = new Expenses(this, _database);
             _wages = new Wages(this, _database);
             _summaries = new Summaries(this);
+            _customers = new Customers(this, _database);
         }
 
 
@@ -304,6 +306,10 @@ namespace Green_Enviro_App
             _summaries.MonthSelected();
 		}
 
+		private void NewCustomer_Click(object sender, EventArgs e)
+		{
+            _customers.NewCustomer();
+		}
 	}
 
 }

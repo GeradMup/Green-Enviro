@@ -188,6 +188,8 @@ namespace Green_Enviro_App
 			this.label44 = new System.Windows.Forms.Label();
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
+			this.NewCustomer = new System.Windows.Forms.Button();
+			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
@@ -237,6 +239,8 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.checkBox3);
+			this.ReceiptPage.Controls.Add(this.NewCustomer);
 			this.ReceiptPage.Controls.Add(this.ReceiptPriceEditBtn);
 			this.ReceiptPage.Controls.Add(this.PriceBox);
 			this.ReceiptPage.Controls.Add(this.quantityBox);
@@ -338,7 +342,7 @@ namespace Green_Enviro_App
 			// CustomerNameTextBox
 			// 
 			this.CustomerNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.CustomerNameTextBox.Location = new System.Drawing.Point(592, 146);
+			this.CustomerNameTextBox.Location = new System.Drawing.Point(735, 178);
 			this.CustomerNameTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.CustomerNameTextBox.Name = "CustomerNameTextBox";
 			this.CustomerNameTextBox.ReadOnly = true;
@@ -348,7 +352,7 @@ namespace Green_Enviro_App
 			// CustomerSurnameTextBox
 			// 
 			this.CustomerSurnameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.CustomerSurnameTextBox.Location = new System.Drawing.Point(592, 203);
+			this.CustomerSurnameTextBox.Location = new System.Drawing.Point(735, 225);
 			this.CustomerSurnameTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.CustomerSurnameTextBox.Name = "CustomerSurnameTextBox";
 			this.CustomerSurnameTextBox.ReadOnly = true;
@@ -359,7 +363,7 @@ namespace Green_Enviro_App
 			// 
 			this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(459, 150);
+			this.label7.Location = new System.Drawing.Point(640, 182);
 			this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(54, 23);
@@ -370,7 +374,7 @@ namespace Green_Enviro_App
 			// 
 			this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(459, 210);
+			this.label6.Location = new System.Drawing.Point(640, 228);
 			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(87, 23);
@@ -380,7 +384,7 @@ namespace Green_Enviro_App
 			// CustomerIDNumberTextBox
 			// 
 			this.CustomerIDNumberTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(592, 89);
+			this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(735, 132);
 			this.CustomerIDNumberTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.CustomerIDNumberTextBox.Name = "CustomerIDNumberTextBox";
 			this.CustomerIDNumberTextBox.ReadOnly = true;
@@ -391,7 +395,7 @@ namespace Green_Enviro_App
 			// 
 			this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(459, 91);
+			this.label5.Location = new System.Drawing.Point(640, 135);
 			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(32, 23);
@@ -402,7 +406,7 @@ namespace Green_Enviro_App
 			// 
 			this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(459, 34);
+			this.label4.Location = new System.Drawing.Point(640, 83);
 			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(175, 23);
@@ -417,10 +421,10 @@ namespace Green_Enviro_App
 			this.customerNumbersList.FormattingEnabled = true;
 			this.customerNumbersList.IntegralHeight = false;
 			this.customerNumbersList.ItemHeight = 23;
-			this.customerNumbersList.Location = new System.Drawing.Point(821, 32);
+			this.customerNumbersList.Location = new System.Drawing.Point(939, 80);
 			this.customerNumbersList.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.customerNumbersList.Name = "customerNumbersList";
-			this.customerNumbersList.Size = new System.Drawing.Size(96, 31);
+			this.customerNumbersList.Size = new System.Drawing.Size(121, 31);
 			this.customerNumbersList.TabIndex = 15;
 			this.customerNumbersList.SelectedIndexChanged += new System.EventHandler(this.customerNumbersList_SelectedIndexChanged);
 			// 
@@ -429,10 +433,10 @@ namespace Green_Enviro_App
 			this.IDPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.IDPictureBox.Location = new System.Drawing.Point(521, 270);
+			this.IDPictureBox.Location = new System.Drawing.Point(415, 338);
 			this.IDPictureBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.IDPictureBox.Name = "IDPictureBox";
-			this.IDPictureBox.Size = new System.Drawing.Size(355, 438);
+			this.IDPictureBox.Size = new System.Drawing.Size(645, 507);
 			this.IDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.IDPictureBox.TabIndex = 1;
 			this.IDPictureBox.TabStop = false;
@@ -487,7 +491,7 @@ namespace Green_Enviro_App
 			this.logo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
 			this.logo.InitialImage = null;
-			this.logo.Location = new System.Drawing.Point(1363, 11);
+			this.logo.Location = new System.Drawing.Point(1077, 11);
 			this.logo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.logo.Name = "logo";
 			this.logo.Size = new System.Drawing.Size(425, 167);
@@ -537,7 +541,7 @@ namespace Green_Enviro_App
 			this.receiptBox.BackColor = System.Drawing.Color.White;
 			this.receiptBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.receiptBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.receiptBox.Location = new System.Drawing.Point(905, 6);
+			this.receiptBox.Location = new System.Drawing.Point(1077, 11);
 			this.receiptBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.receiptBox.Name = "receiptBox";
 			this.receiptBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -2052,6 +2056,28 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// NewCustomer
+			// 
+			this.NewCustomer.Location = new System.Drawing.Point(888, 269);
+			this.NewCustomer.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.NewCustomer.Name = "NewCustomer";
+			this.NewCustomer.Size = new System.Drawing.Size(172, 32);
+			this.NewCustomer.TabIndex = 28;
+			this.NewCustomer.Text = "New Customer";
+			this.NewCustomer.UseVisualStyleBackColor = true;
+			this.NewCustomer.Click += new System.EventHandler(this.NewCustomer_Click);
+			// 
+			// checkBox3
+			// 
+			this.checkBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.checkBox3.AutoSize = true;
+			this.checkBox3.Location = new System.Drawing.Point(644, 36);
+			this.checkBox3.Name = "checkBox3";
+			this.checkBox3.Size = new System.Drawing.Size(109, 27);
+			this.checkBox3.TabIndex = 30;
+			this.checkBox3.Text = "Default";
+			this.checkBox3.UseVisualStyleBackColor = true;
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2332,5 +2358,7 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.RichTextBox SummariesFPurchasesBox;
 		private System.Windows.Forms.Label label54;
 		public System.Windows.Forms.RichTextBox SummariesProfitBox;
+		private System.Windows.Forms.Button NewCustomer;
+		private System.Windows.Forms.CheckBox checkBox3;
 	}
 }
