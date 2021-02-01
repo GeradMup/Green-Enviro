@@ -15,11 +15,18 @@ namespace Green_Enviro_App
 {
     public partial class Email : Form
     {
+        /*
+         * This class is made to send the pdf generated after creating a Destruction Certificate
+         * It is to be improved, authentification with Google is required and adding the pdf attachment as a 
+         * criteria as well is required.
+         * Linking pdf generated and any pdf with the attachment is a suggestion to ease selection of pdf's
+        */
         public Email()
         {
             InitializeComponent();
             //Lets generate the SMTP different servers so as to ease the process for ppl making the emails
             SMTPServers();
+            //Hiding the password with the '*' character
             emailAddressPasswordField.PasswordChar = '*';
 
         }
@@ -35,7 +42,6 @@ namespace Green_Enviro_App
 
         private void SendAnEmail()
         {
-            emailAddressUsernameField.Text = emailAddressFromField.Text;
             try
             {
                 MailMessage _message = new MailMessage(emailAddressFromField.Text, emailAddressToField.Text, emailAddressSubjectField.Text, emailBodyField.Text);
@@ -77,7 +83,8 @@ namespace Green_Enviro_App
 
         private void emailAddressUsernameField_TextChanged(object sender, EventArgs e)
         {
-            emailAddressUsernameField.AppendText(emailAddressFromField.Text);
+            // Here uncomment when finalising as usually username and the email that are sending from are the same
+            //emailAddressUsernameField.Text = emailAddressFromField.Text;
         }
     }
 }

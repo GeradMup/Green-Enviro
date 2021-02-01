@@ -25,6 +25,9 @@ namespace Green_Enviro_App
         string _deletion_information = "";
         int _deleted_row_index = 0;
 
+        /*
+         * Loading the database table for the new users into the class 
+         */
         public UserDatabaseForm(Database _db)
         {
             InitializeComponent();
@@ -32,11 +35,16 @@ namespace Green_Enviro_App
             LoadUserDataTable();
         }
 
+        
         private void UserAccountsForm_Load(object sender, EventArgs e)
         {
+            /*Binding the Datatable of the Users table to a data grid view showing the data table on the form */
             BindDataGridToUserTable();
         }
 
+        /*
+         * Function Binding the Datatable of the Users table to a data grid view.
+         */
         private void BindDataGridToUserTable()
         {
             _data_table = _database.SelectAll("Users");
@@ -48,6 +56,9 @@ namespace Green_Enviro_App
             this.Hide();
         }
 
+        /*
+         * Loading the Users data table from the database at run time 
+         */
         public void LoadUserDataTable()
         {
             //Gets all user details and stores them in a DataTable 
@@ -69,9 +80,13 @@ namespace Green_Enviro_App
             AccountID_Selected();
         }
 
+        /*
+         * Function that verifies if an Account ID number has been selected and displays them in the 
+         * respective textboxes.
+         */
         private void AccountID_Selected()
         {
-
+            //If not ID number selected do nothing
             if (accountIdList.SelectedItem == null)
             {
                 usernameSelectedForDeletionField.Text = "";
@@ -81,6 +96,7 @@ namespace Green_Enviro_App
                 return;
             }
 
+            // Displays the respective information per account id number to each textboxes
             string _user_account_id = accountIdList.SelectedItem.ToString();
             _db_table = "Users";
             _deletion_information = "AccountId = '" + _user_account_id + "'";
@@ -108,7 +124,12 @@ namespace Green_Enviro_App
             //A user account is displayed and therefore can be deleted hence the variable is true
             _accountId_selected = true;
         }
-        //
+        
+        /*
+         * Function of the User Deletion Btn that verifies if all info selected
+         * and if yes verifies once more if the user wants to delete the information
+         * from the database as delete information is not recurperable.
+         */
         private void userDeletionBtn_Click(object sender, EventArgs e)
         {
             if (_accountId_selected == true)
@@ -136,6 +157,7 @@ namespace Green_Enviro_App
             }
         }
 
+        // Function that clears all the textboxes once called upon
         private void ClearUserDBFields()
         {
             accountIdList.SelectedItem = null;

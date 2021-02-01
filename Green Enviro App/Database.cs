@@ -162,6 +162,7 @@ namespace Green_Enviro_App
 			CloseDatabase();
 		}
 
+		// Functions deleting any information per condition from a database table selected
 		public void DeleteFromDatabase(string _table,string _condition)
         {
 			OpenDatabase();
@@ -183,6 +184,7 @@ namespace Green_Enviro_App
 			CloseDatabase();
         }
 
+		// Functions inserting any information per parameters from a database table selected
 		public Int32 InsertIntoDatabase(string _table,string _parameters, string _values)
         {
 			OpenDatabase();

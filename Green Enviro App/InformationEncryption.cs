@@ -44,9 +44,12 @@ namespace Green_Enviro_App
             string encryption = Convert.ToBase64String(output_array, 0, output_array.Length);
             return encryption;
         }
+        //Function that decrypts any encrypted information.
         public string Decrypt(string input)
         {
+            //Containing any input information into a array
             byte[] input_array = Convert.FromBase64String(input);
+            //Decrypting the array using the Triple DES Cryptography method
             TripleDESCryptoServiceProvider triple_DES = new TripleDESCryptoServiceProvider
             {
                 Key = UTF8Encoding.UTF8.GetBytes(_128_cipher_key),

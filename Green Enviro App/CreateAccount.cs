@@ -47,6 +47,10 @@ namespace Green_Enviro_App
         Database _database;
         DataTable _user;
         UserDatabaseForm _user_database ;
+
+        /*
+         * Create Account for new Employee users 
+         */
         public CreateAccount(Database _db,UserDatabaseForm _user_db)
         {
             InitializeComponent();
@@ -156,6 +160,11 @@ namespace Green_Enviro_App
             return _new_tuple;
 
         }
+        
+        /*
+         * Verifying that all the information for the account creation is inputted
+         * and therefore can generate a new user for the company.
+         */
         private void accountCreationVerification()
         {
             var _acc_creation_validity = verifyAccount();
@@ -189,6 +198,9 @@ namespace Green_Enviro_App
             ClearCredentials();
         }
         
+        /*
+         * Adding a new user to the Database and list to contiuously update the valid account for use. 
+         */
         private void addNewUser()
         {
             //Encrypting the password and storing not the password itself but its encryption using a 196 bit cipher key
@@ -219,6 +231,10 @@ namespace Green_Enviro_App
             Credentials _new_user = new Credentials("G", _encrypted_user_password, "G");
             _credentials.Add(_new_user);
         }
+        
+        /*
+         *  Verifies if the users account information are repeated. 
+         */
         private Tuple<bool,bool> isAccountInfoRepeated()
         {
             int index = 0;
@@ -267,6 +283,10 @@ namespace Green_Enviro_App
         {
 
         }
+
+        /*
+         * Functions that clear all textboxes  
+         */
         private void ClearCredentials()
         {
             newUserNameField.Clear();
@@ -283,6 +303,10 @@ namespace Green_Enviro_App
             _user = _database.SelectAll("Users");
            //MessageBox.Show("All Current Users " + _user.Rows.Count.ToString());
         }
+
+        /*
+         * Functions that shows the database of the Users account on the console 
+         */
         private void PrintDataTable()
         {
             _user = _database.SelectAll("Users");
@@ -307,6 +331,11 @@ namespace Green_Enviro_App
                 }
             }
         }
+        
+        /*
+         * Loading the constructor with the database information of any Users already entered
+         * therefore at runtime, all required information are available.
+         */
         private void LoadDataBase()
         {
             _user = _database.SelectAll("Users");
@@ -331,6 +360,10 @@ namespace Green_Enviro_App
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
+        /*
+         * Inserts the permission level to the permission level combo box.
+         */
         private void SelectPermissionLevel()
         {
             userPermissionLvlBx.DropDownStyle = ComboBoxStyle.DropDownList;
