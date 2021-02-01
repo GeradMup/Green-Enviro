@@ -17,11 +17,13 @@ namespace Green_Enviro_App
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
 		string _path_to_purchases = @"..//..//resources//Logs//Purchases//" + _month + ".csv";
+		string _path_to_float = @"..//..//resources//Logs//Purchases//" + _month + "_float.csv";
 		Main_Form _main_form;
 
 		DataTable _purchases_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
+		
 
 		string _ferrous;
 		string _non_ferrous;

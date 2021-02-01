@@ -114,6 +114,16 @@ namespace Green_Enviro_App
             _receipt.EditPrices();
         }
 
+        private void ReprintReceiptBtn_Click(object sender, EventArgs e)
+        {
+            _receipt.PrintReceipt();
+        }
+
+        private void AddFloatBtn_Click(object sender, EventArgs e)
+        {
+            _receipt.EditFloat();
+        }
+
         //******************************************************************************************************************************
         //PURCHASE LOG RELATED CALLS
         //******************************************************************************************************************************
@@ -318,6 +328,7 @@ namespace Green_Enviro_App
             Graphics _print_image = Graphics.FromImage(map);
             _print_image.CopyFromScreen(receiptBox.Location.X, receiptBox.Location.Y, 0, 0, receiptBox.Size);
 		}
+
 	}
 
 }

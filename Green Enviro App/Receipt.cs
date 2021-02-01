@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Green_Enviro_App
 {
@@ -18,6 +19,7 @@ namespace Green_Enviro_App
         Database _database;
         Purchases _logs;
         Items _items_form;
+        Float _float;
 
         DataTable _items;
         DataTable _customers;
@@ -27,6 +29,11 @@ namespace Green_Enviro_App
         float _running_total = 0;
         string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
         string _single_purchase_entry;
+        RichTextBox _receipt_print_content = new RichTextBox();
+
+        float _float_value = 0F;
+        static string _month = DateTime.Now.ToString("MMMM yyyy");
+        string _path_to_float = @"..//..//resources//Logs//Purchases//" + _month + "_float.csv";
         //Constructor
 
         //Customer information
@@ -41,11 +48,31 @@ namespace Green_Enviro_App
             _database = data;
             _logs = logs;
             _items_form = new Items(this,_database);
+            _float = new Float(this);
+
             _items_form.Owner = _main_form;
+            _float.Owner = _main_form;
 
             SetupPriceList();
             setupReceipt();
             setupCustomerList();
+            SetupFloat();
+        }
+
+        private void SetupFloat() 
+        {
+            //Create the float file
+            if (!File.Exists(_path_to_float))
+            {
+                string _float_value = "0";
+                StringBuilder _csv_content = new StringBuilder();
+                _csv_content.AppendLine(_float_value);
+                File.AppendAllText(_path_to_float, _csv_content.ToString());
+            }
+
+            //
+            _float_value = float.Parse(File.ReadAllText(_path_to_float));
+            _main_form.FloatBox.Text = _float_value.ToString();
         }
 
         public void SetupPriceList()
@@ -329,6 +356,7 @@ namespace Green_Enviro_App
 
         public void CompletePurchase() 
         {
+            _receipt_print_content.Text = _main_form.receiptBox.Text;
             _logs.AddPurchase(_purchased_items);
             PrintReceipt();
             ResetReceipt();
@@ -403,15 +431,11 @@ namespace Green_Enviro_App
             PrintDocument _receipt_content = new PrintDocument();
             PrintDocument _receipt_header = new PrintDocument();
 
-
             _receipt_header.DefaultPageSettings.PaperSize = new PaperSize("Custom", _main_form.receiptBox.Size.Width - _width_offset, _header_height);
             _receipt_header.PrintPage += new PrintPageEventHandler(this.PrintDocument_PrintPage_0);
             
             _receipt_content.DefaultPageSettings.PaperSize = new PaperSize("Custom", _main_form.receiptBox.Size.Width - _width_offset, _content_height);
             _receipt_content.PrintPage += new PrintPageEventHandler(this.PrintDocument_PrintPage);
-            //PrintDialog printDialog1 = new PrintDialog();
-            //printDialog1.Document = _receipt_content;
-            //DialogResult result = printDialog1.ShowDialog();
 
             _receipt_header.PrinterSettings.PrinterName = "58mm Series Printer";
             _receipt_content.PrinterSettings.PrinterName = "58mm Series Printer";
@@ -419,20 +443,40 @@ namespace Green_Enviro_App
             _receipt_header.Print();
             _receipt_content.Print();
             
-
         }
 
         private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e) 
         {
             float _font_size = 8.5F;
-            e.Graphics.DrawString(_main_form.receiptBox.Text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black,-5,-5);
+            e.Graphics.DrawString(_receipt_print_content.Text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black,-10,-5);
         }  
         
         private void PrintDocument_PrintPage_0(object sender, System.Drawing.Printing.PrintPageEventArgs e) 
         {
             float _font_size = 15F;
             string _header_text = "GREEN ENVIRO\nSA RECYCLING";
-            e.Graphics.DrawString(_header_text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black, 0,0);
+            e.Graphics.DrawString(_header_text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black, 0,-5);
+        }
+
+        public void EditFloat() 
+        {
+            _float.Activate();
+            _float.Show();
+            _float.Enabled = true;
+            _main_form.Enabled = false;
+        }
+
+        public void UpdateFloat(float AddedAmout) 
+        {
+            float _new_float = _float_value + AddedAmout;
+
+            FileStream fWrite = new FileStream(_path_to_float,
+            FileMode.Open, FileAccess.Write, FileShare.None);
+
+            byte[] writeArr = Encoding.UTF8.GetBytes(_new_float.ToString());
+            fWrite.Write(writeArr, 0, _new_float.ToString().Length); 
+            fWrite.Close();
+            SetupFloat();
         }
 	}
 }
