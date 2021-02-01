@@ -397,25 +397,42 @@ namespace Green_Enviro_App
         {
             int _width_offset = 30;
             
-            int _height = _main_form.receiptBox.Lines.Count() * 20;
-            PrintDocument printDocument1 = new PrintDocument();
-            printDocument1.DefaultPageSettings.PaperSize = new PaperSize("Custom", _main_form.receiptBox.Size.Width - _width_offset, _height);
-            printDocument1.PrintPage += new PrintPageEventHandler(this.PrintDocument_PrintPage);
-            PrintDialog printDialog1 = new PrintDialog();
-            printDialog1.Document = printDocument1;
-            DialogResult result = printDialog1.ShowDialog();
+            int _content_height = _main_form.receiptBox.Lines.Count() * 20;
+            int _header_height = 50;
 
-            if (result == DialogResult.OK) 
-            {
-                printDocument1.Print();
-            }
+            PrintDocument _receipt_content = new PrintDocument();
+            PrintDocument _receipt_header = new PrintDocument();
+
+
+            _receipt_header.DefaultPageSettings.PaperSize = new PaperSize("Custom", _main_form.receiptBox.Size.Width - _width_offset, _header_height);
+            _receipt_header.PrintPage += new PrintPageEventHandler(this.PrintDocument_PrintPage_0);
+            
+            _receipt_content.DefaultPageSettings.PaperSize = new PaperSize("Custom", _main_form.receiptBox.Size.Width - _width_offset, _content_height);
+            _receipt_content.PrintPage += new PrintPageEventHandler(this.PrintDocument_PrintPage);
+            //PrintDialog printDialog1 = new PrintDialog();
+            //printDialog1.Document = _receipt_content;
+            //DialogResult result = printDialog1.ShowDialog();
+
+            _receipt_header.PrinterSettings.PrinterName = "58mm Series Printer";
+            _receipt_content.PrinterSettings.PrinterName = "58mm Series Printer";
+              
+            _receipt_header.Print();
+            _receipt_content.Print();
+            
 
         }
 
         private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e) 
         {
             float _font_size = 8.5F;
-            e.Graphics.DrawString(_main_form.receiptBox.Text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black,-5,-20);
+            e.Graphics.DrawString(_main_form.receiptBox.Text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black,-5,-5);
+        }  
+        
+        private void PrintDocument_PrintPage_0(object sender, System.Drawing.Printing.PrintPageEventArgs e) 
+        {
+            float _font_size = 15F;
+            string _header_text = "GREEN ENVIRO\nSA RECYCLING";
+            e.Graphics.DrawString(_header_text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black, 0,0);
         }
 	}
 }
