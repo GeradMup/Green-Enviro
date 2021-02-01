@@ -43,10 +43,10 @@ namespace Green_Enviro_App
 		private void Exit() 
 		{
 			AddedFloat.Value = (decimal)0.00;
-			this.Enabled = false;
-			this.Hide();
 			this.Owner.Enabled = true;
 			this.Owner.Show();
+			this.Hide();
+			this.Enabled = false;
 		}
 	}
 }

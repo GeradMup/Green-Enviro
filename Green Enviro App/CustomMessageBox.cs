@@ -27,8 +27,10 @@ namespace Green_Enviro_App
 
 		private void OkBtn_Click(object sender, EventArgs e)
 		{
-			this.Enabled = false;
 			this.Owner.Enabled = true;
+			this.Owner.Show();
+			this.Hide();
+			this.Enabled = false;
 			this.Close();
 		}
 	}

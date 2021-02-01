@@ -622,13 +622,13 @@ namespace Green_Enviro_App
 			this.PurchseLogGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.PurchseLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.PurchseLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.PurchseLogGridView.Location = new System.Drawing.Point(64, 206);
+			this.PurchseLogGridView.Location = new System.Drawing.Point(64, 204);
 			this.PurchseLogGridView.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.PurchseLogGridView.Name = "PurchseLogGridView";
 			this.PurchseLogGridView.ReadOnly = true;
 			this.PurchseLogGridView.RowHeadersWidth = 51;
 			this.PurchseLogGridView.RowTemplate.Height = 24;
-			this.PurchseLogGridView.Size = new System.Drawing.Size(1784, 505);
+			this.PurchseLogGridView.Size = new System.Drawing.Size(1491, 656);
 			this.PurchseLogGridView.TabIndex = 17;
 			// 
 			// FilterPurchaseLogBtn
@@ -948,13 +948,13 @@ namespace Green_Enviro_App
 			this.SalesLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.SalesLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.SalesLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.SalesLogGridView.Location = new System.Drawing.Point(632, 191);
+			this.SalesLogGridView.Location = new System.Drawing.Point(632, 182);
 			this.SalesLogGridView.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.SalesLogGridView.Name = "SalesLogGridView";
 			this.SalesLogGridView.ReadOnly = true;
 			this.SalesLogGridView.RowHeadersWidth = 51;
 			this.SalesLogGridView.RowTemplate.Height = 24;
-			this.SalesLogGridView.Size = new System.Drawing.Size(1215, 521);
+			this.SalesLogGridView.Size = new System.Drawing.Size(923, 678);
 			this.SalesLogGridView.TabIndex = 15;
 			// 
 			// ClearSalesFields
@@ -1219,7 +1219,7 @@ namespace Green_Enviro_App
 			this.ExpensesLogGridView.ReadOnly = true;
 			this.ExpensesLogGridView.RowHeadersWidth = 51;
 			this.ExpensesLogGridView.RowTemplate.Height = 24;
-			this.ExpensesLogGridView.Size = new System.Drawing.Size(637, 505);
+			this.ExpensesLogGridView.Size = new System.Drawing.Size(802, 657);
 			this.ExpensesLogGridView.TabIndex = 41;
 			// 
 			// ClearExpenseFieldsBtn
@@ -1452,13 +1452,13 @@ namespace Green_Enviro_App
 			this.WageLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.WageLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.WageLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.WageLogGridView.Location = new System.Drawing.Point(813, 190);
+			this.WageLogGridView.Location = new System.Drawing.Point(812, 191);
 			this.WageLogGridView.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.WageLogGridView.Name = "WageLogGridView";
 			this.WageLogGridView.ReadOnly = true;
 			this.WageLogGridView.RowHeadersWidth = 51;
 			this.WageLogGridView.RowTemplate.Height = 24;
-			this.WageLogGridView.Size = new System.Drawing.Size(1035, 518);
+			this.WageLogGridView.Size = new System.Drawing.Size(743, 669);
 			this.WageLogGridView.TabIndex = 58;
 			// 
 			// ClearWageFieldsBtn

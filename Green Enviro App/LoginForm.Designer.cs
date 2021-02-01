@@ -69,7 +69,6 @@ namespace Green_Enviro_App
 			this.usernameField.Name = "usernameField";
 			this.usernameField.Size = new System.Drawing.Size(209, 22);
 			this.usernameField.TabIndex = 3;
-			this.usernameField.Text = "G";
 			this.usernameField.TextChanged += new System.EventHandler(this.usernameField_TextChanged);
 			// 
 			// label1
@@ -99,7 +98,6 @@ namespace Green_Enviro_App
 			this.passwordField.PasswordChar = '*';
 			this.passwordField.Size = new System.Drawing.Size(208, 26);
 			this.passwordField.TabIndex = 6;
-			this.passwordField.Text = "G";
 			this.passwordField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordField_KeyPress);
 			// 
 			// label3

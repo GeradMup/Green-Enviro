@@ -104,10 +104,11 @@ namespace Green_Enviro_App
 		private void PriceChangeCpltBtn_Click(object sender, EventArgs e)
 		{
 			_receit.SetupPriceList();
-			this.Hide();
+
 			this.Owner.Enabled = true;
-			this.Enabled = false;
 			this.Owner.Show();
+			this.Hide();
+			this.Enabled = false;
 
 		}
 

@@ -33,7 +33,7 @@ namespace Green_Enviro_App
 
         float _float_value = 0F;
         static string _month = DateTime.Now.ToString("MMMM yyyy");
-        string _path_to_float = @"..//..//resources//Logs//Purchases//" + _month + "_float.csv";
+        string _path_to_float = @"..//..//resources//Float//" + _month + "_float.csv";
         //Constructor
 
         //Customer information
@@ -359,6 +359,7 @@ namespace Green_Enviro_App
             _receipt_print_content.Text = _main_form.receiptBox.Text;
             _logs.AddPurchase(_purchased_items);
             PrintReceipt();
+            UpdateFloat(-1*_running_total);
             ResetReceipt();
             _purchased_items.Clear();
         }
