@@ -185,6 +185,7 @@ namespace Green_Enviro_App
 			return rowsAffected;
         }
 
+		// Functions inserting any information per parameters from a database table selected
 		public Int32 InsertIntoDatabase(string _table,string _parameters, string _values)
         {
 			OpenDatabase();

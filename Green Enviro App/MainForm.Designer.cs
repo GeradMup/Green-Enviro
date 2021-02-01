@@ -779,170 +779,166 @@ namespace Green_Enviro_App
             0,
             0,
             0});
-			this.SaleAmount.Name = "SaleAmount";
-			this.SaleAmount.Size = new System.Drawing.Size(197, 31);
-			this.SaleAmount.TabIndex = 31;
-			this.SaleAmount.ThousandsSeparator = true;
-			// 
-			// SaleQuantityBx
-			// 
-			this.SaleQuantityBx.DecimalPlaces = 2;
-			this.SaleQuantityBx.Location = new System.Drawing.Point(161, 208);
-			this.SaleQuantityBx.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.SaleQuantityBx.Maximum = new decimal(new int[] {
+            this.SaleAmount.Name = "SaleAmount";
+            this.SaleAmount.Size = new System.Drawing.Size(148, 26);
+            this.SaleAmount.TabIndex = 31;
+            this.SaleAmount.ThousandsSeparator = true;
+            // 
+            // SaleQuantityBx
+            // 
+            this.SaleQuantityBx.DecimalPlaces = 2;
+            this.SaleQuantityBx.Location = new System.Drawing.Point(121, 169);
+            this.SaleQuantityBx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SaleQuantityBx.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-			this.SaleQuantityBx.Name = "SaleQuantityBx";
-			this.SaleQuantityBx.Size = new System.Drawing.Size(197, 31);
-			this.SaleQuantityBx.TabIndex = 30;
-			this.SaleQuantityBx.ThousandsSeparator = true;
-			// 
-			// NewCompanyCheckBox
-			// 
-			this.NewCompanyCheckBox.AutoSize = true;
-			this.NewCompanyCheckBox.Location = new System.Drawing.Point(172, 79);
-			this.NewCompanyCheckBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.NewCompanyCheckBox.Name = "NewCompanyCheckBox";
-			this.NewCompanyCheckBox.Size = new System.Drawing.Size(153, 27);
-			this.NewCompanyCheckBox.TabIndex = 29;
-			this.NewCompanyCheckBox.Text = "New Company";
-			this.NewCompanyCheckBox.UseVisualStyleBackColor = true;
-			this.NewCompanyCheckBox.CheckedChanged += new System.EventHandler(this.NewCompanyCheckBox_CheckedChanged);
-			// 
-			// SaleDate
-			// 
-			this.SaleDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SaleDate.Location = new System.Drawing.Point(169, 15);
-			this.SaleDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.SaleDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
-			this.SaleDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
-			this.SaleDate.Name = "SaleDate";
-			this.SaleDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.SaleDate.Size = new System.Drawing.Size(387, 31);
-			this.SaleDate.TabIndex = 0;
-			this.SaleDate.TabStop = false;
-			this.SaleDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
-			// 
-			// RemoveSalesLogFiltersBtn
-			// 
-			this.RemoveSalesLogFiltersBtn.Location = new System.Drawing.Point(921, 106);
-			this.RemoveSalesLogFiltersBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.RemoveSalesLogFiltersBtn.Name = "RemoveSalesLogFiltersBtn";
-			this.RemoveSalesLogFiltersBtn.Size = new System.Drawing.Size(305, 57);
-			this.RemoveSalesLogFiltersBtn.TabIndex = 28;
-			this.RemoveSalesLogFiltersBtn.Text = "Remove Filters";
-			this.RemoveSalesLogFiltersBtn.UseVisualStyleBackColor = true;
-			this.RemoveSalesLogFiltersBtn.Click += new System.EventHandler(this.RemoveSalesLogFiltersBtn_Click);
-			// 
-			// FilterSalesLogBtn
-			// 
-			this.FilterSalesLogBtn.Location = new System.Drawing.Point(632, 106);
-			this.FilterSalesLogBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.FilterSalesLogBtn.Name = "FilterSalesLogBtn";
-			this.FilterSalesLogBtn.Size = new System.Drawing.Size(245, 57);
-			this.FilterSalesLogBtn.TabIndex = 27;
-			this.FilterSalesLogBtn.Text = "Filter";
-			this.FilterSalesLogBtn.UseVisualStyleBackColor = true;
-			this.FilterSalesLogBtn.Click += new System.EventHandler(this.FilterSalesLogBtn_Click);
-			// 
-			// label17
-			// 
-			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(628, 14);
-			this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(65, 23);
-			this.label17.TabIndex = 26;
-			this.label17.Text = "Month";
-			// 
-			// SalesLogMonth
-			// 
-			this.SalesLogMonth.DropDownHeight = 300;
-			this.SalesLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.SalesLogMonth.FormattingEnabled = true;
-			this.SalesLogMonth.IntegralHeight = false;
-			this.SalesLogMonth.ItemHeight = 23;
-			this.SalesLogMonth.Location = new System.Drawing.Point(632, 47);
-			this.SalesLogMonth.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.SalesLogMonth.Name = "SalesLogMonth";
-			this.SalesLogMonth.Size = new System.Drawing.Size(245, 31);
-			this.SalesLogMonth.TabIndex = 25;
-			this.SalesLogMonth.SelectedIndexChanged += new System.EventHandler(this.SalesLogMonth_SelectedIndexChanged);
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Location = new System.Drawing.Point(1581, 14);
-			this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(54, 23);
-			this.label18.TabIndex = 24;
-			this.label18.Text = "Type";
-			// 
-			// label19
-			// 
-			this.label19.AutoSize = true;
-			this.label19.Location = new System.Drawing.Point(1265, 14);
-			this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(98, 23);
-			this.label19.TabIndex = 23;
-			this.label19.Text = "End Date";
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(915, 14);
-			this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(120, 23);
-			this.label20.TabIndex = 22;
-			this.label20.Text = "Start Date";
-			// 
-			// SalesLogType
-			// 
-			this.SalesLogType.DropDownHeight = 300;
-			this.SalesLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.SalesLogType.FormattingEnabled = true;
-			this.SalesLogType.IntegralHeight = false;
-			this.SalesLogType.ItemHeight = 23;
-			this.SalesLogType.Location = new System.Drawing.Point(1585, 47);
-			this.SalesLogType.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.SalesLogType.Name = "SalesLogType";
-			this.SalesLogType.Size = new System.Drawing.Size(208, 31);
-			this.SalesLogType.TabIndex = 21;
-			// 
-			// SalesLogEndDate
-			// 
-			this.SalesLogEndDate.DropDownHeight = 300;
-			this.SalesLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.SalesLogEndDate.FormattingEnabled = true;
-			this.SalesLogEndDate.IntegralHeight = false;
-			this.SalesLogEndDate.ItemHeight = 23;
-			this.SalesLogEndDate.Location = new System.Drawing.Point(1269, 47);
-			this.SalesLogEndDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.SalesLogEndDate.Name = "SalesLogEndDate";
-			this.SalesLogEndDate.Size = new System.Drawing.Size(277, 31);
-			this.SalesLogEndDate.TabIndex = 20;
-			// 
-			// SalesLogStartDate
-			// 
-			this.SalesLogStartDate.DropDownHeight = 300;
-			this.SalesLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.SalesLogStartDate.FormattingEnabled = true;
-			this.SalesLogStartDate.IntegralHeight = false;
-			this.SalesLogStartDate.ItemHeight = 23;
-			this.SalesLogStartDate.Location = new System.Drawing.Point(919, 47);
-			this.SalesLogStartDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.SalesLogStartDate.Name = "SalesLogStartDate";
-			this.SalesLogStartDate.Size = new System.Drawing.Size(307, 31);
-			this.SalesLogStartDate.TabIndex = 19;
-			// 
-			// SalesLogGridView
-			// 
-			this.SalesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SaleQuantityBx.Name = "SaleQuantityBx";
+            this.SaleQuantityBx.Size = new System.Drawing.Size(148, 26);
+            this.SaleQuantityBx.TabIndex = 30;
+            this.SaleQuantityBx.ThousandsSeparator = true;
+            // 
+            // NewCompanyCheckBox
+            // 
+            this.NewCompanyCheckBox.AutoSize = true;
+            this.NewCompanyCheckBox.Location = new System.Drawing.Point(129, 64);
+            this.NewCompanyCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NewCompanyCheckBox.Name = "NewCompanyCheckBox";
+            this.NewCompanyCheckBox.Size = new System.Drawing.Size(127, 23);
+            this.NewCompanyCheckBox.TabIndex = 29;
+            this.NewCompanyCheckBox.Text = "New Company";
+            this.NewCompanyCheckBox.UseVisualStyleBackColor = true;
+            this.NewCompanyCheckBox.CheckedChanged += new System.EventHandler(this.NewCompanyCheckBox_CheckedChanged);
+            // 
+            // SaleDate
+            // 
+            this.SaleDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaleDate.Location = new System.Drawing.Point(127, 12);
+            this.SaleDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SaleDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
+            this.SaleDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
+            this.SaleDate.Name = "SaleDate";
+            this.SaleDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SaleDate.Size = new System.Drawing.Size(291, 26);
+            this.SaleDate.TabIndex = 0;
+            this.SaleDate.TabStop = false;
+            this.SaleDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
+            // 
+            // RemoveSalesLogFiltersBtn
+            // 
+            this.RemoveSalesLogFiltersBtn.Location = new System.Drawing.Point(691, 86);
+            this.RemoveSalesLogFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RemoveSalesLogFiltersBtn.Name = "RemoveSalesLogFiltersBtn";
+            this.RemoveSalesLogFiltersBtn.Size = new System.Drawing.Size(229, 46);
+            this.RemoveSalesLogFiltersBtn.TabIndex = 28;
+            this.RemoveSalesLogFiltersBtn.Text = "Remove Filters";
+            this.RemoveSalesLogFiltersBtn.UseVisualStyleBackColor = true;
+            this.RemoveSalesLogFiltersBtn.Click += new System.EventHandler(this.RemoveSalesLogFiltersBtn_Click);
+            // 
+            // FilterSalesLogBtn
+            // 
+            this.FilterSalesLogBtn.Location = new System.Drawing.Point(474, 86);
+            this.FilterSalesLogBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FilterSalesLogBtn.Name = "FilterSalesLogBtn";
+            this.FilterSalesLogBtn.Size = new System.Drawing.Size(184, 46);
+            this.FilterSalesLogBtn.TabIndex = 27;
+            this.FilterSalesLogBtn.Text = "Filter";
+            this.FilterSalesLogBtn.UseVisualStyleBackColor = true;
+            this.FilterSalesLogBtn.Click += new System.EventHandler(this.FilterSalesLogBtn_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(471, 11);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(54, 19);
+            this.label17.TabIndex = 26;
+            this.label17.Text = "Month";
+            // 
+            // SalesLogMonth
+            // 
+            this.SalesLogMonth.DropDownHeight = 300;
+            this.SalesLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SalesLogMonth.FormattingEnabled = true;
+            this.SalesLogMonth.IntegralHeight = false;
+            this.SalesLogMonth.ItemHeight = 19;
+            this.SalesLogMonth.Location = new System.Drawing.Point(474, 38);
+            this.SalesLogMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SalesLogMonth.Name = "SalesLogMonth";
+            this.SalesLogMonth.Size = new System.Drawing.Size(185, 27);
+            this.SalesLogMonth.TabIndex = 25;
+            this.SalesLogMonth.SelectedIndexChanged += new System.EventHandler(this.SalesLogMonth_SelectedIndexChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(1186, 11);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(45, 19);
+            this.label18.TabIndex = 24;
+            this.label18.Text = "Type";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(949, 11);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(81, 19);
+            this.label19.TabIndex = 23;
+            this.label19.Text = "End Date";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(686, 11);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(99, 19);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "Start Date";
+            // 
+            // SalesLogType
+            // 
+            this.SalesLogType.DropDownHeight = 300;
+            this.SalesLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SalesLogType.FormattingEnabled = true;
+            this.SalesLogType.IntegralHeight = false;
+            this.SalesLogType.ItemHeight = 19;
+            this.SalesLogType.Location = new System.Drawing.Point(1189, 38);
+            this.SalesLogType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SalesLogType.Name = "SalesLogType";
+            this.SalesLogType.Size = new System.Drawing.Size(157, 27);
+            this.SalesLogType.TabIndex = 21;
+            // 
+            // SalesLogEndDate
+            // 
+            this.SalesLogEndDate.DropDownHeight = 300;
+            this.SalesLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SalesLogEndDate.FormattingEnabled = true;
+            this.SalesLogEndDate.IntegralHeight = false;
+            this.SalesLogEndDate.ItemHeight = 19;
+            this.SalesLogEndDate.Location = new System.Drawing.Point(952, 38);
+            this.SalesLogEndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SalesLogEndDate.Name = "SalesLogEndDate";
+            this.SalesLogEndDate.Size = new System.Drawing.Size(209, 27);
+            this.SalesLogEndDate.TabIndex = 20;
+            // 
+            // SalesLogStartDate
+            // 
+            this.SalesLogStartDate.DropDownHeight = 300;
+            this.SalesLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SalesLogStartDate.FormattingEnabled = true;
+            this.SalesLogStartDate.IntegralHeight = false;
+            this.SalesLogStartDate.ItemHeight = 19;
+            this.SalesLogStartDate.Location = new System.Drawing.Point(689, 38);
+            this.SalesLogStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SalesLogStartDate.Name = "SalesLogStartDate";
+            this.SalesLogStartDate.Size = new System.Drawing.Size(231, 27);
+            this.SalesLogStartDate.TabIndex = 19;
+            // 
+            // SalesLogGridView
+            // 
+            this.SalesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.SalesLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -1086,128 +1082,124 @@ namespace Green_Enviro_App
             0,
             0,
             0});
-			this.ExpenseAmount.Name = "ExpenseAmount";
-			this.ExpenseAmount.Size = new System.Drawing.Size(297, 31);
-			this.ExpenseAmount.TabIndex = 51;
-			// 
-			// ExpenseDescriptionBox
-			// 
-			this.ExpenseDescriptionBox.Location = new System.Drawing.Point(235, 119);
-			this.ExpenseDescriptionBox.Margin = new System.Windows.Forms.Padding(4);
-			this.ExpenseDescriptionBox.Name = "ExpenseDescriptionBox";
-			this.ExpenseDescriptionBox.Size = new System.Drawing.Size(407, 31);
-			this.ExpenseDescriptionBox.TabIndex = 50;
-			// 
-			// ExpenseDate
-			// 
-			this.ExpenseDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ExpenseDate.Location = new System.Drawing.Point(235, 28);
-			this.ExpenseDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.ExpenseDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
-			this.ExpenseDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
-			this.ExpenseDate.Name = "ExpenseDate";
-			this.ExpenseDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.ExpenseDate.Size = new System.Drawing.Size(407, 31);
-			this.ExpenseDate.TabIndex = 32;
-			this.ExpenseDate.TabStop = false;
-			this.ExpenseDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
-			this.ExpenseDate.ValueChanged += new System.EventHandler(this.ExpenseDate_ValueChanged);
-			// 
-			// ExpensesLogRemoveFiltersBtn
-			// 
-			this.ExpensesLogRemoveFiltersBtn.Location = new System.Drawing.Point(1129, 123);
-			this.ExpensesLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.ExpensesLogRemoveFiltersBtn.Name = "ExpensesLogRemoveFiltersBtn";
-			this.ExpensesLogRemoveFiltersBtn.Size = new System.Drawing.Size(271, 57);
-			this.ExpensesLogRemoveFiltersBtn.TabIndex = 49;
-			this.ExpensesLogRemoveFiltersBtn.Text = "Remove Filters";
-			this.ExpensesLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
-			this.ExpensesLogRemoveFiltersBtn.Click += new System.EventHandler(this.ExpensesLogRemoveFiltersBtn_Click);
-			// 
-			// ExpensesLogFilterBtn
-			// 
-			this.ExpensesLogFilterBtn.Location = new System.Drawing.Point(753, 119);
-			this.ExpensesLogFilterBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.ExpensesLogFilterBtn.Name = "ExpensesLogFilterBtn";
-			this.ExpensesLogFilterBtn.Size = new System.Drawing.Size(288, 57);
-			this.ExpensesLogFilterBtn.TabIndex = 48;
-			this.ExpensesLogFilterBtn.Text = "Filter";
-			this.ExpensesLogFilterBtn.UseVisualStyleBackColor = true;
-			this.ExpensesLogFilterBtn.Click += new System.EventHandler(this.ExpensesLogFilterBtn_Click);
-			// 
-			// label28
-			// 
-			this.label28.AutoSize = true;
-			this.label28.Location = new System.Drawing.Point(749, 27);
-			this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(65, 23);
-			this.label28.TabIndex = 47;
-			this.label28.Text = "Month";
-			// 
-			// ExpensesLogMonth
-			// 
-			this.ExpensesLogMonth.DropDownHeight = 300;
-			this.ExpensesLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ExpensesLogMonth.FormattingEnabled = true;
-			this.ExpensesLogMonth.IntegralHeight = false;
-			this.ExpensesLogMonth.ItemHeight = 23;
-			this.ExpensesLogMonth.Location = new System.Drawing.Point(753, 60);
-			this.ExpensesLogMonth.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.ExpensesLogMonth.Name = "ExpensesLogMonth";
-			this.ExpensesLogMonth.Size = new System.Drawing.Size(288, 31);
-			this.ExpensesLogMonth.TabIndex = 46;
-			this.ExpensesLogMonth.SelectedIndexChanged += new System.EventHandler(this.ExpensesLogMonth_SelectedIndexChanged);
-			// 
-			// label29
-			// 
-			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(1477, 28);
-			this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(98, 23);
-			this.label29.TabIndex = 45;
-			this.label29.Text = "End Date";
-			// 
-			// label30
-			// 
-			this.label30.AutoSize = true;
-			this.label30.Location = new System.Drawing.Point(1123, 27);
-			this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label30.Name = "label30";
-			this.label30.Size = new System.Drawing.Size(120, 23);
-			this.label30.TabIndex = 44;
-			this.label30.Text = "Start Date";
-			// 
-			// ExpensesLogEndDate
-			// 
-			this.ExpensesLogEndDate.DropDownHeight = 300;
-			this.ExpensesLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ExpensesLogEndDate.FormattingEnabled = true;
-			this.ExpensesLogEndDate.IntegralHeight = false;
-			this.ExpensesLogEndDate.ItemHeight = 23;
-			this.ExpensesLogEndDate.Location = new System.Drawing.Point(1483, 60);
-			this.ExpensesLogEndDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.ExpensesLogEndDate.Name = "ExpensesLogEndDate";
-			this.ExpensesLogEndDate.Size = new System.Drawing.Size(257, 31);
-			this.ExpensesLogEndDate.TabIndex = 43;
-			// 
-			// ExpensesLogStartDate
-			// 
-			this.ExpensesLogStartDate.DropDownHeight = 300;
-			this.ExpensesLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ExpensesLogStartDate.FormattingEnabled = true;
-			this.ExpensesLogStartDate.IntegralHeight = false;
-			this.ExpensesLogStartDate.ItemHeight = 23;
-			this.ExpensesLogStartDate.Location = new System.Drawing.Point(1127, 60);
-			this.ExpensesLogStartDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.ExpensesLogStartDate.Name = "ExpensesLogStartDate";
-			this.ExpensesLogStartDate.Size = new System.Drawing.Size(273, 31);
-			this.ExpensesLogStartDate.TabIndex = 42;
-			// 
-			// ExpensesLogGridView
-			// 
-			this.ExpensesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ExpenseAmount.Name = "ExpenseAmount";
+            this.ExpenseAmount.Size = new System.Drawing.Size(223, 26);
+            this.ExpenseAmount.TabIndex = 51;
+            // 
+            // ExpenseDescriptionBox
+            // 
+            this.ExpenseDescriptionBox.Location = new System.Drawing.Point(176, 97);
+            this.ExpenseDescriptionBox.Name = "ExpenseDescriptionBox";
+            this.ExpenseDescriptionBox.Size = new System.Drawing.Size(306, 26);
+            this.ExpenseDescriptionBox.TabIndex = 50;
+            // 
+            // ExpenseDate
+            // 
+            this.ExpenseDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseDate.Location = new System.Drawing.Point(176, 23);
+            this.ExpenseDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ExpenseDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
+            this.ExpenseDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
+            this.ExpenseDate.Name = "ExpenseDate";
+            this.ExpenseDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ExpenseDate.Size = new System.Drawing.Size(306, 26);
+            this.ExpenseDate.TabIndex = 32;
+            this.ExpenseDate.TabStop = false;
+            this.ExpenseDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
+            this.ExpenseDate.ValueChanged += new System.EventHandler(this.ExpenseDate_ValueChanged);
+            // 
+            // ExpensesLogRemoveFiltersBtn
+            // 
+            this.ExpensesLogRemoveFiltersBtn.Location = new System.Drawing.Point(847, 100);
+            this.ExpensesLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ExpensesLogRemoveFiltersBtn.Name = "ExpensesLogRemoveFiltersBtn";
+            this.ExpensesLogRemoveFiltersBtn.Size = new System.Drawing.Size(203, 46);
+            this.ExpensesLogRemoveFiltersBtn.TabIndex = 49;
+            this.ExpensesLogRemoveFiltersBtn.Text = "Remove Filters";
+            this.ExpensesLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
+            this.ExpensesLogRemoveFiltersBtn.Click += new System.EventHandler(this.ExpensesLogRemoveFiltersBtn_Click);
+            // 
+            // ExpensesLogFilterBtn
+            // 
+            this.ExpensesLogFilterBtn.Location = new System.Drawing.Point(565, 97);
+            this.ExpensesLogFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ExpensesLogFilterBtn.Name = "ExpensesLogFilterBtn";
+            this.ExpensesLogFilterBtn.Size = new System.Drawing.Size(216, 46);
+            this.ExpensesLogFilterBtn.TabIndex = 48;
+            this.ExpensesLogFilterBtn.Text = "Filter";
+            this.ExpensesLogFilterBtn.UseVisualStyleBackColor = true;
+            this.ExpensesLogFilterBtn.Click += new System.EventHandler(this.ExpensesLogFilterBtn_Click);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(562, 22);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(54, 19);
+            this.label28.TabIndex = 47;
+            this.label28.Text = "Month";
+            // 
+            // ExpensesLogMonth
+            // 
+            this.ExpensesLogMonth.DropDownHeight = 300;
+            this.ExpensesLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ExpensesLogMonth.FormattingEnabled = true;
+            this.ExpensesLogMonth.IntegralHeight = false;
+            this.ExpensesLogMonth.ItemHeight = 19;
+            this.ExpensesLogMonth.Location = new System.Drawing.Point(565, 49);
+            this.ExpensesLogMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ExpensesLogMonth.Name = "ExpensesLogMonth";
+            this.ExpensesLogMonth.Size = new System.Drawing.Size(217, 27);
+            this.ExpensesLogMonth.TabIndex = 46;
+            this.ExpensesLogMonth.SelectedIndexChanged += new System.EventHandler(this.ExpensesLogMonth_SelectedIndexChanged);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(1108, 23);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(81, 19);
+            this.label29.TabIndex = 45;
+            this.label29.Text = "End Date";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(842, 22);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(99, 19);
+            this.label30.TabIndex = 44;
+            this.label30.Text = "Start Date";
+            // 
+            // ExpensesLogEndDate
+            // 
+            this.ExpensesLogEndDate.DropDownHeight = 300;
+            this.ExpensesLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ExpensesLogEndDate.FormattingEnabled = true;
+            this.ExpensesLogEndDate.IntegralHeight = false;
+            this.ExpensesLogEndDate.ItemHeight = 19;
+            this.ExpensesLogEndDate.Location = new System.Drawing.Point(1112, 49);
+            this.ExpensesLogEndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ExpensesLogEndDate.Name = "ExpensesLogEndDate";
+            this.ExpensesLogEndDate.Size = new System.Drawing.Size(194, 27);
+            this.ExpensesLogEndDate.TabIndex = 43;
+            // 
+            // ExpensesLogStartDate
+            // 
+            this.ExpensesLogStartDate.DropDownHeight = 300;
+            this.ExpensesLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ExpensesLogStartDate.FormattingEnabled = true;
+            this.ExpensesLogStartDate.IntegralHeight = false;
+            this.ExpensesLogStartDate.ItemHeight = 19;
+            this.ExpensesLogStartDate.Location = new System.Drawing.Point(845, 49);
+            this.ExpensesLogStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ExpensesLogStartDate.Name = "ExpensesLogStartDate";
+            this.ExpensesLogStartDate.Size = new System.Drawing.Size(206, 27);
+            this.ExpensesLogStartDate.TabIndex = 42;
+            // 
+            // ExpensesLogGridView
+            // 
+            this.ExpensesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.ExpensesLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -1334,119 +1326,116 @@ namespace Green_Enviro_App
             0,
             0,
             0});
-			this.WageAmount.Name = "WageAmount";
-			this.WageAmount.Size = new System.Drawing.Size(229, 31);
-			this.WageAmount.TabIndex = 68;
-			// 
-			// WageDate
-			// 
-			this.WageDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.WageDate.Location = new System.Drawing.Point(229, 20);
-			this.WageDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.WageDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
-			this.WageDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
-			this.WageDate.Name = "WageDate";
-			this.WageDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.WageDate.Size = new System.Drawing.Size(401, 31);
-			this.WageDate.TabIndex = 52;
-			this.WageDate.TabStop = false;
-			this.WageDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
-			// 
-			// WageLogRemoveFiltersBtn
-			// 
-			this.WageLogRemoveFiltersBtn.Location = new System.Drawing.Point(1165, 114);
-			this.WageLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.WageLogRemoveFiltersBtn.Name = "WageLogRemoveFiltersBtn";
-			this.WageLogRemoveFiltersBtn.Size = new System.Drawing.Size(305, 57);
-			this.WageLogRemoveFiltersBtn.TabIndex = 66;
-			this.WageLogRemoveFiltersBtn.Text = "Remove Filters";
-			this.WageLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
-			this.WageLogRemoveFiltersBtn.Click += new System.EventHandler(this.WageLogRemoveFiltersBtn_Click);
-			// 
-			// WageLogFilterBtn
-			// 
-			this.WageLogFilterBtn.Location = new System.Drawing.Point(813, 114);
-			this.WageLogFilterBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.WageLogFilterBtn.Name = "WageLogFilterBtn";
-			this.WageLogFilterBtn.Size = new System.Drawing.Size(316, 57);
-			this.WageLogFilterBtn.TabIndex = 65;
-			this.WageLogFilterBtn.Text = "Filter";
-			this.WageLogFilterBtn.UseVisualStyleBackColor = true;
-			this.WageLogFilterBtn.Click += new System.EventHandler(this.WageLogFilterBtn_Click);
-			// 
-			// label32
-			// 
-			this.label32.AutoSize = true;
-			this.label32.Location = new System.Drawing.Point(808, 18);
-			this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label32.Name = "label32";
-			this.label32.Size = new System.Drawing.Size(65, 23);
-			this.label32.TabIndex = 64;
-			this.label32.Text = "Month";
-			// 
-			// WageLogMonth
-			// 
-			this.WageLogMonth.DropDownHeight = 300;
-			this.WageLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.WageLogMonth.FormattingEnabled = true;
-			this.WageLogMonth.IntegralHeight = false;
-			this.WageLogMonth.ItemHeight = 23;
-			this.WageLogMonth.Location = new System.Drawing.Point(813, 52);
-			this.WageLogMonth.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.WageLogMonth.Name = "WageLogMonth";
-			this.WageLogMonth.Size = new System.Drawing.Size(317, 31);
-			this.WageLogMonth.TabIndex = 63;
-			this.WageLogMonth.SelectedIndexChanged += new System.EventHandler(this.WageLogMonth_SelectedIndexChanged);
-			// 
-			// label35
-			// 
-			this.label35.AutoSize = true;
-			this.label35.Location = new System.Drawing.Point(1504, 18);
-			this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label35.Name = "label35";
-			this.label35.Size = new System.Drawing.Size(98, 23);
-			this.label35.TabIndex = 62;
-			this.label35.Text = "End Date";
-			// 
-			// label36
-			// 
-			this.label36.AutoSize = true;
-			this.label36.Location = new System.Drawing.Point(1160, 18);
-			this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label36.Name = "label36";
-			this.label36.Size = new System.Drawing.Size(120, 23);
-			this.label36.TabIndex = 61;
-			this.label36.Text = "Start Date";
-			// 
-			// WageLogEndDate
-			// 
-			this.WageLogEndDate.DropDownHeight = 300;
-			this.WageLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.WageLogEndDate.FormattingEnabled = true;
-			this.WageLogEndDate.IntegralHeight = false;
-			this.WageLogEndDate.ItemHeight = 23;
-			this.WageLogEndDate.Location = new System.Drawing.Point(1509, 52);
-			this.WageLogEndDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.WageLogEndDate.Name = "WageLogEndDate";
-			this.WageLogEndDate.Size = new System.Drawing.Size(277, 31);
-			this.WageLogEndDate.TabIndex = 60;
-			// 
-			// WageLogStartDate
-			// 
-			this.WageLogStartDate.DropDownHeight = 300;
-			this.WageLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.WageLogStartDate.FormattingEnabled = true;
-			this.WageLogStartDate.IntegralHeight = false;
-			this.WageLogStartDate.ItemHeight = 23;
-			this.WageLogStartDate.Location = new System.Drawing.Point(1165, 52);
-			this.WageLogStartDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.WageLogStartDate.Name = "WageLogStartDate";
-			this.WageLogStartDate.Size = new System.Drawing.Size(307, 31);
-			this.WageLogStartDate.TabIndex = 59;
-			// 
-			// WageLogGridView
-			// 
-			this.WageLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.WageAmount.Name = "WageAmount";
+            this.WageAmount.Size = new System.Drawing.Size(172, 26);
+            this.WageAmount.TabIndex = 68;
+            // 
+            // WageDate
+            // 
+            this.WageDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WageDate.Location = new System.Drawing.Point(172, 16);
+            this.WageDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WageDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
+            this.WageDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
+            this.WageDate.Name = "WageDate";
+            this.WageDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.WageDate.Size = new System.Drawing.Size(302, 26);
+            this.WageDate.TabIndex = 52;
+            this.WageDate.TabStop = false;
+            this.WageDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
+            // 
+            // WageLogRemoveFiltersBtn
+            // 
+            this.WageLogRemoveFiltersBtn.Location = new System.Drawing.Point(874, 93);
+            this.WageLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WageLogRemoveFiltersBtn.Name = "WageLogRemoveFiltersBtn";
+            this.WageLogRemoveFiltersBtn.Size = new System.Drawing.Size(229, 46);
+            this.WageLogRemoveFiltersBtn.TabIndex = 66;
+            this.WageLogRemoveFiltersBtn.Text = "Remove Filters";
+            this.WageLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
+            this.WageLogRemoveFiltersBtn.Click += new System.EventHandler(this.WageLogRemoveFiltersBtn_Click);
+            // 
+            // WageLogFilterBtn
+            // 
+            this.WageLogFilterBtn.Location = new System.Drawing.Point(610, 93);
+            this.WageLogFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WageLogFilterBtn.Name = "WageLogFilterBtn";
+            this.WageLogFilterBtn.Size = new System.Drawing.Size(237, 46);
+            this.WageLogFilterBtn.TabIndex = 65;
+            this.WageLogFilterBtn.Text = "Filter";
+            this.WageLogFilterBtn.UseVisualStyleBackColor = true;
+            this.WageLogFilterBtn.Click += new System.EventHandler(this.WageLogFilterBtn_Click);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(606, 15);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(54, 19);
+            this.label32.TabIndex = 64;
+            this.label32.Text = "Month";
+            // 
+            // WageLogMonth
+            // 
+            this.WageLogMonth.DropDownHeight = 300;
+            this.WageLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.WageLogMonth.FormattingEnabled = true;
+            this.WageLogMonth.IntegralHeight = false;
+            this.WageLogMonth.ItemHeight = 19;
+            this.WageLogMonth.Location = new System.Drawing.Point(610, 42);
+            this.WageLogMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WageLogMonth.Name = "WageLogMonth";
+            this.WageLogMonth.Size = new System.Drawing.Size(239, 27);
+            this.WageLogMonth.TabIndex = 63;
+            this.WageLogMonth.SelectedIndexChanged += new System.EventHandler(this.WageLogMonth_SelectedIndexChanged);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(1128, 15);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(81, 19);
+            this.label35.TabIndex = 62;
+            this.label35.Text = "End Date";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(870, 15);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(99, 19);
+            this.label36.TabIndex = 61;
+            this.label36.Text = "Start Date";
+            // 
+            // WageLogEndDate
+            // 
+            this.WageLogEndDate.DropDownHeight = 300;
+            this.WageLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.WageLogEndDate.FormattingEnabled = true;
+            this.WageLogEndDate.IntegralHeight = false;
+            this.WageLogEndDate.ItemHeight = 19;
+            this.WageLogEndDate.Location = new System.Drawing.Point(1132, 42);
+            this.WageLogEndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WageLogEndDate.Name = "WageLogEndDate";
+            this.WageLogEndDate.Size = new System.Drawing.Size(209, 27);
+            this.WageLogEndDate.TabIndex = 60;
+            // 
+            // WageLogStartDate
+            // 
+            this.WageLogStartDate.DropDownHeight = 300;
+            this.WageLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.WageLogStartDate.FormattingEnabled = true;
+            this.WageLogStartDate.IntegralHeight = false;
+            this.WageLogStartDate.ItemHeight = 19;
+            this.WageLogStartDate.Location = new System.Drawing.Point(874, 42);
+            this.WageLogStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WageLogStartDate.Name = "WageLogStartDate";
+            this.WageLogStartDate.Size = new System.Drawing.Size(231, 27);
+            this.WageLogStartDate.TabIndex = 59;
+            // 
+            // WageLogGridView
+            // 
+            this.WageLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.WageLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -1545,6 +1534,7 @@ namespace Green_Enviro_App
 			this.label54.AutoSize = true;
 			this.label54.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label54.Location = new System.Drawing.Point(1081, 156);
+			this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label54.Name = "label54";
 			this.label54.Size = new System.Drawing.Size(90, 28);
 			this.label54.TabIndex = 15;
@@ -1554,6 +1544,7 @@ namespace Green_Enviro_App
 			// 
 			this.SummariesProfitBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.SummariesProfitBox.Location = new System.Drawing.Point(1086, 187);
+			this.SummariesProfitBox.Margin = new System.Windows.Forms.Padding(2);
 			this.SummariesProfitBox.Name = "SummariesProfitBox";
 			this.SummariesProfitBox.ReadOnly = true;
 			this.SummariesProfitBox.Size = new System.Drawing.Size(414, 170);
@@ -1701,6 +1692,7 @@ namespace Green_Enviro_App
 			// 
 			// DestructionCertificates
 			// 
+			this.DestructionCertificates.Controls.Add(this.SendDstrctCertEmailBtn);
 			this.DestructionCertificates.Controls.Add(this.dstrctCertExtractionDate);
 			this.DestructionCertificates.Controls.Add(this.dstrctCertNewCompanyCheckBox);
 			this.DestructionCertificates.Controls.Add(this.dstrctCertCompanyField);
@@ -1838,6 +1830,24 @@ namespace Green_Enviro_App
 			this.dstrctCertCntactPersonField.ReadOnly = true;
 			this.dstrctCertCntactPersonField.Size = new System.Drawing.Size(252, 31);
 			this.dstrctCertCntactPersonField.TabIndex = 43;
+			// 
+            // dstrctCertCntactNumField
+            // 
+            this.dstrctCertCntactNumField.Location = new System.Drawing.Point(352, 210);
+            this.dstrctCertCntactNumField.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertCntactNumField.Name = "dstrctCertCntactNumField";
+            this.dstrctCertCntactNumField.ReadOnly = true;
+            this.dstrctCertCntactNumField.Size = new System.Drawing.Size(190, 26);
+            this.dstrctCertCntactNumField.TabIndex = 44;
+            // 
+            // dstrctCertCntactPersonField
+            // 
+            this.dstrctCertCntactPersonField.Location = new System.Drawing.Point(352, 160);
+            this.dstrctCertCntactPersonField.Margin = new System.Windows.Forms.Padding(2);
+            this.dstrctCertCntactPersonField.Name = "dstrctCertCntactPersonField";
+            this.dstrctCertCntactPersonField.ReadOnly = true;
+            this.dstrctCertCntactPersonField.Size = new System.Drawing.Size(190, 26);
+            this.dstrctCertCntactPersonField.TabIndex = 43;
 			// 
 			// label27
 			// 
@@ -2093,6 +2103,18 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+            // SendDstrctCertEmailBtn
+            // 
+            this.SendDstrctCertEmailBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SendDstrctCertEmailBtn.Location = new System.Drawing.Point(261, 397);
+            this.SendDstrctCertEmailBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.SendDstrctCertEmailBtn.Name = "SendDstrctCertEmailBtn";
+            this.SendDstrctCertEmailBtn.Size = new System.Drawing.Size(207, 63);
+            this.SendDstrctCertEmailBtn.TabIndex = 50;
+            this.SendDstrctCertEmailBtn.Text = "Send as Email";
+            this.SendDstrctCertEmailBtn.UseVisualStyleBackColor = true;
+            this.SendDstrctCertEmailBtn.Click += new System.EventHandler(this.SendDstrctCertEmailBtn_Click);
+			// 
 			// ReprintReceiptBtn
 			// 
 			this.ReprintReceiptBtn.AllowDrop = true;
@@ -2181,7 +2203,6 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
-
 		}
 
 		#endregion
@@ -2420,5 +2441,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button AddFloatBtn;
 		private System.Windows.Forms.Label label55;
 		public System.Windows.Forms.TextBox FloatBox;
-	}
+        private System.Windows.Forms.Button SendDstrctCertEmailBtn;
+    }
 }

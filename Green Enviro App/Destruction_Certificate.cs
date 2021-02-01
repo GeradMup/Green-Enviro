@@ -16,8 +16,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace Green_Enviro_App
 {
+    /* This is the Destruction Certificate class
+     * It is used to generate the destruction certificate pdf when selecting the
+     * Destruction Certificate tab on the main page
+     */
     class Destruction_Certificate
     {
+        /* Here we generate the instances that will connect the class
+         * with othe classes that are needed to make the certificate
+         */
         Main_Form _main_form;
         Database _database;
         DataTable _company_dstrctCert;
@@ -31,8 +38,12 @@ namespace Green_Enviro_App
             _database = _db;
             QuantityOfProducts();
             LoadDBIntoDC();
+            //Obtaining the present time so as to always make sure the dates are accurate at run time
             _main_form.dstrctCertExtractionDate.Value = DateTime.Now;
         }
+        /* Function defining the structure of the Destruction PDF with the 
+         * save path
+         */
         private void GenerateDestructionCertificate(string _pdf_save_path)
         {
 
@@ -211,10 +222,12 @@ namespace Green_Enviro_App
 
             }
         }
-
+        /* Function that verifies if the PDF has all information and can be
+         * generated
+         */
         public void ExportToPdf()
         {
-
+            //Tuple that contains the valididty of the Destruction Certificate
             var _generate_DC = verifyGenerateDestructionCertificate();
             MessageBoxButtons _buttons;
             MessageBoxIcon _icon;
@@ -224,7 +237,7 @@ namespace Green_Enviro_App
             string _store_path_of_pdf = _generate_DC.Item4;
             bool _company_exist_in_database = _generate_DC.Item5;
             _buttons = MessageBoxButtons.OK;
-
+            //If true make the certificate if not explain why it cannot be generated
             if (_generate_DC.Item1)
             {
 
@@ -333,8 +346,7 @@ namespace Green_Enviro_App
             return _new_tuple;
         }
 
-
-        //Gerry Edited from 370 to 372
+        /* Function that clears all the textboxs */
         public void ClearDCFields()
         {
             _main_form.dstrctCertExtractionDate.Value = DateTime.Now;
@@ -349,6 +361,11 @@ namespace Green_Enviro_App
             _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
         }
 
+        /* Function that acts with the behaviour of the New Company
+         * checkbox on the Destruction Certificate tab. It enables you
+         * to verify if a new company needs is entered and if so place it into the
+         * database.
+         */
         public void FieldSettings() 
         {
             if (_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Checked)
@@ -371,6 +388,7 @@ namespace Green_Enviro_App
             }
         }
 
+        // SI Units for the quantity amounts provided selected by the user 
         private void QuantityOfProducts()
         {
             _main_form.dstrctCertQuantityUnit.Items.Insert(0, "Select");
@@ -379,6 +397,9 @@ namespace Green_Enviro_App
             _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
         }
 
+        // Function that verifies if the SI Unit is selected and providing a conversion
+        // From Kg to Pallets and Pallets to Kg. NB: the conversion of
+        // Pallets and Kg is not a concrete fact its from given information.
         private Tuple<string,string,bool> GetQuantity()
         {
             string _value_in_kg = "";
@@ -418,7 +439,11 @@ namespace Green_Enviro_App
             return _quantity;
         }
 
-        //This will be for DB
+        /* Selecting the Companies table from our Database and loading
+         * it to the the main page at run time. All information is seen
+         * at the Company list combobox and will continuously be updated per 
+         * changes done to the database.
+         */
         private void LoadDBIntoDC()
         {
             _company_dstrctCert = _database.SelectAll("Companies");
@@ -428,16 +453,18 @@ namespace Green_Enviro_App
 
             foreach (DataRow row in _company_dstrctCert.Rows)
             {
+                //Adding the companies to the Company combobox of the Destruction Certificate
                 _main_form.dstrctCertCompanyField.Items.Add(row[_companies_table_name_column]);
                 _company_list.Add(row[_companies_table_name_column].ToString());
             }
         }
 
-        //Gerry Edited line 498 and line 507
-        //Gerry Added the leave enent in main_form.cs
-        //Gerry Added the if statement on line 509
+        /* Function acting with the Company Combobox, verifying if a company is selected 
+         * and providing all the required information of the company selected.
+         */
         public void Company_Selected()
         {
+            //If no company selected do nothing
             if (_main_form.dstrctCertCompanyField.Text == "")
             {
                 _main_form.dstrctCertCntactPersonField.Text = "";
@@ -447,6 +474,8 @@ namespace Green_Enviro_App
                 return;
             }
 
+            //Verifies if the New Company checkbox is not selected and in that case provides
+            //all the relevant information with regards to the company selected
             if (_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Unchecked) 
             {
                 string _company_selected = _main_form.dstrctCertCompanyField.Text;
@@ -469,6 +498,9 @@ namespace Green_Enviro_App
             _is_company_selected = true;
             is_company_exist = true;
         }
+        /// <summary>
+        /// Function clearing the company details when the new company checkbox is checked
+        /// </summary>
         private void ClearCompanyDetails()
         {
             _main_form.dstrctCertCompanyField.Text = "";
@@ -477,6 +509,8 @@ namespace Green_Enviro_App
             _main_form.dstrctCertEmailAddressField.Clear();
         }
 
+        /* Adding the new company to the database if the checkbox is unchecked
+         */
         private void AddNewCompanyToDatabase()
         {
                 string _new_company = _main_form.dstrctCertCompanyField.Text;
@@ -489,6 +523,11 @@ namespace Green_Enviro_App
                 _database.InsertIntoDatabase(_company, _company_database_col, _values_for_database);
                 CustomMessageBox mb = new CustomMessageBox(_main_form, "Success", "New Company inserted into the database");
         }
+        
+        /* 
+         * Function to verify the day of the date and to construct the correct sentence
+         * for the destruction certificate.
+         */
         private string GenerateExtractionDate ()
         {
             string _extraction_date = "";
