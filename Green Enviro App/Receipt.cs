@@ -72,7 +72,16 @@ namespace Green_Enviro_App
 
             //
             _float_value = float.Parse(File.ReadAllText(_path_to_float));
-            _main_form.FloatBox.Text = _float_value.ToString();
+            _main_form.FloatBox.Text = "R " + String.Format("{0:n}", _float_value);
+
+            if (_float_value > 5000)
+            {
+                _main_form.FloatBox.BackColor = Color.GreenYellow;
+            }
+            else 
+            {
+                _main_form.FloatBox.BackColor = Color.Red;
+            }
         }
 
         public void SetupPriceList()
