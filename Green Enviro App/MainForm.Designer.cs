@@ -631,7 +631,7 @@ namespace Green_Enviro_App
 			this.PurchasesPage.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.PurchasesPage.Name = "PurchasesPage";
 			this.PurchasesPage.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.PurchasesPage.Size = new System.Drawing.Size(1564, 867);
+			this.PurchasesPage.Size = new System.Drawing.Size(1724, 867);
 			this.PurchasesPage.TabIndex = 1;
 			this.PurchasesPage.Text = "Purchases";
 			this.PurchasesPage.UseVisualStyleBackColor = true;
@@ -662,7 +662,7 @@ namespace Green_Enviro_App
 			this.PurchseLogGridView.ReadOnly = true;
 			this.PurchseLogGridView.RowHeadersWidth = 51;
 			this.PurchseLogGridView.RowTemplate.Height = 24;
-			this.PurchseLogGridView.Size = new System.Drawing.Size(1491, 656);
+			this.PurchseLogGridView.Size = new System.Drawing.Size(1651, 656);
 			this.PurchseLogGridView.TabIndex = 17;
 			// 
 			// FilterPurchaseLogBtn

@@ -23,6 +23,7 @@ namespace Green_Enviro_App
 		DataTable _purchases_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
+		string _totals = "TOTALS";
 		
 
 		string _ferrous;
@@ -106,6 +107,19 @@ namespace Green_Enviro_App
 				//Do nothing is the user has not selected what month they want to view
 				return;
 			}
+
+			LoadPurchaseLog();
+
+			if (_purchases_data_table.Rows.Count > 0)
+			{
+				FilterGridView();
+				PopulateGridView();
+			}
+
+		}
+
+		private void LoadPurchaseLog() 
+		{
 			_purchases_data_table.Clear();
 
 			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
@@ -140,54 +154,62 @@ namespace Green_Enviro_App
 				}
 			}
 
-			if (_purchases_data_table.Rows.Count > 0)
+		}
+
+		private void FilterGridView() 
+		{
+			_binding_source.DataSource = _purchases_data_table;
+			string _filter_instruction;
+			//Filter according to the date ranges if the dates have been selected correctly
+			if (isDateFiltered() == true)
 			{
-				_binding_source.DataSource = _purchases_data_table;
+				string _filter_start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
+				string _filter_end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
 
-				
 
-
-				//Filter according to the date ranges if the dates have been selected correctly
-				if (isDateFiltered() == true)
+				if (isTypeFiltered() == true)
 				{
-					string _filter_start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
-					string _filter_end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
-
-					if (isTypeFiltered() == true)
-					{
-						string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
-						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}' AND Type = '{3}'", _empty_string, _filter_start_date, _filter_end_date, _item_type);
-					}
-					else
-					{
-						_binding_source.Filter = string.Format("Name = '{0}' OR Date >= '{1}' AND Date <= '{2}'", _empty_string, _filter_start_date, _filter_end_date);
-					}
+					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
+					_filter_instruction = "Date = '{0}' OR Date = '{1}' OR Date >= '{2}' AND Date <= '{3}' AND Type = '{4}'";
+					_binding_source.Filter = string.Format(_filter_instruction, _totals, _empty_string, _filter_start_date, _filter_end_date, _item_type);
 				}
 				else
 				{
-					_binding_source.RemoveFilter();
-
-					if (isTypeFiltered() == true)
-					{
-						string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
-						_binding_source.Filter = string.Format("Name = '{0}' OR Type = '{1}'", _empty_string, _item_type);
-					}
+					_filter_instruction = "Date = '{0}' OR Date = '{1}' OR Date >= '{2}' AND Date <= '{3}'";
+					_binding_source.Filter = string.Format(_filter_instruction, _totals, _empty_string, _filter_start_date, _filter_end_date);
 				}
+			}
+			else
+			{
+				_binding_source.RemoveFilter();
 
-				_main_form.PurchseLogGridView.DataSource = _binding_source;
-				_main_form.PurchseLogGridView.Columns[0].FillWeight = 120F;
-				_main_form.PurchseLogGridView.Columns[3].FillWeight = 150F;
-
-				//Disables the ability to sort columns using the headers
-				foreach (DataGridViewColumn _column in _main_form.PurchseLogGridView.Columns)
+				if (isTypeFiltered() == true)
 				{
-					_column.SortMode = DataGridViewColumnSortMode.NotSortable;
+					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
+					_filter_instruction = "Date = '{0}' OR Date = '{1}' OR Type = '{2}'";
+					_binding_source.Filter = string.Format(_filter_instruction, _totals, _empty_string, _item_type);
 				}
+			}
+		}
 
-				AddTotalsRow();
-				_main_form.PurchseLogGridView.Refresh();
+		private void PopulateGridView() 
+		{
+			_main_form.PurchseLogGridView.DataSource = _binding_source;
+			_main_form.PurchseLogGridView.Columns[0].FillWeight = 120F;
+			_main_form.PurchseLogGridView.Columns[3].FillWeight = 150F;
+
+			//Disables the ability to sort columns using the headers
+			foreach (DataGridViewColumn _column in _main_form.PurchseLogGridView.Columns)
+			{
+				_column.SortMode = DataGridViewColumnSortMode.NotSortable;
 			}
 
+			AddTotalsRow();
+			int _last_row_index = 0;
+			_last_row_index = _main_form.PurchseLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 2;
+
+			_main_form.PurchseLogGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
+			_main_form.PurchseLogGridView.Refresh();
 		}
 
 
@@ -217,12 +239,10 @@ namespace Green_Enviro_App
 			}
 
 			DataRow _last_row = _purchases_data_table.NewRow();
-			DataRow _empty_row = _purchases_data_table.NewRow();
 
-			_last_row[0] = "TOTALS";
+			_last_row[0] = _totals;
 			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
 			{
-				_empty_row[_cell] = _empty_string;
 				if (_cell == _amount_column)
 				{
 					_last_row[_cell] = _total_amount;
@@ -236,10 +256,7 @@ namespace Green_Enviro_App
 					_last_row[_cell] = _empty_string;
 				}
 			}
-
-			_purchases_data_table.Rows.Add(_empty_row);
 			_purchases_data_table.Rows.Add(_last_row);
-
 		}
 
 		public void MonthSelected() 
