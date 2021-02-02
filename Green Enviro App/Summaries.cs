@@ -20,6 +20,8 @@ namespace Green_Enviro_App
 		float _total_non_ferrous_purchases = 0;
 		float _total_ferrous_sales = 0;
 		float _total_non_ferrous_sales = 0;
+		float _total_purchases = 0;
+		float _total_sales = 0;
 		float _total_wages = 0;
 		float _total_expenses = 0;
 		float _profit = 0;
@@ -88,6 +90,7 @@ namespace Green_Enviro_App
 					}
 				}
 			}
+			_total_purchases = _total_non_ferrous_purchases + _total_ferrous_purchases;
 		}
 
 		private void Sales(string _path_to_sales_file)  
@@ -116,6 +119,7 @@ namespace Green_Enviro_App
 					}
 				}
 			}
+			_total_sales = _total_non_ferrous_sales + _total_ferrous_sales;
 		}
 
 		private void Wages(string _path_to_wages_file) 
@@ -179,6 +183,12 @@ namespace Green_Enviro_App
 
 			_main_form.SummariesProfitBox.Clear();
 			_main_form.SummariesProfitBox.AppendText("\n  R " + _profit);
+
+			_main_form.SummariesTotalPurchases.Clear();
+			_main_form.SummariesTotalPurchases.AppendText("\n  R " + _total_purchases);
+
+			_main_form.SummariesTotalSales.Clear();
+			_main_form.SummariesTotalSales.AppendText("\n R " + _total_sales);
 
 			if (_profit < 0)
 			{

@@ -94,7 +94,7 @@ namespace Green_Enviro_App
 
         private void PurchaseBtn_Click(object sender, EventArgs e)
         {
-            _receipt.CompletePurchase();
+            _receipt.CompletePurchaseOrSale();
         }
 
 		private void CancelPurchaseBtn_Click(object sender, EventArgs e)
@@ -211,7 +211,7 @@ namespace Green_Enviro_App
 
         private void SendDstrctCertEmailBtn_Click(object sender, EventArgs e)
         {
-            _email.Show();
+            //_email.Show();
             //_email.sendEmailUsingGmail();
         }
 

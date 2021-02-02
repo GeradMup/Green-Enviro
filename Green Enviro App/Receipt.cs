@@ -17,7 +17,7 @@ namespace Green_Enviro_App
 
         Main_Form _main_form;
         Database _database;
-        Purchases _logs;
+        Purchases _purchases;
         Items _items_form;
         Float _float;
 
@@ -42,11 +42,14 @@ namespace Green_Enviro_App
         string _customer_name = "";
         string _customer_surname = "";
         bool _customer_selected = false;
+
+        string _purchase = "Purchase";
+        string _sale = "Sale";
         public Receipt(Main_Form form, Database data, Purchases logs) 
         {
             _main_form = form;
             _database = data;
-            _logs = logs;
+            _purchases = logs;
             _items_form = new Items(this,_database);
             _float = new Float(this);
 
@@ -58,7 +61,7 @@ namespace Green_Enviro_App
             setupCustomerList();
             SetupFloat();
         }
-
+        
         private void SetupFloat() 
         {
             //Create the float file
@@ -120,7 +123,7 @@ namespace Green_Enviro_App
                 }
             }
 
-            _logs.setTypes(_first_arg, _second_arg);
+            _purchases.setTypes(_first_arg, _second_arg);
         }
 
         public void setupCustomerList() 
@@ -178,6 +181,10 @@ namespace Green_Enviro_App
             _main_form.receiptBox.ScrollToCaret();
 
             _main_form.receiptBox.ReadOnly = true;
+
+            _main_form.ReceiptSaleOrPurchase.Items.Insert(0, _purchase);
+            _main_form.ReceiptSaleOrPurchase.Items.Insert(1, _sale);
+            _main_form.ReceiptSaleOrPurchase.SelectedIndex = 0;
         }
 
         public void addItems() 
@@ -363,12 +370,17 @@ namespace Green_Enviro_App
             _customer_selected = true;
         }
 
-        public void CompletePurchase() 
+        public void CompletePurchaseOrSale() 
         {
             _receipt_print_content.Text = _main_form.receiptBox.Text;
-            _logs.AddPurchase(_purchased_items);
+
+            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _sale) 
+            {
+                _purchases.AddPurchase(_purchased_items);
+                UpdateFloat(-1 * _running_total);
+            }
+            
             PrintReceipt();
-            UpdateFloat(-1*_running_total);
             ResetReceipt();
             _purchased_items.Clear();
         }
@@ -377,6 +389,7 @@ namespace Green_Enviro_App
         {
             _main_form.itemList.SelectedItem = null;
             _main_form.customerNumbersList.SelectedItem = null;
+
 
             _receipt_content = "";
             _running_total = 0;

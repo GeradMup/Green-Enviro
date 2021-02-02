@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 
 namespace Green_Enviro_App
 {
@@ -186,6 +187,11 @@ namespace Green_Enviro_App
 				}
 
 				AddTotalsRow();
+
+				int _last_row_index = 0;
+				_last_row_index = _main_form.SalesLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 2;
+
+				_main_form.SalesLogGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
 				_main_form.SalesLogGridView.Refresh();
 			}
 
@@ -218,12 +224,10 @@ namespace Green_Enviro_App
 			}
 
 			DataRow _last_row = _sales_data_table.NewRow();
-			DataRow _empty_row = _sales_data_table.NewRow();
 
 			_last_row[0] = "TOTALS";
 			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
 			{
-				_empty_row[_cell] = _empty_string;
 				if (_cell == _amount_column)
 				{
 					_last_row[_cell] = _total_amount;
@@ -239,7 +243,6 @@ namespace Green_Enviro_App
 			}
 
 			//Add the totals rows to the data table
-			_sales_data_table.Rows.Add(_empty_row);
 			_sales_data_table.Rows.Add(_last_row);
 
 		}
