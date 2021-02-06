@@ -77,11 +77,6 @@ namespace Green_Enviro_App
 			}
 		}
 
-		public void SubtractQuantities() 
-		{
-			
-		}
-
 		public void MonthSelected() 
 		{
 			if (_main_form.InventoryLogMonth.SelectedItem == null)
@@ -184,6 +179,7 @@ namespace Green_Enviro_App
 					bool _row_exists = false;
 					int _current_row = 0;
 					string _quantity = "Quantity";
+					string _date_string = "Date";
 					foreach (DataRow _new_row in _inventory_data_table.Rows) 
 					{
 						if (_new_row["Item"].ToString() == _data_row["Item"].ToString()) 
@@ -199,6 +195,7 @@ namespace Green_Enviro_App
 						float _current_total_qnty= float.Parse(_inventory_data_table.Rows[_current_row][_quantity].ToString());
 						float _new_total_qnty = _current_total_qnty + float.Parse(_data_row[_quantity].ToString());
 						_inventory_data_table.Rows[_current_row][_quantity] = _new_total_qnty.ToString();
+						_inventory_data_table.Rows[_current_row][_date_string] = _data_row[_date_string];
 					}
 					else 
 					{

@@ -61,6 +61,7 @@ namespace Green_Enviro_App
 
             SetupPriceList();
             setupReceipt();
+            SetSalePurchase();
             setupCustomerList();
             SetupFloat();
         }
@@ -185,6 +186,12 @@ namespace Green_Enviro_App
 
             _main_form.receiptBox.ReadOnly = true;
 
+            
+        }
+
+        private void SetSalePurchase() 
+        {
+            _main_form.ReceiptSaleOrPurchase.Items.Clear();
             _main_form.ReceiptSaleOrPurchase.Items.Insert(0, _purchase);
             _main_form.ReceiptSaleOrPurchase.Items.Insert(1, _sale);
             _main_form.ReceiptSaleOrPurchase.SelectedIndex = 0;
@@ -239,10 +246,18 @@ namespace Green_Enviro_App
             //Clear the _single_purchase_entry to make it ready for the next entry
             _single_purchase_entry = "";
 
-            _single_quantity_entry += _date + "," + _item_name + "," + _item_type + "," + _kilos.ToString();
+            float _quantity_kilos = _kilos;
+            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == "Sale")
+            {
+				_quantity_kilos = -1 * _quantity_kilos;
+            }
+
+            _single_quantity_entry += _date + "," + _item_name + "," + _item_type + "," + _quantity_kilos.ToString();
             _purchased_quantities.Add(_single_quantity_entry);
             _single_quantity_entry = "";
-     
+
+            
+
             //Clear the input fields and get them ready for the next entry
             ClearFields();
             _main_form.DealerPriceCheckBox.CheckState = CheckState.Unchecked;
@@ -257,7 +272,8 @@ namespace Green_Enviro_App
             bool _all_good = false;
             decimal _zero = (decimal)0.00;
             
-            if ((_main_form.customerNumbersList.SelectedItem == null) && (_main_form.ReceiptDefaultCustomerCheckBox.CheckState == CheckState.Unchecked))
+            if (((_main_form.customerNumbersList.SelectedItem == null) && (_main_form.ReceiptDefaultCustomerCheckBox.CheckState == CheckState.Unchecked))
+                && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == "Purchase"))
             {
                 //First check if customer details have been selected
                 _error_message = "Please select customer number";
@@ -380,17 +396,21 @@ namespace Green_Enviro_App
         {
             _receipt_print_content.Text = _main_form.receiptBox.Text;
 
-            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase) 
+            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase)
             {
                 _purchases.AddPurchase(_purchased_items);
                 UpdateFloat(-1 * _running_total);
-                _inventory.AddItems(_purchased_quantities);
             }
+            
+            _inventory.AddItems(_purchased_quantities);
+            
             
             PrintReceipt();
             ResetReceipt();
             _purchased_items.Clear();
             _purchased_quantities.Clear();
+
+            SetSalePurchase();
         }
 
         public void ResetReceipt() 
