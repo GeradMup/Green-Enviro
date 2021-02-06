@@ -38,6 +38,7 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.ReceiptSaleOrPurchase = new System.Windows.Forms.ComboBox();
 			this.AddFloatBtn = new System.Windows.Forms.Button();
 			this.FloatBox = new System.Windows.Forms.TextBox();
 			this.label55 = new System.Windows.Forms.Label();
@@ -104,6 +105,8 @@ namespace Green_Enviro_App
 			this.label14 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
+			this.Inventory = new System.Windows.Forms.TabPage();
+			this.InventoryLogMonth = new System.Windows.Forms.ComboBox();
 			this.Expenses = new System.Windows.Forms.TabPage();
 			this.ExpenseAmount = new System.Windows.Forms.NumericUpDown();
 			this.ExpenseDescriptionBox = new System.Windows.Forms.TextBox();
@@ -142,11 +145,16 @@ namespace Green_Enviro_App
 			this.label38 = new System.Windows.Forms.Label();
 			this.label39 = new System.Windows.Forms.Label();
 			this.Summaries = new System.Windows.Forms.TabPage();
+			this.label57 = new System.Windows.Forms.Label();
+			this.SummariesTotalSales = new System.Windows.Forms.RichTextBox();
+			this.label56 = new System.Windows.Forms.Label();
+			this.SummariesTotalPurchases = new System.Windows.Forms.RichTextBox();
 			this.label54 = new System.Windows.Forms.Label();
 			this.SummariesProfitBox = new System.Windows.Forms.RichTextBox();
 			this.label53 = new System.Windows.Forms.Label();
 			this.SummariesMonthSelector = new System.Windows.Forms.ComboBox();
 			this.SummariesExpensesBox = new System.Windows.Forms.RichTextBox();
+			this.SummariesNFSalesBox = new System.Windows.Forms.RichTextBox();
 			this.SummariesFSalesBox = new System.Windows.Forms.RichTextBox();
 			this.SummariesWagesBox = new System.Windows.Forms.RichTextBox();
 			this.SummariesNFPurchasesBox = new System.Windows.Forms.RichTextBox();
@@ -195,13 +203,14 @@ namespace Green_Enviro_App
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.label56 = new System.Windows.Forms.Label();
-			this.SummariesTotalPurchases = new System.Windows.Forms.RichTextBox();
-			this.label57 = new System.Windows.Forms.Label();
-			this.SummariesTotalSales = new System.Windows.Forms.RichTextBox();
-			this.SummariesNFSalesBox = new System.Windows.Forms.RichTextBox();
-			this.ReceiptSaleOrPurchase = new System.Windows.Forms.ComboBox();
-			this.Inventory = new System.Windows.Forms.TabPage();
+			this.InventoryLogStartDate = new System.Windows.Forms.ComboBox();
+			this.InventoryLogEndDate = new System.Windows.Forms.ComboBox();
+			this.label58 = new System.Windows.Forms.Label();
+			this.label59 = new System.Windows.Forms.Label();
+			this.label60 = new System.Windows.Forms.Label();
+			this.InventoryLogFilterBtn = new System.Windows.Forms.Button();
+			this.InventoryLogRmvFilterBtn = new System.Windows.Forms.Button();
+			this.InventoryLogGridView = new System.Windows.Forms.DataGridView();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -214,6 +223,7 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.SaleAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SaleQuantityBx)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).BeginInit();
+			this.Inventory.SuspendLayout();
 			this.Expenses.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ExpensesLogGridView)).BeginInit();
@@ -225,6 +235,7 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.InventoryLogGridView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -247,7 +258,6 @@ namespace Green_Enviro_App
 			this.mainTabControl.Size = new System.Drawing.Size(1732, 903);
 			this.mainTabControl.TabIndex = 0;
 			this.mainTabControl.TabStop = false;
-			this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
 			// 
 			// ReceiptPage
 			// 
@@ -289,6 +299,15 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
+			// 
+			// ReceiptSaleOrPurchase
+			// 
+			this.ReceiptSaleOrPurchase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ReceiptSaleOrPurchase.FormattingEnabled = true;
+			this.ReceiptSaleOrPurchase.Location = new System.Drawing.Point(50, 45);
+			this.ReceiptSaleOrPurchase.Name = "ReceiptSaleOrPurchase";
+			this.ReceiptSaleOrPurchase.Size = new System.Drawing.Size(214, 31);
+			this.ReceiptSaleOrPurchase.TabIndex = 35;
 			// 
 			// AddFloatBtn
 			// 
@@ -1087,6 +1106,34 @@ namespace Green_Enviro_App
 			this.label12.TabIndex = 4;
 			this.label12.Text = "Date";
 			// 
+			// Inventory
+			// 
+			this.Inventory.Controls.Add(this.InventoryLogGridView);
+			this.Inventory.Controls.Add(this.InventoryLogRmvFilterBtn);
+			this.Inventory.Controls.Add(this.InventoryLogFilterBtn);
+			this.Inventory.Controls.Add(this.label60);
+			this.Inventory.Controls.Add(this.label59);
+			this.Inventory.Controls.Add(this.label58);
+			this.Inventory.Controls.Add(this.InventoryLogEndDate);
+			this.Inventory.Controls.Add(this.InventoryLogStartDate);
+			this.Inventory.Controls.Add(this.InventoryLogMonth);
+			this.Inventory.Location = new System.Drawing.Point(4, 32);
+			this.Inventory.Name = "Inventory";
+			this.Inventory.Size = new System.Drawing.Size(1724, 867);
+			this.Inventory.TabIndex = 7;
+			this.Inventory.Text = "Inventory";
+			this.Inventory.UseVisualStyleBackColor = true;
+			// 
+			// InventoryLogMonth
+			// 
+			this.InventoryLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InventoryLogMonth.FormattingEnabled = true;
+			this.InventoryLogMonth.Location = new System.Drawing.Point(32, 45);
+			this.InventoryLogMonth.Name = "InventoryLogMonth";
+			this.InventoryLogMonth.Size = new System.Drawing.Size(365, 31);
+			this.InventoryLogMonth.TabIndex = 0;
+			this.InventoryLogMonth.SelectedIndexChanged += new System.EventHandler(this.InventoryLogMonth_SelectedIndexChanged);
+			// 
 			// Expenses
 			// 
 			this.Expenses.Controls.Add(this.ExpenseAmount);
@@ -1575,6 +1622,50 @@ namespace Green_Enviro_App
 			this.Summaries.Text = "Summaries";
 			this.Summaries.UseVisualStyleBackColor = true;
 			// 
+			// label57
+			// 
+			this.label57.AutoSize = true;
+			this.label57.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label57.Location = new System.Drawing.Point(1105, 373);
+			this.label57.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label57.Name = "label57";
+			this.label57.Size = new System.Drawing.Size(155, 28);
+			this.label57.TabIndex = 19;
+			this.label57.Text = "Total Sales";
+			// 
+			// SummariesTotalSales
+			// 
+			this.SummariesTotalSales.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesTotalSales.Location = new System.Drawing.Point(1110, 404);
+			this.SummariesTotalSales.Margin = new System.Windows.Forms.Padding(2);
+			this.SummariesTotalSales.Name = "SummariesTotalSales";
+			this.SummariesTotalSales.ReadOnly = true;
+			this.SummariesTotalSales.Size = new System.Drawing.Size(414, 170);
+			this.SummariesTotalSales.TabIndex = 18;
+			this.SummariesTotalSales.Text = "";
+			// 
+			// label56
+			// 
+			this.label56.AutoSize = true;
+			this.label56.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label56.Location = new System.Drawing.Point(1105, 129);
+			this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label56.Name = "label56";
+			this.label56.Size = new System.Drawing.Size(207, 28);
+			this.label56.TabIndex = 17;
+			this.label56.Text = "Total Purchases";
+			// 
+			// SummariesTotalPurchases
+			// 
+			this.SummariesTotalPurchases.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesTotalPurchases.Location = new System.Drawing.Point(1107, 160);
+			this.SummariesTotalPurchases.Margin = new System.Windows.Forms.Padding(2);
+			this.SummariesTotalPurchases.Name = "SummariesTotalPurchases";
+			this.SummariesTotalPurchases.ReadOnly = true;
+			this.SummariesTotalPurchases.Size = new System.Drawing.Size(414, 170);
+			this.SummariesTotalPurchases.TabIndex = 16;
+			this.SummariesTotalPurchases.Text = " ";
+			// 
 			// label54
 			// 
 			this.label54.AutoSize = true;
@@ -1626,6 +1717,16 @@ namespace Green_Enviro_App
 			this.SummariesExpensesBox.Size = new System.Drawing.Size(414, 177);
 			this.SummariesExpensesBox.TabIndex = 11;
 			this.SummariesExpensesBox.Text = "";
+			// 
+			// SummariesNFSalesBox
+			// 
+			this.SummariesNFSalesBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesNFSalesBox.Location = new System.Drawing.Point(582, 410);
+			this.SummariesNFSalesBox.Name = "SummariesNFSalesBox";
+			this.SummariesNFSalesBox.ReadOnly = true;
+			this.SummariesNFSalesBox.Size = new System.Drawing.Size(414, 164);
+			this.SummariesNFSalesBox.TabIndex = 10;
+			this.SummariesNFSalesBox.Text = "";
 			// 
 			// SummariesFSalesBox
 			// 
@@ -1905,7 +2006,6 @@ namespace Green_Enviro_App
 			this.label25.Size = new System.Drawing.Size(164, 23);
 			this.label25.TabIndex = 9;
 			this.label25.Text = "Contact Number";
-			this.label25.Click += new System.EventHandler(this.label25_Click);
 			// 
 			// label24
 			// 
@@ -2133,77 +2233,83 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// label56
+			// InventoryLogStartDate
 			// 
-			this.label56.AutoSize = true;
-			this.label56.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label56.Location = new System.Drawing.Point(1105, 129);
-			this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label56.Name = "label56";
-			this.label56.Size = new System.Drawing.Size(207, 28);
-			this.label56.TabIndex = 17;
-			this.label56.Text = "Total Purchases";
+			this.InventoryLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InventoryLogStartDate.FormattingEnabled = true;
+			this.InventoryLogStartDate.Location = new System.Drawing.Point(32, 144);
+			this.InventoryLogStartDate.Name = "InventoryLogStartDate";
+			this.InventoryLogStartDate.Size = new System.Drawing.Size(365, 31);
+			this.InventoryLogStartDate.TabIndex = 1;
 			// 
-			// SummariesTotalPurchases
+			// InventoryLogEndDate
 			// 
-			this.SummariesTotalPurchases.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SummariesTotalPurchases.Location = new System.Drawing.Point(1107, 160);
-			this.SummariesTotalPurchases.Margin = new System.Windows.Forms.Padding(2);
-			this.SummariesTotalPurchases.Name = "SummariesTotalPurchases";
-			this.SummariesTotalPurchases.ReadOnly = true;
-			this.SummariesTotalPurchases.Size = new System.Drawing.Size(414, 170);
-			this.SummariesTotalPurchases.TabIndex = 16;
-			this.SummariesTotalPurchases.Text = " ";
+			this.InventoryLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InventoryLogEndDate.FormattingEnabled = true;
+			this.InventoryLogEndDate.Location = new System.Drawing.Point(32, 241);
+			this.InventoryLogEndDate.Name = "InventoryLogEndDate";
+			this.InventoryLogEndDate.Size = new System.Drawing.Size(365, 31);
+			this.InventoryLogEndDate.TabIndex = 2;
 			// 
-			// label57
+			// label58
 			// 
-			this.label57.AutoSize = true;
-			this.label57.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label57.Location = new System.Drawing.Point(1105, 373);
-			this.label57.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label57.Name = "label57";
-			this.label57.Size = new System.Drawing.Size(155, 28);
-			this.label57.TabIndex = 19;
-			this.label57.Text = "Total Sales";
+			this.label58.AutoSize = true;
+			this.label58.Location = new System.Drawing.Point(28, 19);
+			this.label58.Name = "label58";
+			this.label58.Size = new System.Drawing.Size(65, 23);
+			this.label58.TabIndex = 3;
+			this.label58.Text = "Month";
 			// 
-			// SummariesTotalSales
+			// label59
 			// 
-			this.SummariesTotalSales.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SummariesTotalSales.Location = new System.Drawing.Point(1110, 404);
-			this.SummariesTotalSales.Margin = new System.Windows.Forms.Padding(2);
-			this.SummariesTotalSales.Name = "SummariesTotalSales";
-			this.SummariesTotalSales.ReadOnly = true;
-			this.SummariesTotalSales.Size = new System.Drawing.Size(414, 170);
-			this.SummariesTotalSales.TabIndex = 18;
-			this.SummariesTotalSales.Text = "";
+			this.label59.AutoSize = true;
+			this.label59.Location = new System.Drawing.Point(28, 215);
+			this.label59.Name = "label59";
+			this.label59.Size = new System.Drawing.Size(98, 23);
+			this.label59.TabIndex = 4;
+			this.label59.Text = "End Date";
 			// 
-			// SummariesNFSalesBox
+			// label60
 			// 
-			this.SummariesNFSalesBox.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SummariesNFSalesBox.Location = new System.Drawing.Point(582, 410);
-			this.SummariesNFSalesBox.Name = "SummariesNFSalesBox";
-			this.SummariesNFSalesBox.ReadOnly = true;
-			this.SummariesNFSalesBox.Size = new System.Drawing.Size(414, 164);
-			this.SummariesNFSalesBox.TabIndex = 10;
-			this.SummariesNFSalesBox.Text = "";
+			this.label60.AutoSize = true;
+			this.label60.Location = new System.Drawing.Point(28, 118);
+			this.label60.Name = "label60";
+			this.label60.Size = new System.Drawing.Size(120, 23);
+			this.label60.TabIndex = 5;
+			this.label60.Text = "Start Date";
 			// 
-			// ReceiptSaleOrPurchase
+			// InventoryLogFilterBtn
 			// 
-			this.ReceiptSaleOrPurchase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ReceiptSaleOrPurchase.FormattingEnabled = true;
-			this.ReceiptSaleOrPurchase.Location = new System.Drawing.Point(50, 45);
-			this.ReceiptSaleOrPurchase.Name = "ReceiptSaleOrPurchase";
-			this.ReceiptSaleOrPurchase.Size = new System.Drawing.Size(214, 31);
-			this.ReceiptSaleOrPurchase.TabIndex = 35;
+			this.InventoryLogFilterBtn.Location = new System.Drawing.Point(32, 338);
+			this.InventoryLogFilterBtn.Name = "InventoryLogFilterBtn";
+			this.InventoryLogFilterBtn.Size = new System.Drawing.Size(365, 63);
+			this.InventoryLogFilterBtn.TabIndex = 6;
+			this.InventoryLogFilterBtn.Text = "Filter";
+			this.InventoryLogFilterBtn.UseVisualStyleBackColor = true;
 			// 
-			// Inventory
+			// InventoryLogRmvFilterBtn
 			// 
-			this.Inventory.Location = new System.Drawing.Point(4, 32);
-			this.Inventory.Name = "Inventory";
-			this.Inventory.Size = new System.Drawing.Size(1724, 867);
-			this.Inventory.TabIndex = 7;
-			this.Inventory.Text = "Inventory";
-			this.Inventory.UseVisualStyleBackColor = true;
+			this.InventoryLogRmvFilterBtn.Location = new System.Drawing.Point(32, 454);
+			this.InventoryLogRmvFilterBtn.Name = "InventoryLogRmvFilterBtn";
+			this.InventoryLogRmvFilterBtn.Size = new System.Drawing.Size(365, 63);
+			this.InventoryLogRmvFilterBtn.TabIndex = 7;
+			this.InventoryLogRmvFilterBtn.Text = "Remove Filter";
+			this.InventoryLogRmvFilterBtn.UseVisualStyleBackColor = true;
+			// 
+			// InventoryLogGridView
+			// 
+			this.InventoryLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.InventoryLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.InventoryLogGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+			this.InventoryLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.InventoryLogGridView.Location = new System.Drawing.Point(487, 45);
+			this.InventoryLogGridView.Name = "InventoryLogGridView";
+			this.InventoryLogGridView.RowHeadersWidth = 51;
+			this.InventoryLogGridView.RowTemplate.Height = 24;
+			this.InventoryLogGridView.Size = new System.Drawing.Size(1229, 814);
+			this.InventoryLogGridView.TabIndex = 8;
 			// 
 			// Main_Form
 			// 
@@ -2236,6 +2342,8 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.SaleAmount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SaleQuantityBx)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).EndInit();
+			this.Inventory.ResumeLayout(false);
+			this.Inventory.PerformLayout();
 			this.Expenses.ResumeLayout(false);
 			this.Expenses.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).EndInit();
@@ -2251,6 +2359,7 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.InventoryLogGridView)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -2498,5 +2607,14 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.RichTextBox SummariesNFSalesBox;
 		public System.Windows.Forms.ComboBox ReceiptSaleOrPurchase;
 		private System.Windows.Forms.TabPage Inventory;
+		public System.Windows.Forms.ComboBox InventoryLogMonth;
+		public System.Windows.Forms.ComboBox InventoryLogEndDate;
+		public System.Windows.Forms.ComboBox InventoryLogStartDate;
+		private System.Windows.Forms.Label label60;
+		private System.Windows.Forms.Label label59;
+		private System.Windows.Forms.Label label58;
+		private System.Windows.Forms.Button InventoryLogRmvFilterBtn;
+		private System.Windows.Forms.Button InventoryLogFilterBtn;
+		public System.Windows.Forms.DataGridView InventoryLogGridView;
 	}
 }

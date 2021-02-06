@@ -17,7 +17,6 @@ namespace Green_Enviro_App
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
 		string _path_to_purchases = @"..//..//resources//Logs//Purchases//" + _month + ".csv";
-		string _path_to_float = @"..//..//resources//Logs//Purchases//" + _month + "_float.csv";
 		Main_Form _main_form;
 
 		DataTable _purchases_data_table = new DataTable();
@@ -112,6 +111,7 @@ namespace Green_Enviro_App
 
 			if (_purchases_data_table.Rows.Count > 0)
 			{
+				_binding_source.DataSource = _purchases_data_table;
 				FilterGridView();
 				PopulateGridView();
 			}
@@ -158,7 +158,7 @@ namespace Green_Enviro_App
 
 		private void FilterGridView() 
 		{
-			_binding_source.DataSource = _purchases_data_table;
+			
 			string _filter_instruction;
 			//Filter according to the date ranges if the dates have been selected correctly
 			if (isDateFiltered() == true)

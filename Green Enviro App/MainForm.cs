@@ -22,6 +22,7 @@ namespace Green_Enviro_App
         Summaries _summaries;
         Customers _customers;
         Email _email;
+        Inventory _inventory;
 
 
 		/// <summary>
@@ -36,7 +37,8 @@ namespace Green_Enviro_App
             _purchases = new Purchases(this);
             _email = new Email();
             _sales = new Sales(this, _database);
-            _receipt = new Receipt(this, _database, _purchases);
+            _inventory = new Inventory(this);
+            _receipt = new Receipt(this, _database, _purchases, _inventory);
             _destruction_certificate = new Destruction_Certificate(this,_database);
             _expenses = new Expenses(this, _database);
             _wages = new Wages(this, _database);
@@ -127,6 +129,11 @@ namespace Green_Enviro_App
             _receipt.EditFloat();
         }
 
+        private void NewCustomer_Click(object sender, EventArgs e)
+        {
+            _customers.NewCustomer();
+        }
+
         //******************************************************************************************************************************
         //PURCHASE LOG RELATED CALLS
         //******************************************************************************************************************************
@@ -146,51 +153,15 @@ namespace Green_Enviro_App
             _purchases.RemoveFilters();
 		}
 
-		private void TotalsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-
         //******************************************************************************************************************************
         //DESTRUCTION CERTIFICATE RELATED CALLS
         //******************************************************************************************************************************
-
-
-        private void DestrctCertificatePage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void generateDCBtn_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label25_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void generateDstrCertBtn_Click(object sender, EventArgs e)
         {
             _destruction_certificate.ExportToPdf();
         }
 
-        private void dstrctCertQuantityUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-		private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            
-        }
-
-        private void DCNewCompany_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
         private void dstrctCertCompanyField_SelectedIndexChanged(object sender, EventArgs e)
         {
             _destruction_certificate.Company_Selected();
@@ -325,12 +296,11 @@ namespace Green_Enviro_App
             _summaries.MonthSelected();
 		}
 
-		private void NewCustomer_Click(object sender, EventArgs e)
-		{
-            _customers.NewCustomer();
-		}
+        // *******************************************************************************************************************
+        // PRINTER RELATED CALLS
+        // *******************************************************************************************************************
 
-		private void PrintReceipt_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void PrintReceipt_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
 		{
             Graphics _printing_graphic = this.CreateGraphics();
             Bitmap map = new Bitmap(receiptBox.Size.Width, receiptBox.Size.Height, _printing_graphic);
@@ -338,5 +308,12 @@ namespace Green_Enviro_App
             _print_image.CopyFromScreen(receiptBox.Location.X, receiptBox.Location.Y, 0, 0, receiptBox.Size);
 		}
 
+        // *******************************************************************************************************************
+        // INVENTORY RELATED CALLS
+        // *******************************************************************************************************************
+        private void InventoryLogMonth_SelectedIndexChanged(object sender, EventArgs e)
+		{
+            _inventory.MonthSelected();
+		}
 	}
 }

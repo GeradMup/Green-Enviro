@@ -20,15 +20,18 @@ namespace Green_Enviro_App
         Purchases _purchases;
         Items _items_form;
         Float _float;
+        Inventory _inventory;
 
         DataTable _items;
         DataTable _customers;
         List<string> _purchased_items = new List<string>();
+        List<string> _purchased_quantities = new List<string>();
 
         string _receipt_content = "";
         float _running_total = 0;
         string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
         string _single_purchase_entry;
+        string _single_quantity_entry;
         RichTextBox _receipt_print_content = new RichTextBox();
 
         float _float_value = 0F;
@@ -45,14 +48,14 @@ namespace Green_Enviro_App
 
         string _purchase = "Purchase";
         string _sale = "Sale";
-        public Receipt(Main_Form form, Database data, Purchases logs) 
+        public Receipt(Main_Form form, Database data, Purchases logs, Inventory inventory) 
         {
             _main_form = form;
             _database = data;
             _purchases = logs;
+            _inventory = inventory;
             _items_form = new Items(this,_database);
             _float = new Float(this);
-
             _items_form.Owner = _main_form;
             _float.Owner = _main_form;
 
@@ -233,15 +236,18 @@ namespace Green_Enviro_App
             _single_purchase_entry += _date + "," + _customer_name + "," + _customer_surname + "," + _customer_id_number + "," + _customer_number + ",";
             _single_purchase_entry += _item_name + "," + _kilos.ToString() + "," + _price.ToString() + "," + _amount.ToString() + "," + _item_type;
             _purchased_items.Add(_single_purchase_entry);
-           //Clear the _single_purchase_entry to make it ready for the next entry
+            //Clear the _single_purchase_entry to make it ready for the next entry
             _single_purchase_entry = "";
 
+            _single_quantity_entry += _date + "," + _item_name + "," + _item_type + "," + _kilos.ToString();
+            _purchased_quantities.Add(_single_quantity_entry);
+            _single_quantity_entry = "";
+     
             //Clear the input fields and get them ready for the next entry
             ClearFields();
             _main_form.DealerPriceCheckBox.CheckState = CheckState.Unchecked;
             _main_form.PriceOverrideCheckBox.CheckState = CheckState.Unchecked;
-            _main_form.PriceBox.ReadOnly = true;
-            
+            _main_form.PriceBox.ReadOnly = true;       
         }
 
         private bool ValidEntries() 
@@ -374,15 +380,17 @@ namespace Green_Enviro_App
         {
             _receipt_print_content.Text = _main_form.receiptBox.Text;
 
-            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _sale) 
+            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase) 
             {
                 _purchases.AddPurchase(_purchased_items);
                 UpdateFloat(-1 * _running_total);
+                _inventory.AddItems(_purchased_quantities);
             }
             
             PrintReceipt();
             ResetReceipt();
             _purchased_items.Clear();
+            _purchased_quantities.Clear();
         }
 
         public void ResetReceipt() 
