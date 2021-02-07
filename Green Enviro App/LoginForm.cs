@@ -18,7 +18,14 @@ namespace Green_Enviro_App
 	/// </summary>
 	public struct Credentials 
     {
-        public Credentials(string _name, string psword, string mail) 
+		/// <summary>
+        /// Initializes a new instance of the <see cref="Credentials" /> struct.
+        /// The Struct contains required information to create a new user
+        /// </summary>
+		/// <param name="_name">The name.</param>
+		/// <param name="psword">The psword.</param>
+		/// <param name="mail">The mail.</param>
+		public Credentials(string _name, string psword, string mail) 
         {
             user_name = _name;
             password = psword;

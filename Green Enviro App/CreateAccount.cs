@@ -55,7 +55,6 @@ namespace Green_Enviro_App
         {
             InitializeComponent();
             //Creates username and password G,G for development purposes
-            defaultUser();
             _database = _db;
             _user_database = _user_db;
             //LOAD UP USER INFO FROM HE DATABASE
@@ -222,16 +221,6 @@ namespace Green_Enviro_App
             Credentials _new_user = new Credentials(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text);
             _credentials.Add(_new_user);
         }
-
-        //This function needs to be deleted
-        private void defaultUser()
-        {
-            InformationEncryption __encryption = new InformationEncryption();
-            string _encrypted_user_password = __encryption.Encrypt("G");
-            Credentials _new_user = new Credentials("G", _encrypted_user_password, "G");
-            _credentials.Add(_new_user);
-        }
-        
         /*
          *  Verifies if the users account information are repeated. 
          */
@@ -292,7 +281,7 @@ namespace Green_Enviro_App
             newUserNameField.Clear();
             newPasswordField.Clear();
             confirmPasswordField.Clear();
-            emailAddressField.Clear();
+            emailAddressField.Clear(); 
             masterPasswordField.Clear();
             userPermissionLvlBx.SelectedIndex = 0;
         }

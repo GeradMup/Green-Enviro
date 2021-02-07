@@ -23,6 +23,8 @@ namespace Green_Enviro_App
         Customers _customers;
         Email _email;
         Inventory _inventory;
+        TabPage _previous_tab_page;
+        TabPage _current_tab_page;
 
 
 		/// <summary>
@@ -315,5 +317,19 @@ namespace Green_Enviro_App
 		{
             _inventory.MonthSelected();
 		}
+
+        // *******************************************************************************************************************
+        // FUNCTION CALLS WHEN CHANGING TABS
+        // *******************************************************************************************************************
+
+        private void mainTabControl_Deselected(object sender, TabControlEventArgs e)
+		{
+            MessageBox.Show("Leaving " + e.TabPage.Name);
+		}
+
+		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
+		{
+            MessageBox.Show("Entering " + e.TabPage.Name);
+        }
 	}
 }
