@@ -59,10 +59,12 @@ namespace Green_Enviro_App
         CreateAccount _account;
 
         //Master Password (Changeable depending on the devs)
-        const string _master_password = "1234";
+        string _master_password;
 
         //Encryption instantiation 
         InformationEncryption _client_password = new InformationEncryption();
+
+        List<Credentials> _all_credentials;
 
         string _sync_exe_path = @"..//..//..//Green Enviro Sync//bin//Debug//Green Enviro Sync.exe";
 
@@ -90,9 +92,12 @@ namespace Green_Enviro_App
             //Creates a new instance of CreateAccoutn class
             _account = new CreateAccount(_database, _user_db_deletion);
 
-            //This is in order to render passwords into characters as to hide them
-            //passwordField.PasswordChar = '*';
-        }
+            _all_credentials = _account._credentials;
+            InformationEncryption _decryption = new InformationEncryption();
+
+            _master_password = _decryption.Decrypt(_all_credentials[0].password);
+			//passwordField.PasswordChar = '*';
+		}
 
         //********************************************************************************************************
 
@@ -148,7 +153,7 @@ namespace Green_Enviro_App
             string _user_name = "";
             bool _user_exists = false;
             InformationEncryption _decryption = new InformationEncryption();
-            List<Credentials> _all_credentials = _account._credentials;
+            
 
             int index = 0;
 
@@ -217,8 +222,9 @@ namespace Green_Enviro_App
 
         private void createAccountButton_Click(object sender, EventArgs e)
         {
-            bool _entered_admin_psword = AdminPass();
-            OpenCreateAccountFrom(_entered_admin_psword);
+            //bool _entered_admin_psword = AdminPass();
+            _account.Activate();
+            _account.Show();
         }
         private bool AdminPass()
         {
@@ -235,17 +241,9 @@ namespace Green_Enviro_App
 
         private void OpenCreateAccountFrom(bool _pswrd)
         {
-            bool _correct_admin_psword = _pswrd;
-            if (_correct_admin_psword)
-            {
                 //Creates a new instance everytime the new account button is clicked.
                 _account.Activate();
                 _account.Show();
-            }
-            else
-            {
-                MessageBox.Show("Incorrect master password", "Administrator", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
         }
         private void checkBox_Show_Hide_CheckedChanged(object sender, EventArgs e)
         {

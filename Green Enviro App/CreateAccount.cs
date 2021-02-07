@@ -18,7 +18,7 @@ namespace Green_Enviro_App
         string _title = "";
 
         //Master Password
-        const string _admin_master_password = "1234";
+        string _master_password;
 
         //Error messages
         const string _error = "Error!";
@@ -142,7 +142,7 @@ namespace Green_Enviro_App
                 _message = _permission_level;
                 _all_good = false;
             }
-            else if (masterPasswordField.Text != _admin_master_password)
+            else if (masterPasswordField.Text != _master_password)
             {
                 _message_type = _error;
                 _message = _incorrect_master_psword;
@@ -344,6 +344,10 @@ namespace Green_Enviro_App
                 _credentials.Add(_load_user_from_db);
                 index++;
             }
+
+            InformationEncryption _decryption = new InformationEncryption();
+
+            _master_password = _decryption.Decrypt(_credentials[0].password);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

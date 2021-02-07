@@ -53,10 +53,10 @@ namespace Green_Enviro_App
 			// 
 			// loginBtn
 			// 
-			this.loginBtn.Location = new System.Drawing.Point(155, 389);
-			this.loginBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.loginBtn.Location = new System.Drawing.Point(92, 361);
+			this.loginBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.loginBtn.Name = "loginBtn";
-			this.loginBtn.Size = new System.Drawing.Size(236, 52);
+			this.loginBtn.Size = new System.Drawing.Size(157, 53);
 			this.loginBtn.TabIndex = 2;
 			this.loginBtn.Text = "Login";
 			this.loginBtn.UseVisualStyleBackColor = true;
@@ -64,59 +64,64 @@ namespace Green_Enviro_App
 			// 
 			// usernameField
 			// 
-			this.usernameField.Location = new System.Drawing.Point(264, 218);
-			this.usernameField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.usernameField.Location = new System.Drawing.Point(243, 203);
+			this.usernameField.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.usernameField.Name = "usernameField";
-			this.usernameField.Size = new System.Drawing.Size(209, 22);
+			this.usernameField.Size = new System.Drawing.Size(286, 31);
 			this.usernameField.TabIndex = 3;
+			this.usernameField.Text = "Gerry";
 			this.usernameField.TextChanged += new System.EventHandler(this.usernameField_TextChanged);
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(151, 222);
+			this.label1.Location = new System.Drawing.Point(88, 209);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(79, 17);
+			this.label1.Size = new System.Drawing.Size(109, 23);
 			this.label1.TabIndex = 4;
 			this.label1.Text = "User Name";
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(151, 273);
+			this.label2.Location = new System.Drawing.Point(88, 282);
+			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(69, 17);
+			this.label2.Size = new System.Drawing.Size(98, 23);
 			this.label2.TabIndex = 5;
 			this.label2.Text = "Password";
 			// 
 			// passwordField
 			// 
-			this.passwordField.Location = new System.Drawing.Point(264, 270);
-			this.passwordField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.passwordField.Location = new System.Drawing.Point(243, 278);
+			this.passwordField.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.passwordField.Multiline = true;
 			this.passwordField.Name = "passwordField";
 			this.passwordField.PasswordChar = '*';
-			this.passwordField.Size = new System.Drawing.Size(208, 26);
+			this.passwordField.Size = new System.Drawing.Size(284, 36);
 			this.passwordField.TabIndex = 6;
+			this.passwordField.Text = "Gerry";
 			this.passwordField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordField_KeyPress);
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-			this.label3.Location = new System.Drawing.Point(144, 46);
+			this.label3.Location = new System.Drawing.Point(58, 35);
+			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(654, 58);
+			this.label3.Size = new System.Drawing.Size(855, 70);
 			this.label3.TabIndex = 7;
 			this.label3.Text = "Green Enviro SA Recycling";
 			// 
 			// clear_button
 			// 
-			this.clear_button.Location = new System.Drawing.Point(675, 389);
-			this.clear_button.Margin = new System.Windows.Forms.Padding(4);
+			this.clear_button.Location = new System.Drawing.Point(586, 361);
+			this.clear_button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
 			this.clear_button.Name = "clear_button";
-			this.clear_button.Size = new System.Drawing.Size(241, 52);
+			this.clear_button.Size = new System.Drawing.Size(131, 53);
 			this.clear_button.TabIndex = 8;
 			this.clear_button.Text = "Clear";
 			this.clear_button.UseVisualStyleBackColor = true;
@@ -124,10 +129,10 @@ namespace Green_Enviro_App
 			// 
 			// createAccountButton
 			// 
-			this.createAccountButton.Location = new System.Drawing.Point(416, 389);
-			this.createAccountButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.createAccountButton.Location = new System.Drawing.Point(306, 361);
+			this.createAccountButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.createAccountButton.Name = "createAccountButton";
-			this.createAccountButton.Size = new System.Drawing.Size(236, 52);
+			this.createAccountButton.Size = new System.Drawing.Size(223, 53);
 			this.createAccountButton.TabIndex = 9;
 			this.createAccountButton.Text = "Create Account";
 			this.createAccountButton.UseVisualStyleBackColor = true;
@@ -136,10 +141,10 @@ namespace Green_Enviro_App
 			// checkBox_Show_Hide
 			// 
 			this.checkBox_Show_Hide.AutoSize = true;
-			this.checkBox_Show_Hide.Location = new System.Drawing.Point(545, 272);
-			this.checkBox_Show_Hide.Margin = new System.Windows.Forms.Padding(4);
+			this.checkBox_Show_Hide.Location = new System.Drawing.Point(629, 281);
+			this.checkBox_Show_Hide.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
 			this.checkBox_Show_Hide.Name = "checkBox_Show_Hide";
-			this.checkBox_Show_Hide.Size = new System.Drawing.Size(64, 21);
+			this.checkBox_Show_Hide.Size = new System.Drawing.Size(76, 27);
 			this.checkBox_Show_Hide.TabIndex = 10;
 			this.checkBox_Show_Hide.Text = "Show";
 			this.checkBox_Show_Hide.UseVisualStyleBackColor = true;
@@ -148,10 +153,10 @@ namespace Green_Enviro_App
 			// AccountRemovalField
 			// 
 			this.AccountRemovalField.AutoSize = true;
-			this.AccountRemovalField.Location = new System.Drawing.Point(765, 281);
-			this.AccountRemovalField.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.AccountRemovalField.Location = new System.Drawing.Point(759, 282);
+			this.AccountRemovalField.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
 			this.AccountRemovalField.Name = "AccountRemovalField";
-			this.AccountRemovalField.Size = new System.Drawing.Size(123, 17);
+			this.AccountRemovalField.Size = new System.Drawing.Size(175, 23);
 			this.AccountRemovalField.TabIndex = 11;
 			this.AccountRemovalField.TabStop = true;
 			this.AccountRemovalField.Text = "Remove Account?";
@@ -159,9 +164,9 @@ namespace Green_Enviro_App
 			// 
 			// LoginForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1039, 529);
+			this.ClientSize = new System.Drawing.Size(983, 458);
 			this.Controls.Add(this.AccountRemovalField);
 			this.Controls.Add(this.checkBox_Show_Hide);
 			this.Controls.Add(this.createAccountButton);
@@ -172,8 +177,9 @@ namespace Green_Enviro_App
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.usernameField);
 			this.Controls.Add(this.loginBtn);
+			this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.Name = "LoginForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Green Enviro SA Recycling";
