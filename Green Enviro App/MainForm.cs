@@ -26,12 +26,14 @@ namespace Green_Enviro_App
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
 
+        int _user_permission_level = 0;
 
 		/// <summary>
-        /// This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.
-        /// </summary>
+		/// This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.
+		/// </summary>
 		/// <param name="_data">Database</param>
-		public Main_Form(Database _data)
+		/// <param name="permissionLevel"></param>
+		public Main_Form(Database _data, int permissionLevel)
         {
             InitializeComponent();
             //initialiseItemList();
@@ -46,6 +48,7 @@ namespace Green_Enviro_App
             _wages = new Wages(this, _database);
             _summaries = new Summaries(this);
             _customers = new Customers(this, _database, _receipt);
+            _user_permission_level = permissionLevel;
         }
 
 
@@ -324,12 +327,12 @@ namespace Green_Enviro_App
 
         private void mainTabControl_Deselected(object sender, TabControlEventArgs e)
 		{
-            MessageBox.Show("Leaving " + e.TabPage.Name);
+            //MessageBox.Show("Leaving " + e.TabPage.Name);
 		}
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
 		{
-            MessageBox.Show("Entering " + e.TabPage.Name);
+            //MessageBox.Show("Entering " + e.TabPage.Name);
         }
 	}
 }

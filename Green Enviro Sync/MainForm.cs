@@ -44,10 +44,12 @@ namespace Green_Enviro_Sync
 
 		static Stopwatch _stopwatch;
 		ErrorMsgBox _errorBox;
+		int _permission_level;
 		
-		public Sync()
+		public Sync(int permissionLevel)
 		{
 			InitializeComponent();
+			_permission_level = permissionLevel;
 		}
 
 		private void UploadBtn_Click(object sender, EventArgs e)
@@ -239,6 +241,12 @@ namespace Green_Enviro_Sync
 			//Run the main application after data syncronization is completed
 			string _absolute_path = Path.GetFullPath(_main_exe_path);
 			Process.Start(_absolute_path, "Open Main Application");
+			this.Close();
+		}
+
+		private void CancelBtn_Click(object sender, EventArgs e)
+		{
+			LaunchMainApp();
 			this.Close();
 		}
 	}

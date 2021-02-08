@@ -33,12 +33,13 @@ namespace Green_Enviro_Sync
 			this.UploadBtn = new System.Windows.Forms.Button();
 			this.DownloadBtn = new System.Windows.Forms.Button();
 			this.UpDownPgBar = new System.Windows.Forms.ProgressBar();
+			this.CancelBtn = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// UploadBtn
 			// 
 			this.UploadBtn.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.UploadBtn.Location = new System.Drawing.Point(67, 54);
+			this.UploadBtn.Location = new System.Drawing.Point(158, 54);
 			this.UploadBtn.Name = "UploadBtn";
 			this.UploadBtn.Size = new System.Drawing.Size(221, 114);
 			this.UploadBtn.TabIndex = 0;
@@ -49,7 +50,7 @@ namespace Green_Enviro_Sync
 			// DownloadBtn
 			// 
 			this.DownloadBtn.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.DownloadBtn.Location = new System.Drawing.Point(492, 54);
+			this.DownloadBtn.Location = new System.Drawing.Point(498, 54);
 			this.DownloadBtn.Name = "DownloadBtn";
 			this.DownloadBtn.Size = new System.Drawing.Size(221, 114);
 			this.DownloadBtn.TabIndex = 1;
@@ -59,17 +60,29 @@ namespace Green_Enviro_Sync
 			// 
 			// UpDownPgBar
 			// 
-			this.UpDownPgBar.Location = new System.Drawing.Point(67, 343);
+			this.UpDownPgBar.Location = new System.Drawing.Point(67, 218);
 			this.UpDownPgBar.Name = "UpDownPgBar";
-			this.UpDownPgBar.Size = new System.Drawing.Size(769, 131);
+			this.UpDownPgBar.Size = new System.Drawing.Size(742, 131);
 			this.UpDownPgBar.TabIndex = 2;
 			this.UpDownPgBar.Visible = false;
+			// 
+			// CancelBtn
+			// 
+			this.CancelBtn.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.CancelBtn.Location = new System.Drawing.Point(312, 372);
+			this.CancelBtn.Name = "CancelBtn";
+			this.CancelBtn.Size = new System.Drawing.Size(221, 114);
+			this.CancelBtn.TabIndex = 3;
+			this.CancelBtn.Text = "Cancel";
+			this.CancelBtn.UseVisualStyleBackColor = true;
+			this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
 			// 
 			// Sync
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(868, 509);
+			this.Controls.Add(this.CancelBtn);
 			this.Controls.Add(this.UpDownPgBar);
 			this.Controls.Add(this.DownloadBtn);
 			this.Controls.Add(this.UploadBtn);
@@ -86,6 +99,7 @@ namespace Green_Enviro_Sync
 		private System.Windows.Forms.Button UploadBtn;
 		private System.Windows.Forms.Button DownloadBtn;
 		private System.Windows.Forms.ProgressBar UpDownPgBar;
+		private System.Windows.Forms.Button CancelBtn;
 	}
 }
 

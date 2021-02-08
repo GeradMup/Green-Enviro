@@ -69,7 +69,7 @@ namespace Green_Enviro_App
 			this.usernameField.Name = "usernameField";
 			this.usernameField.Size = new System.Drawing.Size(286, 31);
 			this.usernameField.TabIndex = 3;
-			this.usernameField.Text = "Gerry";
+			this.usernameField.Text = "Master";
 			this.usernameField.TextChanged += new System.EventHandler(this.usernameField_TextChanged);
 			// 
 			// label1
@@ -101,7 +101,7 @@ namespace Green_Enviro_App
 			this.passwordField.PasswordChar = '*';
 			this.passwordField.Size = new System.Drawing.Size(284, 36);
 			this.passwordField.TabIndex = 6;
-			this.passwordField.Text = "Gerry";
+			this.passwordField.Text = "Master";
 			this.passwordField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordField_KeyPress);
 			// 
 			// label3
@@ -119,7 +119,7 @@ namespace Green_Enviro_App
 			// clear_button
 			// 
 			this.clear_button.Location = new System.Drawing.Point(586, 361);
-			this.clear_button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.clear_button.Margin = new System.Windows.Forms.Padding(6);
 			this.clear_button.Name = "clear_button";
 			this.clear_button.Size = new System.Drawing.Size(131, 53);
 			this.clear_button.TabIndex = 8;
@@ -142,7 +142,7 @@ namespace Green_Enviro_App
 			// 
 			this.checkBox_Show_Hide.AutoSize = true;
 			this.checkBox_Show_Hide.Location = new System.Drawing.Point(629, 281);
-			this.checkBox_Show_Hide.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.checkBox_Show_Hide.Margin = new System.Windows.Forms.Padding(6);
 			this.checkBox_Show_Hide.Name = "checkBox_Show_Hide";
 			this.checkBox_Show_Hide.Size = new System.Drawing.Size(76, 27);
 			this.checkBox_Show_Hide.TabIndex = 10;

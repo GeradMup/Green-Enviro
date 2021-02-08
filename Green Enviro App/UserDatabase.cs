@@ -47,8 +47,10 @@ namespace Green_Enviro_App
          */
         private void BindDataGridToUserTable()
         {
-            _data_table = _database.SelectAll("Users");
-            userTableDataGridView.DataSource = _data_table.DefaultView;
+            DataTable temp_data_table = _database.SelectAll("Users");
+            temp_data_table.Rows[0].Delete();
+            temp_data_table.Rows[0].AcceptChanges();
+            userTableDataGridView.DataSource = temp_data_table.DefaultView;
         }
 
         private void userDeletionCancelBtn_Click(object sender, EventArgs e)
@@ -68,10 +70,10 @@ namespace Green_Enviro_App
 
             int _accountId_number_column = 0;
 
-            foreach (DataRow row in _data_table.Rows)
+            for (int x = 1; x < _data_table.Rows.Count; x++)
             {
                 //Selects the users account ID and adds to the drop down list on the User Database form
-                accountIdList.Items.Add(row[_accountId_number_column]);
+                accountIdList.Items.Add(_data_table.Rows[x][_accountId_number_column]);
             }
         }
 
@@ -165,5 +167,6 @@ namespace Green_Enviro_App
             passwordSelectedForDeletionField.Clear();
             emailSelectedForDeletionField.Clear();
         }
-    }
+
+	}
 }

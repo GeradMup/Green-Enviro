@@ -25,16 +25,18 @@ namespace Green_Enviro_App
 		/// <param name="_name">The name.</param>
 		/// <param name="psword">The psword.</param>
 		/// <param name="mail">The mail.</param>
-		public Credentials(string _name, string psword, string mail) 
+		public Credentials(string _name, string psword, string mail, int permission) 
         {
             user_name = _name;
             password = psword;
             email = mail;
+            user_permission_level = permission;
         }
 
         public string user_name;
         public string password;
         public string email;
+        public int user_permission_level;
     }
 
 
@@ -60,6 +62,7 @@ namespace Green_Enviro_App
 
         //Master Password (Changeable depending on the devs)
         string _master_password;
+        int _user_permission_level;
 
         //Encryption instantiation 
         InformationEncryption _client_password = new InformationEncryption();
@@ -83,9 +86,6 @@ namespace Green_Enviro_App
             //Creates an Instance of the Database class
             _database = new Database();
 
-            //Creates the main form for the program
-            _mainForm = new Main_Form(_database);
-
             //Creates a new instances of UserDatabaseForm class
             _user_db_deletion = new UserDatabaseForm(_database);
 
@@ -93,10 +93,13 @@ namespace Green_Enviro_App
             _account = new CreateAccount(_database, _user_db_deletion);
 
             _all_credentials = _account._credentials;
-            InformationEncryption _decryption = new InformationEncryption();
+            //MessageBox.Show(_all_credentials[0].user_permission_level.ToString());
 
+            InformationEncryption _decryption = new InformationEncryption();
             _master_password = _decryption.Decrypt(_all_credentials[0].password);
-			//passwordField.PasswordChar = '*';
+
+			//Creates the main form for the program
+			_mainForm = new Main_Form(_database, 0);
 		}
 
         //********************************************************************************************************
@@ -105,7 +108,7 @@ namespace Green_Enviro_App
         {
             //First open the Sync App to prompt users if they want to synchronize data 
             string _absolute_path = Path.GetFullPath(_sync_exe_path);
-            Process.Start(_absolute_path);
+            Process.Start(_absolute_path, _user_permission_level.ToString());
             this.Close();
         }
 
@@ -175,6 +178,7 @@ namespace Green_Enviro_App
                 string _decrypted_psword = _decryption.Decrypt(_all_credentials[index].password);
                 if (_decrypted_psword == passwordField.Text)
                 {
+                    _user_permission_level = _all_credentials[index].user_permission_level;
                     return true;
                 }
             }
@@ -222,7 +226,18 @@ namespace Green_Enviro_App
 
         private void createAccountButton_Click(object sender, EventArgs e)
         {
-            //bool _entered_admin_psword = AdminPass();
+            bool validLogin = verifyCredentials();
+
+            if (validLogin == false) 
+            {
+                return;
+            }
+
+            if (_user_permission_level != 4) 
+            {
+                CustomMessageBox box = new CustomMessageBox(this, "Error", "Permission Denied");
+                return;
+            }
             _account.Activate();
             _account.Show();
         }
@@ -259,9 +274,20 @@ namespace Green_Enviro_App
 
         private void AccountRemovalField_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Firstly when the link is clicked upon request
-            bool _admin_password = AdminPass();
-            OpenDeleteAccountForm(_admin_password);
+            bool validLogin = verifyCredentials();
+
+            if (validLogin == false)
+            {
+                return;
+            }
+
+            if (_user_permission_level != 4)
+            {
+                CustomMessageBox box = new CustomMessageBox(this, "Error", "Permission Denied");
+                return;
+            }
+
+            OpenDeleteAccountForm(true);
 
         }
 

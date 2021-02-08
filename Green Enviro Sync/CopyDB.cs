@@ -12,14 +12,16 @@ namespace Green_Enviro_Sync
 {
 	public partial class CopyDB : Form
 	{
-		public CopyDB()
+		int _permission_level;
+		public CopyDB(string permissionLevel)
 		{
+			_permission_level = int.Parse(permissionLevel);
 			InitializeComponent();
 		}
 
 		private void YesBtn_Click(object sender, EventArgs e)
 		{
-			Sync _sync_prog = new Sync();
+			Sync _sync_prog = new Sync(_permission_level);
 			_sync_prog.Activate();
 			_sync_prog.Show();
 			this.Hide();
@@ -27,7 +29,7 @@ namespace Green_Enviro_Sync
 
 		private void NoBtn_Click(object sender, EventArgs e)
 		{
-			Sync _sync_prog = new Sync();
+			Sync _sync_prog = new Sync(_permission_level);
 			_sync_prog.LaunchMainApp();
 			this.Close();
 		}

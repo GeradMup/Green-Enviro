@@ -218,7 +218,7 @@ namespace Green_Enviro_App
                 _database.InsertNewUser(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text,_permission_level_selected);// Do not know if the list requires permission lvl
 
             // This is still the original list storage way to keep track of new users
-            Credentials _new_user = new Credentials(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text);
+            Credentials _new_user = new Credentials(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text, _permission_level_selected);
             _credentials.Add(_new_user);
         }
         /*
@@ -340,7 +340,7 @@ namespace Green_Enviro_App
                 _db_psword = _user.Rows[index].Field<string>("Password");
                 _db_email = _user.Rows[index].Field<string>("Email");
                 _db_permission_level = _user.Rows[index].Field<int>("PermissionLevel");
-                Credentials _load_user_from_db = new Credentials(_db_username,_db_psword,_db_email);
+                Credentials _load_user_from_db = new Credentials(_db_username,_db_psword,_db_email, _db_permission_level);
                 _credentials.Add(_load_user_from_db);
                 index++;
             }
@@ -360,11 +360,10 @@ namespace Green_Enviro_App
         private void SelectPermissionLevel()
         {
             userPermissionLvlBx.DropDownStyle = ComboBoxStyle.DropDownList;
-            userPermissionLvlBx.Items.Insert(0, "Select Permission Level");
-            userPermissionLvlBx.Items.Insert(1, "1");
-            userPermissionLvlBx.Items.Insert(2, "2");
-            userPermissionLvlBx.Items.Insert(3, "3");
-            userPermissionLvlBx.SelectedIndex = 0;
+            userPermissionLvlBx.Items.Add("1");
+            userPermissionLvlBx.Items.Add("2");
+            userPermissionLvlBx.Items.Add("3");
+            userPermissionLvlBx.Items.Add("4");
         }
     }
 }
