@@ -13,9 +13,12 @@ namespace Green_Enviro_Sync
 	public partial class CopyDB : Form
 	{
 		int _permission_level;
-		public CopyDB(string permissionLevel)
+		public CopyDB(string[] permissionLevel)
 		{
-			_permission_level = int.Parse(permissionLevel);
+			if(permissionLevel.Length > 0)
+			{
+				_permission_level = int.Parse(permissionLevel[0]);
+			}
 			InitializeComponent();
 		}
 

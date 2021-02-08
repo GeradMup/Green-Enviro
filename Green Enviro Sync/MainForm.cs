@@ -54,23 +54,35 @@ namespace Green_Enviro_Sync
 
 		private void UploadBtn_Click(object sender, EventArgs e)
 		{
-			CheckConnectivity();
-			SetupFirebaseDatabase();
+			if ((_permission_level == 3) || (_permission_level == 4))
+			{
+				CheckConnectivity();
+				SetupFirebaseDatabase();
 
-			//First Upload the .mdf file
-			//The log file will be uploaded via a recursive function call
-			UploadDatabase(1,_path_to_db_file_main, _db_file_name,"Database File");
-
+				//First Upload the .mdf file
+				//The log file will be uploaded via a recursive function call
+				UploadDatabase(1, _path_to_db_file_main, _db_file_name, "Database File");
+			}
+			else 
+			{
+				MessageBox.Show("Permission Denied", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void DownloadBtn_Click(object sender, EventArgs e)
 		{
-			CheckConnectivity();
-			SetupFirebaseDatabase();
-			//First get the .mdf file
-			//The .ldf will be downloaded via a recursive function call
-			RetrieveFromFirebase(_path_to_db_file_main, 1);
-			
+			if ((_permission_level == 2) || (_permission_level == 4))
+			{
+				CheckConnectivity();
+				SetupFirebaseDatabase();
+				//First get the .mdf file
+				//The .ldf will be downloaded via a recursive function call
+				RetrieveFromFirebase(_path_to_db_file_main, 1);
+			}
+			else 
+			{
+				MessageBox.Show("Permission Denied", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private bool CheckConnectivity() 
@@ -242,6 +254,7 @@ namespace Green_Enviro_Sync
 			string _absolute_path = Path.GetFullPath(_main_exe_path);
 			Process.Start(_absolute_path, "Open Main Application");
 			this.Close();
+			Application.Exit();
 		}
 
 		private void CancelBtn_Click(object sender, EventArgs e)
