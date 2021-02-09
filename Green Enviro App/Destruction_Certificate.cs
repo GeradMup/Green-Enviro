@@ -72,7 +72,7 @@ namespace Green_Enviro_App
                 pdfDocument.Open();
 
                 // Here we need the path to the image or logo image
-                var image_path = @"..//..//resources//Green Enviro Destruction Certificate Logo.png";
+                var image_path = @"..//..//resources//Green Enviro Destruction Certificate Logo Better.png";
 
                 //Font fntHeading = FontFactory.GetFont(FontFactory.HELVETICA, 20, Font.BOLD, new Color(0x00, 0x00, 0x00));
                 BaseFont f_cn = BaseFont.CreateFont("c:\\windows\\fonts\\calibri.ttf", BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
@@ -89,7 +89,7 @@ namespace Green_Enviro_App
                 cb.BeginText();
 
                 iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(image_path);
-                img.ScalePercent(75f);
+                img.ScalePercent(45f);
                 img.SetAbsolutePosition((PageSize.A4.Width - img.ScaledWidth) / 2, pdfDocument.Top - 135f);
                 cb.AddImage(img);
 
@@ -205,10 +205,10 @@ namespace Green_Enviro_App
 
                 //Insert picture of signature (can be improved)
                 y_coordinates -= 60;
-                string signauture_image_path = @"..//..//resources//Green Enviro Signature.png";
+                string signauture_image_path = @"..//..//resources//Green Enviro Signature.jpeg";
                 iTextSharp.text.Image _signature_img = iTextSharp.text.Image.GetInstance(signauture_image_path);
-                _signature_img.ScalePercent(75f);
-                _signature_img.SetAbsolutePosition(x_coordinates - 10, y_coordinates);
+                _signature_img.ScalePercent(10F);
+                _signature_img.SetAbsolutePosition(x_coordinates - 10, y_coordinates + 90);
                 cb.AddImage(_signature_img);
 
 
