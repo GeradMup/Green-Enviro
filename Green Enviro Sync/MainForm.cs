@@ -295,8 +295,12 @@ namespace Green_Enviro_Sync
 		{
 			try
 			{
-				bool _overwrite_files  = true;
-				ZipFile.ExtractToDirectory(_resources_zip_path, _resources_path, _overwrite_files);
+				if (Directory.Exists(_resources_path)) 
+				{
+					bool _delete_subfolders_and_files = true;
+					Directory.Delete(_resources_path, _delete_subfolders_and_files);
+				}
+				ZipFile.ExtractToDirectory(_resources_zip_path, _resources_path);
 			}
 			catch (Exception ex)
 			{
