@@ -17,6 +17,7 @@ using FireSharp.Response;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
+using System.IO.Compression;
 
 namespace Green_Enviro_Sync
 {
@@ -27,20 +28,19 @@ namespace Green_Enviro_Sync
 		private extern static bool InternetGetConnectedState(out int description, int resultValue);
 
 		static IFirebaseClient _fb_client;
-		static string _firebase_node = "Database Url";
-		static string database_address;
-		static string _path_to_db_file = "../../../Green Enviro App/bin/Debug/Green Enviro Data.mdf";
-		static string _path_to_db_file_main = "../../../Green Enviro App/Green Enviro Data.mdf";
-		static string _path_to_log_file = "../../../Green Enviro App/Green Enviro Data_log.ldf";
 
+		static string _main_dir_path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+		string _resources_path = _main_dir_path + @"\resources";
+		string _resources_zip_path = _main_dir_path + @"\resources.zip";
+		static string _path_to_db_file_main = _main_dir_path + @"\Green Enviro Data.mdf";
+		static string _path_to_log_file = _main_dir_path + @"\Green Enviro Data_log.ldf";
+
+		static string _firebase_node = "Database Url";
 		string _db_file_name = "Green Enviro Data.mdf";
 		string _log_file_name = "Green Enviro Data_log.ldf";
-		string _path_to_debug_directory = @"../../../Green Enviro App/bin/Debug";
-		string _path_to_source_code_directory = @"../../../Green Enviro App";
-
+		string _resources_file_name = "resources.zip";
 
 		static string _data_bucket_name = "green-enviro-app.appspot.com";
-
 
 		static Stopwatch _stopwatch;
 		ErrorMsgBox _errorBox;
@@ -155,6 +155,11 @@ namespace Green_Enviro_Sync
 				//Second upload the log file(.ldf)
 				UploadDatabase(2, _path_to_log_file, _log_file_name, "Database File");
 			}
+			else if (_index == 2)
+			{
+				ZipLogFiles();
+				UploadDatabase(3, _resources_zip_path, _resources_file_name, "Database File");
+			}
 			else 
 			{
 				InsertionCompleted();
@@ -190,6 +195,7 @@ namespace Green_Enviro_Sync
 
 			await DownloadDatabase(_download_index, _download_address, savePath);
 		}
+
 		// ****************************************************************************************************************
 
 		public async Task DownloadDatabase(int index, string _downloadUrl, string _savePath)
@@ -238,8 +244,14 @@ namespace Green_Enviro_Sync
 				RetrieveFromFirebase(_path_to_log_file, 2);
 				return;
 			}
-			else
+			else if (_index == 2) 
 			{
+				RetrieveFromFirebase(_resources_zip_path, 3);
+				return;
+			}
+			else if(_index == 3)
+			{
+				UnzipLogFiles();
 				UpDownPgBar.Visible = false;
 				MessageBox.Show("Download Completed");
 				LaunchMainApp();
@@ -252,7 +264,7 @@ namespace Green_Enviro_Sync
 			string _main_exe_path = @"..//..//..//Green Enviro App//bin//Debug//Green Enviro App.exe";
 			//Run the main application after data syncronization is completed
 			string _absolute_path = Path.GetFullPath(_main_exe_path);
-			Process.Start(_absolute_path, "Open Main Application");
+			Process.Start(_absolute_path, _permission_level.ToString());
 			this.Close();
 			Application.Exit();
 		}
@@ -261,6 +273,35 @@ namespace Green_Enviro_Sync
 		{
 			LaunchMainApp();
 			this.Close();
+		}
+
+		private void ZipLogFiles()
+		{
+			try
+			{
+				if (File.Exists(_resources_zip_path)) 
+				{
+					File.Delete(_resources_zip_path);
+				}
+				ZipFile.CreateFromDirectory(_resources_path, _resources_zip_path);
+			}
+			catch(Exception ex) 
+			{
+				MessageBox.Show("Error Zipping: " + ex.Message);
+			}
+		}
+
+		private void UnzipLogFiles() 
+		{
+			try
+			{
+				bool _overwrite_files  = true;
+				ZipFile.ExtractToDirectory(_resources_zip_path, _resources_path, _overwrite_files);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error Unzipping: " + ex.Message);
+			}
 		}
 	}
 }

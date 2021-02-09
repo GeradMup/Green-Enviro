@@ -77,8 +77,8 @@ namespace Green_Enviro_App
 
             if (args.Length > 0)
             {
-                _main_program_pass = true;
-                
+                _user_permission_level = int.Parse(args[0].ToString());
+				_main_program_pass = true; 
             }
 
             InitializeComponent();
