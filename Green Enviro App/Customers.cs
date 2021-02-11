@@ -114,7 +114,7 @@ namespace Green_Enviro_App
 
 			if (_all_good == false) 
 			{
-				CustomMessageBox mb = new CustomMessageBox(this, "Failed", _error_message);
+				CustomMessageBox mb = new CustomMessageBox(this, "Error!", _error_message);
 			}
 			return _all_good;
 		}
@@ -170,7 +170,7 @@ namespace Green_Enviro_App
 				{
 					NewCustomerIdPictureBox.Image.Save(_path_to_image, System.Drawing.Imaging.ImageFormat.Jpeg);
 					_receipt.setupCustomerList();
-					CustomMessageBox mb = new CustomMessageBox(this, "Success", "New Customer Added Successfully");
+					CustomMessageBox mb = new CustomMessageBox(this, "Success!", "New Customer Added Successfully");
 					Exit();
 				}
 				catch (Exception ex) 

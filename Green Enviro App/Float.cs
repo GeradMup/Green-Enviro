@@ -24,7 +24,7 @@ namespace Green_Enviro_App
 		{
 			if (AddedFloat.Value == (decimal)0.00)
 			{
-				CustomMessageBox mb = new CustomMessageBox(this, "Fail", "Please enter the float to be added");
+				CustomMessageBox mb = new CustomMessageBox(this, "Error!", "Please enter the float to be added");
 				return;
 			}
 			else 

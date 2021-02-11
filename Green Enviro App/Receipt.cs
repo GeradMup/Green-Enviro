@@ -394,6 +394,12 @@ namespace Green_Enviro_App
 
         public void CompletePurchaseOrSale() 
         {
+            if (_purchased_items.Count == 0) 
+            {
+                CustomMessageBox box = new CustomMessageBox(_main_form, "Error!", "NO ITEMS HAVE BEEN ADDED");
+                return;
+            }
+
             _receipt_print_content.Text = _main_form.receiptBox.Text;
 
             if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase)
@@ -422,6 +428,8 @@ namespace Green_Enviro_App
             _receipt_content = "";
             _running_total = 0;
             _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
+            _purchased_items.Clear();
+            _purchased_quantities.Clear();
             setupReceipt();
         }
 

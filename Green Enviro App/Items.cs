@@ -77,11 +77,11 @@ namespace Green_Enviro_App
 
 				if (rowsAffected == 1)
 				{
-					CustomMessageBox mb = new CustomMessageBox(this, "Success", "Price has been updated");
+					CustomMessageBox mb = new CustomMessageBox(this, "Success!", "Price has been updated");
 				}
 				else 
 				{
-					CustomMessageBox mb = new CustomMessageBox(this, "Failure", "Failed to update price");
+					CustomMessageBox mb = new CustomMessageBox(this, "Error!", "Failed to update price");
 				}
 			}
 			else if (dialogResult == DialogResult.No)
@@ -149,14 +149,14 @@ namespace Green_Enviro_App
 
 				if (_rows_affected == 1)
 				{
-					CustomMessageBox mb = new CustomMessageBox(this, "Success", "New Item Added");
+					CustomMessageBox mb = new CustomMessageBox(this, "Success!", "New Item Added");
 					LoadItems();
 					PricesGridView.Refresh();
 				}
 			}
 			else 
 			{
-				CustomMessageBox mb = new CustomMessageBox(this, "Failed!", "Item Already Exist");
+				CustomMessageBox mb = new CustomMessageBox(this, "Error!", "Item Already Exist");
 			}
 		}
 
@@ -183,7 +183,7 @@ namespace Green_Enviro_App
 			if (_rows_affected == 1) 
 			{
 				LoadItems();
-				CustomMessageBox mb = new CustomMessageBox(this, "Success", "Item Deleted");
+				CustomMessageBox mb = new CustomMessageBox(this, "Success!", "Item Deleted");
 			}
 		}
 	}

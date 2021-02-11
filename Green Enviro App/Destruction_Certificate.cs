@@ -263,8 +263,8 @@ namespace Green_Enviro_App
         // Function verifying the validity of all information inputted
         private Tuple<bool, string, string,string,bool> verifyGenerateDestructionCertificate()
         {
-            string _error = "Error";
-            string _success = "Success";
+            string _error = "Error!";
+            string _success = "Success!";
             string _empty_txtbox = "";
             string _message_type = "";
             string _message = "";
@@ -521,7 +521,7 @@ namespace Green_Enviro_App
                 string _company = "Companies";
                 string _company_database_col = "Name,ContactPerson,Email,ContactNumbers";
                 _database.InsertIntoDatabase(_company, _company_database_col, _values_for_database);
-                CustomMessageBox mb = new CustomMessageBox(_main_form, "Success", "New Company inserted into the database");
+                CustomMessageBox mb = new CustomMessageBox(_main_form, "Success!", "New Company inserted into the database");
         }
         
         /* 

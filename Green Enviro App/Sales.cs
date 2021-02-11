@@ -481,7 +481,7 @@ namespace Green_Enviro_App
 
 			if (_rows_affected == 1) 
 			{
-				CustomMessageBox mb = new CustomMessageBox(_main_form, "Success", "New Buyer Added");
+				CustomMessageBox mb = new CustomMessageBox(_main_form, "Success!", "New Buyer Added");
 			}
 			
 		}

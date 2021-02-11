@@ -16,6 +16,16 @@ namespace Green_Enviro_App
 		{
 			InitializeComponent();
 
+			if (title == "Error!") 
+			{
+				this.BackColor = Color.Red;
+			}
+
+			if (title == "Success!") 
+			{
+				this.BackColor = Color.Green;	
+			}
+
 			this.Text = title;
 			this.CustomMsg.Text = message;
 			this.Owner = parent;

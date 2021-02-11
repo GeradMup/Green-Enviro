@@ -101,7 +101,28 @@ namespace Green_Enviro_App
 
         private void PurchaseBtn_Click(object sender, EventArgs e)
         {
-            _receipt.CompletePurchaseOrSale();
+            if (ReceiptSaleOrPurchase.SelectedItem.ToString() == "Purchase")
+            {
+                if ((_user_permission_level == 2))
+                {
+                    PermissionDenied();
+                }
+                else
+                {
+                    _receipt.CompletePurchaseOrSale();
+                }
+            }
+            else if (ReceiptSaleOrPurchase.SelectedItem.ToString() == "Sale") 
+            {
+                if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
+                {
+                    _receipt.CompletePurchaseOrSale();
+                }
+                else
+                {
+                    PermissionDenied();
+                }
+            } 
         }
 
 		private void CancelPurchaseBtn_Click(object sender, EventArgs e)
@@ -133,7 +154,14 @@ namespace Green_Enviro_App
 
         private void ReprintReceiptBtn_Click(object sender, EventArgs e)
         {
-            _receipt.PrintReceipt();
+            if ((_user_permission_level == 2))
+            {
+                PermissionDenied();
+            }
+            else
+            {
+                _receipt.PrintReceipt();
+            }
         }
 
         private void AddFloatBtn_Click(object sender, EventArgs e)
@@ -151,7 +179,15 @@ namespace Green_Enviro_App
 
         private void NewCustomer_Click(object sender, EventArgs e)
         {
-            _customers.NewCustomer();
+            if ((_user_permission_level == 4) || (_user_permission_level == 5))
+            {
+                _customers.NewCustomer();
+            }
+            else
+            {
+                PermissionDenied();
+            }
+            
         }
 
         //******************************************************************************************************************************
@@ -342,12 +378,18 @@ namespace Green_Enviro_App
 
         private void mainTabControl_Deselected(object sender, TabControlEventArgs e)
 		{
-            //MessageBox.Show("Leaving " + e.TabPage.Name);
+            _previous_tab_page = e.TabPage;
 		}
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
 		{
-            //MessageBox.Show("Entering " + e.TabPage.Name);
+            _current_tab_page = e.TabPage;
+			
+            if ((e.TabPage.Name != "ReceiptPage") && (_user_permission_level == 1)) 
+            {
+                PermissionDenied();
+                mainTabControl.SelectedTab = _previous_tab_page;
+            }
         }
 
         private void PermissionDenied() 

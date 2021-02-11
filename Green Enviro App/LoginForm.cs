@@ -62,7 +62,7 @@ namespace Green_Enviro_App
 
         //Master Password (Changeable depending on the devs)
         string _master_password;
-        int _user_permission_level;
+        int _user_permission_level = 0;
 
         //Encryption instantiation 
         InformationEncryption _client_password = new InformationEncryption();
@@ -99,7 +99,7 @@ namespace Green_Enviro_App
             _master_password = _decryption.Decrypt(_all_credentials[0].password);
 
 			//Creates the main form for the program
-			_mainForm = new Main_Form(_database, 0);
+			_mainForm = new Main_Form(_database, _user_permission_level);
 		}
 
         //********************************************************************************************************
@@ -235,7 +235,7 @@ namespace Green_Enviro_App
 
             if (_user_permission_level != 5) 
             {
-                CustomMessageBox box = new CustomMessageBox(this, "Error", "Permission Denied");
+                CustomMessageBox box = new CustomMessageBox(this, "Error!", "Permission Denied");
                 return;
             }
             _account.Activate();
@@ -283,7 +283,7 @@ namespace Green_Enviro_App
 
             if (_user_permission_level != 5)
             {
-                CustomMessageBox box = new CustomMessageBox(this, "Error", "Permission Denied");
+                CustomMessageBox box = new CustomMessageBox(this, "Error!", "Permission Denied");
                 return;
             }
 

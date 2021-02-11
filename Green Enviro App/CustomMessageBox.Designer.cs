@@ -68,11 +68,12 @@ namespace Green_Enviro_App
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(816, 383);
+			this.ClientSize = new System.Drawing.Size(816, 417);
 			this.ControlBox = false;
 			this.Controls.Add(this.OkBtn);
 			this.Controls.Add(this.CustomMsg);
 			this.Controls.Add(this.CustomMsgBox);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "CustomMessageBox";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -34,7 +34,7 @@ namespace Green_Enviro_App
         const string _permission_level = "Permission Level not selected";
 
         //Successfull messages
-        const string _success = "Complete!";
+        const string _success = "Success!";
         const string _all_fields_entered = "Accounts succesfully created";
         
         // Empty textbox

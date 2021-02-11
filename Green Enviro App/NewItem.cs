@@ -71,7 +71,7 @@ namespace Green_Enviro_App
 
 			if (_valid_entries == false) 
 			{
-				CustomMessageBox box = new CustomMessageBox(this, "Error", _error_message);
+				CustomMessageBox box = new CustomMessageBox(this, "Error!", _error_message);
 			}
 
 			return _valid_entries;
