@@ -37,6 +37,7 @@ namespace Green_Enviro_App
         float _float_value = 0F;
         static string _month = DateTime.Now.ToString("MMMM yyyy");
         string _path_to_float = @"..//..//resources//Float//" + _month + "_float.csv";
+        string _path_to_total_float = @"..//..//resources//Float//" + _month + "_total_float.csv";
         //Constructor
 
         //Customer information
@@ -55,7 +56,7 @@ namespace Green_Enviro_App
             _purchases = logs;
             _inventory = inventory;
             _items_form = new Items(this,_database);
-            _float = new Float(this);
+            _float = new Float(this, _main_form);
             _items_form.Owner = _main_form;
             _float.Owner = _main_form;
 
@@ -63,34 +64,9 @@ namespace Green_Enviro_App
             setupReceipt();
             SetSalePurchase();
             setupCustomerList();
-            SetupFloat();
+            //SetupFloat();
         }
         
-        private void SetupFloat() 
-        {
-            //Create the float file
-            if (!File.Exists(_path_to_float))
-            {
-                string _float_value = "0";
-                StringBuilder _csv_content = new StringBuilder();
-                _csv_content.AppendLine(_float_value);
-                File.AppendAllText(_path_to_float, _csv_content.ToString());
-            }
-
-            //
-            _float_value = float.Parse(File.ReadAllText(_path_to_float));
-            _main_form.FloatBox.Text = "R " + String.Format("{0:n}", _float_value);
-
-            if (_float_value > 5000)
-            {
-                _main_form.FloatBox.BackColor = Color.GreenYellow;
-            }
-            else 
-            {
-                _main_form.FloatBox.BackColor = Color.Red;
-            }
-        }
-
         public void SetupPriceList()
         {
             //Gets all items from the database and stores them in a DataTable named _items
@@ -405,7 +381,7 @@ namespace Green_Enviro_App
             if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase)
             {
                 _purchases.AddPurchase(_purchased_items);
-                UpdateFloat(-1 * _running_total);
+                _float.UpdateFloat(-1 * _running_total);
             }
             
             _inventory.AddItems(_purchased_quantities);
@@ -525,17 +501,5 @@ namespace Green_Enviro_App
             _main_form.Enabled = false;
         }
 
-        public void UpdateFloat(float AddedAmout) 
-        {
-            float _new_float = _float_value + AddedAmout;
-
-            FileStream fWrite = new FileStream(_path_to_float,
-            FileMode.Open, FileAccess.Write, FileShare.None);
-
-            byte[] writeArr = Encoding.UTF8.GetBytes(_new_float.ToString());
-            fWrite.Write(writeArr, 0, _new_float.ToString().Length); 
-            fWrite.Close();
-            SetupFloat();
-        }
 	}
 }
