@@ -121,7 +121,15 @@ namespace Green_Enviro_App
 
         private void ReceiptPriceEditBtn_Click(object sender, EventArgs e)
         {
-            _receipt.EditPrices();
+            if ((_user_permission_level == 3) || (_user_permission_level == 4))
+            {
+                _receipt.EditPrices();
+            }
+            else 
+            {
+                PermissionDenied(); 
+            }
+            
         }
 
         private void ReprintReceiptBtn_Click(object sender, EventArgs e)
@@ -136,7 +144,15 @@ namespace Green_Enviro_App
 
         private void NewCustomer_Click(object sender, EventArgs e)
         {
-            _customers.NewCustomer();
+            
+            if ((_user_permission_level == 3) || (_user_permission_level == 4))
+            {
+                _customers.NewCustomer();
+            }
+            else
+            {
+                PermissionDenied();
+            }
         }
 
         //******************************************************************************************************************************
@@ -333,6 +349,11 @@ namespace Green_Enviro_App
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
 		{
             //MessageBox.Show("Entering " + e.TabPage.Name);
+        }
+
+        private void PermissionDenied() 
+        {
+            CustomMessageBox box = new CustomMessageBox(this, "Error!", "Permission Denied!");
         }
 	}
 }

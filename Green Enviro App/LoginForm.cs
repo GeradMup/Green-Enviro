@@ -233,7 +233,7 @@ namespace Green_Enviro_App
                 return;
             }
 
-            if (_user_permission_level != 4) 
+            if (_user_permission_level != 5) 
             {
                 CustomMessageBox box = new CustomMessageBox(this, "Error", "Permission Denied");
                 return;
@@ -281,7 +281,7 @@ namespace Green_Enviro_App
                 return;
             }
 
-            if (_user_permission_level != 4)
+            if (_user_permission_level != 5)
             {
                 CustomMessageBox box = new CustomMessageBox(this, "Error", "Permission Denied");
                 return;

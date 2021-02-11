@@ -54,7 +54,7 @@ namespace Green_Enviro_Sync
 
 		private void UploadBtn_Click(object sender, EventArgs e)
 		{
-			if ((_permission_level == 3) || (_permission_level == 4))
+			if ((_permission_level == 3) || (_permission_level == 5))
 			{
 				CheckConnectivity();
 				SetupFirebaseDatabase();
@@ -71,7 +71,7 @@ namespace Green_Enviro_Sync
 
 		private void DownloadBtn_Click(object sender, EventArgs e)
 		{
-			if ((_permission_level == 2) || (_permission_level == 4))
+			if ((_permission_level == 2) || (_permission_level == 5))
 			{
 				CheckConnectivity();
 				SetupFirebaseDatabase();

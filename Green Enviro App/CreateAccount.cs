@@ -364,6 +364,7 @@ namespace Green_Enviro_App
             userPermissionLvlBx.Items.Add("2");
             userPermissionLvlBx.Items.Add("3");
             userPermissionLvlBx.Items.Add("4");
+            userPermissionLvlBx.Items.Add("5");
         }
     }
 }
