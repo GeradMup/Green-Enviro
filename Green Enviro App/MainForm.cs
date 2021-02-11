@@ -215,7 +215,14 @@ namespace Green_Enviro_App
 
         private void generateDstrCertBtn_Click(object sender, EventArgs e)
         {
-            _destruction_certificate.ExportToPdf();
+            if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
+            {
+                _destruction_certificate.ExportToPdf();
+            }
+            else 
+            {
+                PermissionDenied();
+            }
         }
 
         private void dstrctCertCompanyField_SelectedIndexChanged(object sender, EventArgs e)
@@ -262,7 +269,15 @@ namespace Green_Enviro_App
 
 		private void AddSaleBtn_Click(object sender, EventArgs e)
 		{
-            _sales.AddSale();
+            if ((_user_permission_level == 4) || (_user_permission_level == 5))
+            {
+                _sales.AddSale();
+            }
+            else 
+            {
+                PermissionDenied();
+            }
+            
 		}
 
         private void RemoveSalesLogFiltersBtn_Click(object sender, EventArgs e)
@@ -281,8 +296,17 @@ namespace Green_Enviro_App
         //*************************************************************************************************************
 		private void AddExpenseBtn_Click(object sender, EventArgs e)
 		{
-            _expenses.AddExpense();
-            _expenses.DisplayExpensesLog();
+
+            if ((_user_permission_level == 4) || (_user_permission_level == 5))
+            {
+                _expenses.AddExpense();
+                _expenses.DisplayExpensesLog();
+            }
+            else 
+            {
+                PermissionDenied();
+            }
+            
 		}
 
 		private void ExpensesLogMonth_SelectedIndexChanged(object sender, EventArgs e)
@@ -330,7 +354,15 @@ namespace Green_Enviro_App
 
 		private void AddWageBtn_Click(object sender, EventArgs e)
 		{
-            _wages.AddWage();
+            if ((_user_permission_level == 4) || (_user_permission_level == 5))
+            {
+                _wages.AddWage();
+            }
+            else 
+            {
+                PermissionDenied();
+            }
+            
 		}
 
 		private void PartTimeEmployeeCheckBox_CheckedChanged(object sender, EventArgs e)
