@@ -121,15 +121,14 @@ namespace Green_Enviro_App
 
         private void ReceiptPriceEditBtn_Click(object sender, EventArgs e)
         {
-            if ((_user_permission_level == 3) || (_user_permission_level == 4))
+            if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
             {
                 _receipt.EditPrices();
             }
             else 
             {
-                PermissionDenied(); 
+                PermissionDenied();
             }
-            
         }
 
         private void ReprintReceiptBtn_Click(object sender, EventArgs e)
@@ -139,20 +138,20 @@ namespace Green_Enviro_App
 
         private void AddFloatBtn_Click(object sender, EventArgs e)
         {
-            _receipt.EditFloat();
-        }
-
-        private void NewCustomer_Click(object sender, EventArgs e)
-        {
-            
-            if ((_user_permission_level == 3) || (_user_permission_level == 4))
+            if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
             {
-                _customers.NewCustomer();
+                _receipt.EditFloat();
             }
             else
             {
                 PermissionDenied();
             }
+            
+        }
+
+        private void NewCustomer_Click(object sender, EventArgs e)
+        {
+            _customers.NewCustomer();
         }
 
         //******************************************************************************************************************************
