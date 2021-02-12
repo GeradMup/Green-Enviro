@@ -211,6 +211,8 @@ namespace Green_Enviro_App
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.label61 = new System.Windows.Forms.Label();
+			this.SummariesTotalFloat = new System.Windows.Forms.RichTextBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -1673,6 +1675,8 @@ namespace Green_Enviro_App
 			// 
 			// Summaries
 			// 
+			this.Summaries.Controls.Add(this.label61);
+			this.Summaries.Controls.Add(this.SummariesTotalFloat);
 			this.Summaries.Controls.Add(this.label57);
 			this.Summaries.Controls.Add(this.SummariesTotalSales);
 			this.Summaries.Controls.Add(this.label56);
@@ -1720,7 +1724,7 @@ namespace Green_Enviro_App
 			this.SummariesTotalSales.Margin = new System.Windows.Forms.Padding(2);
 			this.SummariesTotalSales.Name = "SummariesTotalSales";
 			this.SummariesTotalSales.ReadOnly = true;
-			this.SummariesTotalSales.Size = new System.Drawing.Size(337, 170);
+			this.SummariesTotalSales.Size = new System.Drawing.Size(375, 170);
 			this.SummariesTotalSales.TabIndex = 18;
 			this.SummariesTotalSales.Text = "";
 			// 
@@ -1742,7 +1746,7 @@ namespace Green_Enviro_App
 			this.SummariesTotalPurchases.Margin = new System.Windows.Forms.Padding(2);
 			this.SummariesTotalPurchases.Name = "SummariesTotalPurchases";
 			this.SummariesTotalPurchases.ReadOnly = true;
-			this.SummariesTotalPurchases.Size = new System.Drawing.Size(340, 170);
+			this.SummariesTotalPurchases.Size = new System.Drawing.Size(378, 170);
 			this.SummariesTotalPurchases.TabIndex = 16;
 			this.SummariesTotalPurchases.Text = " ";
 			// 
@@ -1764,7 +1768,7 @@ namespace Green_Enviro_App
 			this.SummariesProfitBox.Margin = new System.Windows.Forms.Padding(2);
 			this.SummariesProfitBox.Name = "SummariesProfitBox";
 			this.SummariesProfitBox.ReadOnly = true;
-			this.SummariesProfitBox.Size = new System.Drawing.Size(337, 170);
+			this.SummariesProfitBox.Size = new System.Drawing.Size(375, 170);
 			this.SummariesProfitBox.TabIndex = 14;
 			this.SummariesProfitBox.Text = "";
 			// 
@@ -1794,7 +1798,7 @@ namespace Green_Enviro_App
 			this.SummariesExpensesBox.Location = new System.Drawing.Point(511, 658);
 			this.SummariesExpensesBox.Name = "SummariesExpensesBox";
 			this.SummariesExpensesBox.ReadOnly = true;
-			this.SummariesExpensesBox.Size = new System.Drawing.Size(356, 177);
+			this.SummariesExpensesBox.Size = new System.Drawing.Size(394, 177);
 			this.SummariesExpensesBox.TabIndex = 11;
 			this.SummariesExpensesBox.Text = "";
 			// 
@@ -1804,7 +1808,7 @@ namespace Green_Enviro_App
 			this.SummariesNFSalesBox.Location = new System.Drawing.Point(510, 410);
 			this.SummariesNFSalesBox.Name = "SummariesNFSalesBox";
 			this.SummariesNFSalesBox.ReadOnly = true;
-			this.SummariesNFSalesBox.Size = new System.Drawing.Size(356, 164);
+			this.SummariesNFSalesBox.Size = new System.Drawing.Size(394, 164);
 			this.SummariesNFSalesBox.TabIndex = 10;
 			this.SummariesNFSalesBox.Text = "";
 			// 
@@ -1814,7 +1818,7 @@ namespace Green_Enviro_App
 			this.SummariesFSalesBox.Location = new System.Drawing.Point(71, 410);
 			this.SummariesFSalesBox.Name = "SummariesFSalesBox";
 			this.SummariesFSalesBox.ReadOnly = true;
-			this.SummariesFSalesBox.Size = new System.Drawing.Size(362, 164);
+			this.SummariesFSalesBox.Size = new System.Drawing.Size(400, 164);
 			this.SummariesFSalesBox.TabIndex = 9;
 			this.SummariesFSalesBox.Text = "";
 			// 
@@ -1824,7 +1828,7 @@ namespace Green_Enviro_App
 			this.SummariesWagesBox.Location = new System.Drawing.Point(71, 658);
 			this.SummariesWagesBox.Name = "SummariesWagesBox";
 			this.SummariesWagesBox.ReadOnly = true;
-			this.SummariesWagesBox.Size = new System.Drawing.Size(362, 177);
+			this.SummariesWagesBox.Size = new System.Drawing.Size(400, 177);
 			this.SummariesWagesBox.TabIndex = 8;
 			this.SummariesWagesBox.Text = "";
 			// 
@@ -1834,7 +1838,7 @@ namespace Green_Enviro_App
 			this.SummariesNFPurchasesBox.Location = new System.Drawing.Point(510, 160);
 			this.SummariesNFPurchasesBox.Name = "SummariesNFPurchasesBox";
 			this.SummariesNFPurchasesBox.ReadOnly = true;
-			this.SummariesNFPurchasesBox.Size = new System.Drawing.Size(356, 170);
+			this.SummariesNFPurchasesBox.Size = new System.Drawing.Size(394, 170);
 			this.SummariesNFPurchasesBox.TabIndex = 7;
 			this.SummariesNFPurchasesBox.Text = "";
 			// 
@@ -1844,7 +1848,7 @@ namespace Green_Enviro_App
 			this.SummariesFPurchasesBox.Location = new System.Drawing.Point(70, 160);
 			this.SummariesFPurchasesBox.Name = "SummariesFPurchasesBox";
 			this.SummariesFPurchasesBox.ReadOnly = true;
-			this.SummariesFPurchasesBox.Size = new System.Drawing.Size(363, 170);
+			this.SummariesFPurchasesBox.Size = new System.Drawing.Size(401, 170);
 			this.SummariesFPurchasesBox.TabIndex = 6;
 			this.SummariesFPurchasesBox.Text = "";
 			// 
@@ -1863,7 +1867,7 @@ namespace Green_Enviro_App
 			this.label51.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label51.Location = new System.Drawing.Point(66, 627);
 			this.label51.Name = "label51";
-			this.label51.Size = new System.Drawing.Size(181, 34);
+			this.label51.Size = new System.Drawing.Size(219, 34);
 			this.label51.TabIndex = 4;
 			this.label51.Text = "Total Wages";
 			// 
@@ -2313,6 +2317,28 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// label61
+			// 
+			this.label61.AutoSize = true;
+			this.label61.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label61.Location = new System.Drawing.Point(1349, 129);
+			this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label61.Name = "label61";
+			this.label61.Size = new System.Drawing.Size(155, 28);
+			this.label61.TabIndex = 21;
+			this.label61.Text = "Total Float";
+			// 
+			// SummariesTotalFloat
+			// 
+			this.SummariesTotalFloat.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesTotalFloat.Location = new System.Drawing.Point(1351, 160);
+			this.SummariesTotalFloat.Margin = new System.Windows.Forms.Padding(2);
+			this.SummariesTotalFloat.Name = "SummariesTotalFloat";
+			this.SummariesTotalFloat.ReadOnly = true;
+			this.SummariesTotalFloat.Size = new System.Drawing.Size(378, 170);
+			this.SummariesTotalFloat.TabIndex = 20;
+			this.SummariesTotalFloat.Text = " ";
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2618,5 +2644,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button InventoryLogRmvFilterBtn;
 		private System.Windows.Forms.Button InventoryLogFilterBtn;
 		public System.Windows.Forms.DataGridView InventoryLogGridView;
+		private System.Windows.Forms.Label label61;
+		public System.Windows.Forms.RichTextBox SummariesTotalFloat;
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace Green_Enviro_App
 		float _total_wages = 0;
 		float _total_expenses = 0;
 		float _profit = 0;
+		float _total_float = 0;
 
 		public Summaries(Main_Form main) 
 		{
@@ -53,6 +55,7 @@ namespace Green_Enviro_App
 			string _path_to_sales_file = @"..//..//resources//Logs//Sales//" + _month + ".csv";
 			string _path_to_expenses_file = @"..//..//resources//Logs//Expenses//" + _month + ".csv";
 			string _path_to_wages_file = @"..//..//resources//Logs//Wages//" + _month + ".csv";
+			string _path_to_total_float = @"..//..//resources//Float//" + _month + "_total_float.csv";
 
 			//Read all the lines		
 
@@ -61,6 +64,7 @@ namespace Green_Enviro_App
 			Sales(_path_to_sales_file);
 			Wages(_path_to_wages_file);
 			Expenses(_path_to_expenses_file);
+			Float(_path_to_total_float);
 			Profit();
 			Display();
 		}
@@ -158,6 +162,11 @@ namespace Green_Enviro_App
 			}
 		}
 
+		private void Float(string _path_to_float_file) 
+		{
+		 	_total_float =  float.Parse(File.ReadAllText(_path_to_float_file));
+		}
+
 		private void Profit() 
 		{
 			_profit = _total_ferrous_sales + _total_non_ferrous_sales - _total_ferrous_purchases - _total_non_ferrous_purchases - _total_wages - _total_expenses;
@@ -189,6 +198,9 @@ namespace Green_Enviro_App
 
 			_main_form.SummariesTotalSales.Clear();
 			_main_form.SummariesTotalSales.AppendText("\n R " + _total_sales);
+
+			_main_form.SummariesTotalFloat.Clear();
+			_main_form.SummariesTotalFloat.AppendText("\n R" + _total_float);
 
 			if (_profit < 0)
 			{
