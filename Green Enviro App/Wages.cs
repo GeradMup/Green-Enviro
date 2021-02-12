@@ -21,6 +21,7 @@ namespace Green_Enviro_App
 		Database _database;
 
 		DataTable _wages_data_table = new DataTable();  //All the information about all the products the we have sold.
+		
 
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
@@ -306,7 +307,7 @@ namespace Green_Enviro_App
 
 			//Check if new Employee is Selected. If new Employee is selected, read the text, if not, read the 
 			//the selected index
-			_employee = _main_form.EmployeeName.Text;
+			_employee = _main_form.WagesEmployeeName.Text;
 			string _new_wage = _date + "," + _employee + "," + _amount;
 			_csv_content.AppendLine(_new_wage);
 
@@ -320,8 +321,6 @@ namespace Green_Enviro_App
 			{
 				MessageBox.Show("Error! \n" + ex.Message);
 			}
-
-
 		}
 
 		//Validate that the user has entered all the information correctly
@@ -338,7 +337,7 @@ namespace Green_Enviro_App
 				_all_good = false;
 				_error_message = "Please Insert the Amount";
 			}
-			else if (_main_form.EmployeeName.Text == _no_text)
+			else if (_main_form.WagesEmployeeName.Text == _no_text)
 			{
 				_all_good = false;
 				_error_message = "Please Insert the Employee Name";
@@ -363,19 +362,19 @@ namespace Green_Enviro_App
 			_main_form.WageDate.Value = DateTime.Now;
 			_main_form.WageAmount.Value = _zero;
 			_main_form.PartTimeEmployeeCheckBox.CheckState = CheckState.Unchecked;
-			_main_form.EmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
-			_main_form.EmployeeName.SelectedItem = null;
+			_main_form.WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
+			_main_form.WagesEmployeeName.SelectedItem = null;
 		}
 
 		public void PartTimeEmployee() 
 		{
 			if (_main_form.PartTimeEmployeeCheckBox.CheckState == CheckState.Checked)
 			{
-				_main_form.EmployeeName.DropDownStyle = ComboBoxStyle.DropDown;
+				_main_form.WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDown;
 			}
 			else 
 			{
-				_main_form.EmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
+				_main_form.WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
 			}
 		}
 	}

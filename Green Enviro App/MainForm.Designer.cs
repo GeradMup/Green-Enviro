@@ -133,9 +133,10 @@ namespace Green_Enviro_App
 			this.label31 = new System.Windows.Forms.Label();
 			this.label33 = new System.Windows.Forms.Label();
 			this.label34 = new System.Windows.Forms.Label();
-			this.Wages = new System.Windows.Forms.TabPage();
+			this.WagesNewEmployee = new System.Windows.Forms.TabPage();
+			this.NewEmployee = new System.Windows.Forms.Button();
 			this.PartTimeEmployeeCheckBox = new System.Windows.Forms.CheckBox();
-			this.EmployeeName = new System.Windows.Forms.ComboBox();
+			this.WagesEmployeeName = new System.Windows.Forms.ComboBox();
 			this.WageAmount = new System.Windows.Forms.NumericUpDown();
 			this.WageDate = new System.Windows.Forms.DateTimePicker();
 			this.WageLogRemoveFiltersBtn = new System.Windows.Forms.Button();
@@ -153,6 +154,8 @@ namespace Green_Enviro_App
 			this.label38 = new System.Windows.Forms.Label();
 			this.label39 = new System.Windows.Forms.Label();
 			this.Summaries = new System.Windows.Forms.TabPage();
+			this.label61 = new System.Windows.Forms.Label();
+			this.SummariesTotalFloat = new System.Windows.Forms.RichTextBox();
 			this.label57 = new System.Windows.Forms.Label();
 			this.SummariesTotalSales = new System.Windows.Forms.RichTextBox();
 			this.label56 = new System.Windows.Forms.Label();
@@ -211,8 +214,6 @@ namespace Green_Enviro_App
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.label61 = new System.Windows.Forms.Label();
-			this.SummariesTotalFloat = new System.Windows.Forms.RichTextBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -230,7 +231,7 @@ namespace Green_Enviro_App
 			this.Expenses.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ExpensesLogGridView)).BeginInit();
-			this.Wages.SuspendLayout();
+			this.WagesNewEmployee.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).BeginInit();
 			this.Summaries.SuspendLayout();
@@ -247,7 +248,7 @@ namespace Green_Enviro_App
 			this.mainTabControl.Controls.Add(this.SalesPage);
 			this.mainTabControl.Controls.Add(this.Inventory);
 			this.mainTabControl.Controls.Add(this.Expenses);
-			this.mainTabControl.Controls.Add(this.Wages);
+			this.mainTabControl.Controls.Add(this.WagesNewEmployee);
 			this.mainTabControl.Controls.Add(this.Summaries);
 			this.mainTabControl.Controls.Add(this.DestructionCertificates);
 			this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1277,7 +1278,6 @@ namespace Green_Enviro_App
 			this.ExpenseDate.TabIndex = 32;
 			this.ExpenseDate.TabStop = false;
 			this.ExpenseDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
-			this.ExpenseDate.ValueChanged += new System.EventHandler(this.ExpenseDate_ValueChanged);
 			// 
 			// ExpensesLogRemoveFiltersBtn
 			// 
@@ -1437,38 +1437,50 @@ namespace Green_Enviro_App
 			this.label34.TabIndex = 33;
 			this.label34.Text = "Date";
 			// 
-			// Wages
+			// WagesNewEmployee
 			// 
-			this.Wages.Controls.Add(this.PartTimeEmployeeCheckBox);
-			this.Wages.Controls.Add(this.EmployeeName);
-			this.Wages.Controls.Add(this.WageAmount);
-			this.Wages.Controls.Add(this.WageDate);
-			this.Wages.Controls.Add(this.WageLogRemoveFiltersBtn);
-			this.Wages.Controls.Add(this.WageLogFilterBtn);
-			this.Wages.Controls.Add(this.label32);
-			this.Wages.Controls.Add(this.WageLogMonth);
-			this.Wages.Controls.Add(this.label35);
-			this.Wages.Controls.Add(this.label36);
-			this.Wages.Controls.Add(this.WageLogEndDate);
-			this.Wages.Controls.Add(this.WageLogStartDate);
-			this.Wages.Controls.Add(this.WageLogGridView);
-			this.Wages.Controls.Add(this.ClearWageFieldsBtn);
-			this.Wages.Controls.Add(this.AddWageBtn);
-			this.Wages.Controls.Add(this.label37);
-			this.Wages.Controls.Add(this.label38);
-			this.Wages.Controls.Add(this.label39);
-			this.Wages.Location = new System.Drawing.Point(4, 32);
-			this.Wages.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.Wages.Name = "Wages";
-			this.Wages.Size = new System.Drawing.Size(1724, 867);
-			this.Wages.TabIndex = 4;
-			this.Wages.Text = "Wages";
-			this.Wages.UseVisualStyleBackColor = true;
+			this.WagesNewEmployee.Controls.Add(this.NewEmployee);
+			this.WagesNewEmployee.Controls.Add(this.PartTimeEmployeeCheckBox);
+			this.WagesNewEmployee.Controls.Add(this.WagesEmployeeName);
+			this.WagesNewEmployee.Controls.Add(this.WageAmount);
+			this.WagesNewEmployee.Controls.Add(this.WageDate);
+			this.WagesNewEmployee.Controls.Add(this.WageLogRemoveFiltersBtn);
+			this.WagesNewEmployee.Controls.Add(this.WageLogFilterBtn);
+			this.WagesNewEmployee.Controls.Add(this.label32);
+			this.WagesNewEmployee.Controls.Add(this.WageLogMonth);
+			this.WagesNewEmployee.Controls.Add(this.label35);
+			this.WagesNewEmployee.Controls.Add(this.label36);
+			this.WagesNewEmployee.Controls.Add(this.WageLogEndDate);
+			this.WagesNewEmployee.Controls.Add(this.WageLogStartDate);
+			this.WagesNewEmployee.Controls.Add(this.WageLogGridView);
+			this.WagesNewEmployee.Controls.Add(this.ClearWageFieldsBtn);
+			this.WagesNewEmployee.Controls.Add(this.AddWageBtn);
+			this.WagesNewEmployee.Controls.Add(this.label37);
+			this.WagesNewEmployee.Controls.Add(this.label38);
+			this.WagesNewEmployee.Controls.Add(this.label39);
+			this.WagesNewEmployee.Location = new System.Drawing.Point(4, 32);
+			this.WagesNewEmployee.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.WagesNewEmployee.Name = "WagesNewEmployee";
+			this.WagesNewEmployee.Size = new System.Drawing.Size(1724, 867);
+			this.WagesNewEmployee.TabIndex = 4;
+			this.WagesNewEmployee.Text = "Wages";
+			this.WagesNewEmployee.UseVisualStyleBackColor = true;
+			// 
+			// NewEmployee
+			// 
+			this.NewEmployee.Location = new System.Drawing.Point(229, 106);
+			this.NewEmployee.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.NewEmployee.Name = "NewEmployee";
+			this.NewEmployee.Size = new System.Drawing.Size(251, 38);
+			this.NewEmployee.TabIndex = 71;
+			this.NewEmployee.Text = "New Employee";
+			this.NewEmployee.UseVisualStyleBackColor = true;
+			this.NewEmployee.Click += new System.EventHandler(this.NewEmployee_Click);
 			// 
 			// PartTimeEmployeeCheckBox
 			// 
 			this.PartTimeEmployeeCheckBox.AutoSize = true;
-			this.PartTimeEmployeeCheckBox.Location = new System.Drawing.Point(229, 109);
+			this.PartTimeEmployeeCheckBox.Location = new System.Drawing.Point(229, 180);
 			this.PartTimeEmployeeCheckBox.Margin = new System.Windows.Forms.Padding(4);
 			this.PartTimeEmployeeCheckBox.Name = "PartTimeEmployeeCheckBox";
 			this.PartTimeEmployeeCheckBox.Size = new System.Drawing.Size(230, 27);
@@ -1477,20 +1489,20 @@ namespace Green_Enviro_App
 			this.PartTimeEmployeeCheckBox.UseVisualStyleBackColor = true;
 			this.PartTimeEmployeeCheckBox.CheckedChanged += new System.EventHandler(this.PartTimeEmployeeCheckBox_CheckedChanged);
 			// 
-			// EmployeeName
+			// WagesEmployeeName
 			// 
-			this.EmployeeName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.EmployeeName.FormattingEnabled = true;
-			this.EmployeeName.Location = new System.Drawing.Point(229, 154);
-			this.EmployeeName.Margin = new System.Windows.Forms.Padding(4);
-			this.EmployeeName.Name = "EmployeeName";
-			this.EmployeeName.Size = new System.Drawing.Size(409, 31);
-			this.EmployeeName.TabIndex = 69;
+			this.WagesEmployeeName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.WagesEmployeeName.FormattingEnabled = true;
+			this.WagesEmployeeName.Location = new System.Drawing.Point(229, 229);
+			this.WagesEmployeeName.Margin = new System.Windows.Forms.Padding(4);
+			this.WagesEmployeeName.Name = "WagesEmployeeName";
+			this.WagesEmployeeName.Size = new System.Drawing.Size(409, 31);
+			this.WagesEmployeeName.TabIndex = 69;
 			// 
 			// WageAmount
 			// 
 			this.WageAmount.DecimalPlaces = 2;
-			this.WageAmount.Location = new System.Drawing.Point(229, 261);
+			this.WageAmount.Location = new System.Drawing.Point(229, 305);
 			this.WageAmount.Margin = new System.Windows.Forms.Padding(4);
 			this.WageAmount.Maximum = new decimal(new int[] {
             200000,
@@ -1646,7 +1658,7 @@ namespace Green_Enviro_App
 			// label37
 			// 
 			this.label37.AutoSize = true;
-			this.label37.Location = new System.Drawing.Point(11, 271);
+			this.label37.Location = new System.Drawing.Point(11, 313);
 			this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label37.Name = "label37";
 			this.label37.Size = new System.Drawing.Size(76, 23);
@@ -1656,7 +1668,7 @@ namespace Green_Enviro_App
 			// label38
 			// 
 			this.label38.AutoSize = true;
-			this.label38.Location = new System.Drawing.Point(9, 158);
+			this.label38.Location = new System.Drawing.Point(11, 237);
 			this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label38.Name = "label38";
 			this.label38.Size = new System.Drawing.Size(98, 23);
@@ -1705,6 +1717,28 @@ namespace Green_Enviro_App
 			this.Summaries.TabIndex = 6;
 			this.Summaries.Text = "Summaries";
 			this.Summaries.UseVisualStyleBackColor = true;
+			// 
+			// label61
+			// 
+			this.label61.AutoSize = true;
+			this.label61.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label61.Location = new System.Drawing.Point(1349, 129);
+			this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label61.Name = "label61";
+			this.label61.Size = new System.Drawing.Size(155, 28);
+			this.label61.TabIndex = 21;
+			this.label61.Text = "Total Float";
+			// 
+			// SummariesTotalFloat
+			// 
+			this.SummariesTotalFloat.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesTotalFloat.Location = new System.Drawing.Point(1351, 160);
+			this.SummariesTotalFloat.Margin = new System.Windows.Forms.Padding(2);
+			this.SummariesTotalFloat.Name = "SummariesTotalFloat";
+			this.SummariesTotalFloat.ReadOnly = true;
+			this.SummariesTotalFloat.Size = new System.Drawing.Size(378, 170);
+			this.SummariesTotalFloat.TabIndex = 20;
+			this.SummariesTotalFloat.Text = " ";
 			// 
 			// label57
 			// 
@@ -2317,28 +2351,6 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// label61
-			// 
-			this.label61.AutoSize = true;
-			this.label61.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label61.Location = new System.Drawing.Point(1349, 129);
-			this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label61.Name = "label61";
-			this.label61.Size = new System.Drawing.Size(155, 28);
-			this.label61.TabIndex = 21;
-			this.label61.Text = "Total Float";
-			// 
-			// SummariesTotalFloat
-			// 
-			this.SummariesTotalFloat.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SummariesTotalFloat.Location = new System.Drawing.Point(1351, 160);
-			this.SummariesTotalFloat.Margin = new System.Windows.Forms.Padding(2);
-			this.SummariesTotalFloat.Name = "SummariesTotalFloat";
-			this.SummariesTotalFloat.ReadOnly = true;
-			this.SummariesTotalFloat.Size = new System.Drawing.Size(378, 170);
-			this.SummariesTotalFloat.TabIndex = 20;
-			this.SummariesTotalFloat.Text = " ";
-			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2377,8 +2389,8 @@ namespace Green_Enviro_App
 			this.Expenses.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ExpensesLogGridView)).EndInit();
-			this.Wages.ResumeLayout(false);
-			this.Wages.PerformLayout();
+			this.WagesNewEmployee.ResumeLayout(false);
+			this.WagesNewEmployee.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).EndInit();
 			this.Summaries.ResumeLayout(false);
@@ -2541,7 +2553,7 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.NumericUpDown PriceBox;
 		public System.Windows.Forms.NumericUpDown quantityBox;
 		public System.Windows.Forms.NumericUpDown SaleAmount;
-		private System.Windows.Forms.TabPage Wages;
+		private System.Windows.Forms.TabPage WagesNewEmployee;
 		private System.Windows.Forms.TabPage Expenses;
 		private System.Windows.Forms.TabPage Summaries;
 		private System.Windows.Forms.Button ReceiptPriceEditBtn;
@@ -2595,7 +2607,7 @@ namespace Green_Enviro_App
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label46;
-		public System.Windows.Forms.ComboBox EmployeeName;
+		public System.Windows.Forms.ComboBox WagesEmployeeName;
 		public System.Windows.Forms.CheckBox PartTimeEmployeeCheckBox;
         public System.Windows.Forms.CheckBox dstrctCertNewCompanyCheckBox;
         public System.Windows.Forms.NumericUpDown dstrctCertQuantityNumBox;
@@ -2646,5 +2658,6 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.DataGridView InventoryLogGridView;
 		private System.Windows.Forms.Label label61;
 		public System.Windows.Forms.RichTextBox SummariesTotalFloat;
+		private System.Windows.Forms.Button NewEmployee;
 	}
 }

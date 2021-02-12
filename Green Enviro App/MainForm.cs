@@ -23,6 +23,8 @@ namespace Green_Enviro_App
         Customers _customers;
         Email _email;
         Inventory _inventory;
+        Employees _employees;
+
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
 
@@ -48,6 +50,7 @@ namespace Green_Enviro_App
             _wages = new Wages(this, _database);
             _summaries = new Summaries(this);
             _customers = new Customers(this, _database, _receipt);
+            _employees = new Employees(this, _database);
             _user_permission_level = permissionLevel;
         }
 
@@ -370,16 +373,25 @@ namespace Green_Enviro_App
             _wages.PartTimeEmployee();
 		}
 
-        private void ExpenseDate_ValueChanged(object sender, EventArgs e)
+        private void NewEmployee_Click(object sender, EventArgs e)
         {
-
+            if ((_user_permission_level == 4) || (_user_permission_level == 5))
+            {
+                this.Enabled = false;
+                _employees.Enabled = true;
+                _employees.Activate();
+                _employees.Show();
+            }
+            else
+            {
+                PermissionDenied();
+            }
         }
-
         // *******************************************************************************************************************
         // SUMMARIES RELATED CALLS
         // *******************************************************************************************************************
 
-		private void SummariesMonthSelector_SelectedIndexChanged(object sender, EventArgs e)
+        private void SummariesMonthSelector_SelectedIndexChanged(object sender, EventArgs e)
 		{
             _summaries.MonthSelected();
 		}
