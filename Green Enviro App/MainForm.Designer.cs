@@ -214,6 +214,7 @@ namespace Green_Enviro_App
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.LogOutBtn = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -266,6 +267,7 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.LogOutBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptSaleOrPurchase);
 			this.ReceiptPage.Controls.Add(this.AddFloatBtn);
 			this.ReceiptPage.Controls.Add(this.FloatBox);
@@ -641,7 +643,7 @@ namespace Green_Enviro_App
 			this.receiptBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.receiptBox.Name = "receiptBox";
 			this.receiptBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.receiptBox.Size = new System.Drawing.Size(432, 793);
+			this.receiptBox.Size = new System.Drawing.Size(432, 735);
 			this.receiptBox.TabIndex = 0;
 			this.receiptBox.Text = "";
 			this.receiptBox.WordWrap = false;
@@ -1630,7 +1632,7 @@ namespace Green_Enviro_App
 			this.WageLogGridView.ReadOnly = true;
 			this.WageLogGridView.RowHeadersWidth = 51;
 			this.WageLogGridView.RowTemplate.Height = 24;
-			this.WageLogGridView.Size = new System.Drawing.Size(903, 702);
+			this.WageLogGridView.Size = new System.Drawing.Size(903, 552);
 			this.WageLogGridView.TabIndex = 58;
 			// 
 			// ClearWageFieldsBtn
@@ -2351,6 +2353,18 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// LogOutBtn
+			// 
+			this.LogOutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.LogOutBtn.Location = new System.Drawing.Point(1500, 792);
+			this.LogOutBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.LogOutBtn.Name = "LogOutBtn";
+			this.LogOutBtn.Size = new System.Drawing.Size(208, 58);
+			this.LogOutBtn.TabIndex = 73;
+			this.LogOutBtn.Text = "Log Out";
+			this.LogOutBtn.UseVisualStyleBackColor = true;
+			this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click_1);
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2659,5 +2673,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label61;
 		public System.Windows.Forms.RichTextBox SummariesTotalFloat;
 		private System.Windows.Forms.Button NewEmployee;
+		private System.Windows.Forms.Button LogOutBtn;
 	}
 }

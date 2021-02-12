@@ -99,7 +99,7 @@ namespace Green_Enviro_App
             _master_password = _decryption.Decrypt(_all_credentials[0].password);
 
 			//Creates the main form for the program
-			_mainForm = new Main_Form(_database, _user_permission_level);
+			_mainForm = new Main_Form(this,_database, _user_permission_level);
 		}
 
         //********************************************************************************************************
@@ -114,10 +114,6 @@ namespace Green_Enviro_App
 
         //********************************************************************************************************
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
         private void LoginForm_KeyPress(object sender, KeyEventArgs e)
         {
             this.KeyPreview = true;
@@ -189,6 +185,8 @@ namespace Green_Enviro_App
         {
             if (_main_program_pass == true) 
             {
+                _main_program_pass = false;
+                ClearFields();
                 this.Hide();
                 _mainForm.Activate();
                 _mainForm.Show();
@@ -213,12 +211,12 @@ namespace Green_Enviro_App
             }
         }
 
-        private void usernameField_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        
         private void clear_button_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void ClearFields() 
         {
             usernameField.Clear();
             passwordField.Clear();

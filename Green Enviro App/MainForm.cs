@@ -12,6 +12,7 @@ namespace Green_Enviro_App
 {
     public partial class Main_Form : Form
     {
+        LoginForm _login_form;
         Receipt _receipt;
         Database _database;
         Purchases _purchases;
@@ -35,10 +36,11 @@ namespace Green_Enviro_App
 		/// </summary>
 		/// <param name="_data">Database</param>
 		/// <param name="permissionLevel"></param>
-		public Main_Form(Database _data, int permissionLevel)
+		public Main_Form(LoginForm loginForm, Database _data, int permissionLevel)
         {
             InitializeComponent();
             //initialiseItemList();
+            _login_form = loginForm;
             _database = _data;
             _purchases = new Purchases(this);
             _email = new Email();
@@ -52,6 +54,8 @@ namespace Green_Enviro_App
             _customers = new Customers(this, _database, _receipt);
             _employees = new Employees(this, _database);
             _user_permission_level = permissionLevel;
+
+            this.Owner = loginForm;
         }
 
 
@@ -439,6 +443,12 @@ namespace Green_Enviro_App
         private void PermissionDenied() 
         {
             CustomMessageBox box = new CustomMessageBox(this, "Error!", "Permission Denied!");
+        }
+
+		private void LogOutBtn_Click_1(object sender, EventArgs e)
+		{
+            this.Hide();
+            _login_form.Show();
         }
 	}
 }

@@ -39,7 +39,6 @@ namespace Green_Enviro_App
 			}
 		}
 
-
 		private void EmployeesAddEmployeeBtn_Click(object sender, EventArgs e)
 		{
 			if (validEntries() == false) 
