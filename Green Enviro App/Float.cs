@@ -16,6 +16,7 @@ namespace Green_Enviro_App
 		Receipt _receipt;
 		Main_Form _main_form;
 		float _float_value;
+		float _total_float;
 
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
 		string _path_to_float = @"..//..//resources//Float//" + _month + "_float.csv";
@@ -63,8 +64,18 @@ namespace Green_Enviro_App
 		public void UpdateFloat(float AddedAmout)
 		{
 			float _new_float = _float_value + AddedAmout;
+			UpdateFloatFiles(_new_float, _path_to_float);
 
-			FileStream fWrite = new FileStream(_path_to_float,
+			if (AddedAmout > 0)
+			{
+				float _new_total_float = _total_float + AddedAmout;
+				UpdateFloatFiles(_new_total_float, _path_to_total_float);
+			}
+		}
+
+		private void UpdateFloatFiles(float _new_float, string _path_to_file) 
+		{
+			FileStream fWrite = new FileStream(_path_to_file,
 			FileMode.Open, FileAccess.Write, FileShare.None);
 
 			byte[] writeArr = Encoding.UTF8.GetBytes(_new_float.ToString());
@@ -78,7 +89,7 @@ namespace Green_Enviro_App
 			//Create the float file
 			if (!File.Exists(_path_to_float))
 			{
-				string _float_values = "0,0";
+				string _float_values = "0";
 				StringBuilder _csv_content = new StringBuilder();
 				_csv_content.AppendLine(_float_values);
 				File.AppendAllText(_path_to_float, _csv_content.ToString());
@@ -87,6 +98,8 @@ namespace Green_Enviro_App
 			//
 
 			_float_value = float.Parse(File.ReadAllText(_path_to_float));
+			_total_float = float.Parse(File.ReadAllText(_path_to_total_float));
+
 			_main_form.FloatBox.Text = "R " + String.Format("{0:n}", _float_value);
 
 			if (_float_value > 5000)
