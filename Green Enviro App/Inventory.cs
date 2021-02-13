@@ -129,9 +129,9 @@ namespace Green_Enviro_App
 
 		public void RemoveFilters() 
 		{
-				_main_form.PurchaseLogStartDate.SelectedItem = null;
-				_main_form.PurchaseLogEndDate.SelectedItem = null;
-				_main_form.PurchaseLogType.SelectedItem = null;
+				_main_form.InventoryLogStartDate.SelectedItem = null;
+				_main_form.InventoryLogEndDate.SelectedItem = null;
+				_main_form.InventoryLogType.SelectedItem = null;
 
 				DisplayLog();	
 		}
@@ -222,19 +222,19 @@ namespace Green_Enviro_App
 			//Filter according to the date ranges if the dates have been selected correctly
 			if (isDateFiltered() == true)
 			{
-				string _filter_start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
-				string _filter_end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
+				string _filter_start_date = _main_form.InventoryLogStartDate.SelectedItem.ToString();
+				string _filter_end_date = _main_form.InventoryLogEndDate.SelectedItem.ToString();
 
 
 				if (isTypeFiltered() == true)
 				{
-					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
+					string _item_type = _main_form.InventoryLogType.SelectedItem.ToString();
 					_filter_instruction = "Date >= '{0}' AND Date <= '{1}' AND Type = '{2}'";
 					_binding_source.Filter = string.Format(_filter_instruction, _filter_start_date, _filter_end_date, _item_type);
 				}
 				else
 				{
-					_filter_instruction = "Date >= '{2}' AND Date <= '{3}'";
+					_filter_instruction = "Date >= '{0}' AND Date <= '{1}'";
 					_binding_source.Filter = string.Format(_filter_instruction, _filter_start_date, _filter_end_date);
 				}
 			}
@@ -244,8 +244,8 @@ namespace Green_Enviro_App
 
 				if (isTypeFiltered() == true)
 				{
-					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
-					_filter_instruction = "Type = '{2}'";
+					string _item_type = _main_form.InventoryLogType.SelectedItem.ToString();
+					_filter_instruction = "Type = '{0}'";
 					_binding_source.Filter = string.Format(_filter_instruction, _item_type);
 				}
 			}
@@ -331,7 +331,7 @@ namespace Green_Enviro_App
 						float _value = float.Parse(_row.Cells[3].Value.ToString());
 						if (_value < 0)
 						{
-							_main_form.InventoryLogGridView.Rows[_row.Index].DefaultCellStyle.BackColor = Color.Green;
+							_main_form.InventoryLogGridView.Rows[_row.Index].DefaultCellStyle.BackColor = Color.GreenYellow;
 						}
 					}
 				}
