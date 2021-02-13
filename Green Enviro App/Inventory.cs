@@ -23,6 +23,9 @@ namespace Green_Enviro_App
 		DataTable _inventory_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
 
+		string _summed = "Summed";
+		string _not_summed = "Not Summed";
+
 		public Inventory(Main_Form main)
 		{
 			_main_form = main;
@@ -57,6 +60,10 @@ namespace Green_Enviro_App
 				string _file_name = _file.Name.TrimEnd(_remove_chars);
 				_main_form.InventoryLogMonth.Items.Add(_file_name);
 			}
+
+			_main_form.InvetorySummedOrNot.Items.Insert(0, _summed);
+			_main_form.InvetorySummedOrNot.Items.Insert(1, _not_summed);
+			//_main_form.InvetorySummedOrNot.SelectedIndex = 0;
 		}
 
 		public void AddItems(List<string> entries) 
@@ -120,12 +127,16 @@ namespace Green_Enviro_App
 			DisplayLog();
 		}
 
-		private void RemoveFilters() 
+		public void RemoveFilters() 
 		{
-			
+				_main_form.PurchaseLogStartDate.SelectedItem = null;
+				_main_form.PurchaseLogEndDate.SelectedItem = null;
+				_main_form.PurchaseLogType.SelectedItem = null;
+
+				DisplayLog();	
 		}
 
-		private void DisplayLog() 
+		public void DisplayLog() 
 		{
 			if (_main_form.InventoryLogMonth.SelectedItem == null)
 			{
@@ -190,7 +201,7 @@ namespace Green_Enviro_App
 						_current_row++;
 					}
 
-					if (_row_exists)
+					if ((_row_exists) && (_main_form.InvetorySummedOrNot.SelectedItem.ToString() == _summed))
 					{
 						float _current_total_qnty= float.Parse(_inventory_data_table.Rows[_current_row][_quantity].ToString());
 						float _new_total_qnty = _current_total_qnty + float.Parse(_data_row[_quantity].ToString());
@@ -206,9 +217,98 @@ namespace Green_Enviro_App
 		}
 
 		private void FilterGridView() 
-		{ 
-			
+		{
+			string _filter_instruction;
+			//Filter according to the date ranges if the dates have been selected correctly
+			if (isDateFiltered() == true)
+			{
+				string _filter_start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
+				string _filter_end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
+
+
+				if (isTypeFiltered() == true)
+				{
+					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
+					_filter_instruction = "Date >= '{0}' AND Date <= '{1}' AND Type = '{2}'";
+					_binding_source.Filter = string.Format(_filter_instruction, _filter_start_date, _filter_end_date, _item_type);
+				}
+				else
+				{
+					_filter_instruction = "Date >= '{2}' AND Date <= '{3}'";
+					_binding_source.Filter = string.Format(_filter_instruction, _filter_start_date, _filter_end_date);
+				}
+			}
+			else
+			{
+				_binding_source.RemoveFilter();
+
+				if (isTypeFiltered() == true)
+				{
+					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
+					_filter_instruction = "Type = '{2}'";
+					_binding_source.Filter = string.Format(_filter_instruction, _item_type);
+				}
+			}
 		}
+
+		private bool isDateFiltered()
+		{
+			if ((_main_form.InventoryLogStartDate.SelectedItem == null) && (_main_form.InventoryLogEndDate.SelectedItem == null))
+			{
+				//Do nothing if there are not filters selected
+				return false;
+			}
+
+			if ((_main_form.InventoryLogStartDate.SelectedItem != null) && (_main_form.InventoryLogEndDate.SelectedItem == null))
+			{
+				//Do nothing if there are not filters selected
+				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
+				_main_form.InventoryLogStartDate.SelectedItem = null;
+				_main_form.InventoryLogEndDate.SelectedItem = null;
+				return false;
+			}
+
+			if ((_main_form.InventoryLogStartDate.SelectedItem == null) && (_main_form.InventoryLogEndDate.SelectedItem != null))
+			{
+				//Do nothing if there are not filters selected
+				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
+				_main_form.InventoryLogStartDate.SelectedItem = null;
+				_main_form.InventoryLogEndDate.SelectedItem = null;
+				return false;
+			}
+
+			DateTime _start_date = Convert.ToDateTime(_main_form.InventoryLogStartDate.SelectedItem.ToString());
+			DateTime _end_date = Convert.ToDateTime(_main_form.InventoryLogEndDate.SelectedItem.ToString());
+
+			if (_start_date > _end_date)
+			{
+				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
+				_main_form.InventoryLogStartDate.SelectedItem = null;
+				_main_form.InventoryLogEndDate.SelectedItem = null;
+				return false;
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Determines whether the inventory box is type filtered or not
+		/// </summary>
+		/// <returns>
+		///   <c>true</c> if either Ferrous or Non-Ferrous is selected; otherwise, <c>false</c>.
+		/// </returns>
+		private bool isTypeFiltered()
+		{
+			if (_main_form.InventoryLogType.SelectedItem == null)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
 
 		private void PopulateGridView() 
 		{
@@ -222,6 +322,20 @@ namespace Green_Enviro_App
 				_column.SortMode = DataGridViewColumnSortMode.NotSortable;
 			}
 
+			if (_main_form.InvetorySummedOrNot.SelectedItem.ToString() == _not_summed)
+			{
+				foreach (DataGridViewRow _row in _main_form.InventoryLogGridView.Rows)
+				{
+					if (_row.Cells[3].Value != null)
+					{
+						float _value = float.Parse(_row.Cells[3].Value.ToString());
+						if (_value < 0)
+						{
+							_main_form.InventoryLogGridView.Rows[_row.Index].DefaultCellStyle.BackColor = Color.Green;
+						}
+					}
+				}
+			}
 			//AddTotalsRow();
 			//int _last_row_index = 0;
 			//_last_row_index = _main_form.PurchseLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 2;

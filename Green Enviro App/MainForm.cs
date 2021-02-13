@@ -420,6 +420,21 @@ namespace Green_Enviro_App
             _inventory.MonthSelected();
 		}
 
+        private void InventoryLogFilterBtn_Click(object sender, EventArgs e)
+        {
+            _inventory.DisplayLog();
+        }
+
+        private void InventoryLogRmvFilterBtn_Click(object sender, EventArgs e)
+        {
+            _inventory.RemoveFilters();
+        }
+
+        private void InvetorySummedOrNot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _inventory.MonthSelected();
+        }
+
         // *******************************************************************************************************************
         // FUNCTION CALLS WHEN CHANGING TABS
         // *******************************************************************************************************************
