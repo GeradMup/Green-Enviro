@@ -555,5 +555,9 @@ namespace Green_Enviro_App
             return _extraction_date;
         }
 
+        public void Reset() 
+        {
+            ClearCompanyDetails();
+        }
     }
 }

@@ -361,5 +361,13 @@ namespace Green_Enviro_App
 			_main_form.ExpenseAmount.Value = _zero;
 			_main_form.ExpenseDescriptionBox.Text = "";
 		}
+
+		public void Reset() 
+		{
+			ClearFields();
+			_main_form.ExpensesLogMonth.SelectedItem = null;
+			RemoveFilters();
+			_main_form.ExpensesLogGridView.DataSource = null;
+		}
 	}
 }

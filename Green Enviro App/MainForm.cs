@@ -427,6 +427,13 @@ namespace Green_Enviro_App
         private void mainTabControl_Deselected(object sender, TabControlEventArgs e)
 		{
             _previous_tab_page = e.TabPage;
+            _purchases.Reset();
+            _sales.Reset();
+            _inventory.Reset();
+            _expenses.Reset();
+            _wages.Reset();
+            _summaries.Reset();
+            _destruction_certificate.Reset();
 		}
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)

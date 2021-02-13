@@ -377,5 +377,13 @@ namespace Green_Enviro_App
 				_main_form.WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
 			}
 		}
+
+		public void Reset() 
+		{
+			ClearFields();
+			_main_form.WageLogMonth.SelectedItem = null;
+			RemoveFilters();
+			_main_form.WageLogGridView.DataSource = null;
+		}
 	}
 }

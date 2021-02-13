@@ -174,32 +174,24 @@ namespace Green_Enviro_App
 
 		private void Display() 
 		{
-			_main_form.SummariesFPurchasesBox.Clear();
-			_main_form.SummariesNFPurchasesBox.Clear();
+			ClearFields();
+
 			_main_form.SummariesFPurchasesBox.AppendText("\n  R " + _total_ferrous_purchases.ToString());
 			_main_form.SummariesNFPurchasesBox.AppendText("\n  R " + _total_non_ferrous_purchases.ToString());
-
-			_main_form.SummariesFSalesBox.Clear();
-			_main_form.SummariesNFSalesBox.Clear();
+			
 			_main_form.SummariesFSalesBox.AppendText("\n  R " + _total_ferrous_sales.ToString());
 			_main_form.SummariesNFSalesBox.AppendText("\n  R " + _total_non_ferrous_sales.ToString());
 
-			_main_form.SummariesWagesBox.Clear();
 			_main_form.SummariesWagesBox.AppendText("\n  R " + _total_wages.ToString());
 
-			_main_form.SummariesExpensesBox.Clear();
 			_main_form.SummariesExpensesBox.AppendText("\n  R " + _total_expenses.ToString());
 
-			_main_form.SummariesProfitBox.Clear();
 			_main_form.SummariesProfitBox.AppendText("\n  R " + _profit);
-
-			_main_form.SummariesTotalPurchases.Clear();
+			
 			_main_form.SummariesTotalPurchases.AppendText("\n  R " + _total_purchases);
-
-			_main_form.SummariesTotalSales.Clear();
+			
 			_main_form.SummariesTotalSales.AppendText("\n R " + _total_sales);
-
-			_main_form.SummariesTotalFloat.Clear();
+			
 			_main_form.SummariesTotalFloat.AppendText("\n R" + _total_float);
 
 			if (_profit < 0)
@@ -211,6 +203,35 @@ namespace Green_Enviro_App
 				_main_form.SummariesProfitBox.BackColor = Color.LawnGreen;
 			}
 
+		}
+
+		private void ClearFields() 
+		{
+			_main_form.SummariesFPurchasesBox.Clear();
+			_main_form.SummariesNFPurchasesBox.Clear();
+
+			_main_form.SummariesFSalesBox.Clear();
+			_main_form.SummariesNFSalesBox.Clear();
+
+			_main_form.SummariesWagesBox.Clear();
+
+			_main_form.SummariesExpensesBox.Clear();
+
+			_main_form.SummariesProfitBox.Clear();
+
+			_main_form.SummariesTotalPurchases.Clear();
+
+			_main_form.SummariesTotalSales.Clear();
+
+			_main_form.SummariesTotalFloat.Clear();
+
+			_main_form.SummariesProfitBox.BackColor = Color.White;
+		}
+
+		public void Reset() 
+		{
+			_main_form.SummariesMonthSelector.SelectedItem = null;
+			ClearFields();
 		}
 	}
 }

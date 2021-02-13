@@ -229,5 +229,12 @@ namespace Green_Enviro_App
 			//_main_form.PurchseLogGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
 			_main_form.InventoryLogGridView.Refresh();
 		}
+
+		public void Reset() 
+		{
+			_main_form.InventoryLogMonth.SelectedItem = null;
+			RemoveFilters();
+			_main_form.InventoryLogGridView.DataSource = null;
+		}
 	}
 }

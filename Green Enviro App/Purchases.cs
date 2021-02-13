@@ -382,5 +382,12 @@ namespace Green_Enviro_App
 			DisplayPurchaseLog();
 		}
 
+		public void Reset() 
+		{
+			_main_form.PurchaseLogMonth.SelectedItem = null;
+			RemoveFilters();
+			_main_form.PurchseLogGridView.DataSource = null;
+		}
+
 	}
 }

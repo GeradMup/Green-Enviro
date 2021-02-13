@@ -497,6 +497,14 @@ namespace Green_Enviro_App
 			_main_form.SaleTypeBx.SelectedItem = null;
 			_main_form.SaleAmount.Value = _zero;
 		}
+
+		public void Reset() 
+		{
+			ClearFields();
+			_main_form.SalesLogMonth.SelectedItem = null;
+			RemoveFilters();
+			_main_form.SalesLogGridView.DataSource = null;
+		}
 	}
 }
 
