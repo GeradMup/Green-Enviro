@@ -34,7 +34,6 @@ namespace Green_Enviro_App
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.CustomersCancelBtn = new System.Windows.Forms.Button();
 			this.CustomersDeleteBtn = new System.Windows.Forms.Button();
 			this.CustomersSurname = new System.Windows.Forms.TextBox();
 			this.CustomersIdentification = new System.Windows.Forms.TextBox();
@@ -91,25 +90,16 @@ namespace Green_Enviro_App
 			this.label2.TabIndex = 26;
 			this.label2.Text = "Name";
 			// 
-			// CustomersCancelBtn
-			// 
-			this.CustomersCancelBtn.Location = new System.Drawing.Point(264, 377);
-			this.CustomersCancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-			this.CustomersCancelBtn.Name = "CustomersCancelBtn";
-			this.CustomersCancelBtn.Size = new System.Drawing.Size(170, 48);
-			this.CustomersCancelBtn.TabIndex = 24;
-			this.CustomersCancelBtn.Text = "Cancel";
-			this.CustomersCancelBtn.UseVisualStyleBackColor = true;
-			// 
 			// CustomersDeleteBtn
 			// 
-			this.CustomersDeleteBtn.Location = new System.Drawing.Point(40, 377);
+			this.CustomersDeleteBtn.Location = new System.Drawing.Point(40, 378);
 			this.CustomersDeleteBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.CustomersDeleteBtn.Name = "CustomersDeleteBtn";
-			this.CustomersDeleteBtn.Size = new System.Drawing.Size(160, 48);
+			this.CustomersDeleteBtn.Size = new System.Drawing.Size(394, 48);
 			this.CustomersDeleteBtn.TabIndex = 23;
-			this.CustomersDeleteBtn.Text = "Delete";
+			this.CustomersDeleteBtn.Text = "Delete Customer";
 			this.CustomersDeleteBtn.UseVisualStyleBackColor = true;
+			this.CustomersDeleteBtn.Click += new System.EventHandler(this.CustomersDeleteBtn_Click);
 			// 
 			// CustomersSurname
 			// 
@@ -164,7 +154,7 @@ namespace Green_Enviro_App
 			// 
 			// CustomersNewCustomer
 			// 
-			this.CustomersNewCustomer.Location = new System.Drawing.Point(40, 461);
+			this.CustomersNewCustomer.Location = new System.Drawing.Point(40, 464);
 			this.CustomersNewCustomer.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersNewCustomer.Name = "CustomersNewCustomer";
 			this.CustomersNewCustomer.Size = new System.Drawing.Size(394, 48);
@@ -185,7 +175,6 @@ namespace Green_Enviro_App
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.CustomersCancelBtn);
 			this.Controls.Add(this.CustomersDeleteBtn);
 			this.Controls.Add(this.CustomersSurname);
 			this.Controls.Add(this.CustomersIdentification);
@@ -210,7 +199,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Button CustomersCancelBtn;
 		private System.Windows.Forms.Button CustomersDeleteBtn;
 		private System.Windows.Forms.TextBox CustomersSurname;
 		private System.Windows.Forms.TextBox CustomersIdentification;

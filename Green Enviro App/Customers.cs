@@ -104,5 +104,20 @@ namespace Green_Enviro_App
 		{
             _new_customer.ActivateForm();
 		}
+
+		private void CustomersDeleteBtn_Click(object sender, EventArgs e)
+		{
+            int _current_row = CustomersDataGridView.CurrentCell.RowIndex;
+            string _customer_number = CustomersDataGridView[0, _current_row].Value.ToString();
+
+            string _deletion_condition = "CustomerNumber = '" + _customer_number + "'";
+
+            Int32 _rows_affected = _database.DeleteFromDatabase(_customers_table_name, _deletion_condition);
+            if (_rows_affected == 1)
+            {
+                LoadCustomersDataTable();
+                CustomMessageBox mb = new CustomMessageBox(this, "Success!", "Customer Deleted");
+            }
+        }
 	}
 }
