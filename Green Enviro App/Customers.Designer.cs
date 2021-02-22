@@ -128,7 +128,6 @@ namespace Green_Enviro_App
 			this.CustomersSurname.Location = new System.Drawing.Point(231, 233);
 			this.CustomersSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.CustomersSurname.Name = "CustomersSurname";
-			this.CustomersSurname.ReadOnly = true;
 			this.CustomersSurname.Size = new System.Drawing.Size(203, 31);
 			this.CustomersSurname.TabIndex = 22;
 			// 
@@ -137,7 +136,6 @@ namespace Green_Enviro_App
 			this.CustomersIdentification.Location = new System.Drawing.Point(231, 286);
 			this.CustomersIdentification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.CustomersIdentification.Name = "CustomersIdentification";
-			this.CustomersIdentification.ReadOnly = true;
 			this.CustomersIdentification.Size = new System.Drawing.Size(203, 31);
 			this.CustomersIdentification.TabIndex = 21;
 			// 
@@ -146,9 +144,9 @@ namespace Green_Enviro_App
 			this.CustomersName.Location = new System.Drawing.Point(231, 178);
 			this.CustomersName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.CustomersName.Name = "CustomersName";
-			this.CustomersName.ReadOnly = true;
 			this.CustomersName.Size = new System.Drawing.Size(203, 31);
 			this.CustomersName.TabIndex = 20;
+			this.CustomersName.TextChanged += new System.EventHandler(this.CustomersName_TextChanged);
 			// 
 			// CustomersCustomerNumber
 			// 
@@ -159,7 +157,8 @@ namespace Green_Enviro_App
             0,
             0});
 			this.CustomersCustomerNumber.Name = "CustomersCustomerNumber";
-			this.CustomersCustomerNumber.Size = new System.Drawing.Size(108, 31);
+			this.CustomersCustomerNumber.ReadOnly = true;
+			this.CustomersCustomerNumber.Size = new System.Drawing.Size(129, 31);
 			this.CustomersCustomerNumber.TabIndex = 29;
 			// 
 			// CustomersDoneBtn

@@ -18,6 +18,7 @@ namespace Green_Enviro_App
         //Here we generate a data table so as to interact with the tables of the database
         DataTable _data_table = new DataTable();
         string _customers_table_name = "Customers";
+        BindingSource _binding_source = new BindingSource();
         /*
          * Loading the database table for the new users into the class 
          */
@@ -61,12 +62,25 @@ namespace Green_Enviro_App
         {
             //Gets all user details and stores them in a DataTable 
             _data_table = _database.SelectAll(_customers_table_name);
-            CustomersDataGridView.DataSource = _data_table.DefaultView;
+            _binding_source.DataSource = _data_table;
+            CustomersDataGridView.DataSource = _binding_source;
+        }
+
+        public void filterByName() 
+        {
+            string _customer_name = CustomersName.Text;
+            _binding_source.Filter = string.Format("Name like '%{0}%'", _customer_name);
+            CustomersDataGridView.Refresh();
         }
 
 		private void CustomersDoneBtn_Click(object sender, EventArgs e)
 		{
             Exit();
+		}
+
+		private void CustomersName_TextChanged(object sender, EventArgs e)
+		{
+            filterByName();
 		}
 	}
 }
