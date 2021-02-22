@@ -107,6 +107,9 @@ namespace Green_Enviro_App
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.Inventory = new System.Windows.Forms.TabPage();
+			this.label62 = new System.Windows.Forms.Label();
+			this.InventoryLogType = new System.Windows.Forms.ComboBox();
+			this.InvetorySummedOrNot = new System.Windows.Forms.ComboBox();
 			this.InventoryLogGridView = new System.Windows.Forms.DataGridView();
 			this.InventoryLogRmvFilterBtn = new System.Windows.Forms.Button();
 			this.InventoryLogFilterBtn = new System.Windows.Forms.Button();
@@ -215,9 +218,7 @@ namespace Green_Enviro_App
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.InvetorySummedOrNot = new System.Windows.Forms.ComboBox();
-			this.label62 = new System.Windows.Forms.Label();
-			this.InventoryLogType = new System.Windows.Forms.ComboBox();
+			this.label63 = new System.Windows.Forms.Label();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -1130,6 +1131,7 @@ namespace Green_Enviro_App
 			// 
 			// Inventory
 			// 
+			this.Inventory.Controls.Add(this.label63);
 			this.Inventory.Controls.Add(this.label62);
 			this.Inventory.Controls.Add(this.InventoryLogType);
 			this.Inventory.Controls.Add(this.InvetorySummedOrNot);
@@ -1149,6 +1151,37 @@ namespace Green_Enviro_App
 			this.Inventory.Text = "Inventory";
 			this.Inventory.UseVisualStyleBackColor = true;
 			// 
+			// label62
+			// 
+			this.label62.AutoSize = true;
+			this.label62.Location = new System.Drawing.Point(1464, 26);
+			this.label62.Name = "label62";
+			this.label62.Size = new System.Drawing.Size(54, 23);
+			this.label62.TabIndex = 11;
+			this.label62.Text = "Type";
+			// 
+			// InventoryLogType
+			// 
+			this.InventoryLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InventoryLogType.FormattingEnabled = true;
+			this.InventoryLogType.Items.AddRange(new object[] {
+            "Ferrous",
+            "Non-Ferrous"});
+			this.InventoryLogType.Location = new System.Drawing.Point(1468, 52);
+			this.InventoryLogType.Name = "InventoryLogType";
+			this.InventoryLogType.Size = new System.Drawing.Size(204, 31);
+			this.InventoryLogType.TabIndex = 10;
+			// 
+			// InvetorySummedOrNot
+			// 
+			this.InvetorySummedOrNot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InvetorySummedOrNot.FormattingEnabled = true;
+			this.InvetorySummedOrNot.Location = new System.Drawing.Point(43, 52);
+			this.InvetorySummedOrNot.Name = "InvetorySummedOrNot";
+			this.InvetorySummedOrNot.Size = new System.Drawing.Size(265, 31);
+			this.InvetorySummedOrNot.TabIndex = 9;
+			this.InvetorySummedOrNot.SelectedIndexChanged += new System.EventHandler(this.InvetorySummedOrNot_SelectedIndexChanged);
+			// 
 			// InventoryLogGridView
 			// 
 			this.InventoryLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1157,19 +1190,19 @@ namespace Green_Enviro_App
 			this.InventoryLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.InventoryLogGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
 			this.InventoryLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.InventoryLogGridView.Location = new System.Drawing.Point(487, 45);
+			this.InventoryLogGridView.Location = new System.Drawing.Point(8, 190);
 			this.InventoryLogGridView.Name = "InventoryLogGridView";
 			this.InventoryLogGridView.ReadOnly = true;
 			this.InventoryLogGridView.RowHeadersWidth = 51;
 			this.InventoryLogGridView.RowTemplate.Height = 24;
-			this.InventoryLogGridView.Size = new System.Drawing.Size(1229, 814);
+			this.InventoryLogGridView.Size = new System.Drawing.Size(1708, 669);
 			this.InventoryLogGridView.TabIndex = 8;
 			// 
 			// InventoryLogRmvFilterBtn
 			// 
-			this.InventoryLogRmvFilterBtn.Location = new System.Drawing.Point(47, 679);
+			this.InventoryLogRmvFilterBtn.Location = new System.Drawing.Point(767, 115);
 			this.InventoryLogRmvFilterBtn.Name = "InventoryLogRmvFilterBtn";
-			this.InventoryLogRmvFilterBtn.Size = new System.Drawing.Size(365, 63);
+			this.InventoryLogRmvFilterBtn.Size = new System.Drawing.Size(324, 52);
 			this.InventoryLogRmvFilterBtn.TabIndex = 7;
 			this.InventoryLogRmvFilterBtn.Text = "Remove Filter";
 			this.InventoryLogRmvFilterBtn.UseVisualStyleBackColor = true;
@@ -1177,9 +1210,9 @@ namespace Green_Enviro_App
 			// 
 			// InventoryLogFilterBtn
 			// 
-			this.InventoryLogFilterBtn.Location = new System.Drawing.Point(47, 563);
+			this.InventoryLogFilterBtn.Location = new System.Drawing.Point(416, 115);
 			this.InventoryLogFilterBtn.Name = "InventoryLogFilterBtn";
-			this.InventoryLogFilterBtn.Size = new System.Drawing.Size(365, 63);
+			this.InventoryLogFilterBtn.Size = new System.Drawing.Size(325, 52);
 			this.InventoryLogFilterBtn.TabIndex = 6;
 			this.InventoryLogFilterBtn.Text = "Filter";
 			this.InventoryLogFilterBtn.UseVisualStyleBackColor = true;
@@ -1188,7 +1221,7 @@ namespace Green_Enviro_App
 			// label60
 			// 
 			this.label60.AutoSize = true;
-			this.label60.Location = new System.Drawing.Point(43, 218);
+			this.label60.Location = new System.Drawing.Point(763, 26);
 			this.label60.Name = "label60";
 			this.label60.Size = new System.Drawing.Size(120, 23);
 			this.label60.TabIndex = 5;
@@ -1197,7 +1230,7 @@ namespace Green_Enviro_App
 			// label59
 			// 
 			this.label59.AutoSize = true;
-			this.label59.Location = new System.Drawing.Point(43, 315);
+			this.label59.Location = new System.Drawing.Point(1112, 26);
 			this.label59.Name = "label59";
 			this.label59.Size = new System.Drawing.Size(98, 23);
 			this.label59.TabIndex = 4;
@@ -1206,7 +1239,7 @@ namespace Green_Enviro_App
 			// label58
 			// 
 			this.label58.AutoSize = true;
-			this.label58.Location = new System.Drawing.Point(43, 119);
+			this.label58.Location = new System.Drawing.Point(412, 26);
 			this.label58.Name = "label58";
 			this.label58.Size = new System.Drawing.Size(65, 23);
 			this.label58.TabIndex = 3;
@@ -1216,27 +1249,27 @@ namespace Green_Enviro_App
 			// 
 			this.InventoryLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.InventoryLogEndDate.FormattingEnabled = true;
-			this.InventoryLogEndDate.Location = new System.Drawing.Point(47, 341);
+			this.InventoryLogEndDate.Location = new System.Drawing.Point(1116, 52);
 			this.InventoryLogEndDate.Name = "InventoryLogEndDate";
-			this.InventoryLogEndDate.Size = new System.Drawing.Size(365, 31);
+			this.InventoryLogEndDate.Size = new System.Drawing.Size(325, 31);
 			this.InventoryLogEndDate.TabIndex = 2;
 			// 
 			// InventoryLogStartDate
 			// 
 			this.InventoryLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.InventoryLogStartDate.FormattingEnabled = true;
-			this.InventoryLogStartDate.Location = new System.Drawing.Point(47, 244);
+			this.InventoryLogStartDate.Location = new System.Drawing.Point(767, 52);
 			this.InventoryLogStartDate.Name = "InventoryLogStartDate";
-			this.InventoryLogStartDate.Size = new System.Drawing.Size(365, 31);
+			this.InventoryLogStartDate.Size = new System.Drawing.Size(324, 31);
 			this.InventoryLogStartDate.TabIndex = 1;
 			// 
 			// InventoryLogMonth
 			// 
 			this.InventoryLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.InventoryLogMonth.FormattingEnabled = true;
-			this.InventoryLogMonth.Location = new System.Drawing.Point(47, 145);
+			this.InventoryLogMonth.Location = new System.Drawing.Point(416, 52);
 			this.InventoryLogMonth.Name = "InventoryLogMonth";
-			this.InventoryLogMonth.Size = new System.Drawing.Size(365, 31);
+			this.InventoryLogMonth.Size = new System.Drawing.Size(325, 31);
 			this.InventoryLogMonth.TabIndex = 0;
 			this.InventoryLogMonth.SelectedIndexChanged += new System.EventHandler(this.InventoryLogMonth_SelectedIndexChanged);
 			// 
@@ -2374,36 +2407,14 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// InvetorySummedOrNot
+			// label63
 			// 
-			this.InvetorySummedOrNot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.InvetorySummedOrNot.FormattingEnabled = true;
-			this.InvetorySummedOrNot.Location = new System.Drawing.Point(43, 52);
-			this.InvetorySummedOrNot.Name = "InvetorySummedOrNot";
-			this.InvetorySummedOrNot.Size = new System.Drawing.Size(265, 31);
-			this.InvetorySummedOrNot.TabIndex = 9;
-			this.InvetorySummedOrNot.SelectedIndexChanged += new System.EventHandler(this.InvetorySummedOrNot_SelectedIndexChanged);
-			// 
-			// label62
-			// 
-			this.label62.AutoSize = true;
-			this.label62.Location = new System.Drawing.Point(43, 413);
-			this.label62.Name = "label62";
-			this.label62.Size = new System.Drawing.Size(54, 23);
-			this.label62.TabIndex = 11;
-			this.label62.Text = "Type";
-			// 
-			// InventoryLogType
-			// 
-			this.InventoryLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.InventoryLogType.FormattingEnabled = true;
-			this.InventoryLogType.Items.AddRange(new object[] {
-            "Ferrous",
-            "Non-Ferrous"});
-			this.InventoryLogType.Location = new System.Drawing.Point(47, 439);
-			this.InventoryLogType.Name = "InventoryLogType";
-			this.InventoryLogType.Size = new System.Drawing.Size(261, 31);
-			this.InventoryLogType.TabIndex = 10;
+			this.label63.AutoSize = true;
+			this.label63.Location = new System.Drawing.Point(39, 26);
+			this.label63.Name = "label63";
+			this.label63.Size = new System.Drawing.Size(197, 23);
+			this.label63.TabIndex = 12;
+			this.label63.Text = "Summed/Not Summed";
 			// 
 			// Main_Form
 			// 
@@ -2717,5 +2728,6 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.ComboBox InvetorySummedOrNot;
 		private System.Windows.Forms.Label label62;
 		public System.Windows.Forms.ComboBox InventoryLogType;
+		private System.Windows.Forms.Label label63;
 	}
 }

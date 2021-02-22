@@ -59,15 +59,6 @@ namespace Green_Enviro_App
 
                 //Here when uncommenting you can add meta information 
 
-                /*
-                // Add meta information to the document  
-                pdfDocument.AddAuthor("Micke Blomquist");  
-                pdfDocument.AddCreator("Sample application using iTextSharp");  
-                pdfDocument.AddKeywords("PDF tutorial education");  
-                pdfDocument.AddSubject("Document subject - Describing the steps creating a PDF document");  
-                pdfDocument.AddTitle("The document title - PDF creation using iTextSharp");  
-                */
-
                 // Lets open the pdf document
                 pdfDocument.Open();
 
@@ -124,7 +115,7 @@ namespace Green_Enviro_App
 
                 //----------------------------------------------------------------------------------------------------------------
                 //Constant paragraphs of the destruction certificate
-                string introduction_text = "This is to certify that all products collected from your premises from the " + extraction_date + " \n";
+                string introduction_text = "This is to certify that all products collected from your premises on the " + extraction_date + " \n";
                 string continuation_of_introduction_text = "have been completely scrapped and recycled. \n";
 
                 string _first_sentence_certifying_privacy = "We certify that all the material has been recycled in accordance with our organization’s secure \n";
@@ -269,8 +260,8 @@ namespace Green_Enviro_App
             string _message_type = "";
             string _message = "";
             string _company = _main_form.dstrctCertCompanyField.Text;
-            string _extraction_date = _main_form.dstrctCertExtractionDate.Value.ToString("dd_MMMM_yyyy");
-            string _save_pdf_path = @"..//..//resources//Logs//Destruction Certificates//" + _company + "_" + _extraction_date + ".pdf";
+            string _certificate_date = DateTime.Now.ToString("dd_MMMM_yyyy");
+            string _save_pdf_path = @"..//..//resources//Logs//Destruction Certificates//" + _company + "_" + _certificate_date + ".pdf";
             bool _all_good = false;
             bool _is_company_exist_in_db = false;       //This should not be done here
             var _quantity_unit_selected = GetQuantity();

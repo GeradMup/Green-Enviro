@@ -49,7 +49,6 @@ namespace Green_Enviro_App
 			this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-
 			// 
 			// loginBtn
 			// 
@@ -70,7 +69,6 @@ namespace Green_Enviro_App
 			this.usernameField.Size = new System.Drawing.Size(286, 31);
 			this.usernameField.TabIndex = 3;
 			this.usernameField.Text = "Master";
-		
 			// 
 			// label1
 			// 
@@ -94,12 +92,12 @@ namespace Green_Enviro_App
 			// 
 			// passwordField
 			// 
-			this.passwordField.Location = new System.Drawing.Point(243, 278);
+			this.passwordField.Location = new System.Drawing.Point(243, 282);
 			this.passwordField.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.passwordField.Multiline = true;
 			this.passwordField.Name = "passwordField";
 			this.passwordField.PasswordChar = '*';
-			this.passwordField.Size = new System.Drawing.Size(284, 36);
+			this.passwordField.Size = new System.Drawing.Size(284, 32);
 			this.passwordField.TabIndex = 6;
 			this.passwordField.Text = "Master";
 			this.passwordField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordField_KeyPress);
