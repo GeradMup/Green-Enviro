@@ -22,6 +22,7 @@ namespace Green_Enviro_App
 		Destruction_Certificate _destruction_certificate;
         Summaries _summaries;
         Customers _customers;
+        NewCustomer _new_customer;
         Email _email;
         Inventory _inventory;
         Employees _employees;
@@ -51,7 +52,7 @@ namespace Green_Enviro_App
             _expenses = new Expenses(this, _database);
             _wages = new Wages(this, _database);
             _summaries = new Summaries(this);
-            _customers = new Customers(this,_database);
+            _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
             _user_permission_level = permissionLevel;
 

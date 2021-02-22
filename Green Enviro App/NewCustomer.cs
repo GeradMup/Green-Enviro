@@ -15,35 +15,32 @@ namespace Green_Enviro_App
 	{
 		Database _database;
 		Main_Form _main_form;
-		DataTable _customers = new DataTable();
+		Customers _customers;
+		DataTable _customers_data_table = new DataTable();
 		Receipt _receipt;
 		string _customers_table_name = "Customers";
-		public NewCustomer(Main_Form main, Database data, Receipt receipt)
+		public NewCustomer(Customers customers,Main_Form main, Database data, Receipt receipt)
 		{
 			InitializeComponent();
 
 			_database = data;
-			this.Owner = main;
+			this.Owner = customers;
 			_main_form = main;
+			_customers = customers;
 			_receipt = receipt;
 			LoadCustomers();
 		}
 
 		private void LoadCustomers() 
 		{
-			_customers = _database.SelectAll(_customers_table_name);
-		}
-
-		public void AddNewCustomer() 
-		{
-			ActivateForm();
+			_customers_data_table = _database.SelectAll(_customers_table_name);
 		}
 
 		private bool NoDuplicates() 
 		{
 			bool _no_duplicates = true;
 			
-				foreach (DataRow _row in _customers.Rows)
+				foreach (DataRow _row in _customers_data_table.Rows)
 				{
 					if (_row[0].ToString() == NewCustomerNumber.Value.ToString())
 					{
@@ -61,7 +58,7 @@ namespace Green_Enviro_App
 			return _no_duplicates;
 		}
 
-		private void ActivateForm() 
+		public void ActivateForm() 
 		{
 			this.Owner.Enabled = false;
 			this.Activate();
@@ -72,6 +69,7 @@ namespace Green_Enviro_App
 		private void Exit() 
 		{
 			ClearFields();
+			_customers.LoadCustomersDataTable();
 			this.Owner.Enabled = true;
 			this.Owner.Show();
 			this.Hide();

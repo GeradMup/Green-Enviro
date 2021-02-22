@@ -19,14 +19,17 @@ namespace Green_Enviro_App
         DataTable _data_table = new DataTable();
         string _customers_table_name = "Customers";
         BindingSource _binding_source = new BindingSource();
+        NewCustomer _new_customer;
+
         /*
          * Loading the database table for the new users into the class 
          */
-        public Customers(Form owner, Database _db)
+        public Customers(Main_Form main, Database _db, Receipt _receipt)
         {
             InitializeComponent();
             _database = _db;
-            this.Owner = owner;
+            this.Owner = main;
+            _new_customer = new NewCustomer(this, main, _database, _receipt);
             LoadCustomersDataTable();
         }
 
@@ -49,7 +52,6 @@ namespace Green_Enviro_App
 
         private void ClearFields()
         {
-            CustomersCustomerNumber.Value = (decimal)0;
             CustomersName.Text = "";
             CustomersSurname.Text = "";
             CustomersIdentification.Text = "";
@@ -66,10 +68,9 @@ namespace Green_Enviro_App
             CustomersDataGridView.DataSource = _binding_source;
         }
 
-        public void filterByName() 
+        public void filterCustomersTable(string condition, string value) 
         {
-            string _customer_name = CustomersName.Text;
-            _binding_source.Filter = string.Format("Name like '%{0}%'", _customer_name);
+            _binding_source.Filter = string.Format("{0} like '%{1}%'", condition, value);
             CustomersDataGridView.Refresh();
         }
 
@@ -80,7 +81,28 @@ namespace Green_Enviro_App
 
 		private void CustomersName_TextChanged(object sender, EventArgs e)
 		{
-            filterByName();
+            string _name_column_header = "Name";
+            string _customer_name = CustomersName.Text;
+            filterCustomersTable(_name_column_header, _customer_name);
+		}
+
+		private void CustomersSurname_TextChanged(object sender, EventArgs e)
+		{
+            string _surname_column_header = "Surname";
+            string _customer_surname = CustomersSurname.Text;
+            filterCustomersTable(_surname_column_header, _customer_surname);
+        }
+
+		private void CustomersIdentification_TextChanged(object sender, EventArgs e)
+		{
+            string _id_column_header = "ID";
+            string _customer_id = CustomersIdentification.Text;
+            filterCustomersTable(_id_column_header, _customer_id);
+        }
+
+		private void CustomersNewCustomer_Click(object sender, EventArgs e)
+		{
+            _new_customer.ActivateForm();
 		}
 	}
 }
