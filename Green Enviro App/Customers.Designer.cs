@@ -30,173 +30,190 @@ namespace Green_Enviro_App
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Customers));
-			this.NewCustomerName = new System.Windows.Forms.TextBox();
-			this.NewCustomerSurname = new System.Windows.Forms.TextBox();
-			this.NewCustomerID = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.NewCustomerNumber = new System.Windows.Forms.NumericUpDown();
+			this.CustomersDataGridView = new System.Windows.Forms.DataGridView();
 			this.label4 = new System.Windows.Forms.Label();
-			this.NewCustomerAddIdPictureBtn = new System.Windows.Forms.Button();
-			this.NewCustomerCancelBtn = new System.Windows.Forms.Button();
-			this.NewCustomerConfirmBtn = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.CustomersCancelBtn = new System.Windows.Forms.Button();
+			this.CustomersDeleteBtn = new System.Windows.Forms.Button();
+			this.CustomersSurname = new System.Windows.Forms.TextBox();
+			this.CustomersIdentification = new System.Windows.Forms.TextBox();
+			this.CustomersName = new System.Windows.Forms.TextBox();
+			this.CustomersCustomerNumber = new System.Windows.Forms.NumericUpDown();
+			this.CustomersDoneBtn = new System.Windows.Forms.Button();
 			this.label5 = new System.Windows.Forms.Label();
-			this.NewCustomerIdPictureBox = new System.Windows.Forms.PictureBox();
-			((System.ComponentModel.ISupportInitialize)(this.NewCustomerNumber)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPictureBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.CustomersCustomerNumber)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// NewCustomerName
+			// CustomersDataGridView
 			// 
-			this.NewCustomerName.Location = new System.Drawing.Point(72, 157);
-			this.NewCustomerName.Margin = new System.Windows.Forms.Padding(5);
-			this.NewCustomerName.Name = "NewCustomerName";
-			this.NewCustomerName.Size = new System.Drawing.Size(348, 34);
-			this.NewCustomerName.TabIndex = 0;
-			// 
-			// NewCustomerSurname
-			// 
-			this.NewCustomerSurname.Location = new System.Drawing.Point(72, 254);
-			this.NewCustomerSurname.Margin = new System.Windows.Forms.Padding(5);
-			this.NewCustomerSurname.Name = "NewCustomerSurname";
-			this.NewCustomerSurname.Size = new System.Drawing.Size(348, 34);
-			this.NewCustomerSurname.TabIndex = 1;
-			// 
-			// NewCustomerID
-			// 
-			this.NewCustomerID.Location = new System.Drawing.Point(72, 357);
-			this.NewCustomerID.Margin = new System.Windows.Forms.Padding(5);
-			this.NewCustomerID.Name = "NewCustomerID";
-			this.NewCustomerID.Size = new System.Drawing.Size(348, 34);
-			this.NewCustomerID.TabIndex = 2;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(67, 124);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(64, 28);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Name";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(67, 324);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(246, 28);
-			this.label2.TabIndex = 4;
-			this.label2.Text = "ID/Passport Number";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(67, 221);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(103, 28);
-			this.label3.TabIndex = 5;
-			this.label3.Text = "Surname";
-			// 
-			// NewCustomerNumber
-			// 
-			this.NewCustomerNumber.Location = new System.Drawing.Point(72, 451);
-			this.NewCustomerNumber.Maximum = new decimal(new int[] {
-            20000,
-            0,
-            0,
-            0});
-			this.NewCustomerNumber.Name = "NewCustomerNumber";
-			this.NewCustomerNumber.Size = new System.Drawing.Size(202, 34);
-			this.NewCustomerNumber.TabIndex = 6;
+			this.CustomersDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.CustomersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.CustomersDataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+			this.CustomersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.CustomersDataGridView.Location = new System.Drawing.Point(451, 125);
+			this.CustomersDataGridView.Name = "CustomersDataGridView";
+			this.CustomersDataGridView.ReadOnly = true;
+			this.CustomersDataGridView.RowHeadersWidth = 51;
+			this.CustomersDataGridView.RowTemplate.Height = 24;
+			this.CustomersDataGridView.Size = new System.Drawing.Size(716, 473);
+			this.CustomersDataGridView.TabIndex = 0;
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(67, 420);
+			this.label4.Location = new System.Drawing.Point(36, 289);
+			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(207, 28);
-			this.label4.TabIndex = 7;
-			this.label4.Text = "Customer Number";
+			this.label4.Size = new System.Drawing.Size(164, 23);
+			this.label4.TabIndex = 28;
+			this.label4.Text = "Identification";
 			// 
-			// NewCustomerAddIdPictureBtn
+			// label3
 			// 
-			this.NewCustomerAddIdPictureBtn.Location = new System.Drawing.Point(72, 526);
-			this.NewCustomerAddIdPictureBtn.Name = "NewCustomerAddIdPictureBtn";
-			this.NewCustomerAddIdPictureBtn.Size = new System.Drawing.Size(226, 44);
-			this.NewCustomerAddIdPictureBtn.TabIndex = 8;
-			this.NewCustomerAddIdPictureBtn.Text = "Add Picture";
-			this.NewCustomerAddIdPictureBtn.UseVisualStyleBackColor = true;
-			this.NewCustomerAddIdPictureBtn.Click += new System.EventHandler(this.NewCustomerAddIdPictureBtn_Click);
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(36, 233);
+			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(87, 23);
+			this.label3.TabIndex = 27;
+			this.label3.Text = "Surname";
 			// 
-			// NewCustomerCancelBtn
+			// label2
 			// 
-			this.NewCustomerCancelBtn.Location = new System.Drawing.Point(807, 565);
-			this.NewCustomerCancelBtn.Name = "NewCustomerCancelBtn";
-			this.NewCustomerCancelBtn.Size = new System.Drawing.Size(226, 44);
-			this.NewCustomerCancelBtn.TabIndex = 9;
-			this.NewCustomerCancelBtn.Text = "Cancel";
-			this.NewCustomerCancelBtn.UseVisualStyleBackColor = true;
-			this.NewCustomerCancelBtn.Click += new System.EventHandler(this.NewCustomerCancelBtn_Click);
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(36, 178);
+			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(54, 23);
+			this.label2.TabIndex = 26;
+			this.label2.Text = "Name";
 			// 
-			// NewCustomerConfirmBtn
+			// label1
 			// 
-			this.NewCustomerConfirmBtn.Location = new System.Drawing.Point(1072, 565);
-			this.NewCustomerConfirmBtn.Name = "NewCustomerConfirmBtn";
-			this.NewCustomerConfirmBtn.Size = new System.Drawing.Size(226, 44);
-			this.NewCustomerConfirmBtn.TabIndex = 10;
-			this.NewCustomerConfirmBtn.Text = "Confirm";
-			this.NewCustomerConfirmBtn.UseVisualStyleBackColor = true;
-			this.NewCustomerConfirmBtn.Click += new System.EventHandler(this.NewCustomerConfirmBtn_Click);
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(36, 125);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(175, 23);
+			this.label1.TabIndex = 25;
+			this.label1.Text = "Customer Number";
+			// 
+			// CustomersCancelBtn
+			// 
+			this.CustomersCancelBtn.Location = new System.Drawing.Point(264, 377);
+			this.CustomersCancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersCancelBtn.Name = "CustomersCancelBtn";
+			this.CustomersCancelBtn.Size = new System.Drawing.Size(170, 48);
+			this.CustomersCancelBtn.TabIndex = 24;
+			this.CustomersCancelBtn.Text = "Cancel";
+			this.CustomersCancelBtn.UseVisualStyleBackColor = true;
+			// 
+			// CustomersDeleteBtn
+			// 
+			this.CustomersDeleteBtn.Location = new System.Drawing.Point(40, 377);
+			this.CustomersDeleteBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersDeleteBtn.Name = "CustomersDeleteBtn";
+			this.CustomersDeleteBtn.Size = new System.Drawing.Size(160, 48);
+			this.CustomersDeleteBtn.TabIndex = 23;
+			this.CustomersDeleteBtn.Text = "Delete";
+			this.CustomersDeleteBtn.UseVisualStyleBackColor = true;
+			// 
+			// CustomersSurname
+			// 
+			this.CustomersSurname.Location = new System.Drawing.Point(231, 233);
+			this.CustomersSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersSurname.Name = "CustomersSurname";
+			this.CustomersSurname.ReadOnly = true;
+			this.CustomersSurname.Size = new System.Drawing.Size(203, 31);
+			this.CustomersSurname.TabIndex = 22;
+			// 
+			// CustomersIdentification
+			// 
+			this.CustomersIdentification.Location = new System.Drawing.Point(231, 286);
+			this.CustomersIdentification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersIdentification.Name = "CustomersIdentification";
+			this.CustomersIdentification.ReadOnly = true;
+			this.CustomersIdentification.Size = new System.Drawing.Size(203, 31);
+			this.CustomersIdentification.TabIndex = 21;
+			// 
+			// CustomersName
+			// 
+			this.CustomersName.Location = new System.Drawing.Point(231, 178);
+			this.CustomersName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersName.Name = "CustomersName";
+			this.CustomersName.ReadOnly = true;
+			this.CustomersName.Size = new System.Drawing.Size(203, 31);
+			this.CustomersName.TabIndex = 20;
+			// 
+			// CustomersCustomerNumber
+			// 
+			this.CustomersCustomerNumber.Location = new System.Drawing.Point(231, 125);
+			this.CustomersCustomerNumber.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+			this.CustomersCustomerNumber.Name = "CustomersCustomerNumber";
+			this.CustomersCustomerNumber.Size = new System.Drawing.Size(108, 31);
+			this.CustomersCustomerNumber.TabIndex = 29;
+			// 
+			// CustomersDoneBtn
+			// 
+			this.CustomersDoneBtn.Location = new System.Drawing.Point(40, 472);
+			this.CustomersDoneBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersDoneBtn.Name = "CustomersDoneBtn";
+			this.CustomersDoneBtn.Size = new System.Drawing.Size(394, 48);
+			this.CustomersDoneBtn.TabIndex = 30;
+			this.CustomersDoneBtn.Text = "Done";
+			this.CustomersDoneBtn.UseVisualStyleBackColor = true;
+			this.CustomersDoneBtn.Click += new System.EventHandler(this.CustomersDoneBtn_Click);
 			// 
 			// label5
 			// 
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(501, 9);
+			this.label5.Font = new System.Drawing.Font("Consolas", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label5.Location = new System.Drawing.Point(394, 24);
+			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(426, 70);
-			this.label5.TabIndex = 12;
-			this.label5.Text = "New Customer";
-			// 
-			// NewCustomerIdPictureBox
-			// 
-			this.NewCustomerIdPictureBox.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.NewCustomerIdPictureBox.Location = new System.Drawing.Point(672, 114);
-			this.NewCustomerIdPictureBox.Name = "NewCustomerIdPictureBox";
-			this.NewCustomerIdPictureBox.Size = new System.Drawing.Size(625, 438);
-			this.NewCustomerIdPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.NewCustomerIdPictureBox.TabIndex = 13;
-			this.NewCustomerIdPictureBox.TabStop = false;
+			this.label5.Size = new System.Drawing.Size(388, 56);
+			this.label5.TabIndex = 31;
+			this.label5.Text = "Edit Customers";
 			// 
 			// Customers
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Highlight;
-			this.ClientSize = new System.Drawing.Size(1340, 621);
-			this.Controls.Add(this.NewCustomerIdPictureBox);
+			this.BackColor = System.Drawing.Color.Teal;
+			this.ClientSize = new System.Drawing.Size(1179, 610);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.NewCustomerConfirmBtn);
-			this.Controls.Add(this.NewCustomerCancelBtn);
-			this.Controls.Add(this.NewCustomerAddIdPictureBtn);
+			this.Controls.Add(this.CustomersDoneBtn);
+			this.Controls.Add(this.CustomersCustomerNumber);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.NewCustomerNumber);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.NewCustomerID);
-			this.Controls.Add(this.NewCustomerSurname);
-			this.Controls.Add(this.NewCustomerName);
-			this.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Controls.Add(this.CustomersCancelBtn);
+			this.Controls.Add(this.CustomersDeleteBtn);
+			this.Controls.Add(this.CustomersSurname);
+			this.Controls.Add(this.CustomersIdentification);
+			this.Controls.Add(this.CustomersName);
+			this.Controls.Add(this.CustomersDataGridView);
+			this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(5);
+			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.Name = "Customers";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Green Envrio SA Recycling";
-			((System.ComponentModel.ISupportInitialize)(this.NewCustomerNumber)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPictureBox)).EndInit();
+			this.Text = "Customers";
+			((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.CustomersCustomerNumber)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -204,18 +221,18 @@ namespace Green_Enviro_App
 
 		#endregion
 
-		private System.Windows.Forms.TextBox NewCustomerName;
-		private System.Windows.Forms.TextBox NewCustomerSurname;
-		private System.Windows.Forms.TextBox NewCustomerID;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.NumericUpDown NewCustomerNumber;
+		private System.Windows.Forms.DataGridView CustomersDataGridView;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Button NewCustomerAddIdPictureBtn;
-		private System.Windows.Forms.Button NewCustomerCancelBtn;
-		private System.Windows.Forms.Button NewCustomerConfirmBtn;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button CustomersCancelBtn;
+		private System.Windows.Forms.Button CustomersDeleteBtn;
+		private System.Windows.Forms.TextBox CustomersSurname;
+		private System.Windows.Forms.TextBox CustomersIdentification;
+		private System.Windows.Forms.TextBox CustomersName;
+		private System.Windows.Forms.NumericUpDown CustomersCustomerNumber;
+		private System.Windows.Forms.Button CustomersDoneBtn;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.PictureBox NewCustomerIdPictureBox;
 	}
 }

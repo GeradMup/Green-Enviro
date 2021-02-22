@@ -54,10 +54,10 @@ namespace Green_Enviro_App
 			this.userTableDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.userTableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.userTableDataGridView.Location = new System.Drawing.Point(508, 53);
-			this.userTableDataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.userTableDataGridView.Margin = new System.Windows.Forms.Padding(4);
 			this.userTableDataGridView.Name = "userTableDataGridView";
 			this.userTableDataGridView.RowHeadersWidth = 51;
-			this.userTableDataGridView.Size = new System.Drawing.Size(705, 372);
+			this.userTableDataGridView.Size = new System.Drawing.Size(705, 398);
 			this.userTableDataGridView.TabIndex = 0;
 			// 
 			// green_Enviro_DataDataSet
@@ -87,7 +87,7 @@ namespace Green_Enviro_App
 			// usernameSelectedForDeletionField
 			// 
 			this.usernameSelectedForDeletionField.Location = new System.Drawing.Point(227, 114);
-			this.usernameSelectedForDeletionField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.usernameSelectedForDeletionField.Margin = new System.Windows.Forms.Padding(4);
 			this.usernameSelectedForDeletionField.Name = "usernameSelectedForDeletionField";
 			this.usernameSelectedForDeletionField.ReadOnly = true;
 			this.usernameSelectedForDeletionField.Size = new System.Drawing.Size(203, 22);
@@ -96,7 +96,7 @@ namespace Green_Enviro_App
 			// emailSelectedForDeletionField
 			// 
 			this.emailSelectedForDeletionField.Location = new System.Drawing.Point(227, 225);
-			this.emailSelectedForDeletionField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.emailSelectedForDeletionField.Margin = new System.Windows.Forms.Padding(4);
 			this.emailSelectedForDeletionField.Name = "emailSelectedForDeletionField";
 			this.emailSelectedForDeletionField.ReadOnly = true;
 			this.emailSelectedForDeletionField.Size = new System.Drawing.Size(203, 22);
@@ -105,7 +105,7 @@ namespace Green_Enviro_App
 			// passwordSelectedForDeletionField
 			// 
 			this.passwordSelectedForDeletionField.Location = new System.Drawing.Point(227, 170);
-			this.passwordSelectedForDeletionField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.passwordSelectedForDeletionField.Margin = new System.Windows.Forms.Padding(4);
 			this.passwordSelectedForDeletionField.Name = "passwordSelectedForDeletionField";
 			this.passwordSelectedForDeletionField.ReadOnly = true;
 			this.passwordSelectedForDeletionField.Size = new System.Drawing.Size(203, 22);
@@ -114,7 +114,7 @@ namespace Green_Enviro_App
 			// userDeletionBtn
 			// 
 			this.userDeletionBtn.Location = new System.Drawing.Point(35, 338);
-			this.userDeletionBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.userDeletionBtn.Margin = new System.Windows.Forms.Padding(4);
 			this.userDeletionBtn.Name = "userDeletionBtn";
 			this.userDeletionBtn.Size = new System.Drawing.Size(199, 48);
 			this.userDeletionBtn.TabIndex = 12;
@@ -125,7 +125,7 @@ namespace Green_Enviro_App
 			// userDeletionCancelBtn
 			// 
 			this.userDeletionCancelBtn.Location = new System.Drawing.Point(259, 338);
-			this.userDeletionCancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.userDeletionCancelBtn.Margin = new System.Windows.Forms.Padding(4);
 			this.userDeletionCancelBtn.Name = "userDeletionCancelBtn";
 			this.userDeletionCancelBtn.Size = new System.Drawing.Size(199, 48);
 			this.userDeletionCancelBtn.TabIndex = 14;
@@ -189,9 +189,11 @@ namespace Green_Enviro_App
 			this.Controls.Add(this.usernameSelectedForDeletionField);
 			this.Controls.Add(this.accountIdList);
 			this.Controls.Add(this.userTableDataGridView);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "UserDatabaseForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "User Database";
 			this.Load += new System.EventHandler(this.UserAccountsForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.userTableDataGridView)).EndInit();

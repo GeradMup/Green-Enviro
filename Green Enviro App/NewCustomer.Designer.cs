@@ -1,0 +1,219 @@
+﻿
+namespace Green_Enviro_App
+{
+	partial class NewCustomer
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
+
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Windows Form Designer generated code
+
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.NewCustomerName = new System.Windows.Forms.TextBox();
+			this.NewCustomerSurname = new System.Windows.Forms.TextBox();
+			this.NewCustomerID = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.NewCustomerNumber = new System.Windows.Forms.NumericUpDown();
+			this.label4 = new System.Windows.Forms.Label();
+			this.NewCustomerAddIdPictureBtn = new System.Windows.Forms.Button();
+			this.NewCustomerCancelBtn = new System.Windows.Forms.Button();
+			this.NewCustomerConfirmBtn = new System.Windows.Forms.Button();
+			this.label5 = new System.Windows.Forms.Label();
+			this.NewCustomerIdPictureBox = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.NewCustomerNumber)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPictureBox)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// NewCustomerName
+			// 
+			this.NewCustomerName.Location = new System.Drawing.Point(72, 157);
+			this.NewCustomerName.Margin = new System.Windows.Forms.Padding(5);
+			this.NewCustomerName.Name = "NewCustomerName";
+			this.NewCustomerName.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerName.TabIndex = 0;
+			// 
+			// NewCustomerSurname
+			// 
+			this.NewCustomerSurname.Location = new System.Drawing.Point(72, 254);
+			this.NewCustomerSurname.Margin = new System.Windows.Forms.Padding(5);
+			this.NewCustomerSurname.Name = "NewCustomerSurname";
+			this.NewCustomerSurname.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerSurname.TabIndex = 1;
+			// 
+			// NewCustomerID
+			// 
+			this.NewCustomerID.Location = new System.Drawing.Point(72, 357);
+			this.NewCustomerID.Margin = new System.Windows.Forms.Padding(5);
+			this.NewCustomerID.Name = "NewCustomerID";
+			this.NewCustomerID.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerID.TabIndex = 2;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(67, 124);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(64, 28);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "Name";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(67, 324);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(246, 28);
+			this.label2.TabIndex = 4;
+			this.label2.Text = "ID/Passport Number";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(67, 221);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(103, 28);
+			this.label3.TabIndex = 5;
+			this.label3.Text = "Surname";
+			// 
+			// NewCustomerNumber
+			// 
+			this.NewCustomerNumber.Location = new System.Drawing.Point(72, 451);
+			this.NewCustomerNumber.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+			this.NewCustomerNumber.Name = "NewCustomerNumber";
+			this.NewCustomerNumber.Size = new System.Drawing.Size(202, 34);
+			this.NewCustomerNumber.TabIndex = 6;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(67, 420);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(207, 28);
+			this.label4.TabIndex = 7;
+			this.label4.Text = "Customer Number";
+			// 
+			// NewCustomerAddIdPictureBtn
+			// 
+			this.NewCustomerAddIdPictureBtn.Location = new System.Drawing.Point(72, 526);
+			this.NewCustomerAddIdPictureBtn.Name = "NewCustomerAddIdPictureBtn";
+			this.NewCustomerAddIdPictureBtn.Size = new System.Drawing.Size(226, 44);
+			this.NewCustomerAddIdPictureBtn.TabIndex = 8;
+			this.NewCustomerAddIdPictureBtn.Text = "Add Picture";
+			this.NewCustomerAddIdPictureBtn.UseVisualStyleBackColor = true;
+			this.NewCustomerAddIdPictureBtn.Click += new System.EventHandler(this.NewCustomerAddIdPictureBtn_Click);
+			// 
+			// NewCustomerCancelBtn
+			// 
+			this.NewCustomerCancelBtn.Location = new System.Drawing.Point(807, 565);
+			this.NewCustomerCancelBtn.Name = "NewCustomerCancelBtn";
+			this.NewCustomerCancelBtn.Size = new System.Drawing.Size(226, 44);
+			this.NewCustomerCancelBtn.TabIndex = 9;
+			this.NewCustomerCancelBtn.Text = "Cancel";
+			this.NewCustomerCancelBtn.UseVisualStyleBackColor = true;
+			this.NewCustomerCancelBtn.Click += new System.EventHandler(this.NewCustomerCancelBtn_Click);
+			// 
+			// NewCustomerConfirmBtn
+			// 
+			this.NewCustomerConfirmBtn.Location = new System.Drawing.Point(1072, 565);
+			this.NewCustomerConfirmBtn.Name = "NewCustomerConfirmBtn";
+			this.NewCustomerConfirmBtn.Size = new System.Drawing.Size(226, 44);
+			this.NewCustomerConfirmBtn.TabIndex = 10;
+			this.NewCustomerConfirmBtn.Text = "Confirm";
+			this.NewCustomerConfirmBtn.UseVisualStyleBackColor = true;
+			this.NewCustomerConfirmBtn.Click += new System.EventHandler(this.NewCustomerConfirmBtn_Click);
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label5.Location = new System.Drawing.Point(501, 9);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(426, 70);
+			this.label5.TabIndex = 12;
+			this.label5.Text = "New Customer";
+			// 
+			// NewCustomerIdPictureBox
+			// 
+			this.NewCustomerIdPictureBox.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.NewCustomerIdPictureBox.Location = new System.Drawing.Point(672, 114);
+			this.NewCustomerIdPictureBox.Name = "NewCustomerIdPictureBox";
+			this.NewCustomerIdPictureBox.Size = new System.Drawing.Size(625, 438);
+			this.NewCustomerIdPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.NewCustomerIdPictureBox.TabIndex = 13;
+			this.NewCustomerIdPictureBox.TabStop = false;
+			// 
+			// Customers
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Highlight;
+			this.ClientSize = new System.Drawing.Size(1340, 655);
+			this.Controls.Add(this.NewCustomerIdPictureBox);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.NewCustomerConfirmBtn);
+			this.Controls.Add(this.NewCustomerCancelBtn);
+			this.Controls.Add(this.NewCustomerAddIdPictureBtn);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.NewCustomerNumber);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.NewCustomerID);
+			this.Controls.Add(this.NewCustomerSurname);
+			this.Controls.Add(this.NewCustomerName);
+			this.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Margin = new System.Windows.Forms.Padding(5);
+			this.Name = "Customers";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "Green Envrio SA Recycling";
+			((System.ComponentModel.ISupportInitialize)(this.NewCustomerNumber)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPictureBox)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
+
+		}
+
+		#endregion
+
+		private System.Windows.Forms.TextBox NewCustomerName;
+		private System.Windows.Forms.TextBox NewCustomerSurname;
+		private System.Windows.Forms.TextBox NewCustomerID;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.NumericUpDown NewCustomerNumber;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Button NewCustomerAddIdPictureBtn;
+		private System.Windows.Forms.Button NewCustomerCancelBtn;
+		private System.Windows.Forms.Button NewCustomerConfirmBtn;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.PictureBox NewCustomerIdPictureBox;
+	}
+}

@@ -51,7 +51,7 @@ namespace Green_Enviro_App
             _expenses = new Expenses(this, _database);
             _wages = new Wages(this, _database);
             _summaries = new Summaries(this);
-            _customers = new Customers(this, _database, _receipt);
+            _customers = new Customers(this,_database);
             _employees = new Employees(this, _database);
             _user_permission_level = permissionLevel;
 
@@ -176,19 +176,6 @@ namespace Green_Enviro_App
             if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
             {
                 _receipt.EditFloat();
-            }
-            else
-            {
-                PermissionDenied();
-            }
-            
-        }
-
-        private void NewCustomer_Click(object sender, EventArgs e)
-        {
-            if ((_user_permission_level == 4) || (_user_permission_level == 5))
-            {
-                _customers.NewCustomer();
             }
             else
             {
@@ -471,6 +458,18 @@ namespace Green_Enviro_App
 		{
             this.Hide();
             _login_form.Show();
+        }
+
+		private void EditCustomers_Click(object sender, EventArgs e)
+		{
+            if ((_user_permission_level == 4) || (_user_permission_level == 5))
+            {
+                _customers.ActivateForm();
+            }
+            else
+            {
+                PermissionDenied();
+            }
         }
 	}
 }

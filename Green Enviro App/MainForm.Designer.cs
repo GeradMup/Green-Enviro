@@ -45,7 +45,7 @@ namespace Green_Enviro_App
 			this.label55 = new System.Windows.Forms.Label();
 			this.ReprintReceiptBtn = new System.Windows.Forms.Button();
 			this.ReceiptDefaultCustomerCheckBox = new System.Windows.Forms.CheckBox();
-			this.NewCustomer = new System.Windows.Forms.Button();
+			this.EditCustomers = new System.Windows.Forms.Button();
 			this.ReceiptPriceEditBtn = new System.Windows.Forms.Button();
 			this.PriceBox = new System.Windows.Forms.NumericUpDown();
 			this.quantityBox = new System.Windows.Forms.NumericUpDown();
@@ -107,6 +107,7 @@ namespace Green_Enviro_App
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.Inventory = new System.Windows.Forms.TabPage();
+			this.label63 = new System.Windows.Forms.Label();
 			this.label62 = new System.Windows.Forms.Label();
 			this.InventoryLogType = new System.Windows.Forms.ComboBox();
 			this.InvetorySummedOrNot = new System.Windows.Forms.ComboBox();
@@ -218,7 +219,6 @@ namespace Green_Enviro_App
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.label63 = new System.Windows.Forms.Label();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -278,7 +278,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Controls.Add(this.label55);
 			this.ReceiptPage.Controls.Add(this.ReprintReceiptBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptDefaultCustomerCheckBox);
-			this.ReceiptPage.Controls.Add(this.NewCustomer);
+			this.ReceiptPage.Controls.Add(this.EditCustomers);
 			this.ReceiptPage.Controls.Add(this.ReceiptPriceEditBtn);
 			this.ReceiptPage.Controls.Add(this.PriceBox);
 			this.ReceiptPage.Controls.Add(this.quantityBox);
@@ -383,16 +383,16 @@ namespace Green_Enviro_App
 			this.ReceiptDefaultCustomerCheckBox.Text = "Default";
 			this.ReceiptDefaultCustomerCheckBox.UseVisualStyleBackColor = true;
 			// 
-			// NewCustomer
+			// EditCustomers
 			// 
-			this.NewCustomer.Location = new System.Drawing.Point(961, 313);
-			this.NewCustomer.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.NewCustomer.Name = "NewCustomer";
-			this.NewCustomer.Size = new System.Drawing.Size(172, 32);
-			this.NewCustomer.TabIndex = 28;
-			this.NewCustomer.Text = "New Customer";
-			this.NewCustomer.UseVisualStyleBackColor = true;
-			this.NewCustomer.Click += new System.EventHandler(this.NewCustomer_Click);
+			this.EditCustomers.Location = new System.Drawing.Point(939, 313);
+			this.EditCustomers.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.EditCustomers.Name = "EditCustomers";
+			this.EditCustomers.Size = new System.Drawing.Size(222, 32);
+			this.EditCustomers.TabIndex = 28;
+			this.EditCustomers.Text = "Edit Customers";
+			this.EditCustomers.UseVisualStyleBackColor = true;
+			this.EditCustomers.Click += new System.EventHandler(this.EditCustomers_Click);
 			// 
 			// ReceiptPriceEditBtn
 			// 
@@ -1151,6 +1151,15 @@ namespace Green_Enviro_App
 			this.Inventory.Text = "Inventory";
 			this.Inventory.UseVisualStyleBackColor = true;
 			// 
+			// label63
+			// 
+			this.label63.AutoSize = true;
+			this.label63.Location = new System.Drawing.Point(39, 26);
+			this.label63.Name = "label63";
+			this.label63.Size = new System.Drawing.Size(197, 23);
+			this.label63.TabIndex = 12;
+			this.label63.Text = "Summed/Not Summed";
+			// 
 			// label62
 			// 
 			this.label62.AutoSize = true;
@@ -1686,7 +1695,7 @@ namespace Green_Enviro_App
 			this.WageLogGridView.ReadOnly = true;
 			this.WageLogGridView.RowHeadersWidth = 51;
 			this.WageLogGridView.RowTemplate.Height = 24;
-			this.WageLogGridView.Size = new System.Drawing.Size(903, 552);
+			this.WageLogGridView.Size = new System.Drawing.Size(903, 702);
 			this.WageLogGridView.TabIndex = 58;
 			// 
 			// ClearWageFieldsBtn
@@ -2407,15 +2416,6 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// label63
-			// 
-			this.label63.AutoSize = true;
-			this.label63.Location = new System.Drawing.Point(39, 26);
-			this.label63.Name = "label63";
-			this.label63.Size = new System.Drawing.Size(197, 23);
-			this.label63.TabIndex = 12;
-			this.label63.Text = "Summed/Not Summed";
-			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2698,7 +2698,7 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.RichTextBox SummariesFPurchasesBox;
 		private System.Windows.Forms.Label label54;
 		public System.Windows.Forms.RichTextBox SummariesProfitBox;
-		private System.Windows.Forms.Button NewCustomer;
+		private System.Windows.Forms.Button EditCustomers;
 		public System.Windows.Forms.CheckBox ReceiptDefaultCustomerCheckBox;
 		private System.Windows.Forms.Button ReprintReceiptBtn;
 		private System.Windows.Forms.Button AddFloatBtn;
