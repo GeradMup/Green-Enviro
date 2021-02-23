@@ -48,7 +48,8 @@ namespace Green_Enviro_App
         bool _customer_selected = false;
 
         string _purchase = "Purchase";
-        string _sale = "Sale";
+        string _formal_sale = "Formal Sale";
+        string _casual_sale = "Casual sale";
         public Receipt(Main_Form form, Database data, Purchases logs, Inventory inventory) 
         {
             _main_form = form;
@@ -169,7 +170,8 @@ namespace Green_Enviro_App
         {
             _main_form.ReceiptSaleOrPurchase.Items.Clear();
             _main_form.ReceiptSaleOrPurchase.Items.Insert(0, _purchase);
-            _main_form.ReceiptSaleOrPurchase.Items.Insert(1, _sale);
+            _main_form.ReceiptSaleOrPurchase.Items.Insert(1, _formal_sale);
+            _main_form.ReceiptSaleOrPurchase.Items.Insert(2, _casual_sale);
             _main_form.ReceiptSaleOrPurchase.SelectedIndex = 0;
         }
 
@@ -380,6 +382,10 @@ namespace Green_Enviro_App
 
             if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase)
             {
+                _purchases.AddPurchase(_purchased_items);
+                _float.UpdateFloat(-1 * _running_total);
+            }
+            else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _casual_sale) {
                 _purchases.AddPurchase(_purchased_items);
                 _float.UpdateFloat(-1 * _running_total);
             }

@@ -120,7 +120,8 @@ namespace Green_Enviro_App
                     _receipt.CompletePurchaseOrSale();
                 }
             }
-            else if (ReceiptSaleOrPurchase.SelectedItem.ToString() == "Sale") 
+            else if ((ReceiptSaleOrPurchase.SelectedItem.ToString() == "Casual Sale")
+                ||(ReceiptSaleOrPurchase.SelectedItem.ToString() == "Formal Sale")) 
             {
                 if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
                 {

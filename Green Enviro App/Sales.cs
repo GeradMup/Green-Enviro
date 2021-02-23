@@ -427,6 +427,10 @@ namespace Green_Enviro_App
 			DisplaySalesLog();
 		}
 
+		public void AddCasualSale() { 
+		
+		}
+
 		//Validate that the user has entered all the information correctly
 		private bool ValidEntries()
 		{
