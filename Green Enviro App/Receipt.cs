@@ -387,7 +387,7 @@ namespace Green_Enviro_App
             }
             else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _casual_sale) {
                 _purchases.AddPurchase(_purchased_items);
-                _float.UpdateFloat(-1 * _running_total);
+                _float.UpdateFloat(_running_total);
             }
             
             _inventory.AddItems(_purchased_quantities);
