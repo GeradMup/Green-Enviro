@@ -47,7 +47,7 @@ namespace Green_Enviro_App
             _email = new Email();
             _sales = new Sales(this, _database);
             _inventory = new Inventory(this);
-            _receipt = new Receipt(this, _database, _purchases, _inventory);
+            _receipt = new Receipt(this, _database, _purchases, _sales, _inventory);
             _destruction_certificate = new Destruction_Certificate(this,_database);
             _expenses = new Expenses(this, _database);
             _wages = new Wages(this, _database);
@@ -109,7 +109,9 @@ namespace Green_Enviro_App
 
         private void PurchaseBtn_Click(object sender, EventArgs e)
         {
-            if (ReceiptSaleOrPurchase.SelectedItem.ToString() == "Purchase")
+            string stopHere = "Stop Here";
+
+            if (ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.purchase)
             {
                 if ((_user_permission_level == 2))
                 {
@@ -120,12 +122,12 @@ namespace Green_Enviro_App
                     _receipt.CompletePurchaseOrSale();
                 }
             }
-            else if ((ReceiptSaleOrPurchase.SelectedItem.ToString() == "Casual Sale")
-                ||(ReceiptSaleOrPurchase.SelectedItem.ToString() == "Formal Sale")) 
+            else if ((ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
+                ||(ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale)) 
             {
                 if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
                 {
-                    _receipt.CompletePurchaseOrSale();
+					_receipt.CompletePurchaseOrSale();
                 }
                 else
                 {

@@ -201,6 +201,12 @@ namespace Green_Enviro_App
 						_current_row++;
 					}
 
+					if (_main_form.InvetorySummedOrNot.SelectedItem == null) 
+					{
+						_main_form.InvetorySummedOrNot.SelectedIndex = 0;
+					}
+
+
 					if ((_row_exists) && (_main_form.InvetorySummedOrNot.SelectedItem.ToString() == _summed))
 					{
 						float _current_total_qnty= float.Parse(_inventory_data_table.Rows[_current_row][_quantity].ToString());

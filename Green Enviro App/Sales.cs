@@ -10,7 +10,7 @@ using System.Drawing;
 
 namespace Green_Enviro_App
 {
-	class Sales
+	public class Sales
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
@@ -404,14 +404,21 @@ namespace Green_Enviro_App
 				}
 			}
 
-			StringBuilder _csv_content = new StringBuilder();
 			string _date = _main_form.SaleDate.Value.ToString("dd MMMM yyyy");
 			string _company = _main_form.SaleCompanyNameList.Text;
 			string _quantity = _main_form.SaleQuantityBx.Value.ToString();
 			string _amount = _main_form.SaleAmount.Value.ToString();
 			string _type = _main_form.SaleTypeBx.Text;
 			string _new_sale = _date + "," + _company + "," + _quantity + "," + _amount + "," + _type;
-			_csv_content.AppendLine(_new_sale);
+			RecordSale(_new_sale);
+
+			DisplaySalesLog();
+		}
+
+		private void RecordSale(string newSale) 
+		{
+			StringBuilder _csv_content = new StringBuilder();
+			_csv_content.AppendLine(newSale);
 
 			try
 			{
@@ -424,11 +431,23 @@ namespace Green_Enviro_App
 				MessageBox.Show("Error! \n" + ex.Message);
 			}
 
-			DisplaySalesLog();
 		}
 
-		public void AddCasualSale() { 
-		
+		public void AddCasualSale(List<CasualSale> casualSales) 
+		{
+			string _date = DateTime.Now.ToString("dd MMMM yyyy");
+			string _company = "Casual Sale";
+			string _new_sale = "";
+
+			foreach (CasualSale sale in casualSales) 
+			{
+				string _quantity = sale.quantity;
+				string _amount = sale.price;
+				string _type = sale.itemType;
+				_company = "Casual Sale : " + sale.item;
+				_new_sale = _date + "," + _company + "," + _quantity + "," + _amount + "," + _type;
+				RecordSale(_new_sale);
+			}
 		}
 
 		//Validate that the user has entered all the information correctly
@@ -509,6 +528,17 @@ namespace Green_Enviro_App
 			RemoveFilters();
 			_main_form.SalesLogGridView.DataSource = null;
 		}
+	}
+
+	public struct CasualSale
+	{
+		public string item { get; set; }
+
+		public string itemType { get; set; }
+
+		public string price { get; set; }
+
+		public string quantity { get; set; }
 	}
 }
 

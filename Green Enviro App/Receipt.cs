@@ -18,6 +18,7 @@ namespace Green_Enviro_App
         Main_Form _main_form;
         Database _database;
         Purchases _purchases;
+        Sales _sales;
         Items _items_form;
         Float _float;
         Inventory _inventory;
@@ -26,6 +27,7 @@ namespace Green_Enviro_App
         DataTable _customers;
         List<string> _purchased_items = new List<string>();
         List<string> _purchased_quantities = new List<string>();
+        List<CasualSale> _sold_items = new List<CasualSale>();
 
         string _receipt_content = "";
         float _running_total = 0;
@@ -50,12 +52,25 @@ namespace Green_Enviro_App
         string _purchase = "Purchase";
         string _formal_sale = "Formal Sale";
         string _casual_sale = "Casual sale";
-        public Receipt(Main_Form form, Database data, Purchases logs, Inventory inventory) 
+
+        public struct PurchaseOrSaleType { 
+            public string purchase { get { return "Purchase"; } }
+
+            public string formalSale { get { return "Formal Sale"; } }
+
+            public string casualSale { get { return "Casual sale"; } }
+        }
+
+        public PurchaseOrSaleType purchaseOrSaleType = new PurchaseOrSaleType();
+
+
+        public Receipt(Main_Form form, Database data, Purchases logs, Sales sales, Inventory inventory) 
         {
             _main_form = form;
             _database = data;
             _purchases = logs;
             _inventory = inventory;
+            _sales = sales;
             _items_form = new Items(this,_database);
             _float = new Float(this, _main_form);
             _items_form.Owner = _main_form;
@@ -218,9 +233,24 @@ namespace Green_Enviro_App
             //Create the record for Logging
             string _date = DateTime.Now.ToString("dd MMMM yyyy");
             string _item_type = ItemType(_item_name);
-            _single_purchase_entry += _date + "," + _customer_name + "," + _customer_surname + "," + _customer_id_number + "," + _customer_number + ",";
-            _single_purchase_entry += _item_name + "," + _kilos.ToString() + "," + _price.ToString() + "," + _amount.ToString() + "," + _item_type;
-            _purchased_items.Add(_single_purchase_entry);
+            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase)
+            {
+                _single_purchase_entry += _date + "," + _customer_name + "," + _customer_surname + "," + _customer_id_number + "," + _customer_number + ",";
+                _single_purchase_entry += _item_name + "," + _kilos.ToString() + "," + _price.ToString() + "," + _amount.ToString() + "," + _item_type;
+                _purchased_items.Add(_single_purchase_entry);
+            }
+            else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _casual_sale) 
+            {
+                CasualSale newSale = new CasualSale();
+                newSale.item = _item_name;
+                newSale.itemType = _item_type;
+                newSale.price = _amount.ToString();
+                newSale.quantity = _kilos.ToString();
+
+                _sold_items.Add(newSale);
+            }
+          
+
             //Clear the _single_purchase_entry to make it ready for the next entry
             _single_purchase_entry = "";
 
@@ -233,8 +263,6 @@ namespace Green_Enviro_App
             _single_quantity_entry += _date + "," + _item_name + "," + _item_type + "," + _quantity_kilos.ToString();
             _purchased_quantities.Add(_single_quantity_entry);
             _single_quantity_entry = "";
-
-            
 
             //Clear the input fields and get them ready for the next entry
             ClearFields();
@@ -251,7 +279,7 @@ namespace Green_Enviro_App
             decimal _zero = (decimal)0.00;
             
             if (((_main_form.customerNumbersList.SelectedItem == null) && (_main_form.ReceiptDefaultCustomerCheckBox.CheckState == CheckState.Unchecked))
-                && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == "Purchase"))
+                && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase))
             {
                 //First check if customer details have been selected
                 _error_message = "Please select customer number";
@@ -372,7 +400,21 @@ namespace Green_Enviro_App
 
         public void CompletePurchaseOrSale() 
         {
-            if (_purchased_items.Count == 0) 
+            if ((_purchased_items.Count == 0) 
+                && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == purchaseOrSaleType.purchase))
+            {
+                CustomMessageBox box = new CustomMessageBox(_main_form, "Error!", "NO ITEMS HAVE BEEN ADDED");
+                return;
+            }
+
+            if ((_purchased_items.Count == 0)
+                && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == purchaseOrSaleType.formalSale))
+            {
+                CustomMessageBox box = new CustomMessageBox(_main_form, "Error!", "NO ITEMS HAVE BEEN ADDED");
+                return;
+            }
+
+            if ((_sold_items.Count == 0) && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == purchaseOrSaleType.casualSale))
             {
                 CustomMessageBox box = new CustomMessageBox(_main_form, "Error!", "NO ITEMS HAVE BEEN ADDED");
                 return;
@@ -380,13 +422,13 @@ namespace Green_Enviro_App
 
             _receipt_print_content.Text = _main_form.receiptBox.Text;
 
-            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase)
+            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == purchaseOrSaleType.purchase)
             {
                 _purchases.AddPurchase(_purchased_items);
                 _float.UpdateFloat(-1 * _running_total);
             }
-            else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _casual_sale) {
-                _purchases.AddPurchase(_purchased_items);
+            else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == purchaseOrSaleType.casualSale) {
+				_sales.AddCasualSale(_sold_items);
                 _float.UpdateFloat(_running_total);
             }
             
@@ -395,17 +437,19 @@ namespace Green_Enviro_App
             
             PrintReceipt();
             ResetReceipt();
+
             _purchased_items.Clear();
             _purchased_quantities.Clear();
+            _sold_items.Clear();
 
-            SetSalePurchase();
+            _main_form.ReceiptSaleOrPurchase.SelectedIndex = 0;
         }
 
         public void ResetReceipt() 
         {
             _main_form.itemList.SelectedItem = null;
             _main_form.customerNumbersList.SelectedItem = null;
-
+            _main_form.ReceiptSaleOrPurchase.SelectedIndex = 0;
 
             _receipt_content = "";
             _running_total = 0;
