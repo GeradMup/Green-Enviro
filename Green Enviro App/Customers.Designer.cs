@@ -57,7 +57,7 @@ namespace Green_Enviro_App
 			this.CustomersDataGridView.ReadOnly = true;
 			this.CustomersDataGridView.RowHeadersWidth = 51;
 			this.CustomersDataGridView.RowTemplate.Height = 24;
-			this.CustomersDataGridView.Size = new System.Drawing.Size(716, 473);
+			this.CustomersDataGridView.Size = new System.Drawing.Size(716, 472);
 			this.CustomersDataGridView.TabIndex = 0;
 			// 
 			// label4
@@ -93,7 +93,7 @@ namespace Green_Enviro_App
 			// CustomersDeleteBtn
 			// 
 			this.CustomersDeleteBtn.Location = new System.Drawing.Point(40, 378);
-			this.CustomersDeleteBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersDeleteBtn.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersDeleteBtn.Name = "CustomersDeleteBtn";
 			this.CustomersDeleteBtn.Size = new System.Drawing.Size(394, 48);
 			this.CustomersDeleteBtn.TabIndex = 23;
@@ -104,7 +104,7 @@ namespace Green_Enviro_App
 			// CustomersSurname
 			// 
 			this.CustomersSurname.Location = new System.Drawing.Point(231, 195);
-			this.CustomersSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersSurname.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersSurname.Name = "CustomersSurname";
 			this.CustomersSurname.Size = new System.Drawing.Size(203, 31);
 			this.CustomersSurname.TabIndex = 22;
@@ -113,7 +113,7 @@ namespace Green_Enviro_App
 			// CustomersIdentification
 			// 
 			this.CustomersIdentification.Location = new System.Drawing.Point(231, 264);
-			this.CustomersIdentification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersIdentification.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersIdentification.Name = "CustomersIdentification";
 			this.CustomersIdentification.Size = new System.Drawing.Size(203, 31);
 			this.CustomersIdentification.TabIndex = 21;
@@ -122,7 +122,7 @@ namespace Green_Enviro_App
 			// CustomersName
 			// 
 			this.CustomersName.Location = new System.Drawing.Point(231, 125);
-			this.CustomersName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersName.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersName.Name = "CustomersName";
 			this.CustomersName.Size = new System.Drawing.Size(203, 31);
 			this.CustomersName.TabIndex = 20;
@@ -131,7 +131,7 @@ namespace Green_Enviro_App
 			// CustomersDoneBtn
 			// 
 			this.CustomersDoneBtn.Location = new System.Drawing.Point(40, 549);
-			this.CustomersDoneBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.CustomersDoneBtn.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersDoneBtn.Name = "CustomersDoneBtn";
 			this.CustomersDoneBtn.Size = new System.Drawing.Size(394, 48);
 			this.CustomersDoneBtn.TabIndex = 30;
@@ -168,7 +168,7 @@ namespace Green_Enviro_App
 			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Teal;
-			this.ClientSize = new System.Drawing.Size(1179, 610);
+			this.ClientSize = new System.Drawing.Size(1179, 639);
 			this.Controls.Add(this.CustomersNewCustomer);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.CustomersDoneBtn);
@@ -183,7 +183,7 @@ namespace Green_Enviro_App
 			this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "Customers";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Customers";

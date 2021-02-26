@@ -149,7 +149,7 @@ namespace Green_Enviro_App
 			this.EmployeesCancelBtn.Name = "EmployeesCancelBtn";
 			this.EmployeesCancelBtn.Size = new System.Drawing.Size(307, 57);
 			this.EmployeesCancelBtn.TabIndex = 12;
-			this.EmployeesCancelBtn.Text = "Cancel";
+			this.EmployeesCancelBtn.Text = "Done";
 			this.EmployeesCancelBtn.UseVisualStyleBackColor = true;
 			this.EmployeesCancelBtn.Click += new System.EventHandler(this.EmployeesCancelBtn_Click);
 			// 

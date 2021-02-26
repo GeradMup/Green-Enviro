@@ -30,8 +30,11 @@ namespace Green_Enviro_App
 
 		private void LoadEmployees()
 		{
+			
 			_employees_data_table = _database.SelectAll("Employees");
 			string _employee_name = "";
+
+			_main_form.WagesEmployeeName.Items.Clear();
 			foreach (DataRow row in _employees_data_table.Rows)
 			{
 				_employee_name = row[1].ToString() + " " + row[2].ToString();
