@@ -367,7 +367,10 @@ namespace Green_Enviro_App
             //Check if the customer is already selected. You cannot change the customer details in the middle of a purchase
             if (_customer_selected == true) 
             {
-                MessageBox.Show("Error! \n Can not change customer details during purchase. \n Cancel purchase and start from the begining!");
+
+                string _error_message = "Can not change customer details during purchase. \nCancel purchase and start from the begining!";
+                CustomMessageBox box = new CustomMessageBox(_main_form, "Error!", _error_message);
+                
                 return;
             }
 
