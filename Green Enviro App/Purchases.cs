@@ -67,7 +67,7 @@ namespace Green_Enviro_App
 			//If the file does not exist, create it
 			if (!File.Exists(_path_to_purchases))
 			{
-				string _purchases_file_headers = "Date,Name,Surname,ID,Number,Item,Quantity,Price,Amount,Type";
+				string _purchases_file_headers = "Date,Name,Surname,ID,No.,Item,Quantity,Price,Amount,Type";
 				StringBuilder _csv_content = new StringBuilder();
 				_csv_content.AppendLine(_purchases_file_headers);
 				//_csv_content.AppendLine("\n");
@@ -196,7 +196,8 @@ namespace Green_Enviro_App
 		{
 			_main_form.PurchseLogGridView.DataSource = _binding_source;
 			_main_form.PurchseLogGridView.Columns[0].FillWeight = 120F;
-			_main_form.PurchseLogGridView.Columns[3].FillWeight = 150F;
+			_main_form.PurchseLogGridView.Columns[3].FillWeight = 130F;
+			_main_form.PurchseLogGridView.Columns[4].FillWeight = 50F;
 
 			//Disables the ability to sort columns using the headers
 			foreach (DataGridViewColumn _column in _main_form.PurchseLogGridView.Columns)

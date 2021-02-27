@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using DGVPrinterHelper;
 
 namespace Green_Enviro_App
 {
@@ -474,6 +477,32 @@ namespace Green_Enviro_App
             {
                 PermissionDenied();
             }
+        }
+
+		private void PrintPoliceRegisterBtn_Click(object sender, EventArgs e)
+		{
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "Police Register";
+            printer.SubTitle = DateTime.Now.ToString("dddd, dd MMMM yyyy, HH:mm ") + DateTime.Now.ToString("tt").ToUpper();
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.Footer = "Green Enviro SA Recycling";
+            printer.FooterSpacing = 15;
+            printer.PageSettings.PrinterSettings.DefaultPageSettings.Landscape = true;
+
+            IEnumerable<PaperSize> paperSizes = printer.PageSettings.PrinterSettings.PaperSizes.Cast<PaperSize>();
+            PaperSize sizeA4 = paperSizes.First<PaperSize>(size => size.Kind == PaperKind.A4);
+            printer.PageSettings.PrinterSettings.DefaultPageSettings.PaperSize = sizeA4;
+
+            var fontInfo = PurchseLogGridView.Font;
+            PurchseLogGridView.DefaultCellStyle.Font = new Font("Consolas", 9);
+            
+            printer.PrintDataGridView(this.PurchseLogGridView);
+            
+            PurchseLogGridView.DefaultCellStyle.Font = fontInfo;
         }
 	}
 }

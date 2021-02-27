@@ -219,6 +219,11 @@ namespace Green_Enviro_App
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.PrintPoliceRegisterBtn = new System.Windows.Forms.Button();
+			this.label64 = new System.Windows.Forms.Label();
+			this.label65 = new System.Windows.Forms.Label();
+			this.CustomerCellNumber = new System.Windows.Forms.TextBox();
+			this.CustomerAddress = new System.Windows.Forms.TextBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -271,6 +276,10 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.CustomerAddress);
+			this.ReceiptPage.Controls.Add(this.CustomerCellNumber);
+			this.ReceiptPage.Controls.Add(this.label65);
+			this.ReceiptPage.Controls.Add(this.label64);
 			this.ReceiptPage.Controls.Add(this.LogOutBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptSaleOrPurchase);
 			this.ReceiptPage.Controls.Add(this.AddFloatBtn);
@@ -376,7 +385,7 @@ namespace Green_Enviro_App
 			// ReceiptDefaultCustomerCheckBox
 			// 
 			this.ReceiptDefaultCustomerCheckBox.AutoSize = true;
-			this.ReceiptDefaultCustomerCheckBox.Location = new System.Drawing.Point(770, 32);
+			this.ReceiptDefaultCustomerCheckBox.Location = new System.Drawing.Point(704, 27);
 			this.ReceiptDefaultCustomerCheckBox.Name = "ReceiptDefaultCustomerCheckBox";
 			this.ReceiptDefaultCustomerCheckBox.Size = new System.Drawing.Size(109, 27);
 			this.ReceiptDefaultCustomerCheckBox.TabIndex = 30;
@@ -385,7 +394,7 @@ namespace Green_Enviro_App
 			// 
 			// EditCustomers
 			// 
-			this.EditCustomers.Location = new System.Drawing.Point(939, 313);
+			this.EditCustomers.Location = new System.Drawing.Point(873, 443);
 			this.EditCustomers.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.EditCustomers.Name = "EditCustomers";
 			this.EditCustomers.Size = new System.Drawing.Size(222, 32);
@@ -462,7 +471,7 @@ namespace Green_Enviro_App
 			// 
 			// CustomerNameTextBox
 			// 
-			this.CustomerNameTextBox.Location = new System.Drawing.Point(939, 192);
+			this.CustomerNameTextBox.Location = new System.Drawing.Point(873, 187);
 			this.CustomerNameTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.CustomerNameTextBox.Name = "CustomerNameTextBox";
 			this.CustomerNameTextBox.ReadOnly = true;
@@ -471,7 +480,7 @@ namespace Green_Enviro_App
 			// 
 			// CustomerSurnameTextBox
 			// 
-			this.CustomerSurnameTextBox.Location = new System.Drawing.Point(939, 255);
+			this.CustomerSurnameTextBox.Location = new System.Drawing.Point(873, 258);
 			this.CustomerSurnameTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.CustomerSurnameTextBox.Name = "CustomerSurnameTextBox";
 			this.CustomerSurnameTextBox.ReadOnly = true;
@@ -481,7 +490,7 @@ namespace Green_Enviro_App
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(766, 195);
+			this.label7.Location = new System.Drawing.Point(700, 190);
 			this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(54, 23);
@@ -491,7 +500,7 @@ namespace Green_Enviro_App
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(766, 258);
+			this.label6.Location = new System.Drawing.Point(700, 258);
 			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(87, 23);
@@ -500,7 +509,7 @@ namespace Green_Enviro_App
 			// 
 			// CustomerIDNumberTextBox
 			// 
-			this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(939, 129);
+			this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(873, 124);
 			this.CustomerIDNumberTextBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.CustomerIDNumberTextBox.Name = "CustomerIDNumberTextBox";
 			this.CustomerIDNumberTextBox.ReadOnly = true;
@@ -510,7 +519,7 @@ namespace Green_Enviro_App
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(766, 132);
+			this.label5.Location = new System.Drawing.Point(700, 127);
 			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(32, 23);
@@ -520,7 +529,7 @@ namespace Green_Enviro_App
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(766, 78);
+			this.label4.Location = new System.Drawing.Point(700, 73);
 			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(175, 23);
@@ -534,7 +543,7 @@ namespace Green_Enviro_App
 			this.customerNumbersList.FormattingEnabled = true;
 			this.customerNumbersList.IntegralHeight = false;
 			this.customerNumbersList.ItemHeight = 23;
-			this.customerNumbersList.Location = new System.Drawing.Point(1185, 75);
+			this.customerNumbersList.Location = new System.Drawing.Point(1119, 70);
 			this.customerNumbersList.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.customerNumbersList.Name = "customerNumbersList";
 			this.customerNumbersList.Size = new System.Drawing.Size(79, 31);
@@ -546,10 +555,10 @@ namespace Green_Enviro_App
 			this.IDPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.IDPictureBox.Location = new System.Drawing.Point(704, 387);
+			this.IDPictureBox.Location = new System.Drawing.Point(704, 495);
 			this.IDPictureBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.IDPictureBox.Name = "IDPictureBox";
-			this.IDPictureBox.Size = new System.Drawing.Size(560, 473);
+			this.IDPictureBox.Size = new System.Drawing.Size(560, 365);
 			this.IDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.IDPictureBox.TabIndex = 1;
 			this.IDPictureBox.TabStop = false;
@@ -666,6 +675,7 @@ namespace Green_Enviro_App
 			// 
 			// PurchasesPage
 			// 
+			this.PurchasesPage.Controls.Add(this.PrintPoliceRegisterBtn);
 			this.PurchasesPage.Controls.Add(this.removeFiltersBtn);
 			this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
 			this.PurchasesPage.Controls.Add(this.FilterPurchaseLogBtn);
@@ -2416,6 +2426,53 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// PrintPoliceRegisterBtn
+			// 
+			this.PrintPoliceRegisterBtn.Location = new System.Drawing.Point(765, 119);
+			this.PrintPoliceRegisterBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PrintPoliceRegisterBtn.Name = "PrintPoliceRegisterBtn";
+			this.PrintPoliceRegisterBtn.Size = new System.Drawing.Size(265, 57);
+			this.PrintPoliceRegisterBtn.TabIndex = 19;
+			this.PrintPoliceRegisterBtn.Text = "Print Register";
+			this.PrintPoliceRegisterBtn.UseVisualStyleBackColor = true;
+			this.PrintPoliceRegisterBtn.Click += new System.EventHandler(this.PrintPoliceRegisterBtn_Click);
+			// 
+			// label64
+			// 
+			this.label64.AutoSize = true;
+			this.label64.Location = new System.Drawing.Point(700, 331);
+			this.label64.Name = "label64";
+			this.label64.Size = new System.Drawing.Size(54, 23);
+			this.label64.TabIndex = 74;
+			this.label64.Text = "Cell";
+			// 
+			// label65
+			// 
+			this.label65.AutoSize = true;
+			this.label65.Location = new System.Drawing.Point(700, 401);
+			this.label65.Name = "label65";
+			this.label65.Size = new System.Drawing.Size(87, 23);
+			this.label65.TabIndex = 75;
+			this.label65.Text = "Address";
+			// 
+			// CustomerCellNumber
+			// 
+			this.CustomerCellNumber.Location = new System.Drawing.Point(873, 328);
+			this.CustomerCellNumber.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.CustomerCellNumber.Name = "CustomerCellNumber";
+			this.CustomerCellNumber.ReadOnly = true;
+			this.CustomerCellNumber.Size = new System.Drawing.Size(325, 31);
+			this.CustomerCellNumber.TabIndex = 76;
+			// 
+			// CustomerAddress
+			// 
+			this.CustomerAddress.Location = new System.Drawing.Point(873, 393);
+			this.CustomerAddress.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.CustomerAddress.Name = "CustomerAddress";
+			this.CustomerAddress.ReadOnly = true;
+			this.CustomerAddress.Size = new System.Drawing.Size(325, 31);
+			this.CustomerAddress.TabIndex = 77;
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2729,5 +2786,10 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label62;
 		public System.Windows.Forms.ComboBox InventoryLogType;
 		private System.Windows.Forms.Label label63;
+		private System.Windows.Forms.Button PrintPoliceRegisterBtn;
+		public System.Windows.Forms.TextBox CustomerAddress;
+		public System.Windows.Forms.TextBox CustomerCellNumber;
+		private System.Windows.Forms.Label label65;
+		private System.Windows.Forms.Label label64;
 	}
 }

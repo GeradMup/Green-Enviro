@@ -47,6 +47,8 @@ namespace Green_Enviro_App
         string _customer_id_number = "";
         string _customer_name = "";
         string _customer_surname = "";
+        string _customer_cell_number = "";
+        string _customer_address = "";
         bool _customer_selected = false;
 
         string _purchase = "Purchase";
@@ -355,6 +357,8 @@ namespace Green_Enviro_App
                 _main_form.CustomerIDNumberTextBox.Text = "";
                 _main_form.CustomerNameTextBox.Text = "";
                 _main_form.CustomerSurnameTextBox.Text = "";
+                _main_form.CustomerCellNumber.Text = "";
+                _main_form.CustomerAddress.Text = "";
                 _main_form.IDPictureBox.Image = null;
                 _customer_selected = false;
                 return;
@@ -377,15 +381,22 @@ namespace Green_Enviro_App
             int ID_column = 1;
             int _name_column = 2;
             int _surname_column = 3;
+            int _cell_number_column = 4;
+            int _address_column = 5;
 
              
             _customer_id_number = _row[_only_row][ID_column].ToString();
             _customer_name = _row[_only_row][_name_column].ToString();
             _customer_surname = _row[_only_row][_surname_column].ToString();
+            _customer_cell_number = _row[_only_row][_cell_number_column].ToString();
+            _customer_address = _row[_only_row][_address_column].ToString();
+
 
             _main_form.CustomerIDNumberTextBox.Text = _customer_id_number;
             _main_form.CustomerNameTextBox.Text = _customer_name;
             _main_form.CustomerSurnameTextBox.Text = _customer_surname;
+            _main_form.CustomerCellNumber.Text = _customer_cell_number;
+            _main_form.CustomerAddress.Text = _customer_address;
 
             string _path_to_id_picture = @"..//..//resources//Customers//"+ _customer_number +".jpg";
             Image _id_picture = Image.FromFile(_path_to_id_picture);
