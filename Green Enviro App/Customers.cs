@@ -20,15 +20,17 @@ namespace Green_Enviro_App
         string _customers_table_name = "Customers";
         BindingSource _binding_source = new BindingSource();
         NewCustomer _new_customer;
+        Receipt _receipt;
 
         /*
          * Loading the database table for the new users into the class 
          */
-        public Customers(Main_Form main, Database _db, Receipt _receipt)
+        public Customers(Main_Form main, Database _db, Receipt receipt)
         {
             InitializeComponent();
             _database = _db;
             this.Owner = main;
+            _receipt = receipt;
             _new_customer = new NewCustomer(this, main, _database, _receipt);
             LoadCustomersDataTable();
         }
@@ -76,6 +78,8 @@ namespace Green_Enviro_App
 
 		private void CustomersDoneBtn_Click(object sender, EventArgs e)
 		{
+            _receipt.setupCustomerList();
+            LoadCustomersDataTable();
             Exit();
 		}
 

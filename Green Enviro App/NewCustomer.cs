@@ -161,7 +161,7 @@ namespace Green_Enviro_App
 			string _id = NewCustomerID.Text;
 			string _name = NewCustomerName.Text;
 			string _surname = NewCustomerSurname.Text;
-			string _cell = NewCustomerCell.Value.ToString();
+			string _cell = "0" + NewCustomerCell.Value.ToString();
 			string _address = NewCustomerAddress.Text;
 
 			string _columns = "CustomerNumber,ID,Name,Surname,Cell,Address";
