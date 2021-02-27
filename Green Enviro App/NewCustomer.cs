@@ -193,6 +193,8 @@ namespace Green_Enviro_App
 			NewCustomerID.Text = "";
 			NewCustomerName.Text = "";
 			NewCustomerSurname.Text = "";
+			NewCustomerCell.Value = 0;
+			NewCustomerAddress.Text = "";
 			NewCustomerIdPictureBox.Image = null;
 		}
 	}
