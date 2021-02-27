@@ -709,6 +709,7 @@ namespace Green_Enviro_App
 			// 
 			// PurchseLogGridView
 			// 
+			this.PurchseLogGridView.AllowUserToAddRows = false;
 			this.PurchseLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));

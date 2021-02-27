@@ -494,29 +494,16 @@ namespace Green_Enviro_App
             printer.PageSettings.PrinterSettings.DefaultPageSettings.Landscape = true;
 
             IEnumerable<PaperSize> paperSizes = printer.PageSettings.PrinterSettings.PaperSizes.Cast<PaperSize>();
-            PaperSize sizeA4 = paperSizes.First<PaperSize>(size => size.Kind == PaperKind.A4);
+            PaperSize sizeA4 = new PaperSize();
+            sizeA4.RawKind = (int)PaperKind.A4;
             printer.PageSettings.PrinterSettings.DefaultPageSettings.PaperSize = sizeA4;
 
 
-            printer.PrintDataGridView(GetDataGridView());
+            PurchseLogGridView.Rows[PurchseLogGridView.Rows.Count - 1].Visible = false;
+            printer.PrintDataGridView(this.PurchseLogGridView);
+            PurchseLogGridView.Rows[PurchseLogGridView.Rows.Count - 1].Visible = true;
         }
 
-        private DataGridView GetDataGridView()
-        { 
-            //var fontInfo = PurchseLogGridView.Font;
-            //PurchseLogGridView.DefaultCellStyle.Font = new Font("Consolas", 9);
 
-            DataTable _printing_table = new DataTable();
-            _printing_table = (DataTable)PurchseLogGridView.DataSource;
-
-            int _total_rows = _printing_table.Rows.Count;
-            _printing_table.Rows[_total_rows - 1].Delete();
-            _printing_table.AcceptChanges();
-
-            DataGridView policeRegister = new DataGridView();
-            policeRegister.DataSource = _printing_table;
-            policeRegister.DefaultCellStyle.Font = new Font("Consolas", 9);
-            return policeRegister;
-        }
     }
 }
