@@ -436,6 +436,7 @@ namespace Green_Enviro_App
         private void mainTabControl_Deselected(object sender, TabControlEventArgs e)
 		{
             _previous_tab_page = e.TabPage;
+            _receipt.ResetReceipt();
             _purchases.Reset();
             _sales.Reset();
             _inventory.Reset();
@@ -469,6 +470,7 @@ namespace Green_Enviro_App
 
 		private void EditCustomers_Click(object sender, EventArgs e)
 		{
+            _receipt.ResetReceipt();
             if ((_user_permission_level == 4) || (_user_permission_level == 5))
             {
                 _customers.ActivateForm();

@@ -46,6 +46,7 @@ namespace Green_Enviro_App
         private void Exit()
         {
             ClearFields();
+            _receipt.ResetReceipt();
             this.Owner.Enabled = true;
             this.Owner.Show();
             this.Hide();

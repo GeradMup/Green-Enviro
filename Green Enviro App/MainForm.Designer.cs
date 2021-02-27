@@ -38,6 +38,10 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.CustomerAddress = new System.Windows.Forms.TextBox();
+			this.CustomerCellNumber = new System.Windows.Forms.TextBox();
+			this.label65 = new System.Windows.Forms.Label();
+			this.label64 = new System.Windows.Forms.Label();
 			this.LogOutBtn = new System.Windows.Forms.Button();
 			this.ReceiptSaleOrPurchase = new System.Windows.Forms.ComboBox();
 			this.AddFloatBtn = new System.Windows.Forms.Button();
@@ -70,6 +74,7 @@ namespace Green_Enviro_App
 			this.addItemBtn = new System.Windows.Forms.Button();
 			this.receiptBox = new System.Windows.Forms.RichTextBox();
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
+			this.PrintPoliceRegisterBtn = new System.Windows.Forms.Button();
 			this.removeFiltersBtn = new System.Windows.Forms.Button();
 			this.PurchseLogGridView = new System.Windows.Forms.DataGridView();
 			this.FilterPurchaseLogBtn = new System.Windows.Forms.Button();
@@ -219,11 +224,6 @@ namespace Green_Enviro_App
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.PrintPoliceRegisterBtn = new System.Windows.Forms.Button();
-			this.label64 = new System.Windows.Forms.Label();
-			this.label65 = new System.Windows.Forms.Label();
-			this.CustomerCellNumber = new System.Windows.Forms.TextBox();
-			this.CustomerAddress = new System.Windows.Forms.TextBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -319,6 +319,42 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
+			// 
+			// CustomerAddress
+			// 
+			this.CustomerAddress.Location = new System.Drawing.Point(873, 393);
+			this.CustomerAddress.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.CustomerAddress.Name = "CustomerAddress";
+			this.CustomerAddress.ReadOnly = true;
+			this.CustomerAddress.Size = new System.Drawing.Size(325, 31);
+			this.CustomerAddress.TabIndex = 77;
+			// 
+			// CustomerCellNumber
+			// 
+			this.CustomerCellNumber.Location = new System.Drawing.Point(873, 328);
+			this.CustomerCellNumber.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.CustomerCellNumber.Name = "CustomerCellNumber";
+			this.CustomerCellNumber.ReadOnly = true;
+			this.CustomerCellNumber.Size = new System.Drawing.Size(325, 31);
+			this.CustomerCellNumber.TabIndex = 76;
+			// 
+			// label65
+			// 
+			this.label65.AutoSize = true;
+			this.label65.Location = new System.Drawing.Point(700, 401);
+			this.label65.Name = "label65";
+			this.label65.Size = new System.Drawing.Size(87, 23);
+			this.label65.TabIndex = 75;
+			this.label65.Text = "Address";
+			// 
+			// label64
+			// 
+			this.label64.AutoSize = true;
+			this.label64.Location = new System.Drawing.Point(700, 331);
+			this.label64.Name = "label64";
+			this.label64.Size = new System.Drawing.Size(54, 23);
+			this.label64.TabIndex = 74;
+			this.label64.Text = "Cell";
 			// 
 			// LogOutBtn
 			// 
@@ -555,6 +591,8 @@ namespace Green_Enviro_App
 			this.IDPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.IDPictureBox.BackColor = System.Drawing.Color.Transparent;
+			this.IDPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.IDPictureBox.Location = new System.Drawing.Point(704, 495);
 			this.IDPictureBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.IDPictureBox.Name = "IDPictureBox";
@@ -695,6 +733,17 @@ namespace Green_Enviro_App
 			this.PurchasesPage.TabIndex = 1;
 			this.PurchasesPage.Text = "Purchases";
 			this.PurchasesPage.UseVisualStyleBackColor = true;
+			// 
+			// PrintPoliceRegisterBtn
+			// 
+			this.PrintPoliceRegisterBtn.Location = new System.Drawing.Point(765, 119);
+			this.PrintPoliceRegisterBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PrintPoliceRegisterBtn.Name = "PrintPoliceRegisterBtn";
+			this.PrintPoliceRegisterBtn.Size = new System.Drawing.Size(265, 57);
+			this.PrintPoliceRegisterBtn.TabIndex = 19;
+			this.PrintPoliceRegisterBtn.Text = "Print Register";
+			this.PrintPoliceRegisterBtn.UseVisualStyleBackColor = true;
+			this.PrintPoliceRegisterBtn.Click += new System.EventHandler(this.PrintPoliceRegisterBtn_Click);
 			// 
 			// removeFiltersBtn
 			// 
@@ -2426,53 +2475,6 @@ namespace Green_Enviro_App
 			this.label46.Size = new System.Drawing.Size(81, 19);
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
-			// 
-			// PrintPoliceRegisterBtn
-			// 
-			this.PrintPoliceRegisterBtn.Location = new System.Drawing.Point(765, 119);
-			this.PrintPoliceRegisterBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.PrintPoliceRegisterBtn.Name = "PrintPoliceRegisterBtn";
-			this.PrintPoliceRegisterBtn.Size = new System.Drawing.Size(265, 57);
-			this.PrintPoliceRegisterBtn.TabIndex = 19;
-			this.PrintPoliceRegisterBtn.Text = "Print Register";
-			this.PrintPoliceRegisterBtn.UseVisualStyleBackColor = true;
-			this.PrintPoliceRegisterBtn.Click += new System.EventHandler(this.PrintPoliceRegisterBtn_Click);
-			// 
-			// label64
-			// 
-			this.label64.AutoSize = true;
-			this.label64.Location = new System.Drawing.Point(700, 331);
-			this.label64.Name = "label64";
-			this.label64.Size = new System.Drawing.Size(54, 23);
-			this.label64.TabIndex = 74;
-			this.label64.Text = "Cell";
-			// 
-			// label65
-			// 
-			this.label65.AutoSize = true;
-			this.label65.Location = new System.Drawing.Point(700, 401);
-			this.label65.Name = "label65";
-			this.label65.Size = new System.Drawing.Size(87, 23);
-			this.label65.TabIndex = 75;
-			this.label65.Text = "Address";
-			// 
-			// CustomerCellNumber
-			// 
-			this.CustomerCellNumber.Location = new System.Drawing.Point(873, 328);
-			this.CustomerCellNumber.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.CustomerCellNumber.Name = "CustomerCellNumber";
-			this.CustomerCellNumber.ReadOnly = true;
-			this.CustomerCellNumber.Size = new System.Drawing.Size(325, 31);
-			this.CustomerCellNumber.TabIndex = 76;
-			// 
-			// CustomerAddress
-			// 
-			this.CustomerAddress.Location = new System.Drawing.Point(873, 393);
-			this.CustomerAddress.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.CustomerAddress.Name = "CustomerAddress";
-			this.CustomerAddress.ReadOnly = true;
-			this.CustomerAddress.Size = new System.Drawing.Size(325, 31);
-			this.CustomerAddress.TabIndex = 77;
 			// 
 			// Main_Form
 			// 
