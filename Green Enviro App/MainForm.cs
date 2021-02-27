@@ -490,7 +490,7 @@ namespace Green_Enviro_App
             printer.PorportionalColumns = true;
             printer.HeaderCellAlignment = StringAlignment.Near;
             printer.Footer = "Green Enviro SA Recycling";
-            printer.FooterSpacing = 15;
+            printer.FooterSpacing = 5;
             printer.PageSettings.PrinterSettings.DefaultPageSettings.Landscape = true;
 
             IEnumerable<PaperSize> paperSizes = printer.PageSettings.PrinterSettings.PaperSizes.Cast<PaperSize>();
@@ -500,8 +500,13 @@ namespace Green_Enviro_App
 
 
             PurchseLogGridView.Rows[PurchseLogGridView.Rows.Count - 1].Visible = false;
+            var fontInfo = PurchseLogGridView.Font;
+            PurchseLogGridView.DefaultCellStyle.Font = new Font("Consolas", 10);
+
             printer.PrintDataGridView(this.PurchseLogGridView);
             PurchseLogGridView.Rows[PurchseLogGridView.Rows.Count - 1].Visible = true;
+
+            PurchseLogGridView.DefaultCellStyle.Font = fontInfo;
         }
 
 
