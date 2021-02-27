@@ -104,7 +104,15 @@ namespace Green_Enviro_App
 			{
 				_error_message = "Please Insert the Customer Number";
 			}
-			else 
+			else if (NewCustomerAddress.Text == _no_text)
+			{
+				_error_message = "Please Insert the Address";
+			}
+			else if (NewCustomerCell.Value == _zero) 
+			{
+				_error_message = "Please Insert the Cell Phone Number";
+			}
+			else
 			{
 				_all_good = true;
 			}
@@ -153,9 +161,11 @@ namespace Green_Enviro_App
 			string _id = NewCustomerID.Text;
 			string _name = NewCustomerName.Text;
 			string _surname = NewCustomerSurname.Text;
+			string _cell = NewCustomerCell.Value.ToString();
+			string _address = NewCustomerAddress.Text;
 
-			string _columns = "CustomerNumber,ID,Name,Surname";
-			string _values = "'" + _number + "','" + _id + "','" + _name + "','" + _surname + "'";
+			string _columns = "CustomerNumber,ID,Name,Surname,Cell,Address";
+			string _values = "'" + _number + "','" + _id + "','" + _name + "','" + _surname + "','" + _cell + "','" + _address + "'";
 
 			Int32 _rows_affected = _database.InsertIntoDatabase(_customers_table_name, _columns, _values);
 

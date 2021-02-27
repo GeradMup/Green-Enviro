@@ -42,13 +42,18 @@ namespace Green_Enviro_App
 			this.NewCustomerConfirmBtn = new System.Windows.Forms.Button();
 			this.label5 = new System.Windows.Forms.Label();
 			this.NewCustomerIdPictureBox = new System.Windows.Forms.PictureBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.NewCustomerCell = new System.Windows.Forms.NumericUpDown();
+			this.NewCustomerAddress = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerNumber)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPictureBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.NewCustomerCell)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// NewCustomerName
 			// 
-			this.NewCustomerName.Location = new System.Drawing.Point(72, 157);
+			this.NewCustomerName.Location = new System.Drawing.Point(200, 124);
 			this.NewCustomerName.Margin = new System.Windows.Forms.Padding(5);
 			this.NewCustomerName.Name = "NewCustomerName";
 			this.NewCustomerName.Size = new System.Drawing.Size(348, 34);
@@ -56,7 +61,7 @@ namespace Green_Enviro_App
 			// 
 			// NewCustomerSurname
 			// 
-			this.NewCustomerSurname.Location = new System.Drawing.Point(72, 254);
+			this.NewCustomerSurname.Location = new System.Drawing.Point(200, 195);
 			this.NewCustomerSurname.Margin = new System.Windows.Forms.Padding(5);
 			this.NewCustomerSurname.Name = "NewCustomerSurname";
 			this.NewCustomerSurname.Size = new System.Drawing.Size(348, 34);
@@ -64,7 +69,7 @@ namespace Green_Enviro_App
 			// 
 			// NewCustomerID
 			// 
-			this.NewCustomerID.Location = new System.Drawing.Point(72, 357);
+			this.NewCustomerID.Location = new System.Drawing.Point(200, 270);
 			this.NewCustomerID.Margin = new System.Windows.Forms.Padding(5);
 			this.NewCustomerID.Name = "NewCustomerID";
 			this.NewCustomerID.Size = new System.Drawing.Size(348, 34);
@@ -73,7 +78,7 @@ namespace Green_Enviro_App
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(67, 124);
+			this.label1.Location = new System.Drawing.Point(40, 130);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(64, 28);
 			this.label1.TabIndex = 3;
@@ -82,16 +87,16 @@ namespace Green_Enviro_App
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(67, 324);
+			this.label2.Location = new System.Drawing.Point(40, 273);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(246, 28);
+			this.label2.Size = new System.Drawing.Size(38, 28);
 			this.label2.TabIndex = 4;
-			this.label2.Text = "ID/Passport Number";
+			this.label2.Text = "ID";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(67, 221);
+			this.label3.Location = new System.Drawing.Point(40, 198);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(103, 28);
 			this.label3.TabIndex = 5;
@@ -99,28 +104,28 @@ namespace Green_Enviro_App
 			// 
 			// NewCustomerNumber
 			// 
-			this.NewCustomerNumber.Location = new System.Drawing.Point(72, 451);
+			this.NewCustomerNumber.Location = new System.Drawing.Point(351, 498);
 			this.NewCustomerNumber.Maximum = new decimal(new int[] {
             20000,
             0,
             0,
             0});
 			this.NewCustomerNumber.Name = "NewCustomerNumber";
-			this.NewCustomerNumber.Size = new System.Drawing.Size(202, 34);
+			this.NewCustomerNumber.Size = new System.Drawing.Size(197, 34);
 			this.NewCustomerNumber.TabIndex = 6;
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(67, 420);
+			this.label4.Location = new System.Drawing.Point(40, 500);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(207, 28);
+			this.label4.Size = new System.Drawing.Size(168, 28);
 			this.label4.TabIndex = 7;
-			this.label4.Text = "Customer Number";
+			this.label4.Text = "Customer No.";
 			// 
 			// NewCustomerAddIdPictureBtn
 			// 
-			this.NewCustomerAddIdPictureBtn.Location = new System.Drawing.Point(72, 526);
+			this.NewCustomerAddIdPictureBtn.Location = new System.Drawing.Point(45, 565);
 			this.NewCustomerAddIdPictureBtn.Name = "NewCustomerAddIdPictureBtn";
 			this.NewCustomerAddIdPictureBtn.Size = new System.Drawing.Size(226, 44);
 			this.NewCustomerAddIdPictureBtn.TabIndex = 8;
@@ -168,12 +173,54 @@ namespace Green_Enviro_App
 			this.NewCustomerIdPictureBox.TabIndex = 13;
 			this.NewCustomerIdPictureBox.TabStop = false;
 			// 
-			// Customers
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(40, 427);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(64, 28);
+			this.label6.TabIndex = 14;
+			this.label6.Text = "Cell";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(40, 351);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(103, 28);
+			this.label7.TabIndex = 15;
+			this.label7.Text = "Address";
+			// 
+			// NewCustomerCell
+			// 
+			this.NewCustomerCell.Location = new System.Drawing.Point(200, 424);
+			this.NewCustomerCell.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+			this.NewCustomerCell.Name = "NewCustomerCell";
+			this.NewCustomerCell.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerCell.TabIndex = 16;
+			// 
+			// NewCustomerAddress
+			// 
+			this.NewCustomerAddress.Location = new System.Drawing.Point(200, 348);
+			this.NewCustomerAddress.Margin = new System.Windows.Forms.Padding(5);
+			this.NewCustomerAddress.Name = "NewCustomerAddress";
+			this.NewCustomerAddress.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerAddress.TabIndex = 17;
+			// 
+			// NewCustomer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Highlight;
 			this.ClientSize = new System.Drawing.Size(1340, 655);
+			this.Controls.Add(this.NewCustomerAddress);
+			this.Controls.Add(this.NewCustomerCell);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.NewCustomerIdPictureBox);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.NewCustomerConfirmBtn);
@@ -190,11 +237,12 @@ namespace Green_Enviro_App
 			this.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Margin = new System.Windows.Forms.Padding(5);
-			this.Name = "Customers";
+			this.Name = "NewCustomer";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Green Envrio SA Recycling";
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerNumber)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPictureBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.NewCustomerCell)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -215,5 +263,9 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button NewCustomerConfirmBtn;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.PictureBox NewCustomerIdPictureBox;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.NumericUpDown NewCustomerCell;
+		private System.Windows.Forms.TextBox NewCustomerAddress;
 	}
 }
