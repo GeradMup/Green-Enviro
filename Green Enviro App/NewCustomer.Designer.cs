@@ -112,7 +112,7 @@ namespace Green_Enviro_App
             0});
 			this.NewCustomerNumber.Name = "NewCustomerNumber";
 			this.NewCustomerNumber.Size = new System.Drawing.Size(197, 34);
-			this.NewCustomerNumber.TabIndex = 6;
+			this.NewCustomerNumber.TabIndex = 5;
 			// 
 			// label4
 			// 
@@ -128,7 +128,7 @@ namespace Green_Enviro_App
 			this.NewCustomerAddIdPictureBtn.Location = new System.Drawing.Point(45, 565);
 			this.NewCustomerAddIdPictureBtn.Name = "NewCustomerAddIdPictureBtn";
 			this.NewCustomerAddIdPictureBtn.Size = new System.Drawing.Size(226, 44);
-			this.NewCustomerAddIdPictureBtn.TabIndex = 8;
+			this.NewCustomerAddIdPictureBtn.TabIndex = 6;
 			this.NewCustomerAddIdPictureBtn.Text = "Add Picture";
 			this.NewCustomerAddIdPictureBtn.UseVisualStyleBackColor = true;
 			this.NewCustomerAddIdPictureBtn.Click += new System.EventHandler(this.NewCustomerAddIdPictureBtn_Click);
@@ -148,7 +148,7 @@ namespace Green_Enviro_App
 			this.NewCustomerConfirmBtn.Location = new System.Drawing.Point(1072, 565);
 			this.NewCustomerConfirmBtn.Name = "NewCustomerConfirmBtn";
 			this.NewCustomerConfirmBtn.Size = new System.Drawing.Size(226, 44);
-			this.NewCustomerConfirmBtn.TabIndex = 10;
+			this.NewCustomerConfirmBtn.TabIndex = 7;
 			this.NewCustomerConfirmBtn.Text = "Confirm";
 			this.NewCustomerConfirmBtn.UseVisualStyleBackColor = true;
 			this.NewCustomerConfirmBtn.Click += new System.EventHandler(this.NewCustomerConfirmBtn_Click);
@@ -201,7 +201,7 @@ namespace Green_Enviro_App
             0});
 			this.NewCustomerCell.Name = "NewCustomerCell";
 			this.NewCustomerCell.Size = new System.Drawing.Size(348, 34);
-			this.NewCustomerCell.TabIndex = 16;
+			this.NewCustomerCell.TabIndex = 4;
 			// 
 			// NewCustomerAddress
 			// 
@@ -209,7 +209,7 @@ namespace Green_Enviro_App
 			this.NewCustomerAddress.Margin = new System.Windows.Forms.Padding(5);
 			this.NewCustomerAddress.Name = "NewCustomerAddress";
 			this.NewCustomerAddress.Size = new System.Drawing.Size(348, 34);
-			this.NewCustomerAddress.TabIndex = 17;
+			this.NewCustomerAddress.TabIndex = 3;
 			// 
 			// NewCustomer
 			// 

@@ -19,6 +19,7 @@ namespace Green_Enviro_App
 		DataTable _customers_data_table = new DataTable();
 		Receipt _receipt;
 		string _customers_table_name = "Customers";
+		bool _editing_customer = false;
 		public NewCustomer(Customers customers,Main_Form main, Database data, Receipt receipt)
 		{
 			InitializeComponent();
@@ -31,6 +32,21 @@ namespace Green_Enviro_App
 			LoadCustomers();
 		}
 
+		public struct CustomerInfo
+		{
+			public string _number { get; set; }
+
+			public string _id { get; set; }
+
+			public string _name { get; set; }
+
+			public string _surname { get; set; }
+
+			public string _cell { get; set; }
+
+			public string _address { get; set; }
+		}
+
 		private void LoadCustomers() 
 		{
 			_customers_data_table = _database.SelectAll(_customers_table_name);
@@ -39,7 +55,12 @@ namespace Green_Enviro_App
 		private bool NoDuplicates() 
 		{
 			bool _no_duplicates = true;
-			
+
+			if (_editing_customer) 
+			{
+				return _no_duplicates;
+			}
+
 				foreach (DataRow _row in _customers_data_table.Rows)
 				{
 					if (_row[0].ToString() == NewCustomerNumber.Value.ToString())
@@ -58,12 +79,31 @@ namespace Green_Enviro_App
 			return _no_duplicates;
 		}
 
-		public void ActivateForm() 
+		public void ActivateForm(bool editingCustomer, CustomerInfo customerInfo = new CustomerInfo()) 
 		{
+			_editing_customer = editingCustomer;
+
 			this.Owner.Enabled = false;
 			this.Activate();
 			this.Enabled = true;
 			this.Show();
+
+			if (_editing_customer) 
+			{
+				PrefillFields(customerInfo);
+			}
+		}
+
+		private void PrefillFields(CustomerInfo customerInfo) 
+		{
+			NewCustomerNumber.Value = decimal.Parse(customerInfo._number);
+			NewCustomerName.Text = customerInfo._name;
+			NewCustomerID.Text = customerInfo._id;
+			NewCustomerSurname.Text = customerInfo._surname;
+			NewCustomerCell.Value = decimal.Parse(customerInfo._cell);
+			NewCustomerAddress.Text = customerInfo._address;
+
+			NewCustomerNumber.ReadOnly = true;
 		}
 
 		private void Exit() 
@@ -75,7 +115,6 @@ namespace Green_Enviro_App
 			this.Hide();
 			this.Enabled = false;
 		}
-
 
 		private bool ValidEntries() 
 		{
@@ -131,7 +170,6 @@ namespace Green_Enviro_App
 			if (_new_dialog.ShowDialog() == DialogResult.OK) 
 			{
 				NewCustomerIdPictureBox.Image = Image.FromFile(_new_dialog.FileName);
-				
 			}
 		}
 
@@ -152,7 +190,16 @@ namespace Green_Enviro_App
 				return;
 			}
 
-			AddCustomer();
+			if (_editing_customer)
+			{
+				EditCustomer();
+				_editing_customer = false;
+				return;
+			}
+			else 
+			{
+				AddCustomer();
+			}
 		}
 
 		private void AddCustomer() 
@@ -171,21 +218,54 @@ namespace Green_Enviro_App
 
 			if (_rows_affected == 1) 
 			{
-				string _path_to_main_folder = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-				string _path_to_image = _path_to_main_folder + @"\resources\Customers\" + _number.ToString() + ".jpg";
-				try
-				{
-					NewCustomerIdPictureBox.Image.Save(_path_to_image, System.Drawing.Imaging.ImageFormat.Jpeg);
-					_receipt.setupCustomerList();
-					CustomMessageBox mb = new CustomMessageBox(this, "Success!", "New Customer Added Successfully");
-					Exit();
-				}
-				catch (Exception ex) 
-				{
-					MessageBox.Show("Failed to save image: \n" + ex.Message);
-				}
+				SaveIdPicture(_number);
 			}
 		}
+
+		private void SaveIdPicture(string customerNumber) 
+		{
+			string _path_to_main_folder = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+			string _path_to_image = _path_to_main_folder + @"\resources\Customers\" + customerNumber + ".jpg";
+			try
+			{
+				NewCustomerIdPictureBox.Image.Save(_path_to_image, System.Drawing.Imaging.ImageFormat.Jpeg);
+				_receipt.setupCustomerList();
+				CustomMessageBox mb = new CustomMessageBox(this, CustomMessageBox.success, "Customer details saved");
+				Exit();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Failed to save image: \n" + ex.Message);
+			}
+		}
+
+		public void EditCustomer() 
+		{
+
+			string _customer_number = NewCustomerNumber.Value.ToString();
+			string _customer_name = NewCustomerName.Text;
+			string _customer_id = NewCustomerID.Text;
+			string _customer_surname = NewCustomerSurname.Text;
+			string _customer_cell = NewCustomerCell.Value.ToString();
+			string _customer_address = NewCustomerAddress.Text;
+
+
+			string _column_value_pairs = "ID = '" + _customer_id + "', Name = '" + _customer_name + "', Surname = '" + _customer_surname + "', Cell = '" + _customer_cell + "', Address = '" + _customer_address + "'";
+			string _identification_column = "CustomerNumber";
+			string _identifier = "'" + _customer_number + "'";
+
+			Int32 rowsAffected = _database.UpdateDatabase(_customers_table_name, _column_value_pairs, _identification_column, _identifier);
+
+			if (rowsAffected == 1)
+			{
+				SaveIdPicture(_customer_number);
+			}
+			else
+			{
+				CustomMessageBox mb = new CustomMessageBox(this, CustomMessageBox.error, "Failed to update customer details");
+			}
+		}
+		
 
 		private void ClearFields() 
 		{
@@ -196,6 +276,7 @@ namespace Green_Enviro_App
 			NewCustomerCell.Value = 0;
 			NewCustomerAddress.Text = "";
 			NewCustomerIdPictureBox.Image = null;
+			NewCustomerNumber.ReadOnly = false;
 		}
 	}
 }

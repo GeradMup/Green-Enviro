@@ -12,6 +12,9 @@ namespace Green_Enviro_App
 {
 	public partial class CustomMessageBox : Form
 	{
+		public const string error = "Error!";
+		public const string success = "Success!";
+
 		public CustomMessageBox(Form parent, string title, string message) 
 		{
 			InitializeComponent();

@@ -107,7 +107,7 @@ namespace Green_Enviro_App
 
 		private void CustomersNewCustomer_Click(object sender, EventArgs e)
 		{
-            _new_customer.ActivateForm();
+            _new_customer.ActivateForm(false);
 		}
 
 		private void CustomersDeleteBtn_Click(object sender, EventArgs e)
@@ -123,6 +123,27 @@ namespace Green_Enviro_App
                 LoadCustomersDataTable();
                 CustomMessageBox mb = new CustomMessageBox(this, "Success!", "Customer Deleted");
             }
+        }
+
+		private void CustomersEditBtn_Click(object sender, EventArgs e)
+		{
+            if (CustomersDataGridView.SelectedCells.Count == 0) 
+            {
+                CustomMessageBox mb = new CustomMessageBox(this, CustomMessageBox.error, "Please select a customer to edit");
+                return;
+            }
+
+            NewCustomer.CustomerInfo editCustomer = new NewCustomer.CustomerInfo();
+
+            int _current_row = CustomersDataGridView.CurrentCell.RowIndex;
+            editCustomer._number = CustomersDataGridView[0, _current_row].Value.ToString();
+            editCustomer._id = CustomersDataGridView[1, _current_row].Value.ToString();
+            editCustomer._name = CustomersDataGridView[2, _current_row].Value.ToString();
+            editCustomer._surname = CustomersDataGridView[3, _current_row].Value.ToString();
+            editCustomer._cell = CustomersDataGridView[4, _current_row].Value.ToString();
+            editCustomer._address = CustomersDataGridView[5, _current_row].Value.ToString();
+
+            _new_customer.ActivateForm(true, editCustomer);
         }
 	}
 }
