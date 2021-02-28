@@ -72,6 +72,7 @@ namespace Green_Enviro_App
         string _sync_exe_path = @"..//..//..//Green Enviro Sync//bin//Debug//Green Enviro Sync.exe";
 
         bool _main_program_pass = false;
+        bool _already_logged_in = false;
         public LoginForm(string[] args)
         {
 
@@ -183,13 +184,20 @@ namespace Green_Enviro_App
 
         private void login() 
         {
+            if (_already_logged_in) 
+            {
+                bool validLogin = verifyCredentials();
+				if (validLogin) 
+                {
+					StartMainProgram();
+                }
+            }
+
             if (_main_program_pass == true) 
             {
                 _main_program_pass = false;
-                ClearFields();
-                this.Hide();
-                _mainForm.Activate();
-                _mainForm.Show();
+                _already_logged_in = true;
+                StartMainProgram();
                 return;
             }
 
@@ -209,6 +217,14 @@ namespace Green_Enviro_App
                 MessageBoxIcon.Exclamation);
                 //_client_password.PrintCryptography(passwordField.Text);
             }
+        }
+
+        private void StartMainProgram() 
+        {
+            ClearFields();
+            this.Hide();
+            _mainForm.Activate();
+            _mainForm.Show();
         }
 
         private void clear_button_Click(object sender, EventArgs e)

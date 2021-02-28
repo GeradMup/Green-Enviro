@@ -32,6 +32,7 @@ namespace Green_Enviro_Sync
 		static string _main_dir_path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 		string _resources_path = _main_dir_path + @"\resources";
 		string _resources_zip_path = _main_dir_path + @"\resources.zip";
+		string _database_version_file = _main_dir_path + @"\DatabaseVersion.txt";
 		static string _path_to_db_file_main = _main_dir_path + @"\Green Enviro Data.mdf";
 		static string _path_to_log_file = _main_dir_path + @"\Green Enviro Data_log.ldf";
 
@@ -61,7 +62,9 @@ namespace Green_Enviro_Sync
 
 				//First Upload the .mdf file
 				//The log file will be uploaded via a recursive function call
-				UploadDatabase(1, _path_to_db_file_main, _db_file_name, "Database File");
+				string parentDirectory = "Database file" + GetDatabaseVersion().ToString();
+				UploadDatabase(1, _path_to_db_file_main, _db_file_name, parentDirectory);
+
 			}
 			else 
 			{
@@ -153,12 +156,12 @@ namespace Green_Enviro_Sync
 			if (_index == 1)
 			{
 				//Second upload the log file(.ldf)
-				UploadDatabase(2, _path_to_log_file, _log_file_name, "Database File");
+				UploadDatabase(2, _path_to_log_file, _log_file_name, parentDirectory);
 			}
 			else if (_index == 2)
 			{
 				ZipLogFiles();
-				UploadDatabase(3, _resources_zip_path, _resources_file_name, "Database File");
+				UploadDatabase(3, _resources_zip_path, _resources_file_name, parentDirectory);
 			}
 			else 
 			{
@@ -306,6 +309,44 @@ namespace Green_Enviro_Sync
 			{
 				MessageBox.Show("Error Unzipping: " + ex.Message);
 			}
+		}
+
+		private int GetDatabaseVersion() 
+		{
+			string line = "";
+			int databaseVersion = 0;
+			try
+			{
+				line = System.IO.File.ReadAllText(_database_version_file);
+				databaseVersion = int.Parse(line);
+				SetDatabaseVersion(databaseVersion);
+			}
+			catch (Exception ex) 
+			{
+				MessageBox.Show("Error", "Failed to read the database version file");
+			}
+
+;
+			return databaseVersion;
+		}
+
+		private void SetDatabaseVersion(int currentVersion) 
+		{
+			if (currentVersion > 20)
+			{
+				currentVersion = 1;
+			}
+			else 
+			{
+				currentVersion++;
+			}
+
+			FileStream fWrite = new FileStream(_database_version_file,
+			FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+
+			byte[] writeArr = Encoding.UTF8.GetBytes(currentVersion.ToString());
+			fWrite.Write(writeArr, 0, currentVersion.ToString().Length);
+			fWrite.Close();
 		}
 	}
 }
