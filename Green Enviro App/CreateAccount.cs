@@ -136,7 +136,7 @@ namespace Green_Enviro_App
                 _message = _email_address_error;
                 _all_good = false;
             }
-            else if (userPermissionLvlBx.SelectedIndex == 0)
+            else if (userPermissionLvlBx.SelectedItem == null)
             {
                 _message_type = _error;
                 _message = _permission_level;

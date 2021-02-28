@@ -31,6 +31,7 @@ namespace Green_Enviro_App
 
         string _receipt_content = "";
         float _running_total = 0;
+        float _running_kg_total = 0;
         string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
         string _single_purchase_entry;
         string _single_quantity_entry;
@@ -163,13 +164,15 @@ namespace Green_Enviro_App
             _main_form.receiptBox.AppendText(" ----------------------------\n ");
             _main_form.receiptBox.AppendText(string.Format("{0,-10}", "ITEMS"));
             _main_form.receiptBox.AppendText(string.Format("{0,-5}", "KGs"));
-            _main_form.receiptBox.AppendText(string.Format("{0,-6}", "PRICE"));
-            _main_form.receiptBox.AppendText(string.Format("{0,7}", "AMOUNT"));
+            _main_form.receiptBox.AppendText(string.Format("{0,-6}", "P/Kg"));
+            _main_form.receiptBox.AppendText(string.Format("{0,-5}", "R"));
             _main_form.receiptBox.AppendText("\n");
             _main_form.receiptBox.AppendText(" ----------------------------\n");
             _main_form.receiptBox.AppendText(_receipt_content);
             _main_form.receiptBox.AppendText("\n");
-            _main_form.receiptBox.AppendText(" Total\t:\tR " + _running_total.ToString());
+            _main_form.receiptBox.AppendText(" Total:    " + _running_kg_total + " Kgs");   
+            _main_form.receiptBox.AppendText("\n");
+            _main_form.receiptBox.AppendText(" Total:    R " + _running_total.ToString());
             _main_form.receiptBox.AppendText("\n");
             _main_form.receiptBox.AppendText(" ----------------------------\n");
             _main_form.receiptBox.AppendText(" THANK YOU!");
@@ -179,8 +182,6 @@ namespace Green_Enviro_App
             _main_form.receiptBox.ScrollToCaret();
 
             _main_form.receiptBox.ReadOnly = true;
-
-            
         }
 
         private void SetSalePurchase() 
@@ -224,12 +225,26 @@ namespace Green_Enviro_App
             float _kilos = float.Parse(_main_form.quantityBox.Text);
             float _amount = _price * _kilos;
             _running_total += _amount;
+            _running_kg_total += _kilos;
 
-            _receipt_content += string.Format("{0,-11}", " " + _item_name);
-            _receipt_content += string.Format("{0,-5}", _kilos);
-            _receipt_content += string.Format("{0,-7}", _price);
-            _receipt_content += string.Format("{0,-8}", _amount);
-            _receipt_content += "\n";
+            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _formal_sale)
+            {
+                _receipt_content += string.Format("{0,-11}", " " + _item_name);
+                _receipt_content += string.Format("{0,-5}", _kilos);
+                _receipt_content += string.Format("{0,-7}", 0);
+                _receipt_content += string.Format("{0,-6}", 0);
+                _running_total = 0;
+                _receipt_content += "\n";
+            }
+            else 
+            {
+                _receipt_content += string.Format("{0,-11}", " " + _item_name);
+                _receipt_content += string.Format("{0,-5}", _kilos);
+                _receipt_content += string.Format("{0,-7}", _price);
+                _receipt_content += string.Format("{0,-6}", _amount);
+                _receipt_content += "\n";
+            }
+
             setupReceipt();
 
             //Create the record for Logging
@@ -241,7 +256,14 @@ namespace Green_Enviro_App
                 _single_purchase_entry += _item_name + "," + _kilos.ToString() + "," + _price.ToString() + "," + _amount.ToString() + "," + _item_type;
                 _purchased_items.Add(_single_purchase_entry);
             }
-            else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _casual_sale) 
+            else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _formal_sale) 
+            {
+                _single_purchase_entry += _date + "," + _customer_name + "," + _customer_surname + "," + _customer_id_number + "," + _customer_number + ",";
+                _single_purchase_entry += _item_name + "," + _kilos.ToString() + "," + 0 + "," + 0 + "," + _item_type;
+                _purchased_items.Add(_single_purchase_entry);
+                _running_total = 0;
+            }
+            else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _casual_sale)
             {
                 CasualSale newSale = new CasualSale();
                 newSale.item = _item_name;
@@ -257,7 +279,7 @@ namespace Green_Enviro_App
             _single_purchase_entry = "";
 
             float _quantity_kilos = _kilos;
-            if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == "Sale")
+            if ((_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _casual_sale) || (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _formal_sale))
             {
 				_quantity_kilos = -1 * _quantity_kilos;
             }
@@ -467,6 +489,7 @@ namespace Green_Enviro_App
 
             _receipt_content = "";
             _running_total = 0;
+            _running_kg_total = 0;
             _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
             _purchased_items.Clear();
             _purchased_quantities.Clear();
@@ -546,7 +569,7 @@ namespace Green_Enviro_App
 
         private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e) 
         {
-            float _font_size = 8.5F;
+            float _font_size = 9.1F;
             e.Graphics.DrawString(_receipt_print_content.Text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black,-10,-5);
         }  
         

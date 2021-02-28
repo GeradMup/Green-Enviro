@@ -112,7 +112,6 @@ namespace Green_Enviro_App
 
         private void PurchaseBtn_Click(object sender, EventArgs e)
         {
-            string stopHere = "Stop Here";
 
             if (ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.purchase)
             {
