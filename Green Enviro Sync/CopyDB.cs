@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,21 @@ namespace Green_Enviro_Sync
 			Sync _sync_prog = new Sync(_permission_level);
 			_sync_prog.LaunchMainApp();
 			this.Close();
+		}
+
+		private void CopyDB_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			try
+			{
+				foreach (Process proc in Process.GetProcessesByName("sqlservr"))
+				{
+					proc.Kill();
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
 		}
 	}
 }

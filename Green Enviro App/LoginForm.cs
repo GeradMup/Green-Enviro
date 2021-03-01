@@ -329,5 +329,11 @@ namespace Green_Enviro_App
                 login();
             }
 		}
+
+		private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+            _mainForm.CloseSqlServer();
+            Application.Exit();
+        }
 	}
 }

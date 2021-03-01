@@ -575,16 +575,17 @@ namespace Green_Enviro_App
 			// customerNumbersList
 			// 
 			this.customerNumbersList.DropDownHeight = 300;
-			this.customerNumbersList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.customerNumbersList.FormattingEnabled = true;
 			this.customerNumbersList.IntegralHeight = false;
 			this.customerNumbersList.ItemHeight = 23;
-			this.customerNumbersList.Location = new System.Drawing.Point(1119, 70);
+			this.customerNumbersList.Location = new System.Drawing.Point(1091, 70);
 			this.customerNumbersList.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.customerNumbersList.Name = "customerNumbersList";
-			this.customerNumbersList.Size = new System.Drawing.Size(79, 31);
+			this.customerNumbersList.Size = new System.Drawing.Size(107, 31);
 			this.customerNumbersList.TabIndex = 15;
 			this.customerNumbersList.SelectedIndexChanged += new System.EventHandler(this.customerNumbersList_SelectedIndexChanged);
+			this.customerNumbersList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.customerNumbersList_KeyDown);
+			
 			// 
 			// IDPictureBox
 			// 

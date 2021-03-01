@@ -55,7 +55,7 @@ namespace Green_Enviro_Sync
 
 		private void UploadBtn_Click(object sender, EventArgs e)
 		{
-			if ((_permission_level == 3) || (_permission_level == 5))
+			if ((_permission_level == 4) || (_permission_level == 5))
 			{
 				CheckConnectivity();
 				SetupFirebaseDatabase();
@@ -347,6 +347,22 @@ namespace Green_Enviro_Sync
 			byte[] writeArr = Encoding.UTF8.GetBytes(currentVersion.ToString());
 			fWrite.Write(writeArr, 0, currentVersion.ToString().Length);
 			fWrite.Close();
+		}
+
+		private void Sync_FormClosing(object sender, FormClosingEventArgs e)
+		{
+
+			try
+			{
+				foreach (Process proc in Process.GetProcessesByName("sqlservr"))
+				{
+					proc.Kill();
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
 		}
 	}
 }

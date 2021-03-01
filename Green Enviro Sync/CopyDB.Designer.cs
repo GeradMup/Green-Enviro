@@ -41,7 +41,7 @@ namespace Green_Enviro_Sync
 			this.saveEnquiry.Font = new System.Drawing.Font("Consolas", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.saveEnquiry.Location = new System.Drawing.Point(57, 88);
 			this.saveEnquiry.Name = "saveEnquiry";
-			this.saveEnquiry.Size = new System.Drawing.Size(701, 40);
+			this.saveEnquiry.Size = new System.Drawing.Size(665, 38);
 			this.saveEnquiry.TabIndex = 0;
 			this.saveEnquiry.Text = "Do you want to syncronize your data?";
 			// 
@@ -79,6 +79,7 @@ namespace Green_Enviro_Sync
 			this.Name = "CopyDB";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Green Enviro Synchronizer";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CopyDB_FormClosing);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

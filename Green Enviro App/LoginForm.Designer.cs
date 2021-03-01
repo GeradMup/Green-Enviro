@@ -181,6 +181,7 @@ namespace Green_Enviro_App
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Green Enviro SA Recycling";
 			this.Activated += new System.EventHandler(this.LoginForm_Activated);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginForm_KeyPress);
 			this.ResumeLayout(false);
 			this.PerformLayout();

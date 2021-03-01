@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
@@ -88,7 +89,23 @@ namespace Green_Enviro_App
         {
             //Makes sure that the app is completely killed when the form is closing
             //We do not want the application to end up running in the background
+            CloseSqlServer();
             Application.Exit();
+        }
+
+        public void CloseSqlServer()
+        {
+            try
+            {
+                foreach (Process proc in Process.GetProcessesByName("sqlservr"))
+                {
+                    proc.Kill();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -188,6 +205,16 @@ namespace Green_Enviro_App
                 PermissionDenied();
             }
             
+        }
+
+        private void customerNumbersList_KeyDown(object sender, KeyEventArgs e)
+        {
+
+			
+			if (e.KeyCode == Keys.Enter)
+            {
+                _receipt.UpdateCustomerDetails();
+            }
         }
 
         //******************************************************************************************************************************
@@ -511,5 +538,5 @@ namespace Green_Enviro_App
         }
 
 
-    }
+	}
 }

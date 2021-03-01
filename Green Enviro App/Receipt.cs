@@ -371,18 +371,19 @@ namespace Green_Enviro_App
             _main_form.quantityBox.Value = 0;
         }
 
-        public void UpdateCustomerDetails() 
+        public void UpdateCustomerDetails(bool dropDownList = false) 
         {
             //Check if the purchase has been cancelled. Reset the customer details if purchase was cancelled
-            if (_main_form.customerNumbersList.SelectedItem == null) 
+            if (_main_form.customerNumbersList.Text == "") 
             {
-                _main_form.CustomerIDNumberTextBox.Text = "";
-                _main_form.CustomerNameTextBox.Text = "";
-                _main_form.CustomerSurnameTextBox.Text = "";
-                _main_form.CustomerCellNumber.Text = "";
-                _main_form.CustomerAddress.Text = "";
-                _main_form.IDPictureBox.Image = null;
-                _customer_selected = false;
+       
+                ClearCustomerDetails();
+                return;
+            }
+
+            if (dropDownList == true) 
+            {
+                ClearCustomerDetails();
                 return;
             }
 
@@ -396,7 +397,8 @@ namespace Green_Enviro_App
                 return;
             }
 
-            _customer_number = _main_form.customerNumbersList.SelectedItem.ToString();
+            _customer_number = _main_form.customerNumbersList.Text;
+
             string _filter_expression = "CustomerNumber = '" + _customer_number + "'";
 
             DataView _data_view = _customers.DefaultView;
@@ -434,7 +436,18 @@ namespace Green_Enviro_App
             _customer_selected = true;
         }
 
-        public void CompletePurchaseOrSale() 
+		private void ClearCustomerDetails()
+		{
+            _main_form.CustomerIDNumberTextBox.Text = "";
+            _main_form.CustomerNameTextBox.Text = "";
+            _main_form.CustomerSurnameTextBox.Text = "";
+            _main_form.CustomerCellNumber.Text = "";
+            _main_form.CustomerAddress.Text = "";
+            _main_form.IDPictureBox.Image = null;
+            _customer_selected = false;
+        }
+
+		public void CompletePurchaseOrSale() 
         {
             if ((_purchased_items.Count == 0) 
                 && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == purchaseOrSaleType.purchase))
@@ -483,8 +496,12 @@ namespace Green_Enviro_App
 
         public void ResetReceipt() 
         {
-            _main_form.itemList.SelectedItem = null;
+            _main_form.customerNumbersList.DropDownStyle = ComboBoxStyle.DropDownList;
             _main_form.customerNumbersList.SelectedItem = null;
+            UpdateCustomerDetails(true);
+            _main_form.customerNumbersList.DropDownStyle = ComboBoxStyle.DropDown;
+            _main_form.itemList.SelectedItem = null;
+            
             _main_form.ReceiptSaleOrPurchase.SelectedIndex = 0;
 
             _receipt_content = "";
