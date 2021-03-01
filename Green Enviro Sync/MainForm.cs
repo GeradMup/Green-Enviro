@@ -351,18 +351,12 @@ namespace Green_Enviro_Sync
 
 		private void Sync_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			
+		}
 
-			try
-			{
-				foreach (Process proc in Process.GetProcessesByName("sqlservr"))
-				{
-					proc.Kill();
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-			}
+		private void Sync_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Application.Exit();
 		}
 	}
 }

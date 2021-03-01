@@ -89,25 +89,8 @@ namespace Green_Enviro_App
         {
             //Makes sure that the app is completely killed when the form is closing
             //We do not want the application to end up running in the background
-            CloseSqlServer();
             Application.Exit();
         }
-
-        public void CloseSqlServer()
-        {
-            try
-            {
-                foreach (Process proc in Process.GetProcessesByName("sqlservr"))
-                {
-                    proc.Kill();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
 
         //*************************************************************************************************************************
         //RECEIPT RELATED CALLS
@@ -537,6 +520,9 @@ namespace Green_Enviro_App
             PurchseLogGridView.DefaultCellStyle.Font = fontInfo;
         }
 
-
+		private void Main_Form_FormClosed(object sender, FormClosedEventArgs e)
+		{
+            Application.Exit();
+		}
 	}
 }

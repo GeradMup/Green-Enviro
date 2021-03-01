@@ -46,6 +46,7 @@ namespace Green_Enviro_App
 	/// </summary>
 	public partial class LoginForm : Form
     {
+        bool _application_runnig = true;
 
         //Creates a variable of type Database
         static Database _database;
@@ -70,7 +71,7 @@ namespace Green_Enviro_App
         List<Credentials> _all_credentials;
 
         string _sync_exe_path = @"..//..//..//Green Enviro Sync//bin//Debug//Green Enviro Sync.exe";
-
+        string _sql_server_path = @"..//..//..//Close SQL Server//bin//Debug//Close SQL Server.exe";
         bool _main_program_pass = false;
         bool _already_logged_in = false;
         public LoginForm(string[] args)
@@ -108,6 +109,7 @@ namespace Green_Enviro_App
         void PromptDatabaseSnyc()
         {
             //First open the Sync App to prompt users if they want to synchronize data 
+            
             string _absolute_path = Path.GetFullPath(_sync_exe_path);
             Process.Start(_absolute_path, _user_permission_level.ToString());
             this.Close();
@@ -331,8 +333,7 @@ namespace Green_Enviro_App
 		}
 
 		private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
-		{
-            _mainForm.CloseSqlServer();
+        { 
             Application.Exit();
         }
 	}

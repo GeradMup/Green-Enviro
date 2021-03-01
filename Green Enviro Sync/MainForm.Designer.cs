@@ -91,6 +91,7 @@ namespace Green_Enviro_Sync
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Green Enviro Synchronizer";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Sync_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Sync_FormClosed);
 			this.ResumeLayout(false);
 
 		}

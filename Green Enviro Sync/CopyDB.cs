@@ -52,5 +52,10 @@ namespace Green_Enviro_Sync
 				MessageBox.Show(ex.Message);
 			}
 		}
+
+		private void CopyDB_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Application.Exit();
+		}
 	}
 }

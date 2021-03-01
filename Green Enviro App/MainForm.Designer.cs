@@ -585,7 +585,6 @@ namespace Green_Enviro_App
 			this.customerNumbersList.TabIndex = 15;
 			this.customerNumbersList.SelectedIndexChanged += new System.EventHandler(this.customerNumbersList_SelectedIndexChanged);
 			this.customerNumbersList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.customerNumbersList_KeyDown);
-			
 			// 
 			// IDPictureBox
 			// 
@@ -2493,6 +2492,7 @@ namespace Green_Enviro_App
 			this.Text = "Green Enviro SA Recycling";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_Form_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_Form_FormClosed);
 			this.mainTabControl.ResumeLayout(false);
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
