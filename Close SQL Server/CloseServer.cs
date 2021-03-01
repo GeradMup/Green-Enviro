@@ -13,6 +13,8 @@ namespace Close_SQL_Server
 {
 	public partial class CloseServer : Form
 	{
+
+		bool _server_closed = false;
 		public CloseServer()
 		{
 			InitializeComponent();
@@ -24,6 +26,7 @@ namespace Close_SQL_Server
 				{
 					proc.Kill();
 					MainText.Text = "Closed SQL Server";
+					_server_closed = true;
 					
 				}
 			}
@@ -31,8 +34,10 @@ namespace Close_SQL_Server
 			{
 				MessageBox.Show("Failed to Close Server : " + ex.Message);
 			}
-			MainText.Text = "SQL Server Already Closed";
-
+			if (_server_closed == false) 
+			{
+				MainText.Text = "SQL Server Already Closed";
+			}
 		}
 
 		private void CloseServer_FormClosed(object sender, FormClosedEventArgs e)
