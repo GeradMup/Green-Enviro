@@ -39,6 +39,7 @@ namespace Green_Enviro_Sync
 		static string _firebase_node = "Database Url";
 		string _db_file_name = "Green Enviro Data.mdf";
 		string _log_file_name = "Green Enviro Data_log.ldf";
+		int _database_version = 0;
 		string _resources_file_name = "resources.zip";
 
 		static string _data_bucket_name = "green-enviro-app.appspot.com";
@@ -62,9 +63,7 @@ namespace Green_Enviro_Sync
 
 				//First Upload the .mdf file
 				//The log file will be uploaded via a recursive function call
-				string parentDirectory = "Database file" + GetDatabaseVersion().ToString();
-				UploadDatabase(1, _path_to_db_file_main, _db_file_name, parentDirectory);
-
+				GetDatabaseVersion();
 			}
 			else 
 			{
@@ -130,6 +129,11 @@ namespace Green_Enviro_Sync
 			public string downloadUrl { get; set; }
 		}
 
+		internal class DatabaseVersion 
+		{
+			public int Version { get; set; }
+		}
+
 		private async void UploadDatabase(int _index, string pathToLocalFile, string nameOfFile, string parentDirectory)
 		{
 			//First close the Database before trying to upload
@@ -191,12 +195,19 @@ namespace Green_Enviro_Sync
 
 		private async void RetrieveFromFirebase(string savePath, int nodeNum)
 		{
-			FirebaseResponse _response = await _fb_client.GetTaskAsync(_firebase_node + nodeNum);
-			Data _data = _response.ResultAs<Data>();
-			string _download_address = _data.downloadUrl;
-			int _download_index = _data.index;
+			try
+			{
 
-			await DownloadDatabase(_download_index, _download_address, savePath);
+				FirebaseResponse _response = await _fb_client.GetTaskAsync(_firebase_node + nodeNum);
+				Data _data = _response.ResultAs<Data>();
+				string _download_address = _data.downloadUrl;
+				int _download_index = _data.index;
+				await DownloadDatabase(_download_index, _download_address, savePath);
+			}
+			catch (Exception ex) 
+			{
+				MessageBox.Show("Faile To Retrieve from Firebase: " + ex.Message);
+			}
 		}
 
 		// ****************************************************************************************************************
@@ -311,42 +322,49 @@ namespace Green_Enviro_Sync
 			}
 		}
 
-		private int GetDatabaseVersion() 
+		private async void GetDatabaseVersion() 
 		{
-			string line = "";
-			int databaseVersion = 0;
 			try
 			{
-				line = System.IO.File.ReadAllText(_database_version_file);
-				databaseVersion = int.Parse(line);
-				SetDatabaseVersion(databaseVersion);
+				string _firebase_version_node = "DatabaseVersion";
+				FirebaseResponse _response = await _fb_client.GetTaskAsync(_firebase_version_node);
+				
+				DatabaseVersion databaseVersion = _response.ResultAs<DatabaseVersion>();
+
+				_database_version = databaseVersion.Version;
+				if (_database_version > 20)
+				{
+					_database_version = 1;
+				}
+				else
+				{
+					_database_version++;
+				}
+
+				SetDatabaseVersion(_firebase_version_node, _database_version);
+				string parentDirectory = "Database file" + _database_version;
+				UploadDatabase(1, _path_to_db_file_main, _db_file_name, parentDirectory);
+				//return _database_version;
 			}
 			catch (Exception ex) 
 			{
-				MessageBox.Show("Error", "Failed to read the database version file");
+				MessageBox.Show("Failed to retrieve from Firebase : " + ex.Message);
 			}
-
-;
-			return databaseVersion;
 		}
 
-		private void SetDatabaseVersion(int currentVersion) 
+		private async void SetDatabaseVersion(string firebaseVersionNode,int currentVersion) 
 		{
-			if (currentVersion > 20)
-			{
-				currentVersion = 1;
-			}
-			else 
-			{
-				currentVersion++;
-			}
+			DatabaseVersion updatedVersion = new DatabaseVersion();
+			updatedVersion.Version = currentVersion;
 
-			FileStream fWrite = new FileStream(_database_version_file,
-			FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-
-			byte[] writeArr = Encoding.UTF8.GetBytes(currentVersion.ToString());
-			fWrite.Write(writeArr, 0, currentVersion.ToString().Length);
-			fWrite.Close();
+			try
+			{
+				SetResponse _response = await _fb_client.SetTaskAsync(firebaseVersionNode, updatedVersion);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Upload Failed : " + ex.Message);
+			}
 		}
 
 		private void Sync_FormClosing(object sender, FormClosingEventArgs e)
