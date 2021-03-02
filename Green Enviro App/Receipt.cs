@@ -301,8 +301,9 @@ namespace Green_Enviro_App
             string _message_title = "Error!";
             bool _all_good = false;
             decimal _zero = (decimal)0.00;
+            string _no_text = "";
             
-            if (((_main_form.customerNumbersList.SelectedItem == null) && (_main_form.ReceiptDefaultCustomerCheckBox.CheckState == CheckState.Unchecked))
+            if ((_main_form.customerNumbersList.Text == _no_text) && (_main_form.ReceiptDefaultCustomerCheckBox.CheckState == CheckState.Unchecked)
                 && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase))
             {
                 //First check if customer details have been selected
