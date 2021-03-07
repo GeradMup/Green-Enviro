@@ -426,7 +426,7 @@ namespace Green_Enviro_App
             _main_form.CustomerCellNumber.Text = _customer_cell_number;
             _main_form.CustomerAddress.Text = _customer_address;
 
-            string _path_to_id_picture = @"..//..//resources//Customers//"+ _customer_number +".jpg";
+            string _path_to_id_picture = @"..//..//Customers//"+ _customer_number +".jpg";
             Image _id_picture = Image.FromFile(_path_to_id_picture);
             _main_form.IDPictureBox.Image = _id_picture;
            

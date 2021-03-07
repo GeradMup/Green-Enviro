@@ -164,8 +164,8 @@ namespace Green_Enviro_Sync
 			}
 			else if (_index == 2)
 			{
-				ZipLogFiles();
-				UploadDatabase(3, _resources_zip_path, _resources_file_name, parentDirectory);
+
+				UploadDatabase(3, ZippedResources(), _resources_file_name, parentDirectory);
 			}
 			else 
 			{
@@ -289,7 +289,7 @@ namespace Green_Enviro_Sync
 			this.Close();
 		}
 
-		private void ZipLogFiles()
+		private string ZippedResources()
 		{
 			try
 			{
@@ -298,11 +298,13 @@ namespace Green_Enviro_Sync
 					File.Delete(_resources_zip_path);
 				}
 				ZipFile.CreateFromDirectory(_resources_path, _resources_zip_path);
+				return _resources_zip_path;
 			}
 			catch(Exception ex) 
 			{
 				MessageBox.Show("Error Zipping: " + ex.Message);
 			}
+			return "";
 		}
 
 		private void UnzipLogFiles() 
@@ -332,7 +334,7 @@ namespace Green_Enviro_Sync
 				DatabaseVersion databaseVersion = _response.ResultAs<DatabaseVersion>();
 
 				_database_version = databaseVersion.Version;
-				if (_database_version > 20)
+				if (_database_version > 10)
 				{
 					_database_version = 1;
 				}
@@ -342,7 +344,7 @@ namespace Green_Enviro_Sync
 				}
 
 				SetDatabaseVersion(_firebase_version_node, _database_version);
-				string parentDirectory = "Database file" + _database_version;
+				string parentDirectory = "Database_file" + _database_version;
 				UploadDatabase(1, _path_to_db_file_main, _db_file_name, parentDirectory);
 				//return _database_version;
 			}

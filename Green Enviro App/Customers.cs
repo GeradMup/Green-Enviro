@@ -143,6 +143,10 @@ namespace Green_Enviro_App
             editCustomer._cell = CustomersDataGridView[4, _current_row].Value.ToString();
             editCustomer._address = CustomersDataGridView[5, _current_row].Value.ToString();
 
+            string _path_to_id_picture = @"..//..//Customers//" + editCustomer._number + ".jpg";
+            Image _id_picture = Image.FromFile(_path_to_id_picture);
+            editCustomer._image = _id_picture;
+
             _new_customer.ActivateForm(true, editCustomer);
         }
 	}

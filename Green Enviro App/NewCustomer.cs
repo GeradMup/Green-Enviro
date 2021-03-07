@@ -45,6 +45,8 @@ namespace Green_Enviro_App
 			public string _cell { get; set; }
 
 			public string _address { get; set; }
+
+			public Image _image { get; set; }
 		}
 
 		private void LoadCustomers() 
@@ -102,6 +104,7 @@ namespace Green_Enviro_App
 			NewCustomerSurname.Text = customerInfo._surname;
 			NewCustomerCell.Value = decimal.Parse(customerInfo._cell);
 			NewCustomerAddress.Text = customerInfo._address;
+			NewCustomerIdPictureBox.Image = customerInfo._image;
 
 			NewCustomerNumber.ReadOnly = true;
 		}
@@ -225,7 +228,7 @@ namespace Green_Enviro_App
 		private void SaveIdPicture(string customerNumber) 
 		{
 			string _path_to_main_folder = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-			string _path_to_image = _path_to_main_folder + @"\resources\Customers\" + customerNumber + ".jpg";
+			string _path_to_image = _path_to_main_folder + @"\Customers\" + customerNumber + ".jpg";
 			try
 			{
 				NewCustomerIdPictureBox.Image.Save(_path_to_image, System.Drawing.Imaging.ImageFormat.Jpeg);
