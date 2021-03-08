@@ -66,7 +66,6 @@ namespace Green_Enviro_App
 
         public PurchaseOrSaleType purchaseOrSaleType = new PurchaseOrSaleType();
 
-
         public Receipt(Main_Form form, Database data, Purchases logs, Sales sales, Inventory inventory) 
         {
             _main_form = form;
@@ -594,8 +593,13 @@ namespace Green_Enviro_App
         private void PrintDocument_PrintPage_0(object sender, System.Drawing.Printing.PrintPageEventArgs e) 
         {
             float _font_size = 15F;
+
+            //string _path_to_logo_picture = @"..//..//resources//Logo.jpg";
+            //Image _logo_picture = Image.FromFile(_path_to_logo_picture);
+
             string _header_text = "GREEN ENVIRO\nSA RECYCLING";
             e.Graphics.DrawString(_header_text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black, 0,-5);
+            //e.Graphics.DrawImage(_logo_picture, 0, 0);
         }
 
         public void EditFloat() 

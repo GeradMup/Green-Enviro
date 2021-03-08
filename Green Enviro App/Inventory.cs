@@ -180,17 +180,20 @@ namespace Green_Enviro_App
 				{
 					//For each line, we want a list of the words on the line seperated by the comma
 					string[] dataWords = lines[_row].Split(',');
+
 					DataRow _data_row = _inventory_data_table.NewRow();
+
 					int columnIndex = 0;
 					foreach (string headerWord in _header_labels)
 					{
 						_data_row[headerWord] = dataWords[columnIndex++];
 					}
-
+					
 					bool _row_exists = false;
 					int _current_row = 0;
 					string _quantity = "Quantity";
 					string _date_string = "Date";
+					
 					foreach (DataRow _new_row in _inventory_data_table.Rows) 
 					{
 						if (_new_row["Item"].ToString() == _data_row["Item"].ToString()) 
@@ -207,18 +210,60 @@ namespace Green_Enviro_App
 					}
 
 
-					if ((_row_exists) && (_main_form.InvetorySummedOrNot.SelectedItem.ToString() == _summed))
+					if (isDateFiltered() && isTypeFiltered())
 					{
-						float _current_total_qnty= float.Parse(_inventory_data_table.Rows[_current_row][_quantity].ToString());
-						float _new_total_qnty = _current_total_qnty + float.Parse(_data_row[_quantity].ToString());
-						_inventory_data_table.Rows[_current_row][_quantity] = _new_total_qnty.ToString();
-						_inventory_data_table.Rows[_current_row][_date_string] = _data_row[_date_string];
+						DateTime startDate = DateTime.Parse(_main_form.InventoryLogStartDate.SelectedItem.ToString());
+						DateTime endDate = DateTime.Parse(_main_form.InventoryLogEndDate.SelectedItem.ToString());
+						DateTime currentDate = DateTime.Parse(_data_row[0].ToString());
+						string currentType = _data_row[2].ToString();
+						string selectedType = _main_form.InventoryLogType.SelectedItem.ToString();
+
+						if ((startDate <= currentDate) && (endDate >= currentDate) && (currentType == selectedType))
+						{
+							AddRowAfterFiltering(_data_row, _row_exists, _current_row, _quantity, _date_string);
+						}
+					}
+					else if (isDateFiltered())
+					{
+						DateTime startDate = DateTime.Parse(_main_form.InventoryLogStartDate.SelectedItem.ToString());
+						DateTime endDate = DateTime.Parse(_main_form.InventoryLogEndDate.SelectedItem.ToString());
+						DateTime currentDate = DateTime.Parse(_data_row[0].ToString());
+
+						if ((startDate <= currentDate) && (endDate >= currentDate))
+						{
+							AddRowAfterFiltering(_data_row, _row_exists, _current_row, _quantity, _date_string);
+						}
+					}
+					else if (isTypeFiltered())
+					{
+						string currentType = _data_row[2].ToString();
+						string selectedType = _main_form.InventoryLogType.SelectedItem.ToString();
+
+						if (currentType == selectedType)
+						{
+							AddRowAfterFiltering(_data_row, _row_exists, _current_row, _quantity, _date_string);
+						}
 					}
 					else 
 					{
-						_inventory_data_table.Rows.Add(_data_row);
+						AddRowAfterFiltering(_data_row, _row_exists, _current_row, _quantity, _date_string);
 					}
 				}
+			}
+		}
+
+		private void AddRowAfterFiltering(DataRow _data_row, bool _row_exists, int _current_row, string _quantity, string _date_string) 
+		{
+			if ((_row_exists) && (_main_form.InvetorySummedOrNot.SelectedItem.ToString() == _summed))
+			{
+				float _current_total_qnty = float.Parse(_inventory_data_table.Rows[_current_row][_quantity].ToString());
+				float _new_total_qnty = _current_total_qnty + float.Parse(_data_row[_quantity].ToString());
+				_inventory_data_table.Rows[_current_row][_quantity] = _new_total_qnty.ToString();
+				_inventory_data_table.Rows[_current_row][_date_string] = _data_row[_date_string];
+			}
+			else
+			{
+				_inventory_data_table.Rows.Add(_data_row);
 			}
 		}
 
@@ -314,7 +359,6 @@ namespace Green_Enviro_App
 				return true;
 			}
 		}
-
 
 		private void PopulateGridView() 
 		{

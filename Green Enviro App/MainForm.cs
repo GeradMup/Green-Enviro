@@ -435,7 +435,7 @@ namespace Green_Enviro_App
 
         private void InvetorySummedOrNot_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _inventory.MonthSelected();
+            _inventory.DisplayLog();
         }
 
         // *******************************************************************************************************************
@@ -492,6 +492,11 @@ namespace Green_Enviro_App
 
 		private void PrintPoliceRegisterBtn_Click(object sender, EventArgs e)
 		{
+            if (this.PurchaseLogMonth.SelectedItem == null) 
+            {
+                return;
+            }
+
             DGVPrinter printer = new DGVPrinter();
             printer.Title = "Police Register";
             printer.SubTitle = DateTime.Now.ToString("dddd, dd MMMM yyyy, HH:mm ") + DateTime.Now.ToString("tt").ToUpper();
