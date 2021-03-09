@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Drawing2D;
 
 namespace Green_Enviro_App
 {
@@ -562,10 +563,10 @@ namespace Green_Enviro_App
 
         public void PrintReceipt() 
         {
-            int _width_offset = 30;
+            int _width_offset = 35;
             
             int _content_height = _main_form.receiptBox.Lines.Count() * 20;
-            int _header_height = 50;
+            int _header_height = 120;
 
             PrintDocument _receipt_content = new PrintDocument();
             PrintDocument _receipt_header = new PrintDocument();
@@ -594,12 +595,21 @@ namespace Green_Enviro_App
         {
             float _font_size = 15F;
 
-            //string _path_to_logo_picture = @"..//..//resources//Logo.jpg";
-            //Image _logo_picture = Image.FromFile(_path_to_logo_picture);
+            string _path_to_logo_picture = @"..//..//resources//Logo.jpg";
+            Image _logo_picture = Image.FromFile(_path_to_logo_picture);
+            //_logo_picture = ResizeLogoImage(_logo_picture, 12, 40);
+            //string _header_text = "GREEN ENVIRO\nSA RECYCLING";
+            //e.Graphics.DrawString(_header_text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black, 0,-5);
+            e.Graphics.DrawImage(_logo_picture, 0, 0, 190, 80);
+        }
 
-            string _header_text = "GREEN ENVIRO\nSA RECYCLING";
-            e.Graphics.DrawString(_header_text, new Font("Consolas", _font_size), System.Drawing.Brushes.Black, 0,-5);
-            //e.Graphics.DrawImage(_logo_picture, 0, 0);
+        public static Image ResizeLogoImage(Image image, int new_height, int new_width)
+        {
+            Bitmap new_image = new Bitmap(new_width, new_height);
+            Graphics g = Graphics.FromImage((Image)new_image);
+            g.InterpolationMode = InterpolationMode.High;
+            g.DrawImage(image, 0, 0, new_width, new_height);
+            return new_image;
         }
 
         public void EditFloat() 
