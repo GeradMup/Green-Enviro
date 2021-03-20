@@ -249,7 +249,7 @@ namespace Green_Enviro_App
 			string _customer_name = NewCustomerName.Text;
 			string _customer_id = NewCustomerID.Text;
 			string _customer_surname = NewCustomerSurname.Text;
-			string _customer_cell = NewCustomerCell.Value.ToString();
+			string _customer_cell = "0" + NewCustomerCell.Value.ToString();
 			string _customer_address = NewCustomerAddress.Text;
 
 

@@ -34,7 +34,7 @@ namespace Green_Enviro_App
         string _receipt_content = "";
         float _running_total = 0;
         float _running_kg_total = 0;
-        string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
+        string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n" + " Cell: 00000000000\n";
         string _single_purchase_entry;
         string _single_quantity_entry;
         RichTextBox _receipt_print_content = new RichTextBox();
@@ -420,6 +420,12 @@ namespace Green_Enviro_App
             _customer_cell_number = _row[_only_row][_cell_number_column].ToString();
             _customer_address = _row[_only_row][_address_column].ToString();
 
+            //Make sure names and surnames are composed of one word only
+            _customer_name = truncateString(_customer_name);
+            _customer_surname = truncateString(_customer_surname);
+
+            //Add front zero to phone number
+            _customer_cell_number = addFrontZero(_customer_cell_number);
 
             _main_form.CustomerIDNumberTextBox.Text = _customer_id_number;
             _main_form.CustomerNameTextBox.Text = _customer_name;
@@ -431,13 +437,37 @@ namespace Green_Enviro_App
             Image _id_picture = Image.FromFile(_path_to_id_picture);
             _main_form.IDPictureBox.Image = _id_picture;
            
-            _customer_details = " Customer: " + _customer_surname + ", " + _customer_number + "\n" + " ID: " + _customer_id_number+ "\n";
+            _customer_details = " Customer: " + _customer_surname + ", " + _customer_number + "\n" + " ID: " + _customer_id_number+ "\n" + " Cell: " + _customer_cell_number + "\n";
 
             //Call this function update the info on the receipt
             setupReceipt();
             _customer_selected = true;
         }
 
+
+        //Trims the string and returns the first word only
+        private string truncateString(string _string) 
+        {
+            string[] splittedString = _string.Split(' ');
+            return splittedString[0];
+        }
+
+
+        //Add zero in front of number if it doesn't exist
+        private string addFrontZero(string _number) 
+        {
+            string cellNumber = "";
+            if (_number[0] != '0')
+            {
+                cellNumber = "0" + _number;
+            }
+            else 
+            {
+                cellNumber = _number;
+            }
+
+            return cellNumber;
+        }
 		private void ClearCustomerDetails()
 		{
             _main_form.CustomerIDNumberTextBox.Text = "";
@@ -509,7 +539,7 @@ namespace Green_Enviro_App
             _receipt_content = "";
             _running_total = 0;
             _running_kg_total = 0;
-            _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n";
+            _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n" + " Cell: 0000000000\n";
             _purchased_items.Clear();
             _purchased_quantities.Clear();
             setupReceipt();
