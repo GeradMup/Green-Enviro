@@ -504,7 +504,7 @@ namespace Green_Enviro_App
             printer.PageNumbers = true;
             printer.PageNumberInHeader = false;
             printer.PorportionalColumns = true;
-            printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.CellWidth;
+            //printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.CellWidth;
             printer.HeaderCellAlignment = StringAlignment.Near;
             printer.Footer = "Green Enviro SA Recycling";
             printer.FooterSpacing = 5;
