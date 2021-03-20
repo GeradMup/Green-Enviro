@@ -131,7 +131,6 @@ namespace Green_Enviro_App
 			return _table;
 		}
 
-
 		// Insertion function adding new users to the database yet not updating the database
 		public void InsertNewUser(string username,string password, string email_address,int permission_level)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -86,11 +87,11 @@ namespace Green_Enviro_App
 
 					if (dataWords[_type_column] == _ferrous)
 					{
-						_total_ferrous_purchases += float.Parse(dataWords[_amount_column]);
+						_total_ferrous_purchases += float.Parse(dataWords[_amount_column], CultureInfo.InvariantCulture);
 					}
 					else if (dataWords[_type_column] == _non_ferrous)
 					{
-						_total_non_ferrous_purchases += float.Parse(dataWords[_amount_column]);
+						_total_non_ferrous_purchases += float.Parse(dataWords[_amount_column], CultureInfo.InvariantCulture);
 					}
 				}
 			}
@@ -115,11 +116,11 @@ namespace Green_Enviro_App
 
 					if (dataWords[_type_column] == _ferrous)
 					{
-						_total_ferrous_sales += float.Parse(dataWords[_amount_column]);
+						_total_ferrous_sales += float.Parse(dataWords[_amount_column], CultureInfo.InvariantCulture);
 					}
 					else if (dataWords[_type_column] == _non_ferrous)
 					{
-						_total_non_ferrous_sales += float.Parse(dataWords[_amount_column]);
+						_total_non_ferrous_sales += float.Parse(dataWords[_amount_column], CultureInfo.InvariantCulture);
 					}
 				}
 			}
@@ -139,7 +140,7 @@ namespace Green_Enviro_App
 				{
 					//For each line, we want a list of the words on the line seperated by the comma
 					string[] dataWords = _wages_lines[_row].Split(',');
-					_total_wages += float.Parse(dataWords[_amount_column]);
+					_total_wages += float.Parse(dataWords[_amount_column], CultureInfo.InvariantCulture);
 				}
 			}
 		}
@@ -157,14 +158,14 @@ namespace Green_Enviro_App
 				{
 					//For each line, we want a list of the words on the line seperated by the comma
 					string[] dataWords = _expenses_lines[_row].Split(',');
-					_total_expenses += float.Parse(dataWords[_amount_column]);
+					_total_expenses += float.Parse(dataWords[_amount_column], CultureInfo.InvariantCulture);
 				}
 			}
 		}
 
 		private void Float(string _path_to_float_file) 
 		{
-		 	_total_float =  float.Parse(File.ReadAllText(_path_to_float_file));
+		 	_total_float =  float.Parse(File.ReadAllText(_path_to_float_file), CultureInfo.InvariantCulture);
 		}
 
 		private void Profit() 

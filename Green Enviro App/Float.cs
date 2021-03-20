@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,12 +16,13 @@ namespace Green_Enviro_App
 	{
 		Receipt _receipt;
 		Main_Form _main_form;
-		float _float_value;
-		float _total_float;
+		double _float_value;
+		double _total_float;
 
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
-		string _path_to_float = @"..//..//resources//Float//" + _month + "_float.csv";
-		string _path_to_total_float = @"..//..//resources//Float//" + _month + "_total_float.csv";
+		static string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+		string _path_to_float = path + @"\resources\Float\" + _month + "_float.csv";
+		string _path_to_total_float = path + @"\resources\Float\" + _month + "_total_float.csv";
 
 		public Float(Receipt rcpt, Main_Form main)
 		{
@@ -63,17 +65,17 @@ namespace Green_Enviro_App
 
 		public void UpdateFloat(float AddedAmout)
 		{
-			float _new_float = _float_value + AddedAmout;
+			double _new_float = _float_value + AddedAmout;
 			UpdateFloatFiles(_new_float, _path_to_float);
 
 			if (AddedAmout > 0)
 			{
-				float _new_total_float = _total_float + AddedAmout;
+				double _new_total_float = _total_float + AddedAmout;
 				UpdateFloatFiles(_new_total_float, _path_to_total_float);
 			}
 		}
 
-		private void UpdateFloatFiles(float _new_float, string _path_to_file) 
+		private void UpdateFloatFiles(double _new_float, string _path_to_file) 
 		{
 			FileStream fWrite = new FileStream(_path_to_file,
 			FileMode.Open, FileAccess.Write, FileShare.None);
@@ -97,9 +99,12 @@ namespace Green_Enviro_App
 			}
 			//
 
-			_float_value = float.Parse(File.ReadAllText(_path_to_float));
-			_total_float = float.Parse(File.ReadAllText(_path_to_total_float));
+			string _string_float = File.ReadAllText(_path_to_float);
+			string _string_total_float = File.ReadAllText(_path_to_total_float);
 
+			_float_value = double.Parse(_string_float, CultureInfo.InvariantCulture);
+			_total_float = double.Parse(_string_total_float, CultureInfo.InvariantCulture);
+			
 			_main_form.FloatBox.Text = "R " + String.Format("{0:n}", _float_value);
 
 			if (_float_value > 5000)

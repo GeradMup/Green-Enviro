@@ -9,7 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
-
+using System.Globalization;
 
 namespace Green_Enviro_App
 {
@@ -256,8 +256,8 @@ namespace Green_Enviro_App
 		{
 			if ((_row_exists) && (_main_form.InvetorySummedOrNot.SelectedItem.ToString() == _summed))
 			{
-				float _current_total_qnty = float.Parse(_inventory_data_table.Rows[_current_row][_quantity].ToString());
-				float _new_total_qnty = _current_total_qnty + float.Parse(_data_row[_quantity].ToString());
+				float _current_total_qnty = float.Parse(_inventory_data_table.Rows[_current_row][_quantity].ToString(), CultureInfo.InvariantCulture);
+				float _new_total_qnty = _current_total_qnty + float.Parse(_data_row[_quantity].ToString(), CultureInfo.InvariantCulture);
 				_inventory_data_table.Rows[_current_row][_quantity] = _new_total_qnty.ToString();
 				_inventory_data_table.Rows[_current_row][_date_string] = _data_row[_date_string];
 			}
@@ -378,7 +378,7 @@ namespace Green_Enviro_App
 				{
 					if (_row.Cells[3].Value != null)
 					{
-						float _value = float.Parse(_row.Cells[3].Value.ToString());
+						float _value = float.Parse(_row.Cells[3].Value.ToString(), CultureInfo.InvariantCulture);
 						if (_value < 0)
 						{
 							_main_form.InventoryLogGridView.Rows[_row.Index].DefaultCellStyle.BackColor = Color.GreenYellow;

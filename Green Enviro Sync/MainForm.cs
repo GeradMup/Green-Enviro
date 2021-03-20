@@ -140,10 +140,12 @@ namespace Green_Enviro_Sync
 
 			//Now try to upload the database
 			var uploadStream = File.Open(pathToLocalFile, FileMode.Open);
+			string dayOfTheMonth = DateTime.Now.ToString("dddd, dd");
 
 			var task = new FirebaseStorage(_data_bucket_name)
-				.Child(parentDirectory)                 //Parent Directory
-				.Child(nameOfFile)         //Actual File Name
+				.Child(parentDirectory)		//Parent Directory
+				.Child(dayOfTheMonth)		//First Child Directory
+				.Child(nameOfFile)			//Actual File Name
 				.PutAsync(uploadStream);
 
 			task.Progress.ProgressChanged += (s, e) => ProgressBar();
@@ -334,7 +336,7 @@ namespace Green_Enviro_Sync
 				DatabaseVersion databaseVersion = _response.ResultAs<DatabaseVersion>();
 
 				_database_version = databaseVersion.Version;
-				if (_database_version > 10)
+				if (_database_version > 365)
 				{
 					_database_version = 1;
 				}
@@ -344,7 +346,7 @@ namespace Green_Enviro_Sync
 				}
 
 				SetDatabaseVersion(_firebase_version_node, _database_version);
-				string parentDirectory = "Database_file" + _database_version;
+				string parentDirectory = DateTime.Now.ToString("MMMM yyyy");
 				UploadDatabase(1, _path_to_db_file_main, _db_file_name, parentDirectory);
 				//return _database_version;
 			}

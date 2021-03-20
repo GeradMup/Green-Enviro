@@ -7,6 +7,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+using System.Globalization;
 
 namespace Green_Enviro_App
 {
@@ -157,7 +158,7 @@ namespace Green_Enviro_App
 
 			for (int _row = 0; _row < _main_form.WageLogGridView.Rows.Count - 1; _row++)
 			{
-				_total_amount += float.Parse(_main_form.WageLogGridView.Rows[_row].Cells[_amount_column].Value.ToString());
+				_total_amount += float.Parse(_main_form.WageLogGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
 			}
 
 			DataTable _totals_table = new DataTable();

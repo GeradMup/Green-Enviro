@@ -210,7 +210,6 @@ namespace Green_Enviro_App
                 {
                     PromptDatabaseSnyc();
                 }
-                
             }
             else
             {
@@ -225,6 +224,7 @@ namespace Green_Enviro_App
         {
             ClearFields();
             this.Hide();
+            _mainForm._user_permission_level = _user_permission_level;
             _mainForm.Activate();
             _mainForm.Show();
         }

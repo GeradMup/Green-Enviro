@@ -13,6 +13,10 @@
 *.png
 *.jpg
 *.msi
+*.pdf
+*.xlsm
+*.ini
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

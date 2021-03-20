@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 
 namespace Green_Enviro_App
 {
@@ -213,7 +214,7 @@ namespace Green_Enviro_App
                     MessageBox.Show("Please insert the Price");
                     return;
                 }
-                _price = float.Parse(_main_form.PriceBox.Text);
+                _price = float.Parse(_main_form.PriceBox.Text, CultureInfo.InvariantCulture);
             }
             else 
             {
@@ -222,7 +223,7 @@ namespace Green_Enviro_App
             }
 
             //Converts the string value into a floating point value
-            float _kilos = float.Parse(_main_form.quantityBox.Text);
+            float _kilos = float.Parse(_main_form.quantityBox.Text, CultureInfo.InvariantCulture);
             float _amount = _price * _kilos;
             _running_total += _amount;
             _running_kg_total += _kilos;
@@ -360,7 +361,7 @@ namespace Green_Enviro_App
                 _price_column = 2;
             }
             
-            float _price = float.Parse(_row[_only_row][_price_column].ToString());
+            float _price = float.Parse(_row[_only_row][_price_column].ToString(), CultureInfo.InvariantCulture);
 
             return _price;
         }

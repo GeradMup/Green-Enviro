@@ -34,7 +34,7 @@ namespace Green_Enviro_App
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
 
-        int _user_permission_level = 0;
+        public int _user_permission_level = 0;
 
 		/// <summary>
 		/// This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.
@@ -504,6 +504,7 @@ namespace Green_Enviro_App
             printer.PageNumbers = true;
             printer.PageNumberInHeader = false;
             printer.PorportionalColumns = true;
+            printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.CellWidth;
             printer.HeaderCellAlignment = StringAlignment.Near;
             printer.Footer = "Green Enviro SA Recycling";
             printer.FooterSpacing = 5;
@@ -518,7 +519,6 @@ namespace Green_Enviro_App
             PurchseLogGridView.Rows[PurchseLogGridView.Rows.Count - 1].Visible = false;
             var fontInfo = PurchseLogGridView.Font;
             PurchseLogGridView.DefaultCellStyle.Font = new Font("Consolas", 10);
-
             printer.PrintDataGridView(this.PurchseLogGridView);
             PurchseLogGridView.Rows[PurchseLogGridView.Rows.Count - 1].Visible = true;
 

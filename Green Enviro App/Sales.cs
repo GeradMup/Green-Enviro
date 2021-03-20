@@ -7,6 +7,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+using System.Globalization;
 
 namespace Green_Enviro_App
 {
@@ -209,8 +210,8 @@ namespace Green_Enviro_App
 
 			for (int _row = 0; _row < _main_form.SalesLogGridView.Rows.Count - 1; _row++)
 			{
-				_total_amount += float.Parse(_main_form.SalesLogGridView.Rows[_row].Cells[_amount_column].Value.ToString());
-				_total_kg += float.Parse(_main_form.SalesLogGridView.Rows[_row].Cells[_kg_column].Value.ToString());
+				_total_amount += float.Parse(_main_form.SalesLogGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
+				_total_kg += float.Parse(_main_form.SalesLogGridView.Rows[_row].Cells[_kg_column].Value.ToString(), CultureInfo.InvariantCulture);
 			}
 
 			//CustomMessageBox box = new CustomMessageBox("Total", "Kg's : " + _total_kg.ToString() + "\n" + "Amount : " + _total_amount.ToString());

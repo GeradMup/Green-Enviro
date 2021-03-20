@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Globalization;
 
 namespace Green_Enviro_App
 {
@@ -16,7 +17,8 @@ namespace Green_Enviro_App
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
-		string _path_to_purchases = @"..//..//resources//Logs//Purchases//" + _month + ".csv";
+		static string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+		string _path_to_purchases = path + @"\resources\Logs\Purchases\" + _month + ".csv";
 		Main_Form _main_form;
 
 		DataTable _purchases_data_table = new DataTable();
@@ -37,7 +39,7 @@ namespace Green_Enviro_App
 		public void SetupPurchaseLogs()
 		{
 			//This function will get the names of all the purchase log files that exists in the purchases folder
-			string _purchase_logs_path = @"..//..//resources//Logs//Purchases";
+			string _purchase_logs_path = path + @"\resources\Logs\Purchases";
 			DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);  //Assuming Test is your Folder
 			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
 			foreach (FileInfo _file in _files)
@@ -47,7 +49,6 @@ namespace Green_Enviro_App
 				_main_form.PurchaseLogMonth.Items.Add(_file_name);
 			}
 		}
-
 
 		public void setTypes(string F, string N) 
 		{
@@ -123,7 +124,7 @@ namespace Green_Enviro_App
 			_purchases_data_table.Clear();
 
 			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = @"..//..//resources//Logs//Purchases//" + _selected_month + ".csv";
+			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
 
 			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
 			if (lines.Length > 0)
@@ -213,7 +214,6 @@ namespace Green_Enviro_App
 			_main_form.PurchseLogGridView.Refresh();
 		}
 
-
 		//This function will add up the KG's and Amount column on the Data Grid View and adds a row to show the totals
 		private void AddTotalsRow() 
 		{
@@ -225,8 +225,8 @@ namespace Green_Enviro_App
 
 			for (int _row = 0; _row < _main_form.PurchseLogGridView.Rows.Count - 1; _row++)
 			{
-				_total_amount += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_amount_column].Value.ToString());
-				_total_kg += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_kg_column].Value.ToString());
+				_total_amount += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
+				_total_kg += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_kg_column].Value.ToString(), CultureInfo.InvariantCulture);
 			}
 
 			//CustomMessageBox box = new CustomMessageBox("Total", "Kg's : " + _total_kg.ToString() + "\n" + "Amount : " + _total_amount.ToString());
@@ -269,7 +269,7 @@ namespace Green_Enviro_App
 			}
 
 			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = @"..//..//resources//Logs//Purchases//" + _selected_month + ".csv";
+			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
 
 			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
 			HashSet<string> _dates = new HashSet<string>();
