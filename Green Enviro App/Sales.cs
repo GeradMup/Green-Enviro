@@ -207,9 +207,8 @@ namespace Green_Enviro_App
 			int _kg_column = 2;
 			int _amount_column = 3;
 
-
 			for (int _row = 0; _row < _main_form.SalesLogGridView.Rows.Count - 1; _row++)
-			{
+			{ 
 				_total_amount += float.Parse(_main_form.SalesLogGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
 				_total_kg += float.Parse(_main_form.SalesLogGridView.Rows[_row].Cells[_kg_column].Value.ToString(), CultureInfo.InvariantCulture);
 			}

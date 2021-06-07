@@ -249,7 +249,7 @@ namespace Green_Enviro_App
             setupReceipt();
 
             //Create the record for Logging
-            string _date = DateTime.Now.ToString("dd MMMM yyyy");
+            string _date = DateTime.Now.ToString("dd MMMM yyyy [HH:mm]");
             string _item_type = ItemType(_item_name);
             if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase)
             {

@@ -68,7 +68,7 @@ namespace Green_Enviro_App
 			//If the file does not exist, create it
 			if (!File.Exists(_path_to_purchases))
 			{
-				string _purchases_file_headers = "Date,Name,Surname,ID,No.,Item,Quantity,Price,Amount,Type";
+				string _purchases_file_headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type";
 				StringBuilder _csv_content = new StringBuilder();
 				_csv_content.AppendLine(_purchases_file_headers);
 				//_csv_content.AppendLine("\n");
@@ -196,9 +196,15 @@ namespace Green_Enviro_App
 		private void PopulateGridView() 
 		{
 			_main_form.PurchseLogGridView.DataSource = _binding_source;
-			_main_form.PurchseLogGridView.Columns[0].FillWeight = 120F;
+			_main_form.PurchseLogGridView.Columns[0].FillWeight = 180F;
+			_main_form.PurchseLogGridView.Columns[1].FillWeight = 100F;
+			_main_form.PurchseLogGridView.Columns[2].FillWeight = 110F;
 			_main_form.PurchseLogGridView.Columns[3].FillWeight = 130F;
-			_main_form.PurchseLogGridView.Columns[4].FillWeight = 50F;
+			_main_form.PurchseLogGridView.Columns[4].FillWeight = 40F;
+			_main_form.PurchseLogGridView.Columns[5].FillWeight = 50F;
+			_main_form.PurchseLogGridView.Columns[6].FillWeight = 50F;
+			_main_form.PurchseLogGridView.Columns[7].FillWeight = 50F;
+			_main_form.PurchseLogGridView.Columns[8].FillWeight = 60F;
 
 			//Disables the ability to sort columns using the headers
 			foreach (DataGridViewColumn _column in _main_form.PurchseLogGridView.Columns)
@@ -222,8 +228,7 @@ namespace Green_Enviro_App
 			int _kg_column = 6;
 			int _amount_column = 8;
 
-
-			for (int _row = 0; _row < _main_form.PurchseLogGridView.Rows.Count - 1; _row++)
+			for (int _row = 0; _row < _main_form.PurchseLogGridView.Rows.Count; _row++)
 			{
 				_total_amount += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
 				_total_kg += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_kg_column].Value.ToString(), CultureInfo.InvariantCulture);
