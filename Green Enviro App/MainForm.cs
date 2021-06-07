@@ -33,6 +33,7 @@ namespace Green_Enviro_App
 
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
+        bool starting = true;
 
         public int _user_permission_level = 0;
 
@@ -528,6 +529,18 @@ namespace Green_Enviro_App
 		private void Main_Form_FormClosed(object sender, FormClosedEventArgs e)
 		{
             Application.Exit();
+		}
+
+		private void ReceiptSaleOrPurchase_SelectedIndexChanged(object sender, EventArgs e)
+		{
+            if (starting == true)
+            {
+                starting = false;
+            }
+            else 
+            {
+                _receipt.SaleOrPurchaseChanged();
+            }
 		}
 	}
 }

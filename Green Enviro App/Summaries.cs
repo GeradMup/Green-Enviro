@@ -193,7 +193,7 @@ namespace Green_Enviro_App
 			
 			_main_form.SummariesTotalSales.AppendText("\n R " + _total_sales);
 			
-			_main_form.SummariesTotalFloat.AppendText("\n R" + _total_float);
+			_main_form.SummariesTotalFloat.AppendText("\n R " + _total_float);
 
 			if (_profit < 0)
 			{

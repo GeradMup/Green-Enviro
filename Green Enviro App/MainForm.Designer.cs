@@ -38,6 +38,7 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.purchaseOrSaleIndicator = new System.Windows.Forms.Label();
 			this.CustomerAddress = new System.Windows.Forms.TextBox();
 			this.CustomerCellNumber = new System.Windows.Forms.TextBox();
 			this.label65 = new System.Windows.Forms.Label();
@@ -205,6 +206,21 @@ namespace Green_Enviro_App
 			this.label23 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.salesPRDataGridView = new System.Windows.Forms.DataGridView();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
+			this.label66 = new System.Windows.Forms.Label();
+			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.label67 = new System.Windows.Forms.Label();
+			this.label68 = new System.Windows.Forms.Label();
+			this.label69 = new System.Windows.Forms.Label();
+			this.comboBox5 = new System.Windows.Forms.ComboBox();
+			this.comboBox6 = new System.Windows.Forms.ComboBox();
+			this.comboBox7 = new System.Windows.Forms.ComboBox();
+			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.customersTableAdapter1 = new Green_Enviro_App.Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -224,6 +240,7 @@ namespace Green_Enviro_App
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -247,12 +264,19 @@ namespace Green_Enviro_App
 			this.Summaries.SuspendLayout();
 			this.DestructionCertificates.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
+			this.tabPage1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).BeginInit();
+			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
 			// 
+			this.mainTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.mainTabControl.Controls.Add(this.ReceiptPage);
 			this.mainTabControl.Controls.Add(this.PurchasesPage);
 			this.mainTabControl.Controls.Add(this.SalesPage);
@@ -261,7 +285,8 @@ namespace Green_Enviro_App
 			this.mainTabControl.Controls.Add(this.WagesNewEmployee);
 			this.mainTabControl.Controls.Add(this.Summaries);
 			this.mainTabControl.Controls.Add(this.DestructionCertificates);
-			this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.mainTabControl.Controls.Add(this.tabPage1);
+			this.mainTabControl.Controls.Add(this.tabPage2);
 			this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mainTabControl.HotTrack = true;
 			this.mainTabControl.Location = new System.Drawing.Point(0, 0);
@@ -276,6 +301,7 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.purchaseOrSaleIndicator);
 			this.ReceiptPage.Controls.Add(this.CustomerAddress);
 			this.ReceiptPage.Controls.Add(this.CustomerCellNumber);
 			this.ReceiptPage.Controls.Add(this.label65);
@@ -319,6 +345,17 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
+			// 
+			// purchaseOrSaleIndicator
+			// 
+			this.purchaseOrSaleIndicator.AutoSize = true;
+			this.purchaseOrSaleIndicator.BackColor = System.Drawing.Color.Red;
+			this.purchaseOrSaleIndicator.Font = new System.Drawing.Font("Consolas", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.purchaseOrSaleIndicator.Location = new System.Drawing.Point(300, 17);
+			this.purchaseOrSaleIndicator.Name = "purchaseOrSaleIndicator";
+			this.purchaseOrSaleIndicator.Size = new System.Drawing.Size(160, 59);
+			this.purchaseOrSaleIndicator.TabIndex = 78;
+			this.purchaseOrSaleIndicator.Text = "Start";
 			// 
 			// CustomerAddress
 			// 
@@ -370,12 +407,15 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptSaleOrPurchase
 			// 
+			this.ReceiptSaleOrPurchase.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.ReceiptSaleOrPurchase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ReceiptSaleOrPurchase.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ReceiptSaleOrPurchase.FormattingEnabled = true;
-			this.ReceiptSaleOrPurchase.Location = new System.Drawing.Point(50, 45);
+			this.ReceiptSaleOrPurchase.Location = new System.Drawing.Point(48, 23);
 			this.ReceiptSaleOrPurchase.Name = "ReceiptSaleOrPurchase";
-			this.ReceiptSaleOrPurchase.Size = new System.Drawing.Size(214, 31);
+			this.ReceiptSaleOrPurchase.Size = new System.Drawing.Size(216, 31);
 			this.ReceiptSaleOrPurchase.TabIndex = 35;
+			this.ReceiptSaleOrPurchase.SelectedIndexChanged += new System.EventHandler(this.ReceiptSaleOrPurchase_SelectedIndexChanged);
 			// 
 			// AddFloatBtn
 			// 
@@ -2286,6 +2326,180 @@ namespace Green_Enviro_App
 			this.label21.TabIndex = 5;
 			this.label21.Text = "Quantity";
 			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.salesPRDataGridView);
+			this.tabPage1.Location = new System.Drawing.Point(4, 32);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Size = new System.Drawing.Size(1724, 867);
+			this.tabPage1.TabIndex = 8;
+			this.tabPage1.Text = "Sales PR";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// salesPRDataGridView
+			// 
+			this.salesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.salesPRDataGridView.Location = new System.Drawing.Point(3, 171);
+			this.salesPRDataGridView.Name = "salesPRDataGridView";
+			this.salesPRDataGridView.RowHeadersWidth = 51;
+			this.salesPRDataGridView.RowTemplate.Height = 24;
+			this.salesPRDataGridView.Size = new System.Drawing.Size(1713, 688);
+			this.salesPRDataGridView.TabIndex = 0;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.button2);
+			this.tabPage2.Controls.Add(this.button3);
+			this.tabPage2.Controls.Add(this.button4);
+			this.tabPage2.Controls.Add(this.label66);
+			this.tabPage2.Controls.Add(this.comboBox4);
+			this.tabPage2.Controls.Add(this.label67);
+			this.tabPage2.Controls.Add(this.label68);
+			this.tabPage2.Controls.Add(this.label69);
+			this.tabPage2.Controls.Add(this.comboBox5);
+			this.tabPage2.Controls.Add(this.comboBox6);
+			this.tabPage2.Controls.Add(this.comboBox7);
+			this.tabPage2.Controls.Add(this.PurchasesPRDataGridView);
+			this.tabPage2.Location = new System.Drawing.Point(4, 32);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Size = new System.Drawing.Size(1724, 867);
+			this.tabPage2.TabIndex = 9;
+			this.tabPage2.Text = "Purchases PR";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(736, 110);
+			this.button2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(265, 57);
+			this.button2.TabIndex = 30;
+			this.button2.Text = "Print Register";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(371, 110);
+			this.button3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(297, 57);
+			this.button3.TabIndex = 29;
+			this.button3.Text = "Remove Filters";
+			this.button3.UseVisualStyleBackColor = true;
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(36, 110);
+			this.button4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(265, 57);
+			this.button4.TabIndex = 28;
+			this.button4.Text = "Filter";
+			this.button4.UseVisualStyleBackColor = true;
+			// 
+			// label66
+			// 
+			this.label66.AutoSize = true;
+			this.label66.Location = new System.Drawing.Point(31, 17);
+			this.label66.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label66.Name = "label66";
+			this.label66.Size = new System.Drawing.Size(65, 23);
+			this.label66.TabIndex = 27;
+			this.label66.Text = "Month";
+			// 
+			// comboBox4
+			// 
+			this.comboBox4.DropDownHeight = 300;
+			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox4.FormattingEnabled = true;
+			this.comboBox4.IntegralHeight = false;
+			this.comboBox4.ItemHeight = 23;
+			this.comboBox4.Location = new System.Drawing.Point(36, 49);
+			this.comboBox4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.comboBox4.Name = "comboBox4";
+			this.comboBox4.Size = new System.Drawing.Size(269, 31);
+			this.comboBox4.TabIndex = 26;
+			// 
+			// label67
+			// 
+			this.label67.AutoSize = true;
+			this.label67.Location = new System.Drawing.Point(1091, 17);
+			this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label67.Name = "label67";
+			this.label67.Size = new System.Drawing.Size(54, 23);
+			this.label67.TabIndex = 25;
+			this.label67.Text = "Type";
+			// 
+			// label68
+			// 
+			this.label68.AutoSize = true;
+			this.label68.Location = new System.Drawing.Point(732, 17);
+			this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label68.Name = "label68";
+			this.label68.Size = new System.Drawing.Size(98, 23);
+			this.label68.TabIndex = 24;
+			this.label68.Text = "End Date";
+			// 
+			// label69
+			// 
+			this.label69.AutoSize = true;
+			this.label69.Location = new System.Drawing.Point(367, 17);
+			this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label69.Name = "label69";
+			this.label69.Size = new System.Drawing.Size(120, 23);
+			this.label69.TabIndex = 23;
+			this.label69.Text = "Start Date";
+			// 
+			// comboBox5
+			// 
+			this.comboBox5.DropDownHeight = 300;
+			this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox5.FormattingEnabled = true;
+			this.comboBox5.IntegralHeight = false;
+			this.comboBox5.ItemHeight = 23;
+			this.comboBox5.Location = new System.Drawing.Point(1095, 49);
+			this.comboBox5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.comboBox5.Name = "comboBox5";
+			this.comboBox5.Size = new System.Drawing.Size(269, 31);
+			this.comboBox5.TabIndex = 22;
+			// 
+			// comboBox6
+			// 
+			this.comboBox6.DropDownHeight = 300;
+			this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox6.FormattingEnabled = true;
+			this.comboBox6.IntegralHeight = false;
+			this.comboBox6.ItemHeight = 23;
+			this.comboBox6.Location = new System.Drawing.Point(736, 49);
+			this.comboBox6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.comboBox6.Name = "comboBox6";
+			this.comboBox6.Size = new System.Drawing.Size(289, 31);
+			this.comboBox6.TabIndex = 21;
+			// 
+			// comboBox7
+			// 
+			this.comboBox7.DropDownHeight = 300;
+			this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox7.FormattingEnabled = true;
+			this.comboBox7.IntegralHeight = false;
+			this.comboBox7.ItemHeight = 23;
+			this.comboBox7.Location = new System.Drawing.Point(371, 49);
+			this.comboBox7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.comboBox7.Name = "comboBox7";
+			this.comboBox7.Size = new System.Drawing.Size(297, 31);
+			this.comboBox7.TabIndex = 20;
+			// 
+			// PurchasesPRDataGridView
+			// 
+			this.PurchasesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.PurchasesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.PurchasesPRDataGridView.Location = new System.Drawing.Point(36, 198);
+			this.PurchasesPRDataGridView.Name = "PurchasesPRDataGridView";
+			this.PurchasesPRDataGridView.RowHeadersWidth = 51;
+			this.PurchasesPRDataGridView.RowTemplate.Height = 24;
+			this.PurchasesPRDataGridView.Size = new System.Drawing.Size(1655, 661);
+			this.PurchasesPRDataGridView.TabIndex = 0;
+			// 
 			// customersTableAdapter1
 			// 
 			this.customersTableAdapter1.ClearBeforeFill = true;
@@ -2478,8 +2692,11 @@ namespace Green_Enviro_App
 			// 
 			// Main_Form
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoSize = true;
+			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.BackColor = System.Drawing.Color.LightGray;
 			this.ClientSize = new System.Drawing.Size(1732, 903);
 			this.Controls.Add(this.mainTabControl);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -2524,6 +2741,11 @@ namespace Green_Enviro_App
 			this.DestructionCertificates.ResumeLayout(false);
 			this.DestructionCertificates.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
+			this.tabPage1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).EndInit();
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
@@ -2795,5 +3017,22 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.TextBox CustomerCellNumber;
 		private System.Windows.Forms.Label label65;
 		private System.Windows.Forms.Label label64;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.DataGridView salesPRDataGridView;
+		private System.Windows.Forms.DataGridView PurchasesPRDataGridView;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Label label66;
+		public System.Windows.Forms.ComboBox comboBox4;
+		private System.Windows.Forms.Label label67;
+		private System.Windows.Forms.Label label68;
+		private System.Windows.Forms.Label label69;
+		public System.Windows.Forms.ComboBox comboBox5;
+		public System.Windows.Forms.ComboBox comboBox6;
+		public System.Windows.Forms.ComboBox comboBox7;
+		private System.Windows.Forms.ColorDialog colorDialog1;
+		public System.Windows.Forms.Label purchaseOrSaleIndicator;
 	}
 }

@@ -68,6 +68,7 @@ namespace Green_Enviro_App
 			this.usernameField.Name = "usernameField";
 			this.usernameField.Size = new System.Drawing.Size(286, 31);
 			this.usernameField.TabIndex = 3;
+			this.usernameField.Text = "GerryMup";
 			// 
 			// label1
 			// 
@@ -98,6 +99,7 @@ namespace Green_Enviro_App
 			this.passwordField.PasswordChar = '*';
 			this.passwordField.Size = new System.Drawing.Size(284, 32);
 			this.passwordField.TabIndex = 6;
+			this.passwordField.Text = "Master";
 			this.passwordField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordField_KeyPress);
 			// 
 			// label3
@@ -182,7 +184,6 @@ namespace Green_Enviro_App
 			this.Text = "Green Enviro SA Recycling";
 			this.Activated += new System.EventHandler(this.LoginForm_Activated);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
-			
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginForm_KeyPress);
 			this.ResumeLayout(false);
 			this.PerformLayout();

@@ -87,7 +87,7 @@ namespace Green_Enviro_App
             //SetupFloat();
         }
         
-        public void SetupPriceList()
+        public void SetupPriceList() 
         {
             //Gets all items from the database and stores them in a DataTable named _items
             _items = _database.SelectAll("Items");
@@ -143,7 +143,7 @@ namespace Green_Enviro_App
             }
         }
 
-        private void setupReceipt()
+        private void setupReceipt() 
 		{
             _main_form.receiptBox.ReadOnly = false;
             _main_form.receiptBox.Clear();
@@ -468,7 +468,7 @@ namespace Green_Enviro_App
 
             return cellNumber;
         }
-		private void ClearCustomerDetails()
+		private void ClearCustomerDetails() 
 		{
             _main_form.CustomerIDNumberTextBox.Text = "";
             _main_form.CustomerNameTextBox.Text = "";
@@ -478,7 +478,7 @@ namespace Green_Enviro_App
             _main_form.IDPictureBox.Image = null;
             _customer_selected = false;
         }
-
+         
 		public void CompletePurchaseOrSale() 
         {
             if ((_purchased_items.Count == 0) 
@@ -634,7 +634,7 @@ namespace Green_Enviro_App
             e.Graphics.DrawImage(_logo_picture, 0, 0, 190, 80);
         }
 
-        public static Image ResizeLogoImage(Image image, int new_height, int new_width)
+        public static Image ResizeLogoImage(Image image, int new_height, int new_width) 
         {
             Bitmap new_image = new Bitmap(new_width, new_height);
             Graphics g = Graphics.FromImage((Image)new_image);
@@ -649,6 +649,33 @@ namespace Green_Enviro_App
             _float.Show();
             _float.Enabled = true;
             _main_form.Enabled = false;
+        }
+
+
+		/// <summary>
+        /// Sales or purchase option changed.
+        /// Function to change how the colours are updated when the transaction type changes
+        /// Green represents a normal purchase
+        /// Yellow represents a formal sale
+        /// Red represents a casual sale
+        /// </summary>
+		public void SaleOrPurchaseChanged() 
+        {
+            _main_form.purchaseOrSaleIndicator.Text = _main_form.ReceiptSaleOrPurchase.SelectedItem.ToString();
+            if (_main_form.purchaseOrSaleIndicator.Text == _purchase) 
+            {
+                _main_form.purchaseOrSaleIndicator.BackColor = Color.GreenYellow;
+            }
+            if (_main_form.purchaseOrSaleIndicator.Text == _casual_sale) 
+            {
+                _main_form.purchaseOrSaleIndicator.BackColor = Color.Red;
+            }
+            if (_main_form.purchaseOrSaleIndicator.Text == _formal_sale) 
+            {
+                _main_form.purchaseOrSaleIndicator.BackColor = Color.Yellow;
+            }
+            
+            
         }
 
 	}

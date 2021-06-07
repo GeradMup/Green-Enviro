@@ -96,6 +96,13 @@ namespace Green_Enviro_App
 			}
 		}
 
+		/// <summary>
+		/// This function will pre-fill the customer information so for editing.
+		/// </summary>
+		/// <param name="customerInfo">
+		/// The customer information. 
+		/// {A struct that contains the name, number, ID, surname, address, cell number of the customer}
+		/// </param>
 		private void PrefillFields(CustomerInfo customerInfo) 
 		{
 			NewCustomerNumber.Value = decimal.Parse(customerInfo._number);
@@ -238,7 +245,7 @@ namespace Green_Enviro_App
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Failed to save image: \n" + ex.Message);
+				CustomMessageBox mb = new CustomMessageBox(this, CustomMessageBox.success, ex.Message);
 			}
 		}
 
