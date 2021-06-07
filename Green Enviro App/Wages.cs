@@ -189,7 +189,6 @@ namespace Green_Enviro_App
 
 		}
 
-
 		public void MonthSelected()
 		{
 			if (_main_form.WageLogMonth.SelectedItem == null)
@@ -312,9 +311,10 @@ namespace Green_Enviro_App
 			string _new_wage = _date + "," + _employee + "," + _amount;
 			_csv_content.AppendLine(_new_wage);
 
+			string path_to_new_wage = newWagePath();
 			try
 			{
-				File.AppendAllText(_path_to_wages, _csv_content.ToString());
+				File.AppendAllText(path_to_new_wage, _csv_content.ToString());
 				ClearFields();
 				CustomMessageBox newBox = new CustomMessageBox(_main_form, "Success!", "Wage Recorded");
 			}
@@ -322,6 +322,27 @@ namespace Green_Enviro_App
 			{
 				MessageBox.Show("Error! \n" + ex.Message);
 			}
+
+			//Remove all filters and re-load the wage after a new wage is inserted
+			RemoveFilters();
+		}
+
+		private string newWagePath()
+		{
+			string _path_to_save_new_wage;
+
+			//Check if the user is trying to add the new sale to a different month
+			//If no month is selected, the new sale will be added to the current month
+			if (_main_form.WageLogMonth.SelectedItem == null)
+			{
+				_path_to_save_new_wage = _path_to_wages;
+			}
+			else
+			{
+				string selectedMonthAndYear = _main_form.WageLogMonth.SelectedItem.ToString();
+				_path_to_save_new_wage = @"..//..//resources//Logs//Wages//" + selectedMonthAndYear + ".csv";
+			}
+			return _path_to_save_new_wage;
 		}
 
 		//Validate that the user has entered all the information correctly

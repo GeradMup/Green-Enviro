@@ -407,19 +407,19 @@ namespace Green_Enviro_App
 				}
 			}
 
-			
+			string _sale_date = _main_form.SaleDate.Value.ToString("dd MMMM yyyy");
 			string _company = _main_form.SaleCompanyNameList.Text;
 			string _quantity = _main_form.SaleQuantityBx.Value.ToString();
 			string _amount = _main_form.SaleAmount.Value.ToString();
 			string _type = _main_form.SaleTypeBx.Text;
 
-			SaleInfo saleInfo = newSaleInfo();
 			
-			string _new_sale = saleInfo.date + "," + _company + "," + _quantity + "," + _amount + "," + _type;
+			string _new_sale = _sale_date + "," + _company + "," + _quantity + "," + _amount + "," + _type;
 
-			RecordSale(_new_sale, saleInfo.path);
+			RecordSale(_new_sale, newSalePath());
 
-			DisplaySalesLog();
+			//Remove all filters and display the log after a new sale is added
+			RemoveFilters();
 		}
 
 		private void RecordSale(string newSale, string _path_to_save_new_sale) 
@@ -452,48 +452,33 @@ namespace Green_Enviro_App
 				string _amount = sale.price;
 				string _type = sale.itemType;
 				_company = "Casual Sale : " + sale.item;
-				SaleInfo info = newSaleInfo();
 				_new_sale = _sale_date + "," + _company + "," + _quantity + "," + _amount + "," + _type;
-				RecordSale(_new_sale,info.path);
+				RecordSale(_new_sale,newSalePath());
 			}
 		}
 
-		private struct SaleInfo 
-		{
-			public string path { set; get; }
-			public string date { set; get; }
-		};
 		/// <summary>
 		/// This function is used to check if the user is trying to add a new sale 
 		/// to a month different from the currently selected month.
 		/// If the month differs, the new month is obtained, the path to it and the date for logging the sale
 		/// </summary>
 		/// <returns></returns>
-		private SaleInfo newSaleInfo() 
+		private string newSalePath() 
 		{
 			string _path_to_save_new_sale;
-			string _sale_date;
 
 			//Check if the user is trying to add the new sale to a different month
 			//If no month is selected, the new sale will be added to the current month
 			if (_main_form.SalesLogMonth.SelectedItem == null)
 			{
 				_path_to_save_new_sale = _path_to_sales;
-				_sale_date = _main_form.SaleDate.Value.ToString("dd MMMM yyyy");
 			}
 			else
 			{
 				string selectedMonthAndYear = _main_form.SalesLogMonth.SelectedItem.ToString();
 				_path_to_save_new_sale = @"..//..//resources//Logs//Sales//" + selectedMonthAndYear + ".csv";
-				DateTime saleMonthAndYear = DateTime.Parse(selectedMonthAndYear);
-				int lastDayOfMonth = DateTime.DaysInMonth(saleMonthAndYear.Year, saleMonthAndYear.Month);
-				_sale_date = lastDayOfMonth.ToString() + " " + selectedMonthAndYear;
 			}
-
-			SaleInfo info = new SaleInfo();
-			info.path = _path_to_save_new_sale;
-			info.date = _sale_date;
-			return info;
+			return _path_to_save_new_sale;
 		}
 
 		//Validate that the user has entered all the information correctly

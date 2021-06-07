@@ -319,7 +319,10 @@ namespace Green_Enviro_App
 			catch (Exception ex)
 			{
 				MessageBox.Show("Error! \n" + ex.Message);
-			}	
+			}
+
+			//Remove all filters and re-load the expenses log after a new expense is added
+			RemoveFilters();
 		}
 
 		/// <summary>
