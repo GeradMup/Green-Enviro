@@ -188,7 +188,6 @@ namespace Green_Enviro_App
 
 		}
 
-
 		public void MonthSelected()
 		{
 			if (_main_form.ExpensesLogMonth.SelectedItem == null)
@@ -234,7 +233,7 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
-		/// Determines whether a valid date range is select for filtering the Purchase Log.
+		/// Determines whether a valid date range is select for filtering the Expenses Log.
 		/// </summary>
 		/// <returns>
 		///   <c>true</c> if a valid date range is selected; otherwise, <c>false</c>.
@@ -308,18 +307,44 @@ namespace Green_Enviro_App
 			string _new_expense = _date + "," + _description + "," + _amount;
 			_csv_content.AppendLine(_new_expense);
 
+
+			string path_to_save_new_expense = newExpensePath();
+
 			try
 			{
-				File.AppendAllText(_path_to_expenses, _csv_content.ToString());
+				File.AppendAllText(path_to_save_new_expense, _csv_content.ToString());
 				ClearFields();
 				CustomMessageBox newBox = new CustomMessageBox(_main_form, "Success!", "Expense Recorded");
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show("Error! \n" + ex.Message);
+			}	
+		}
+
+		/// <summary>
+		/// This function is used to check if the user is trying to add a new expense 
+		/// to a month different from the currently selected month.
+		/// If the month differs, the new month is obtained, the path to it and the date for logging the expense
+		/// </summary>
+		/// <returns></returns>
+		private string newExpensePath()
+		{
+			string _path_to_save_new_expense;
+
+			//Check if the user is trying to add the new sale to a different month
+			//If no month is selected, the new sale will be added to the current month
+			if (_main_form.ExpensesLogMonth.SelectedItem == null)
+			{
+				_path_to_save_new_expense = _path_to_expenses;
+			}
+			else
+			{
+				string selectedMonthAndYear = _main_form.ExpensesLogMonth.SelectedItem.ToString();
+				_path_to_save_new_expense = @"..//..//resources//Logs//Expenses//" + selectedMonthAndYear + ".csv";
 			}
 
-			
+			return _path_to_save_new_expense;
 		}
 
 		//Validate that the user has entered all the information correctly
