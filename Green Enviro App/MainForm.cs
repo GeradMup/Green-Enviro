@@ -113,7 +113,7 @@ namespace Green_Enviro_App
 
         private void PurchaseBtn_Click(object sender, EventArgs e)
         {
-
+            //Check if the current transaction is to be a purchase or sale first
             if (ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.purchase)
             {
                 if ((_user_permission_level == 2))

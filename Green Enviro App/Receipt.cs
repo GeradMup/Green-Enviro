@@ -58,6 +58,9 @@ namespace Green_Enviro_App
         string _formal_sale = "Formal Sale";
         string _casual_sale = "Casual sale";
 
+        bool dateCaptured = false;
+        string transaction_time = "";
+        string transaction_date_and_time = "";
         public struct PurchaseOrSaleType { 
             public string purchase { get { return "Purchase"; } }
 
@@ -148,7 +151,9 @@ namespace Green_Enviro_App
             _main_form.receiptBox.ReadOnly = false;
             _main_form.receiptBox.Clear();
 
-            string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + DateTime.Now.ToString("hh:mm") + "\n";
+            transaction_time = DateTime.Now.ToString("hh:mm");
+            transaction_date_and_time = DateTime.Now.ToString("dd MMMM yyyy") + " [" + transaction_time + "]";
+            string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + transaction_time + "\n";
             
             Clipboard.SetImage(_main_form.logo.Image);
             _main_form.receiptBox.Paste();
@@ -163,9 +168,9 @@ namespace Green_Enviro_App
             _main_form.receiptBox.AppendText(_date);
             _main_form.receiptBox.AppendText(_customer_details);
             _main_form.receiptBox.AppendText(" ----------------------------\n ");
-            _main_form.receiptBox.AppendText(string.Format("{0,-10}", "ITEMS"));
-            _main_form.receiptBox.AppendText(string.Format("{0,-5}", "KGs"));
-            _main_form.receiptBox.AppendText(string.Format("{0,-6}", "P/Kg"));
+            _main_form.receiptBox.AppendText(string.Format("{0,-9}", "ITEMS"));
+            _main_form.receiptBox.AppendText(string.Format("{0,-6}", "KGs"));
+            _main_form.receiptBox.AppendText(string.Format("{0,-8}", "P/Kg"));
             _main_form.receiptBox.AppendText(string.Format("{0,-5}", "R"));
             _main_form.receiptBox.AppendText("\n");
             _main_form.receiptBox.AppendText(" ----------------------------\n");
@@ -239,21 +244,25 @@ namespace Green_Enviro_App
             }
             else 
             {
-                _receipt_content += string.Format("{0,-11}", " " + _item_name);
-                _receipt_content += string.Format("{0,-5}", _kilos);
-                _receipt_content += string.Format("{0,-7}", _price);
-                _receipt_content += string.Format("{0,-6}", _amount);
+                _receipt_content += string.Format("{0,-9} {1,-5} {2,-5} {3,-6}",
+                    " " + _item_name, _kilos, _price, _amount);
+                //_receipt_content += string.Format("{1,-5}", _kilos);
+                //_receipt_content += string.Format("{2,-7}", _price);
+                //_receipt_content += string.Format("{3,-6}", _amount);
                 _receipt_content += "\n";
             }
 
             setupReceipt();
 
             //Create the record for Logging
-            string _date = DateTime.Now.ToString("dd MMMM yyyy [HH:mm]");
+            string _date = "";
+
+            _date = DateTime.Now.ToString("dd MMMM yyyy [HH:mm]");
+            
             string _item_type = ItemType(_item_name);
             if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase)
             {
-                _single_purchase_entry += _date + "," + _customer_name + "," + _customer_surname + "," + _customer_id_number + "," + _customer_number + ",";
+                _single_purchase_entry += _customer_name + "," + _customer_surname + "," + _customer_id_number + "," + _customer_number + ",";
                 _single_purchase_entry += _item_name + "," + _kilos.ToString() + "," + _price.ToString() + "," + _amount.ToString() + "," + _item_type;
                 _purchased_items.Add(_single_purchase_entry);
             }
@@ -502,6 +511,14 @@ namespace Green_Enviro_App
             }
 
             _receipt_print_content.Text = _main_form.receiptBox.Text;
+
+            //Add the same transaction time to each purchased item
+            //The transaction time will be the time recorded when the last item was entered
+            int itemIndex = 0;
+            foreach (string singleItem in _purchased_items.ToList()) 
+            {
+                _purchased_items[itemIndex++] = transaction_date_and_time + "," + singleItem;
+            }
 
             if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == purchaseOrSaleType.purchase)
             {
