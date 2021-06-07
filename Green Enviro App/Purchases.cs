@@ -201,7 +201,7 @@ namespace Green_Enviro_App
 			_main_form.PurchseLogGridView.Columns[2].FillWeight = 110F;
 			_main_form.PurchseLogGridView.Columns[3].FillWeight = 130F;
 			_main_form.PurchseLogGridView.Columns[4].FillWeight = 40F;
-			_main_form.PurchseLogGridView.Columns[5].FillWeight = 50F;
+			_main_form.PurchseLogGridView.Columns[5].FillWeight = 80F;
 			_main_form.PurchseLogGridView.Columns[6].FillWeight = 50F;
 			_main_form.PurchseLogGridView.Columns[7].FillWeight = 50F;
 			_main_form.PurchseLogGridView.Columns[8].FillWeight = 60F;
@@ -393,6 +393,59 @@ namespace Green_Enviro_App
 			_main_form.PurchaseLogMonth.SelectedItem = null;
 			RemoveFilters();
 			_main_form.PurchseLogGridView.DataSource = null;
+		}
+
+		/// <summary>
+		/// This function deletes a purchase if it was entered by mistake
+		/// The function will look through the entire purhase that was made and delete all corresponding items
+		/// </summary>
+		public void DeletePurchase() 
+		{
+			if (_main_form.PurchseLogGridView.SelectedCells.Count == 0) 
+			{
+				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the customer to be deleted");
+				return;
+			}
+
+			if (_main_form.PurchseLogGridView.CurrentCell.RowIndex == _main_form.PurchseLogGridView.Rows.Count-1)
+			{
+				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "It's not possible to delete the TOTALS row");
+				return;
+			}
+
+			int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
+			HighlightRowsToDelete(_current_row);
+
+
+		}
+
+		/// <summary>
+		/// This function will highlight all the rows that need to be deleted so that the user can 
+		/// confirm that they want to delete those rows
+		/// </summary>
+		private void HighlightRowsToDelete(int selectedRow) 
+		{
+			string dateToDelete = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[0].Value.ToString();
+			string customerName = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[1].Value.ToString();
+			string customerSurname = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[2].Value.ToString();
+			string customerID = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[3].Value.ToString();
+			string customerNumber = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[4].Value.ToString();
+
+			foreach (DataGridViewRow row in _main_form.PurchseLogGridView.Rows) 
+			{
+				if ((row.Cells[0].Value.ToString() == dateToDelete) &&
+					(row.Cells[1].Value.ToString() == customerName) &&
+					(row.Cells[2].Value.ToString() == customerSurname) &&
+					(row.Cells[3].Value.ToString() == customerID) &&
+					(row.Cells[4].Value.ToString() == customerNumber)
+					) 
+				{
+					int rowIndex = row.Index;
+					_main_form.PurchseLogGridView.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Red;
+				}
+			}
+			_main_form.PurchseLogGridView.Refresh();
+
 		}
 
 	}

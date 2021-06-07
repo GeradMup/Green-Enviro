@@ -241,6 +241,7 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+			this.RemovePurchase = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -753,6 +754,7 @@ namespace Green_Enviro_App
 			// 
 			// PurchasesPage
 			// 
+			this.PurchasesPage.Controls.Add(this.RemovePurchase);
 			this.PurchasesPage.Controls.Add(this.PrintPoliceRegisterBtn);
 			this.PurchasesPage.Controls.Add(this.removeFiltersBtn);
 			this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
@@ -779,7 +781,7 @@ namespace Green_Enviro_App
 			this.PrintPoliceRegisterBtn.Location = new System.Drawing.Point(765, 119);
 			this.PrintPoliceRegisterBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.PrintPoliceRegisterBtn.Name = "PrintPoliceRegisterBtn";
-			this.PrintPoliceRegisterBtn.Size = new System.Drawing.Size(265, 57);
+			this.PrintPoliceRegisterBtn.Size = new System.Drawing.Size(289, 57);
 			this.PrintPoliceRegisterBtn.TabIndex = 19;
 			this.PrintPoliceRegisterBtn.Text = "Print Register";
 			this.PrintPoliceRegisterBtn.UseVisualStyleBackColor = true;
@@ -2690,6 +2692,17 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// RemovePurchase
+			// 
+			this.RemovePurchase.Location = new System.Drawing.Point(1124, 119);
+			this.RemovePurchase.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.RemovePurchase.Name = "RemovePurchase";
+			this.RemovePurchase.Size = new System.Drawing.Size(269, 57);
+			this.RemovePurchase.TabIndex = 20;
+			this.RemovePurchase.Text = "Delete Purchase";
+			this.RemovePurchase.UseVisualStyleBackColor = true;
+			this.RemovePurchase.Click += new System.EventHandler(this.RemovePurchase_Click);
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -3034,5 +3047,6 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.ComboBox comboBox7;
 		private System.Windows.Forms.ColorDialog colorDialog1;
 		public System.Windows.Forms.Label purchaseOrSaleIndicator;
+		private System.Windows.Forms.Button RemovePurchase;
 	}
 }

@@ -493,6 +493,9 @@ namespace Green_Enviro_App
 
 		private void PrintPoliceRegisterBtn_Click(object sender, EventArgs e)
 		{
+            //Do nothing when this button is pressed
+            return;
+
             if (this.PurchaseLogMonth.SelectedItem == null) 
             {
                 return;
@@ -541,6 +544,11 @@ namespace Green_Enviro_App
             {
                 _receipt.SaleOrPurchaseChanged();
             }
+		}
+
+		private void RemovePurchase_Click(object sender, EventArgs e)
+		{
+            _purchases.DeletePurchase();
 		}
 	}
 }
