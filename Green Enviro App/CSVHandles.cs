@@ -27,9 +27,10 @@ namespace Green_Enviro_App
 		/// This function will highlight all the rows that need to be deleted so that the user can 
 		/// confirm that they want to delete those rows
 		/// </summary>
-		public string RowsToDelete(int selectedRow,DataGridView dataGridView,int numberOfColumns)
+		public Tuple<string,List<int>> RowsToDelete(int selectedRow,DataGridView dataGridView,int numberOfColumns)
 		{
 			List<string> columnInfo = new List<string>();
+			List<int> highlightedRows = new List<int>();
 			string infoToDelete = "";
 
 			for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) 
@@ -38,7 +39,8 @@ namespace Green_Enviro_App
 				columnInfo.Add(column);
 				infoToDelete += column + ",";
 			}
-
+			//Remove the last comma inserted at the end of the string
+			infoToDelete = infoToDelete.Remove(infoToDelete.Length - 1, 1);
 			bool rowFalseMatch;
 			//For loop to Highlight all the rows where information will be deleted
 			foreach (DataGridViewRow row in dataGridView.Rows)
@@ -58,11 +60,13 @@ namespace Green_Enviro_App
 				if(rowFalseMatch == false)
 				{
 					row.DefaultCellStyle.BackColor = Color.Red;
+					highlightedRows.Add(row.Index);
 				}
 			}
 			dataGridView.Refresh();
 
-			return infoToDelete;
+			Tuple<string, List<int>> allInfo = Tuple.Create(infoToDelete,highlightedRows);
+			return allInfo;
 		}
 		/// <summary>
 		/// Deletes every entry in the CSV file at the given path where the starting substring matches the provide
@@ -97,6 +101,22 @@ namespace Green_Enviro_App
 			//return true if the given line starts with the given condition
 			return line.StartsWith(startingSubstringForLineToBeDeleted);
 		};
+
+		/// <summary>
+		/// Erases the highlight marks that were made when indicating which rows will be deleted
+		/// </summary>
+		/// <param name="highlightedRows">The highlighted rows.</param>
+		/// <param name="dataGridView">The data grid view.</param>
+		public void eraseHighlightMarks(List<int> highlightedRows, DataGridView dataGridView) 
+		{
+			//Remove the red highlighting on the previously selected rows
+			//if the user decides to cancel the deletion
+
+			foreach(int rowNumber in highlightedRows)
+			{
+				dataGridView.Rows[rowNumber].DefaultCellStyle.BackColor = Color.White;
+			}
+		}
 
 	}
 }

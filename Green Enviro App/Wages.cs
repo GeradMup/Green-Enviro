@@ -140,7 +140,7 @@ namespace Green_Enviro_App
 				AddTotalsRow();
 
 				int _last_row_index = 0;
-				_last_row_index = _main_form.WageLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 2;
+				_last_row_index = _main_form.WageLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 
 				_main_form.WageLogGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
 				_main_form.WageLogGridView.Refresh();

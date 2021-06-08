@@ -28,6 +28,7 @@ namespace Green_Enviro_App
 		string _totals = "TOTALS";
 
 		string startingSubstringForEntriesToBeDeleted;
+		List<int> highlightedRows;
 		string _ferrous;
 		string _non_ferrous;
 		public Purchases(Main_Form _main)
@@ -421,7 +422,10 @@ namespace Green_Enviro_App
 			//Highlight the rows that will be deleted if the user chooses to confirm
 			//Returns a string the will be the starting substring for the row that will be deleted
 			int uniquePurchaseColumns = 5;
-			startingSubstringForEntriesToBeDeleted = csvHandles.RowsToDelete(_current_row, _main_form.PurchseLogGridView, uniquePurchaseColumns);
+			 
+			Tuple<string,List<int>> rowsInfo = csvHandles.RowsToDelete(_current_row, _main_form.PurchseLogGridView, uniquePurchaseColumns);
+			startingSubstringForEntriesToBeDeleted = rowsInfo.Item1;
+			highlightedRows = rowsInfo.Item2;
 			csvHandles.RequestUserConfirmation(_main_form,this);
 		}
 
@@ -448,14 +452,8 @@ namespace Green_Enviro_App
 			}
 			else 
 			{
-				//Remove the red highlighting on the previously selected rows
-				//if the user decides to cancel the deletion
-
-				foreach (DataGridViewRow row in _main_form.PurchseLogGridView.Rows) 
-				{
-					row.DefaultCellStyle.BackColor = Color.White;
-				}
-				
+				//If user cancels the deletion, we need to remove the highlight marks
+				csvHandles.eraseHighlightMarks(highlightedRows, _main_form.PurchseLogGridView);
 			}
 		}
 	}

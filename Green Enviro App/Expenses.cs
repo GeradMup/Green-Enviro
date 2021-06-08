@@ -27,6 +27,7 @@ namespace Green_Enviro_App
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
 		string startingSubstringForEntriesToBeDeleted;
+		List<int> highlightedRows;
 		public Expenses(Main_Form _main, Database data)
 		{
 			_main_form = _main;
@@ -141,7 +142,7 @@ namespace Green_Enviro_App
 				AddTotalsRow();
 
 				int _last_row_index = 0;
-				_last_row_index = _main_form.ExpensesLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 2;
+				_last_row_index = _main_form.ExpensesLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 
 				_main_form.ExpensesLogGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
 				_main_form.ExpensesLogGridView.Refresh();
@@ -425,7 +426,11 @@ namespace Green_Enviro_App
 			//Highlight the rows that will be deleted if the user chooses to confirm
 			//Returns a string the will be the starting substring for the row that will be deleted
 			int uniqueExpenseColumns = 3;
-			startingSubstringForEntriesToBeDeleted = csvHandles.RowsToDelete(_selected_row, _main_form.ExpensesLogGridView, uniqueExpenseColumns);
+			
+			Tuple<string, List<int>> rowsInfo = csvHandles.RowsToDelete(_selected_row, _main_form.ExpensesLogGridView, uniqueExpenseColumns);
+			startingSubstringForEntriesToBeDeleted = rowsInfo.Item1;
+			
+			highlightedRows = rowsInfo.Item2;
 			csvHandles.RequestUserConfirmation(_main_form, this);
 		}
 
@@ -454,12 +459,7 @@ namespace Green_Enviro_App
 			{
 				//Remove the red highlighting on the previously selected rows
 				//if the user decides to cancel the deletion
-
-				foreach (DataGridViewRow row in _main_form.ExpensesLogGridView.Rows)
-				{
-					row.DefaultCellStyle.BackColor = Color.White;
-				}
-
+				csvHandles.eraseHighlightMarks(highlightedRows,_main_form.ExpensesLogGridView);
 			}
 		}
 	}
