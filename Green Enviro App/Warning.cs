@@ -27,11 +27,14 @@ namespace Green_Enviro_App
 
 			this.BackColor = Color.Orange;
 			
-			this.Text = "WARNING";
+			this.Title.Text = "*******WARNING*******";
 			this.CustomMsg.Text = message;
 			this.Owner = parent;
 			this.Owner.Enabled = false;
 			this.Enabled = true;
+			
+
+			this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width, Screen.PrimaryScreen.WorkingArea.Height - this.Height);
 			this.Activate();
 			this.Show();
 		}
