@@ -244,11 +244,7 @@ namespace Green_Enviro_App
             }
             else 
             {
-                _receipt_content += string.Format("{0,-9} {1,-5} {2,-5} {3,-6}",
-                    " " + _item_name, _kilos, _price, _amount);
-                //_receipt_content += string.Format("{1,-5}", _kilos);
-                //_receipt_content += string.Format("{2,-7}", _price);
-                //_receipt_content += string.Format("{3,-6}", _amount);
+                _receipt_content += string.Format("{0,-9} {1,-5} {2,-5} {3,-6}"," " + _item_name, _kilos, _price, _amount);
                 _receipt_content += "\n";
             }
 

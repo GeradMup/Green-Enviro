@@ -13,7 +13,7 @@ using System.Globalization;
 
 namespace Green_Enviro_App
 {
-	public class Purchases
+	public class Purchases : WarningInterface
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
@@ -29,6 +29,7 @@ namespace Green_Enviro_App
 
 		string _ferrous;
 		string _non_ferrous;
+		static string startingSubstringForEntriesToBeDeleted = "";
 		public Purchases(Main_Form _main)
 		{
 			_main_form = _main;
@@ -414,16 +415,17 @@ namespace Green_Enviro_App
 			}
 
 			int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
-			HighlightRowsToDelete(_current_row);
-
+			string startingSubstringForLine =  RowsToDelete(_current_row);
+			DeleteRows(startingSubstringForLine);
 
 		}
+
 
 		/// <summary>
 		/// This function will highlight all the rows that need to be deleted so that the user can 
 		/// confirm that they want to delete those rows
 		/// </summary>
-		private void HighlightRowsToDelete(int selectedRow) 
+		private string RowsToDelete(int selectedRow) 
 		{
 			string dateToDelete = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[0].Value.ToString();
 			string customerName = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[1].Value.ToString();
@@ -431,22 +433,75 @@ namespace Green_Enviro_App
 			string customerID = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[3].Value.ToString();
 			string customerNumber = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[4].Value.ToString();
 
+			string infoToDelete = dateToDelete + "," + customerName + "," + customerSurname + "," + customerID + "," + customerNumber;
+
 			foreach (DataGridViewRow row in _main_form.PurchseLogGridView.Rows) 
 			{
 				if ((row.Cells[0].Value.ToString() == dateToDelete) &&
 					(row.Cells[1].Value.ToString() == customerName) &&
 					(row.Cells[2].Value.ToString() == customerSurname) &&
 					(row.Cells[3].Value.ToString() == customerID) &&
-					(row.Cells[4].Value.ToString() == customerNumber)
-					) 
+					(row.Cells[4].Value.ToString() == customerNumber)) 
 				{
-					int rowIndex = row.Index;
-					_main_form.PurchseLogGridView.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Red;
+					_main_form.PurchseLogGridView.Rows[row.Index].DefaultCellStyle.BackColor = Color.Red;
 				}
 			}
 			_main_form.PurchseLogGridView.Refresh();
 
+			return infoToDelete;
+		}
+		/// <summary>
+		/// This function is used to delete purchases when a user makes a mistake
+		/// </summary>
+		/// <param name="rowStartingSubstring"></param>
+		private void DeleteRows(string rowStartingSubstring) 
+		{
+			startingSubstringForEntriesToBeDeleted = rowStartingSubstring;
+			string warningMessage = "YOU ARE ABOUT TO DELETE ALL THE ENTRIES HIGHLIGHTED IN RED!!!";
+			Warning warning = new Warning(_main_form, warningMessage, this);
 		}
 
+		private string pathToDeleteFile()
+		{
+			string _path_to_purchase_file_to_be_deleted;
+			string selectedMonthAndYear = _main_form.PurchaseLogMonth.SelectedItem.ToString();
+			_path_to_purchase_file_to_be_deleted = @"..//..//resources//Logs//Purchases//" + selectedMonthAndYear + ".csv";
+			
+			return _path_to_purchase_file_to_be_deleted;
+		}
+
+		private Predicate<string> startsWithRequiredString = delegate (string line)
+		{
+			//return true if the given line starts with the given condition
+			return line.StartsWith(startingSubstringForEntriesToBeDeleted);
+		};
+
+		/// <summary>
+		/// Function that will be excecuted when after the warning message gets displayed
+		/// </summary>
+		public override void WarningWaitingFunction(bool actionConfirmed) 
+		{
+			string pathToFile = pathToDeleteFile();
+			string[] lines = System.IO.File.ReadAllLines(pathToFile);
+			//Create a list from the array
+			List<string> fileLines = new List<string>(lines);
+
+			//This is a List method that passes each element in the List to the given Predicate
+			//and deletes every element from the list where the Predicate returns a true value
+			fileLines.RemoveAll(startsWithRequiredString);
+
+			StringBuilder _csv_content = new StringBuilder();
+			//Recreate
+			foreach (string line in fileLines) 
+			{
+				_csv_content.AppendLine(line);
+			}
+
+			if (actionConfirmed == true) 
+			{
+				File.WriteAllText(pathToFile, _csv_content.ToString());
+				DisplayPurchaseLog();
+			}
+		}
 	}
 }
