@@ -1141,6 +1141,9 @@ namespace Green_Enviro_App
 			// SalesLogGridView
 			// 
 			this.SalesLogGridView.AllowUserToAddRows = false;
+			this.SalesLogGridView.AllowUserToDeleteRows = false;
+			this.SalesLogGridView.AllowUserToResizeColumns = false;
+			this.SalesLogGridView.AllowUserToResizeRows = false;
 			this.SalesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1576,6 +1579,8 @@ namespace Green_Enviro_App
 			// ExpensesLogGridView
 			// 
 			this.ExpensesLogGridView.AllowUserToAddRows = false;
+			this.ExpensesLogGridView.AllowUserToResizeColumns = false;
+			this.ExpensesLogGridView.AllowUserToResizeRows = false;
 			this.ExpensesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));

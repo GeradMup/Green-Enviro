@@ -196,6 +196,7 @@ namespace Green_Enviro_App
 				_last_row_index = _main_form.SalesLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 
 				_main_form.SalesLogGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
+				_main_form.SalesLogGridView.Columns[0].FillWeight = 230F;
 				_main_form.SalesLogGridView.Refresh();
 			}
 
@@ -409,8 +410,8 @@ namespace Green_Enviro_App
 				}
 			}
 
-			string dateWhenEntered = DateTime.Now.ToString(" dd/MM/yy HH:mm:ss");
-			string _sale_date = _main_form.SaleDate.Value.ToString("dd MMMM yyyy") + dateWhenEntered;
+			string timeWhenEntered = DateTime.Now.ToString(" HH:mm:ss");
+			string _sale_date = _main_form.SaleDate.Value.ToString("dd MMMM yyyy") + timeWhenEntered;
 			string _company = _main_form.SaleCompanyNameList.Text;
 			string _quantity = _main_form.SaleQuantityBx.Value.ToString();
 			string _amount = _main_form.SaleAmount.Value.ToString();
@@ -445,7 +446,8 @@ namespace Green_Enviro_App
 
 		public void AddCasualSale(List<CasualSale> casualSales) 
 		{
-			string _sale_date = DateTime.Now.ToString("dd MMMM yyyy");
+			string timeWhenEntered = DateTime.Now.ToString(" HH:mm:ss");
+			string _sale_date = DateTime.Now.ToString("dd MMMM yyyy") + timeWhenEntered;
 			string _company = "Casual Sale";
 			string _new_sale = "";
 

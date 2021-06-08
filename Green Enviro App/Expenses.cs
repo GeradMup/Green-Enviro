@@ -144,6 +144,7 @@ namespace Green_Enviro_App
 				_last_row_index = _main_form.ExpensesLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 
 				_main_form.ExpensesLogGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
+				_main_form.ExpensesLogGridView.Columns[0].FillWeight = 230F;
 				_main_form.ExpensesLogGridView.Refresh();
 			}
 
@@ -302,8 +303,8 @@ namespace Green_Enviro_App
 			}
 
 			StringBuilder _csv_content = new StringBuilder();
-			string dateWhenEntered = DateTime.Now.ToString(" dd/MM/yy HH:mm:ss");
-			string _date = _main_form.ExpenseDate.Value.ToString("dd MMMM yyyy") + dateWhenEntered;
+			string timeWhenEntered = DateTime.Now.ToString("HH:mm:ss");
+			string _date = _main_form.ExpenseDate.Value.ToString("dd MMMM yyyy") + timeWhenEntered;
 			string _description = _main_form.ExpenseDescriptionBox.Text;
 			string _amount = _main_form.ExpenseAmount.Value.ToString();
 
