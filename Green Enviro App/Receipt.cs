@@ -151,8 +151,8 @@ namespace Green_Enviro_App
             _main_form.receiptBox.ReadOnly = false;
             _main_form.receiptBox.Clear();
 
-            transaction_time = DateTime.Now.ToString("hh:mm:ss");
-            transaction_date_and_time = DateTime.Now.ToString("dd MMMM yyyy") + " [" + transaction_time + "]";
+            transaction_time = DateTime.Now.ToString("HH:mm:ss");
+            transaction_date_and_time = DateTime.Now.ToString("dd MMMM yyyy") + " " + transaction_time;
             string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + transaction_time + "\n";
             
             Clipboard.SetImage(_main_form.logo.Image);

@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace Green_Enviro_App
 {
-	class Expenses
+	class Expenses	: WarningInterface
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
@@ -20,16 +20,18 @@ namespace Green_Enviro_App
 		//Required objects
 		Main_Form _main_form;
 		Database _database;
+		CSVHandles csvHandles;
 
 		DataTable _expenses_data_table = new DataTable();  //All the information about all the products the we have sold.
 
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
-
+		string startingSubstringForEntriesToBeDeleted;
 		public Expenses(Main_Form _main, Database data)
 		{
 			_main_form = _main;
 			_database = data;
+			csvHandles = new CSVHandles();
 			CreateLogFiles();
 			SetupExpensesLogs();
 		}
@@ -155,7 +157,7 @@ namespace Green_Enviro_App
 			int _amount_column = 2;
 
 
-			for (int _row = 0; _row < _main_form.ExpensesLogGridView.Rows.Count - 1; _row++)
+			for (int _row = 0; _row < _main_form.ExpensesLogGridView.Rows.Count; _row++)
 			{
 				_total_amount += float.Parse(_main_form.ExpensesLogGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
 			}
@@ -300,7 +302,8 @@ namespace Green_Enviro_App
 			}
 
 			StringBuilder _csv_content = new StringBuilder();
-			string _date = _main_form.ExpenseDate.Value.ToString("dd MMMM yyyy");
+			string dateWhenEntered = DateTime.Now.ToString("dd/MM/yy HH:mm:ss");
+			string _date = _main_form.ExpenseDate.Value.ToString("dd MMMM yyyy") + dateWhenEntered;
 			string _description = _main_form.ExpenseDescriptionBox.Text;
 			string _amount = _main_form.ExpenseAmount.Value.ToString();
 
@@ -397,6 +400,67 @@ namespace Green_Enviro_App
 			_main_form.ExpensesLogMonth.SelectedItem = null;
 			RemoveFilters();
 			_main_form.ExpensesLogGridView.DataSource = null;
+		}
+
+		/// <summary>
+		/// This function deletes an expense if it was entered by mistake
+		/// </summary>
+		public void DeleteExpense()
+		{
+			//Verify that something is selected before attempting to delete
+			if (_main_form.ExpensesLogGridView.SelectedCells.Count == 0)
+			{
+				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the expense to be deleted");
+				return;
+			}
+
+			//Confirm that the user is not trying to delete the totals row
+			if (_main_form.ExpensesLogGridView.CurrentCell.RowIndex == _main_form.ExpensesLogGridView.Rows.Count - 1)
+			{
+				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "It's not possible to delete the TOTALS row");
+				return;
+			}
+
+			int _selected_row = _main_form.ExpensesLogGridView.CurrentCell.RowIndex;
+			//Highlight the rows that will be deleted if the user chooses to confirm
+			//Returns a string the will be the starting substring for the row that will be deleted
+			int uniqueExpenseColumns = 3;
+			startingSubstringForEntriesToBeDeleted = csvHandles.RowsToDelete(_selected_row, _main_form.ExpensesLogGridView, uniqueExpenseColumns);
+			csvHandles.RequestUserConfirmation(_main_form, this);
+		}
+
+		private string pathToDeleteFile()
+		{
+			string _path_to_purchase_file_to_be_deleted;
+			string selectedMonthAndYear = _main_form.ExpensesLogMonth.SelectedItem.ToString();
+			_path_to_purchase_file_to_be_deleted = @"..//..//resources//Logs//Expenses//" + selectedMonthAndYear + ".csv";
+
+			return _path_to_purchase_file_to_be_deleted;
+		}
+
+		/// <summary>
+		/// Function that will be excecuted when after the warning message gets displayed
+		/// </summary>
+		public override void WarningWaitingFunction(bool actionConfirmed)
+		{
+			if (actionConfirmed == true)
+			{
+				string pathToFile = pathToDeleteFile();
+				//Recreate
+				csvHandles.DeleteInCSV(pathToFile, startingSubstringForEntriesToBeDeleted);
+				DisplayExpensesLog();
+			}
+			else
+			{
+				//Remove the red highlighting on the previously selected rows
+				//if the user decides to cancel the deletion
+
+				foreach (DataGridViewRow row in _main_form.ExpensesLogGridView.Rows)
+				{
+					row.DefaultCellStyle.BackColor = Color.White;
+				}
+
+			}
 		}
 	}
 }

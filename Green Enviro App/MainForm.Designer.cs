@@ -75,6 +75,7 @@ namespace Green_Enviro_App
 			this.addItemBtn = new System.Windows.Forms.Button();
 			this.receiptBox = new System.Windows.Forms.RichTextBox();
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
+			this.DeletePurchaseBtn = new System.Windows.Forms.Button();
 			this.PrintPoliceRegisterBtn = new System.Windows.Forms.Button();
 			this.removeFiltersBtn = new System.Windows.Forms.Button();
 			this.PurchseLogGridView = new System.Windows.Forms.DataGridView();
@@ -127,6 +128,8 @@ namespace Green_Enviro_App
 			this.InventoryLogStartDate = new System.Windows.Forms.ComboBox();
 			this.InventoryLogMonth = new System.Windows.Forms.ComboBox();
 			this.Expenses = new System.Windows.Forms.TabPage();
+			this.DeleteExpenseBtn = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
 			this.ExpenseAmount = new System.Windows.Forms.NumericUpDown();
 			this.ExpenseDescriptionBox = new System.Windows.Forms.TextBox();
 			this.ExpenseDate = new System.Windows.Forms.DateTimePicker();
@@ -241,7 +244,6 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-			this.RemovePurchase = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -754,7 +756,7 @@ namespace Green_Enviro_App
 			// 
 			// PurchasesPage
 			// 
-			this.PurchasesPage.Controls.Add(this.RemovePurchase);
+			this.PurchasesPage.Controls.Add(this.DeletePurchaseBtn);
 			this.PurchasesPage.Controls.Add(this.PrintPoliceRegisterBtn);
 			this.PurchasesPage.Controls.Add(this.removeFiltersBtn);
 			this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
@@ -775,6 +777,17 @@ namespace Green_Enviro_App
 			this.PurchasesPage.TabIndex = 1;
 			this.PurchasesPage.Text = "Purchases";
 			this.PurchasesPage.UseVisualStyleBackColor = true;
+			// 
+			// DeletePurchaseBtn
+			// 
+			this.DeletePurchaseBtn.Location = new System.Drawing.Point(1124, 119);
+			this.DeletePurchaseBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.DeletePurchaseBtn.Name = "DeletePurchaseBtn";
+			this.DeletePurchaseBtn.Size = new System.Drawing.Size(269, 57);
+			this.DeletePurchaseBtn.TabIndex = 20;
+			this.DeletePurchaseBtn.Text = "Delete Purchase";
+			this.DeletePurchaseBtn.UseVisualStyleBackColor = true;
+			this.DeletePurchaseBtn.Click += new System.EventHandler(this.DeletePurchaseBtn_Click);
 			// 
 			// PrintPoliceRegisterBtn
 			// 
@@ -1124,6 +1137,7 @@ namespace Green_Enviro_App
 			// 
 			// SalesLogGridView
 			// 
+			this.SalesLogGridView.AllowUserToAddRows = false;
 			this.SalesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1386,6 +1400,8 @@ namespace Green_Enviro_App
 			// 
 			// Expenses
 			// 
+			this.Expenses.Controls.Add(this.DeleteExpenseBtn);
+			this.Expenses.Controls.Add(this.button5);
 			this.Expenses.Controls.Add(this.ExpenseAmount);
 			this.Expenses.Controls.Add(this.ExpenseDescriptionBox);
 			this.Expenses.Controls.Add(this.ExpenseDate);
@@ -1410,6 +1426,25 @@ namespace Green_Enviro_App
 			this.Expenses.TabIndex = 5;
 			this.Expenses.Text = "Expenses";
 			this.Expenses.UseVisualStyleBackColor = true;
+			// 
+			// DeleteExpenseBtn
+			// 
+			this.DeleteExpenseBtn.Location = new System.Drawing.Point(1389, 98);
+			this.DeleteExpenseBtn.Name = "DeleteExpenseBtn";
+			this.DeleteExpenseBtn.Size = new System.Drawing.Size(276, 45);
+			this.DeleteExpenseBtn.TabIndex = 53;
+			this.DeleteExpenseBtn.Text = "Delete Expense";
+			this.DeleteExpenseBtn.UseVisualStyleBackColor = true;
+			this.DeleteExpenseBtn.Click += new System.EventHandler(this.DeleteExpenseBtn_Click);
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(8, 8);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(75, 23);
+			this.button5.TabIndex = 52;
+			this.button5.Text = "button5";
+			this.button5.UseVisualStyleBackColor = true;
 			// 
 			// ExpenseAmount
 			// 
@@ -1448,10 +1483,10 @@ namespace Green_Enviro_App
 			// 
 			// ExpensesLogRemoveFiltersBtn
 			// 
-			this.ExpensesLogRemoveFiltersBtn.Location = new System.Drawing.Point(1035, 101);
+			this.ExpensesLogRemoveFiltersBtn.Location = new System.Drawing.Point(1077, 98);
 			this.ExpensesLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ExpensesLogRemoveFiltersBtn.Name = "ExpensesLogRemoveFiltersBtn";
-			this.ExpensesLogRemoveFiltersBtn.Size = new System.Drawing.Size(203, 46);
+			this.ExpensesLogRemoveFiltersBtn.Size = new System.Drawing.Size(278, 46);
 			this.ExpensesLogRemoveFiltersBtn.TabIndex = 49;
 			this.ExpensesLogRemoveFiltersBtn.Text = "Remove Filters";
 			this.ExpensesLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
@@ -1462,7 +1497,7 @@ namespace Green_Enviro_App
 			this.ExpensesLogFilterBtn.Location = new System.Drawing.Point(753, 98);
 			this.ExpensesLogFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ExpensesLogFilterBtn.Name = "ExpensesLogFilterBtn";
-			this.ExpensesLogFilterBtn.Size = new System.Drawing.Size(216, 46);
+			this.ExpensesLogFilterBtn.Size = new System.Drawing.Size(290, 46);
 			this.ExpensesLogFilterBtn.TabIndex = 48;
 			this.ExpensesLogFilterBtn.Text = "Filter";
 			this.ExpensesLogFilterBtn.UseVisualStyleBackColor = true;
@@ -1537,6 +1572,7 @@ namespace Green_Enviro_App
 			// 
 			// ExpensesLogGridView
 			// 
+			this.ExpensesLogGridView.AllowUserToAddRows = false;
 			this.ExpensesLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1785,6 +1821,7 @@ namespace Green_Enviro_App
 			// 
 			// WageLogGridView
 			// 
+			this.WageLogGridView.AllowUserToAddRows = false;
 			this.WageLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -2692,17 +2729,6 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// RemovePurchase
-			// 
-			this.RemovePurchase.Location = new System.Drawing.Point(1124, 119);
-			this.RemovePurchase.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.RemovePurchase.Name = "RemovePurchase";
-			this.RemovePurchase.Size = new System.Drawing.Size(269, 57);
-			this.RemovePurchase.TabIndex = 20;
-			this.RemovePurchase.Text = "Delete Purchase";
-			this.RemovePurchase.UseVisualStyleBackColor = true;
-			this.RemovePurchase.Click += new System.EventHandler(this.RemovePurchase_Click);
-			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -3047,6 +3073,8 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.ComboBox comboBox7;
 		private System.Windows.Forms.ColorDialog colorDialog1;
 		public System.Windows.Forms.Label purchaseOrSaleIndicator;
-		private System.Windows.Forms.Button RemovePurchase;
+		private System.Windows.Forms.Button DeletePurchaseBtn;
+		private System.Windows.Forms.Button DeleteExpenseBtn;
+		private System.Windows.Forms.Button button5;
 	}
 }

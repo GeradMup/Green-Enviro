@@ -26,11 +26,10 @@ namespace Green_Enviro_App
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
 		string _totals = "TOTALS";
-		
 
+		string startingSubstringForEntriesToBeDeleted;
 		string _ferrous;
 		string _non_ferrous;
-		static string startingSubstringForEntriesToBeDeleted = "";
 		public Purchases(Main_Form _main)
 		{
 			_main_form = _main;
@@ -404,12 +403,14 @@ namespace Green_Enviro_App
 		/// </summary>
 		public void DeletePurchase() 
 		{
+			//Verify that something is selected before attempting to delete
 			if (_main_form.PurchseLogGridView.SelectedCells.Count == 0) 
 			{
 				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the customer to be deleted");
 				return;
 			}
 
+			//Confirm that the use is not trying to delete the totals column
 			if (_main_form.PurchseLogGridView.CurrentCell.RowIndex == _main_form.PurchseLogGridView.Rows.Count-1)
 			{
 				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "It's not possible to delete the TOTALS row");
@@ -433,12 +434,6 @@ namespace Green_Enviro_App
 			return _path_to_purchase_file_to_be_deleted;
 		}
 
-		private Predicate<string> startsWithRequiredString = delegate (string line)
-		{
-			//return true if the given line starts with the given condition
-			return line.StartsWith(startingSubstringForEntriesToBeDeleted);
-		};
-
 		/// <summary>
 		/// Function that will be excecuted when after the warning message gets displayed
 		/// </summary>
@@ -447,23 +442,8 @@ namespace Green_Enviro_App
 			if (actionConfirmed == true)
 			{
 				string pathToFile = pathToDeleteFile();
-				string[] lines = System.IO.File.ReadAllLines(pathToFile);
-				//Create a list from the array
-				List<string> fileLines = new List<string>(lines);
-
-				//This is a List method that passes each element in the List to the given Predicate
-				//and deletes every element from the list where the Predicate returns a true value
-				fileLines.RemoveAll(startsWithRequiredString);
-
-				StringBuilder _csv_content = new StringBuilder();
 				//Recreate
-				foreach (string line in fileLines)
-				{
-					_csv_content.AppendLine(line);
-				}
-
-				//Replace the entire CSV file with the updated contents
-				File.WriteAllText(pathToFile, _csv_content.ToString());
+				csvHandles.DeleteInCSV(pathToFile, startingSubstringForEntriesToBeDeleted);
 				DisplayPurchaseLog();
 			}
 			else 

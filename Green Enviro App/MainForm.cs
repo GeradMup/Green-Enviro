@@ -546,9 +546,14 @@ namespace Green_Enviro_App
             }
 		}
 
-		private void RemovePurchase_Click(object sender, EventArgs e)
+		private void DeletePurchaseBtn_Click(object sender, EventArgs e)
 		{
             _purchases.DeletePurchase();
+		}
+
+		private void DeleteExpenseBtn_Click(object sender, EventArgs e)
+		{
+            _expenses.DeleteExpense();
 		}
 	}
 }
