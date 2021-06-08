@@ -34,6 +34,7 @@ namespace Green_Enviro_App
         string _receipt_content = "";
         float _running_total = 0;
         float _running_kg_total = 0;
+        string _type_of_transaction = "UNKNOWN";
         string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n" + " Cell: 00000000000\n";
         string _single_purchase_entry;
         string _single_quantity_entry;
@@ -148,6 +149,8 @@ namespace Green_Enviro_App
 
         private void setupReceipt() 
 		{
+            _type_of_transaction =  _type_of_transaction.ToUpper();
+
             _main_form.receiptBox.ReadOnly = false;
             _main_form.receiptBox.Clear();
 
@@ -181,7 +184,9 @@ namespace Green_Enviro_App
             _main_form.receiptBox.AppendText(" Total:    R " + _running_total.ToString());
             _main_form.receiptBox.AppendText("\n");
             _main_form.receiptBox.AppendText(" ----------------------------\n");
-            _main_form.receiptBox.AppendText(" THANK YOU!");
+            _main_form.receiptBox.AppendText(" * * * " + _type_of_transaction + " * * * ");
+            _main_form.receiptBox.AppendText("\n");
+            _main_form.receiptBox.AppendText(" * * * THANK YOU! * * * ");
 
             //Scrolls the entire receipt down when new entries are added
             _main_form.receiptBox.SelectionStart = _main_form.receiptBox.Text.Length;
@@ -249,8 +254,6 @@ namespace Green_Enviro_App
                 _receipt_content += "\n";
             }
 
-            //Update the contents on the receipt whenever an Item is added
-            setupReceipt();
 
             //Create the record for Logging
             string _date = "";
@@ -263,6 +266,7 @@ namespace Green_Enviro_App
                 _single_purchase_entry += _customer_name + "," + _customer_surname + "," + _customer_id_number + "," + _customer_number + ",";
                 _single_purchase_entry += _item_name + "," + _kilos.ToString() + "," + _price.ToString() + "," + _amount.ToString() + "," + _item_type;
                 _purchased_items.Add(_single_purchase_entry);
+                _type_of_transaction = _purchase;
             }
             else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _formal_sale) 
             {
@@ -270,6 +274,7 @@ namespace Green_Enviro_App
                 _single_purchase_entry += _item_name + "," + _kilos.ToString() + "," + 0 + "," + 0 + "," + _item_type;
                 _purchased_items.Add(_single_purchase_entry);
                 _running_total = 0;
+                _type_of_transaction = _formal_sale;
             }
             else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _casual_sale)
             {
@@ -280,8 +285,11 @@ namespace Green_Enviro_App
                 newSale.quantity = _kilos.ToString();
 
                 _sold_items.Add(newSale);
+                _type_of_transaction = _casual_sale;
             }
-          
+
+            //Update the contents on the receipt whenever an Item is added
+            setupReceipt();
 
             //Clear the _single_purchase_entry to make it ready for the next entry
             _single_purchase_entry = "";
@@ -562,6 +570,7 @@ namespace Green_Enviro_App
             _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n" + " Cell: 0000000000\n";
             _purchased_items.Clear();
             _purchased_quantities.Clear();
+            _type_of_transaction = "UNKNOWN";
             setupReceipt();
         }
 
