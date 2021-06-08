@@ -555,5 +555,15 @@ namespace Green_Enviro_App
 		{
             _expenses.DeleteExpense();
 		}
+
+		private void DeleteWageBtn_Click(object sender, EventArgs e)
+		{
+            _wages.DeleteWage();
+		}
+
+		private void DeleteSaleBtn_Click(object sender, EventArgs e)
+		{
+            _sales.DeleteSale();
+		}
 	}
 }

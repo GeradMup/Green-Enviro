@@ -26,13 +26,12 @@ namespace Green_Enviro_App
 
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
-		string startingSubstringForEntriesToBeDeleted;
-		List<int> highlightedRows;
 		public Expenses(Main_Form _main, Database data)
 		{
 			_main_form = _main;
 			_database = data;
-			csvHandles = new CSVHandles();
+			int uniqueExpensesColumns = 3;
+			csvHandles = new CSVHandles(_main_form.ExpensesLogGridView, uniqueExpensesColumns);
 			CreateLogFiles();
 			SetupExpensesLogs();
 		}
@@ -303,7 +302,7 @@ namespace Green_Enviro_App
 			}
 
 			StringBuilder _csv_content = new StringBuilder();
-			string dateWhenEntered = DateTime.Now.ToString("dd/MM/yy HH:mm:ss");
+			string dateWhenEntered = DateTime.Now.ToString(" dd/MM/yy HH:mm:ss");
 			string _date = _main_form.ExpenseDate.Value.ToString("dd MMMM yyyy") + dateWhenEntered;
 			string _description = _main_form.ExpenseDescriptionBox.Text;
 			string _amount = _main_form.ExpenseAmount.Value.ToString();
@@ -427,10 +426,7 @@ namespace Green_Enviro_App
 			//Returns a string the will be the starting substring for the row that will be deleted
 			int uniqueExpenseColumns = 3;
 			
-			Tuple<string, List<int>> rowsInfo = csvHandles.RowsToDelete(_selected_row, _main_form.ExpensesLogGridView, uniqueExpenseColumns);
-			startingSubstringForEntriesToBeDeleted = rowsInfo.Item1;
-			
-			highlightedRows = rowsInfo.Item2;
+			csvHandles.RowsToDelete(_selected_row);
 			csvHandles.RequestUserConfirmation(_main_form, this);
 		}
 
@@ -452,14 +448,14 @@ namespace Green_Enviro_App
 			{
 				string pathToFile = pathToDeleteFile();
 				//Recreate
-				csvHandles.DeleteInCSV(pathToFile, startingSubstringForEntriesToBeDeleted);
+				csvHandles.DeleteInCSV(pathToFile);
 				DisplayExpensesLog();
 			}
 			else
 			{
 				//Remove the red highlighting on the previously selected rows
 				//if the user decides to cancel the deletion
-				csvHandles.eraseHighlightMarks(highlightedRows,_main_form.ExpensesLogGridView);
+				csvHandles.eraseHighlightMarks();
 			}
 		}
 	}

@@ -244,6 +244,8 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+			this.DeleteSaleBtn = new System.Windows.Forms.Button();
+			this.DeleteWageBtn = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -936,6 +938,7 @@ namespace Green_Enviro_App
 			// 
 			// SalesPage
 			// 
+			this.SalesPage.Controls.Add(this.DeleteSaleBtn);
 			this.SalesPage.Controls.Add(this.SaleAmount);
 			this.SalesPage.Controls.Add(this.SaleQuantityBx);
 			this.SalesPage.Controls.Add(this.NewCompanyCheckBox);
@@ -1026,10 +1029,10 @@ namespace Green_Enviro_App
 			// 
 			// RemoveSalesLogFiltersBtn
 			// 
-			this.RemoveSalesLogFiltersBtn.Location = new System.Drawing.Point(885, 94);
+			this.RemoveSalesLogFiltersBtn.Location = new System.Drawing.Point(935, 94);
 			this.RemoveSalesLogFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.RemoveSalesLogFiltersBtn.Name = "RemoveSalesLogFiltersBtn";
-			this.RemoveSalesLogFiltersBtn.Size = new System.Drawing.Size(229, 46);
+			this.RemoveSalesLogFiltersBtn.Size = new System.Drawing.Size(277, 46);
 			this.RemoveSalesLogFiltersBtn.TabIndex = 28;
 			this.RemoveSalesLogFiltersBtn.Text = "Remove Filters";
 			this.RemoveSalesLogFiltersBtn.UseVisualStyleBackColor = true;
@@ -1040,7 +1043,7 @@ namespace Green_Enviro_App
 			this.FilterSalesLogBtn.Location = new System.Drawing.Point(644, 94);
 			this.FilterSalesLogBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.FilterSalesLogBtn.Name = "FilterSalesLogBtn";
-			this.FilterSalesLogBtn.Size = new System.Drawing.Size(184, 46);
+			this.FilterSalesLogBtn.Size = new System.Drawing.Size(259, 46);
 			this.FilterSalesLogBtn.TabIndex = 27;
 			this.FilterSalesLogBtn.Text = "Filter";
 			this.FilterSalesLogBtn.UseVisualStyleBackColor = true;
@@ -1642,6 +1645,7 @@ namespace Green_Enviro_App
 			// 
 			// WagesNewEmployee
 			// 
+			this.WagesNewEmployee.Controls.Add(this.DeleteWageBtn);
 			this.WagesNewEmployee.Controls.Add(this.NewEmployee);
 			this.WagesNewEmployee.Controls.Add(this.PartTimeEmployeeCheckBox);
 			this.WagesNewEmployee.Controls.Add(this.WagesEmployeeName);
@@ -2729,6 +2733,28 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// DeleteSaleBtn
+			// 
+			this.DeleteSaleBtn.Location = new System.Drawing.Point(1242, 94);
+			this.DeleteSaleBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.DeleteSaleBtn.Name = "DeleteSaleBtn";
+			this.DeleteSaleBtn.Size = new System.Drawing.Size(254, 46);
+			this.DeleteSaleBtn.TabIndex = 32;
+			this.DeleteSaleBtn.Text = "Delete Sale";
+			this.DeleteSaleBtn.UseVisualStyleBackColor = true;
+			this.DeleteSaleBtn.Click += new System.EventHandler(this.DeleteSaleBtn_Click);
+			// 
+			// DeleteWageBtn
+			// 
+			this.DeleteWageBtn.Location = new System.Drawing.Point(1456, 98);
+			this.DeleteWageBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.DeleteWageBtn.Name = "DeleteWageBtn";
+			this.DeleteWageBtn.Size = new System.Drawing.Size(236, 46);
+			this.DeleteWageBtn.TabIndex = 72;
+			this.DeleteWageBtn.Text = "Delete Wage";
+			this.DeleteWageBtn.UseVisualStyleBackColor = true;
+			this.DeleteWageBtn.Click += new System.EventHandler(this.DeleteWageBtn_Click);
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -3076,5 +3102,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button DeletePurchaseBtn;
 		private System.Windows.Forms.Button DeleteExpenseBtn;
 		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button DeleteSaleBtn;
+		private System.Windows.Forms.Button DeleteWageBtn;
 	}
 }

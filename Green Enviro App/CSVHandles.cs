@@ -12,6 +12,15 @@ namespace Green_Enviro_App
 	class CSVHandles
 	{
 		private static string startingSubstringForLineToBeDeleted = "";
+		private List<int> highlightedRows = new List<int>();
+		DataGridView dataGridView;
+		int numberOfColumns;
+
+		public CSVHandles(DataGridView grid, int unqCols) 
+		{
+			dataGridView = grid;
+			numberOfColumns = unqCols;
+		}
 
 		/// <summary>
 		/// This function will request the user to confirm that they want to go ahead with deleting the entries
@@ -27,12 +36,11 @@ namespace Green_Enviro_App
 		/// This function will highlight all the rows that need to be deleted so that the user can 
 		/// confirm that they want to delete those rows
 		/// </summary>
-		public Tuple<string,List<int>> RowsToDelete(int selectedRow,DataGridView dataGridView,int numberOfColumns)
+		public void RowsToDelete(int selectedRow)
 		{
 			List<string> columnInfo = new List<string>();
-			List<int> highlightedRows = new List<int>();
 			string infoToDelete = "";
-
+			highlightedRows.Clear();
 			for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) 
 			{
 				string column = dataGridView.Rows[selectedRow].Cells[columnIndex].Value.ToString();
@@ -41,6 +49,7 @@ namespace Green_Enviro_App
 			}
 			//Remove the last comma inserted at the end of the string
 			infoToDelete = infoToDelete.Remove(infoToDelete.Length - 1, 1);
+			startingSubstringForLineToBeDeleted = infoToDelete;
 			bool rowFalseMatch;
 			//For loop to Highlight all the rows where information will be deleted
 			foreach (DataGridViewRow row in dataGridView.Rows)
@@ -64,19 +73,14 @@ namespace Green_Enviro_App
 				}
 			}
 			dataGridView.Refresh();
-
-			Tuple<string, List<int>> allInfo = Tuple.Create(infoToDelete,highlightedRows);
-			return allInfo;
 		}
 		/// <summary>
 		/// Deletes every entry in the CSV file at the given path where the starting substring matches the provide
 		/// starting substring
 		/// </summary>
 		/// <param name="path">The path.</param>
-		/// <param name="startingSubstring">The starting substring.</param>
-		public void DeleteInCSV(string path, string startingSubstring)
+		public void DeleteInCSV(string path)
 		{
-			startingSubstringForLineToBeDeleted = startingSubstring;
 			string[] lines = System.IO.File.ReadAllLines(path);
 			//Create a list from the array
 			List<string> fileLines = new List<string>(lines);
@@ -105,9 +109,8 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Erases the highlight marks that were made when indicating which rows will be deleted
 		/// </summary>
-		/// <param name="highlightedRows">The highlighted rows.</param>
 		/// <param name="dataGridView">The data grid view.</param>
-		public void eraseHighlightMarks(List<int> highlightedRows, DataGridView dataGridView) 
+		public void eraseHighlightMarks() 
 		{
 			//Remove the red highlighting on the previously selected rows
 			//if the user decides to cancel the deletion

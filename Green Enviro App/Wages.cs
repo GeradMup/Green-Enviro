@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace Green_Enviro_App
 {
-	class Wages
+	class Wages : WarningInterface
 	{
 		//First we need to know what month it is
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
@@ -20,6 +20,7 @@ namespace Green_Enviro_App
 		//Required objects
 		Main_Form _main_form;
 		Database _database;
+		CSVHandles csvHandles;
 
 		DataTable _wages_data_table = new DataTable();  //All the information about all the products the we have sold.
 		
@@ -31,6 +32,8 @@ namespace Green_Enviro_App
 		{
 			_main_form = _main;
 			_database = data;
+			int uniqueWageColumns = 3;
+			csvHandles = new CSVHandles(_main_form.WageLogGridView, uniqueWageColumns);
 			CreateLogFiles();
 			SetupWagesLogs();
 		}
@@ -301,7 +304,8 @@ namespace Green_Enviro_App
 			}
 
 			StringBuilder _csv_content = new StringBuilder();
-			string _date = _main_form.WageDate.Value.ToString("dd MMMM yyyy");
+			string dateWhenEntered = DateTime.Now.ToString(" dd/MM/yy HH:mm:ss");
+			string _date = _main_form.WageDate.Value.ToString("dd MMMM yyyy") + dateWhenEntered;
 			string _amount = _main_form.WageAmount.Value.ToString();
 			string _employee;
 
@@ -406,6 +410,62 @@ namespace Green_Enviro_App
 			_main_form.WageLogMonth.SelectedItem = null;
 			RemoveFilters();
 			_main_form.WageLogGridView.DataSource = null;
+		}
+
+		/// <summary>
+		/// Deletes a sale if user made mistake.
+		/// </summary>
+		public void DeleteWage()
+		{
+			//Verify that something is selected before attempting to delete
+			if (_main_form.WageLogGridView.SelectedCells.Count == 0)
+			{
+				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the wage to be deleted");
+				return;
+			}
+
+			//Confirm that the user is not trying to delete the totals row
+			if (_main_form.WageLogGridView.CurrentCell.RowIndex == _main_form.WageLogGridView.Rows.Count - 1)
+			{
+				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "It's not possible to delete the TOTALS row");
+				return;
+			}
+
+			int _selected_row = _main_form.WageLogGridView.CurrentCell.RowIndex;
+			//Highlight the rows that will be deleted if the user chooses to confirm
+			//Returns a string the will be the starting substring for the row that will be deleted
+
+			csvHandles.RowsToDelete(_selected_row);
+			csvHandles.RequestUserConfirmation(_main_form, this);
+		}
+
+		private string pathToDeleteFile()
+		{
+			string _path_to_purchase_file_to_be_deleted;
+			string selectedMonthAndYear = _main_form.WageLogMonth.SelectedItem.ToString();
+			_path_to_purchase_file_to_be_deleted = @"..//..//resources//Logs//Wages//" + selectedMonthAndYear + ".csv";
+
+			return _path_to_purchase_file_to_be_deleted;
+		}
+
+		/// <summary>
+		/// Function that will be excecuted when after the warning message gets displayed
+		/// </summary>
+		public override void WarningWaitingFunction(bool actionConfirmed)
+		{
+			if (actionConfirmed == true)
+			{
+				string pathToFile = pathToDeleteFile();
+				//Recreate
+				csvHandles.DeleteInCSV(pathToFile);
+				DisplayWagesLog();
+			}
+			else
+			{
+				//Remove the red highlighting on the previously selected rows
+				//if the user decides to cancel the deletion
+				csvHandles.eraseHighlightMarks();
+			}
 		}
 	}
 }
