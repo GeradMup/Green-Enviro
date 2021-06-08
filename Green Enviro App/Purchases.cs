@@ -20,6 +20,7 @@ namespace Green_Enviro_App
 		static string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 		string _path_to_purchases = path + @"\resources\Logs\Purchases\" + _month + ".csv";
 		Main_Form _main_form;
+		CSVHandles csvHandles;
 
 		DataTable _purchases_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
@@ -33,6 +34,7 @@ namespace Green_Enviro_App
 		public Purchases(Main_Form _main)
 		{
 			_main_form = _main;
+			csvHandles = new CSVHandles();
 			CreateLogFiles();
 			SetupPurchaseLogs();
 		}
@@ -415,50 +417,11 @@ namespace Green_Enviro_App
 			}
 
 			int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
-			string startingSubstringForLine =  RowsToDelete(_current_row);
-			DeleteRows(startingSubstringForLine);
-
-		}
-
-
-		/// <summary>
-		/// This function will highlight all the rows that need to be deleted so that the user can 
-		/// confirm that they want to delete those rows
-		/// </summary>
-		private string RowsToDelete(int selectedRow) 
-		{
-			string dateToDelete = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[0].Value.ToString();
-			string customerName = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[1].Value.ToString();
-			string customerSurname = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[2].Value.ToString();
-			string customerID = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[3].Value.ToString();
-			string customerNumber = _main_form.PurchseLogGridView.Rows[selectedRow].Cells[4].Value.ToString();
-
-			string infoToDelete = dateToDelete + "," + customerName + "," + customerSurname + "," + customerID + "," + customerNumber;
-
-			foreach (DataGridViewRow row in _main_form.PurchseLogGridView.Rows) 
-			{
-				if ((row.Cells[0].Value.ToString() == dateToDelete) &&
-					(row.Cells[1].Value.ToString() == customerName) &&
-					(row.Cells[2].Value.ToString() == customerSurname) &&
-					(row.Cells[3].Value.ToString() == customerID) &&
-					(row.Cells[4].Value.ToString() == customerNumber)) 
-				{
-					_main_form.PurchseLogGridView.Rows[row.Index].DefaultCellStyle.BackColor = Color.Red;
-				}
-			}
-			_main_form.PurchseLogGridView.Refresh();
-
-			return infoToDelete;
-		}
-		/// <summary>
-		/// This function is used to delete purchases when a user makes a mistake
-		/// </summary>
-		/// <param name="rowStartingSubstring"></param>
-		private void DeleteRows(string rowStartingSubstring) 
-		{
-			startingSubstringForEntriesToBeDeleted = rowStartingSubstring;
-			string warningMessage = "YOU ARE ABOUT TO DELETE ALL THE ENTRIES HIGHLIGHTED IN RED!!!";
-			Warning warning = new Warning(_main_form, warningMessage, this);
+			//Highlight the rows that will be deleted if the user chooses to confirm
+			//Returns a string the will be the starting substring for the row that will be deleted
+			int uniquePurchaseColumns = 5;
+			startingSubstringForEntriesToBeDeleted = csvHandles.RowsToDelete(_current_row, _main_form.PurchseLogGridView, uniquePurchaseColumns);
+			csvHandles.RequestUserConfirmation(_main_form,this);
 		}
 
 		private string pathToDeleteFile()
@@ -481,26 +444,38 @@ namespace Green_Enviro_App
 		/// </summary>
 		public override void WarningWaitingFunction(bool actionConfirmed) 
 		{
-			string pathToFile = pathToDeleteFile();
-			string[] lines = System.IO.File.ReadAllLines(pathToFile);
-			//Create a list from the array
-			List<string> fileLines = new List<string>(lines);
-
-			//This is a List method that passes each element in the List to the given Predicate
-			//and deletes every element from the list where the Predicate returns a true value
-			fileLines.RemoveAll(startsWithRequiredString);
-
-			StringBuilder _csv_content = new StringBuilder();
-			//Recreate
-			foreach (string line in fileLines) 
+			if (actionConfirmed == true)
 			{
-				_csv_content.AppendLine(line);
-			}
+				string pathToFile = pathToDeleteFile();
+				string[] lines = System.IO.File.ReadAllLines(pathToFile);
+				//Create a list from the array
+				List<string> fileLines = new List<string>(lines);
 
-			if (actionConfirmed == true) 
-			{
+				//This is a List method that passes each element in the List to the given Predicate
+				//and deletes every element from the list where the Predicate returns a true value
+				fileLines.RemoveAll(startsWithRequiredString);
+
+				StringBuilder _csv_content = new StringBuilder();
+				//Recreate
+				foreach (string line in fileLines)
+				{
+					_csv_content.AppendLine(line);
+				}
+
+				//Replace the entire CSV file with the updated contents
 				File.WriteAllText(pathToFile, _csv_content.ToString());
 				DisplayPurchaseLog();
+			}
+			else 
+			{
+				//Remove the red highlighting on the previously selected rows
+				//if the user decides to cancel the deletion
+
+				foreach (DataGridViewRow row in _main_form.PurchseLogGridView.Rows) 
+				{
+					row.DefaultCellStyle.BackColor = Color.White;
+				}
+				
 			}
 		}
 	}

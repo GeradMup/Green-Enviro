@@ -151,7 +151,7 @@ namespace Green_Enviro_App
             _main_form.receiptBox.ReadOnly = false;
             _main_form.receiptBox.Clear();
 
-            transaction_time = DateTime.Now.ToString("hh:mm");
+            transaction_time = DateTime.Now.ToString("hh:mm:ss");
             transaction_date_and_time = DateTime.Now.ToString("dd MMMM yyyy") + " [" + transaction_time + "]";
             string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + transaction_time + "\n";
             
@@ -216,9 +216,10 @@ namespace Green_Enviro_App
                 //Start by checking that the user entered a price
                 if (_main_form.PriceBox.Value == (decimal)0.00) 
                 {
-                    MessageBox.Show("Please insert the Price");
+                    CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please insert the Price");
                     return;
                 }
+                //Reads both a comma or a point as the decimal indicator for parsing to float 
                 _price = float.Parse(_main_form.PriceBox.Text, CultureInfo.InvariantCulture);
             }
             else 
@@ -248,6 +249,7 @@ namespace Green_Enviro_App
                 _receipt_content += "\n";
             }
 
+            //Update the contents on the receipt whenever an Item is added
             setupReceipt();
 
             //Create the record for Logging
@@ -383,7 +385,6 @@ namespace Green_Enviro_App
             //Check if the purchase has been cancelled. Reset the customer details if purchase was cancelled
             if (_main_form.customerNumbersList.Text == "") 
             {
-       
                 ClearCustomerDetails();
                 return;
             }
@@ -397,10 +398,8 @@ namespace Green_Enviro_App
             //Check if the customer is already selected. You cannot change the customer details in the middle of a purchase
             if (_customer_selected == true) 
             {
-
-                string _error_message = "Can not change customer details during purchase. \nCancel purchase and start from the begining!";
-                CustomMessageBox box = new CustomMessageBox(_main_form, "Error!", _error_message);
-                
+                string _error_message = "Can not change customer details during transaction. \nPress Cancel and start from the begining!";
+                CustomMessageBox box = new CustomMessageBox(_main_form, CustomMessageBox.error, _error_message);                
                 return;
             }
 
@@ -418,7 +417,6 @@ namespace Green_Enviro_App
             int _cell_number_column = 4;
             int _address_column = 5;
 
-             
             _customer_id_number = _row[_only_row][ID_column].ToString();
             _customer_name = _row[_only_row][_name_column].ToString();
             _customer_surname = _row[_only_row][_surname_column].ToString();
@@ -432,6 +430,7 @@ namespace Green_Enviro_App
             //Add front zero to phone number
             _customer_cell_number = addFrontZero(_customer_cell_number);
 
+            //Fill up the details in the form on the receipt page
             _main_form.CustomerIDNumberTextBox.Text = _customer_id_number;
             _main_form.CustomerNameTextBox.Text = _customer_name;
             _main_form.CustomerSurnameTextBox.Text = _customer_surname;
@@ -448,7 +447,6 @@ namespace Green_Enviro_App
             setupReceipt();
             _customer_selected = true;
         }
-
 
         //Trims the string and returns the first word only
         private string truncateString(string _string) 
@@ -475,6 +473,7 @@ namespace Green_Enviro_App
         }
 		private void ClearCustomerDetails() 
 		{
+            //First Clear the things displayed on the receipt page
             _main_form.CustomerIDNumberTextBox.Text = "";
             _main_form.CustomerNameTextBox.Text = "";
             _main_form.CustomerSurnameTextBox.Text = "";
@@ -482,9 +481,16 @@ namespace Green_Enviro_App
             _main_form.CustomerAddress.Text = "";
             _main_form.IDPictureBox.Image = null;
             _customer_selected = false;
+
+            //Now clear the variables being used to store these values
+            _customer_id_number = ""; 
+            _customer_name = "";
+            _customer_surname = "";
+            _customer_cell_number = "";
+            _customer_address = "";
         }
-         
-		public void CompletePurchaseOrSale() 
+
+        public void CompletePurchaseOrSale() 
         {
             if ((_purchased_items.Count == 0) 
                 && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == purchaseOrSaleType.purchase))
@@ -531,6 +537,7 @@ namespace Green_Enviro_App
             
             PrintReceipt();
             ResetReceipt();
+            ClearCustomerDetails();
 
             _purchased_items.Clear();
             _purchased_quantities.Clear();
@@ -543,7 +550,7 @@ namespace Green_Enviro_App
         {
             _main_form.customerNumbersList.DropDownStyle = ComboBoxStyle.DropDownList;
             _main_form.customerNumbersList.SelectedItem = null;
-            UpdateCustomerDetails(true);
+            UpdateCustomerDetails(true);    //Also clear if the customer numbers have been changed to a drop down list
             _main_form.customerNumbersList.DropDownStyle = ComboBoxStyle.DropDown;
             _main_form.itemList.SelectedItem = null;
             
