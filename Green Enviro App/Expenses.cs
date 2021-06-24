@@ -303,7 +303,7 @@ namespace Green_Enviro_App
 			}
 
 			StringBuilder _csv_content = new StringBuilder();
-			string timeWhenEntered = DateTime.Now.ToString("HH:mm:ss");
+			string timeWhenEntered = DateTime.Now.ToString(" HH:mm:ss");
 			string _date = _main_form.ExpenseDate.Value.ToString("dd MMMM yyyy") + timeWhenEntered;
 			string _description = _main_form.ExpenseDescriptionBox.Text;
 			string _amount = _main_form.ExpenseAmount.Value.ToString();

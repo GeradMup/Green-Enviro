@@ -491,6 +491,7 @@ namespace Green_Enviro_App
             _customer_selected = false;
 
             //Now clear the variables being used to store these values
+            _customer_number = "";
             _customer_id_number = ""; 
             _customer_name = "";
             _customer_surname = "";
