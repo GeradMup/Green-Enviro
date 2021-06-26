@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -132,6 +133,63 @@ namespace Green_Enviro_App
 				//_csv_content.AppendLine("\n");
 				File.AppendAllText(path, _csv_content.ToString());
 			}
+		}
+
+		public DataTable getCSVContents(string _path_to_log_file) 
+		{
+			DataTable _data_table = new DataTable();
+
+			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
+			if (lines.Length > 0)
+			{
+				//first line to create the table headers
+				string _first_line = lines[0];
+				string[] _header_labels = _first_line.Split(',');
+				if (!_data_table.Columns.Contains(_header_labels[0]))
+				{
+					foreach (string _header_word in _header_labels)
+					{
+						_data_table.Columns.Add(new DataColumn(_header_word));
+					}
+				}
+
+				//Now we populate the table with the rest of the information that we want to view
+				for (int _row = 1; _row < lines.Length; _row++)
+				{
+					//For each line, we want a list of the words on the line seperated by the comma
+					string[] dataWords = lines[_row].Split(',');
+					DataRow _data_row = _data_table.NewRow();
+					int columnIndex = 0;
+					foreach (string headerWord in _header_labels)
+					{
+						_data_row[headerWord] = dataWords[columnIndex++];
+					}
+					_data_table.Rows.Add(_data_row);
+				}
+			}
+			return _data_table;
+		}
+
+		/// <summary>
+		/// Gets the files in folder.
+		/// </summary>
+		/// <param name="folder">The path to the folder.</param>
+		/// <returns name="fileNames">A list of all the file names in folder</returns>
+
+		public List<string> getFilesInFolder(string folder, ComboBox comboBox) 
+		{
+			List<string> fileNames = new List<string>();
+
+			DirectoryInfo _directory = new DirectoryInfo(folder);
+			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
+			foreach (FileInfo _file in _files)
+			{
+				char[] _remove_chars = { 'c', 's', 'v', '.' };
+				string _file_name = _file.Name.TrimEnd(_remove_chars);
+				comboBox.Items.Add(_file_name);
+			}
+
+			return fileNames;
 		}
 	}
 }

@@ -66,16 +66,8 @@ namespace Green_Enviro_App
 		//Create purchase and sales logs for each month if they don't already exist
 		private void CreateLogFiles()
 		{
-			//First Check if the files exist for each month
-			//If the file does not exist, create it
-			if (!File.Exists(_path_to_purchases))
-			{
-				string _purchases_file_headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type";
-				StringBuilder _csv_content = new StringBuilder();
-				_csv_content.AppendLine(_purchases_file_headers);
-				//_csv_content.AppendLine("\n");
-				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
-			}
+			string _purchases_file_headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type";
+			csvHandles.createCSVFile(_path_to_purchases, _purchases_file_headers);
 		}
 
 		public void AddPurchase(List<string> purchasedItems)
@@ -118,7 +110,6 @@ namespace Green_Enviro_App
 				FilterGridView();
 				PopulateGridView();
 			}
-
 		}
 
 		private void LoadPurchaseLog() 
@@ -156,7 +147,6 @@ namespace Green_Enviro_App
 					_purchases_data_table.Rows.Add(_data_row);
 				}
 			}
-
 		}
 
 		private void FilterGridView() 

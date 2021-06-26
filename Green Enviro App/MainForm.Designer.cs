@@ -214,11 +214,12 @@ namespace Green_Enviro_App
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.salesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.button6 = new System.Windows.Forms.Button();
 			this.PrintPRBtn = new System.Windows.Forms.Button();
 			this.RemovePRFiltersBtn = new System.Windows.Forms.Button();
 			this.FilterPRBtn = new System.Windows.Forms.Button();
 			this.label66 = new System.Windows.Forms.Label();
-			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.PurchasesPRMonth = new System.Windows.Forms.ComboBox();
 			this.label67 = new System.Windows.Forms.Label();
 			this.label68 = new System.Windows.Forms.Label();
 			this.label69 = new System.Windows.Forms.Label();
@@ -246,7 +247,6 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-			this.button6 = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -2409,7 +2409,9 @@ namespace Green_Enviro_App
 			// 
 			// salesPRDataGridView
 			// 
+			this.salesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
 			this.salesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.salesPRDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.salesPRDataGridView.Location = new System.Drawing.Point(3, 171);
 			this.salesPRDataGridView.Name = "salesPRDataGridView";
 			this.salesPRDataGridView.RowHeadersWidth = 51;
@@ -2424,7 +2426,7 @@ namespace Green_Enviro_App
 			this.tabPage2.Controls.Add(this.RemovePRFiltersBtn);
 			this.tabPage2.Controls.Add(this.FilterPRBtn);
 			this.tabPage2.Controls.Add(this.label66);
-			this.tabPage2.Controls.Add(this.comboBox4);
+			this.tabPage2.Controls.Add(this.PurchasesPRMonth);
 			this.tabPage2.Controls.Add(this.label67);
 			this.tabPage2.Controls.Add(this.label68);
 			this.tabPage2.Controls.Add(this.label69);
@@ -2438,6 +2440,16 @@ namespace Green_Enviro_App
 			this.tabPage2.TabIndex = 9;
 			this.tabPage2.Text = "Purchases PR";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(1095, 110);
+			this.button6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(265, 57);
+			this.button6.TabIndex = 31;
+			this.button6.Text = "Print Register";
+			this.button6.UseVisualStyleBackColor = true;
 			// 
 			// PrintPRBtn
 			// 
@@ -2479,18 +2491,19 @@ namespace Green_Enviro_App
 			this.label66.TabIndex = 27;
 			this.label66.Text = "Month";
 			// 
-			// comboBox4
+			// PurchasesPRMonth
 			// 
-			this.comboBox4.DropDownHeight = 300;
-			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox4.FormattingEnabled = true;
-			this.comboBox4.IntegralHeight = false;
-			this.comboBox4.ItemHeight = 23;
-			this.comboBox4.Location = new System.Drawing.Point(36, 49);
-			this.comboBox4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.comboBox4.Name = "comboBox4";
-			this.comboBox4.Size = new System.Drawing.Size(269, 31);
-			this.comboBox4.TabIndex = 26;
+			this.PurchasesPRMonth.DropDownHeight = 300;
+			this.PurchasesPRMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasesPRMonth.FormattingEnabled = true;
+			this.PurchasesPRMonth.IntegralHeight = false;
+			this.PurchasesPRMonth.ItemHeight = 23;
+			this.PurchasesPRMonth.Location = new System.Drawing.Point(36, 49);
+			this.PurchasesPRMonth.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PurchasesPRMonth.Name = "PurchasesPRMonth";
+			this.PurchasesPRMonth.Size = new System.Drawing.Size(269, 31);
+			this.PurchasesPRMonth.TabIndex = 26;
+			this.PurchasesPRMonth.SelectedIndexChanged += new System.EventHandler(this.PurchasesPRMonth_SelectedIndexChanged);
 			// 
 			// label67
 			// 
@@ -2563,6 +2576,9 @@ namespace Green_Enviro_App
 			// 
 			// PurchasesPRDataGridView
 			// 
+			this.PurchasesPRDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.PurchasesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.PurchasesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.PurchasesPRDataGridView.Location = new System.Drawing.Point(36, 198);
@@ -2761,16 +2777,6 @@ namespace Green_Enviro_App
 			this.label46.Size = new System.Drawing.Size(81, 19);
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
-			// 
-			// button6
-			// 
-			this.button6.Location = new System.Drawing.Point(1095, 110);
-			this.button6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(265, 57);
-			this.button6.TabIndex = 31;
-			this.button6.Text = "Print Register";
-			this.button6.UseVisualStyleBackColor = true;
 			// 
 			// Main_Form
 			// 
@@ -3101,13 +3107,11 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label64;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.DataGridView salesPRDataGridView;
-		private System.Windows.Forms.DataGridView PurchasesPRDataGridView;
 		private System.Windows.Forms.Button PrintPRBtn;
 		private System.Windows.Forms.Button RemovePRFiltersBtn;
 		private System.Windows.Forms.Button FilterPRBtn;
 		private System.Windows.Forms.Label label66;
-		public System.Windows.Forms.ComboBox comboBox4;
+		public System.Windows.Forms.ComboBox PurchasesPRMonth;
 		private System.Windows.Forms.Label label67;
 		private System.Windows.Forms.Label label68;
 		private System.Windows.Forms.Label label69;
@@ -3122,5 +3126,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button DeleteSaleBtn;
 		private System.Windows.Forms.Button DeleteWageBtn;
 		private System.Windows.Forms.Button button6;
+		public System.Windows.Forms.DataGridView PurchasesPRDataGridView;
+		public System.Windows.Forms.DataGridView salesPRDataGridView;
 	}
 }

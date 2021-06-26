@@ -30,7 +30,7 @@ namespace Green_Enviro_App
         Email _email;
         Inventory _inventory;
         Employees _employees;
-        Police_Register _policeRegister;
+        Purchases_PR _purchasesPR;
 
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
@@ -60,7 +60,7 @@ namespace Green_Enviro_App
             _summaries = new Summaries(this);
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
-            _policeRegister = new Police_Register(this);
+            _purchasesPR = new Purchases_PR(this);
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;
@@ -566,6 +566,11 @@ namespace Green_Enviro_App
 		private void DeleteSaleBtn_Click(object sender, EventArgs e)
 		{
             _sales.DeleteSale();
+		}
+
+		private void PurchasesPRMonth_SelectedIndexChanged(object sender, EventArgs e)
+		{
+            _purchasesPR.monthSelected();
 		}
 	}
 }
