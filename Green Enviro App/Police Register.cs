@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
@@ -14,9 +16,18 @@ namespace Green_Enviro_App
 		string pathToSalesPoliceRegister = pathToProjectDirectory + @"\resources\Logs\Police Registers\Sales\" + month + ".csv";
 		string pathToPurchasePoliceRegister = pathToProjectDirectory + @"\resources\Logs\Police Registers\Purchases\" + month + ".csv";
 
-		public Police_Register() 
+		Main_Form _main_form;
+		
+		CSVHandles csvHandles;
+		DataGridView dataGridView;
+		int uniqueColumns;
+
+		public Police_Register(Main_Form mainForm) 
 		{
-			
+			csvHandles = new CSVHandles(dataGridView, uniqueColumns);
+			createFiles(pathToSalesPoliceRegister);
+			createFiles(pathToPurchasePoliceRegister);
+			_main_form = mainForm;
 		}
 
 		private void setupPoliceRegisters() 
@@ -26,12 +37,8 @@ namespace Green_Enviro_App
 
 		private void createFiles(string path) 
 		{
-			string headers = "Date";
-			StringBuilder _csv_content = new StringBuilder();
-			_csv_content.AppendLine(headers);
-				
-			File.AppendAllText(headers, _csv_content.ToString());
+			string headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type";
+			csvHandles.createCSVFile(path, headers);	
 		}
-
 	}
 }

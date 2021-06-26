@@ -121,5 +121,17 @@ namespace Green_Enviro_App
 			}
 		}
 
+		public void createCSVFile(string path, string headers) 
+		{
+			//First Check if the files exist for each month
+			//If the file does not exist, create it
+			if (!File.Exists(path))
+			{
+				StringBuilder _csv_content = new StringBuilder();
+				_csv_content.AppendLine(headers);
+				//_csv_content.AppendLine("\n");
+				File.AppendAllText(path, _csv_content.ToString());
+			}
+		}
 	}
 }

@@ -89,6 +89,7 @@ namespace Green_Enviro_App
 			this.PurchaseLogEndDate = new System.Windows.Forms.ComboBox();
 			this.PurchaseLogStartDate = new System.Windows.Forms.ComboBox();
 			this.SalesPage = new System.Windows.Forms.TabPage();
+			this.DeleteSaleBtn = new System.Windows.Forms.Button();
 			this.SaleAmount = new System.Windows.Forms.NumericUpDown();
 			this.SaleQuantityBx = new System.Windows.Forms.NumericUpDown();
 			this.NewCompanyCheckBox = new System.Windows.Forms.CheckBox();
@@ -148,6 +149,7 @@ namespace Green_Enviro_App
 			this.label33 = new System.Windows.Forms.Label();
 			this.label34 = new System.Windows.Forms.Label();
 			this.WagesNewEmployee = new System.Windows.Forms.TabPage();
+			this.DeleteWageBtn = new System.Windows.Forms.Button();
 			this.NewEmployee = new System.Windows.Forms.Button();
 			this.PartTimeEmployeeCheckBox = new System.Windows.Forms.CheckBox();
 			this.WagesEmployeeName = new System.Windows.Forms.ComboBox();
@@ -212,9 +214,9 @@ namespace Green_Enviro_App
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.salesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
+			this.PrintPRBtn = new System.Windows.Forms.Button();
+			this.RemovePRFiltersBtn = new System.Windows.Forms.Button();
+			this.FilterPRBtn = new System.Windows.Forms.Button();
 			this.label66 = new System.Windows.Forms.Label();
 			this.comboBox4 = new System.Windows.Forms.ComboBox();
 			this.label67 = new System.Windows.Forms.Label();
@@ -244,8 +246,7 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-			this.DeleteSaleBtn = new System.Windows.Forms.Button();
-			this.DeleteWageBtn = new System.Windows.Forms.Button();
+			this.button6 = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -971,6 +972,17 @@ namespace Green_Enviro_App
 			this.SalesPage.Text = "Sales";
 			this.SalesPage.UseVisualStyleBackColor = true;
 			// 
+			// DeleteSaleBtn
+			// 
+			this.DeleteSaleBtn.Location = new System.Drawing.Point(1242, 94);
+			this.DeleteSaleBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.DeleteSaleBtn.Name = "DeleteSaleBtn";
+			this.DeleteSaleBtn.Size = new System.Drawing.Size(254, 46);
+			this.DeleteSaleBtn.TabIndex = 32;
+			this.DeleteSaleBtn.Text = "Delete Sale";
+			this.DeleteSaleBtn.UseVisualStyleBackColor = true;
+			this.DeleteSaleBtn.Click += new System.EventHandler(this.DeleteSaleBtn_Click);
+			// 
 			// SaleAmount
 			// 
 			this.SaleAmount.DecimalPlaces = 2;
@@ -1677,6 +1689,17 @@ namespace Green_Enviro_App
 			this.WagesNewEmployee.TabIndex = 4;
 			this.WagesNewEmployee.Text = "Wages";
 			this.WagesNewEmployee.UseVisualStyleBackColor = true;
+			// 
+			// DeleteWageBtn
+			// 
+			this.DeleteWageBtn.Location = new System.Drawing.Point(1456, 98);
+			this.DeleteWageBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.DeleteWageBtn.Name = "DeleteWageBtn";
+			this.DeleteWageBtn.Size = new System.Drawing.Size(236, 46);
+			this.DeleteWageBtn.TabIndex = 72;
+			this.DeleteWageBtn.Text = "Delete Wage";
+			this.DeleteWageBtn.UseVisualStyleBackColor = true;
+			this.DeleteWageBtn.Click += new System.EventHandler(this.DeleteWageBtn_Click);
 			// 
 			// NewEmployee
 			// 
@@ -2396,9 +2419,10 @@ namespace Green_Enviro_App
 			// 
 			// tabPage2
 			// 
-			this.tabPage2.Controls.Add(this.button2);
-			this.tabPage2.Controls.Add(this.button3);
-			this.tabPage2.Controls.Add(this.button4);
+			this.tabPage2.Controls.Add(this.button6);
+			this.tabPage2.Controls.Add(this.PrintPRBtn);
+			this.tabPage2.Controls.Add(this.RemovePRFiltersBtn);
+			this.tabPage2.Controls.Add(this.FilterPRBtn);
 			this.tabPage2.Controls.Add(this.label66);
 			this.tabPage2.Controls.Add(this.comboBox4);
 			this.tabPage2.Controls.Add(this.label67);
@@ -2415,35 +2439,35 @@ namespace Green_Enviro_App
 			this.tabPage2.Text = "Purchases PR";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// PrintPRBtn
 			// 
-			this.button2.Location = new System.Drawing.Point(736, 110);
-			this.button2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(265, 57);
-			this.button2.TabIndex = 30;
-			this.button2.Text = "Print Register";
-			this.button2.UseVisualStyleBackColor = true;
+			this.PrintPRBtn.Location = new System.Drawing.Point(736, 110);
+			this.PrintPRBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PrintPRBtn.Name = "PrintPRBtn";
+			this.PrintPRBtn.Size = new System.Drawing.Size(265, 57);
+			this.PrintPRBtn.TabIndex = 30;
+			this.PrintPRBtn.Text = "Print Register";
+			this.PrintPRBtn.UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// RemovePRFiltersBtn
 			// 
-			this.button3.Location = new System.Drawing.Point(371, 110);
-			this.button3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(297, 57);
-			this.button3.TabIndex = 29;
-			this.button3.Text = "Remove Filters";
-			this.button3.UseVisualStyleBackColor = true;
+			this.RemovePRFiltersBtn.Location = new System.Drawing.Point(371, 110);
+			this.RemovePRFiltersBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.RemovePRFiltersBtn.Name = "RemovePRFiltersBtn";
+			this.RemovePRFiltersBtn.Size = new System.Drawing.Size(297, 57);
+			this.RemovePRFiltersBtn.TabIndex = 29;
+			this.RemovePRFiltersBtn.Text = "Remove Filters";
+			this.RemovePRFiltersBtn.UseVisualStyleBackColor = true;
 			// 
-			// button4
+			// FilterPRBtn
 			// 
-			this.button4.Location = new System.Drawing.Point(36, 110);
-			this.button4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(265, 57);
-			this.button4.TabIndex = 28;
-			this.button4.Text = "Filter";
-			this.button4.UseVisualStyleBackColor = true;
+			this.FilterPRBtn.Location = new System.Drawing.Point(36, 110);
+			this.FilterPRBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.FilterPRBtn.Name = "FilterPRBtn";
+			this.FilterPRBtn.Size = new System.Drawing.Size(265, 57);
+			this.FilterPRBtn.TabIndex = 28;
+			this.FilterPRBtn.Text = "Filter";
+			this.FilterPRBtn.UseVisualStyleBackColor = true;
 			// 
 			// label66
 			// 
@@ -2738,27 +2762,15 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// DeleteSaleBtn
+			// button6
 			// 
-			this.DeleteSaleBtn.Location = new System.Drawing.Point(1242, 94);
-			this.DeleteSaleBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.DeleteSaleBtn.Name = "DeleteSaleBtn";
-			this.DeleteSaleBtn.Size = new System.Drawing.Size(254, 46);
-			this.DeleteSaleBtn.TabIndex = 32;
-			this.DeleteSaleBtn.Text = "Delete Sale";
-			this.DeleteSaleBtn.UseVisualStyleBackColor = true;
-			this.DeleteSaleBtn.Click += new System.EventHandler(this.DeleteSaleBtn_Click);
-			// 
-			// DeleteWageBtn
-			// 
-			this.DeleteWageBtn.Location = new System.Drawing.Point(1456, 98);
-			this.DeleteWageBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.DeleteWageBtn.Name = "DeleteWageBtn";
-			this.DeleteWageBtn.Size = new System.Drawing.Size(236, 46);
-			this.DeleteWageBtn.TabIndex = 72;
-			this.DeleteWageBtn.Text = "Delete Wage";
-			this.DeleteWageBtn.UseVisualStyleBackColor = true;
-			this.DeleteWageBtn.Click += new System.EventHandler(this.DeleteWageBtn_Click);
+			this.button6.Location = new System.Drawing.Point(1095, 110);
+			this.button6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(265, 57);
+			this.button6.TabIndex = 31;
+			this.button6.Text = "Print Register";
+			this.button6.UseVisualStyleBackColor = true;
 			// 
 			// Main_Form
 			// 
@@ -3091,9 +3103,9 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.DataGridView salesPRDataGridView;
 		private System.Windows.Forms.DataGridView PurchasesPRDataGridView;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button PrintPRBtn;
+		private System.Windows.Forms.Button RemovePRFiltersBtn;
+		private System.Windows.Forms.Button FilterPRBtn;
 		private System.Windows.Forms.Label label66;
 		public System.Windows.Forms.ComboBox comboBox4;
 		private System.Windows.Forms.Label label67;
@@ -3109,5 +3121,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button DeleteSaleBtn;
 		private System.Windows.Forms.Button DeleteWageBtn;
+		private System.Windows.Forms.Button button6;
 	}
 }

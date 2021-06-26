@@ -30,6 +30,7 @@ namespace Green_Enviro_App
         Email _email;
         Inventory _inventory;
         Employees _employees;
+        Police_Register _policeRegister;
 
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
@@ -59,6 +60,7 @@ namespace Green_Enviro_App
             _summaries = new Summaries(this);
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
+            _policeRegister = new Police_Register(this);
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;
@@ -494,7 +496,7 @@ namespace Green_Enviro_App
 		private void PrintPoliceRegisterBtn_Click(object sender, EventArgs e)
 		{
             //Do nothing when this button is pressed
-            return;
+            //return;
 
             if (this.PurchaseLogMonth.SelectedItem == null) 
             {
@@ -515,9 +517,9 @@ namespace Green_Enviro_App
             printer.PageSettings.PrinterSettings.DefaultPageSettings.Landscape = true;
 
             IEnumerable<PaperSize> paperSizes = printer.PageSettings.PrinterSettings.PaperSizes.Cast<PaperSize>();
-            PaperSize sizeA4 = new PaperSize();
-            sizeA4.RawKind = (int)PaperKind.A4;
-            printer.PageSettings.PrinterSettings.DefaultPageSettings.PaperSize = sizeA4;
+            PaperSize sizeA3 = new PaperSize();
+            sizeA3.RawKind = (int)PaperKind.A3;
+            printer.PageSettings.PrinterSettings.DefaultPageSettings.PaperSize = sizeA3;
 
 
             PurchseLogGridView.Rows[PurchseLogGridView.Rows.Count - 1].Visible = false;
