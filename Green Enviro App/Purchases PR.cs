@@ -30,7 +30,7 @@ namespace Green_Enviro_App
 		{
 			_main_form = mainForm;
 			csvHandles = new CSVHandles(mainForm.PurchasesPRDataGridView, uniqueColumns);
-			createFiles(pathToSalesPoliceRegister);
+			//createFiles(pathToSalesPoliceRegister);
 			createFiles(pathToPurchasePoliceRegister);
 			setupPoliceRegisters();
 		}
@@ -91,7 +91,8 @@ namespace Green_Enviro_App
 
 		public void addEntryToPR() 
 		{
-			
+
+
 		}
 	}
 }

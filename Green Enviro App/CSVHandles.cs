@@ -58,6 +58,9 @@ namespace Green_Enviro_App
 				//False match is true if rows don't match and false if they do match
 				//We start by assuming that the rows actually match
 				rowFalseMatch = false;
+
+				//This for loop checks to make sure that all the information in the row matches the info to be deleted
+				//Note that info must match for every single column
 				for (int colNum = 0; colNum < numberOfColumns; colNum++) 
 				{
 					if (row.Cells[colNum].Value.ToString() != columnInfo[colNum]) 
@@ -67,6 +70,7 @@ namespace Green_Enviro_App
 					}
 				}
 
+				//If rowFalseMatch is false, it means all the information matched exactly
 				if(rowFalseMatch == false)
 				{
 					row.DefaultCellStyle.BackColor = Color.Red;
@@ -221,6 +225,14 @@ namespace Green_Enviro_App
 			{
 				MessageBox.Show("Error! \n" + ex.Message);
 			}
+		}
+
+		/// <summary>Highlights the row that is currently selected it the data gridview</summary>
+		/// <param name="selectedRow">The selected row.</param>
+		public void highlightRow(int selectedRow) 
+		{
+			dataGridView.Rows[selectedRow].DefaultCellStyle.BackColor = Color.GreenYellow;
+			highlightedRows.Add(selectedRow);
 		}
 	}
 }

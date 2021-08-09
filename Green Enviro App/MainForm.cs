@@ -575,7 +575,7 @@ namespace Green_Enviro_App
 
 		private void AddToPRBtn_Click(object sender, EventArgs e)
 		{
-            _purchasesPR.addEntryToPR();
+            _purchases.addToPRRequest();
 		}
 	}
 }

@@ -397,7 +397,7 @@ namespace Green_Enviro_App
 			//Verify that something is selected before attempting to delete
 			if (_main_form.PurchseLogGridView.SelectedCells.Count == 0) 
 			{
-				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the customer to be deleted");
+				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the purchase to be deleted");
 				return;
 			}
 
@@ -442,6 +442,23 @@ namespace Green_Enviro_App
 				//If user cancels the deletion, we need to remove the highlight marks
 				csvHandles.eraseHighlightMarks();
 			}
+		}
+
+		/// <summary>Adds to pr request.</summary>
+		/// Handles the pre-checks before attempting to add any entry to the police register
+		public void addToPRRequest() 
+		{
+			//Verify that something is selected before attempting to add it to the police register
+			if (_main_form.PurchseLogGridView.SelectedCells.Count == 0)
+			{
+				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the purchase to be added");
+				return;
+			}
+
+			int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
+
+			csvHandles.highlightRow(_current_row);
+
 		}
 	}
 }
