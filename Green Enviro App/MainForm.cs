@@ -493,7 +493,7 @@ namespace Green_Enviro_App
             }
         }
 
-		private void PrintPoliceRegisterBtn_Click(object sender, EventArgs e)
+		private void PrintPolice()
 		{
             //Do nothing when this button is pressed
             //return;
@@ -571,6 +571,11 @@ namespace Green_Enviro_App
 		private void PurchasesPRMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
             _purchasesPR.monthSelected();
+		}
+
+		private void AddToPRBtn_Click(object sender, EventArgs e)
+		{
+            _purchasesPR.addEntryToPR();
 		}
 	}
 }

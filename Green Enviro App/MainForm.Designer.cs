@@ -76,7 +76,7 @@ namespace Green_Enviro_App
 			this.receiptBox = new System.Windows.Forms.RichTextBox();
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
 			this.DeletePurchaseBtn = new System.Windows.Forms.Button();
-			this.PrintPoliceRegisterBtn = new System.Windows.Forms.Button();
+			this.AddToPRBtn = new System.Windows.Forms.Button();
 			this.removeFiltersBtn = new System.Windows.Forms.Button();
 			this.PurchseLogGridView = new System.Windows.Forms.DataGridView();
 			this.FilterPurchaseLogBtn = new System.Windows.Forms.Button();
@@ -760,7 +760,7 @@ namespace Green_Enviro_App
 			// PurchasesPage
 			// 
 			this.PurchasesPage.Controls.Add(this.DeletePurchaseBtn);
-			this.PurchasesPage.Controls.Add(this.PrintPoliceRegisterBtn);
+			this.PurchasesPage.Controls.Add(this.AddToPRBtn);
 			this.PurchasesPage.Controls.Add(this.removeFiltersBtn);
 			this.PurchasesPage.Controls.Add(this.PurchseLogGridView);
 			this.PurchasesPage.Controls.Add(this.FilterPurchaseLogBtn);
@@ -792,16 +792,16 @@ namespace Green_Enviro_App
 			this.DeletePurchaseBtn.UseVisualStyleBackColor = true;
 			this.DeletePurchaseBtn.Click += new System.EventHandler(this.DeletePurchaseBtn_Click);
 			// 
-			// PrintPoliceRegisterBtn
+			// AddToPRBtn
 			// 
-			this.PrintPoliceRegisterBtn.Location = new System.Drawing.Point(765, 119);
-			this.PrintPoliceRegisterBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.PrintPoliceRegisterBtn.Name = "PrintPoliceRegisterBtn";
-			this.PrintPoliceRegisterBtn.Size = new System.Drawing.Size(289, 57);
-			this.PrintPoliceRegisterBtn.TabIndex = 19;
-			this.PrintPoliceRegisterBtn.Text = "Print Register";
-			this.PrintPoliceRegisterBtn.UseVisualStyleBackColor = true;
-			this.PrintPoliceRegisterBtn.Click += new System.EventHandler(this.PrintPoliceRegisterBtn_Click);
+			this.AddToPRBtn.Location = new System.Drawing.Point(765, 119);
+			this.AddToPRBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.AddToPRBtn.Name = "AddToPRBtn";
+			this.AddToPRBtn.Size = new System.Drawing.Size(289, 57);
+			this.AddToPRBtn.TabIndex = 19;
+			this.AddToPRBtn.Text = "Add to Police Register";
+			this.AddToPRBtn.UseVisualStyleBackColor = true;
+			this.AddToPRBtn.Click += new System.EventHandler(this.AddToPRBtn_Click);
 			// 
 			// removeFiltersBtn
 			// 
@@ -2579,6 +2579,7 @@ namespace Green_Enviro_App
 			this.PurchasesPRDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.PurchasesPRDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.PurchasesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.PurchasesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.PurchasesPRDataGridView.Location = new System.Drawing.Point(36, 198);
@@ -3100,7 +3101,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label62;
 		public System.Windows.Forms.ComboBox InventoryLogType;
 		private System.Windows.Forms.Label label63;
-		private System.Windows.Forms.Button PrintPoliceRegisterBtn;
+		private System.Windows.Forms.Button AddToPRBtn;
 		public System.Windows.Forms.TextBox CustomerAddress;
 		public System.Windows.Forms.TextBox CustomerCellNumber;
 		private System.Windows.Forms.Label label65;

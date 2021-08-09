@@ -490,7 +490,7 @@ namespace Green_Enviro_App
             _main_form.IDPictureBox.Image = null;
             _customer_selected = false;
 
-            //Now clear the variables being used to store these values
+            //Now clear the variables being used to store new values
             _customer_number = "";
             _customer_id_number = ""; 
             _customer_name = "";
@@ -541,6 +541,7 @@ namespace Green_Enviro_App
                 _float.UpdateFloat(_running_total);
             }
             
+            //Record all the item quantities into our inventory
             _inventory.AddItems(_purchased_quantities);
             
             

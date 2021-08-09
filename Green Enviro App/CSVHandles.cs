@@ -135,6 +135,11 @@ namespace Green_Enviro_App
 			}
 		}
 
+		/// <summary>
+		/// Reads contents of a csv file given the path. 
+		/// </summary>
+		/// <param name="_path_to_log_file">The path to log file.</param>
+		/// <returns name="_data_table">A data table containing the contents of the csv file</returns>
 		public DataTable getCSVContents(string _path_to_log_file) 
 		{
 			DataTable _data_table = new DataTable();
@@ -171,9 +176,10 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
-		/// Gets the files in folder.
+		/// Gets the files in folder and adds them to the given combo box 
 		/// </summary>
 		/// <param name="folder">The path to the folder.</param>
+		/// <param name="comboBox"></param>
 		/// <returns name="fileNames">A list of all the file names in folder</returns>
 
 		public List<string> getFilesInFolder(string folder, ComboBox comboBox) 
@@ -190,6 +196,31 @@ namespace Green_Enviro_App
 			}
 
 			return fileNames;
+		}
+
+		/// <summary>Adds strings to a CSV file given a list of the strings and the path to the file</summary>
+		/// <param name="path">The path.</param>
+		/// <param name="lines">The lines.</param>
+		/// <param name="parent_form">The form we will return to after showing the success CustomMessageBox Form</param>
+		public void addToCSV(string path, List<string> lines, Form parent_form) 
+		{
+			StringBuilder _csv_content = new StringBuilder();
+
+			foreach (string line in lines)
+			{
+				_csv_content.AppendLine(line);
+			}
+
+			try
+			{
+				File.AppendAllText(path, _csv_content.ToString());
+
+				CustomMessageBox box = new CustomMessageBox(parent_form, CustomMessageBox.success, "Purchase Completed!");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error! \n" + ex.Message);
+			}
 		}
 	}
 }

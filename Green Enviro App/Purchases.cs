@@ -83,7 +83,7 @@ namespace Green_Enviro_App
 			{
 				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
 				
-				CustomMessageBox box = new CustomMessageBox(_main_form, "Success!", "Purchase Completed!");
+				CustomMessageBox box = new CustomMessageBox(_main_form, CustomMessageBox.success, "Purchase Completed!");
 			}
 			catch (Exception ex)
 			{
@@ -208,6 +208,7 @@ namespace Green_Enviro_App
 			int _last_row_index = 0;
 			_last_row_index = _main_form.PurchseLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 
+			//Highlight the totals row
 			_main_form.PurchseLogGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
 			_main_form.PurchseLogGridView.Refresh();
 		}
@@ -284,7 +285,6 @@ namespace Green_Enviro_App
 				}
 			}
 
-
 			//First Clear the start and end date fields to prepare them for the new entry
 			_main_form.PurchaseLogStartDate.Items.Clear();
 			_main_form.PurchaseLogEndDate.Items.Clear();
@@ -296,8 +296,9 @@ namespace Green_Enviro_App
 				_main_form.PurchaseLogEndDate.Items.Add(_date);
 			}
 
-			//Change the contents displayed in the log if the month selected changes
+			//Remove any previous filters and also display the purchase logs
 			RemoveFilters();
+			DisplayPurchaseLog();
 			
 		}
 
