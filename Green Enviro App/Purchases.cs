@@ -413,7 +413,7 @@ namespace Green_Enviro_App
 			//Returns a string the will be the starting substring for the row that will be deleted
 
 			csvHandles.RowsToDelete(_current_row);
-			csvHandles.RequestUserConfirmation(_main_form,this);
+			csvHandles.ConfirmDeletion(_main_form,this);
 		}
 
 		private string pathToDeleteFile()
@@ -428,7 +428,7 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Function that will be excecuted when after the warning message gets displayed
 		/// </summary>
-		public override void WarningWaitingFunction(bool actionConfirmed) 
+		public override void DeleteEntriesWarning(bool actionConfirmed) 
 		{
 			if (actionConfirmed == true)
 			{
@@ -458,7 +458,22 @@ namespace Green_Enviro_App
 			int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
 
 			csvHandles.highlightRow(_current_row);
+			csvHandles.ConfirmPurchasePRAddition(_main_form, this);
 
+		}
+
+		public override void PurchasePRWarning(bool actionConfirmed)
+		{
+			if (actionConfirmed == true)
+			{
+				//Here we will handle the code for copying items over to the police register
+				csvHandles.eraseHighlightMarks();
+			}
+			else
+			{
+				//If user cancels the deletion, we need to remove the highlight marks
+				csvHandles.eraseHighlightMarks();
+			}
 		}
 	}
 }

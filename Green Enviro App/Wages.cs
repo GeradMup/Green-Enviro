@@ -436,7 +436,7 @@ namespace Green_Enviro_App
 			//Returns a string the will be the starting substring for the row that will be deleted
 
 			csvHandles.RowsToDelete(_selected_row);
-			csvHandles.RequestUserConfirmation(_main_form, this);
+			csvHandles.ConfirmDeletion(_main_form, this);
 		}
 
 		private string pathToDeleteFile()
@@ -451,7 +451,7 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Function that will be excecuted when after the warning message gets displayed
 		/// </summary>
-		public override void WarningWaitingFunction(bool actionConfirmed)
+		public override void DeleteEntriesWarning(bool actionConfirmed)
 		{
 			if (actionConfirmed == true)
 			{
@@ -466,6 +466,11 @@ namespace Green_Enviro_App
 				//if the user decides to cancel the deletion
 				csvHandles.eraseHighlightMarks();
 			}
+		}
+
+		public override void PurchasePRWarning(bool actionConfirmed)
+		{
+			//throw new NotImplementedException();
 		}
 	}
 }
