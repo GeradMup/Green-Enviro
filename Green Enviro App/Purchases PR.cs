@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
-	class Purchases_PR
+	public class Purchases_PR
 	{
 		static string month = DateTime.Now.ToString("MMMM yyyy");
 		static string pathToProjectDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 		static string SalesPRBasePath = pathToProjectDirectory + @"\resources\Logs\Police Registers\Sales";
 		static string PurchasesPRBasePath = pathToProjectDirectory + @"\resources\Logs\Police Registers\Purchases";
-		string pathToSalesPoliceRegister = SalesPRBasePath + @"\" + month + ".csv";
+		//string pathToSalesPoliceRegister = SalesPRBasePath + @"\" + month + ".csv";
 		string pathToPurchasePoliceRegister = PurchasesPRBasePath + @"\" + month + ".csv";
 
 		Main_Form _main_form;
@@ -89,10 +89,11 @@ namespace Green_Enviro_App
 			}
 		}
 
-		public void addEntryToPR() 
+		public void addEntryToPR(string purchaseEntry) 
 		{
-
-
+			List<String> lines = new List<String>();
+			lines.Add(purchaseEntry);
+			csvHandles.addToCSV(pathToPurchasePoliceRegister,lines,_main_form);
 		}
 	}
 }

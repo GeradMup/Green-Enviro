@@ -21,6 +21,7 @@ namespace Green_Enviro_App
 		string _path_to_purchases = path + @"\resources\Logs\Purchases\" + _month + ".csv";
 		Main_Form _main_form;
 		CSVHandles csvHandles;
+		Purchases_PR _purchases_pr;
 
 		DataTable _purchases_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
@@ -29,9 +30,10 @@ namespace Green_Enviro_App
 
 		string _ferrous;
 		string _non_ferrous;
-		public Purchases(Main_Form _main)
+		public Purchases(Main_Form _main, Purchases_PR purchasesPR)
 		{
 			_main_form = _main;
+			_purchases_pr = purchasesPR;
 			int uniquePurchaseColumns = 5;
 			csvHandles = new CSVHandles(_main_form.PurchseLogGridView,uniquePurchaseColumns);
 			CreateLogFiles();
@@ -468,6 +470,21 @@ namespace Green_Enviro_App
 			{
 				//Here we will handle the code for copying items over to the police register
 				csvHandles.eraseHighlightMarks();
+				int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
+
+				string purchaseInfo = "";
+
+				//Copy all the elements in the columns of the data gridview and append them to a string. 
+				//The string will have a comma at the beginning and therefore must be removed
+				for (int column = 0; column < _main_form.PurchseLogGridView.ColumnCount; column++) 
+				{
+					purchaseInfo = purchaseInfo + "," + _main_form.PurchseLogGridView.Rows[_current_row].Cells[column].Value.ToString();
+				}
+
+				//Remove the comma at the beginning of the string
+				purchaseInfo = purchaseInfo.Remove(0,1);
+
+				_purchases_pr.addEntryToPR(purchaseInfo);
 			}
 			else
 			{

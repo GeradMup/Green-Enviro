@@ -49,7 +49,8 @@ namespace Green_Enviro_App
             //initialiseItemList();
             _login_form = loginForm;
             _database = _data;
-            _purchases = new Purchases(this);
+            _purchasesPR = new Purchases_PR(this);
+            _purchases = new Purchases(this, _purchasesPR);
             _email = new Email();
             _sales = new Sales(this, _database);
             _inventory = new Inventory(this);
