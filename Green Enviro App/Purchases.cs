@@ -484,7 +484,9 @@ namespace Green_Enviro_App
 				//Remove the comma at the beginning of the string
 				purchaseInfo = purchaseInfo.Remove(0,1);
 
-				_purchases_pr.addEntryToPR(purchaseInfo);
+				//Add the new entry to the police register corresponding to this month
+				string month = DateTime.Now.ToString("MMMM yyyy");
+				_purchases_pr.addEntryToPR(purchaseInfo, month);
 			}
 			else
 			{

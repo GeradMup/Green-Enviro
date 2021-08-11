@@ -35,7 +35,7 @@ namespace Green_Enviro_App
 
 		public void ConfirmPurchasePRAddition(Form returnForm, WarningInterface returnClass) 
 		{
-			string warningMessage = "YOU ARE ABOUT TO MOVE THE HIGHLIGHTED ENTRY TO THE PURCHASE POLICE REGISTER";
+			string warningMessage = "YOU ARE ABOUT TO ADD THE HIGHLIGHTED ENTRY TO THE PURCHASE POLICE REGISTER";
 			Warning warning = new Warning(returnForm, warningMessage, returnClass, RequestedAction.AddPurchaseToPr);
 		}
 
@@ -48,12 +48,18 @@ namespace Green_Enviro_App
 			List<string> columnInfo = new List<string>();
 			string infoToDelete = "";
 			highlightedRows.Clear();
+			//NOTE !!!!
+			//Number of unique columns are the columns that are unique to each entry
+			//These will be used to choose the unique identifiers for each column so that
+			//The correct entries can be deleted
 			for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) 
 			{
 				string column = dataGridView.Rows[selectedRow].Cells[columnIndex].Value.ToString();
 				columnInfo.Add(column);
 				infoToDelete += column + ",";
 			}
+
+			MessageBox.Show(infoToDelete);
 			//Remove the last comma inserted at the end of the string
 			infoToDelete = infoToDelete.Remove(infoToDelete.Length - 1, 1);
 			startingSubstringForLineToBeDeleted = infoToDelete;
@@ -212,7 +218,8 @@ namespace Green_Enviro_App
 		/// <param name="path">The path.</param>
 		/// <param name="lines">The lines.</param>
 		/// <param name="parent_form">The form we will return to after showing the success CustomMessageBox Form</param>
-		public void addToCSV(string path, List<string> lines, Form parent_form) 
+		/// <param name="successMessage">The message to be displayed when writing to the csv file was successful</param>
+		public void addToCSV(string path, List<string> lines, Form parent_form, string successMessage) 
 		{
 			StringBuilder _csv_content = new StringBuilder();
 
@@ -225,7 +232,7 @@ namespace Green_Enviro_App
 			{
 				File.AppendAllText(path, _csv_content.ToString());
 
-				CustomMessageBox box = new CustomMessageBox(parent_form, CustomMessageBox.success, "Purchase Completed!");
+				CustomMessageBox box = new CustomMessageBox(parent_form, CustomMessageBox.success, successMessage);
 			}
 			catch (Exception ex)
 			{

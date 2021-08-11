@@ -20,13 +20,13 @@ namespace Green_Enviro_App
 		string pathToPurchasePoliceRegister = PurchasesPRBasePath + @"\" + month + ".csv";
 
 		Main_Form _main_form;
-		
+
 		CSVHandles csvHandles;
 		int uniqueColumns;
 
 		DataTable _data_table;
 		BindingSource _binding_source = new BindingSource();
-		public Purchases_PR(Main_Form mainForm) 
+		public Purchases_PR(Main_Form mainForm)
 		{
 			_main_form = mainForm;
 			csvHandles = new CSVHandles(mainForm.PurchasesPRDataGridView, uniqueColumns);
@@ -35,20 +35,20 @@ namespace Green_Enviro_App
 			setupPoliceRegisters();
 		}
 
-		private void setupPoliceRegisters() 
+		private void setupPoliceRegisters()
 		{
 			//_sales_data_table = csvHandles.getCSVContents(pathToPurchasePoliceRegister);
 			//_purchases_data_table = csvHandles.getCSVContents(pathToSalesPoliceRegister);
 			List<string> fileNames = csvHandles.getFilesInFolder(PurchasesPRBasePath, _main_form.PurchasesPRMonth);
 		}
 
-		private void createFiles(string path) 
+		private void createFiles(string path)
 		{
 			string headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type";
-			csvHandles.createCSVFile(path, headers);	
+			csvHandles.createCSVFile(path, headers);
 		}
 
-		public void monthSelected() 
+		public void monthSelected()
 		{
 			if (_main_form.PurchasesPRMonth.SelectedItem == null)
 			{
@@ -60,18 +60,18 @@ namespace Green_Enviro_App
 			string _path_to_log_file = PurchasesPRBasePath + @"\" + _selected_month + ".csv";
 
 			_data_table = csvHandles.getCSVContents(_path_to_log_file);
-
+			
 			if (_data_table.Rows.Count > 0)
 			{
 				_binding_source.DataSource = _data_table;
 				populateGridView();
-			}	
+			}
 		}
 
-		private void populateGridView() 
+		private void populateGridView()
 		{
 			_main_form.PurchasesPRDataGridView.DataSource = _binding_source;
-			
+
 			_main_form.PurchasesPRDataGridView.Columns[0].FillWeight = 180F;
 			_main_form.PurchasesPRDataGridView.Columns[1].FillWeight = 100F;
 			_main_form.PurchasesPRDataGridView.Columns[2].FillWeight = 110F;
@@ -81,7 +81,7 @@ namespace Green_Enviro_App
 			_main_form.PurchasesPRDataGridView.Columns[6].FillWeight = 50F;
 			_main_form.PurchasesPRDataGridView.Columns[7].FillWeight = 50F;
 			_main_form.PurchasesPRDataGridView.Columns[8].FillWeight = 60F;
-			
+
 			//Disables the ability to sort columns using the headers
 			foreach (DataGridViewColumn _column in _main_form.PurchasesPRDataGridView.Columns)
 			{
@@ -89,11 +89,48 @@ namespace Green_Enviro_App
 			}
 		}
 
-		public void addEntryToPR(string purchaseEntry) 
+		//This function converts entries from a data table into a list of strings
+		//Each row in the table will be a single string which is comma delimeted
+		private List<String> dataTableToStringList(DataTable table)
 		{
-			List<String> lines = new List<String>();
-			lines.Add(purchaseEntry);
-			csvHandles.addToCSV(pathToPurchasePoliceRegister,lines,_main_form);
+			List<String> stringList = new List<String>();
+			string line = "";
+			foreach (DataRow row in table.Rows)
+			{
+				foreach (DataColumn column in table.Columns)
+				{
+					line = line + "," + row[column].ToString();
+				}
+				//Remove the comma at the beginning of the line
+				line = line.Remove(0, 1);
+				stringList.Add(line);
+				line = "";
+			}
+
+			return stringList;
+		}
+
+		public void addEntryToPR(string purchaseEntry, string month)
+		{
+
+			string _path_to_log_file = PurchasesPRBasePath + @"\" + month + ".csv";
+
+			DataTable temp_data_table = csvHandles.getCSVContents(_path_to_log_file);
+			List<String> PREntries = dataTableToStringList(temp_data_table);
+
+			if (PREntries.Contains(purchaseEntry))
+			{
+				string errorMessage = "THIS PURCHASE HAS ALREADY BEEN ADDED TO THE POLICE REGISTER!!!";
+				CustomMessageBox mb = new CustomMessageBox(_main_form,CustomMessageBox.error, errorMessage);
+			}
+			else
+			{
+				List<String> lines = new List<String>();
+				lines.Add(purchaseEntry);
+				string successMessage = "Purchase added to Purchase Police Register";
+				csvHandles.addToCSV(pathToPurchasePoliceRegister, lines, _main_form, successMessage);
+
+			}
 		}
 	}
 }
