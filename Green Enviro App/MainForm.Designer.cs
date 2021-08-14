@@ -223,9 +223,9 @@ namespace Green_Enviro_App
 			this.label67 = new System.Windows.Forms.Label();
 			this.label68 = new System.Windows.Forms.Label();
 			this.label69 = new System.Windows.Forms.Label();
-			this.comboBox5 = new System.Windows.Forms.ComboBox();
-			this.comboBox6 = new System.Windows.Forms.ComboBox();
-			this.comboBox7 = new System.Windows.Forms.ComboBox();
+			this.PurchasePRType = new System.Windows.Forms.ComboBox();
+			this.PurchasePREndDate = new System.Windows.Forms.ComboBox();
+			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
 			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.customersTableAdapter1 = new Green_Enviro_App.Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -2430,9 +2430,9 @@ namespace Green_Enviro_App
 			this.tabPage2.Controls.Add(this.label67);
 			this.tabPage2.Controls.Add(this.label68);
 			this.tabPage2.Controls.Add(this.label69);
-			this.tabPage2.Controls.Add(this.comboBox5);
-			this.tabPage2.Controls.Add(this.comboBox6);
-			this.tabPage2.Controls.Add(this.comboBox7);
+			this.tabPage2.Controls.Add(this.PurchasePRType);
+			this.tabPage2.Controls.Add(this.PurchasePREndDate);
+			this.tabPage2.Controls.Add(this.PurchasePRStartDate);
 			this.tabPage2.Controls.Add(this.PurchasesPRDataGridView);
 			this.tabPage2.Location = new System.Drawing.Point(4, 32);
 			this.tabPage2.Name = "tabPage2";
@@ -2535,44 +2535,44 @@ namespace Green_Enviro_App
 			this.label69.TabIndex = 23;
 			this.label69.Text = "Start Date";
 			// 
-			// comboBox5
+			// PurchasePRType
 			// 
-			this.comboBox5.DropDownHeight = 300;
-			this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox5.FormattingEnabled = true;
-			this.comboBox5.IntegralHeight = false;
-			this.comboBox5.ItemHeight = 23;
-			this.comboBox5.Location = new System.Drawing.Point(1095, 49);
-			this.comboBox5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.comboBox5.Name = "comboBox5";
-			this.comboBox5.Size = new System.Drawing.Size(269, 31);
-			this.comboBox5.TabIndex = 22;
+			this.PurchasePRType.DropDownHeight = 300;
+			this.PurchasePRType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasePRType.FormattingEnabled = true;
+			this.PurchasePRType.IntegralHeight = false;
+			this.PurchasePRType.ItemHeight = 23;
+			this.PurchasePRType.Location = new System.Drawing.Point(1095, 49);
+			this.PurchasePRType.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PurchasePRType.Name = "PurchasePRType";
+			this.PurchasePRType.Size = new System.Drawing.Size(269, 31);
+			this.PurchasePRType.TabIndex = 22;
 			// 
-			// comboBox6
+			// PurchasePREndDate
 			// 
-			this.comboBox6.DropDownHeight = 300;
-			this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox6.FormattingEnabled = true;
-			this.comboBox6.IntegralHeight = false;
-			this.comboBox6.ItemHeight = 23;
-			this.comboBox6.Location = new System.Drawing.Point(736, 49);
-			this.comboBox6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.comboBox6.Name = "comboBox6";
-			this.comboBox6.Size = new System.Drawing.Size(289, 31);
-			this.comboBox6.TabIndex = 21;
+			this.PurchasePREndDate.DropDownHeight = 300;
+			this.PurchasePREndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasePREndDate.FormattingEnabled = true;
+			this.PurchasePREndDate.IntegralHeight = false;
+			this.PurchasePREndDate.ItemHeight = 23;
+			this.PurchasePREndDate.Location = new System.Drawing.Point(736, 49);
+			this.PurchasePREndDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PurchasePREndDate.Name = "PurchasePREndDate";
+			this.PurchasePREndDate.Size = new System.Drawing.Size(289, 31);
+			this.PurchasePREndDate.TabIndex = 21;
 			// 
-			// comboBox7
+			// PurchasePRStartDate
 			// 
-			this.comboBox7.DropDownHeight = 300;
-			this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox7.FormattingEnabled = true;
-			this.comboBox7.IntegralHeight = false;
-			this.comboBox7.ItemHeight = 23;
-			this.comboBox7.Location = new System.Drawing.Point(371, 49);
-			this.comboBox7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.comboBox7.Name = "comboBox7";
-			this.comboBox7.Size = new System.Drawing.Size(297, 31);
-			this.comboBox7.TabIndex = 20;
+			this.PurchasePRStartDate.DropDownHeight = 300;
+			this.PurchasePRStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasePRStartDate.FormattingEnabled = true;
+			this.PurchasePRStartDate.IntegralHeight = false;
+			this.PurchasePRStartDate.ItemHeight = 23;
+			this.PurchasePRStartDate.Location = new System.Drawing.Point(371, 49);
+			this.PurchasePRStartDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PurchasePRStartDate.Name = "PurchasePRStartDate";
+			this.PurchasePRStartDate.Size = new System.Drawing.Size(297, 31);
+			this.PurchasePRStartDate.TabIndex = 20;
 			// 
 			// PurchasesPRDataGridView
 			// 
@@ -3116,9 +3116,9 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label67;
 		private System.Windows.Forms.Label label68;
 		private System.Windows.Forms.Label label69;
-		public System.Windows.Forms.ComboBox comboBox5;
-		public System.Windows.Forms.ComboBox comboBox6;
-		public System.Windows.Forms.ComboBox comboBox7;
+		public System.Windows.Forms.ComboBox PurchasePRType;
+		public System.Windows.Forms.ComboBox PurchasePREndDate;
+		public System.Windows.Forms.ComboBox PurchasePRStartDate;
 		private System.Windows.Forms.ColorDialog colorDialog1;
 		public System.Windows.Forms.Label purchaseOrSaleIndicator;
 		private System.Windows.Forms.Button DeletePurchaseBtn;

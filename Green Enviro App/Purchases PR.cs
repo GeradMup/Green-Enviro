@@ -59,6 +59,8 @@ namespace Green_Enviro_App
 			string _selected_month = _main_form.PurchasesPRMonth.SelectedItem.ToString();
 			string _path_to_log_file = PurchasesPRBasePath + @"\" + _selected_month + ".csv";
 
+
+
 			_data_table = csvHandles.getCSVContents(_path_to_log_file);
 			
 			if (_data_table.Rows.Count > 0)

@@ -44,14 +44,17 @@ namespace Green_Enviro_App
 		{
 			//This function will get the names of all the purchase log files that exists in the purchases folder
 			string _purchase_logs_path = path + @"\resources\Logs\Purchases";
-			DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);  //Assuming Test is your Folder
-			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
-			foreach (FileInfo _file in _files)
-			{
-				char[] _remove_chars = { 'c', 's', 'v', '.' };
-				string _file_name = _file.Name.TrimEnd(_remove_chars);
-				_main_form.PurchaseLogMonth.Items.Add(_file_name);
-			}
+			csvHandles.getFilesInFolder(_purchase_logs_path , _main_form.PurchaseLogMonth);
+			//DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);  //Assuming Test is your Folder
+			//FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
+			//foreach (FileInfo _file in _files)
+			//{
+			//	char[] _remove_chars = { 'c', 's', 'v', '.' };
+			//	string _file_name = _file.Name.TrimEnd(_remove_chars);
+			//	_main_form.PurchaseLogMonth.Items.Add(_file_name);
+			//}
+
+
 		}
 
 		public void setTypes(string F, string N) 
