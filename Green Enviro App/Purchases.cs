@@ -116,7 +116,7 @@ namespace Green_Enviro_App
 				string _filter_end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
 
 
-				if (isTypeFiltered() == true)
+				if (dgvOps.isTypeFiltered() == true)
 				{
 					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
 					_filter_instruction = "Date = '{0}' OR Date = '{1}' OR Date >= '{2}' AND Date <= '{3}' AND Type = '{4}'";
@@ -132,7 +132,7 @@ namespace Green_Enviro_App
 			{
 				_binding_source.RemoveFilter();
 
-				if (isTypeFiltered() == true)
+				if (dgvOps.isTypeFiltered() == true)
 				{
 					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
 					_filter_instruction = "Date = '{0}' OR Date = '{1}' OR Type = '{2}'";
@@ -256,73 +256,6 @@ namespace Green_Enviro_App
 			RemoveFilters();
 			DisplayPurchaseLog();
 			
-		}
-
-		/// <summary>
-		/// Determines whether a valid date range is select for filtering the Purchase Log.
-		/// </summary>
-		/// <returns>
-		///   <c>true</c> if a valid date range is selected; otherwise, <c>false</c>.
-		/// </returns>
-		/// <remark>
-		/// If an invalid date range is selected, the date fields are set back to null
-		/// </remark>
-		private bool isDateFiltered() 
-		{
-			if ((_main_form.PurchaseLogStartDate.SelectedItem == null) && (_main_form.PurchaseLogEndDate.SelectedItem == null)) 
-			{
-				//Do nothing if there are not filters selected
-				return false;
-			}
-
-			if ((_main_form.PurchaseLogStartDate.SelectedItem != null) && (_main_form.PurchaseLogEndDate.SelectedItem == null))
-			{
-				//Do nothing if there are not filters selected
-				CustomMessageBox msg = new CustomMessageBox (_main_form, "Error!", "INVALID DATE RANGE!");
-				_main_form.PurchaseLogStartDate.SelectedItem = null;
-				_main_form.PurchaseLogEndDate.SelectedItem = null;
-				return false;
-			}
-
-			if ((_main_form.PurchaseLogStartDate.SelectedItem == null) && (_main_form.PurchaseLogEndDate.SelectedItem != null))
-			{
-				//Do nothing if there are not filters selected
-				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
-				_main_form.PurchaseLogStartDate.SelectedItem = null;
-				_main_form.PurchaseLogEndDate.SelectedItem = null;
-				return false;
-			}
-
-			DateTime _start_date = Convert.ToDateTime(_main_form.PurchaseLogStartDate.SelectedItem.ToString());
-			DateTime _end_date = Convert.ToDateTime(_main_form.PurchaseLogEndDate.SelectedItem.ToString());
-
-			if (_start_date > _end_date) 
-			{
-				CustomMessageBox msg = new CustomMessageBox(_main_form, "Error!", "INVALID DATE RANGE!");
-				_main_form.PurchaseLogStartDate.SelectedItem = null;
-				_main_form.PurchaseLogEndDate.SelectedItem = null;
-				return false;
-			}
-
-			return true;
-		}
-
-		/// <summary>
-		/// Determines whether the purchase box is type filtered or not
-		/// </summary>
-		/// <returns>
-		///   <c>true</c> if either Ferrous or Non-Ferrous is selected; otherwise, <c>false</c>.
-		/// </returns>
-		private bool isTypeFiltered() 
-		{
-			if (_main_form.PurchaseLogType.SelectedItem == null)
-			{
-				return false;
-			}
-			else 
-			{
-				return true;
-			}
 		}
 
 		/// <summary>

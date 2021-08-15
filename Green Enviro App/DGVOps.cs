@@ -33,13 +33,15 @@ namespace Green_Enviro_App
 			parentForm = parent;
 		}
 
-		/// <summary>Determines whether the user is trying to filter data by the dates and
-		/// if the selected date ranges are valid.</summary>
-		/// <param name="startDate">The start date.</param>
-		/// <param name="endDate">The end date.</param>
-		/// <param name="parentForm">The parent form.</param>
+		/// Determines whether a valid date range is select for filtering the Purchase Log.
+		/// </summary>
 		/// <returns>
-		///   <c>true</c> if [Valid date ranges have been selected for filtering] [the specified start date]; otherwise, <c>false</c>.</returns>
+		///   <c>true</c> if a valid date range is selected; otherwise, <c>false</c>.
+		/// </returns>
+		/// <remark>
+		/// If an invalid date range is selected, the date fields are set back to null
+		/// </remark>
+		
 		public bool isDateFiltered()
 		{
 			if ((startDateBox.SelectedItem == null) && (endDateBox.SelectedItem == null))
@@ -80,5 +82,24 @@ namespace Green_Enviro_App
 
 			return true;
 		}
+
+		/// <summary>
+		/// Determines whether the Material Type is type filtered or not
+		/// </summary>
+		/// <returns>
+		///   <c>true</c> if either Ferrous or Non-Ferrous is selected; otherwise, <c>false</c>.
+		/// </returns>
+		public bool isTypeFiltered()
+		{
+			if (typeBox.SelectedItem == null)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
 	}
 }
