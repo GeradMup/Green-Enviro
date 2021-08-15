@@ -22,6 +22,7 @@ namespace Green_Enviro_App
 		Main_Form _main_form;
 		CSVHandles csvHandles;
 		Purchases_PR _purchases_pr;
+		DGVOps dgvOps;
 
 		DataTable _purchases_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
@@ -36,6 +37,9 @@ namespace Green_Enviro_App
 			_purchases_pr = purchasesPR;
 			int uniquePurchaseColumns = 5;
 			csvHandles = new CSVHandles(_main_form.PurchseLogGridView,uniquePurchaseColumns);
+			dgvOps = new DGVOps(_main_form.PurchseLogGridView, _main_form.PurchaseLogMonth, 
+								_main_form.PurchaseLogStartDate, _main_form.PurchaseLogEndDate, 
+								_main_form.PurchaseLogType, _main_form);
 			CreateLogFiles();
 			SetupPurchaseLogs();
 		}
@@ -45,16 +49,6 @@ namespace Green_Enviro_App
 			//This function will get the names of all the purchase log files that exists in the purchases folder
 			string _purchase_logs_path = path + @"\resources\Logs\Purchases";
 			csvHandles.getFilesInFolder(_purchase_logs_path , _main_form.PurchaseLogMonth);
-			//DirectoryInfo _directory = new DirectoryInfo(_purchase_logs_path);  //Assuming Test is your Folder
-			//FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
-			//foreach (FileInfo _file in _files)
-			//{
-			//	char[] _remove_chars = { 'c', 's', 'v', '.' };
-			//	string _file_name = _file.Name.TrimEnd(_remove_chars);
-			//	_main_form.PurchaseLogMonth.Items.Add(_file_name);
-			//}
-
-
 		}
 
 		public void setTypes(string F, string N) 
@@ -77,24 +71,8 @@ namespace Green_Enviro_App
 
 		public void AddPurchase(List<string> purchasedItems)
 		{
-			StringBuilder _csv_content = new StringBuilder();
-
-			foreach (string _purchase_entry in purchasedItems)
-			{
-				_csv_content.AppendLine(_purchase_entry);
-			}
-
-			try
-			{
-				File.AppendAllText(_path_to_purchases, _csv_content.ToString());
-				
-				CustomMessageBox box = new CustomMessageBox(_main_form, CustomMessageBox.success, "Purchase Completed!");
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Error! \n" + ex.Message);
-			}
-
+			string successMessage = "Purchase Completed";
+			csvHandles.addToCSV(_path_to_purchases, purchasedItems,_main_form, successMessage);
 			DisplayPurchaseLog();
 		}
 
@@ -124,34 +102,7 @@ namespace Green_Enviro_App
 			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
 			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
 
-			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
-			if (lines.Length > 0)
-			{
-				//first line to create the table headers
-				string _first_line = lines[0];
-				string[] _header_labels = _first_line.Split(',');
-				if (!_purchases_data_table.Columns.Contains(_header_labels[0]))
-				{
-					foreach (string _header_word in _header_labels)
-					{
-						_purchases_data_table.Columns.Add(new DataColumn(_header_word));
-					}
-				}
-
-				//Now we populate the table with the rest of the information that we want to view
-				for (int _row = 1; _row < lines.Length; _row++)
-				{
-					//For each line, we want a list of the words on the line seperated by the comma
-					string[] dataWords = lines[_row].Split(',');
-					DataRow _data_row = _purchases_data_table.NewRow();
-					int columnIndex = 0;
-					foreach (string headerWord in _header_labels)
-					{
-						_data_row[headerWord] = dataWords[columnIndex++];
-					}
-					_purchases_data_table.Rows.Add(_data_row);
-				}
-			}
+			_purchases_data_table = csvHandles.getCSVContents(_path_to_log_file);
 		}
 
 		private void FilterGridView() 
@@ -159,7 +110,7 @@ namespace Green_Enviro_App
 			
 			string _filter_instruction;
 			//Filter according to the date ranges if the dates have been selected correctly
-			if (isDateFiltered() == true)
+			if (dgvOps.isDateFiltered() == true)
 			{
 				string _filter_start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
 				string _filter_end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
