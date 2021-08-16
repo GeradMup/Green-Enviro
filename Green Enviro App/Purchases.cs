@@ -88,7 +88,7 @@ namespace Green_Enviro_App
 			if (_purchases_data_table.Rows.Count > 0)
 			{
 				_binding_source.DataSource = _purchases_data_table;
-				FilterGridView();
+				dgvOps.FilterGridView(ref _binding_source);
 				PopulateGridView();
 			}
 		}
@@ -101,42 +101,6 @@ namespace Green_Enviro_App
 			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
 
 			_purchases_data_table = csvHandles.getCSVContents(_path_to_log_file);
-		}
-
-		private void FilterGridView() 
-		{
-			
-			string _filter_instruction;
-			//Filter according to the date ranges if the dates have been selected correctly
-			if (dgvOps.isDateFiltered() == true)
-			{
-				string _filter_start_date = _main_form.PurchaseLogStartDate.SelectedItem.ToString();
-				string _filter_end_date = _main_form.PurchaseLogEndDate.SelectedItem.ToString();
-
-
-				if (dgvOps.isTypeFiltered() == true)
-				{
-					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
-					_filter_instruction = "Date = '{0}' OR Date = '{1}' OR Date >= '{2}' AND Date <= '{3}' AND Type = '{4}'";
-					_binding_source.Filter = string.Format(_filter_instruction, _totals, _empty_string, _filter_start_date, _filter_end_date, _item_type);
-				}
-				else
-				{
-					_filter_instruction = "Date = '{0}' OR Date = '{1}' OR Date >= '{2}' AND Date <= '{3}'";
-					_binding_source.Filter = string.Format(_filter_instruction, _totals, _empty_string, _filter_start_date, _filter_end_date);
-				}
-			}
-			else
-			{
-				_binding_source.RemoveFilter();
-
-				if (dgvOps.isTypeFiltered() == true)
-				{
-					string _item_type = _main_form.PurchaseLogType.SelectedItem.ToString();
-					_filter_instruction = "Date = '{0}' OR Date = '{1}' OR Type = '{2}'";
-					_binding_source.Filter = string.Format(_filter_instruction, _totals, _empty_string, _item_type);
-				}
-			}
 		}
 
 		private void PopulateGridView() 
