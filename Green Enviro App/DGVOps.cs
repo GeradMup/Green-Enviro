@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +24,9 @@ namespace Green_Enviro_App
 		ComboBox endDateBox;
 		ComboBox typeBox;
 		Form parentForm;
+
+		string _empty_string = " ";
+		string _totals = "TOTALS";
 
 		/// <summary>Initializes a new instance of the <see cref="DGVOps" /> class.</summary>
 		public DGVOps(DataGridView grid, ComboBox month, ComboBox startDate, ComboBox endDate, ComboBox type, Form parent) 
@@ -104,8 +110,6 @@ namespace Green_Enviro_App
 		/// <param name="bindingSource">The binding source for the table displayed in the data grid view.</param>
 		public void FilterGridView(ref BindingSource bindingSource)
 		{
-			string _empty_string = " ";
-			string _totals = "TOTALS";
 			string filterString;
 			//Filter according to the date ranges if the dates have been selected correctly
 			if (isDateFiltered() == true)
@@ -137,6 +141,66 @@ namespace Green_Enviro_App
 					bindingSource.Filter = string.Format(filterString, _totals, _empty_string, _item_type);
 				}
 			}
+		}
+
+		/// <summary>Highlights the totals row in the grid view to yellow.</summary>
+		public void highlightTotalsRow() 
+		{
+			int _last_row_index = 0;
+			_last_row_index = dataGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
+
+			//Highlight the totals row
+			dataGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
+			dataGridView.Refresh();
+		}
+
+		//This function will add up the KG's and Amount column on the Data Grid View and adds a row to show the totals
+		/// <summary>Adds the totals row to the data grid view</summary>
+		/// <param name="dataTable"></param>
+		/// <param name="kgCol"></param>
+		/// <param name="amountCol"></param>
+		public void addTotalsRow(DataTable dataTable, int kgCol, int amountCol)
+		{
+			float _total_kg = 0;
+			float _total_amount = 0;
+			int _kg_column = kgCol;
+			int _amount_column = amountCol;
+
+			for (int _row = 0; _row < dataGridView.Rows.Count; _row++)
+			{
+				_total_amount += float.Parse(dataGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
+				_total_kg += float.Parse(dataGridView.Rows[_row].Cells[_kg_column].Value.ToString(), CultureInfo.InvariantCulture);
+			}
+
+			//CustomMessageBox box = new CustomMessageBox("Total", "Kg's : " + _total_kg.ToString() + "\n" + "Amount : " + _total_amount.ToString());
+
+			DataTable _totals_table = new DataTable();
+
+			for (int _cols = 0; _cols < dataGridView.Columns.Count; _cols++)
+			{
+				DataColumn _new_column = new DataColumn();
+				_totals_table.Columns.Add(_new_column);
+			}
+
+			DataRow _last_row = dataTable.NewRow();
+
+			_last_row[0] = _totals;
+			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
+			{
+				if (_cell == _amount_column)
+				{
+					_last_row[_cell] = _total_amount;
+				}
+				else if (_cell == _kg_column)
+				{
+					_last_row[_cell] = _total_kg;
+				}
+				else
+				{
+					_last_row[_cell] = _empty_string;
+				}
+			}
+			dataTable.Rows.Add(_last_row);
 		}
 
 	}

@@ -121,59 +121,11 @@ namespace Green_Enviro_App
 			{
 				_column.SortMode = DataGridViewColumnSortMode.NotSortable;
 			}
+			int kgColumn = 6;
+			int amountColumn = 8;
 
-			AddTotalsRow();
-			int _last_row_index = 0;
-			_last_row_index = _main_form.PurchseLogGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
-
-			//Highlight the totals row
-			_main_form.PurchseLogGridView.Rows[_last_row_index].DefaultCellStyle.BackColor = Color.Yellow;
-			_main_form.PurchseLogGridView.Refresh();
-		}
-
-		//This function will add up the KG's and Amount column on the Data Grid View and adds a row to show the totals
-		private void AddTotalsRow() 
-		{
-			float _total_kg = 0;
-			float _total_amount = 0;
-			int _kg_column = 6;
-			int _amount_column = 8;
-
-			for (int _row = 0; _row < _main_form.PurchseLogGridView.Rows.Count; _row++)
-			{
-				_total_amount += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
-				_total_kg += float.Parse(_main_form.PurchseLogGridView.Rows[_row].Cells[_kg_column].Value.ToString(), CultureInfo.InvariantCulture);
-			}
-
-			//CustomMessageBox box = new CustomMessageBox("Total", "Kg's : " + _total_kg.ToString() + "\n" + "Amount : " + _total_amount.ToString());
-
-			DataTable _totals_table = new DataTable();
-
-			for (int _cols = 0; _cols < _main_form.PurchseLogGridView.Columns.Count; _cols++) 
-			{
-				DataColumn _new_column = new DataColumn();
-				_totals_table.Columns.Add(_new_column);
-			}
-
-			DataRow _last_row = _purchases_data_table.NewRow();
-
-			_last_row[0] = _totals;
-			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
-			{
-				if (_cell == _amount_column)
-				{
-					_last_row[_cell] = _total_amount;
-				}
-				else if (_cell == _kg_column)
-				{
-					_last_row[_cell] = _total_kg;
-				}
-				else
-				{
-					_last_row[_cell] = _empty_string;
-				}
-			}
-			_purchases_data_table.Rows.Add(_last_row);
+			dgvOps.addTotalsRow(_purchases_data_table, kgColumn, amountColumn);
+			dgvOps.highlightTotalsRow();
 		}
 
 		public void MonthSelected() 
