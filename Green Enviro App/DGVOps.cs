@@ -44,12 +44,9 @@ namespace Green_Enviro_App
 		
 		public bool isDateFiltered()
 		{
-			if ((startDateBox.SelectedItem == null) && (endDateBox.SelectedItem == null))
-			{
-				//Do nothing if there are not filters selected
-				return false;
-			}
-
+			//Do nothing if there are not filters selected
+			if ((startDateBox.SelectedItem == null) && (endDateBox.SelectedItem == null)) return false;
+			
 			if ((startDateBox.SelectedItem != null) && (endDateBox.SelectedItem == null))
 			{
 				//Do nothing if there are not filters selected
@@ -91,14 +88,16 @@ namespace Green_Enviro_App
 		/// </returns>
 		public bool isTypeFiltered()
 		{
-			if (typeBox.SelectedItem == null)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
+			if (typeBox.SelectedItem == null) return false;
+			return true;
+		}
+
+		/// <summary>Removes the filters when DataGridView Was being filtered</summary>
+		public void RemoveFilters()
+		{
+			startDateBox.SelectedItem = null;
+			endDateBox.SelectedItem = null;
+			typeBox.SelectedItem = null;
 		}
 
 	}

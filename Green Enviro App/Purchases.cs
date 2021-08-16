@@ -69,6 +69,8 @@ namespace Green_Enviro_App
 			csvHandles.createCSVFile(_path_to_purchases, _purchases_file_headers);
 		}
 
+		/// <summary>Used for adding purchases to the CSV File</summary>
+		/// <param name="purchasedItems">A list of all the purchase items</param>
 		public void AddPurchase(List<string> purchasedItems)
 		{
 			string successMessage = "Purchase Completed";
@@ -78,13 +80,9 @@ namespace Green_Enviro_App
 
 		public void DisplayPurchaseLog()
 		{
-
-			if (_main_form.PurchaseLogMonth.SelectedItem == null)
-			{
-				//Do nothing is the user has not selected what month they want to view
-				return;
-			}
-
+			//Do nothing is the user has not selected what month they want to view
+			if (_main_form.PurchaseLogMonth.SelectedItem == null) return;
+			
 			LoadPurchaseLog();
 
 			if (_purchases_data_table.Rows.Count > 0)
@@ -216,12 +214,9 @@ namespace Green_Enviro_App
 
 		public void MonthSelected() 
 		{
-			if (_main_form.PurchaseLogMonth.SelectedItem == null) 
-			{
-				//Do nothing if no month is selected
-				return;
-			}
-
+			//Do nothing if no month is selected
+			if (_main_form.PurchaseLogMonth.SelectedItem == null) return;
+			
 			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
 			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
 
@@ -263,10 +258,7 @@ namespace Green_Enviro_App
 		/// </summary>
 		public void RemoveFilters() 
 		{
-			_main_form.PurchaseLogStartDate.SelectedItem = null;
-			_main_form.PurchaseLogEndDate.SelectedItem = null;
-			_main_form.PurchaseLogType.SelectedItem = null;
-
+			dgvOps.RemoveFilters();
 			DisplayPurchaseLog();
 		}
 
