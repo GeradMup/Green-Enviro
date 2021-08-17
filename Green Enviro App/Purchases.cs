@@ -26,6 +26,9 @@ namespace Green_Enviro_App
 
 		DataTable _purchases_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
+		List<String> logNames;
+		List<KeyValuePair<String, DataTable>> logs = new List<KeyValuePair<String, DataTable>>();
+
 		string _empty_string = " ";
 		string _totals = "TOTALS";
 
@@ -36,9 +39,9 @@ namespace Green_Enviro_App
 			_main_form = _main;
 			_purchases_pr = purchasesPR;
 			int uniquePurchaseColumns = 5;
-			csvHandles = new CSVHandles(_main_form.PurchseLogGridView,uniquePurchaseColumns);
-			dgvOps = new DGVOps(_main_form.PurchseLogGridView, _main_form.PurchaseLogMonth, 
-								_main_form.PurchaseLogStartDate, _main_form.PurchaseLogEndDate, 
+			csvHandles = new CSVHandles(_main_form.PurchseLogGridView, uniquePurchaseColumns);
+			dgvOps = new DGVOps(_main_form.PurchseLogGridView, _main_form.PurchaseLogMonth,
+								_main_form.PurchaseLogStartDate, _main_form.PurchaseLogEndDate,
 								_main_form.PurchaseLogType, _main_form);
 			CreateLogFiles();
 			SetupPurchaseLogs();
@@ -48,7 +51,16 @@ namespace Green_Enviro_App
 		{
 			//This function will get the names of all the purchase log files that exists in the purchases folder
 			string _purchase_logs_path = path + @"\resources\Logs\Purchases";
-			csvHandles.getFilesInFolder(_purchase_logs_path , _main_form.PurchaseLogMonth);
+			logNames = csvHandles.getFilesInFolder(_purchase_logs_path, _main_form.PurchaseLogMonth);
+			string pathToLogFile;
+			DataTable log = new DataTable();
+			
+			foreach (string logName in logNames) 
+			{
+				pathToLogFile = path + @"\resources\Logs\Purchases\" + logName + ".csv";
+				log = csvHandles.getCSVContents(pathToLogFile);
+				logs.Add(new KeyValuePair<string, DataTable>(logName,log));
+			}
 		}
 
 		public void setTypes(string F, string N) 
@@ -83,7 +95,7 @@ namespace Green_Enviro_App
 			//Do nothing is the user has not selected what month they want to view
 			if (_main_form.PurchaseLogMonth.SelectedItem == null) return;
 			
-			LoadPurchaseLog();
+			selectLog();
 
 			if (_purchases_data_table.Rows.Count > 0)
 			{
@@ -93,14 +105,20 @@ namespace Green_Enviro_App
 			}
 		}
 
-		private void LoadPurchaseLog() 
+		private void selectLog() 
 		{
 			_purchases_data_table.Clear();
 
-			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
+			string selectedMonth = _main_form.PurchaseLogMonth.SelectedItem.ToString();
 
-			_purchases_data_table = csvHandles.getCSVContents(_path_to_log_file);
+			foreach (KeyValuePair<String, DataTable> log in logs) 
+			{
+				if (selectedMonth == log.Key) 
+				{
+					_purchases_data_table = log.Value;
+					break;
+				}
+			}
 		}
 
 		private void PopulateGridView() 

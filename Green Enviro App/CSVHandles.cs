@@ -208,9 +208,9 @@ namespace Green_Enviro_App
 			{
 				char[] _remove_chars = { 'c', 's', 'v', '.' };
 				string _file_name = _file.Name.TrimEnd(_remove_chars);
+				fileNames.Add(_file_name);
 				comboBox.Items.Add(_file_name);
 			}
-
 			return fileNames;
 		}
 
