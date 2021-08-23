@@ -130,7 +130,6 @@ namespace Green_Enviro_App
 			this.InventoryLogMonth = new System.Windows.Forms.ComboBox();
 			this.Expenses = new System.Windows.Forms.TabPage();
 			this.DeleteExpenseBtn = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
 			this.ExpenseAmount = new System.Windows.Forms.NumericUpDown();
 			this.ExpenseDescriptionBox = new System.Windows.Forms.TextBox();
 			this.ExpenseDate = new System.Windows.Forms.DateTimePicker();
@@ -211,9 +210,9 @@ namespace Green_Enviro_App
 			this.label23 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.SalesPR = new System.Windows.Forms.TabPage();
 			this.salesPRDataGridView = new System.Windows.Forms.DataGridView();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.PurchasesPR = new System.Windows.Forms.TabPage();
 			this.button6 = new System.Windows.Forms.Button();
 			this.PrintPRBtn = new System.Windows.Forms.Button();
 			this.RemovePRFiltersBtn = new System.Windows.Forms.Button();
@@ -270,9 +269,9 @@ namespace Green_Enviro_App
 			this.Summaries.SuspendLayout();
 			this.DestructionCertificates.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
-			this.tabPage1.SuspendLayout();
+			this.SalesPR.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).BeginInit();
-			this.tabPage2.SuspendLayout();
+			this.PurchasesPR.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -291,8 +290,8 @@ namespace Green_Enviro_App
 			this.mainTabControl.Controls.Add(this.WagesNewEmployee);
 			this.mainTabControl.Controls.Add(this.Summaries);
 			this.mainTabControl.Controls.Add(this.DestructionCertificates);
-			this.mainTabControl.Controls.Add(this.tabPage1);
-			this.mainTabControl.Controls.Add(this.tabPage2);
+			this.mainTabControl.Controls.Add(this.SalesPR);
+			this.mainTabControl.Controls.Add(this.PurchasesPR);
 			this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mainTabControl.HotTrack = true;
 			this.mainTabControl.Location = new System.Drawing.Point(0, 0);
@@ -1421,7 +1420,6 @@ namespace Green_Enviro_App
 			// Expenses
 			// 
 			this.Expenses.Controls.Add(this.DeleteExpenseBtn);
-			this.Expenses.Controls.Add(this.button5);
 			this.Expenses.Controls.Add(this.ExpenseAmount);
 			this.Expenses.Controls.Add(this.ExpenseDescriptionBox);
 			this.Expenses.Controls.Add(this.ExpenseDate);
@@ -1456,15 +1454,6 @@ namespace Green_Enviro_App
 			this.DeleteExpenseBtn.Text = "Delete Expense";
 			this.DeleteExpenseBtn.UseVisualStyleBackColor = true;
 			this.DeleteExpenseBtn.Click += new System.EventHandler(this.DeleteExpenseBtn_Click);
-			// 
-			// button5
-			// 
-			this.button5.Location = new System.Drawing.Point(8, 8);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(75, 23);
-			this.button5.TabIndex = 52;
-			this.button5.Text = "button5";
-			this.button5.UseVisualStyleBackColor = true;
 			// 
 			// ExpenseAmount
 			// 
@@ -2399,15 +2388,15 @@ namespace Green_Enviro_App
 			this.label21.TabIndex = 5;
 			this.label21.Text = "Quantity";
 			// 
-			// tabPage1
+			// SalesPR
 			// 
-			this.tabPage1.Controls.Add(this.salesPRDataGridView);
-			this.tabPage1.Location = new System.Drawing.Point(4, 32);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Size = new System.Drawing.Size(1724, 867);
-			this.tabPage1.TabIndex = 8;
-			this.tabPage1.Text = "Sales PR";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.SalesPR.Controls.Add(this.salesPRDataGridView);
+			this.SalesPR.Location = new System.Drawing.Point(4, 32);
+			this.SalesPR.Name = "SalesPR";
+			this.SalesPR.Size = new System.Drawing.Size(1724, 867);
+			this.SalesPR.TabIndex = 8;
+			this.SalesPR.Text = "Sales PR";
+			this.SalesPR.UseVisualStyleBackColor = true;
 			// 
 			// salesPRDataGridView
 			// 
@@ -2421,27 +2410,27 @@ namespace Green_Enviro_App
 			this.salesPRDataGridView.Size = new System.Drawing.Size(1713, 688);
 			this.salesPRDataGridView.TabIndex = 0;
 			// 
-			// tabPage2
+			// PurchasesPR
 			// 
-			this.tabPage2.Controls.Add(this.button6);
-			this.tabPage2.Controls.Add(this.PrintPRBtn);
-			this.tabPage2.Controls.Add(this.RemovePRFiltersBtn);
-			this.tabPage2.Controls.Add(this.FilterPRBtn);
-			this.tabPage2.Controls.Add(this.label66);
-			this.tabPage2.Controls.Add(this.PurchasesPRMonth);
-			this.tabPage2.Controls.Add(this.label67);
-			this.tabPage2.Controls.Add(this.label68);
-			this.tabPage2.Controls.Add(this.label69);
-			this.tabPage2.Controls.Add(this.PurchasePRType);
-			this.tabPage2.Controls.Add(this.PurchasePREndDate);
-			this.tabPage2.Controls.Add(this.PurchasePRStartDate);
-			this.tabPage2.Controls.Add(this.PurchasesPRDataGridView);
-			this.tabPage2.Location = new System.Drawing.Point(4, 32);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(1724, 867);
-			this.tabPage2.TabIndex = 9;
-			this.tabPage2.Text = "Purchases PR";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.PurchasesPR.Controls.Add(this.button6);
+			this.PurchasesPR.Controls.Add(this.PrintPRBtn);
+			this.PurchasesPR.Controls.Add(this.RemovePRFiltersBtn);
+			this.PurchasesPR.Controls.Add(this.FilterPRBtn);
+			this.PurchasesPR.Controls.Add(this.label66);
+			this.PurchasesPR.Controls.Add(this.PurchasesPRMonth);
+			this.PurchasesPR.Controls.Add(this.label67);
+			this.PurchasesPR.Controls.Add(this.label68);
+			this.PurchasesPR.Controls.Add(this.label69);
+			this.PurchasesPR.Controls.Add(this.PurchasePRType);
+			this.PurchasesPR.Controls.Add(this.PurchasePREndDate);
+			this.PurchasesPR.Controls.Add(this.PurchasePRStartDate);
+			this.PurchasesPR.Controls.Add(this.PurchasesPRDataGridView);
+			this.PurchasesPR.Location = new System.Drawing.Point(4, 32);
+			this.PurchasesPR.Name = "PurchasesPR";
+			this.PurchasesPR.Size = new System.Drawing.Size(1724, 867);
+			this.PurchasesPR.TabIndex = 9;
+			this.PurchasesPR.Text = "Purchases PR";
+			this.PurchasesPR.UseVisualStyleBackColor = true;
 			// 
 			// button6
 			// 
@@ -2832,10 +2821,10 @@ namespace Green_Enviro_App
 			this.DestructionCertificates.ResumeLayout(false);
 			this.DestructionCertificates.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
-			this.tabPage1.ResumeLayout(false);
+			this.SalesPR.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).EndInit();
-			this.tabPage2.ResumeLayout(false);
-			this.tabPage2.PerformLayout();
+			this.PurchasesPR.ResumeLayout(false);
+			this.PurchasesPR.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -3108,8 +3097,8 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.TextBox CustomerCellNumber;
 		private System.Windows.Forms.Label label65;
 		private System.Windows.Forms.Label label64;
-		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.TabPage SalesPR;
+		private System.Windows.Forms.TabPage PurchasesPR;
 		private System.Windows.Forms.Button PrintPRBtn;
 		private System.Windows.Forms.Button RemovePRFiltersBtn;
 		private System.Windows.Forms.Button FilterPRBtn;
@@ -3125,7 +3114,6 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.Label purchaseOrSaleIndicator;
 		private System.Windows.Forms.Button DeletePurchaseBtn;
 		private System.Windows.Forms.Button DeleteExpenseBtn;
-		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button DeleteSaleBtn;
 		private System.Windows.Forms.Button DeleteWageBtn;
 		private System.Windows.Forms.Button button6;

@@ -223,7 +223,6 @@ namespace Green_Enviro_App
 			foreach (DateTime date in dates) 
 			{
 				sortedDates.Add(date.ToString("MMMM yyyy"));
-				Console.WriteLine(date.ToString("MMMM yyyy"));
 			}
 			return sortedDates;
 		}

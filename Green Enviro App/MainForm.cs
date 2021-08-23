@@ -469,14 +469,16 @@ namespace Green_Enviro_App
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
 		{
             _current_tab_page = e.TabPage;
-			
-            if ((e.TabPage.Name != "ReceiptPage")
-                && (_user_permission_level == 1)) 
+
+            if ((e.TabPage.Name == "ReceiptPage") && (_user_permission_level == 1)) return;
+            else if ((e.TabPage.Name == "Expenses") && (_user_permission_level == 1)) return;
+            else if ((e.TabPage.Name == "DestructionCertificates") && (_user_permission_level == 1)) return;
+            else if (_user_permission_level == 1)
             {
                 PermissionDenied();
                 mainTabControl.SelectedTab = _previous_tab_page;
             }
-        }
+         }
 
         private void PermissionDenied() 
         {
