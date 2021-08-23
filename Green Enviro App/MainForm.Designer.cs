@@ -817,13 +817,14 @@ namespace Green_Enviro_App
 			// PurchseLogGridView
 			// 
 			this.PurchseLogGridView.AllowUserToAddRows = false;
+			this.PurchseLogGridView.AllowUserToDeleteRows = false;
+			this.PurchseLogGridView.AllowUserToResizeRows = false;
 			this.PurchseLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.PurchseLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.PurchseLogGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.PurchseLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.PurchseLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.PurchseLogGridView.ColumnHeadersHeight = 29;
+			this.PurchseLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.PurchseLogGridView.Location = new System.Drawing.Point(64, 204);
 			this.PurchseLogGridView.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.PurchseLogGridView.Name = "PurchseLogGridView";

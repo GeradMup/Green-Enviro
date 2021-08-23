@@ -22,6 +22,7 @@ namespace Green_Enviro_App
 		Main_Form _main_form;
 
 		CSVHandles csvHandles;
+		DGVOps dgvOps;
 		int uniqueColumns;
 
 		DataTable _data_table;
@@ -30,6 +31,10 @@ namespace Green_Enviro_App
 		{
 			_main_form = mainForm;
 			csvHandles = new CSVHandles(mainForm.PurchasesPRDataGridView, uniqueColumns);
+			dgvOps = new DGVOps(_main_form.PurchasesPRDataGridView,_main_form.PurchasesPRMonth,
+								_main_form.PurchasePRStartDate, _main_form.PurchasePREndDate,
+								_main_form.PurchasePRType,_main_form);
+
 			//createFiles(pathToSalesPoliceRegister);
 			createFiles(pathToPurchasePoliceRegister);
 			setupPoliceRegisters();
@@ -39,7 +44,8 @@ namespace Green_Enviro_App
 		{
 			//_sales_data_table = csvHandles.getCSVContents(pathToPurchasePoliceRegister);
 			//_purchases_data_table = csvHandles.getCSVContents(pathToSalesPoliceRegister);
-			List<string> fileNames = csvHandles.getFilesInFolder(PurchasesPRBasePath, _main_form.PurchasesPRMonth);
+			List<string> logNames = csvHandles.getFilesInFolder(PurchasesPRBasePath);
+			dgvOps.populateLogMonths(logNames);
 		}
 
 		private void createFiles(string path)
@@ -50,16 +56,10 @@ namespace Green_Enviro_App
 
 		public void monthSelected()
 		{
-			if (_main_form.PurchasesPRMonth.SelectedItem == null)
-			{
-				//Do nothing if no month is selected
-				return;
-			}
+			if (_main_form.PurchasesPRMonth.SelectedItem == null) return;
 
 			string _selected_month = _main_form.PurchasesPRMonth.SelectedItem.ToString();
 			string _path_to_log_file = PurchasesPRBasePath + @"\" + _selected_month + ".csv";
-
-
 
 			_data_table = csvHandles.getCSVContents(_path_to_log_file);
 			

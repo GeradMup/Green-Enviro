@@ -203,5 +203,31 @@ namespace Green_Enviro_App
 			dataTable.Rows.Add(_last_row);
 		}
 
+		public void populateDates(HashSet<String> dates) 
+		{
+			//First Clear the start and end date fields to prepare them for the new entry
+			startDateBox.Items.Clear();
+			endDateBox.Items.Clear();
+
+			//Now Populate the drop down list with available dates only.
+			foreach (string _date in dates)
+			{
+				startDateBox.Items.Add(_date);
+				endDateBox.Items.Add(_date);
+			}
+
+			//Remove any previous filters
+			RemoveFilters();
+		}
+
+		public void populateLogMonths(List<String> months) 
+		{
+			monthBox.Items.Clear();
+			foreach(String month in months) 
+			{
+				monthBox.Items.Add(month);
+			}
+		}
+
 	}
 }

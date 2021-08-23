@@ -27,7 +27,8 @@ namespace Green_Enviro_App
 		DataTable _purchases_data_table = new DataTable();
 		BindingSource _binding_source = new BindingSource();
 		List<String> logNames;
-		List<KeyValuePair<String, DataTable>> logs = new List<KeyValuePair<String, DataTable>>();
+		List<DataTable> logs = new List<DataTable>();
+		DataTable log;
 
 		string _empty_string = " ";
 		string _totals = "TOTALS";
@@ -51,16 +52,8 @@ namespace Green_Enviro_App
 		{
 			//This function will get the names of all the purchase log files that exists in the purchases folder
 			string _purchase_logs_path = path + @"\resources\Logs\Purchases";
-			logNames = csvHandles.getFilesInFolder(_purchase_logs_path, _main_form.PurchaseLogMonth);
-			string pathToLogFile;
-			DataTable log = new DataTable();
-			
-			foreach (string logName in logNames) 
-			{
-				pathToLogFile = path + @"\resources\Logs\Purchases\" + logName + ".csv";
-				log = csvHandles.getCSVContents(pathToLogFile);
-				logs.Add(new KeyValuePair<string, DataTable>(logName,log));
-			}
+			logNames = csvHandles.getFilesInFolder(_purchase_logs_path);
+			dgvOps.populateLogMonths(logNames);
 		}
 
 		public void setTypes(string F, string N) 
@@ -100,7 +93,7 @@ namespace Green_Enviro_App
 			if (_purchases_data_table.Rows.Count > 0)
 			{
 				_binding_source.DataSource = _purchases_data_table;
-				dgvOps.FilterGridView(ref _binding_source);
+				//dgvOps.FilterGridView(ref _binding_source);
 				PopulateGridView();
 			}
 		}
@@ -109,20 +102,18 @@ namespace Green_Enviro_App
 		{
 			_purchases_data_table.Clear();
 
-			string selectedMonth = _main_form.PurchaseLogMonth.SelectedItem.ToString();
+			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
+			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
 
-			foreach (KeyValuePair<String, DataTable> log in logs) 
-			{
-				if (selectedMonth == log.Key) 
-				{
-					_purchases_data_table = log.Value;
-					break;
-				}
-			}
+			_purchases_data_table = csvHandles.getCSVContents(_path_to_log_file);
+			//_purchases_data_table = logs[5];
 		}
 
 		private void PopulateGridView() 
 		{
+			//_main_form.PurchseLogGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+			// or even better, use .DisableResizing
+
 			_main_form.PurchseLogGridView.DataSource = _binding_source;
 			_main_form.PurchseLogGridView.Columns[0].FillWeight = 180F;
 			_main_form.PurchseLogGridView.Columns[1].FillWeight = 100F;
@@ -135,15 +126,17 @@ namespace Green_Enviro_App
 			_main_form.PurchseLogGridView.Columns[8].FillWeight = 60F;
 
 			//Disables the ability to sort columns using the headers
-			foreach (DataGridViewColumn _column in _main_form.PurchseLogGridView.Columns)
-			{
-				_column.SortMode = DataGridViewColumnSortMode.NotSortable;
-			}
+			//foreach (DataGridViewColumn _column in _main_form.PurchseLogGridView.Columns)
+			//{
+			//	_column.SortMode = DataGridViewColumnSortMode.NotSortable;
+			//}
 			int kgColumn = 6;
 			int amountColumn = 8;
 
+			_main_form.PurchseLogGridView.Refresh();
 			dgvOps.addTotalsRow(_purchases_data_table, kgColumn, amountColumn);
 			dgvOps.highlightTotalsRow();
+
 		}
 
 		public void MonthSelected() 
@@ -154,35 +147,8 @@ namespace Green_Enviro_App
 			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
 			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
 
-			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
-			HashSet<string> _dates = new HashSet<string>();
-
-			if (lines.Length > 0) 
-			{
-				for (int _row = 1; _row < lines.Length; _row++) 
-				{
-					//For each line, we want a list of the words on the line seperated by the comma
-					string[] dataWords = lines[_row].Split(',');
-
-					//Now we want to add only the first word to a list of days if it is unique
-					//In order to make sure that we do not repeat strings, we use a HashSet string
-					_dates.Add(dataWords[0]);
-				}
-			}
-
-			//First Clear the start and end date fields to prepare them for the new entry
-			_main_form.PurchaseLogStartDate.Items.Clear();
-			_main_form.PurchaseLogEndDate.Items.Clear();
-
-			//Now Populate the drop down list with available dates only.
-			foreach (string _date in _dates) 
-			{
-				_main_form.PurchaseLogStartDate.Items.Add(_date);
-				_main_form.PurchaseLogEndDate.Items.Add(_date);
-			}
-
-			//Remove any previous filters and also display the purchase logs
-			RemoveFilters();
+			HashSet<string> _dates = csvHandles.getDatesInFile(_path_to_log_file);
+			dgvOps.populateDates(_dates);
 			DisplayPurchaseLog();
 			
 		}

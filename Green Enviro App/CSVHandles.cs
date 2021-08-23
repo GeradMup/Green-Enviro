@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -198,20 +199,30 @@ namespace Green_Enviro_App
 		/// <param name="comboBox"></param>
 		/// <returns name="fileNames">A list of all the file names in folder</returns>
 
-		public List<string> getFilesInFolder(string folder, ComboBox comboBox) 
+		public List<string> getFilesInFolder(string folder) 
 		{
-			List<string> fileNames = new List<string>();
+			List<DateTime> dates = new List<DateTime>();
 
 			DirectoryInfo _directory = new DirectoryInfo(folder);
 			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
+
 			foreach (FileInfo _file in _files)
 			{
 				char[] _remove_chars = { 'c', 's', 'v', '.' };
 				string _file_name = _file.Name.TrimEnd(_remove_chars);
-				fileNames.Add(_file_name);
-				comboBox.Items.Add(_file_name);
+				dates.Add(DateTime.ParseExact(_file_name,"MMMM yyyy", null));
 			}
-			return fileNames;
+			//The files are named after the month in which they were created.
+			//Here we try to order the dates
+
+			dates.Sort((x, y) => DateTime.Compare(x, y));
+			List<String> sortedDates = new List<String>();
+			foreach (DateTime date in dates) 
+			{
+				sortedDates.Add(date.ToString("MMMM yyyy"));
+				Console.WriteLine(date.ToString("MMMM yyyy"));
+			}
+			return sortedDates;
 		}
 
 		/// <summary>Adds strings to a CSV file given a list of the strings and the path to the file</summary>
@@ -246,6 +257,34 @@ namespace Green_Enviro_App
 		{
 			dataGridView.Rows[selectedRow].DefaultCellStyle.BackColor = Color.GreenYellow;
 			highlightedRows.Add(selectedRow);
+		}
+
+		/// <summary>Gets the dates in a CSV file</summary>
+		/// <param name="path">The path.</param>
+		/// <returns>
+		///	  A Hashset of strings
+		///   <br />
+		///   The Hashset will contain all the unique dates in the file
+		/// </returns>
+		/// 
+		public HashSet<string> getDatesInFile(string path) 
+		{
+			string[] lines = System.IO.File.ReadAllLines(path);
+			HashSet<string> _dates = new HashSet<string>();
+
+			if (lines.Length > 0)
+			{
+				for (int _row = 1; _row < lines.Length; _row++)
+				{
+					//For each line, we want a list of the words on the line seperated by the comma
+					string[] dataWords = lines[_row].Split(',');
+
+					//Now we want to add only the first word to a list of days if it is unique
+					//In order to make sure that we do not repeat strings, we use a HashSet string
+					_dates.Add(dataWords[0]);
+				}
+			}
+			return _dates;
 		}
 	}
 }
