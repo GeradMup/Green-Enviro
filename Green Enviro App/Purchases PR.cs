@@ -42,8 +42,6 @@ namespace Green_Enviro_App
 
 		private void setupPoliceRegisters()
 		{
-			//_sales_data_table = csvHandles.getCSVContents(pathToPurchasePoliceRegister);
-			//_purchases_data_table = csvHandles.getCSVContents(pathToSalesPoliceRegister);
 			List<string> logNames = csvHandles.getFilesInFolder(PurchasesPRBasePath);
 			dgvOps.populateLogMonths(logNames);
 		}

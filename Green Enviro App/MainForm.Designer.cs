@@ -818,10 +818,10 @@ namespace Green_Enviro_App
 			// 
 			this.PurchseLogGridView.AllowUserToAddRows = false;
 			this.PurchseLogGridView.AllowUserToDeleteRows = false;
-			this.PurchseLogGridView.AllowUserToResizeRows = false;
 			this.PurchseLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.PurchseLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.PurchseLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.PurchseLogGridView.ColumnHeadersHeight = 29;
 			this.PurchseLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;

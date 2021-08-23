@@ -229,5 +229,28 @@ namespace Green_Enviro_App
 			}
 		}
 
+		public void populateGridView(BindingSource bindingSource, List<float> colWidths, DataTable dataTable, int kgColumn, int amountCol) 
+		{
+			//Disable automatic re-sizing so that the grid can populate quickly
+			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+			dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+		
+			//Populate the grid
+			dataGridView.DataSource = bindingSource;
+
+			//Re-size the columns so that all the data can be visible
+			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
+			dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+			for (int column = 0; column < colWidths.Count(); column++) 
+			{
+				dataGridView.Columns[column].FillWeight = colWidths[column];
+			}
+
+			dataGridView.Refresh();
+			addTotalsRow(dataTable, kgColumn, amountCol);
+			highlightTotalsRow();
+		}
+
 	}
 }

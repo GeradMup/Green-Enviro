@@ -93,8 +93,10 @@ namespace Green_Enviro_App
 			if (_purchases_data_table.Rows.Count > 0)
 			{
 				_binding_source.DataSource = _purchases_data_table;
-				//dgvOps.FilterGridView(ref _binding_source);
-				PopulateGridView();
+				int kgColumn = 6;
+				int amountCol = 8;
+
+				dgvOps.populateGridView(_binding_source, columnWidths(), _purchases_data_table, kgColumn, amountCol);
 			}
 		}
 
@@ -106,37 +108,22 @@ namespace Green_Enviro_App
 			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
 
 			_purchases_data_table = csvHandles.getCSVContents(_path_to_log_file);
-			//_purchases_data_table = logs[5];
 		}
 
-		private void PopulateGridView() 
+		private List<float> columnWidths() 
 		{
-			//_main_form.PurchseLogGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-			// or even better, use .DisableResizing
+			List<float> colWidths = new List<float>();
+			colWidths.Add(180F);
+			colWidths.Add(110F);
+			colWidths.Add(130F);
+			colWidths.Add(130F);
+			colWidths.Add(40F);
+			colWidths.Add(80F);
+			colWidths.Add(50F);
+			colWidths.Add(50F);
+			colWidths.Add(60F);
 
-			_main_form.PurchseLogGridView.DataSource = _binding_source;
-			_main_form.PurchseLogGridView.Columns[0].FillWeight = 180F;
-			_main_form.PurchseLogGridView.Columns[1].FillWeight = 100F;
-			_main_form.PurchseLogGridView.Columns[2].FillWeight = 110F;
-			_main_form.PurchseLogGridView.Columns[3].FillWeight = 130F;
-			_main_form.PurchseLogGridView.Columns[4].FillWeight = 40F;
-			_main_form.PurchseLogGridView.Columns[5].FillWeight = 80F;
-			_main_form.PurchseLogGridView.Columns[6].FillWeight = 50F;
-			_main_form.PurchseLogGridView.Columns[7].FillWeight = 50F;
-			_main_form.PurchseLogGridView.Columns[8].FillWeight = 60F;
-
-			//Disables the ability to sort columns using the headers
-			//foreach (DataGridViewColumn _column in _main_form.PurchseLogGridView.Columns)
-			//{
-			//	_column.SortMode = DataGridViewColumnSortMode.NotSortable;
-			//}
-			int kgColumn = 6;
-			int amountColumn = 8;
-
-			_main_form.PurchseLogGridView.Refresh();
-			dgvOps.addTotalsRow(_purchases_data_table, kgColumn, amountColumn);
-			dgvOps.highlightTotalsRow();
-
+			return colWidths;
 		}
 
 		public void MonthSelected() 
