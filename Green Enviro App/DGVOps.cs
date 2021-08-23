@@ -163,13 +163,11 @@ namespace Green_Enviro_App
 		{
 			float _total_kg = 0;
 			float _total_amount = 0;
-			int _kg_column = kgCol;
-			int _amount_column = amountCol;
 
 			for (int _row = 0; _row < dataGridView.Rows.Count; _row++)
 			{
-				_total_amount += float.Parse(dataGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
-				_total_kg += float.Parse(dataGridView.Rows[_row].Cells[_kg_column].Value.ToString(), CultureInfo.InvariantCulture);
+				_total_amount += float.Parse(dataGridView.Rows[_row].Cells[amountCol].Value.ToString(), CultureInfo.InvariantCulture);
+				_total_kg += float.Parse(dataGridView.Rows[_row].Cells[kgCol].Value.ToString(), CultureInfo.InvariantCulture);
 			}
 
 			//CustomMessageBox box = new CustomMessageBox("Total", "Kg's : " + _total_kg.ToString() + "\n" + "Amount : " + _total_amount.ToString());
@@ -187,11 +185,11 @@ namespace Green_Enviro_App
 			_last_row[0] = _totals;
 			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
 			{
-				if (_cell == _amount_column)
+				if (_cell == amountCol)
 				{
 					_last_row[_cell] = _total_amount;
 				}
-				else if (_cell == _kg_column)
+				else if (_cell == kgCol)
 				{
 					_last_row[_cell] = _total_kg;
 				}
@@ -229,7 +227,7 @@ namespace Green_Enviro_App
 			}
 		}
 
-		public void populateGridView(BindingSource bindingSource, List<float> colWidths, DataTable dataTable, int kgColumn, int amountCol) 
+		public void populateGridView(BindingSource bindingSource, List<float> colWidths, DataTable dataTable, int kgColumn = 0, int amountCol = 0) 
 		{
 			//Disable automatic re-sizing so that the grid can populate quickly
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -247,10 +245,42 @@ namespace Green_Enviro_App
 				dataGridView.Columns[column].FillWeight = colWidths[column];
 			}
 
+			if ((kgColumn != 0) && (amountCol != 0)) 
+			{
+				addTotalsRow(dataTable, kgColumn, amountCol);
+				highlightTotalsRow();
+			}
+
 			dataGridView.Refresh();
-			addTotalsRow(dataTable, kgColumn, amountCol);
-			highlightTotalsRow();
+			
 		}
+
+		/// <summary>Gives the default column widths for DataGridViews consisting of 9 Columns.</summary>
+		/// <returns>A list of floats containing the dafault column widths.</returns>
+		public List<float> defaultColWidths()
+		{
+			List<float> colWidths = new List<float>();
+			colWidths.Add(180F);
+			colWidths.Add(110F);
+			colWidths.Add(130F);
+			colWidths.Add(130F);
+			colWidths.Add(40F);
+			colWidths.Add(80F);
+			colWidths.Add(50F);
+			colWidths.Add(50F);
+			colWidths.Add(60F);
+
+			return colWidths;
+		}
+
+		/// <summary>Sets the types of the products and populates the types combo box. There are only two types, Ferrous or Non-ferrous.</summary>
+		public void setTypes() 
+		{
+			typeBox.Items.Clear();
+			typeBox.Items.Add("Ferous");
+			typeBox.Items.Add("Non-Ferous");
+		}
+
 
 	}
 }

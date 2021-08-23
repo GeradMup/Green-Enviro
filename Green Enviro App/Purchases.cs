@@ -54,17 +54,7 @@ namespace Green_Enviro_App
 			string _purchase_logs_path = path + @"\resources\Logs\Purchases";
 			logNames = csvHandles.getFilesInFolder(_purchase_logs_path);
 			dgvOps.populateLogMonths(logNames);
-		}
-
-		public void setTypes(string F, string N) 
-		{
-			_ferrous = F;
-			_non_ferrous = N;
-
-			//Also setup the Ferrous or Non-Ferrous Selector
-			_main_form.PurchaseLogType.Items.Clear();
-			_main_form.PurchaseLogType.Items.Add(_ferrous);
-			_main_form.PurchaseLogType.Items.Add(_non_ferrous);
+			dgvOps.setTypes();
 		}
 
 		//Create purchase and sales logs for each month if they don't already exist
@@ -96,7 +86,7 @@ namespace Green_Enviro_App
 				int kgColumn = 6;
 				int amountCol = 8;
 
-				dgvOps.populateGridView(_binding_source, columnWidths(), _purchases_data_table, kgColumn, amountCol);
+				dgvOps.populateGridView(_binding_source, dgvOps.defaultColWidths(), _purchases_data_table, kgColumn, amountCol);
 			}
 		}
 
@@ -110,22 +100,6 @@ namespace Green_Enviro_App
 			_purchases_data_table = csvHandles.getCSVContents(_path_to_log_file);
 		}
 
-		private List<float> columnWidths() 
-		{
-			List<float> colWidths = new List<float>();
-			colWidths.Add(180F);
-			colWidths.Add(110F);
-			colWidths.Add(130F);
-			colWidths.Add(130F);
-			colWidths.Add(40F);
-			colWidths.Add(80F);
-			colWidths.Add(50F);
-			colWidths.Add(50F);
-			colWidths.Add(60F);
-
-			return colWidths;
-		}
-
 		public void MonthSelected() 
 		{
 			//Do nothing if no month is selected
@@ -137,7 +111,6 @@ namespace Green_Enviro_App
 			HashSet<string> _dates = csvHandles.getDatesInFile(_path_to_log_file);
 			dgvOps.populateDates(_dates);
 			DisplayPurchaseLog();
-			
 		}
 
 		/// <summary>

@@ -126,8 +126,6 @@ namespace Green_Enviro_App
                     _second_arg = type;
                 }
             }
-
-            _purchases.setTypes(_first_arg, _second_arg);
         }
 
         public void setupCustomerList() 
@@ -574,6 +572,7 @@ namespace Green_Enviro_App
             _purchased_quantities.Clear();
             _type_of_transaction = "UNKNOWN";
             setupReceipt();
+            _main_form.ReceiptDefaultCustomerCheckBox.CheckState = CheckState.Unchecked;
         }
 
         private string ItemType(string itemName) 

@@ -119,26 +119,30 @@ namespace Green_Enviro_App
             //Check if the current transaction is to be a purchase or sale first
             if (ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.purchase)
             {
-                if ((_user_permission_level == 2))
+                /*if ((_user_permission_level == 2))
                 {
                     PermissionDenied();
                 }
                 else
                 {
                     _receipt.CompletePurchaseOrSale();
-                }
+                }*/
+
+                _receipt.CompletePurchaseOrSale();
             }
             else if ((ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
                 ||(ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale)) 
             {
-                if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
+                /*if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
                 {
 					_receipt.CompletePurchaseOrSale();
                 }
                 else
                 {
                     PermissionDenied();
-                }
+                }*/
+
+                _receipt.CompletePurchaseOrSale();
             } 
         }
 
@@ -159,14 +163,17 @@ namespace Green_Enviro_App
 
         private void ReceiptPriceEditBtn_Click(object sender, EventArgs e)
         {
-            if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
+            //We will no longer check the permission level before editing prices
+            /*if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
             {
                 _receipt.EditPrices();
             }
             else 
             {
                 PermissionDenied();
-            }
+            }*/
+
+            _receipt.EditPrices();
         }
 
         private void ReprintReceiptBtn_Click(object sender, EventArgs e)
@@ -463,7 +470,8 @@ namespace Green_Enviro_App
 		{
             _current_tab_page = e.TabPage;
 			
-            if ((e.TabPage.Name != "ReceiptPage") && (_user_permission_level == 1)) 
+            if ((e.TabPage.Name != "ReceiptPage")
+                && (_user_permission_level == 1)) 
             {
                 PermissionDenied();
                 mainTabControl.SelectedTab = _previous_tab_page;
@@ -484,14 +492,17 @@ namespace Green_Enviro_App
 		private void EditCustomers_Click(object sender, EventArgs e)
 		{
             _receipt.ResetReceipt();
-            if ((_user_permission_level == 4) || (_user_permission_level == 5))
+            //We will no longer check the permission level before editing the customers
+            /*if ((_user_permission_level == 4) || (_user_permission_level == 5))
             {
                 _customers.ActivateForm();
             }
             else
             {
                 PermissionDenied();
-            }
+            }*/
+
+            _customers.ActivateForm();
         }
 
 		private void PrintPolice()
@@ -577,6 +588,11 @@ namespace Green_Enviro_App
 		private void AddToPRBtn_Click(object sender, EventArgs e)
 		{
             _purchases.addToPRRequest();
+		}
+
+		private void ReceiptDefaultCustomerCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

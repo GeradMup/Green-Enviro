@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
+	/// <summary>This class handles all the reading, writing. deleting, etc from CSV Files.</summary>
 	class CSVHandles
 	{
 		private static string startingSubstringForLineToBeDeleted = "";
@@ -18,6 +19,9 @@ namespace Green_Enviro_App
 		DataGridView dataGridView;
 		int numberOfColumns;
 
+		/// <summary>Initializes a new instance of the <see cref="CSVHandles" /> class.</summary>
+		/// <param name="grid">The DataGridView Where the CSV contents will go</param>
+		/// <param name="unqCols">The number of unique columns in the DataGridView.</param>
 		public CSVHandles(DataGridView grid, int unqCols) 
 		{
 			dataGridView = grid;
@@ -196,7 +200,6 @@ namespace Green_Enviro_App
 		/// Gets the files in folder and adds them to the given combo box 
 		/// </summary>
 		/// <param name="folder">The path to the folder.</param>
-		/// <param name="comboBox"></param>
 		/// <returns name="fileNames">A list of all the file names in folder</returns>
 
 		public List<string> getFilesInFolder(string folder) 

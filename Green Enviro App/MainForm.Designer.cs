@@ -473,6 +473,7 @@ namespace Green_Enviro_App
 			this.ReceiptDefaultCustomerCheckBox.TabIndex = 30;
 			this.ReceiptDefaultCustomerCheckBox.Text = "Default";
 			this.ReceiptDefaultCustomerCheckBox.UseVisualStyleBackColor = true;
+			this.ReceiptDefaultCustomerCheckBox.CheckedChanged += new System.EventHandler(this.ReceiptDefaultCustomerCheckBox_CheckedChanged);
 			// 
 			// EditCustomers
 			// 
