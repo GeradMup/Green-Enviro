@@ -24,6 +24,7 @@ namespace Green_Enviro_App
 		ComboBox endDateBox;
 		ComboBox typeBox;
 		Form parentForm;
+		BindingSource bindingSource = new BindingSource();
 
 		string _empty_string = " ";
 		string _totals = "TOTALS";
@@ -108,7 +109,7 @@ namespace Green_Enviro_App
 
 		/// <summary>Filters the grid view based on the selected dates and types.</summary>
 		/// <param name="bindingSource">The binding source for the table displayed in the data grid view.</param>
-		public void FilterGridView(ref BindingSource bindingSource)
+		public void filterGridView()
 		{
 			string filterString;
 			//Filter according to the date ranges if the dates have been selected correctly
@@ -227,7 +228,7 @@ namespace Green_Enviro_App
 			}
 		}
 
-		public void populateGridView(BindingSource bindingSource, List<float> colWidths, DataTable dataTable, int kgColumn = 0, int amountCol = 0) 
+		public void populateGridView(List<float> colWidths, DataTable dataTable, int kgColumn = 0, int amountCol = 0) 
 		{
 			//Disable automatic re-sizing so that the grid can populate quickly
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -244,6 +245,9 @@ namespace Green_Enviro_App
 			{
 				dataGridView.Columns[column].FillWeight = colWidths[column];
 			}
+
+			//Check first if anything is being filtered 
+			filterGridView();
 
 			if ((kgColumn != 0) && (amountCol != 0)) 
 			{
@@ -281,6 +285,10 @@ namespace Green_Enviro_App
 			typeBox.Items.Add("Non-Ferous");
 		}
 
+		public void changeBindingSource(DataTable dt) 
+		{
+			bindingSource.DataSource = dt;
+		}
 
 	}
 }

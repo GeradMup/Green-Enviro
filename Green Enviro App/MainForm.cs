@@ -217,7 +217,7 @@ namespace Green_Enviro_App
 
         private void FilterPurchaseLogBtn_Click(object sender, EventArgs e)
         {
-            _purchases.DisplayPurchaseLog();
+            _purchases.filterGrid();
         }
 
 		private void PurchaseLogMonth_SelectedIndexChanged(object sender, EventArgs e)

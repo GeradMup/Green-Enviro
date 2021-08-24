@@ -82,11 +82,12 @@ namespace Green_Enviro_App
 
 			if (_purchases_data_table.Rows.Count > 0)
 			{
-				_binding_source.DataSource = _purchases_data_table;
+				
 				int kgColumn = 6;
 				int amountCol = 8;
 
-				dgvOps.populateGridView(_binding_source, dgvOps.defaultColWidths(), _purchases_data_table, kgColumn, amountCol);
+				dgvOps.changeBindingSource(_purchases_data_table);
+				dgvOps.populateGridView(dgvOps.defaultColWidths(), _purchases_data_table, kgColumn, amountCol);
 			}
 		}
 
@@ -119,6 +120,13 @@ namespace Green_Enviro_App
 		public void RemoveFilters() 
 		{
 			dgvOps.RemoveFilters();
+			DisplayPurchaseLog();
+		}
+
+		public void filterGrid() 
+		{
+			//To apply filters, we simply need to display the log again because everytime when the DataGrid
+			//populate, a check is done to see if any filters have been applied or not
 			DisplayPurchaseLog();
 		}
 

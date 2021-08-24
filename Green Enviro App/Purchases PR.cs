@@ -65,10 +65,14 @@ namespace Green_Enviro_App
 			HashSet<string> _dates = csvHandles.getDatesInFile(_path_to_log_file);
 			dgvOps.populateDates(_dates);
 
-			_binding_source.DataSource = _data_table;
-
-			if (_data_table.Rows.Count > 0)	dgvOps.populateGridView(_binding_source, dgvOps.defaultColWidths(),_data_table);
+			dgvOps.changeBindingSource(_data_table);
+			if (_data_table.Rows.Count > 0)	dgvOps.populateGridView(dgvOps.defaultColWidths(),_data_table);
 			
+		}
+
+		public void filterGrid() 
+		{
+			dgvOps.filterGridView();
 		}
 
 		//This function converts entries from a data table into a list of strings
