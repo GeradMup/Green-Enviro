@@ -46,7 +46,19 @@ namespace Green_Enviro_App
 			double left = 30;
 			double height = 140;
 			double width = 520;
-			graphic.DrawImage(letterHeadImage, top, left, width, height);
+			graphic.DrawImage(letterHeadImage, left, top, width, height);
+
+			string heading = "DELIVERY NOTE";
+			XFont font = new XFont("Times New Roman", 25);
+
+			top = 195;
+			left = 195;
+			graphic.DrawString(heading, font, XBrushes.Black, new XPoint(left, top));
+
+			top = 200;
+			left = 195;
+			double right = 392;
+			graphic.DrawLine(XPens.Black, new XPoint(left, top), new XPoint(right, top));
 		}
 		
 	}
