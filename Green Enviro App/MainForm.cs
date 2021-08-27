@@ -34,6 +34,8 @@ namespace Green_Enviro_App
 
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
+
+        DeliveryNote deliveryNote;
         bool starting = true;
 
         public int _user_permission_level = 0;
@@ -62,6 +64,7 @@ namespace Green_Enviro_App
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
             _purchasesPR = new Purchases_PR(this);
+            deliveryNote = new DeliveryNote();
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;
