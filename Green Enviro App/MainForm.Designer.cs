@@ -2469,7 +2469,7 @@ namespace Green_Enviro_App
 			this.FilterPRBtn.Name = "FilterPRBtn";
 			this.FilterPRBtn.Size = new System.Drawing.Size(265, 57);
 			this.FilterPRBtn.TabIndex = 28;
-			this.FilterPRBtn.Text = "Filter";
+			this.FilterPRBtn.Text = "Print Register";
 			this.FilterPRBtn.UseVisualStyleBackColor = true;
 			// 
 			// label66

@@ -12,12 +12,14 @@ namespace Green_Enviro_App
 {
 	public class Purchases_PR
 	{
-		static string month = DateTime.Now.ToString("MMMM yyyy");
+		
 		static string pathToProjectDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-		static string SalesPRBasePath = pathToProjectDirectory + @"\resources\Logs\Police Registers\Sales";
+		//static string SalesPRBasePath = pathToProjectDirectory + @"\resources\Logs\Police Registers\Sales";
 		static string PurchasesPRBasePath = pathToProjectDirectory + @"\resources\Logs\Police Registers\Purchases";
 		//string pathToSalesPoliceRegister = SalesPRBasePath + @"\" + month + ".csv";
-		string pathToPurchasePoliceRegister = PurchasesPRBasePath + @"\" + month + ".csv";
+
+		private static string month = DateTime.Now.ToString("MMMM yyyy");
+		private string pathToPurchasePoliceRegister = PurchasesPRBasePath + @"\" + month + ".csv";
 
 		Main_Form _main_form;
 
@@ -36,7 +38,7 @@ namespace Green_Enviro_App
 								_main_form.PurchasePRType,_main_form);
 
 			//createFiles(pathToSalesPoliceRegister);
-			createFiles(pathToPurchasePoliceRegister);
+			createFiles();
 			setupPoliceRegisters();
 		}
 
@@ -47,10 +49,11 @@ namespace Green_Enviro_App
 			dgvOps.setTypes();
 		}
 
-		private void createFiles(string path)
+		//We will generate files on a monthly basis. This code will automatically generate a new csv file for each month
+		private void createFiles()
 		{
-			string headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type";
-			csvHandles.createCSVFile(path, headers);
+			string headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type,Sold";
+			csvHandles.createCSVFile(pathToPurchasePoliceRegister, headers);
 		}
 
 		public void monthSelected()
@@ -111,11 +114,13 @@ namespace Green_Enviro_App
 			}
 			else
 			{
+				//Add entry to the police register and flag it as not sold
+				//The zero at the end flags the entry as not sold
+				purchaseEntry = purchaseEntry + ",0";
 				List<String> lines = new List<String>();
 				lines.Add(purchaseEntry);
 				string successMessage = "Purchase added to Purchase Police Register";
 				csvHandles.addToCSV(pathToPurchasePoliceRegister, lines, _main_form, successMessage);
-
 			}
 		}
 	}

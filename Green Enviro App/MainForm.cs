@@ -317,7 +317,10 @@ namespace Green_Enviro_App
         //*************************************************************************************************************
 		private void AddExpenseBtn_Click(object sender, EventArgs e)
 		{
+            _expenses.AddExpense();
+            _expenses.DisplayExpensesLog();
 
+            /*
             if ((_user_permission_level == 4) || (_user_permission_level == 5))
             {
                 _expenses.AddExpense();
@@ -326,9 +329,9 @@ namespace Green_Enviro_App
             else 
             {
                 PermissionDenied();
-            }
-            
-		}
+            }*/
+
+        }
 
 		private void ExpensesLogMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{

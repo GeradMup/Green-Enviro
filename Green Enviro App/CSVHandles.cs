@@ -161,11 +161,11 @@ namespace Green_Enviro_App
 		/// </summary>
 		/// <param name="_path_to_log_file">The path to log file.</param>
 		/// <returns name="_data_table">A data table containing the contents of the csv file</returns>
-		public DataTable getCSVContents(string _path_to_log_file) 
+		public DataTable getCSVContents(string filePath) 
 		{
 			DataTable _data_table = new DataTable();
 
-			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
+			string[] lines = System.IO.File.ReadAllLines(filePath);
 			if (lines.Length > 0)
 			{
 				//first line to create the table headers
