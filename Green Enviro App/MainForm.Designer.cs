@@ -246,6 +246,10 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+			this.DeliveryNote = new System.Windows.Forms.TabPage();
+			this.DeliveryItemsBox = new System.Windows.Forms.RichTextBox();
+			this.DeliveryItemsLabel = new System.Windows.Forms.Label();
+			this.DeliveryItemsList = new System.Windows.Forms.ComboBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -275,6 +279,7 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+			this.DeliveryNote.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -292,6 +297,7 @@ namespace Green_Enviro_App
 			this.mainTabControl.Controls.Add(this.DestructionCertificates);
 			this.mainTabControl.Controls.Add(this.SalesPR);
 			this.mainTabControl.Controls.Add(this.PurchasesPR);
+			this.mainTabControl.Controls.Add(this.DeliveryNote);
 			this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mainTabControl.HotTrack = true;
 			this.mainTabControl.Location = new System.Drawing.Point(0, 0);
@@ -2770,6 +2776,45 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// DeliveryNote
+			// 
+			this.DeliveryNote.Controls.Add(this.DeliveryItemsList);
+			this.DeliveryNote.Controls.Add(this.DeliveryItemsLabel);
+			this.DeliveryNote.Controls.Add(this.DeliveryItemsBox);
+			this.DeliveryNote.Location = new System.Drawing.Point(4, 32);
+			this.DeliveryNote.Name = "DeliveryNote";
+			this.DeliveryNote.Size = new System.Drawing.Size(1724, 867);
+			this.DeliveryNote.TabIndex = 10;
+			this.DeliveryNote.Text = "Delivery Note";
+			this.DeliveryNote.UseVisualStyleBackColor = true;
+			// 
+			// DeliveryItemsBox
+			// 
+			this.DeliveryItemsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.DeliveryItemsBox.Location = new System.Drawing.Point(984, 37);
+			this.DeliveryItemsBox.Name = "DeliveryItemsBox";
+			this.DeliveryItemsBox.Size = new System.Drawing.Size(705, 632);
+			this.DeliveryItemsBox.TabIndex = 0;
+			this.DeliveryItemsBox.Text = "";
+			// 
+			// DeliveryItemsLabel
+			// 
+			this.DeliveryItemsLabel.AutoSize = true;
+			this.DeliveryItemsLabel.Location = new System.Drawing.Point(66, 36);
+			this.DeliveryItemsLabel.Name = "DeliveryItemsLabel";
+			this.DeliveryItemsLabel.Size = new System.Drawing.Size(65, 23);
+			this.DeliveryItemsLabel.TabIndex = 1;
+			this.DeliveryItemsLabel.Text = "Items";
+			// 
+			// DeliveryItemsList
+			// 
+			this.DeliveryItemsList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.DeliveryItemsList.FormattingEnabled = true;
+			this.DeliveryItemsList.Location = new System.Drawing.Point(144, 36);
+			this.DeliveryItemsList.Name = "DeliveryItemsList";
+			this.DeliveryItemsList.Size = new System.Drawing.Size(373, 31);
+			this.DeliveryItemsList.TabIndex = 2;
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -2828,6 +2873,8 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+			this.DeliveryNote.ResumeLayout(false);
+			this.DeliveryNote.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -3119,5 +3166,9 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button button6;
 		public System.Windows.Forms.DataGridView PurchasesPRDataGridView;
 		public System.Windows.Forms.DataGridView salesPRDataGridView;
+		private System.Windows.Forms.TabPage DeliveryNote;
+		private System.Windows.Forms.RichTextBox DeliveryItemsBox;
+		private System.Windows.Forms.ComboBox DeliveryItemsList;
+		private System.Windows.Forms.Label DeliveryItemsLabel;
 	}
 }

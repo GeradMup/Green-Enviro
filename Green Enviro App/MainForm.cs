@@ -35,7 +35,7 @@ namespace Green_Enviro_App
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
 
-        DeliveryNote deliveryNote;
+        DeliveryNotesModel _deliveryNotesModel;
         bool starting = true;
 
         public int _user_permission_level = 0;
@@ -64,12 +64,13 @@ namespace Green_Enviro_App
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
             _purchasesPR = new Purchases_PR(this);
-            deliveryNote = new DeliveryNote();
+            _deliveryNotesModel = new DeliveryNotesModel();
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;
-        }
 
+            initialiseDeliveryNotesTab();
+        }
 
 		/// <summary>
         /// Method for making sure that the Main_Form's size cannot be changed and the Main_Form cannot be moved
@@ -488,7 +489,9 @@ namespace Green_Enviro_App
 
         private void PermissionDenied() 
         {
-            CustomMessageBox box = new CustomMessageBox(this, "Error!", "Permission Denied!");
+            string message = "Permision Denied!";
+            string messageTitle = CustomMessageBox.error;
+            CustomMessageBox box = new CustomMessageBox(this, messageTitle, message);
         }
 
 		private void LogOutBtn_Click_1(object sender, EventArgs e)

@@ -102,7 +102,7 @@ namespace Green_Enviro_App
 
 			//Creates the main form for the program
 			_mainForm = new Main_Form(this,_database, _user_permission_level);
-		}
+        }
 
         //********************************************************************************************************
 

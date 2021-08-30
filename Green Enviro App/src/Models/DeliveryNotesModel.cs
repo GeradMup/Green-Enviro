@@ -8,15 +8,17 @@ using System.Threading.Tasks;
 using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using System.IO;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
-	class DeliveryNote
+	class DeliveryNotesModel
 	{
 
-		static string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-		string basePath = path + @"\resources\Logs\Delivery Notes\";
-		string letterHeadPath = path + @"\resources\Green Enviro Destruction Certificate Logo Better.png";
+		static string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+		string basePath = projectPath + @"\resources\Logs\Delivery Notes\";
+		string letterHeadPath = projectPath + @"\resources\Green Enviro Destruction Certificate Logo Better.png";
 		double currentLine;
 		const double nextSentenceOffset = 13;
 		const double lineOffset = 4;
@@ -29,25 +31,9 @@ namespace Green_Enviro_App
 		XFont regularFontBold = new XFont(fontName, regularFontSize, XFontStyle.Bold);
 		XGraphics graphic;
 
-		/// <summary>Describes the products to be Delivered.</summary>
-		public struct Products
+		public DeliveryNotesModel() 
 		{
-			/// <summary>Gets or sets the total quantity of all the products to be Delivered.</summary>
-			/// <value>The total quantity.</value>
-			public double totalQuantity { get; set; }
-			/// <summary>Gets or sets the names and weights of all the products to be delivered.</summary>
-			/// <value>The products.</value>
-			public List<KeyValuePair<String, double>> products { get; set; }
-		}
 
-		private enum LineColours
-		{
-			black,
-			yellow
-		};
-
-		public DeliveryNote() 
-		{
 			System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
 			// New document
@@ -237,23 +223,6 @@ namespace Green_Enviro_App
 			drawHorizontalLine(LineColours.black);
 		}
 
-		public class CollectorInformation 
-		{
-
-			public CollectorInformation(string _name = "Unknown", string _cellNumber = "0000000000", string _vehicleReg = "WAS902GP",
-										string _vehicleType = "Bin Truck") 
-			{
-				this.name = _name;
-				this.cellNumber = _cellNumber;
-				this.vehicleRegistration = _vehicleReg;
-				this.vehicleType = _vehicleType;
-			}
-			public string name { set; get; }
-			public string cellNumber { set; get; }
-			public string vehicleRegistration { set; get; }
-			public string vehicleType { set; get; }
-		}
-
 		private void insertColletorInfo(CollectorInformation collectorInfo) 
 		{
 			currentLine += (2* nextSentenceOffset);
@@ -277,7 +246,6 @@ namespace Green_Enviro_App
 			double y = currentLine;
 			double end_x = start_x + lengthOfSignatureLine;
 
-
 			graphic.DrawLine(XPens.Black, new XPoint(start_x, y), new XPoint(end_x, y));
 
 			start_x = 390;
@@ -288,5 +256,57 @@ namespace Green_Enviro_App
 			graphic.DrawString("Driver's Signature", regularFont, XBrushes.Black, new XPoint(startOfTextXPosition, currentLine));
 			graphic.DrawString("Green Enviro Representative", regularFont, XBrushes.Black, new XPoint(start_x, currentLine));
 		}
+
+		/// <summary>This function fetches all the items from the Database and returns a List of strings with the names.</summary>
+		/// <param name="database">The database.</param>
+		/// <returns>A List of strings representing the item names.</returns>
+		public List<string> itemNames(Database database) 
+		{
+			DataGridView fakeGrid = new DataGridView();
+			int fakeColumns = 0;
+			CSVHandles csvHandles = new CSVHandles(fakeGrid, fakeColumns);
+			string pathToItemsFile = projectPath + @"\resources\Items\Items.txt";
+
+			DataTable items = csvHandles.getCSVContents(pathToItemsFile);
+			List<string> itemList = items.Rows.OfType<DataRow>().Select(dr => (string)dr["ITEMS"]).ToList();
+			return itemList;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////
+		// ALL THE INTERNAL CLASSES GO IN THIS SECTION
+		////////////////////////////////////////////////////////////////////////////////////////////
+
+		/// <summary>Describes the products to be Delivered.</summary>
+		internal class Products
+		{
+			/// <summary>Gets or sets the total quantity of all the products to be Delivered.</summary>
+			/// <value>The total quantity.</value>
+			public double totalQuantity { get; set; }
+			/// <summary>Gets or sets the names and weights of all the products to be delivered.</summary>
+			/// <value>The products.</value>
+			public List<KeyValuePair<String, double>> products { get; set; }
+		}
+
+		internal class CollectorInformation
+		{
+			public CollectorInformation(string _name = "Unknown", string _cellNumber = "0000000000", string _vehicleReg = "WAS902GP",
+										string _vehicleType = "Bin Truck")
+			{
+				this.name = _name;
+				this.cellNumber = _cellNumber;
+				this.vehicleRegistration = _vehicleReg;
+				this.vehicleType = _vehicleType;
+			}
+			public string name { set; get; }
+			public string cellNumber { set; get; }
+			public string vehicleRegistration { set; get; }
+			public string vehicleType { set; get; }
+		}
+
+		private enum LineColours
+		{
+			black,
+			yellow
+		};
 	}
 }

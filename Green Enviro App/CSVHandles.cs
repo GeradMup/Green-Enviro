@@ -22,7 +22,7 @@ namespace Green_Enviro_App
 		/// <summary>Initializes a new instance of the <see cref="CSVHandles" /> class.</summary>
 		/// <param name="grid">The DataGridView Where the CSV contents will go</param>
 		/// <param name="unqCols">The number of unique columns in the DataGridView.</param>
-		public CSVHandles(DataGridView grid, int unqCols) 
+		public CSVHandles(DataGridView grid, int unqCols = 0) 
 		{
 			dataGridView = grid;
 			numberOfColumns = unqCols;

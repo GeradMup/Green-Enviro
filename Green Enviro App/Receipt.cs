@@ -94,7 +94,8 @@ namespace Green_Enviro_App
         public void SetupPriceList() 
         {
             //Gets all items from the database and stores them in a DataTable named _items
-            _items = _database.SelectAll("Items");
+            string tableName = "Items";
+            _items = _database.SelectAll(tableName);
 
             //MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
 
