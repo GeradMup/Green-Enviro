@@ -226,6 +226,10 @@ namespace Green_Enviro_App
 			this.PurchasePREndDate = new System.Windows.Forms.ComboBox();
 			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
 			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
+			this.DeliveryNote = new System.Windows.Forms.TabPage();
+			this.DeliveryItemsList = new System.Windows.Forms.ComboBox();
+			this.DeliveryItemsLabel = new System.Windows.Forms.Label();
+			this.DeliveryItemsBox = new System.Windows.Forms.RichTextBox();
 			this.customersTableAdapter1 = new Green_Enviro_App.Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -246,10 +250,9 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-			this.DeliveryNote = new System.Windows.Forms.TabPage();
-			this.DeliveryItemsBox = new System.Windows.Forms.RichTextBox();
-			this.DeliveryItemsLabel = new System.Windows.Forms.Label();
-			this.DeliveryItemsList = new System.Windows.Forms.ComboBox();
+			this.DeliveryQuantityLabel = new System.Windows.Forms.Label();
+			this.DeliveryQuantityBox = new System.Windows.Forms.NumericUpDown();
+			this.DeliveryAddItem = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -277,9 +280,10 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).BeginInit();
 			this.PurchasesPR.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
+			this.DeliveryNote.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-			this.DeliveryNote.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -2586,6 +2590,50 @@ namespace Green_Enviro_App
 			this.PurchasesPRDataGridView.Size = new System.Drawing.Size(1655, 661);
 			this.PurchasesPRDataGridView.TabIndex = 0;
 			// 
+			// DeliveryNote
+			// 
+			this.DeliveryNote.AllowDrop = true;
+			this.DeliveryNote.Controls.Add(this.DeliveryAddItem);
+			this.DeliveryNote.Controls.Add(this.DeliveryQuantityBox);
+			this.DeliveryNote.Controls.Add(this.DeliveryQuantityLabel);
+			this.DeliveryNote.Controls.Add(this.DeliveryItemsList);
+			this.DeliveryNote.Controls.Add(this.DeliveryItemsLabel);
+			this.DeliveryNote.Controls.Add(this.DeliveryItemsBox);
+			this.DeliveryNote.Location = new System.Drawing.Point(4, 32);
+			this.DeliveryNote.Name = "DeliveryNote";
+			this.DeliveryNote.Size = new System.Drawing.Size(1724, 867);
+			this.DeliveryNote.TabIndex = 10;
+			this.DeliveryNote.Text = "Delivery Note";
+			this.DeliveryNote.UseVisualStyleBackColor = true;
+			// 
+			// DeliveryItemsList
+			// 
+			this.DeliveryItemsList.AllowDrop = true;
+			this.DeliveryItemsList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.DeliveryItemsList.FormattingEnabled = true;
+			this.DeliveryItemsList.Location = new System.Drawing.Point(205, 36);
+			this.DeliveryItemsList.Name = "DeliveryItemsList";
+			this.DeliveryItemsList.Size = new System.Drawing.Size(373, 31);
+			this.DeliveryItemsList.TabIndex = 2;
+			// 
+			// DeliveryItemsLabel
+			// 
+			this.DeliveryItemsLabel.AutoSize = true;
+			this.DeliveryItemsLabel.Location = new System.Drawing.Point(66, 36);
+			this.DeliveryItemsLabel.Name = "DeliveryItemsLabel";
+			this.DeliveryItemsLabel.Size = new System.Drawing.Size(65, 23);
+			this.DeliveryItemsLabel.TabIndex = 1;
+			this.DeliveryItemsLabel.Text = "Items";
+			// 
+			// DeliveryItemsBox
+			// 
+			this.DeliveryItemsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.DeliveryItemsBox.Location = new System.Drawing.Point(984, 37);
+			this.DeliveryItemsBox.Name = "DeliveryItemsBox";
+			this.DeliveryItemsBox.Size = new System.Drawing.Size(705, 632);
+			this.DeliveryItemsBox.TabIndex = 0;
+			this.DeliveryItemsBox.Text = "";
+			// 
 			// customersTableAdapter1
 			// 
 			this.customersTableAdapter1.ClearBeforeFill = true;
@@ -2776,44 +2824,39 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// DeliveryNote
+			// DeliveryQuantityLabel
 			// 
-			this.DeliveryNote.Controls.Add(this.DeliveryItemsList);
-			this.DeliveryNote.Controls.Add(this.DeliveryItemsLabel);
-			this.DeliveryNote.Controls.Add(this.DeliveryItemsBox);
-			this.DeliveryNote.Location = new System.Drawing.Point(4, 32);
-			this.DeliveryNote.Name = "DeliveryNote";
-			this.DeliveryNote.Size = new System.Drawing.Size(1724, 867);
-			this.DeliveryNote.TabIndex = 10;
-			this.DeliveryNote.Text = "Delivery Note";
-			this.DeliveryNote.UseVisualStyleBackColor = true;
+			this.DeliveryQuantityLabel.AllowDrop = true;
+			this.DeliveryQuantityLabel.AutoSize = true;
+			this.DeliveryQuantityLabel.Location = new System.Drawing.Point(63, 111);
+			this.DeliveryQuantityLabel.Name = "DeliveryQuantityLabel";
+			this.DeliveryQuantityLabel.Size = new System.Drawing.Size(98, 23);
+			this.DeliveryQuantityLabel.TabIndex = 3;
+			this.DeliveryQuantityLabel.Text = "Quantity";
 			// 
-			// DeliveryItemsBox
+			// DeliveryQuantityBox
 			// 
-			this.DeliveryItemsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.DeliveryItemsBox.Location = new System.Drawing.Point(984, 37);
-			this.DeliveryItemsBox.Name = "DeliveryItemsBox";
-			this.DeliveryItemsBox.Size = new System.Drawing.Size(705, 632);
-			this.DeliveryItemsBox.TabIndex = 0;
-			this.DeliveryItemsBox.Text = "";
+			this.DeliveryQuantityBox.AllowDrop = true;
+			this.DeliveryQuantityBox.DecimalPlaces = 3;
+			this.DeliveryQuantityBox.Location = new System.Drawing.Point(204, 108);
+			this.DeliveryQuantityBox.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+			this.DeliveryQuantityBox.Name = "DeliveryQuantityBox";
+			this.DeliveryQuantityBox.Size = new System.Drawing.Size(247, 31);
+			this.DeliveryQuantityBox.TabIndex = 4;
 			// 
-			// DeliveryItemsLabel
+			// DeliveryAddItem
 			// 
-			this.DeliveryItemsLabel.AutoSize = true;
-			this.DeliveryItemsLabel.Location = new System.Drawing.Point(66, 36);
-			this.DeliveryItemsLabel.Name = "DeliveryItemsLabel";
-			this.DeliveryItemsLabel.Size = new System.Drawing.Size(65, 23);
-			this.DeliveryItemsLabel.TabIndex = 1;
-			this.DeliveryItemsLabel.Text = "Items";
-			// 
-			// DeliveryItemsList
-			// 
-			this.DeliveryItemsList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.DeliveryItemsList.FormattingEnabled = true;
-			this.DeliveryItemsList.Location = new System.Drawing.Point(144, 36);
-			this.DeliveryItemsList.Name = "DeliveryItemsList";
-			this.DeliveryItemsList.Size = new System.Drawing.Size(373, 31);
-			this.DeliveryItemsList.TabIndex = 2;
+			this.DeliveryAddItem.Location = new System.Drawing.Point(73, 173);
+			this.DeliveryAddItem.Name = "DeliveryAddItem";
+			this.DeliveryAddItem.Size = new System.Drawing.Size(237, 70);
+			this.DeliveryAddItem.TabIndex = 5;
+			this.DeliveryAddItem.Text = "Add Item";
+			this.DeliveryAddItem.UseVisualStyleBackColor = true;
+			this.DeliveryAddItem.Click += new System.EventHandler(this.DeliveryAddItem_Click);
 			// 
 			// Main_Form
 			// 
@@ -2871,10 +2914,11 @@ namespace Green_Enviro_App
 			this.PurchasesPR.ResumeLayout(false);
 			this.PurchasesPR.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.DeliveryNote.ResumeLayout(false);
 			this.DeliveryNote.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -3170,5 +3214,8 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.RichTextBox DeliveryItemsBox;
 		private System.Windows.Forms.ComboBox DeliveryItemsList;
 		private System.Windows.Forms.Label DeliveryItemsLabel;
+		private System.Windows.Forms.Button DeliveryAddItem;
+		private System.Windows.Forms.NumericUpDown DeliveryQuantityBox;
+		private System.Windows.Forms.Label DeliveryQuantityLabel;
 	}
 }

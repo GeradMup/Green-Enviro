@@ -24,5 +24,31 @@ namespace Green_Enviro_App
 			
 			this.DeliveryItemsBox.ReadOnly = true;
 		}
+
+		private void DeliveryAddItem_Click(object sender, EventArgs e)
+		{
+			string errorMessage = "";
+			if (DeliveryItemsList.SelectedItem == null) 
+			{
+				errorMessage = "Please select an Item from the Items list";
+				reportError(errorMessage);
+				return;
+			}
+
+			decimal zero = 0.0M;
+			if (DeliveryQuantityBox.Value == zero)
+			{
+				errorMessage = "Please insert the quantity!";
+				reportError(errorMessage);
+				return;
+			}
+		}
+
+		private void clearDeliveryNoteFields() { }
+
+		private void reportError(string errorMessage) 
+		{
+			new CustomMessageBox(this,CustomMessageBox.error,errorMessage);
+		}
 	}
 }
