@@ -217,11 +217,9 @@ namespace Green_Enviro_App
 			return _data_table;
 		}
 
-		/// <summary>
-		/// Gets the files in folder and adds them to the given combo box 
-		/// </summary>
-		/// <param name="folder">The path to the folder.</param>
-		/// <returns name="fileNames">A list of all the file names in folder</returns>
+		/// <summary>Gets the sub folders in a given path</summary>
+		/// <param name="logType">The type of log whose sub folders are required.</param>
+		/// <returns>A list of all the file names in folder</returns>
 
 		public List<string> getLogNames(LogType logType) 
 		{

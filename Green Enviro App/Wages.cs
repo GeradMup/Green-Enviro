@@ -44,15 +44,10 @@ namespace Green_Enviro_App
 
 		public void SetupWagesLogs()
 		{
-			//This function will get the names of all the wages log files that exists in the wages folder
-			string _wages_logs_path = @"..//..//resources//Logs//Wages";
-			DirectoryInfo _directory = new DirectoryInfo(_wages_logs_path);  //Assuming Test is your Folder
-			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
-			foreach (FileInfo _file in _files)
+			List<string> logMonths = csvHandles.getLogNames(CSVHandles.LogType.Wages);
+			foreach (string logMonth in logMonths)
 			{
-				char[] _remove_chars = { 'c', 's', 'v', '.' };
-				string _file_name = _file.Name.TrimEnd(_remove_chars);
-				_main_form.WageLogMonth.Items.Add(_file_name);
+				_main_form.WageLogMonth.Items.Add(logMonth);
 			}
 
 			_main_form.WageDate.Value = DateTime.Now;
@@ -394,14 +389,14 @@ namespace Green_Enviro_App
 			//Verify that something is selected before attempting to delete
 			if (_main_form.WageLogGridView.SelectedCells.Count == 0)
 			{
-				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the wage to be deleted");
+				new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the wage to be deleted");
 				return;
 			}
 
 			//Confirm that the user is not trying to delete the totals row
 			if (_main_form.WageLogGridView.CurrentCell.RowIndex == _main_form.WageLogGridView.Rows.Count - 1)
 			{
-				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "It's not possible to delete the TOTALS row");
+				new CustomMessageBox(_main_form, CustomMessageBox.error, "It's not possible to delete the TOTALS row");
 				return;
 			}
 
