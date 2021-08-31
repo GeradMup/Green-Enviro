@@ -64,7 +64,7 @@ namespace Green_Enviro_App
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
             _purchasesPR = new Purchases_PR(this);
-            _deliveryNotesModel = new DeliveryNotesModel();
+            _deliveryNotesModel = new DeliveryNotesModel(_database);
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;
@@ -605,5 +605,7 @@ namespace Green_Enviro_App
 		{
 
 		}
+
+
 	}
 }

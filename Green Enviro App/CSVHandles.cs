@@ -14,6 +14,8 @@ namespace Green_Enviro_App
 	/// <summary>This class handles all the reading, writing. deleting, etc from CSV Files.</summary>
 	class CSVHandles
 	{
+
+
 		private static string startingSubstringForLineToBeDeleted = "";
 		private List<int> highlightedRows = new List<int>();
 		DataGridView dataGridView;
@@ -147,13 +149,33 @@ namespace Green_Enviro_App
 		{
 			//First Check if the files exist for each month
 			//If the file does not exist, create it
-			if (!File.Exists(path))
+			if (File.Exists(path)) return;
+			string copyPath = path;
+			createFolder(ref copyPath);
+			StringBuilder _csv_content = new StringBuilder();
+			_csv_content.AppendLine(headers);
+			//_csv_content.AppendLine("\n");
+			File.AppendAllText(path, _csv_content.ToString());
+			
+		}
+
+		public void createFolder(ref string path) 
+		{
+			char lastChar = path[path.Length - 1];
+			char forwardSlash = '/';
+
+			//recursively call this function so that we can get the folder name that contains this file
+			if (lastChar != forwardSlash) 
 			{
-				StringBuilder _csv_content = new StringBuilder();
-				_csv_content.AppendLine(headers);
-				//_csv_content.AppendLine("\n");
-				File.AppendAllText(path, _csv_content.ToString());
+				path = path.Remove(path.Length - 1, 1);
+				createFolder(ref path);
 			}
+
+			MessageBox.Show(path);
+
+			if (Directory.Exists(path)) return;
+
+			System.IO.Directory.CreateDirectory(path);
 		}
 
 		/// <summary>

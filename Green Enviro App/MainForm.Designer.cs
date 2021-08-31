@@ -227,9 +227,24 @@ namespace Green_Enviro_App
 			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
 			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.DeliveryNote = new System.Windows.Forms.TabPage();
+			this.DeliveryNoteGridLabel = new System.Windows.Forms.Label();
+			this.DeliveryNoteGrid = new System.Windows.Forms.DataGridView();
+			this.VehicleTypePictureBox = new System.Windows.Forms.PictureBox();
+			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.textBox7 = new System.Windows.Forms.TextBox();
+			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.VehicleTypeLabel = new System.Windows.Forms.Label();
+			this.VehicleRegLabel = new System.Windows.Forms.Label();
+			this.DriverCellLabel = new System.Windows.Forms.Label();
+			this.DriverNameLabel = new System.Windows.Forms.Label();
+			this.CompanyNamesLabel = new System.Windows.Forms.Label();
+			this.DeliveryCompaniesList = new System.Windows.Forms.ComboBox();
+			this.DeliveryAddItem = new System.Windows.Forms.Button();
+			this.DeliveryQuantityBox = new System.Windows.Forms.NumericUpDown();
+			this.DeliveryQuantityLabel = new System.Windows.Forms.Label();
 			this.DeliveryItemsList = new System.Windows.Forms.ComboBox();
 			this.DeliveryItemsLabel = new System.Windows.Forms.Label();
-			this.DeliveryItemsBox = new System.Windows.Forms.RichTextBox();
 			this.customersTableAdapter1 = new Green_Enviro_App.Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -250,9 +265,13 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-			this.DeliveryQuantityLabel = new System.Windows.Forms.Label();
-			this.DeliveryQuantityBox = new System.Windows.Forms.NumericUpDown();
-			this.DeliveryAddItem = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.DeliveryNotePrint = new System.Windows.Forms.Button();
+			this.DeliveryNotePDFReader = new AxAcroPDFLib.AxAcroPDF();
+			this.DeliveryNotesPrevLabel = new System.Windows.Forms.Label();
+			this.DeliveryNotesMonth = new System.Windows.Forms.Label();
+			this.comboBox5 = new System.Windows.Forms.ComboBox();
+			this.comboBox6 = new System.Windows.Forms.ComboBox();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -281,9 +300,12 @@ namespace Green_Enviro_App
 			this.PurchasesPR.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
 			this.DeliveryNote.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryNoteGrid)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.VehicleTypePictureBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryNotePDFReader)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -2593,12 +2615,31 @@ namespace Green_Enviro_App
 			// DeliveryNote
 			// 
 			this.DeliveryNote.AllowDrop = true;
+			this.DeliveryNote.Controls.Add(this.comboBox6);
+			this.DeliveryNote.Controls.Add(this.comboBox5);
+			this.DeliveryNote.Controls.Add(this.DeliveryNotesMonth);
+			this.DeliveryNote.Controls.Add(this.DeliveryNotesPrevLabel);
+			this.DeliveryNote.Controls.Add(this.DeliveryNotePDFReader);
+			this.DeliveryNote.Controls.Add(this.DeliveryNotePrint);
+			this.DeliveryNote.Controls.Add(this.button2);
+			this.DeliveryNote.Controls.Add(this.DeliveryNoteGridLabel);
+			this.DeliveryNote.Controls.Add(this.DeliveryNoteGrid);
+			this.DeliveryNote.Controls.Add(this.VehicleTypePictureBox);
+			this.DeliveryNote.Controls.Add(this.comboBox4);
+			this.DeliveryNote.Controls.Add(this.textBox7);
+			this.DeliveryNote.Controls.Add(this.textBox6);
+			this.DeliveryNote.Controls.Add(this.textBox5);
+			this.DeliveryNote.Controls.Add(this.VehicleTypeLabel);
+			this.DeliveryNote.Controls.Add(this.VehicleRegLabel);
+			this.DeliveryNote.Controls.Add(this.DriverCellLabel);
+			this.DeliveryNote.Controls.Add(this.DriverNameLabel);
+			this.DeliveryNote.Controls.Add(this.CompanyNamesLabel);
+			this.DeliveryNote.Controls.Add(this.DeliveryCompaniesList);
 			this.DeliveryNote.Controls.Add(this.DeliveryAddItem);
 			this.DeliveryNote.Controls.Add(this.DeliveryQuantityBox);
 			this.DeliveryNote.Controls.Add(this.DeliveryQuantityLabel);
 			this.DeliveryNote.Controls.Add(this.DeliveryItemsList);
 			this.DeliveryNote.Controls.Add(this.DeliveryItemsLabel);
-			this.DeliveryNote.Controls.Add(this.DeliveryItemsBox);
 			this.DeliveryNote.Location = new System.Drawing.Point(4, 32);
 			this.DeliveryNote.Name = "DeliveryNote";
 			this.DeliveryNote.Size = new System.Drawing.Size(1724, 867);
@@ -2606,33 +2647,178 @@ namespace Green_Enviro_App
 			this.DeliveryNote.Text = "Delivery Note";
 			this.DeliveryNote.UseVisualStyleBackColor = true;
 			// 
+			// DeliveryNoteGridLabel
+			// 
+			this.DeliveryNoteGridLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.DeliveryNoteGridLabel.AutoSize = true;
+			this.DeliveryNoteGridLabel.Location = new System.Drawing.Point(1183, 58);
+			this.DeliveryNoteGridLabel.Name = "DeliveryNoteGridLabel";
+			this.DeliveryNoteGridLabel.Size = new System.Drawing.Size(241, 23);
+			this.DeliveryNoteGridLabel.TabIndex = 18;
+			this.DeliveryNoteGridLabel.Text = "ITEMS TO BE DELIVERED";
+			// 
+			// DeliveryNoteGrid
+			// 
+			this.DeliveryNoteGrid.AllowUserToAddRows = false;
+			this.DeliveryNoteGrid.AllowUserToDeleteRows = false;
+			this.DeliveryNoteGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.DeliveryNoteGrid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.DeliveryNoteGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.DeliveryNoteGrid.Location = new System.Drawing.Point(834, 84);
+			this.DeliveryNoteGrid.Name = "DeliveryNoteGrid";
+			this.DeliveryNoteGrid.RowHeadersWidth = 51;
+			this.DeliveryNoteGrid.RowTemplate.Height = 24;
+			this.DeliveryNoteGrid.Size = new System.Drawing.Size(859, 755);
+			this.DeliveryNoteGrid.TabIndex = 17;
+			// 
+			// VehicleTypePictureBox
+			// 
+			this.VehicleTypePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.VehicleTypePictureBox.Location = new System.Drawing.Point(392, 574);
+			this.VehicleTypePictureBox.Name = "VehicleTypePictureBox";
+			this.VehicleTypePictureBox.Size = new System.Drawing.Size(406, 265);
+			this.VehicleTypePictureBox.TabIndex = 16;
+			this.VehicleTypePictureBox.TabStop = false;
+			// 
+			// comboBox4
+			// 
+			this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox4.FormattingEnabled = true;
+			this.comboBox4.Location = new System.Drawing.Point(392, 515);
+			this.comboBox4.Name = "comboBox4";
+			this.comboBox4.Size = new System.Drawing.Size(405, 31);
+			this.comboBox4.TabIndex = 15;
+			// 
+			// textBox7
+			// 
+			this.textBox7.Location = new System.Drawing.Point(392, 465);
+			this.textBox7.Name = "textBox7";
+			this.textBox7.Size = new System.Drawing.Size(406, 31);
+			this.textBox7.TabIndex = 14;
+			// 
+			// textBox6
+			// 
+			this.textBox6.Location = new System.Drawing.Point(392, 413);
+			this.textBox6.Name = "textBox6";
+			this.textBox6.Size = new System.Drawing.Size(406, 31);
+			this.textBox6.TabIndex = 13;
+			// 
+			// textBox5
+			// 
+			this.textBox5.Location = new System.Drawing.Point(392, 360);
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(406, 31);
+			this.textBox5.TabIndex = 12;
+			// 
+			// VehicleTypeLabel
+			// 
+			this.VehicleTypeLabel.AutoSize = true;
+			this.VehicleTypeLabel.Location = new System.Drawing.Point(73, 517);
+			this.VehicleTypeLabel.Name = "VehicleTypeLabel";
+			this.VehicleTypeLabel.Size = new System.Drawing.Size(142, 23);
+			this.VehicleTypeLabel.TabIndex = 11;
+			this.VehicleTypeLabel.Text = "Vehicle Type";
+			// 
+			// VehicleRegLabel
+			// 
+			this.VehicleRegLabel.AutoSize = true;
+			this.VehicleRegLabel.Location = new System.Drawing.Point(71, 469);
+			this.VehicleRegLabel.Name = "VehicleRegLabel";
+			this.VehicleRegLabel.Size = new System.Drawing.Size(230, 23);
+			this.VehicleRegLabel.TabIndex = 10;
+			this.VehicleRegLabel.Text = "Vehicle Registration";
+			// 
+			// DriverCellLabel
+			// 
+			this.DriverCellLabel.AutoSize = true;
+			this.DriverCellLabel.Location = new System.Drawing.Point(70, 418);
+			this.DriverCellLabel.Name = "DriverCellLabel";
+			this.DriverCellLabel.Size = new System.Drawing.Size(208, 23);
+			this.DriverCellLabel.TabIndex = 9;
+			this.DriverCellLabel.Text = "Driver Cell Number";
+			// 
+			// DriverNameLabel
+			// 
+			this.DriverNameLabel.AutoSize = true;
+			this.DriverNameLabel.Location = new System.Drawing.Point(72, 367);
+			this.DriverNameLabel.Name = "DriverNameLabel";
+			this.DriverNameLabel.Size = new System.Drawing.Size(131, 23);
+			this.DriverNameLabel.TabIndex = 8;
+			this.DriverNameLabel.Text = "Driver Name";
+			// 
+			// CompanyNamesLabel
+			// 
+			this.CompanyNamesLabel.AllowDrop = true;
+			this.CompanyNamesLabel.AutoSize = true;
+			this.CompanyNamesLabel.Location = new System.Drawing.Point(71, 319);
+			this.CompanyNamesLabel.Name = "CompanyNamesLabel";
+			this.CompanyNamesLabel.Size = new System.Drawing.Size(87, 23);
+			this.CompanyNamesLabel.TabIndex = 7;
+			this.CompanyNamesLabel.Text = "Company";
+			// 
+			// DeliveryCompaniesList
+			// 
+			this.DeliveryCompaniesList.AllowDrop = true;
+			this.DeliveryCompaniesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.DeliveryCompaniesList.FormattingEnabled = true;
+			this.DeliveryCompaniesList.Location = new System.Drawing.Point(392, 308);
+			this.DeliveryCompaniesList.Name = "DeliveryCompaniesList";
+			this.DeliveryCompaniesList.Size = new System.Drawing.Size(406, 31);
+			this.DeliveryCompaniesList.TabIndex = 6;
+			// 
+			// DeliveryAddItem
+			// 
+			this.DeliveryAddItem.Location = new System.Drawing.Point(392, 247);
+			this.DeliveryAddItem.Name = "DeliveryAddItem";
+			this.DeliveryAddItem.Size = new System.Drawing.Size(237, 39);
+			this.DeliveryAddItem.TabIndex = 5;
+			this.DeliveryAddItem.Text = "Add Item";
+			this.DeliveryAddItem.UseVisualStyleBackColor = true;
+			this.DeliveryAddItem.Click += new System.EventHandler(this.DeliveryAddItem_Click);
+			// 
+			// DeliveryQuantityBox
+			// 
+			this.DeliveryQuantityBox.AllowDrop = true;
+			this.DeliveryQuantityBox.DecimalPlaces = 3;
+			this.DeliveryQuantityBox.Location = new System.Drawing.Point(392, 195);
+			this.DeliveryQuantityBox.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+			this.DeliveryQuantityBox.Name = "DeliveryQuantityBox";
+			this.DeliveryQuantityBox.Size = new System.Drawing.Size(246, 31);
+			this.DeliveryQuantityBox.TabIndex = 4;
+			// 
+			// DeliveryQuantityLabel
+			// 
+			this.DeliveryQuantityLabel.AllowDrop = true;
+			this.DeliveryQuantityLabel.AutoSize = true;
+			this.DeliveryQuantityLabel.Location = new System.Drawing.Point(69, 198);
+			this.DeliveryQuantityLabel.Name = "DeliveryQuantityLabel";
+			this.DeliveryQuantityLabel.Size = new System.Drawing.Size(98, 23);
+			this.DeliveryQuantityLabel.TabIndex = 3;
+			this.DeliveryQuantityLabel.Text = "Quantity";
+			// 
 			// DeliveryItemsList
 			// 
 			this.DeliveryItemsList.AllowDrop = true;
 			this.DeliveryItemsList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.DeliveryItemsList.FormattingEnabled = true;
-			this.DeliveryItemsList.Location = new System.Drawing.Point(205, 36);
+			this.DeliveryItemsList.Location = new System.Drawing.Point(392, 144);
 			this.DeliveryItemsList.Name = "DeliveryItemsList";
-			this.DeliveryItemsList.Size = new System.Drawing.Size(373, 31);
+			this.DeliveryItemsList.Size = new System.Drawing.Size(406, 31);
 			this.DeliveryItemsList.TabIndex = 2;
 			// 
 			// DeliveryItemsLabel
 			// 
 			this.DeliveryItemsLabel.AutoSize = true;
-			this.DeliveryItemsLabel.Location = new System.Drawing.Point(66, 36);
+			this.DeliveryItemsLabel.Location = new System.Drawing.Point(69, 148);
 			this.DeliveryItemsLabel.Name = "DeliveryItemsLabel";
 			this.DeliveryItemsLabel.Size = new System.Drawing.Size(65, 23);
 			this.DeliveryItemsLabel.TabIndex = 1;
 			this.DeliveryItemsLabel.Text = "Items";
-			// 
-			// DeliveryItemsBox
-			// 
-			this.DeliveryItemsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.DeliveryItemsBox.Location = new System.Drawing.Point(984, 37);
-			this.DeliveryItemsBox.Name = "DeliveryItemsBox";
-			this.DeliveryItemsBox.Size = new System.Drawing.Size(705, 632);
-			this.DeliveryItemsBox.TabIndex = 0;
-			this.DeliveryItemsBox.Text = "";
 			// 
 			// customersTableAdapter1
 			// 
@@ -2658,7 +2844,7 @@ namespace Green_Enviro_App
 			this.comboBox1.Location = new System.Drawing.Point(51, 158);
 			this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(191, 25);
+			this.comboBox1.Size = new System.Drawing.Size(191, 24);
 			this.comboBox1.TabIndex = 53;
 			// 
 			// numericUpDown1
@@ -2687,7 +2873,7 @@ namespace Green_Enviro_App
 			this.comboBox2.Location = new System.Drawing.Point(81, 33);
 			this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(59, 25);
+			this.comboBox2.Size = new System.Drawing.Size(59, 24);
 			this.comboBox2.TabIndex = 51;
 			// 
 			// comboBox3
@@ -2701,7 +2887,7 @@ namespace Green_Enviro_App
 			this.comboBox3.Location = new System.Drawing.Point(181, 284);
 			this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(72, 25);
+			this.comboBox3.Size = new System.Drawing.Size(72, 24);
 			this.comboBox3.TabIndex = 50;
 			// 
 			// button1
@@ -2824,39 +3010,70 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// DeliveryQuantityLabel
+			// button2
 			// 
-			this.DeliveryQuantityLabel.AllowDrop = true;
-			this.DeliveryQuantityLabel.AutoSize = true;
-			this.DeliveryQuantityLabel.Location = new System.Drawing.Point(63, 111);
-			this.DeliveryQuantityLabel.Name = "DeliveryQuantityLabel";
-			this.DeliveryQuantityLabel.Size = new System.Drawing.Size(98, 23);
-			this.DeliveryQuantityLabel.TabIndex = 3;
-			this.DeliveryQuantityLabel.Text = "Quantity";
+			this.button2.Location = new System.Drawing.Point(78, 573);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(214, 81);
+			this.button2.TabIndex = 19;
+			this.button2.Text = "Generate Delivery Note";
+			this.button2.UseVisualStyleBackColor = true;
 			// 
-			// DeliveryQuantityBox
+			// DeliveryNotePrint
 			// 
-			this.DeliveryQuantityBox.AllowDrop = true;
-			this.DeliveryQuantityBox.DecimalPlaces = 3;
-			this.DeliveryQuantityBox.Location = new System.Drawing.Point(204, 108);
-			this.DeliveryQuantityBox.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-			this.DeliveryQuantityBox.Name = "DeliveryQuantityBox";
-			this.DeliveryQuantityBox.Size = new System.Drawing.Size(247, 31);
-			this.DeliveryQuantityBox.TabIndex = 4;
+			this.DeliveryNotePrint.Location = new System.Drawing.Point(81, 683);
+			this.DeliveryNotePrint.Name = "DeliveryNotePrint";
+			this.DeliveryNotePrint.Size = new System.Drawing.Size(210, 76);
+			this.DeliveryNotePrint.TabIndex = 20;
+			this.DeliveryNotePrint.Text = "Print Delivery Note";
+			this.DeliveryNotePrint.UseVisualStyleBackColor = true;
 			// 
-			// DeliveryAddItem
+			// DeliveryNotePDFReader
 			// 
-			this.DeliveryAddItem.Location = new System.Drawing.Point(73, 173);
-			this.DeliveryAddItem.Name = "DeliveryAddItem";
-			this.DeliveryAddItem.Size = new System.Drawing.Size(237, 70);
-			this.DeliveryAddItem.TabIndex = 5;
-			this.DeliveryAddItem.Text = "Add Item";
-			this.DeliveryAddItem.UseVisualStyleBackColor = true;
-			this.DeliveryAddItem.Click += new System.EventHandler(this.DeliveryAddItem_Click);
+			this.DeliveryNotePDFReader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.DeliveryNotePDFReader.Enabled = true;
+			this.DeliveryNotePDFReader.Location = new System.Drawing.Point(834, 108);
+			this.DeliveryNotePDFReader.Name = "DeliveryNotePDFReader";
+			this.DeliveryNotePDFReader.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("DeliveryNotePDFReader.OcxState")));
+			this.DeliveryNotePDFReader.Size = new System.Drawing.Size(859, 731);
+			this.DeliveryNotePDFReader.TabIndex = 21;
+			// 
+			// DeliveryNotesPrevLabel
+			// 
+			this.DeliveryNotesPrevLabel.AutoSize = true;
+			this.DeliveryNotesPrevLabel.Location = new System.Drawing.Point(66, 96);
+			this.DeliveryNotesPrevLabel.Name = "DeliveryNotesPrevLabel";
+			this.DeliveryNotesPrevLabel.Size = new System.Drawing.Size(263, 23);
+			this.DeliveryNotesPrevLabel.TabIndex = 22;
+			this.DeliveryNotesPrevLabel.Text = "Previous Delivery Notes";
+			// 
+			// DeliveryNotesMonth
+			// 
+			this.DeliveryNotesMonth.AutoSize = true;
+			this.DeliveryNotesMonth.Location = new System.Drawing.Point(67, 42);
+			this.DeliveryNotesMonth.Name = "DeliveryNotesMonth";
+			this.DeliveryNotesMonth.Size = new System.Drawing.Size(142, 23);
+			this.DeliveryNotesMonth.TabIndex = 23;
+			this.DeliveryNotesMonth.Text = "Select Month";
+			// 
+			// comboBox5
+			// 
+			this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox5.FormattingEnabled = true;
+			this.comboBox5.Location = new System.Drawing.Point(392, 39);
+			this.comboBox5.Name = "comboBox5";
+			this.comboBox5.Size = new System.Drawing.Size(405, 31);
+			this.comboBox5.TabIndex = 24;
+			// 
+			// comboBox6
+			// 
+			this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox6.FormattingEnabled = true;
+			this.comboBox6.Location = new System.Drawing.Point(392, 93);
+			this.comboBox6.Name = "comboBox6";
+			this.comboBox6.Size = new System.Drawing.Size(405, 31);
+			this.comboBox6.TabIndex = 25;
 			// 
 			// Main_Form
 			// 
@@ -2916,9 +3133,12 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
 			this.DeliveryNote.ResumeLayout(false);
 			this.DeliveryNote.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryNoteGrid)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.VehicleTypePictureBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryNotePDFReader)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -3211,11 +3431,30 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.DataGridView PurchasesPRDataGridView;
 		public System.Windows.Forms.DataGridView salesPRDataGridView;
 		private System.Windows.Forms.TabPage DeliveryNote;
-		private System.Windows.Forms.RichTextBox DeliveryItemsBox;
 		private System.Windows.Forms.ComboBox DeliveryItemsList;
 		private System.Windows.Forms.Label DeliveryItemsLabel;
 		private System.Windows.Forms.Button DeliveryAddItem;
 		private System.Windows.Forms.NumericUpDown DeliveryQuantityBox;
 		private System.Windows.Forms.Label DeliveryQuantityLabel;
+		private System.Windows.Forms.Label CompanyNamesLabel;
+		private System.Windows.Forms.ComboBox DeliveryCompaniesList;
+		private System.Windows.Forms.Label VehicleTypeLabel;
+		private System.Windows.Forms.Label VehicleRegLabel;
+		private System.Windows.Forms.Label DriverCellLabel;
+		private System.Windows.Forms.Label DriverNameLabel;
+		private System.Windows.Forms.ComboBox comboBox4;
+		private System.Windows.Forms.TextBox textBox7;
+		private System.Windows.Forms.TextBox textBox6;
+		private System.Windows.Forms.TextBox textBox5;
+		private System.Windows.Forms.Label DeliveryNoteGridLabel;
+		private System.Windows.Forms.DataGridView DeliveryNoteGrid;
+		private System.Windows.Forms.PictureBox VehicleTypePictureBox;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button DeliveryNotePrint;
+		private AxAcroPDFLib.AxAcroPDF DeliveryNotePDFReader;
+		private System.Windows.Forms.ComboBox comboBox6;
+		private System.Windows.Forms.ComboBox comboBox5;
+		private System.Windows.Forms.Label DeliveryNotesMonth;
+		private System.Windows.Forms.Label DeliveryNotesPrevLabel;
 	}
 }

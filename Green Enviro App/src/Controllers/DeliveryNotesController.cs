@@ -15,14 +15,12 @@ namespace Green_Enviro_App
 		/// <summary>Initialises the delivery notes tab.</summary>
 		public void initialiseDeliveryNotesTab()
 		{
-			this.DeliveryItemsBox.Text = "********************Items For Delivery********************\n\n";
-
-			List<string> itemNames = _deliveryNotesModel.itemNames(_database);
-
+			List<string> itemNames = _deliveryNotesModel.getItemNames();
 			//Populate the items list on the Delivery Notes Page
 			this.DeliveryItemsList.Items.AddRange(itemNames.Cast<object>().ToArray());
-			
-			this.DeliveryItemsBox.ReadOnly = true;
+
+			List<string> companyNames = _deliveryNotesModel.getCompanyNames();
+			this.DeliveryCompaniesList.Items.AddRange(companyNames.Cast<object>().ToArray());
 		}
 
 		private void DeliveryAddItem_Click(object sender, EventArgs e)

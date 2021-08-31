@@ -30,10 +30,11 @@ namespace Green_Enviro_App
 		XFont regularFont = new XFont(fontName,regularFontSize);
 		XFont regularFontBold = new XFont(fontName, regularFontSize, XFontStyle.Bold);
 		XGraphics graphic;
+		Database database;
 
-		public DeliveryNotesModel() 
+		public DeliveryNotesModel(Database db) 
 		{
-
+			database = db;
 			System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
 			// New document
@@ -260,7 +261,7 @@ namespace Green_Enviro_App
 		/// <summary>This function fetches all the items from the Database and returns a List of strings with the names.</summary>
 		/// <param name="database">The database.</param>
 		/// <returns>A List of strings representing the item names.</returns>
-		public List<string> itemNames(Database database) 
+		public List<string> getItemNames() 
 		{
 			DataGridView fakeGrid = new DataGridView();
 			int fakeColumns = 0;
@@ -270,6 +271,14 @@ namespace Green_Enviro_App
 			DataTable items = csvHandles.getCSVContents(pathToItemsFile);
 			List<string> itemList = items.Rows.OfType<DataRow>().Select(dr => (string)dr["ITEMS"]).ToList();
 			return itemList;
+		}
+
+		public List<string> getCompanyNames() 
+		{
+			DataTable buyers = database.SelectAll("Buyers");
+			int companyNameColumn = 1;
+			List<string> buyersList = buyers.Rows.OfType<DataRow>().Select(dr => (string)dr[companyNameColumn]).ToList();
+			return buyersList;
 		}
 
 		////////////////////////////////////////////////////////////////////////////////////////////
