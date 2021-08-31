@@ -370,9 +370,6 @@ namespace Green_Enviro_App
 			return basePath;
 		}
 
-
-
-
 		public enum LogType 
 		{
 			DeliveryNotes,

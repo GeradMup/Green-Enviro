@@ -12,11 +12,7 @@ using System.Globalization;
 namespace Green_Enviro_App
 {
 	class Wages : WarningInterface
-	{
-		//First we need to know what month it is
-		static string _month = DateTime.Now.ToString("MMMM yyyy");
-		string _path_to_wages = @"..//..//resources//Logs//Wages//" + _month + ".csv";
-
+	{ 
 		//Required objects
 		Main_Form _main_form;
 		Database _database;
@@ -41,15 +37,9 @@ namespace Green_Enviro_App
 		//Create purchase and wages logs for each month if they don't already exist
 		private void CreateLogFiles()
 		{
-			//First Check if the files exist for each month
-			//If the file does not exist, create it
-			if (!File.Exists(_path_to_wages))
-			{
-				string _wages_file_headers = "Date,Name,Amount";
-				StringBuilder _csv_content = new StringBuilder();
-				_csv_content.AppendLine(_wages_file_headers);
-				File.AppendAllText(_path_to_wages, _csv_content.ToString());
-			}
+			string wagesFileHeaders = "Date,Name,Amount";
+			csvHandles.createCSVFile(CSVHandles.LogType.Wages, wagesFileHeaders);
+	
 		}
 
 		public void SetupWagesLogs()
@@ -200,35 +190,19 @@ namespace Green_Enviro_App
 				return;
 			}
 
-			string _selected_month = _main_form.WageLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = @"..//..//resources//Logs//Wages//" + _selected_month + ".csv";
-
-			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
-			HashSet<string> _dates = new HashSet<string>();
-
-			if (lines.Length > 0)
-			{
-				for (int _row = 1; _row < lines.Length; _row++)
-				{
-					//For each line, we want a list of the words on the line seperated by the comma
-					string[] dataWords = lines[_row].Split(',');
-
-					//Now we want to add only the first word to a list of days if it is unique
-					//In order to make sure that we do not repeat strings, we use a HashSet string
-					_dates.Add(dataWords[0]);
-				}
-			}
-
+			string selectedMonthAndYear = _main_form.WageLogMonth.SelectedItem.ToString();
+			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Wages, selectedMonthAndYear); 
+			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);
 
 			//First Clear the start and end date fields to prepare them for the new entry
 			_main_form.WageLogStartDate.Items.Clear();
 			_main_form.WageLogEndDate.Items.Clear();
 
 			//Now Populate the drop down list with available dates only.
-			foreach (string _date in _dates)
+			foreach (string date in dates)
 			{
-				_main_form.WageLogStartDate.Items.Add(_date);
-				_main_form.WageLogEndDate.Items.Add(_date);
+				_main_form.WageLogStartDate.Items.Add(date);
+				_main_form.WageLogEndDate.Items.Add(date);
 			}
 
 			//Change the contents displayed in the log if the month selected changes
@@ -333,20 +307,20 @@ namespace Green_Enviro_App
 
 		private string newWagePath()
 		{
-			string _path_to_save_new_wage;
+			string pathToSaveNewWage;
 
 			//Check if the user is trying to add the new sale to a different month
 			//If no month is selected, the new sale will be added to the current month
 			if (_main_form.WageLogMonth.SelectedItem == null)
 			{
-				_path_to_save_new_wage = _path_to_wages;
+				pathToSaveNewWage = csvHandles.pathToLogs(CSVHandles.LogType.Wages);
 			}
 			else
 			{
 				string selectedMonthAndYear = _main_form.WageLogMonth.SelectedItem.ToString();
-				_path_to_save_new_wage = @"..//..//resources//Logs//Wages//" + selectedMonthAndYear + ".csv";
+				pathToSaveNewWage = csvHandles.pathToLogs(CSVHandles.LogType.Wages,selectedMonthAndYear);
 			}
-			return _path_to_save_new_wage;
+			return pathToSaveNewWage;
 		}
 
 		//Validate that the user has entered all the information correctly
