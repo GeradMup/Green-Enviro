@@ -15,10 +15,6 @@ namespace Green_Enviro_App
 {
 	public class Purchases : WarningInterface
 	{
-		//First we need to know what month it is
-		static string _month = DateTime.Now.ToString("MMMM yyyy");
-		static string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-		string _path_to_purchases = path + @"\resources\Logs\Purchases\" + _month + ".csv";
 		Main_Form _main_form;
 		CSVHandles csvHandles;
 		Purchases_PR _purchases_pr;
@@ -28,13 +24,10 @@ namespace Green_Enviro_App
 		BindingSource _binding_source = new BindingSource();
 		List<String> logNames;
 		List<DataTable> logs = new List<DataTable>();
-		DataTable log;
 
-		string _empty_string = " ";
-		string _totals = "TOTALS";
-
-		string _ferrous;
-		string _non_ferrous;
+		/// <summary>Initializes a new instance of the <see cref="Purchases" /> class.</summary>
+		/// <param name="_main">The main user form control object</param>
+		/// <param name="purchasesPR">The Purchases Police Register object.</param>
 		public Purchases(Main_Form _main, Purchases_PR purchasesPR)
 		{
 			_main_form = _main;
@@ -50,9 +43,7 @@ namespace Green_Enviro_App
 
 		public void SetupPurchaseLogs()
 		{
-			//This function will get the names of all the purchase log files that exists in the purchases folder
-			string _purchase_logs_path = path + @"\resources\Logs\Purchases";
-			logNames = csvHandles.getFilesInFolder(_purchase_logs_path);
+			logNames = csvHandles.getLogNames(CSVHandles.LogType.Purchases);
 			dgvOps.populateLogMonths(logNames);
 			dgvOps.setTypes();
 		}
@@ -61,7 +52,7 @@ namespace Green_Enviro_App
 		private void CreateLogFiles()
 		{
 			string _purchases_file_headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type";
-			csvHandles.createCSVFile(_path_to_purchases, _purchases_file_headers);
+			csvHandles.createCSVFile(csvHandles.pathToLogs(CSVHandles.LogType.Purchases), _purchases_file_headers);
 		}
 
 		/// <summary>Used for adding purchases to the CSV File</summary>
@@ -69,7 +60,7 @@ namespace Green_Enviro_App
 		public void AddPurchase(List<string> purchasedItems)
 		{
 			string successMessage = "Purchase Completed";
-			csvHandles.addToCSV(_path_to_purchases, purchasedItems,_main_form, successMessage);
+			csvHandles.addToCSV(csvHandles.pathToLogs(CSVHandles.LogType.Purchases), purchasedItems,_main_form, successMessage);
 			DisplayPurchaseLog();
 		}
 
@@ -95,10 +86,10 @@ namespace Green_Enviro_App
 		{
 			_purchases_data_table.Clear();
 
-			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
+			string selectedMonth = _main_form.PurchaseLogMonth.SelectedItem.ToString();
+			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Purchases, selectedMonth);
 
-			_purchases_data_table = csvHandles.getCSVContents(_path_to_log_file);
+			_purchases_data_table = csvHandles.getCSVContents(pathToLogFile);
 		}
 
 		public void MonthSelected() 
@@ -106,11 +97,11 @@ namespace Green_Enviro_App
 			//Do nothing if no month is selected
 			if (_main_form.PurchaseLogMonth.SelectedItem == null) return;
 			
-			string _selected_month = _main_form.PurchaseLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = path + @"\resources\Logs\Purchases\" + _selected_month + ".csv";
+			string selectedMonth = _main_form.PurchaseLogMonth.SelectedItem.ToString();
+			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Purchases, selectedMonth);
 
-			HashSet<string> _dates = csvHandles.getDatesInFile(_path_to_log_file);
-			dgvOps.populateDates(_dates);
+			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);
+			dgvOps.populateDates(dates);
 			DisplayPurchaseLog();
 		}
 

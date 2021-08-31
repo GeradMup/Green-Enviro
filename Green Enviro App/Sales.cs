@@ -59,7 +59,7 @@ namespace Green_Enviro_App
 			//If the file does not exist, create it
 			
 			string salesFileHeaders = "Date,Company,Quantity,Amount,Type";
-			csvHandles.createCSVFile(csvHandles.pathToLogFile(CSVHandles.LogType.Sales), salesFileHeaders);
+			csvHandles.createCSVFile(csvHandles.pathToLogs(CSVHandles.LogType.Sales), salesFileHeaders);
 		}
 
 		public void SetupSalesLogs()
@@ -420,14 +420,14 @@ namespace Green_Enviro_App
 			RemoveFilters();
 		}
 
-		private void RecordSale(string newSale, string _path_to_save_new_sale) 
+		private void RecordSale(string newSale, string pathToSaveNewSale) 
 		{
-			StringBuilder _csv_content = new StringBuilder();
-			_csv_content.AppendLine(newSale);
+			StringBuilder csvContent = new StringBuilder();
+			csvContent.AppendLine(newSale);
 
 			try
 			{
-				File.AppendAllText(_path_to_save_new_sale, _csv_content.ToString());
+				File.AppendAllText(pathToSaveNewSale, csvContent.ToString());
 				ClearFields();
 				CustomMessageBox newBox = new CustomMessageBox(_main_form, "Success!", "Sale Recorded");
 			}
@@ -464,20 +464,20 @@ namespace Green_Enviro_App
 		/// <returns></returns>
 		private string newSalePath() 
 		{
-			string _path_to_save_new_sale;
+			string pathToSaveNewSale;
 
 			//Check if the user is trying to add the new sale to a different month
 			//If no month is selected, the new sale will be added to the current month
 			if (_main_form.SalesLogMonth.SelectedItem == null)
 			{
-				_path_to_save_new_sale = csvHandles.pathToLogFile(CSVHandles.LogType.Sales);
+				pathToSaveNewSale = csvHandles.pathToLogs(CSVHandles.LogType.Sales);
 			}
 			else
 			{
 				string selectedMonthAndYear = _main_form.SalesLogMonth.SelectedItem.ToString();
-				_path_to_save_new_sale = csvHandles.pathToLogFile(CSVHandles.LogType.Sales, selectedMonthAndYear);
+				pathToSaveNewSale = csvHandles.pathToLogs(CSVHandles.LogType.Sales, selectedMonthAndYear);
 			}
-			return _path_to_save_new_sale;
+			return pathToSaveNewSale;
 		}
 
 		//Validate that the user has entered all the information correctly

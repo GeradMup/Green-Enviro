@@ -222,18 +222,20 @@ namespace Green_Enviro_App
 		/// <param name="folder">The path to the folder.</param>
 		/// <returns name="fileNames">A list of all the file names in folder</returns>
 
-		public List<string> getFilesInFolder(string folder) 
+		public List<string> getLogNames(LogType logType) 
 		{
 			List<DateTime> dates = new List<DateTime>();
 
-			DirectoryInfo _directory = new DirectoryInfo(folder);
-			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
+			bool basePathOnly = true;
+			string monthAndYear = null;
+			string pathToFolder = pathToLogs(logType, monthAndYear, basePathOnly);
+			DirectoryInfo directoryInfo = new DirectoryInfo(pathToFolder);
+			DirectoryInfo[] folders = directoryInfo.GetDirectories();
 
-			foreach (FileInfo _file in _files)
+			foreach (DirectoryInfo folder in folders)
 			{
-				char[] _remove_chars = { 'c', 's', 'v', '.' };
-				string _file_name = _file.Name.TrimEnd(_remove_chars);
-				dates.Add(DateTime.ParseExact(_file_name,"MMMM yyyy", null));
+				string folderName = folder.Name;
+				dates.Add(DateTime.ParseExact(folderName, "MMMM yyyy", null));
 			}
 			//The files are named after the month in which they were created.
 			//Here we try to order the dates
@@ -309,12 +311,17 @@ namespace Green_Enviro_App
 			return _dates;
 		}
 
-		/// <summary>Generates a path to the sales logs based on the current month of the year or the month selected by the user.</summary>
+		/// <summary>
+		/// Generates a path to the sales logs based on the current month of the year or the month selected by the user. The function can also generate only the base path based on the usere choice.
+		/// </summary>
 		/// <param name="logType">The Type of Log whose path is needed.</param>
 		/// <param name="monthAndYear">An optional parameter to specify the month for the log needed. If left as null, the current month will be selected.</param>
+		/// <param name="basePathOnly">An Optional parameter that specifies whether the caller is looking for the base path only or the full path.</param>
 		/// <returns>A string representing the path.</returns>
-		public string pathToLogFile(LogType logType, string monthAndYear = null)
+		public string pathToLogs(LogType logType, string monthAndYear = null, bool basePathOnly = false)
 		{
+			if (basePathOnly) return getBasePath(logType);
+
 			string date = "";
 			string path = "";
 			if (monthAndYear == null) date = Constants.CURRENT_MONTH_AND_YEAR;
