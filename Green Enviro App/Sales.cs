@@ -14,8 +14,6 @@ namespace Green_Enviro_App
 	public class Sales : WarningInterface
 	{
 		//First we need to know what month it is
-		static string _month = DateTime.Now.ToString("MMMM yyyy");
-		string _path_to_sales = @"..//..//resources//Logs//Sales//" + _month + ".csv";
 
 		//Required objects
 		Main_Form _main_form;
@@ -59,13 +57,9 @@ namespace Green_Enviro_App
 		{
 			//First Check if the files exist for each month
 			//If the file does not exist, create it
-			if (!File.Exists(_path_to_sales))
-			{
-				string _sales_file_headers = "Date,Company,Quantity,Amount,Type";
-				StringBuilder _csv_content = new StringBuilder();
-				_csv_content.AppendLine(_sales_file_headers);
-				File.AppendAllText(_path_to_sales, _csv_content.ToString());
-			}
+			
+			string salesFileHeaders = "Date,Company,Quantity,Amount,Type";
+			csvHandles.createCSVFile(csvHandles.pathToLogFile(CSVHandles.LogType.Sales), salesFileHeaders);
 		}
 
 		public void SetupSalesLogs()
@@ -476,12 +470,12 @@ namespace Green_Enviro_App
 			//If no month is selected, the new sale will be added to the current month
 			if (_main_form.SalesLogMonth.SelectedItem == null)
 			{
-				_path_to_save_new_sale = _path_to_sales;
+				_path_to_save_new_sale = csvHandles.pathToLogFile(CSVHandles.LogType.Sales);
 			}
 			else
 			{
 				string selectedMonthAndYear = _main_form.SalesLogMonth.SelectedItem.ToString();
-				_path_to_save_new_sale = @"..//..//resources//Logs//Sales//" + selectedMonthAndYear + ".csv";
+				_path_to_save_new_sale = csvHandles.pathToLogFile(CSVHandles.LogType.Sales, selectedMonthAndYear);
 			}
 			return _path_to_save_new_sale;
 		}

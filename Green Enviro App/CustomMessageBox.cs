@@ -12,7 +12,10 @@ namespace Green_Enviro_App
 {
 	public partial class CustomMessageBox : Form
 	{
+
+		/// <summary>The error message</summary>
 		public const string error = "Error!";
+		/// <summary>The success message</summary>
 		public const string success = "Success!";
 
 		public CustomMessageBox(Form parent, string title, string message) 

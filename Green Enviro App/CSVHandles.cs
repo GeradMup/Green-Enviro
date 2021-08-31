@@ -162,7 +162,7 @@ namespace Green_Enviro_App
 		public void createFolder(ref string path) 
 		{
 			char lastChar = path[path.Length - 1];
-			char forwardSlash = '/';
+			char forwardSlash = '\\';
 
 			//recursively call this function so that we can get the folder name that contains this file
 			if (lastChar != forwardSlash) 
@@ -170,8 +170,6 @@ namespace Green_Enviro_App
 				path = path.Remove(path.Length - 1, 1);
 				createFolder(ref path);
 			}
-
-			MessageBox.Show(path);
 
 			if (Directory.Exists(path)) return;
 
@@ -309,6 +307,75 @@ namespace Green_Enviro_App
 				}
 			}
 			return _dates;
+		}
+
+		/// <summary>Generates a path to the sales logs based on the current month of the year or the month selected by the user.</summary>
+		/// <param name="logType">The Type of Log whose path is needed.</param>
+		/// <param name="monthAndYear">An optional parameter to specify the month for the log needed. If left as null, the current month will be selected.</param>
+		/// <returns>A string representing the path.</returns>
+		public string pathToLogFile(LogType logType, string monthAndYear = null)
+		{
+			string date = "";
+			string path = "";
+			if (monthAndYear == null) date = Constants.CURRENT_MONTH_AND_YEAR;
+			else date = monthAndYear;
+
+			path = getBasePath(logType) + date + "\\" + date + Constants.CSV_EXTENSION;
+			return path;
+		}
+
+		private string getBasePath(LogType logType) 
+		{
+			string basePath = "";
+			switch (logType)
+			{
+				case LogType.DeliveryNotes:
+					basePath = Constants.DELIVERY_NOTES_BASE_PATH;
+					break;
+				case LogType.DestructionCertificates:
+					basePath = Constants.DESTRUCTION_CERTIFICATES_BASE_PATH;
+					break;
+				case LogType.Expenses:
+					basePath = Constants.EXPENSES_BASE_PATH;
+					break;
+				case LogType.Inventory:
+					basePath = Constants.INVENTORY_BASE_PATH;
+					break;
+				case LogType.PurchasesPoliceRegisters:
+					basePath = Constants.PURCHASE_POLICE_REG_BASE_PATH;
+					break;
+				case LogType.SalesPoliceRegisters:
+					basePath = Constants.SALES_POLICE_REG_BASE_PATH;
+					break;
+				case LogType.Purchases:
+					basePath = Constants.PURCHASES_BASE_PATH;
+					break;
+				case LogType.Sales:
+					basePath = Constants.SALES_BASE_PATH;
+					break;
+				case LogType.Wages:
+					basePath = Constants.WAGES_BASE_PATH;
+					break;
+				default:
+					break;
+			}
+			return basePath;
+		}
+
+
+
+
+		public enum LogType 
+		{
+			DeliveryNotes,
+			DestructionCertificates,
+			Expenses,
+			Inventory,
+			SalesPoliceRegisters,
+			PurchasesPoliceRegisters,
+			Purchases,
+			Sales,
+			Wages
 		}
 	}
 }
