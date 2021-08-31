@@ -12,22 +12,13 @@ namespace Green_Enviro_App
 {
 	public class Purchases_PR
 	{
-		
-		static string pathToProjectDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-		//static string SalesPRBasePath = pathToProjectDirectory + @"\resources\Logs\Police Registers\Sales";
-		static string PurchasesPRBasePath = pathToProjectDirectory + @"\resources\Logs\Police Registers\Purchases";
-		//string pathToSalesPoliceRegister = SalesPRBasePath + @"\" + month + ".csv";
-
-		private static string month = DateTime.Now.ToString("MMMM yyyy");
-		private string pathToPurchasePoliceRegister = PurchasesPRBasePath + @"\" + month + ".csv";
-
 		Main_Form _main_form;
 
 		CSVHandles csvHandles;
 		DGVOps dgvOps;
 		int uniqueColumns;
 
-		DataTable _data_table;
+		DataTable dataTable;
 		BindingSource _binding_source = new BindingSource();
 		public Purchases_PR(Main_Form mainForm)
 		{
@@ -53,23 +44,23 @@ namespace Green_Enviro_App
 		private void createFiles()
 		{
 			string headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type,Sold";
-			csvHandles.createCSVFile(pathToPurchasePoliceRegister, headers);
+			csvHandles.createCSVFile(CSVHandles.LogType.PurchasesPoliceRegisters, headers);
 		}
 
 		public void monthSelected()
 		{
 			if (_main_form.PurchasesPRMonth.SelectedItem == null) return;
 
-			string _selected_month = _main_form.PurchasesPRMonth.SelectedItem.ToString();
-			string _path_to_log_file = PurchasesPRBasePath + @"\" + _selected_month + ".csv";
+			string selectedMonthAndYear = _main_form.PurchasesPRMonth.SelectedItem.ToString();
+			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.PurchasesPoliceRegisters, selectedMonthAndYear);
 
-			_data_table = csvHandles.getCSVContents(_path_to_log_file);
+			dataTable = csvHandles.getCSVContents(pathToLogFile);
 
-			HashSet<string> _dates = csvHandles.getDatesInFile(_path_to_log_file);
+			HashSet<string> _dates = csvHandles.getDatesInFile(pathToLogFile);
 			dgvOps.populateDates(_dates);
 
-			dgvOps.changeBindingSource(_data_table);
-			if (_data_table.Rows.Count > 0)	dgvOps.populateGridView(dgvOps.defaultColWidths(),_data_table);
+			dgvOps.changeBindingSource(dataTable);
+			if (dataTable.Rows.Count > 0)	dgvOps.populateGridView(dgvOps.defaultColWidths(),dataTable);
 			
 		}
 
@@ -102,9 +93,9 @@ namespace Green_Enviro_App
 		public void addEntryToPR(string purchaseEntry, string month)
 		{
 
-			string _path_to_log_file = PurchasesPRBasePath + @"\" + month + ".csv";
+			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.PurchasesPoliceRegisters, month);
 
-			DataTable temp_data_table = csvHandles.getCSVContents(_path_to_log_file);
+			DataTable temp_data_table = csvHandles.getCSVContents(pathToLogFile);
 			List<String> PREntries = dataTableToStringList(temp_data_table);
 
 			if (PREntries.Contains(purchaseEntry))
@@ -120,7 +111,7 @@ namespace Green_Enviro_App
 				List<String> lines = new List<String>();
 				lines.Add(purchaseEntry);
 				string successMessage = "Purchase added to Purchase Police Register";
-				csvHandles.addToCSV(pathToPurchasePoliceRegister, lines, _main_form, successMessage);
+				csvHandles.addToCSV(csvHandles.pathToLogs(CSVHandles.LogType.PurchasesPoliceRegisters), lines, _main_form, successMessage);
 			}
 		}
 	}

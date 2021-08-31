@@ -52,7 +52,7 @@ namespace Green_Enviro_App
 		private void CreateLogFiles()
 		{
 			string _purchases_file_headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type";
-			csvHandles.createCSVFile(csvHandles.pathToLogs(CSVHandles.LogType.Purchases), _purchases_file_headers);
+			csvHandles.createCSVFile(CSVHandles.LogType.Purchases, _purchases_file_headers);
 		}
 
 		/// <summary>Used for adding purchases to the CSV File</summary>

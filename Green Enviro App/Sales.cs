@@ -59,7 +59,7 @@ namespace Green_Enviro_App
 			//If the file does not exist, create it
 			
 			string salesFileHeaders = "Date,Company,Quantity,Amount,Type";
-			csvHandles.createCSVFile(csvHandles.pathToLogs(CSVHandles.LogType.Sales), salesFileHeaders);
+			csvHandles.createCSVFile(CSVHandles.LogType.Sales, salesFileHeaders);
 		}
 
 		public void SetupSalesLogs()

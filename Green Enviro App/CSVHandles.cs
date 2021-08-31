@@ -145,10 +145,11 @@ namespace Green_Enviro_App
 			}
 		}
 
-		public void createCSVFile(string path, string headers) 
+		public void createCSVFile(LogType logType, string headers) 
 		{
 			//First Check if the files exist for each month
 			//If the file does not exist, create it
+			string path = pathToLogs(logType);
 			if (File.Exists(path)) return;
 			string copyPath = path;
 			createFolder(ref copyPath);

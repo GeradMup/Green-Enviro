@@ -13,10 +13,6 @@ namespace Green_Enviro_App
 {
 	class Expenses	: WarningInterface
 	{
-		//First we need to know what month it is
-		static string _month = DateTime.Now.ToString("MMMM yyyy");
-		string _path_to_expenses = @"..//..//resources//Logs//Expenses//" + _month + ".csv";
-
 		//Required objects
 		Main_Form _main_form;
 		Database _database;
@@ -39,15 +35,8 @@ namespace Green_Enviro_App
 		//Create purchase and expenses logs for each month if they don't already exist
 		private void CreateLogFiles()
 		{
-			//First Check if the files exist for each month
-			//If the file does not exist, create it
-			if (!File.Exists(_path_to_expenses))
-			{
-				string _expenses_file_headers = "Date,Description,Amount";
-				StringBuilder _csv_content = new StringBuilder();
-				_csv_content.AppendLine(_expenses_file_headers);
-				File.AppendAllText(_path_to_expenses, _csv_content.ToString());
-			}
+			string expensesFileHeaders = "Date,Description,Amount";
+			csvHandles.createCSVFile(CSVHandles.LogType.Expenses, expensesFileHeaders);
 		}
 
 		public void SetupExpensesLogs()
@@ -337,21 +326,21 @@ namespace Green_Enviro_App
 		/// <returns></returns>
 		private string newExpensePath()
 		{
-			string _path_to_save_new_expense;
+			string pathToSaveNewExpense;
 
 			//Check if the user is trying to add the new sale to a different month
 			//If no month is selected, the new sale will be added to the current month
 			if (_main_form.ExpensesLogMonth.SelectedItem == null)
 			{
-				_path_to_save_new_expense = _path_to_expenses;
+				pathToSaveNewExpense = csvHandles.pathToLogs(CSVHandles.LogType.Expenses);
 			}
 			else
 			{
 				string selectedMonthAndYear = _main_form.ExpensesLogMonth.SelectedItem.ToString();
-				_path_to_save_new_expense = @"..//..//resources//Logs//Expenses//" + selectedMonthAndYear + ".csv";
+				pathToSaveNewExpense = csvHandles.pathToLogs(CSVHandles.LogType.Expenses, selectedMonthAndYear);
 			}
 
-			return _path_to_save_new_expense;
+			return pathToSaveNewExpense;
 		}
 
 		//Validate that the user has entered all the information correctly
