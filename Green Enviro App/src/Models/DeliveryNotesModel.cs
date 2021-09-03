@@ -31,6 +31,7 @@ namespace Green_Enviro_App
 		XFont regularFontBold = new XFont(fontName, regularFontSize, XFontStyle.Bold);
 		XGraphics graphic;
 		Database database;
+		Products productsInfo;
 
 		public DeliveryNotesModel(Database db) 
 		{
@@ -43,11 +44,12 @@ namespace Green_Enviro_App
 			graphic = XGraphics.FromPdfPage(page);
 
 			insertHeader();
-			insertCompanyInfo(new List<string>{"Green Envrio SA Recycling", "Nicholas Mupfumisi", "recycle@greenevirosa.co.za", "011 899 1126", "5 Shaft Road, Knights, Germiston,1401"});
+			insertCompanyInfo(new CompanyInfo());
 			insertTableAndHeaders();
 
-			Products productsInfo = new Products();
-			List<KeyValuePair<String, Double>> prodsAndQuantities = new List<KeyValuePair<string, double>>();
+			productsInfo = new Products();
+			productsInfo.products = new List<KeyValuePair<string, double>>();
+			/*List<KeyValuePair<String, Double>> prodsAndQuantities = new List<KeyValuePair<string, double>>();
 
 			KeyValuePair<String, Double> product1 = new KeyValuePair<string, double>("Cu Mix", 4.4);
 			KeyValuePair<String, Double> product2 = new KeyValuePair<string, double>("Cu Brazery", 12);
@@ -77,7 +79,7 @@ namespace Green_Enviro_App
 			productsInfo.totalQuantity = totalQuantity;
 			productsInfo.products = prodsAndQuantities;
 
-			insertProducts(productsInfo);
+			insertProducts(productsInfo);*/
 			insertDisclaimer();
 			insertColletorInfo(new CollectorInformation());
 			insertSignatureFields();
@@ -111,7 +113,7 @@ namespace Green_Enviro_App
 			graphic.DrawLine(XPens.Black, new XPoint(start_x, y), new XPoint(end_x, y));
 		}
 
-		private void insertCompanyInfo(List<string> companyInfo) 
+		private void insertCompanyInfo(CompanyInfo companyInfo) 
 		{
 			double y_coordinate = 230;
 			
@@ -120,19 +122,19 @@ namespace Green_Enviro_App
 			insertKeyValueLine("Date :", date, ref y_coordinate, x_offset);
 
 			x_offset = 53.5;
-			insertKeyValueLine("Company :", companyInfo[0], ref y_coordinate, x_offset);
+			insertKeyValueLine("Company :", companyInfo.companyName, ref y_coordinate, x_offset);
 
 			x_offset = 80;
-			insertKeyValueLine("Contact Person :", companyInfo[1], ref y_coordinate, x_offset);
+			insertKeyValueLine("Contact Person :", companyInfo.contactPerson, ref y_coordinate, x_offset);
 
 			x_offset = 36;
-			insertKeyValueLine("Email :", companyInfo[2], ref y_coordinate, x_offset);
+			insertKeyValueLine("Email :", companyInfo.emailAddress, ref y_coordinate, x_offset);
 
 			x_offset = 91;
-			insertKeyValueLine("Contact Numbers :", companyInfo[3], ref y_coordinate, x_offset);
+			insertKeyValueLine("Contact Numbers :", companyInfo.contactNumber, ref y_coordinate, x_offset);
 
 			x_offset = 46;
-			insertKeyValueLine("Address :", companyInfo[4], ref y_coordinate, x_offset);
+			insertKeyValueLine("Address :", companyInfo.physicalAddress, ref y_coordinate, x_offset);
 
 			drawHorizontalLine(LineColours.black);
 
@@ -281,6 +283,14 @@ namespace Green_Enviro_App
 			return buyersList;
 		}
 
+		public Products addProduct(string productName, double mass) 
+		{
+			KeyValuePair<string, double> newProduct = new KeyValuePair<string, double>(productName, mass);
+			productsInfo.products.Add(newProduct);
+			productsInfo.totalMass = productsInfo.totalMass + mass;
+			return productsInfo;
+		}
+		
 		////////////////////////////////////////////////////////////////////////////////////////////
 		// ALL THE INTERNAL CLASSES GO IN THIS SECTION
 		////////////////////////////////////////////////////////////////////////////////////////////
@@ -289,8 +299,8 @@ namespace Green_Enviro_App
 		internal class Products
 		{
 			/// <summary>Gets or sets the total quantity of all the products to be Delivered.</summary>
-			/// <value>The total quantity.</value>
-			public double totalQuantity { get; set; }
+			/// <value>The total mass of all products.</value>
+			public double totalMass { get; set; }
 			/// <summary>Gets or sets the names and weights of all the products to be delivered.</summary>
 			/// <value>The products.</value>
 			public List<KeyValuePair<String, double>> products { get; set; }
@@ -312,6 +322,29 @@ namespace Green_Enviro_App
 			public string vehicleType { set; get; }
 		}
 
+		internal class CompanyInfo 
+		{
+			public CompanyInfo(string _name = "Unknown", string _contactPerson = "Unknown", string _email = "Unknown",
+								string _contactNumber = "0000000000", string _physcalAddress = "Unknown") 
+			{
+				this.companyName = _name;
+				this.contactPerson = _contactPerson;
+				this.emailAddress = _email;
+				this.contactNumber = _contactNumber;
+				this.physicalAddress = _physcalAddress;
+			}
+
+			public string companyName { set; get; }
+
+			public string contactPerson { set; get; }
+
+			public string emailAddress { get; set; }
+
+			public string contactNumber { get; set; }
+
+			public string physicalAddress { get; set; }
+
+		}
 		private enum LineColours
 		{
 			black,

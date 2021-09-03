@@ -33,8 +33,18 @@ namespace Green_Enviro_App
 		/// <summary>The current month and year</summary>
 		public static readonly string CURRENT_MONTH_AND_YEAR;
 
+		public static readonly string FERROUS;
+
+		public static readonly string NON_FERROUS;
+
 		/// <summary>The CSV extension</summary>
 		public static readonly string CSV_EXTENSION;
+
+		/// <summary>String representing an empty text.</summary>
+		public static readonly string EMPTY_TEXT;
+
+		/// <summary>The decimal zero</summary>
+		public static readonly Decimal DECIMAL_ZERO;
 
 		/// <summary>Initializes a new instance of the <see cref="Constants" /> class.</summary>
 		static Constants()
@@ -51,6 +61,10 @@ namespace Green_Enviro_App
 			WAGES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Wages\";
 			CURRENT_MONTH_AND_YEAR = DateTime.Now.ToString("MMMM yyyy");
 			CSV_EXTENSION = ".csv";
+			FERROUS = "Ferrous";
+			NON_FERROUS = "Non-Ferrous";
+			EMPTY_TEXT = "";
+			DECIMAL_ZERO = 0.0M;
 		}
 	}
 }

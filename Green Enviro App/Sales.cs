@@ -27,8 +27,6 @@ namespace Green_Enviro_App
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
 
-		string _ferrous = "Ferrous";
-		string _non_ferrous = "Non-Ferrous";
 		bool _unknown_company = false;
 		public Sales(Main_Form _main, Database data)
 		{
@@ -45,11 +43,11 @@ namespace Green_Enviro_App
 		public void SetTypes()
 		{
 			//Also setup the Ferrous or Non-Ferrous Selector
-			_main_form.SaleTypeBx.Items.Add(_ferrous);
-			_main_form.SaleTypeBx.Items.Add(_non_ferrous);
+			_main_form.SaleTypeBx.Items.Add(Constants.FERROUS);
+			_main_form.SaleTypeBx.Items.Add(Constants.NON_FERROUS);
 
-			_main_form.SalesLogType.Items.Add(_ferrous);
-			_main_form.SalesLogType.Items.Add(_non_ferrous);
+			_main_form.SalesLogType.Items.Add(Constants.FERROUS);
+			_main_form.SalesLogType.Items.Add(Constants.NON_FERROUS);
 		}
 
 		//Create purchase and sales logs for each month if they don't already exist
@@ -65,14 +63,10 @@ namespace Green_Enviro_App
 		public void SetupSalesLogs()
 		{
 			//This function will get the names of all the sales log files that exists in the Sales folder
-			string _sales_logs_path = @"..//..//resources//Logs//Sales";
-			DirectoryInfo _directory = new DirectoryInfo(_sales_logs_path);  //Assuming Test is your Folder
-			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
-			foreach (FileInfo _file in _files)
+			List<string> logNames = csvHandles.getLogNames(CSVHandles.LogType.Sales);
+			foreach (string name in logNames)
 			{
-				char[] _remove_chars = { 'c', 's', 'v', '.' };
-				string _file_name = _file.Name.TrimEnd(_remove_chars);
-				_main_form.SalesLogMonth.Items.Add(_file_name);
+				_main_form.SalesLogMonth.Items.Add(name);
 			}
 
 			_main_form.SaleDate.Value = DateTime.Now;
@@ -253,35 +247,19 @@ namespace Green_Enviro_App
 				return;
 			}
 
-			string _selected_month = _main_form.SalesLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = @"..//..//resources//Logs//Sales//" + _selected_month + ".csv";
-
-			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
-			HashSet<string> _dates = new HashSet<string>();
-
-			if (lines.Length > 0)
-			{
-				for (int _row = 1; _row < lines.Length; _row++)
-				{
-					//For each line, we want a list of the words on the line seperated by the comma
-					string[] dataWords = lines[_row].Split(',');
-
-					//Now we want to add only the first word to a list of days if it is unique
-					//In order to make sure that we do not repeat strings, we use a HashSet string
-					_dates.Add(dataWords[0]);
-				}
-			}
-
+			string selectedMonthAndYear = _main_form.SalesLogMonth.SelectedItem.ToString();
+			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Sales,selectedMonthAndYear);
+			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);
 
 			//First Clear the start and end date fields to prepare them for the new entry
 			_main_form.SalesLogStartDate.Items.Clear();
 			_main_form.SalesLogEndDate.Items.Clear();
 
 			//Now Populate the drop down list with available dates only.
-			foreach (string _date in _dates)
+			foreach (string date in dates)
 			{
-				_main_form.SalesLogStartDate.Items.Add(_date);
-				_main_form.SalesLogEndDate.Items.Add(_date);
+				_main_form.SalesLogStartDate.Items.Add(date);
+				_main_form.SalesLogEndDate.Items.Add(date);
 			}
 
 			//Change the contents displayed in the log if the month selected changes

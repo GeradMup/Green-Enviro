@@ -35,9 +35,9 @@ namespace Green_Enviro_App
 
 		private void setupPoliceRegisters()
 		{
-			//List<string> logNames = csvHandles.getFilesInFolder(PurchasesPRBasePath);
-			//dgvOps.populateLogMonths(logNames);
-			//dgvOps.setTypes();
+			List<string> logNames = csvHandles.getLogNames(CSVHandles.LogType.PurchasesPoliceRegisters);
+			dgvOps.populateLogMonths(logNames);
+			dgvOps.setTypes();
 		}
 
 		//We will generate files on a monthly basis. This code will automatically generate a new csv file for each month

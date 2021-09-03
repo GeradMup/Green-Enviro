@@ -41,15 +41,10 @@ namespace Green_Enviro_App
 
 		public void SetupExpensesLogs()
 		{
-			//This function will get the names of all the expenses log files that exists in the expenses folder
-			string _expenses_logs_path = @"..//..//resources//Logs//Expenses";
-			DirectoryInfo _directory = new DirectoryInfo(_expenses_logs_path);  //Assuming Test is your Folder
-			FileInfo[] _files = _directory.GetFiles("*.csv");   //Getting Text files
-			foreach (FileInfo _file in _files)
+			List<string> logNames = csvHandles.getLogNames(CSVHandles.LogType.Expenses);
+			foreach (string logName in logNames)
 			{
-				char[] _remove_chars = { 'c', 's', 'v', '.' };
-				string _file_name = _file.Name.TrimEnd(_remove_chars);
-				_main_form.ExpensesLogMonth.Items.Add(_file_name);
+				_main_form.ExpensesLogMonth.Items.Add(logName);
 			}
 
 			_main_form.ExpenseDate.Value = DateTime.Now;
@@ -182,41 +177,21 @@ namespace Green_Enviro_App
 
 		public void MonthSelected()
 		{
-			if (_main_form.ExpensesLogMonth.SelectedItem == null)
-			{
-				//Do nothing if no month is selected
-				return;
-			}
-
-			string _selected_month = _main_form.ExpensesLogMonth.SelectedItem.ToString();
-			string _path_to_log_file = @"..//..//resources//Logs//Expenses//" + _selected_month + ".csv";
-
-			string[] lines = System.IO.File.ReadAllLines(_path_to_log_file);
-			HashSet<string> _dates = new HashSet<string>();
-
-			if (lines.Length > 0)
-			{
-				for (int _row = 1; _row < lines.Length; _row++)
-				{
-					//For each line, we want a list of the words on the line seperated by the comma
-					string[] dataWords = lines[_row].Split(',');
-
-					//Now we want to add only the first word to a list of days if it is unique
-					//In order to make sure that we do not repeat strings, we use a HashSet string
-					_dates.Add(dataWords[0]);
-				}
-			}
-
+			if (_main_form.ExpensesLogMonth.SelectedItem == null) return;
+			
+			string selectedMonthAndYear = _main_form.ExpensesLogMonth.SelectedItem.ToString();
+			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Expenses, selectedMonthAndYear);
+			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);
 
 			//First Clear the start and end date fields to prepare them for the new entry
 			_main_form.ExpensesLogStartDate.Items.Clear();
 			_main_form.ExpensesLogEndDate.Items.Clear();
 
 			//Now Populate the drop down list with available dates only.
-			foreach (string _date in _dates)
+			foreach (string date in dates)
 			{
-				_main_form.ExpensesLogStartDate.Items.Add(_date);
-				_main_form.ExpensesLogEndDate.Items.Add(_date);
+				_main_form.ExpensesLogStartDate.Items.Add(date);
+				_main_form.ExpensesLogEndDate.Items.Add(date);
 			}
 
 			//Change the contents displayed in the log if the month selected changes
