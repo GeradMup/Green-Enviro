@@ -46,6 +46,12 @@ namespace Green_Enviro_App
 		/// <summary>The decimal zero</summary>
 		public static readonly Decimal DECIMAL_ZERO;
 
+		/// <summary>The PDF extension</summary>
+		public static readonly string PDF_EXTENSION;
+
+		/// <summary>Today's date.</summary>
+		public static readonly string DATE;
+
 		/// <summary>Initializes a new instance of the <see cref="Constants" /> class.</summary>
 		static Constants()
 		{
@@ -65,6 +71,8 @@ namespace Green_Enviro_App
 			NON_FERROUS = "Non-Ferrous";
 			EMPTY_TEXT = "";
 			DECIMAL_ZERO = 0.0M;
+			PDF_EXTENSION = ".pdf";
+			DATE = DateTime.Now.ToString("dd MMMM yyyy");
 		}
 	}
 }

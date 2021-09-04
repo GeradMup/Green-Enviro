@@ -30,6 +30,8 @@ namespace Green_Enviro_App
 			numberOfColumns = unqCols;
 		}
 
+		public CSVHandles() { }
+
 		/// <summary>
 		/// This function will request the user to confirm that they want to go ahead with deleting the entries
 		/// After confirmation, the WarningWaitingFunction will be excecuted (Called from the warning class)
@@ -152,7 +154,8 @@ namespace Green_Enviro_App
 			string path = pathToLogs(logType);
 			if (File.Exists(path)) return;
 			string copyPath = path;
-			createFolder(ref copyPath);
+			folderPath(ref copyPath);
+			createFolder(copyPath);
 			StringBuilder _csv_content = new StringBuilder();
 			_csv_content.AppendLine(headers);
 			//_csv_content.AppendLine("\n");
@@ -160,20 +163,22 @@ namespace Green_Enviro_App
 			
 		}
 
-		public void createFolder(ref string path) 
+		private void folderPath(ref string path) 
 		{
 			char lastChar = path[path.Length - 1];
 			char forwardSlash = '\\';
 
 			//recursively call this function so that we can get the folder name that contains this file
-			if (lastChar != forwardSlash) 
+			if (lastChar != forwardSlash)
 			{
 				path = path.Remove(path.Length - 1, 1);
-				createFolder(ref path);
+				folderPath(ref path);
 			}
+		}
 
+		public void createFolder(string path) 
+		{
 			if (Directory.Exists(path)) return;
-
 			System.IO.Directory.CreateDirectory(path);
 		}
 

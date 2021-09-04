@@ -38,6 +38,7 @@ namespace Green_Enviro_App
 
 		static SqlConnection _connection;
 		static SqlCommand _command;
+		const string DATABASE_EXCEPTION = "Database Exception!";
 
 		/// <summary>Initializes a new instance of the <see cref="Database" /> class.</summary>
 		public Database() 
@@ -131,6 +132,36 @@ namespace Green_Enviro_App
 			return _table;
 		}
 
+		/// <summary>Selects specific elements from the database based on the table name and filterValue.</summary>
+		/// <typeparam name="T">Template type describing the table name.</typeparam>
+		/// <param name="_tableName">The name of the table from which the element must be read.</param>
+		/// <param name="_columnName">A template value describing the name of the column to use for filtering.</param>
+		/// <param name="filterValue">The value to use for filtering the database.</param>
+		/// <returns>A DataTable with the selected values.</returns>
+		/// <exception cref="System.Exception">If an error occurs while trying read from the database.</exception>
+		public DataTable select<T>(Tables _tableName, T _columnName, string filterValue) 
+		{
+			string tableName = enumToString<Tables>(_tableName);
+			string columnName = enumToString<T>(_columnName);
+
+			string filterExpression = columnName + " = '" + filterValue + "'"; 
+			DataTable _table = new DataTable();
+			try
+			{
+				OpenDatabase();
+				_command.CommandText = "Select * From " + tableName + " where " + filterExpression;
+
+				SqlDataAdapter sda = new SqlDataAdapter(_command.CommandText, _connection);
+				sda.Fill(_table);
+
+				CloseDatabase();
+			}
+			catch(Exception ex) 
+			{
+				throw new Exception(DATABASE_EXCEPTION, ex);
+			}
+			return _table;
+		}
 		// Insertion function adding new users to the database yet not updating the database
 		public void InsertNewUser(string username,string password, string email_address,int permission_level)
         {
@@ -228,6 +259,52 @@ namespace Green_Enviro_App
 			CloseDatabase();
 			return rowsAffected;
 		}
-		
+
+		/// <summary>Enum class giving the names of all the tables in the database.</summary>
+		public enum Tables 
+		{
+			/// <summary>The buyers table</summary>
+			Buyers,
+			/// <summary>The companies table.</summary>
+			Companies,
+			/// <summary>The customers table.</summary>
+			Customers,
+			/// <summary>The employees table.</summary>
+			Employees,
+			/// <summary>The items table.</summary>
+			Items,
+			/// <summary>The stock
+			/// table.</summary>
+			Stock,
+			/// <summary>The users table.</summary>
+			Users
+		}
+
+		/// <summary>Enum to give all the columns of the Buyers Table.</summary>
+		public enum BuyersTableColumns 
+		{
+			/// <summary>The Database entry Id</summary>
+			Id,
+			/// <summary>The company name.</summary>
+			Company,
+			/// <summary>The company physical address.</summary>
+			Address,
+			/// <summary>The contact person.</summary>
+			ContactPerson,
+			/// <summary>The contact number.</summary>
+			ContactNumber,
+			/// <summary>The email address.</summary>
+			Email
+		}
+
+		/// <summary>Converts the name of any enum field into a string.</summary>
+		/// <typeparam name="T">The name of the enum class.</typeparam>
+		/// <param name="enumField">The enum field to be converted.</param>
+		/// <returns>A string representation of the enum field name.</returns>
+		public string enumToString<T>(T enumField) 
+		{
+			string enumName = enumField.ToString();
+			return enumName;
+		}
 	}
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,9 @@ namespace Green_Enviro_App
 		private const string RIGID_TRUCK = "RIGID TRUCK";
 		private const string HORSE_AND_TRAILER = "HORSE AND TRAILER";
 		/// <summary>Initialises the delivery notes tab.</summary>
+
+		DGVOps deliveryNotesDgvOps;
+		/// <summary>Initialises the delivery notes tab.</summary>
 		public void initialiseDeliveryNotesTab()
 		{
 			List<string> itemNames = _deliveryNotesModel.getItemNames();
@@ -33,6 +37,10 @@ namespace Green_Enviro_App
 			List<string> companyNames = _deliveryNotesModel.getCompanyNames();
 			DeliveryCompaniesList.Items.AddRange(companyNames.Cast<object>().ToArray());
 			initialiseVehicleTypes();
+			configureDGVOps();
+
+			DeliveryNoteGrid.Visible = true;
+			DeliveryNotePDFReader.Visible = false;
 		}
 
 		private void initialiseVehicleTypes() 
@@ -43,6 +51,16 @@ namespace Green_Enviro_App
 			DeliveryVehicleType.Items.Add(HORSE_AND_TRAILER);
 		}
 
+		private void configureDGVOps() 
+		{
+			ComboBox month = null;
+			ComboBox startDate = null;
+			ComboBox endDate = null;
+			ComboBox type = null;
+			Form parentForm = this;
+			deliveryNotesDgvOps = new DGVOps(DeliveryNoteGrid,month,startDate,endDate,type,parentForm);
+		}
+
 		private void DeliveryAddItem_Click(object sender, EventArgs e)
 		{
 			if (DeliveryItemsList.SelectedItem == null) { reportError(ITEM_NOT_SELECTED_ERROR); return; }
@@ -50,7 +68,14 @@ namespace Green_Enviro_App
 
 			string productName = DeliveryItemsList.SelectedItem.ToString();
 			double mass = (double)DeliveryQuantityBox.Value;
-			DeliveryNotesModel.Products products = _deliveryNotesModel.addProduct(productName,mass);
+			DataTable itemsTable = _deliveryNotesModel.addProduct(productName,mass);
+
+
+			List<float> columnWidths = new List<float> { 300.0F, 100.0F};
+			deliveryNotesDgvOps.changeBindingSource(itemsTable);
+			deliveryNotesDgvOps.populateGridView(columnWidths);
+
+			clearProductFields();
 		}
 
 		private void DeliveryNoteGenerate_Click(object sender, EventArgs e)
@@ -60,9 +85,30 @@ namespace Green_Enviro_App
 			if (DeliveryDriverCell.Text == Constants.EMPTY_TEXT) { reportError(DRIVER_CELL_NOT_INSERTED_ERROR); return; }
 			if (DeliveryVehicleReg.Text == Constants.EMPTY_TEXT) { reportError(VEHICLE_REG_NOT_INSERTED_ERROR); return; }
 			if (DeliveryVehicleType.SelectedItem == null) { reportError(VECHICLE_TYPE_NOT_SELECTED_ERROR); return; }
+
+			string companyName = DeliveryCompaniesList.SelectedItem.ToString();
+			DeliveryNotesModel.CollectorInformation collectorInfo = new DeliveryNotesModel.CollectorInformation();
+
+			collectorInfo.name = DeliveryDriverName.Text;
+			collectorInfo.cellNumber = DeliveryDriverCell.Text;
+			collectorInfo.vehicleRegistration = DeliveryVehicleReg.Text;
+			collectorInfo.vehicleType = DeliveryVehicleType.Text;
+
+			try
+			{
+				_deliveryNotesModel.generateDeliveryNote(companyName, collectorInfo);
+			}
+			catch (Exception ex) 
+			{
+				reportError(ex.Message);
+			}
 		}
 
-		private void clearDeliveryNoteFields() { }
+		private void clearProductFields() 
+		{
+			DeliveryItemsList.SelectedItem = null;
+			DeliveryQuantityBox.Value = Constants.DECIMAL_ZERO;
+		}
 
 		private void reportError(string errorMessage) 
 		{

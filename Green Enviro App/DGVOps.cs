@@ -24,7 +24,8 @@ namespace Green_Enviro_App
 		ComboBox endDateBox;
 		ComboBox typeBox;
 		Form parentForm;
-		BindingSource bindingSource = new BindingSource();
+		private BindingSource bindingSource = new BindingSource();
+		private DataTable dataTable = new DataTable();
 
 		string _empty_string = " ";
 		string _totals = "TOTALS";
@@ -160,7 +161,7 @@ namespace Green_Enviro_App
 		/// <param name="dataTable"></param>
 		/// <param name="kgCol"></param>
 		/// <param name="amountCol"></param>
-		public void addTotalsRow(DataTable dataTable, int kgCol, int amountCol)
+		public void addTotalsRow(int kgCol, int amountCol)
 		{
 			float _total_kg = 0;
 			float _total_amount = 0;
@@ -228,7 +229,9 @@ namespace Green_Enviro_App
 			}
 		}
 
-		public void populateGridView(List<float> colWidths, DataTable dataTable, int kgColumn = 0, int amountCol = 0) 
+		/// <summary>Populates the grid view that does not need to be filtered after populating</summary>
+		/// <param name="colWidths">The widths of each column in the grid view</param>
+		public void populateGridView(List<float> colWidths) 
 		{
 			//Disable automatic re-sizing so that the grid can populate quickly
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -246,17 +249,27 @@ namespace Green_Enviro_App
 				dataGridView.Columns[column].FillWeight = colWidths[column];
 			}
 
+			dataGridView.Refresh();
+		}
+
+		/// <summary>Populates and filters the grid view.</summary>
+		/// <param name="colWidths">The column widths.</param>
+		/// <param name="kgColumn">The kg column.</param>
+		/// <param name="amountCol">The amount column.</param>
+		public void populateAndFilterGrid(List<float> colWidths, int kgColumn = 0, int amountCol = 0) 
+		{
+			populateGridView(colWidths);
+
 			//Check first if anything is being filtered 
 			filterGridView();
 
-			if ((kgColumn != 0) && (amountCol != 0)) 
+			if ((kgColumn != 0) && (amountCol != 0))
 			{
-				addTotalsRow(dataTable, kgColumn, amountCol);
+				addTotalsRow(kgColumn, amountCol);
 				highlightTotalsRow();
 			}
 
-			dataGridView.Refresh();
-			
+				dataGridView.Refresh();
 		}
 
 		/// <summary>Gives the default column widths for DataGridViews consisting of 9 Columns.</summary>
@@ -287,6 +300,7 @@ namespace Green_Enviro_App
 
 		public void changeBindingSource(DataTable dt) 
 		{
+			dataTable = dt;
 			bindingSource.DataSource = dt;
 		}
 

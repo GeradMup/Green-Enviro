@@ -73,12 +73,11 @@ namespace Green_Enviro_App
 
 			if (_purchases_data_table.Rows.Count > 0)
 			{
-				
 				int kgColumn = 6;
 				int amountCol = 8;
 
 				dgvOps.changeBindingSource(_purchases_data_table);
-				dgvOps.populateGridView(dgvOps.defaultColWidths(), _purchases_data_table, kgColumn, amountCol);
+				dgvOps.populateAndFilterGrid(dgvOps.defaultColWidths(), kgColumn, amountCol);
 			}
 		}
 

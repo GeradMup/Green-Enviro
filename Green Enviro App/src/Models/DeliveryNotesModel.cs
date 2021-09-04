@@ -15,9 +15,7 @@ namespace Green_Enviro_App
 {
 	class DeliveryNotesModel
 	{
-
 		static string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-		string basePath = projectPath + @"\resources\Logs\Delivery Notes\";
 		string letterHeadPath = projectPath + @"\resources\Green Enviro Destruction Certificate Logo Better.png";
 		double currentLine;
 		const double nextSentenceOffset = 13;
@@ -32,61 +30,24 @@ namespace Green_Enviro_App
 		XGraphics graphic;
 		Database database;
 		Products productsInfo;
+		CSVHandles csvHandles;
 
+		const string GENERATING_DELIVERY_NOTE_EXCEPTION = "Unable to generate delivery note exception!";
 		public DeliveryNotesModel(Database db) 
 		{
 			database = db;
 			System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-
-			// New document
-			PdfDocument document = new PdfDocument();
-			PdfPage page = document.AddPage();
-			graphic = XGraphics.FromPdfPage(page);
-
-			insertHeader();
-			insertCompanyInfo(new CompanyInfo());
-			insertTableAndHeaders();
-
 			productsInfo = new Products();
-			productsInfo.products = new List<KeyValuePair<string, double>>();
-			/*List<KeyValuePair<String, Double>> prodsAndQuantities = new List<KeyValuePair<string, double>>();
-
-			KeyValuePair<String, Double> product1 = new KeyValuePair<string, double>("Cu Mix", 4.4);
-			KeyValuePair<String, Double> product2 = new KeyValuePair<string, double>("Cu Brazery", 12);
-			KeyValuePair<String, Double> product3 = new KeyValuePair<string, double>("Cu Tin", 15);
-			KeyValuePair<String, Double> product4 = new KeyValuePair<string, double>("A Grade", 50);
-			KeyValuePair<String, Double> product5 = new KeyValuePair<string, double>("Something Long Here Okay", 23);
-			KeyValuePair<String, Double> product6 = new KeyValuePair<string, double>("One more thing", 17);
 			
-			double totalQuantity = 100.0;
-
-			prodsAndQuantities.Add(product1);
-			prodsAndQuantities.Add(product2);
-			prodsAndQuantities.Add(product3);
-			prodsAndQuantities.Add(product4);
-			prodsAndQuantities.Add(product5);
-			prodsAndQuantities.Add(product6);
-			prodsAndQuantities.Add(product1);
-			prodsAndQuantities.Add(product2);
-			prodsAndQuantities.Add(product3);
-			prodsAndQuantities.Add(product4);
-			prodsAndQuantities.Add(product5);
-			prodsAndQuantities.Add(product6);
-			prodsAndQuantities.Add(product1);
-			prodsAndQuantities.Add(product2);
-			prodsAndQuantities.Add(product3);
-
-			productsInfo.totalQuantity = totalQuantity;
-			productsInfo.products = prodsAndQuantities;
-
-			insertProducts(productsInfo);*/
-			insertDisclaimer();
-			insertColletorInfo(new CollectorInformation());
-			insertSignatureFields();
-
-			document.Save(basePath + @"Test.pdf");
+			csvHandles = new CSVHandles();
+			setUpDeliveryNotes();
 		}
 
+		private void setUpDeliveryNotes() 
+		{
+			string path = Constants.DELIVERY_NOTES_BASE_PATH + @"\" + Constants.CURRENT_MONTH_AND_YEAR + @"\";
+			csvHandles.createFolder(path);
+		}
 		private void insertHeader() 
 		{
 			XImage letterHeadImage = XImage.FromFile(letterHeadPath);
@@ -167,13 +128,13 @@ namespace Green_Enviro_App
 
 		}
 
-		private void insertProducts(Products prod) 
+		private void insertProducts() 
 		{
-			foreach (KeyValuePair<String, double> product in prod.products) 
+			foreach (Product product in productsInfo.products) 
 			{
 				currentLine += nextSentenceOffset;
-				graphic.DrawString(product.Key, regularFont, XBrushes.Black, new XPoint(tableDescriptionOfProductsPosition, currentLine));
-				graphic.DrawString(product.Value.ToString(), regularFont, XBrushes.Black, new XPoint(tableQuantityPosition, currentLine));
+				graphic.DrawString(product.name, regularFont, XBrushes.Black, new XPoint(tableDescriptionOfProductsPosition, currentLine));
+				graphic.DrawString(product.quantity.ToString(), regularFont, XBrushes.Black, new XPoint(tableQuantityPosition, currentLine));
 			}
 
 			drawHorizontalLine(LineColours.yellow);
@@ -181,7 +142,7 @@ namespace Green_Enviro_App
 			currentLine += nextSentenceOffset;
 
 			graphic.DrawString("Total", regularFontBold, XBrushes.Black, new XPoint(tableDescriptionOfProductsPosition, currentLine));
-			graphic.DrawString(prod.totalQuantity.ToString(), regularFontBold, XBrushes.Black, new XPoint(tableQuantityPosition, currentLine));
+			graphic.DrawString(productsInfo.totalMass.ToString(), regularFontBold, XBrushes.Black, new XPoint(tableQuantityPosition, currentLine));
 			drawHorizontalLine(LineColours.yellow);
 			currentLine += nextSentenceOffset;
 			drawHorizontalLine(LineColours.black);
@@ -265,9 +226,6 @@ namespace Green_Enviro_App
 		/// <returns>A List of strings representing the item names.</returns>
 		public List<string> getItemNames() 
 		{
-			DataGridView fakeGrid = new DataGridView();
-			int fakeColumns = 0;
-			CSVHandles csvHandles = new CSVHandles(fakeGrid, fakeColumns);
 			string pathToItemsFile = projectPath + @"\resources\Items\Items.txt";
 
 			DataTable items = csvHandles.getCSVContents(pathToItemsFile);
@@ -283,33 +241,149 @@ namespace Green_Enviro_App
 			return buyersList;
 		}
 
-		public Products addProduct(string productName, double mass) 
+		/// <summary>Adds the product to the list of products on the delivery note.</summary>
+		/// <param name="productName">Name of the product.</param>
+		/// <param name="mass">The mass of the product</param>
+		/// <returns>A datable containig all the items that have been added.</returns>
+		public DataTable addProduct(string productName, double mass) 
 		{
-			KeyValuePair<string, double> newProduct = new KeyValuePair<string, double>(productName, mass);
+			Product newProduct = new Product(productName, mass);
 			productsInfo.products.Add(newProduct);
 			productsInfo.totalMass = productsInfo.totalMass + mass;
-			return productsInfo;
+
+			DataTable dataTable = new DataTable();
+			string nameOfProduct = "Product Name";
+			string quantity = "Quantity";
+			dataTable.Columns.Add(nameOfProduct);
+			dataTable.Columns.Add(quantity);
+			DataRow newRow;
+			foreach (Product product in productsInfo.products) 
+			{
+				newRow = dataTable.NewRow();
+				newRow[nameOfProduct] = product.name;
+				newRow[quantity] = product.quantity.ToString();
+				dataTable.Rows.Add(newRow);
+			}
+
+			//Add an empty row between products and total quantities
+			newRow = dataTable.NewRow();
+			dataTable.Rows.Add(newRow);
+
+			newRow = dataTable.NewRow();
+			newRow[nameOfProduct] = "TOTALS";
+			newRow[quantity] = productsInfo.totalMass;
+			dataTable.Rows.Add(newRow);
+
+			return dataTable;
 		}
-		
+
 		////////////////////////////////////////////////////////////////////////////////////////////
 		// ALL THE INTERNAL CLASSES GO IN THIS SECTION
 		////////////////////////////////////////////////////////////////////////////////////////////
 
+		public void generateDeliveryNote(string companyName, CollectorInformation collectorInfo) 
+		{
+			try
+			{
+				// New document
+				
+				DataTable companyData = database.select<Database.BuyersTableColumns>(Database.Tables.Buyers,
+										Database.BuyersTableColumns.Company, companyName);
+
+				CompanyInfo companyInfo = dataTableToCompanyInfo(companyData);
+			
+				PdfDocument document = new PdfDocument();
+				PdfPage page = document.AddPage();
+				graphic = XGraphics.FromPdfPage(page);
+
+				insertHeader();
+				insertCompanyInfo(companyInfo);
+				insertTableAndHeaders();
+				insertProducts();
+				insertDisclaimer();
+				insertColletorInfo(collectorInfo);
+				insertSignatureFields();
+
+				document.Save(generateSavePath(companyInfo.companyName));
+			}
+			catch (Exception ex) 
+			{
+				throw new Exception(GENERATING_DELIVERY_NOTE_EXCEPTION, ex);
+			}
+		}
+
+		private string generateSavePath(string companyName) 
+		{
+			string basePath = Constants.DELIVERY_NOTES_BASE_PATH;
+			string month = Constants.CURRENT_MONTH_AND_YEAR;
+			string date = Constants.DATE;
+			string savePath = "";
+			
+			//savePath = basePath + @"\" + month + @"\" + companyName + @"\" + date + Constants.PDF_EXTENSION;
+
+			int maxDeliveries = 200;
+			string extraExtension = "";
+
+			for (int deliveryNumber = 0; deliveryNumber < maxDeliveries; deliveryNumber++) 
+			{
+				extraExtension = deliveryNumber.ToString();
+
+				savePath = basePath + @"\" + month + @"\" + companyName + @" " + date + @"_" + extraExtension + Constants.PDF_EXTENSION;
+
+				if (!File.Exists(savePath)) break;
+			}
+
+			return savePath;
+		}
+
+		private CompanyInfo dataTableToCompanyInfo(DataTable table) 
+		{
+			CompanyInfo info = new CompanyInfo();
+			int onlyRow = 0;
+			int companyNameColumn = 1;
+			int addressColumn = 2;
+			int contactPersonColumn = 3;
+			int contactNumberColumn = 4;
+			int emailColumn = 5;
+
+			info.companyName = table.Rows[onlyRow][companyNameColumn].ToString();
+			info.physicalAddress = table.Rows[onlyRow][addressColumn].ToString();
+			info.contactPerson = table.Rows[onlyRow][contactPersonColumn].ToString();
+			info.contactNumber = table.Rows[onlyRow][contactNumberColumn].ToString();
+			info.emailAddress = table.Rows[onlyRow][emailColumn].ToString();
+			
+			return info;
+		}
 		/// <summary>Describes the products to be Delivered.</summary>
 		internal class Products
 		{
+			public Products() 
+			{
+				products = new List<Product>();
+			}
 			/// <summary>Gets or sets the total quantity of all the products to be Delivered.</summary>
 			/// <value>The total mass of all products.</value>
 			public double totalMass { get; set; }
 			/// <summary>Gets or sets the names and weights of all the products to be delivered.</summary>
 			/// <value>The products.</value>
-			public List<KeyValuePair<String, double>> products { get; set; }
+			public List<Product> products { get; set; }
+		}
+
+		internal class Product 
+		{
+			public Product(string _name, double _quantity) 
+			{
+				name = _name;
+				quantity = _quantity;
+			}
+			public string name { get; set; }
+			public double quantity { get; set; }
 		}
 
 		internal class CollectorInformation
 		{
-			public CollectorInformation(string _name = "Unknown", string _cellNumber = "0000000000", string _vehicleReg = "WAS902GP",
-										string _vehicleType = "Bin Truck")
+			public CollectorInformation(string _name = "Unknown", string _cellNumber = "0000000000", string _vehicleReg = "000000",
+										string _vehicleType = "Unknown")
 			{
 				this.name = _name;
 				this.cellNumber = _cellNumber;

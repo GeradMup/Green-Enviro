@@ -40,9 +40,8 @@ namespace Green_Enviro_App
 
         public int _user_permission_level = 0;
 
-		/// <summary>
-		/// This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.
-		/// </summary>
+		/// <summary>This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.</summary>
+		/// <param name="loginForm">An object of the login form control</param>
 		/// <param name="_data">Database</param>
 		/// <param name="permissionLevel"></param>
 		public Main_Form(LoginForm loginForm, Database _data, int permissionLevel)
