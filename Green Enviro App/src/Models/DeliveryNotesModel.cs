@@ -15,8 +15,6 @@ namespace Green_Enviro_App
 {
 	class DeliveryNotesModel
 	{
-		static string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
-		string letterHeadPath = projectPath + @"\resources\Green Enviro Destruction Certificate Logo Better.png";
 		double currentLine;
 		const double nextSentenceOffset = 13;
 		const double lineOffset = 4;
@@ -31,11 +29,13 @@ namespace Green_Enviro_App
 		Database database;
 		Products productsInfo;
 		CSVHandles csvHandles;
+		FileHandles fileHandles;
 
 		const string GENERATING_DELIVERY_NOTE_EXCEPTION = "Unable to generate delivery note exception!";
-		public DeliveryNotesModel(Database db) 
+		public DeliveryNotesModel(Database db, FileHandles fh) 
 		{
 			database = db;
+			fileHandles = fh;
 			System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 			productsInfo = new Products();
 			
@@ -46,11 +46,12 @@ namespace Green_Enviro_App
 		private void setUpDeliveryNotes() 
 		{
 			string path = Constants.DELIVERY_NOTES_BASE_PATH + @"\" + Constants.CURRENT_MONTH_AND_YEAR + @"\";
-			csvHandles.createFolder(path);
+			fileHandles.createFolder(path);
 		}
+		
 		private void insertHeader() 
 		{
-			XImage letterHeadImage = XImage.FromFile(letterHeadPath);
+			XImage letterHeadImage = XImage.FromFile(Constants.COMPANY_LETTERHEAD_PATH);
 
 			double y_coordinate = 30;
 			double x_coordinate = 30;
@@ -226,9 +227,7 @@ namespace Green_Enviro_App
 		/// <returns>A List of strings representing the item names.</returns>
 		public List<string> getItemNames() 
 		{
-			string pathToItemsFile = projectPath + @"\resources\Items\Items.txt";
-
-			DataTable items = csvHandles.getCSVContents(pathToItemsFile);
+			DataTable items = csvHandles.getCSVContents(Constants.PATH_TO_DELIVERY_ITEMS);
 			List<string> itemList = items.Rows.OfType<DataRow>().Select(dr => (string)dr["ITEMS"]).ToList();
 			return itemList;
 		}
@@ -281,12 +280,17 @@ namespace Green_Enviro_App
 		// ALL THE INTERNAL CLASSES GO IN THIS SECTION
 		////////////////////////////////////////////////////////////////////////////////////////////
 
-		public void generateDeliveryNote(string companyName, CollectorInformation collectorInfo) 
+		/// <summary>Generates the delivery note after all the entries have been added.</summary>
+		/// <param name="companyName">Name of the company name.</param>
+		/// <param name="collectorInfo">The information about the person tansporting the delivery.</param>
+		/// <returns>A string representing the path to the delivery note generated.</returns>
+		/// <exception cref="System.Exception">If something goes wrong with the pdf generation or reading from the database.</exception>
+		public string generateDeliveryNote(string companyName, CollectorInformation collectorInfo) 
 		{
+			string pathToDeliveryNote;
 			try
 			{
 				// New document
-				
 				DataTable companyData = database.select<Database.BuyersTableColumns>(Database.Tables.Buyers,
 										Database.BuyersTableColumns.Company, companyName);
 
@@ -304,12 +308,15 @@ namespace Green_Enviro_App
 				insertColletorInfo(collectorInfo);
 				insertSignatureFields();
 
-				document.Save(generateSavePath(companyInfo.companyName));
+				pathToDeliveryNote = generateSavePath(companyInfo.companyName);
+				document.Save(pathToDeliveryNote);
 			}
 			catch (Exception ex) 
 			{
 				throw new Exception(GENERATING_DELIVERY_NOTE_EXCEPTION, ex);
 			}
+
+			return pathToDeliveryNote;
 		}
 
 		private string generateSavePath(string companyName) 
@@ -336,6 +343,16 @@ namespace Green_Enviro_App
 			return savePath;
 		}
 
+		public List<string> getLogMonths() 
+		{
+			return fileHandles.getLogNames(FileHandles.LogType.DeliveryNotes);
+		}
+
+		public List<string> getDeliveryNotes(string monthAndYeah) 
+		{
+			string path = Constants.DELIVERY_NOTES_BASE_PATH + @"\" + monthAndYeah;
+			return fileHandles.getfilesInFolder(path);
+		}
 		private CompanyInfo dataTableToCompanyInfo(DataTable table) 
 		{
 			CompanyInfo info = new CompanyInfo();
@@ -419,6 +436,7 @@ namespace Green_Enviro_App
 			public string physicalAddress { get; set; }
 
 		}
+		
 		private enum LineColours
 		{
 			black,

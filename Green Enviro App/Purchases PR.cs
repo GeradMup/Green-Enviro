@@ -15,36 +15,38 @@ namespace Green_Enviro_App
 		Main_Form _main_form;
 
 		CSVHandles csvHandles;
+		FileHandles fileHandles;
 		DGVOps dgvOps;
 		int uniqueColumns;
 
 		DataTable dataTable;
 		BindingSource _binding_source = new BindingSource();
-		public Purchases_PR(Main_Form mainForm)
+		public Purchases_PR(Main_Form mainForm, FileHandles fh)
 		{
 			_main_form = mainForm;
+			fileHandles = fh;
 			csvHandles = new CSVHandles(mainForm.PurchasesPRDataGridView, uniqueColumns);
 			dgvOps = new DGVOps(_main_form.PurchasesPRDataGridView,_main_form.PurchasesPRMonth,
 								_main_form.PurchasePRStartDate, _main_form.PurchasePREndDate,
 								_main_form.PurchasePRType,_main_form);
 
-			//createFiles(pathToSalesPoliceRegister);
-			createFiles();
+			//createCSVFiles(pathToSalesPoliceRegister);
+			createCSVFiles();
 			setupPoliceRegisters();
 		}
 
 		private void setupPoliceRegisters()
 		{
-			List<string> logNames = csvHandles.getLogNames(CSVHandles.LogType.PurchasesPoliceRegisters);
+			List<string> logNames = fileHandles.getLogNames(FileHandles.LogType.PurchasesPoliceRegisters);
 			dgvOps.populateLogMonths(logNames);
 			dgvOps.setTypes();
 		}
 
 		//We will generate files on a monthly basis. This code will automatically generate a new csv file for each month
-		private void createFiles()
+		private void createCSVFiles()
 		{
 			string headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type,Sold";
-			csvHandles.createCSVFile(CSVHandles.LogType.PurchasesPoliceRegisters, headers);
+			fileHandles.createCSVFile(FileHandles.LogType.PurchasesPoliceRegisters, headers);
 		}
 
 		public void monthSelected()
@@ -52,7 +54,7 @@ namespace Green_Enviro_App
 			if (_main_form.PurchasesPRMonth.SelectedItem == null) return;
 
 			string selectedMonthAndYear = _main_form.PurchasesPRMonth.SelectedItem.ToString();
-			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.PurchasesPoliceRegisters, selectedMonthAndYear);
+			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.PurchasesPoliceRegisters, selectedMonthAndYear);
 
 			dataTable = csvHandles.getCSVContents(pathToLogFile);
 
@@ -93,7 +95,7 @@ namespace Green_Enviro_App
 		public void addEntryToPR(string purchaseEntry, string month)
 		{
 
-			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.PurchasesPoliceRegisters, month);
+			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.PurchasesPoliceRegisters, month);
 
 			DataTable temp_data_table = csvHandles.getCSVContents(pathToLogFile);
 			List<String> PREntries = dataTableToStringList(temp_data_table);
@@ -111,7 +113,7 @@ namespace Green_Enviro_App
 				List<String> lines = new List<String>();
 				lines.Add(purchaseEntry);
 				string successMessage = "Purchase added to Purchase Police Register";
-				csvHandles.addToCSV(csvHandles.pathToLogs(CSVHandles.LogType.PurchasesPoliceRegisters), lines, _main_form, successMessage);
+				csvHandles.addToCSV(fileHandles.pathToLogs(FileHandles.LogType.PurchasesPoliceRegisters), lines, _main_form, successMessage);
 			}
 		}
 	}

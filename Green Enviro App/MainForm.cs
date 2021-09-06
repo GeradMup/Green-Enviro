@@ -31,6 +31,7 @@ namespace Green_Enviro_App
         Inventory _inventory;
         Employees _employees;
         Purchases_PR _purchasesPR;
+        FileHandles _fileHandles;
 
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
@@ -50,20 +51,20 @@ namespace Green_Enviro_App
             //initialiseItemList();
             _login_form = loginForm;
             _database = _data;
-            _purchasesPR = new Purchases_PR(this);
-            _purchases = new Purchases(this, _purchasesPR);
+            _fileHandles = new FileHandles();
+            _purchasesPR = new Purchases_PR(this,_fileHandles);
+            _purchases = new Purchases(this, _purchasesPR, _fileHandles);
             _email = new Email();
-            _sales = new Sales(this, _database);
+            _sales = new Sales(this, _database, _fileHandles);
             _inventory = new Inventory(this);
             _receipt = new Receipt(this, _database, _purchases, _sales, _inventory);
             _destruction_certificate = new Destruction_Certificate(this,_database);
-            _expenses = new Expenses(this, _database);
-            _wages = new Wages(this, _database);
+            _expenses = new Expenses(this, _database, _fileHandles);
+            _wages = new Wages(this, _database, _fileHandles);
             _summaries = new Summaries(this);
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
-            _purchasesPR = new Purchases_PR(this);
-            _deliveryNotesModel = new DeliveryNotesModel(_database);
+            _deliveryNotesModel = new DeliveryNotesModel(_database, _fileHandles);
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;

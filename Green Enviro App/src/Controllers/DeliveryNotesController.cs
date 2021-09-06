@@ -30,17 +30,55 @@ namespace Green_Enviro_App
 		/// <summary>Initialises the delivery notes tab.</summary>
 		public void initialiseDeliveryNotesTab()
 		{
+
+			populateDeliveryNotesItems();
+			populateDeliveryNotesCompanies();
+			populateDeliveryNotesMonths();
+			initialiseVehicleTypes();
+			configureDGVOps();
+			activateDeliveryNotesGrid();
+
+		}
+
+		private void populateDeliveryNotesItems() 
+		{
 			List<string> itemNames = _deliveryNotesModel.getItemNames();
 			//Populate the items list on the Delivery Notes Page
 			DeliveryItemsList.Items.AddRange(itemNames.Cast<object>().ToArray());
+		}
 
+		private void populateDeliveryNotesCompanies() 
+		{
 			List<string> companyNames = _deliveryNotesModel.getCompanyNames();
 			DeliveryCompaniesList.Items.AddRange(companyNames.Cast<object>().ToArray());
-			initialiseVehicleTypes();
-			configureDGVOps();
+		}
 
+		private void populateDeliveryNotesMonths() 
+		{
+			List<string> deliveryNotes = _deliveryNotesModel.getLogMonths();
+			DeliveryNotesMonths.Items.AddRange(deliveryNotes.Cast<object>().ToArray());
+		}
+
+		private void DeliveryNotesMonths_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (DeliveryNotesMonths.SelectedItem == null) return;
+			string selectedMonthAndYear = DeliveryNotesMonths.SelectedItem.ToString();
+			List<string> deliveryNotes = _deliveryNotesModel.getDeliveryNotes(selectedMonthAndYear);
+			DeliveryNotesList.Items.AddRange(deliveryNotes.Cast<object>().ToArray());
+		}
+
+		private void activateDeliveryNotesGrid() 
+		{
 			DeliveryNoteGrid.Visible = true;
-			DeliveryNotePDFReader.Visible = false;
+			DeliveryNotePdfDisplay.Visible = false;
+			DeliveryNoteDisplayPanel.Visible = false;
+		}
+
+		private void activateDeliveryNotesPanel() 
+		{
+			DeliveryNoteGrid.Visible = false;
+			DeliveryNotePdfDisplay.Visible = true;
+			DeliveryNoteDisplayPanel.Visible = true;
 		}
 
 		private void initialiseVehicleTypes() 
@@ -61,6 +99,9 @@ namespace Green_Enviro_App
 			deliveryNotesDgvOps = new DGVOps(DeliveryNoteGrid,month,startDate,endDate,type,parentForm);
 		}
 
+		/// <summary>Handles the Click event of the DeliveryAddItem button control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void DeliveryAddItem_Click(object sender, EventArgs e)
 		{
 			if (DeliveryItemsList.SelectedItem == null) { reportError(ITEM_NOT_SELECTED_ERROR); return; }
@@ -70,7 +111,6 @@ namespace Green_Enviro_App
 			double mass = (double)DeliveryQuantityBox.Value;
 			DataTable itemsTable = _deliveryNotesModel.addProduct(productName,mass);
 
-
 			List<float> columnWidths = new List<float> { 300.0F, 100.0F};
 			deliveryNotesDgvOps.changeBindingSource(itemsTable);
 			deliveryNotesDgvOps.populateGridView(columnWidths);
@@ -78,6 +118,9 @@ namespace Green_Enviro_App
 			clearProductFields();
 		}
 
+		/// <summary>Handles the Click event of the DeliveryNoteGenerate button control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void DeliveryNoteGenerate_Click(object sender, EventArgs e)
 		{
 			if (DeliveryCompaniesList.SelectedItem == null) { reportError(COMPANY_NOT_SELECTED_ERROR); return; }
@@ -96,7 +139,9 @@ namespace Green_Enviro_App
 
 			try
 			{
-				_deliveryNotesModel.generateDeliveryNote(companyName, collectorInfo);
+				string path = _deliveryNotesModel.generateDeliveryNote(companyName, collectorInfo);
+				clearCollectorFields();
+				displayDeliveryNote(path);
 			}
 			catch (Exception ex) 
 			{
@@ -104,12 +149,32 @@ namespace Green_Enviro_App
 			}
 		}
 
+		private void displayDeliveryNote(string path) 
+		{
+			DeliveryNotePdfDisplay.src = path;
+			DeliveryNoteGrid.Visible = false;
+			DeliveryNotePdfDisplay.Visible = true;
+		}
+
+		/// <summary>Clears the product name and the quantity.</summary>
 		private void clearProductFields() 
 		{
 			DeliveryItemsList.SelectedItem = null;
 			DeliveryQuantityBox.Value = Constants.DECIMAL_ZERO;
 		}
 
+		/// <summary>Clears all the fields that about the delivery driver's name and the company field.</summary>
+		private void clearCollectorFields() 
+		{
+			DeliveryCompaniesList.SelectedItem = null;
+			DeliveryDriverName.Text = Constants.EMPTY_TEXT;
+			DeliveryDriverCell.Text = Constants.EMPTY_TEXT;
+			DeliveryVehicleReg.Text = Constants.EMPTY_TEXT;
+			DeliveryVehicleType.SelectedItem = null;
+		}
+
+		/// <summary>Displays an error textbox with the given error message.</summary>
+		/// <param name="errorMessage">The error message.</param>
 		private void reportError(string errorMessage) 
 		{
 			new CustomMessageBox(this,CustomMessageBox.error,errorMessage);

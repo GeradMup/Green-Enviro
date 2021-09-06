@@ -19,6 +19,7 @@ namespace Green_Enviro_App
 		Main_Form _main_form;
 		Database _database;
 		CSVHandles csvHandles;
+		FileHandles fileHandles;
 
 		DataTable _sales_data_table = new DataTable();	//All the information about all the products the we have sold.
 		DataTable _buyers;  //Companies that we sell and buy from
@@ -28,10 +29,11 @@ namespace Green_Enviro_App
 		string _empty_string = " ";
 
 		bool _unknown_company = false;
-		public Sales(Main_Form _main, Database data)
+		public Sales(Main_Form _main, Database data, FileHandles fh)
 		{
 			_main_form = _main;
 			_database = data;
+			fileHandles = fh;
 			int uniqueSalesColumns = 5;
 			csvHandles = new CSVHandles(_main_form.SalesLogGridView, uniqueSalesColumns);
 			CreateLogFiles();
@@ -57,13 +59,13 @@ namespace Green_Enviro_App
 			//If the file does not exist, create it
 			
 			string salesFileHeaders = "Date,Company,Quantity,Amount,Type";
-			csvHandles.createCSVFile(CSVHandles.LogType.Sales, salesFileHeaders);
+			fileHandles.createCSVFile(FileHandles.LogType.Sales, salesFileHeaders);
 		}
 
 		public void SetupSalesLogs()
 		{
 			//This function will get the names of all the sales log files that exists in the Sales folder
-			List<string> logNames = csvHandles.getLogNames(CSVHandles.LogType.Sales);
+			List<string> logNames = fileHandles.getLogNames(FileHandles.LogType.Sales);
 			foreach (string name in logNames)
 			{
 				_main_form.SalesLogMonth.Items.Add(name);
@@ -248,7 +250,7 @@ namespace Green_Enviro_App
 			}
 
 			string selectedMonthAndYear = _main_form.SalesLogMonth.SelectedItem.ToString();
-			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Sales,selectedMonthAndYear);
+			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Sales,selectedMonthAndYear);
 			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);
 
 			//First Clear the start and end date fields to prepare them for the new entry
@@ -448,12 +450,12 @@ namespace Green_Enviro_App
 			//If no month is selected, the new sale will be added to the current month
 			if (_main_form.SalesLogMonth.SelectedItem == null)
 			{
-				pathToSaveNewSale = csvHandles.pathToLogs(CSVHandles.LogType.Sales);
+				pathToSaveNewSale = fileHandles.pathToLogs(FileHandles.LogType.Sales);
 			}
 			else
 			{
 				string selectedMonthAndYear = _main_form.SalesLogMonth.SelectedItem.ToString();
-				pathToSaveNewSale = csvHandles.pathToLogs(CSVHandles.LogType.Sales, selectedMonthAndYear);
+				pathToSaveNewSale = fileHandles.pathToLogs(FileHandles.LogType.Sales, selectedMonthAndYear);
 			}
 			return pathToSaveNewSale;
 		}

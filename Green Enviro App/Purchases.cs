@@ -17,6 +17,7 @@ namespace Green_Enviro_App
 	{
 		Main_Form _main_form;
 		CSVHandles csvHandles;
+		FileHandles fileHandles;
 		Purchases_PR _purchases_pr;
 		DGVOps dgvOps;
 
@@ -28,10 +29,12 @@ namespace Green_Enviro_App
 		/// <summary>Initializes a new instance of the <see cref="Purchases" /> class.</summary>
 		/// <param name="_main">The main user form control object</param>
 		/// <param name="purchasesPR">The Purchases Police Register object.</param>
-		public Purchases(Main_Form _main, Purchases_PR purchasesPR)
+		/// <param name="fh">The FileHandles object.</param>
+		public Purchases(Main_Form _main, Purchases_PR purchasesPR, FileHandles fh)
 		{
 			_main_form = _main;
 			_purchases_pr = purchasesPR;
+			fileHandles = fh;
 			int uniquePurchaseColumns = 5;
 			csvHandles = new CSVHandles(_main_form.PurchseLogGridView, uniquePurchaseColumns);
 			dgvOps = new DGVOps(_main_form.PurchseLogGridView, _main_form.PurchaseLogMonth,
@@ -43,7 +46,7 @@ namespace Green_Enviro_App
 
 		public void SetupPurchaseLogs()
 		{
-			logNames = csvHandles.getLogNames(CSVHandles.LogType.Purchases);
+			logNames = fileHandles.getLogNames(FileHandles.LogType.Purchases);
 			dgvOps.populateLogMonths(logNames);
 			dgvOps.setTypes();
 		}
@@ -52,7 +55,7 @@ namespace Green_Enviro_App
 		private void CreateLogFiles()
 		{
 			string _purchases_file_headers = "Date,Name,Surname,ID,No.,Item,Qnty,Price,Amnt,Type";
-			csvHandles.createCSVFile(CSVHandles.LogType.Purchases, _purchases_file_headers);
+			fileHandles.createCSVFile(FileHandles.LogType.Purchases, _purchases_file_headers);
 		}
 
 		/// <summary>Used for adding purchases to the CSV File</summary>
@@ -60,7 +63,7 @@ namespace Green_Enviro_App
 		public void AddPurchase(List<string> purchasedItems)
 		{
 			string successMessage = "Purchase Completed";
-			csvHandles.addToCSV(csvHandles.pathToLogs(CSVHandles.LogType.Purchases), purchasedItems,_main_form, successMessage);
+			csvHandles.addToCSV(fileHandles.pathToLogs(FileHandles.LogType.Purchases), purchasedItems,_main_form, successMessage);
 			DisplayPurchaseLog();
 		}
 
@@ -86,7 +89,7 @@ namespace Green_Enviro_App
 			_purchases_data_table.Clear();
 
 			string selectedMonth = _main_form.PurchaseLogMonth.SelectedItem.ToString();
-			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Purchases, selectedMonth);
+			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Purchases, selectedMonth);
 
 			_purchases_data_table = csvHandles.getCSVContents(pathToLogFile);
 		}
@@ -97,7 +100,7 @@ namespace Green_Enviro_App
 			if (_main_form.PurchaseLogMonth.SelectedItem == null) return;
 			
 			string selectedMonth = _main_form.PurchaseLogMonth.SelectedItem.ToString();
-			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Purchases, selectedMonth);
+			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Purchases, selectedMonth);
 
 			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);
 			dgvOps.populateDates(dates);

@@ -17,6 +17,7 @@ namespace Green_Enviro_App
 		Main_Form _main_form;
 		Database _database;
 		CSVHandles csvHandles;
+		FileHandles fileHandles;
 
 		DataTable _wages_data_table = new DataTable();  //All the information about all the products the we have sold.
 		
@@ -24,10 +25,11 @@ namespace Green_Enviro_App
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
 
-		public Wages(Main_Form _main, Database data)
+		public Wages(Main_Form _main, Database data, FileHandles fh)
 		{
 			_main_form = _main;
 			_database = data;
+			fileHandles = fh;
 			int uniqueWageColumns = 3;
 			csvHandles = new CSVHandles(_main_form.WageLogGridView, uniqueWageColumns);
 			CreateLogFiles();
@@ -38,13 +40,13 @@ namespace Green_Enviro_App
 		private void CreateLogFiles()
 		{
 			string wagesFileHeaders = "Date,Name,Amount";
-			csvHandles.createCSVFile(CSVHandles.LogType.Wages, wagesFileHeaders);
+			fileHandles.createCSVFile(FileHandles.LogType.Wages, wagesFileHeaders);
 	
 		}
 
 		public void SetupWagesLogs()
 		{
-			List<string> logMonths = csvHandles.getLogNames(CSVHandles.LogType.Wages);
+			List<string> logMonths = fileHandles.getLogNames(FileHandles.LogType.Wages);
 			foreach (string logMonth in logMonths)
 			{
 				_main_form.WageLogMonth.Items.Add(logMonth);
@@ -186,7 +188,7 @@ namespace Green_Enviro_App
 			}
 
 			string selectedMonthAndYear = _main_form.WageLogMonth.SelectedItem.ToString();
-			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Wages, selectedMonthAndYear); 
+			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Wages, selectedMonthAndYear); 
 			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);
 
 			//First Clear the start and end date fields to prepare them for the new entry
@@ -308,12 +310,12 @@ namespace Green_Enviro_App
 			//If no month is selected, the new sale will be added to the current month
 			if (_main_form.WageLogMonth.SelectedItem == null)
 			{
-				pathToSaveNewWage = csvHandles.pathToLogs(CSVHandles.LogType.Wages);
+				pathToSaveNewWage = fileHandles.pathToLogs(FileHandles.LogType.Wages);
 			}
 			else
 			{
 				string selectedMonthAndYear = _main_form.WageLogMonth.SelectedItem.ToString();
-				pathToSaveNewWage = csvHandles.pathToLogs(CSVHandles.LogType.Wages,selectedMonthAndYear);
+				pathToSaveNewWage = fileHandles.pathToLogs(FileHandles.LogType.Wages,selectedMonthAndYear);
 			}
 			return pathToSaveNewWage;
 		}

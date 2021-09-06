@@ -52,6 +52,12 @@ namespace Green_Enviro_App
 		/// <summary>Today's date.</summary>
 		public static readonly string DATE;
 
+		/// <summary>The company letterhead path.</summary>
+		public static readonly string COMPANY_LETTERHEAD_PATH;
+
+		/// <summary>The path to delivery items list.</summary>
+		public static readonly string PATH_TO_DELIVERY_ITEMS;
+
 		/// <summary>Initializes a new instance of the <see cref="Constants" /> class.</summary>
 		static Constants()
 		{
@@ -73,6 +79,8 @@ namespace Green_Enviro_App
 			DECIMAL_ZERO = 0.0M;
 			PDF_EXTENSION = ".pdf";
 			DATE = DateTime.Now.ToString("dd MMMM yyyy");
+			COMPANY_LETTERHEAD_PATH = PROJECT_PATH + @"\resources\Green Enviro Destruction Certificate Logo Better.png";
+			PATH_TO_DELIVERY_ITEMS = PROJECT_PATH + @"\resources\Items\Items.txt";
 		}
 	}
 }

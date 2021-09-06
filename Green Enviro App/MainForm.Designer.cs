@@ -227,11 +227,12 @@ namespace Green_Enviro_App
 			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
 			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.DeliveryNote = new System.Windows.Forms.TabPage();
-			this.comboBox6 = new System.Windows.Forms.ComboBox();
-			this.comboBox5 = new System.Windows.Forms.ComboBox();
+			this.DeliveryNoteDisplayPanel = new System.Windows.Forms.Panel();
+			this.DeliveryNotePdfDisplay = new AxAcroPDFLib.AxAcroPDF();
+			this.DeliveryNotesList = new System.Windows.Forms.ComboBox();
+			this.DeliveryNotesMonths = new System.Windows.Forms.ComboBox();
 			this.DeliveryNotesMonth = new System.Windows.Forms.Label();
 			this.DeliveryNotesPrevLabel = new System.Windows.Forms.Label();
-			this.DeliveryNotePDFReader = new AxAcroPDFLib.AxAcroPDF();
 			this.DeliveryNotePrint = new System.Windows.Forms.Button();
 			this.DeliveryNoteGenerate = new System.Windows.Forms.Button();
 			this.DeliveryNoteGridLabel = new System.Windows.Forms.Label();
@@ -300,7 +301,8 @@ namespace Green_Enviro_App
 			this.PurchasesPR.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
 			this.DeliveryNote.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.DeliveryNotePDFReader)).BeginInit();
+			this.DeliveryNoteDisplayPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryNotePdfDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryNoteGrid)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.VehicleTypePictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).BeginInit();
@@ -2615,11 +2617,11 @@ namespace Green_Enviro_App
 			// DeliveryNote
 			// 
 			this.DeliveryNote.AllowDrop = true;
-			this.DeliveryNote.Controls.Add(this.comboBox6);
-			this.DeliveryNote.Controls.Add(this.comboBox5);
+			this.DeliveryNote.Controls.Add(this.DeliveryNoteDisplayPanel);
+			this.DeliveryNote.Controls.Add(this.DeliveryNotesList);
+			this.DeliveryNote.Controls.Add(this.DeliveryNotesMonths);
 			this.DeliveryNote.Controls.Add(this.DeliveryNotesMonth);
 			this.DeliveryNote.Controls.Add(this.DeliveryNotesPrevLabel);
-			this.DeliveryNote.Controls.Add(this.DeliveryNotePDFReader);
 			this.DeliveryNote.Controls.Add(this.DeliveryNotePrint);
 			this.DeliveryNote.Controls.Add(this.DeliveryNoteGenerate);
 			this.DeliveryNote.Controls.Add(this.DeliveryNoteGridLabel);
@@ -2647,23 +2649,46 @@ namespace Green_Enviro_App
 			this.DeliveryNote.Text = "Delivery Note";
 			this.DeliveryNote.UseVisualStyleBackColor = true;
 			// 
-			// comboBox6
+			// DeliveryNoteDisplayPanel
 			// 
-			this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox6.FormattingEnabled = true;
-			this.comboBox6.Location = new System.Drawing.Point(392, 93);
-			this.comboBox6.Name = "comboBox6";
-			this.comboBox6.Size = new System.Drawing.Size(405, 31);
-			this.comboBox6.TabIndex = 25;
+			this.DeliveryNoteDisplayPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.DeliveryNoteDisplayPanel.Controls.Add(this.DeliveryNotePdfDisplay);
+			this.DeliveryNoteDisplayPanel.Location = new System.Drawing.Point(834, 77);
+			this.DeliveryNoteDisplayPanel.Name = "DeliveryNoteDisplayPanel";
+			this.DeliveryNoteDisplayPanel.Size = new System.Drawing.Size(887, 782);
+			this.DeliveryNoteDisplayPanel.TabIndex = 26;
 			// 
-			// comboBox5
+			// DeliveryNotePdfDisplay
 			// 
-			this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox5.FormattingEnabled = true;
-			this.comboBox5.Location = new System.Drawing.Point(392, 39);
-			this.comboBox5.Name = "comboBox5";
-			this.comboBox5.Size = new System.Drawing.Size(405, 31);
-			this.comboBox5.TabIndex = 24;
+			this.DeliveryNotePdfDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.DeliveryNotePdfDisplay.Enabled = true;
+			this.DeliveryNotePdfDisplay.Location = new System.Drawing.Point(0, 0);
+			this.DeliveryNotePdfDisplay.Name = "DeliveryNotePdfDisplay";
+			this.DeliveryNotePdfDisplay.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("DeliveryNotePdfDisplay.OcxState")));
+			this.DeliveryNotePdfDisplay.Size = new System.Drawing.Size(887, 782);
+			this.DeliveryNotePdfDisplay.TabIndex = 21;
+			// 
+			// DeliveryNotesList
+			// 
+			this.DeliveryNotesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.DeliveryNotesList.FormattingEnabled = true;
+			this.DeliveryNotesList.Location = new System.Drawing.Point(392, 93);
+			this.DeliveryNotesList.Name = "DeliveryNotesList";
+			this.DeliveryNotesList.Size = new System.Drawing.Size(405, 31);
+			this.DeliveryNotesList.TabIndex = 25;
+			
+			// 
+			// DeliveryNotesMonths
+			// 
+			this.DeliveryNotesMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.DeliveryNotesMonths.FormattingEnabled = true;
+			this.DeliveryNotesMonths.Location = new System.Drawing.Point(392, 39);
+			this.DeliveryNotesMonths.Name = "DeliveryNotesMonths";
+			this.DeliveryNotesMonths.Size = new System.Drawing.Size(405, 31);
+			this.DeliveryNotesMonths.TabIndex = 24;
+			this.DeliveryNotesMonths.SelectedIndexChanged += new System.EventHandler(this.DeliveryNotesMonths_SelectedIndexChanged);
 			// 
 			// DeliveryNotesMonth
 			// 
@@ -2682,15 +2707,6 @@ namespace Green_Enviro_App
 			this.DeliveryNotesPrevLabel.Size = new System.Drawing.Size(263, 23);
 			this.DeliveryNotesPrevLabel.TabIndex = 22;
 			this.DeliveryNotesPrevLabel.Text = "Previous Delivery Notes";
-			// 
-			// DeliveryNotePDFReader
-			// 
-			this.DeliveryNotePDFReader.Enabled = true;
-			this.DeliveryNotePDFReader.Location = new System.Drawing.Point(834, 88);
-			this.DeliveryNotePDFReader.Name = "DeliveryNotePDFReader";
-			this.DeliveryNotePDFReader.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("DeliveryNotePDFReader.OcxState")));
-			this.DeliveryNotePDFReader.Size = new System.Drawing.Size(887, 776);
-			this.DeliveryNotePDFReader.TabIndex = 21;
 			// 
 			// DeliveryNotePrint
 			// 
@@ -2716,7 +2732,7 @@ namespace Green_Enviro_App
 			this.DeliveryNoteGridLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.DeliveryNoteGridLabel.AutoSize = true;
-			this.DeliveryNoteGridLabel.Location = new System.Drawing.Point(1183, 39);
+			this.DeliveryNoteGridLabel.Location = new System.Drawing.Point(1158, 26);
 			this.DeliveryNoteGridLabel.Name = "DeliveryNoteGridLabel";
 			this.DeliveryNoteGridLabel.Size = new System.Drawing.Size(241, 23);
 			this.DeliveryNoteGridLabel.TabIndex = 18;
@@ -3133,7 +3149,8 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
 			this.DeliveryNote.ResumeLayout(false);
 			this.DeliveryNote.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.DeliveryNotePDFReader)).EndInit();
+			this.DeliveryNoteDisplayPanel.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.DeliveryNotePdfDisplay)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryNoteGrid)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.VehicleTypePictureBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).EndInit();
@@ -3451,10 +3468,11 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.PictureBox VehicleTypePictureBox;
 		private System.Windows.Forms.Button DeliveryNoteGenerate;
 		private System.Windows.Forms.Button DeliveryNotePrint;
-		private AxAcroPDFLib.AxAcroPDF DeliveryNotePDFReader;
-		private System.Windows.Forms.ComboBox comboBox6;
-		private System.Windows.Forms.ComboBox comboBox5;
+		private AxAcroPDFLib.AxAcroPDF DeliveryNotePdfDisplay;
+		private System.Windows.Forms.ComboBox DeliveryNotesList;
+		private System.Windows.Forms.ComboBox DeliveryNotesMonths;
 		private System.Windows.Forms.Label DeliveryNotesMonth;
 		private System.Windows.Forms.Label DeliveryNotesPrevLabel;
+		private System.Windows.Forms.Panel DeliveryNoteDisplayPanel;
 	}
 }

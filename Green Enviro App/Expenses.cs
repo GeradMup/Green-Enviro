@@ -17,15 +17,16 @@ namespace Green_Enviro_App
 		Main_Form _main_form;
 		Database _database;
 		CSVHandles csvHandles;
-
+		FileHandles fileHandles;
 		DataTable _expenses_data_table = new DataTable();  //All the information about all the products the we have sold.
 
 		BindingSource _binding_source = new BindingSource();
 		string _empty_string = " ";
-		public Expenses(Main_Form _main, Database data)
+		public Expenses(Main_Form _main, Database data, FileHandles fh)
 		{
 			_main_form = _main;
 			_database = data;
+			fileHandles = fh;
 			int uniqueExpensesColumns = 3;
 			csvHandles = new CSVHandles(_main_form.ExpensesLogGridView, uniqueExpensesColumns);
 			CreateLogFiles();
@@ -36,12 +37,12 @@ namespace Green_Enviro_App
 		private void CreateLogFiles()
 		{
 			string expensesFileHeaders = "Date,Description,Amount";
-			csvHandles.createCSVFile(CSVHandles.LogType.Expenses, expensesFileHeaders);
+			fileHandles.createCSVFile(FileHandles.LogType.Expenses, expensesFileHeaders);
 		}
 
 		public void SetupExpensesLogs()
 		{
-			List<string> logNames = csvHandles.getLogNames(CSVHandles.LogType.Expenses);
+			List<string> logNames = fileHandles.getLogNames(FileHandles.LogType.Expenses);
 			foreach (string logName in logNames)
 			{
 				_main_form.ExpensesLogMonth.Items.Add(logName);
@@ -180,7 +181,7 @@ namespace Green_Enviro_App
 			if (_main_form.ExpensesLogMonth.SelectedItem == null) return;
 			
 			string selectedMonthAndYear = _main_form.ExpensesLogMonth.SelectedItem.ToString();
-			string pathToLogFile = csvHandles.pathToLogs(CSVHandles.LogType.Expenses, selectedMonthAndYear);
+			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Expenses, selectedMonthAndYear);
 			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);
 
 			//First Clear the start and end date fields to prepare them for the new entry
@@ -307,12 +308,12 @@ namespace Green_Enviro_App
 			//If no month is selected, the new sale will be added to the current month
 			if (_main_form.ExpensesLogMonth.SelectedItem == null)
 			{
-				pathToSaveNewExpense = csvHandles.pathToLogs(CSVHandles.LogType.Expenses);
+				pathToSaveNewExpense = fileHandles.pathToLogs(FileHandles.LogType.Expenses);
 			}
 			else
 			{
 				string selectedMonthAndYear = _main_form.ExpensesLogMonth.SelectedItem.ToString();
-				pathToSaveNewExpense = csvHandles.pathToLogs(CSVHandles.LogType.Expenses, selectedMonthAndYear);
+				pathToSaveNewExpense = fileHandles.pathToLogs(FileHandles.LogType.Expenses, selectedMonthAndYear);
 			}
 
 			return pathToSaveNewExpense;
