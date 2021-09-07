@@ -74,11 +74,11 @@ namespace Green_Enviro_App
 			DeliveryNoteDisplayPanel.Visible = false;
 		}
 
-		private void activateDeliveryNotesPanel() 
+		private void activateDeliveryNoteDisplay() 
 		{
 			DeliveryNoteGrid.Visible = false;
-			DeliveryNotePdfDisplay.Visible = true;
 			DeliveryNoteDisplayPanel.Visible = true;
+			DeliveryNotePdfDisplay.Visible = true;
 		}
 
 		private void initialiseVehicleTypes() 
@@ -152,8 +152,7 @@ namespace Green_Enviro_App
 		private void displayDeliveryNote(string path) 
 		{
 			DeliveryNotePdfDisplay.src = path;
-			DeliveryNoteGrid.Visible = false;
-			DeliveryNotePdfDisplay.Visible = true;
+			activateDeliveryNoteDisplay();
 		}
 
 		/// <summary>Clears the product name and the quantity.</summary>
@@ -173,11 +172,41 @@ namespace Green_Enviro_App
 			DeliveryVehicleType.SelectedItem = null;
 		}
 
+		private void clearSelectedDeliveryNote() 
+		{
+			DeliveryNotesList.SelectedItem = null;
+			DeliveryNotesMonths.SelectedItem = null;
+		}
+
 		/// <summary>Displays an error textbox with the given error message.</summary>
 		/// <param name="errorMessage">The error message.</param>
 		private void reportError(string errorMessage) 
 		{
 			new CustomMessageBox(this,CustomMessageBox.error,errorMessage);
+		}
+
+		private void DeliveryNotesList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (DeliveryNotesList.SelectedItem == null) return;
+			if (DeliveryNotesMonths.SelectedItem == null) return;
+
+			string selectedDeliveryNote = DeliveryNotesList.SelectedItem.ToString();
+			string selectedMonthAndYear = DeliveryNotesMonths.SelectedItem.ToString();
+			string pathToDeliveryNote = _deliveryNotesModel.getPathToDeliveryNote(selectedDeliveryNote,selectedMonthAndYear);
+			displayDeliveryNote(pathToDeliveryNote);
+		}
+
+		private void DeliveryNotePrint_Click(object sender, EventArgs e)
+		{
+			DeliveryNoteCancel_Click(sender, e);
+		}
+
+		private void DeliveryNoteCancel_Click(object sender, EventArgs e)
+		{
+			clearProductFields();
+			clearCollectorFields();
+			activateDeliveryNotesGrid();
+			clearSelectedDeliveryNote();
 		}
 	}
 }

@@ -353,6 +353,14 @@ namespace Green_Enviro_App
 			string path = Constants.DELIVERY_NOTES_BASE_PATH + @"\" + monthAndYeah;
 			return fileHandles.getfilesInFolder(path);
 		}
+
+		public string getPathToDeliveryNote(string selectedDeliveryNote, string selectedMonthAndYear) 
+		{
+			string basePath = Constants.DELIVERY_NOTES_BASE_PATH;
+			string path = basePath + @"\" + selectedMonthAndYear + @"\" + selectedDeliveryNote;
+			return path;
+		}
+		
 		private CompanyInfo dataTableToCompanyInfo(DataTable table) 
 		{
 			CompanyInfo info = new CompanyInfo();

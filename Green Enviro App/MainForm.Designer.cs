@@ -227,13 +227,14 @@ namespace Green_Enviro_App
 			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
 			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.DeliveryNote = new System.Windows.Forms.TabPage();
+			this.DeliveryNotePrint = new System.Windows.Forms.Button();
+			this.DeliveryNoteCancel = new System.Windows.Forms.Button();
 			this.DeliveryNoteDisplayPanel = new System.Windows.Forms.Panel();
 			this.DeliveryNotePdfDisplay = new AxAcroPDFLib.AxAcroPDF();
 			this.DeliveryNotesList = new System.Windows.Forms.ComboBox();
 			this.DeliveryNotesMonths = new System.Windows.Forms.ComboBox();
 			this.DeliveryNotesMonth = new System.Windows.Forms.Label();
 			this.DeliveryNotesPrevLabel = new System.Windows.Forms.Label();
-			this.DeliveryNotePrint = new System.Windows.Forms.Button();
 			this.DeliveryNoteGenerate = new System.Windows.Forms.Button();
 			this.DeliveryNoteGridLabel = new System.Windows.Forms.Label();
 			this.DeliveryNoteGrid = new System.Windows.Forms.DataGridView();
@@ -2617,12 +2618,13 @@ namespace Green_Enviro_App
 			// DeliveryNote
 			// 
 			this.DeliveryNote.AllowDrop = true;
+			this.DeliveryNote.Controls.Add(this.DeliveryNotePrint);
+			this.DeliveryNote.Controls.Add(this.DeliveryNoteCancel);
 			this.DeliveryNote.Controls.Add(this.DeliveryNoteDisplayPanel);
 			this.DeliveryNote.Controls.Add(this.DeliveryNotesList);
 			this.DeliveryNote.Controls.Add(this.DeliveryNotesMonths);
 			this.DeliveryNote.Controls.Add(this.DeliveryNotesMonth);
 			this.DeliveryNote.Controls.Add(this.DeliveryNotesPrevLabel);
-			this.DeliveryNote.Controls.Add(this.DeliveryNotePrint);
 			this.DeliveryNote.Controls.Add(this.DeliveryNoteGenerate);
 			this.DeliveryNote.Controls.Add(this.DeliveryNoteGridLabel);
 			this.DeliveryNote.Controls.Add(this.DeliveryNoteGrid);
@@ -2649,25 +2651,53 @@ namespace Green_Enviro_App
 			this.DeliveryNote.Text = "Delivery Note";
 			this.DeliveryNote.UseVisualStyleBackColor = true;
 			// 
+			// DeliveryNotePrint
+			// 
+			this.DeliveryNotePrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.DeliveryNotePrint.BackColor = System.Drawing.Color.Turquoise;
+			this.DeliveryNotePrint.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.DeliveryNotePrint.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.DeliveryNotePrint.Location = new System.Drawing.Point(79, 663);
+			this.DeliveryNotePrint.Name = "DeliveryNotePrint";
+			this.DeliveryNotePrint.Size = new System.Drawing.Size(211, 68);
+			this.DeliveryNotePrint.TabIndex = 28;
+			this.DeliveryNotePrint.Text = "Print";
+			this.DeliveryNotePrint.UseVisualStyleBackColor = false;
+			this.DeliveryNotePrint.Click += new System.EventHandler(this.DeliveryNotePrint_Click);
+			// 
+			// DeliveryNoteCancel
+			// 
+			this.DeliveryNoteCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.DeliveryNoteCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.DeliveryNoteCancel.BackColor = System.Drawing.Color.Turquoise;
+			this.DeliveryNoteCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.DeliveryNoteCancel.Location = new System.Drawing.Point(79, 754);
+			this.DeliveryNoteCancel.Name = "DeliveryNoteCancel";
+			this.DeliveryNoteCancel.Size = new System.Drawing.Size(212, 62);
+			this.DeliveryNoteCancel.TabIndex = 27;
+			this.DeliveryNoteCancel.Text = "Cancel";
+			this.DeliveryNoteCancel.UseVisualStyleBackColor = false;
+			this.DeliveryNoteCancel.Click += new System.EventHandler(this.DeliveryNoteCancel_Click);
+			// 
 			// DeliveryNoteDisplayPanel
 			// 
-			this.DeliveryNoteDisplayPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.DeliveryNoteDisplayPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.DeliveryNoteDisplayPanel.Controls.Add(this.DeliveryNotePdfDisplay);
-			this.DeliveryNoteDisplayPanel.Location = new System.Drawing.Point(834, 77);
+			this.DeliveryNoteDisplayPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.DeliveryNoteDisplayPanel.Location = new System.Drawing.Point(0, 0);
 			this.DeliveryNoteDisplayPanel.Name = "DeliveryNoteDisplayPanel";
-			this.DeliveryNoteDisplayPanel.Size = new System.Drawing.Size(887, 782);
+			this.DeliveryNoteDisplayPanel.Size = new System.Drawing.Size(1724, 867);
 			this.DeliveryNoteDisplayPanel.TabIndex = 26;
 			// 
 			// DeliveryNotePdfDisplay
 			// 
-			this.DeliveryNotePdfDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.DeliveryNotePdfDisplay.AllowDrop = true;
+			this.DeliveryNotePdfDisplay.Dock = System.Windows.Forms.DockStyle.Left;
 			this.DeliveryNotePdfDisplay.Enabled = true;
 			this.DeliveryNotePdfDisplay.Location = new System.Drawing.Point(0, 0);
 			this.DeliveryNotePdfDisplay.Name = "DeliveryNotePdfDisplay";
 			this.DeliveryNotePdfDisplay.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("DeliveryNotePdfDisplay.OcxState")));
-			this.DeliveryNotePdfDisplay.Size = new System.Drawing.Size(887, 782);
+			this.DeliveryNotePdfDisplay.Size = new System.Drawing.Size(1544, 865);
 			this.DeliveryNotePdfDisplay.TabIndex = 21;
 			// 
 			// DeliveryNotesList
@@ -2678,7 +2708,7 @@ namespace Green_Enviro_App
 			this.DeliveryNotesList.Name = "DeliveryNotesList";
 			this.DeliveryNotesList.Size = new System.Drawing.Size(405, 31);
 			this.DeliveryNotesList.TabIndex = 25;
-			
+			this.DeliveryNotesList.SelectedIndexChanged += new System.EventHandler(this.DeliveryNotesList_SelectedIndexChanged);
 			// 
 			// DeliveryNotesMonths
 			// 
@@ -2708,20 +2738,11 @@ namespace Green_Enviro_App
 			this.DeliveryNotesPrevLabel.TabIndex = 22;
 			this.DeliveryNotesPrevLabel.Text = "Previous Delivery Notes";
 			// 
-			// DeliveryNotePrint
-			// 
-			this.DeliveryNotePrint.Location = new System.Drawing.Point(81, 683);
-			this.DeliveryNotePrint.Name = "DeliveryNotePrint";
-			this.DeliveryNotePrint.Size = new System.Drawing.Size(210, 76);
-			this.DeliveryNotePrint.TabIndex = 20;
-			this.DeliveryNotePrint.Text = "Print Delivery Note";
-			this.DeliveryNotePrint.UseVisualStyleBackColor = true;
-			// 
 			// DeliveryNoteGenerate
 			// 
 			this.DeliveryNoteGenerate.Location = new System.Drawing.Point(78, 573);
 			this.DeliveryNoteGenerate.Name = "DeliveryNoteGenerate";
-			this.DeliveryNoteGenerate.Size = new System.Drawing.Size(214, 81);
+			this.DeliveryNoteGenerate.Size = new System.Drawing.Size(214, 67);
 			this.DeliveryNoteGenerate.TabIndex = 19;
 			this.DeliveryNoteGenerate.Text = "Generate Delivery Note";
 			this.DeliveryNoteGenerate.UseVisualStyleBackColor = true;
@@ -2732,7 +2753,7 @@ namespace Green_Enviro_App
 			this.DeliveryNoteGridLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.DeliveryNoteGridLabel.AutoSize = true;
-			this.DeliveryNoteGridLabel.Location = new System.Drawing.Point(1158, 26);
+			this.DeliveryNoteGridLabel.Location = new System.Drawing.Point(1158, 15);
 			this.DeliveryNoteGridLabel.Name = "DeliveryNoteGridLabel";
 			this.DeliveryNoteGridLabel.Size = new System.Drawing.Size(241, 23);
 			this.DeliveryNoteGridLabel.TabIndex = 18;
@@ -2746,11 +2767,11 @@ namespace Green_Enviro_App
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.DeliveryNoteGrid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.DeliveryNoteGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.DeliveryNoteGrid.Location = new System.Drawing.Point(834, 65);
+			this.DeliveryNoteGrid.Location = new System.Drawing.Point(834, 42);
 			this.DeliveryNoteGrid.Name = "DeliveryNoteGrid";
 			this.DeliveryNoteGrid.RowHeadersWidth = 51;
 			this.DeliveryNoteGrid.RowTemplate.Height = 24;
-			this.DeliveryNoteGrid.Size = new System.Drawing.Size(887, 794);
+			this.DeliveryNoteGrid.Size = new System.Drawing.Size(887, 817);
 			this.DeliveryNoteGrid.TabIndex = 17;
 			// 
 			// VehicleTypePictureBox
@@ -3467,12 +3488,13 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.DataGridView DeliveryNoteGrid;
 		private System.Windows.Forms.PictureBox VehicleTypePictureBox;
 		private System.Windows.Forms.Button DeliveryNoteGenerate;
-		private System.Windows.Forms.Button DeliveryNotePrint;
 		private AxAcroPDFLib.AxAcroPDF DeliveryNotePdfDisplay;
 		private System.Windows.Forms.ComboBox DeliveryNotesList;
 		private System.Windows.Forms.ComboBox DeliveryNotesMonths;
 		private System.Windows.Forms.Label DeliveryNotesMonth;
 		private System.Windows.Forms.Label DeliveryNotesPrevLabel;
 		private System.Windows.Forms.Panel DeliveryNoteDisplayPanel;
+		private System.Windows.Forms.Button DeliveryNoteCancel;
+		private System.Windows.Forms.Button DeliveryNotePrint;
 	}
 }
