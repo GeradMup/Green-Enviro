@@ -20,7 +20,7 @@ namespace Green_Enviro_App
      * It is used to generate the destruction certificate pdf when selecting the
      * Destruction Certificate tab on the main page
      */
-    class Destruction_Certificate
+    class DestructionCertificatesModel
     {
         /* Here we generate the instances that will connect the class
          * with othe classes that are needed to make the certificate
@@ -32,12 +32,13 @@ namespace Green_Enviro_App
         bool is_company_exist = false;
         List<string> _company_list = new List<string>();
 
-        public Destruction_Certificate(Main_Form _form,Database _db)
+        const string DESTRUCTION_CERTIFICATE_EXCEPTION = "DESTRUCTION CERTIFICATE EXCEPTION";
+        public DestructionCertificatesModel(Main_Form _form,Database _db)
         {
             _main_form = _form;
             _database = _db;
             QuantityOfProducts();
-            LoadDBIntoDC();
+            loadCompanies();
             //Obtaining the present time so as to always make sure the dates are accurate at run time
             _main_form.dstrctCertExtractionDate.Value = DateTime.Now;
         }
@@ -196,8 +197,8 @@ namespace Green_Enviro_App
 
                 //Insert picture of signature (can be improved)
                 y_coordinates -= 60;
-                string signauture_image_path = @"..//..//resources//Green Enviro Signature.jpeg";
-                iTextSharp.text.Image _signature_img = iTextSharp.text.Image.GetInstance(signauture_image_path);
+                string signature_image_path = Constants.SINGNATURE_IMAGE_PATH;
+                iTextSharp.text.Image _signature_img = iTextSharp.text.Image.GetInstance(signature_image_path);
                 _signature_img.ScalePercent(10F);
                 _signature_img.SetAbsolutePosition(x_coordinates - 10, y_coordinates + 90);
                 cb.AddImage(_signature_img);
@@ -210,13 +211,13 @@ namespace Green_Enviro_App
             }
             catch (Exception ex)
             {
-
+                throw new Exception(DESTRUCTION_CERTIFICATE_EXCEPTION, ex);
             }
         }
         /* Function that verifies if the PDF has all information and can be
          * generated
          */
-        public void ExportToPdf()
+        public void generateCertificate()
         {
             //Tuple that contains the valididty of the Destruction Certificate
             var _generate_DC = verifyGenerateDestructionCertificate();
@@ -235,7 +236,7 @@ namespace Green_Enviro_App
                 if ((_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Checked) && (_company_list.Contains(_main_form.dstrctCertCompanyField.Text) == false))
                 {
                     AddNewCompanyToDatabase();
-                    LoadDBIntoDC();
+                    loadCompanies();
                 }
 
                 GenerateDestructionCertificate(_store_path_of_pdf);
@@ -435,9 +436,9 @@ namespace Green_Enviro_App
          * at the Company list combobox and will continuously be updated per 
          * changes done to the database.
          */
-        private void LoadDBIntoDC()
+        private void loadCompanies()
         {
-            _company_dstrctCert = _database.SelectAll("Companies");
+            _company_dstrctCert = _database.selectAll(Database.Tables.Companies);
             int _companies_table_name_column = 1;
 
             _main_form.dstrctCertCompanyField.Items.Clear();
@@ -471,7 +472,7 @@ namespace Green_Enviro_App
             {
                 string _company_selected = _main_form.dstrctCertCompanyField.Text;
                 string _company_information = "Name = '" + _company_selected + "'";
-                _company_dstrctCert = _database.SelectAll("Companies");
+                _company_dstrctCert = _database.selectAll(Database.Tables.Companies);
                 DataView _dataview = _company_dstrctCert.DefaultView;
                 DataRow[] _row = _company_dstrctCert.Select(_company_information);
 
@@ -504,15 +505,14 @@ namespace Green_Enviro_App
          */
         private void AddNewCompanyToDatabase()
         {
-                string _new_company = _main_form.dstrctCertCompanyField.Text;
-                string _new_contact_person = _main_form.dstrctCertCntactPersonField.Text;
-                string _new_contact_number = _main_form.dstrctCertCntactNumField.Text;
-                string _new_email_address = _main_form.dstrctCertEmailAddressField.Text;
-                string _values_for_database = "'" + _new_company + "','" + _new_contact_person + "','" + _new_email_address + "','" + _new_contact_number+ "'";
-                string _company = "Companies";
-                string _company_database_col = "Name,ContactPerson,Email,ContactNumbers";
-                _database.InsertIntoDatabase(_company, _company_database_col, _values_for_database);
-                CustomMessageBox mb = new CustomMessageBox(_main_form, "Success!", "New Company inserted into the database");
+            string companyName = _main_form.dstrctCertCompanyField.Text;
+            string contactPerson = _main_form.dstrctCertCntactPersonField.Text;
+            string contactNumber = _main_form.dstrctCertCntactNumField.Text;
+            string email = _main_form.dstrctCertEmailAddressField.Text;
+            string address = "Unknown";
+            string[] values = { companyName, contactPerson, email, contactNumber, address };
+            _database.insert(Database.Tables.Companies, values);
+            CustomMessageBox mb = new CustomMessageBox(_main_form, "Success!", "New Company inserted into the database");
         }
         
         /* 

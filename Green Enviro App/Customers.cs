@@ -17,7 +17,6 @@ namespace Green_Enviro_App
         Database _database;
         //Here we generate a data table so as to interact with the tables of the database
         DataTable _data_table = new DataTable();
-        string _customers_table_name = "Customers";
         BindingSource _binding_source = new BindingSource();
         NewCustomer _new_customer;
         Receipt _receipt;
@@ -66,7 +65,7 @@ namespace Green_Enviro_App
         public void LoadCustomersDataTable()
         {
             //Gets all user details and stores them in a DataTable 
-            _data_table = _database.SelectAll(_customers_table_name);
+            _data_table = _database.selectAll(Database.Tables.Customers);
             _binding_source.DataSource = _data_table;
             CustomersDataGridView.DataSource = _binding_source;
         }
@@ -117,7 +116,7 @@ namespace Green_Enviro_App
 
             string _deletion_condition = "CustomerNumber = '" + _customer_number + "'";
 
-            Int32 _rows_affected = _database.DeleteFromDatabase(_customers_table_name, _deletion_condition);
+            Int32 _rows_affected = _database.DeleteFromDatabase("Customers", _deletion_condition);
             if (_rows_affected == 1)
             {
                 LoadCustomersDataTable();

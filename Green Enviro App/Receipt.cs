@@ -94,8 +94,7 @@ namespace Green_Enviro_App
         public void SetupPriceList() 
         {
             //Gets all items from the database and stores them in a DataTable named _items
-            string tableName = "Items";
-            _items = _database.SelectAll(tableName);
+            _items = _database.selectAll(Database.Tables.Items);
 
             //MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
 
@@ -132,7 +131,7 @@ namespace Green_Enviro_App
         public void setupCustomerList() 
         {
             //Gets all customer details and stores them in a DataTable name _customers
-            _customers = _database.SelectAll("Customers");
+            _customers = _database.selectAll(Database.Tables.Customers);
 
             //MessageBox.Show("All Customers: " + _customers.Rows.Count.ToString());
 

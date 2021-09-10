@@ -31,7 +31,7 @@ namespace Green_Enviro_App
 		private void LoadEmployees()
 		{
 			
-			_employees_data_table = _database.SelectAll("Employees");
+			_employees_data_table = _database.selectAll(Database.Tables.Employees);
 			string _employee_name = "";
 
 			_main_form.WagesEmployeeName.Items.Clear();
@@ -49,16 +49,16 @@ namespace Green_Enviro_App
 				return;
 			}
 
-			string _name = EmployeeNameField.Text;
-			string _surname = EmployeeSurnameField.Text;
-			string _identification = EmployeeIdentificationField.Text;
-			string _gender = EmployeeGenderField.SelectedItem.ToString();
+			string name = EmployeeNameField.Text;
+			string surname = EmployeeSurnameField.Text;
+			string identification = EmployeeIdentificationField.Text;
+			string gender = EmployeeGenderField.SelectedItem.ToString();
+			string address = "Unknown";
+			string cell = "0000000000";
 
-			string _table_name = "Employees";
-			string _columns = "Name,Surname,Identification,Gender";
-			string _values = "'" + _name + "','" + _surname + "','" + _identification + "','" + _gender + "'";
+			string[] values = { name, surname, identification, gender, address, cell };
 
-			Int32 _rows_affected = _database.InsertIntoDatabase(_table_name, _columns, _values);
+			Int32 _rows_affected = _database.insert(Database.Tables.Employees, values);
 
 			if (_rows_affected == 1)
 			{

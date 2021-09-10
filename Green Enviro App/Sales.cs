@@ -77,7 +77,7 @@ namespace Green_Enviro_App
 		private void LoadBuyers() 
 		{
 			//Gets all company details and stores them in a DataTable
-			_buyers = _database.SelectAll("Buyers");
+			_buyers = _database.selectAll(Database.Tables.Buyers);
 
 			//MessageBox.Show("All Customers: " + _customers.Rows.Count.ToString());
 
@@ -506,11 +506,13 @@ namespace Green_Enviro_App
 
 		private void AddNewBuyer() 
 		{
-			string _table_name = "Buyers";
-			string _parameter = "Company";
-			string _company_name = "'" + _main_form.SaleCompanyNameList.Text + "'";
-
-			Int32 _rows_affected = _database.InsertIntoDatabase(_table_name,_parameter,_company_name);
+			string companyName = _main_form.SaleCompanyNameList.Text;
+			string address = "Unknown";
+			string contactPerson = "Unknown";
+			string contactNumber = "0000000000";
+			string email = "Unknown";
+			string[] values = { companyName, address, contactPerson, contactNumber, email }; 
+			Int32 _rows_affected = _database.insert(Database.Tables.Buyers,values);
 
 			if (_rows_affected == 1) 
 			{

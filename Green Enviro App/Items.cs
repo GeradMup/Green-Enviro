@@ -16,7 +16,6 @@ namespace Green_Enviro_App
 		Database _database;
 		Receipt _receit;
 		NewItem _new_item;
-		string _table_name = "Items";
 		string _previous_value = "";
 		DataTable _items;
 		/// <summary>
@@ -36,7 +35,7 @@ namespace Green_Enviro_App
 
 		public void LoadItems() 
 		{
-			_items = _database.SelectAll(_table_name);
+			_items = _database.selectAll(Database.Tables.Items);
 
 			PricesGridView.DataSource = _items;
 			PricesGridView.Columns[0].ReadOnly = true;
@@ -73,7 +72,7 @@ namespace Green_Enviro_App
 				string _identification_column = "Name";
 				string _identifier = "'" + _item_name + "'";
 
-				Int32 rowsAffected = _database.UpdateDatabase(_table_name,_column_value_pairs, _identification_column, _identifier);
+				Int32 rowsAffected = _database.UpdateDatabase("Items",_column_value_pairs, _identification_column, _identifier);
 
 				if (rowsAffected == 1)
 				{
@@ -129,10 +128,12 @@ namespace Green_Enviro_App
 			return _valid_entry;
 		}
 
-		public void AddNewItem(string itemName, float itemPrice, float dealerPrice, string itemType) 
+		public void AddNewItem(string itemName, float _itemPrice, float _dealerPrice, string itemType) 
 		{
-			string _column_names = "Name,Price,DealerPrice,Type";
-			string _values = "'" + itemName + "','" + itemPrice + "','" + dealerPrice + "','" + itemType + "'";
+			string threeDecimalPlaces = "0.000";
+			string itemPrice = _itemPrice.ToString(threeDecimalPlaces);
+			string dealerPrice = _dealerPrice.ToString(threeDecimalPlaces);
+			string[] values = { itemName, itemPrice, dealerPrice, itemType };
 			bool _item_exist = false;
 
 			foreach (DataRow _row in _items.Rows) 
@@ -145,7 +146,7 @@ namespace Green_Enviro_App
 
 			if (_item_exist == false)
 			{
-				Int32 _rows_affected = _database.InsertIntoDatabase(_table_name, _column_names, _values);
+				Int32 _rows_affected = _database.insert(Database.Tables.Items, values);
 
 				if (_rows_affected == 1)
 				{
@@ -179,7 +180,7 @@ namespace Green_Enviro_App
 			
 			string _deletion_condition = "Id = '" + _item_id + "'";
 
-			Int32 _rows_affected = _database.DeleteFromDatabase(_table_name, _deletion_condition);
+			Int32 _rows_affected = _database.DeleteFromDatabase("Items", _deletion_condition);
 			if (_rows_affected == 1) 
 			{
 				LoadItems();

@@ -234,7 +234,7 @@ namespace Green_Enviro_App
 
 		public List<string> getCompanyNames() 
 		{
-			DataTable buyers = database.SelectAll("Buyers");
+			DataTable buyers = database.selectAll(Database.Tables.Buyers);
 			int companyNameColumn = 1;
 			List<string> buyersList = buyers.Rows.OfType<DataRow>().Select(dr => (string)dr[companyNameColumn]).ToList();
 			return buyersList;

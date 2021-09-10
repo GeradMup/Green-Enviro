@@ -286,19 +286,9 @@ namespace Green_Enviro_App
             userPermissionLvlBx.SelectedIndex = 0;
         }
 
-        private void ShowUsers()
-        {
-            //Display the amount of user currently in the Database
-            _user = _database.SelectAll("Users");
-           //MessageBox.Show("All Current Users " + _user.Rows.Count.ToString());
-        }
-
-        /*
-         * Functions that shows the database of the Users account on the console 
-         */
         private void PrintDataTable()
         {
-            _user = _database.SelectAll("Users");
+            _user = _database.selectAll(Database.Tables.Users);
             DataRow[] currentRows = _user.Select(
     null, null, DataViewRowState.CurrentRows);
 
@@ -327,7 +317,7 @@ namespace Green_Enviro_App
          */
         private void LoadDataBase()
         {
-            _user = _database.SelectAll("Users");
+            _user = _database.selectAll(Database.Tables.Users);
             string _db_username = "";
             string _db_email = "";
             string _db_psword = "";

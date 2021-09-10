@@ -47,7 +47,7 @@ namespace Green_Enviro_App
          */
         private void BindDataGridToUserTable()
         {
-            DataTable temp_data_table = _database.SelectAll("Users");
+            DataTable temp_data_table = _database.selectAll(Database.Tables.Users);
             temp_data_table.Rows[0].Delete();
             temp_data_table.Rows[0].AcceptChanges();
             userTableDataGridView.DataSource = temp_data_table.DefaultView;
@@ -64,7 +64,7 @@ namespace Green_Enviro_App
         public void LoadUserDataTable()
         {
             //Gets all user details and stores them in a DataTable 
-            _data_table = _database.SelectAll("Users");
+            _data_table = _database.selectAll(Database.Tables.Users);
 
             accountIdList.Items.Clear();
 
@@ -100,9 +100,8 @@ namespace Green_Enviro_App
 
             // Displays the respective information per account id number to each textboxes
             string _user_account_id = accountIdList.SelectedItem.ToString();
-            _db_table = "Users";
             _deletion_information = "AccountId = '" + _user_account_id + "'";
-            _data_table = _database.SelectAll(_db_table);
+            _data_table = _database.selectAll(Database.Tables.Users);
             DataView _data_view = _data_table.DefaultView;
             DataRow[] _row = _data_table.Select(_deletion_information);
 

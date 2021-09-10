@@ -51,7 +51,7 @@ namespace Green_Enviro_App
 
 		private void LoadCustomers() 
 		{
-			_customers_data_table = _database.SelectAll(_customers_table_name);
+			_customers_data_table = _database.selectAll(Database.Tables.Customers);
 		}
 
 		private bool NoDuplicates() 
@@ -214,21 +214,20 @@ namespace Green_Enviro_App
 
 		private void AddCustomer() 
 		{
-			string _number = NewCustomerNumber.Value.ToString();
-			string _id = NewCustomerID.Text;
-			string _name = NewCustomerName.Text;
-			string _surname = NewCustomerSurname.Text;
-			string _cell = "0" + NewCustomerCell.Value.ToString();
-			string _address = NewCustomerAddress.Text;
+			string number = NewCustomerNumber.Value.ToString();
+			string id = NewCustomerID.Text;
+			string name = NewCustomerName.Text;
+			string surname = NewCustomerSurname.Text;
+			string cell = "0" + NewCustomerCell.Value.ToString();
+			string address = NewCustomerAddress.Text;
 
-			string _columns = "CustomerNumber,ID,Name,Surname,Cell,Address";
-			string _values = "'" + _number + "','" + _id + "','" + _name + "','" + _surname + "','" + _cell + "','" + _address + "'";
+			string[] values = { number, id, name, surname, cell, address };
 
-			Int32 _rows_affected = _database.InsertIntoDatabase(_customers_table_name, _columns, _values);
+			Int32 _rows_affected = _database.insert(Database.Tables.Customers, values);
 
 			if (_rows_affected == 1) 
 			{
-				SaveIdPicture(_number);
+				SaveIdPicture(number);
 			}
 		}
 

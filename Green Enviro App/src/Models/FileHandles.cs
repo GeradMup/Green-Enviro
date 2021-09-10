@@ -117,7 +117,7 @@ namespace Green_Enviro_App
 					basePath = Constants.DELIVERY_NOTES_BASE_PATH;
 					break;
 				case LogType.DestructionCertificates:
-					basePath = Constants.DESTRUCTION_CERTIFICATES_BASE_PATH;
+					basePath = Constants.DestructionCertificatesModelS_BASE_PATH;
 					break;
 				case LogType.Expenses:
 					basePath = Constants.EXPENSES_BASE_PATH;

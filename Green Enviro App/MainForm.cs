@@ -23,7 +23,7 @@ namespace Green_Enviro_App
         Sales _sales;
         Expenses _expenses;
         Wages _wages;
-		Destruction_Certificate _destruction_certificate;
+		DestructionCertificatesModel _destructionCertificatesModel;
         Summaries _summaries;
         Customers _customers;
         NewCustomer _new_customer;
@@ -58,7 +58,7 @@ namespace Green_Enviro_App
             _sales = new Sales(this, _database, _fileHandles);
             _inventory = new Inventory(this);
             _receipt = new Receipt(this, _database, _purchases, _sales, _inventory);
-            _destruction_certificate = new Destruction_Certificate(this,_database);
+            _destructionCertificatesModel = new DestructionCertificatesModel(this,_database);
             _expenses = new Expenses(this, _database, _fileHandles);
             _wages = new Wages(this, _database, _fileHandles);
             _summaries = new Summaries(this);
@@ -233,40 +233,6 @@ namespace Green_Enviro_App
 		{
             _purchases.RemoveFilters();
 		}
-
-        //******************************************************************************************************************************
-        //DESTRUCTION CERTIFICATE RELATED CALLS
-        //******************************************************************************************************************************
-
-        private void generateDstrCertBtn_Click(object sender, EventArgs e)
-        {
-            if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
-            {
-                _destruction_certificate.ExportToPdf();
-            }
-            else 
-            {
-                PermissionDenied();
-            }
-        }
-
-        private void dstrctCertCompanyField_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _destruction_certificate.Company_Selected();
-        }
-        private void dstrctCertCompanyField_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            _destruction_certificate.Company_Selected();
-        }
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            _destruction_certificate.FieldSettings();
-        }
-
-        private void dstrctCertCompanyField_Leave(object sender, EventArgs e)
-        {
-            _destruction_certificate.Company_Selected();
-        }
 
         private void SendDstrctCertEmailBtn_Click(object sender, EventArgs e)
         {
@@ -470,7 +436,7 @@ namespace Green_Enviro_App
             _expenses.Reset();
             _wages.Reset();
             _summaries.Reset();
-            _destruction_certificate.Reset();
+            _destructionCertificatesModel.Reset();
 		}
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
