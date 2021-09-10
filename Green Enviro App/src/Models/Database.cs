@@ -106,7 +106,7 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>Selects all values from the database given the table name.</summary>
-		/// <param name="tableName">Name of the table.</param>
+		/// <param name="_tableName">Name of the table.</param>
 		/// <returns>A DataTable containing all the data read from the table.</returns>
 		public DataTable selectAll(Tables _tableName)
 		{
@@ -225,7 +225,7 @@ namespace Green_Enviro_App
 
 			string tableName = enumToString<Tables>(_tableName);
 			string tableColumns = getTableColumns(_tableName);
-			string values = formatValues(_values);
+			string values = formatValuesForInsertion(_values);
 			string insertionCmd = "insert into " + tableName + " (" + tableColumns + ") values (" + values + ")";
 			//Making the SQL command
 
@@ -244,25 +244,40 @@ namespace Green_Enviro_App
 			return rowsAffected;
 		}
 
-		public Int32 UpdateDatabase(string tableName, string columValuePairs, string identifierColumn, string identifier)
+		/// <summary>Updates values in a database table.</summary>
+		/// <typeparam name="TableName">The type of the table name.</typeparam>
+		/// <typeparam name="TableColumn">The type of the table column.</typeparam>
+		/// <param name="_tableName">Name of the table.</param>
+		/// <param name="columns">An arrary of the columns to be updated.</param>
+		/// <param name="_identifierColumn">The table column to be used as the identifier.</param>
+		/// <param name="identifier">The identifier value.</param>
+		/// <param name="values">The values to be updated in the table.</param>
+		/// <returns>Int32 value representing how many table rows were updated.</returns>
+		public Int32 updateDatabase<TableColumn>(Tables _tableName, 
+			TableColumn[] columns, TableColumn _identifierColumn, string identifier, string[] values)
 		{
-			OpenDatabase();
-			string _update_command_text = "UPDATE " + tableName + " set " + columValuePairs +
-				"where " + identifierColumn + " = " + identifier;
+			string tableName = enumToString<Tables>(_tableName);
+			string identifierColumn = enumToString<TableColumn>(_identifierColumn);
+			string columnValuePairs = formatValuesForUpdating<TableColumn>(columns, values);
 
-			_command.CommandText = _update_command_text;
+			string updateCommandText = "UPDATE " + tableName + " set " + columnValuePairs +
+				" where " + identifierColumn + " = '" + identifier + "'";
+
 			Int32 rowsAffected = 0;
 
 			try
 			{
+				OpenDatabase();
+				_command.CommandText = updateCommandText;
 				rowsAffected = _command.ExecuteNonQuery();
+				CloseDatabase();
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show("Failed to Insert into DB : " + ex.Message);
 			}
 
-			CloseDatabase();
+			
 			return rowsAffected;
 		}
 
@@ -446,7 +461,7 @@ namespace Green_Enviro_App
 		/// <summary>A function to convert an array of strings into one string seperated by commas.</summary>
 		/// <param name="values">The array of strings.</param>
 		/// <returns>A single string combining the arrary of strings seperated by commas.</returns>
-		private string formatValues(string[] values) 
+		private string formatValuesForInsertion(string[] values) 
 		{
 			string stringValues = "'";
 
@@ -457,6 +472,18 @@ namespace Green_Enviro_App
 			//Remove the last quotation and comma from the string.
 			stringValues = stringValues.Remove(stringValues.Length - 2,2);
 			return stringValues;
+		}
+
+		private string formatValuesForUpdating<TableColumn>(TableColumn[] tableColumns, string[] values) 
+		{
+			string columnValuePairs = "";
+			for (int index = 0; index < tableColumns.Length; index++) 
+			{
+				columnValuePairs = columnValuePairs + tableColumns[index] + " = '" + values[index] + "', ";
+			}
+			columnValuePairs = columnValuePairs.Remove(columnValuePairs.Length - 2, 2);
+
+			return columnValuePairs;
 		}
 	}
 }

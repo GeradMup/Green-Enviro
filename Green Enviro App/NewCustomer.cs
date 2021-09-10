@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using TableCols = Green_Enviro_App.Database.CustomersTableColumns;
 
 namespace Green_Enviro_App
 {
@@ -251,23 +252,29 @@ namespace Green_Enviro_App
 		public void EditCustomer() 
 		{
 
-			string _customer_number = NewCustomerNumber.Value.ToString();
-			string _customer_name = NewCustomerName.Text;
-			string _customer_id = NewCustomerID.Text;
-			string _customer_surname = NewCustomerSurname.Text;
-			string _customer_cell = "0" + NewCustomerCell.Value.ToString();
-			string _customer_address = NewCustomerAddress.Text;
+			string customerNumber = NewCustomerNumber.Value.ToString();
+			string customerName = NewCustomerName.Text;
+			string customerId = NewCustomerID.Text;
+			string customerSurname = NewCustomerSurname.Text;
+			string customerCell = "0" + NewCustomerCell.Value.ToString();
+			string customerAddress = NewCustomerAddress.Text;
 
 
-			string _column_value_pairs = "ID = '" + _customer_id + "', Name = '" + _customer_name + "', Surname = '" + _customer_surname + "', Cell = '" + _customer_cell + "', Address = '" + _customer_address + "'";
-			string _identification_column = "CustomerNumber";
-			string _identifier = "'" + _customer_number + "'";
-
-			Int32 rowsAffected = _database.UpdateDatabase(_customers_table_name, _column_value_pairs, _identification_column, _identifier);
+			//string _column_value_pairs = "ID = '" + _customer_id + "', Name = '" + _customer_name + "', Surname = '" + _customer_surname + "', Cell = '" + _customer_cell + "', Address = '" + _customer_address + "'";
+			//string _identification_column = "CustomerNumber";
+			//string _identifier = "'" + _customer_number + "'";
+			
+			TableCols[] columnsToUpdate = {TableCols.ID, TableCols.Name,TableCols.Surname,TableCols.Cell, TableCols.Address};
+			TableCols identifierColumnName = TableCols.CustomerNumber;
+			string identifier = customerNumber;
+			string[] values = {customerId, customerName, customerSurname, customerCell, customerAddress};
+			
+			Int32 rowsAffected = _database.updateDatabase<Database.CustomersTableColumns>(Database.Tables.Customers, 
+				columnsToUpdate,identifierColumnName,identifier,values);
 
 			if (rowsAffected == 1)
 			{
-				SaveIdPicture(_customer_number);
+				SaveIdPicture(customerNumber);
 			}
 			else
 			{

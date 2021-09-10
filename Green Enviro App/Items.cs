@@ -68,11 +68,13 @@ namespace Green_Enviro_App
 			if (dialogResult == DialogResult.Yes)
 			{
 				
-				string _column_value_pairs = "Price = '" + _price + "', DealerPrice = '" + _dealer_price + "'";   
-				string _identification_column = "Name";
-				string _identifier = "'" + _item_name + "'";
+				string[] values = { _price, _dealer_price };   
+				string identifier = _item_name;
 
-				Int32 rowsAffected = _database.UpdateDatabase("Items",_column_value_pairs, _identification_column, _identifier);
+				Database.ItemsTableColumns[] columnsToUpdate = {Database.ItemsTableColumns.Price, Database.ItemsTableColumns.DealerPrice };
+				Database.ItemsTableColumns tableIdentifier = Database.ItemsTableColumns.Name;
+				Int32 rowsAffected = _database.updateDatabase<Database.ItemsTableColumns>(
+					Database.Tables.Items, columnsToUpdate, tableIdentifier, identifier, values);
 
 				if (rowsAffected == 1)
 				{
