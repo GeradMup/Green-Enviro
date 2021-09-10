@@ -31,7 +31,7 @@ namespace Green_Enviro_App
 
 		static SqlConnection _connection;
 		static SqlCommand _command;
-		const string DATABASE_EXCEPTION = "Database Exception!";
+		const string DATABASE_SELECTING_ALL_EXCEPTION = "Database selecting all Exception!";
 		const string DATABASE_INSERTION_EXCEPTION = "Database insertion exception";
 		const string DATABASE_SELECTING_EXCEPTION = "Database selecting exception";
 		/// <summary>Initializes a new instance of the <see cref="Database" /> class.</summary>
@@ -39,18 +39,9 @@ namespace Green_Enviro_App
 		{
 			//Sets up the first Database which stores the URL of the actual database file
 		}
-		// ****************************************************************************************************************
 
-		public void UploadData(Main_Form _main)
-		{
-			//_main_form = _main;    
-			OpenDatabase();
-			InsertIntoDB();
-		}
-
-		//Loads of Tutorials on w3schools.com
-
-		private void OpenDatabase()
+		/// <summary>Opens a connection to the database</summary>
+		private void openDatabase()
 		{
 			if (_connection != null)
 			{
@@ -73,8 +64,8 @@ namespace Green_Enviro_App
 			}
 		}
 
-		//Checks if a Database connection was made and tries to close it before exiting the application.
-		private static void CloseDatabase()
+		/// <summary>Closes the connection to a the database</summary>
+		private static void closeDatabase()
 		{
 			if (_connection == null)
 			{
@@ -88,23 +79,6 @@ namespace Green_Enviro_App
 			}
 		}
 
-		private void InsertIntoDB()
-		{
-
-			//Check that the DB is open before trying to make an insertion
-			OpenDatabase();
-
-			_command.CommandText = "insert into FirstTable (Id, Name) values (22, 'Gerry')";
-			try
-			{
-				_command.ExecuteNonQuery();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Failed To Connect To DB: " + ex.Message);
-			}
-		}
-
 		/// <summary>Selects all values from the database given the table name.</summary>
 		/// <param name="_tableName">Name of the table.</param>
 		/// <returns>A DataTable containing all the data read from the table.</returns>
@@ -114,12 +88,12 @@ namespace Green_Enviro_App
 			string tableName = enumToString<Tables>(_tableName);
 			try
 			{
-				OpenDatabase();
+				openDatabase();
 				_command.CommandText = "Select * From " + tableName;
 
 				SqlDataAdapter sda = new SqlDataAdapter(_command.CommandText, _connection);
 				sda.Fill(_table);
-				CloseDatabase();
+				closeDatabase();
 			}
 			catch (Exception ex)
 			{
@@ -129,68 +103,40 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>Selects specific elements from the database based on the table name and filterValue.</summary>
-		/// <typeparam name="T">Template type describing the column name.</typeparam>
+		/// <typeparam name="TableColumn">Template type describing the column name.</typeparam>
 		/// <param name="_tableName">The name of the table from which the element must be read.</param>
 		/// <param name="_columnName">A template value describing the name of the column to use for filtering.</param>
 		/// <param name="filterValue">The value to use for filtering the database.</param>
 		/// <returns>A DataTable with the selected values.</returns>
 		/// <exception cref="System.Exception">If an error occurs while trying read from the database.</exception>
-		public DataTable select<T>(Tables _tableName, T _columnName, string filterValue)
+		public DataTable select<TableColumn>(Tables _tableName, TableColumn _columnName, string filterValue)
 		{
 			string tableName = enumToString<Tables>(_tableName);
-			string columnName = enumToString<T>(_columnName);
+			string columnName = enumToString<TableColumn>(_columnName);
 
 			string filterExpression = columnName + " = '" + filterValue + "'";
 			DataTable _table = new DataTable();
 			try
 			{
-				OpenDatabase();
+				openDatabase();
 				_command.CommandText = "Select * From " + tableName + " where " + filterExpression;
 
 				SqlDataAdapter sda = new SqlDataAdapter(_command.CommandText, _connection);
 				sda.Fill(_table);
 
-				CloseDatabase();
+				closeDatabase();
 			}
 			catch (Exception ex)
 			{
-				throw new Exception(DATABASE_EXCEPTION, ex);
+				throw new Exception(DATABASE_SELECTING_ALL_EXCEPTION, ex);
 			}
 			return _table;
 		}
 		// Insertion function adding new users to the database yet not updating the database
-		public void InsertNewUser(string username, string password, string email_address, int permission_level)
-		{
-
-			OpenDatabase();
-
-			//Here is two ways to insert the new user into the database command, the commented line on line 140 is the other method
-			_command.Parameters.AddWithValue("@Username", username);
-			_command.Parameters.AddWithValue("@Password", password);
-			_command.Parameters.AddWithValue("@Email", email_address);
-			_command.Parameters.AddWithValue("@PermissionLevel", permission_level);
-			string _insertion_command = "Insert into Users (Username,Password,Email,PermissionLevel) values (@Username,@Password,@Email,@PermissionLevel)";
-
-			//string _insertion_command = "Insert into Users (Username,Password,Email) values ('"+username+ "','" + password + "','" + email_address + "')";
-
-			_command.CommandText = _insertion_command;
-			//Determine if the command was succesfully executed or not 
-			try
-			{
-				Int32 rowsAffected = _command.ExecuteNonQuery();
-				Console.WriteLine("RowsAffected: {0}", rowsAffected);
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Failed to Insert into DB : " + ex.Message);
-			}
-
-			CloseDatabase();
-		}
 
 		public Int32 DeleteFromDatabase(string _table, string _condition)
 		{
-			OpenDatabase();
+			openDatabase();
 			//The Delete command goes as follow
 			string _deletion_cmd = "delete from " + _table + " where " + _condition;
 			Int32 rowsAffected = 0;
@@ -207,7 +153,7 @@ namespace Green_Enviro_App
 				MessageBox.Show("Failed to Delete into DB : " + ex.Message);
 			}
 
-			CloseDatabase();
+			closeDatabase();
 			return rowsAffected;
 		}
 
@@ -221,7 +167,7 @@ namespace Green_Enviro_App
 		/// </returns>
 		public Int32 insert(Tables _tableName, string[] _values)
 		{
-			OpenDatabase();
+			openDatabase();
 
 			string tableName = enumToString<Tables>(_tableName);
 			string tableColumns = getTableColumns(_tableName);
@@ -240,7 +186,7 @@ namespace Green_Enviro_App
 				throw new Exception(DATABASE_INSERTION_EXCEPTION, ex);
 			}
 
-			CloseDatabase();
+			closeDatabase();
 			return rowsAffected;
 		}
 
@@ -253,7 +199,7 @@ namespace Green_Enviro_App
 		/// <param name="identifier">The identifier value.</param>
 		/// <param name="values">The values to be updated in the table.</param>
 		/// <returns>Int32 value representing how many table rows were updated.</returns>
-		public Int32 updateDatabase<TableColumn>(Tables _tableName, 
+		public Int32 update<TableColumn>(Tables _tableName, 
 			TableColumn[] columns, TableColumn _identifierColumn, string identifier, string[] values)
 		{
 			string tableName = enumToString<Tables>(_tableName);
@@ -267,10 +213,10 @@ namespace Green_Enviro_App
 
 			try
 			{
-				OpenDatabase();
+				openDatabase();
 				_command.CommandText = updateCommandText;
 				rowsAffected = _command.ExecuteNonQuery();
-				CloseDatabase();
+				closeDatabase();
 			}
 			catch (Exception ex)
 			{
@@ -279,6 +225,104 @@ namespace Green_Enviro_App
 
 			
 			return rowsAffected;
+		}
+
+		/// <summary>Converts the name of any enum field into a string.</summary>
+		/// <typeparam name="EnumType">The name of the enum class.</typeparam>
+		/// <param name="enumField">The enum field to be converted.</param>
+		/// <returns>A string representation of the enum field name.</returns>
+		public string enumToString<EnumType>(EnumType enumField) 
+		{
+			string enumName = enumField.ToString();
+			return enumName;
+		}
+
+		/// <summary>Creates a string representing columns of a database table.</summary>
+		/// <param name="_tableName">An enum type representing the name of the database table.</param>
+		/// <returns>A string with all the table column names separated by commas.</returns>
+		private string getTableColumns(Tables _tableName) 
+		{
+			string tableNames = "";
+
+			switch (_tableName) 
+			{
+				case Tables.Buyers:
+					tableNames = enumFieldsToString<BuyersTableColumns>();
+					break;
+				case Tables.Companies:
+					tableNames = enumFieldsToString<CompaniesTableColumns>();
+					break;
+				case Tables.Customers:
+					tableNames = enumFieldsToString<CustomersTableColumns>();
+					break;
+				case Tables.Employees:
+					tableNames = enumFieldsToString<EmployeesTableColumns>();
+					break;
+				case Tables.Items:
+					tableNames = enumFieldsToString<ItemsTableColumns>();
+					break;
+				case Tables.Stock:
+					tableNames = enumFieldsToString<StockTableColumns>();
+					break;
+				case Tables.Users:
+					tableNames = enumFieldsToString<UsersTableColumns>();
+					break;
+				default:
+					break;
+			}
+
+			return tableNames;
+		}
+
+		/// <summary>Function to generate a string containing all the fields of a given enum type.</summary>
+		/// <typeparam name="EnumType">The enum type.</typeparam>
+		/// <returns>A string representing all the fields of the enum seperated by commas.</returns>
+		private string enumFieldsToString<EnumType>() 
+		{
+			string[] values = Enum.GetNames(typeof(EnumType));
+			string stringValues = "";
+
+			foreach (string value in values)
+			{
+				stringValues = stringValues + "," + value;
+			}
+
+			//remove the first comma
+			stringValues = stringValues.Remove(0, 1);
+			return stringValues;
+		}
+
+		/// <summary>A function to convert an array of strings into one string seperated by commas.</summary>
+		/// <param name="values">The array of strings.</param>
+		/// <returns>A single string combining the arrary of strings seperated by commas.</returns>
+		private string formatValuesForInsertion(string[] values) 
+		{
+			string stringValues = "'";
+
+			foreach (string value in values) 
+			{
+				stringValues = stringValues + value + "','";
+			}
+			//Remove the last quotation and comma from the string.
+			stringValues = stringValues.Remove(stringValues.Length - 2,2);
+			return stringValues;
+		}
+
+		/// <summary>Fomarts the tables and values to be updated in the database so that they are in the query format.</summary>
+		/// <typeparam name="TableColumn">The type of the table column.</typeparam>
+		/// <param name="tableColumns">The table columns to be updated.</param>
+		/// <param name="values">The values to be used for updating the table.</param>
+		/// <returns>A string of table names and value pairs to be updated in the database table.</returns>
+		private string formatValuesForUpdating<TableColumn>(TableColumn[] tableColumns, string[] values) 
+		{
+			string columnValuePairs = "";
+			for (int index = 0; index < tableColumns.Length; index++) 
+			{
+				columnValuePairs = columnValuePairs + tableColumns[index] + " = '" + values[index] + "', ";
+			}
+			columnValuePairs = columnValuePairs.Remove(columnValuePairs.Length - 2, 2);
+
+			return columnValuePairs;
 		}
 
 		/// <summary>Enum class giving the names of all the tables in the database.</summary>
@@ -380,7 +424,6 @@ namespace Green_Enviro_App
 
 		/// <summary>An enum to give the column names of the Stock table.</summary>
 		public enum StockTableColumns { }
-
 		/// <summary>An enum to give the column names of the Users table.</summary>
 		public enum UsersTableColumns
 		{   /// <summary>The username</summary>
@@ -393,97 +436,5 @@ namespace Green_Enviro_App
 			PermissionLevel
 		}
 
-		/// <summary>Converts the name of any enum field into a string.</summary>
-		/// <typeparam name="T">The name of the enum class.</typeparam>
-		/// <param name="enumField">The enum field to be converted.</param>
-		/// <returns>A string representation of the enum field name.</returns>
-		public string enumToString<T>(T enumField) 
-		{
-			string enumName = enumField.ToString();
-			return enumName;
-		}
-
-		/// <summary>Creates a string representing columns of a database table.</summary>
-		/// <param name="_tableName">An enum type representing the name of the database table.</param>
-		/// <returns>A string with all the table column names separated by commas.</returns>
-		private string getTableColumns(Tables _tableName) 
-		{
-			string tableNames = "";
-
-			switch (_tableName) 
-			{
-				case Tables.Buyers:
-					tableNames = enumFieldsToString<BuyersTableColumns>();
-					break;
-				case Tables.Companies:
-					tableNames = enumFieldsToString<CompaniesTableColumns>();
-					break;
-				case Tables.Customers:
-					tableNames = enumFieldsToString<CustomersTableColumns>();
-					break;
-				case Tables.Employees:
-					tableNames = enumFieldsToString<EmployeesTableColumns>();
-					break;
-				case Tables.Items:
-					tableNames = enumFieldsToString<ItemsTableColumns>();
-					break;
-				case Tables.Stock:
-					tableNames = enumFieldsToString<StockTableColumns>();
-					break;
-				case Tables.Users:
-					tableNames = enumFieldsToString<UsersTableColumns>();
-					break;
-				default:
-					break;
-			}
-
-			return tableNames;
-		}
-
-		/// <summary>Function to generate a string containing all the fields of a given enum type.</summary>
-		/// <typeparam name="EnumType">The enum type.</typeparam>
-		/// <returns>A string representing all the fields of the enum seperated by commas.</returns>
-		private string enumFieldsToString<EnumType>() 
-		{
-			string[] values = Enum.GetNames(typeof(EnumType));
-			string stringValues = "";
-
-			foreach (string value in values)
-			{
-				stringValues = stringValues + "," + value;
-			}
-
-			//remove the first comma
-			stringValues = stringValues.Remove(0, 1);
-			return stringValues;
-		}
-
-		/// <summary>A function to convert an array of strings into one string seperated by commas.</summary>
-		/// <param name="values">The array of strings.</param>
-		/// <returns>A single string combining the arrary of strings seperated by commas.</returns>
-		private string formatValuesForInsertion(string[] values) 
-		{
-			string stringValues = "'";
-
-			foreach (string value in values) 
-			{
-				stringValues = stringValues + value + "','";
-			}
-			//Remove the last quotation and comma from the string.
-			stringValues = stringValues.Remove(stringValues.Length - 2,2);
-			return stringValues;
-		}
-
-		private string formatValuesForUpdating<TableColumn>(TableColumn[] tableColumns, string[] values) 
-		{
-			string columnValuePairs = "";
-			for (int index = 0; index < tableColumns.Length; index++) 
-			{
-				columnValuePairs = columnValuePairs + tableColumns[index] + " = '" + values[index] + "', ";
-			}
-			columnValuePairs = columnValuePairs.Remove(columnValuePairs.Length - 2, 2);
-
-			return columnValuePairs;
-		}
 	}
 }

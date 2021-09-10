@@ -204,21 +204,24 @@ namespace Green_Enviro_App
         {
             //Encrypting the password and storing not the password itself but its encryption using a 196 bit cipher key
             InformationEncryption __encryption = new InformationEncryption();
-            string _encrypted_user_password = __encryption.Encrypt(newPasswordField.Text);
-            int _permission_level_selected = 0;
+            string encryptedPassword = __encryption.Encrypt(newPasswordField.Text);
+            int userPermissionLevel = 0;
+            string userName = newUserNameField.Text;
+            string userEmail = emailAddressField.Text;
 
             if (userPermissionLvlBx.SelectedItem != null)
             {
-                 _permission_level_selected = int.Parse(userPermissionLvlBx.SelectedItem.ToString());
+                userPermissionLevel = int.Parse(userPermissionLvlBx.SelectedItem.ToString());
             }
             else return;
 
-                // Alright here we will add the code so that we insert into the DB once we enter a new user
-                // To add a new user its the same principle as adding a row 
-                _database.InsertNewUser(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text,_permission_level_selected);// Do not know if the list requires permission lvl
+            // Alright here we will add the code so that we insert into the DB once we enter a new user
+            // To add a new user its the same principle as adding a row 
+            string[] values = { userName, encryptedPassword, userEmail, userPermissionLevel.ToString() };
+                _database.insert(Database.Tables.Users, values);// Do not know if the list requires permission lvl
 
             // This is still the original list storage way to keep track of new users
-            Credentials _new_user = new Credentials(newUserNameField.Text, _encrypted_user_password, emailAddressField.Text, _permission_level_selected);
+            Credentials _new_user = new Credentials(newUserNameField.Text, encryptedPassword, emailAddressField.Text, userPermissionLevel);
             _credentials.Add(_new_user);
         }
         /*

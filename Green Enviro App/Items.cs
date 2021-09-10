@@ -73,7 +73,7 @@ namespace Green_Enviro_App
 
 				Database.ItemsTableColumns[] columnsToUpdate = {Database.ItemsTableColumns.Price, Database.ItemsTableColumns.DealerPrice };
 				Database.ItemsTableColumns tableIdentifier = Database.ItemsTableColumns.Name;
-				Int32 rowsAffected = _database.updateDatabase<Database.ItemsTableColumns>(
+				Int32 rowsAffected = _database.update<Database.ItemsTableColumns>(
 					Database.Tables.Items, columnsToUpdate, tableIdentifier, identifier, values);
 
 				if (rowsAffected == 1)

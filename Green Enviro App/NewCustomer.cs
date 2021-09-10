@@ -269,7 +269,7 @@ namespace Green_Enviro_App
 			string identifier = customerNumber;
 			string[] values = {customerId, customerName, customerSurname, customerCell, customerAddress};
 			
-			Int32 rowsAffected = _database.updateDatabase<Database.CustomersTableColumns>(Database.Tables.Customers, 
+			Int32 rowsAffected = _database.update<Database.CustomersTableColumns>(Database.Tables.Customers, 
 				columnsToUpdate,identifierColumnName,identifier,values);
 
 			if (rowsAffected == 1)
