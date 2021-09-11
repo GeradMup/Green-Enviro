@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using TableCols = Green_Enviro_App.Database.ItemsTableColumns;
 namespace Green_Enviro_App
 {
 	public partial class Items : Form
@@ -178,11 +178,9 @@ namespace Green_Enviro_App
 		private void ItemsDeleteItemBtn_Click(object sender, EventArgs e)
 		{
 			int _current_row = PricesGridView.CurrentCell.RowIndex;
-			string _item_id = PricesGridView[0,_current_row].Value.ToString();
-			
-			string _deletion_condition = "Id = '" + _item_id + "'";
+			string itemId = PricesGridView[0,_current_row].Value.ToString();
 
-			Int32 _rows_affected = _database.DeleteFromDatabase("Items", _deletion_condition);
+			Int32 _rows_affected = _database.delete<TableCols>(Database.Tables.Items,TableCols.Id,itemId);
 			if (_rows_affected == 1) 
 			{
 				LoadItems();

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using TableCols = Green_Enviro_App.Database.CustomersTableColumns;
 namespace Green_Enviro_App
 {
 	public partial class Customers : Form
@@ -112,11 +112,9 @@ namespace Green_Enviro_App
 		private void CustomersDeleteBtn_Click(object sender, EventArgs e)
 		{
             int _current_row = CustomersDataGridView.CurrentCell.RowIndex;
-            string _customer_number = CustomersDataGridView[0, _current_row].Value.ToString();
+            string customerNumber = CustomersDataGridView[0, _current_row].Value.ToString();
 
-            string _deletion_condition = "CustomerNumber = '" + _customer_number + "'";
-
-            Int32 _rows_affected = _database.DeleteFromDatabase("Customers", _deletion_condition);
+            Int32 _rows_affected = _database.delete<TableCols>(Database.Tables.Customers, TableCols.CustomerNumber,customerNumber);
             if (_rows_affected == 1)
             {
                 LoadCustomersDataTable();

@@ -34,6 +34,10 @@ namespace Green_Enviro_App
 		const string DATABASE_SELECTING_ALL_EXCEPTION = "Database selecting all Exception!";
 		const string DATABASE_INSERTION_EXCEPTION = "Database insertion exception";
 		const string DATABASE_SELECTING_EXCEPTION = "Database selecting exception";
+		const string DATABASE_UPDATING_EXCEPTION = "Databse updating exception";
+		const string DATABASE_OPENING_EXCEPTION = "Database opening exception";
+		const string DATABASE_DELETING_EXCEPTION = "Database deleting exception";
+		
 		/// <summary>Initializes a new instance of the <see cref="Database" /> class.</summary>
 		public Database()
 		{
@@ -60,7 +64,7 @@ namespace Green_Enviro_App
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Failed To open database file: " + ex.Message);
+				throw new Exception(DATABASE_OPENING_EXCEPTION, ex);
 			}
 		}
 
@@ -89,7 +93,7 @@ namespace Green_Enviro_App
 			try
 			{
 				openDatabase();
-				_command.CommandText = "Select * From " + tableName;
+				_command.CommandText = "SELECT * FROM " + tableName;
 
 				SqlDataAdapter sda = new SqlDataAdapter(_command.CommandText, _connection);
 				sda.Fill(_table);
@@ -119,7 +123,7 @@ namespace Green_Enviro_App
 			try
 			{
 				openDatabase();
-				_command.CommandText = "Select * From " + tableName + " where " + filterExpression;
+				_command.CommandText = "SELECT * FROM " + tableName + " WHERE " + filterExpression;
 
 				SqlDataAdapter sda = new SqlDataAdapter(_command.CommandText, _connection);
 				sda.Fill(_table);
@@ -134,29 +138,32 @@ namespace Green_Enviro_App
 		}
 		// Insertion function adding new users to the database yet not updating the database
 
-		public Int32 DeleteFromDatabase(string _table, string _condition)
+		/// <summary>Deletes an entry in the database.</summary>
+		/// <typeparam name="TableColumn">The type of the table column.</typeparam>
+		/// <param name="_tableName">Name of the table to delete from.</param>
+		/// <param name="_identifierColumn">The identifier column.</param>
+		/// <param name="identifierValue">The indentifier value.</param>
+		/// <returns>Int32 value representing the numer of rows that were altered.</returns>
+		/// <exception cref="System.Exception">If something goes wrong while trying to delete.</exception>
+		public Int32 delete<TableColumn>(Tables _tableName, TableColumn _identifierColumn, string identifierValue)
 		{
-			openDatabase();
-			//The Delete command goes as follow
-			string _deletion_cmd = "delete from " + _table + " where " + _condition;
+			string tableName = enumToString<Tables>(_tableName);
+			string identifierColumn = enumToString<TableColumn>(_identifierColumn);
+			string _deletion_cmd = "DELETE FROM " + tableName + " WHERE " + identifierColumn + " = '" + identifierValue + "'";
 			Int32 rowsAffected = 0;
-			//Making the SQL command
-			_command.CommandText = _deletion_cmd;
-			//View if the changes where succesfully done on the console
 			try
 			{
+				openDatabase();
+				_command.CommandText = _deletion_cmd;
 				rowsAffected = _command.ExecuteNonQuery();
-				Console.WriteLine("RowsAffected: {0}", rowsAffected);
+				closeDatabase();
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Failed to Delete into DB : " + ex.Message);
+				throw new Exception(DATABASE_DELETING_EXCEPTION, ex);
 			}
-
-			closeDatabase();
 			return rowsAffected;
 		}
-
 
 		/// <summary>Adds a new entry into the database specified by the table name.</summary>
 		/// <typeparam name="T"></typeparam>
@@ -167,26 +174,29 @@ namespace Green_Enviro_App
 		/// </returns>
 		public Int32 insert(Tables _tableName, string[] _values)
 		{
-			openDatabase();
+			
 
 			string tableName = enumToString<Tables>(_tableName);
 			string tableColumns = getTableColumns(_tableName);
 			string values = formatValuesForInsertion(_values);
-			string insertionCmd = "insert into " + tableName + " (" + tableColumns + ") values (" + values + ")";
+			string insertionCmd = "INSERT INTO " + tableName + " (" + tableColumns + ") VALUES (" + values + ")";
 			//Making the SQL command
 
-			_command.CommandText = insertionCmd;
+			
 			Int32 rowsAffected;
 			try
 			{
+				openDatabase();
+				_command.CommandText = insertionCmd;
 				rowsAffected = _command.ExecuteNonQuery();
+				closeDatabase();
 			}
 			catch (Exception ex)
 			{
 				throw new Exception(DATABASE_INSERTION_EXCEPTION, ex);
 			}
 
-			closeDatabase();
+			
 			return rowsAffected;
 		}
 
@@ -206,8 +216,8 @@ namespace Green_Enviro_App
 			string identifierColumn = enumToString<TableColumn>(_identifierColumn);
 			string columnValuePairs = formatValuesForUpdating<TableColumn>(columns, values);
 
-			string updateCommandText = "UPDATE " + tableName + " set " + columnValuePairs +
-				" where " + identifierColumn + " = '" + identifier + "'";
+			string updateCommandText = "UPDATE " + tableName + " SET " + columnValuePairs +
+				" WHERE " + identifierColumn + " = '" + identifier + "'";
 
 			Int32 rowsAffected = 0;
 
@@ -220,7 +230,7 @@ namespace Green_Enviro_App
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Failed to Insert into DB : " + ex.Message);
+				throw new Exception(DATABASE_UPDATING_EXCEPTION, ex);
 			}
 
 			
@@ -410,7 +420,10 @@ namespace Green_Enviro_App
 
 		/// <summary>An enum to give the column names of the Items table.</summary>
 		public enum ItemsTableColumns
-		{   /// <summary>The name of the item</summary>
+		{
+			/// <summary>The item identifier</summary>
+			Id,
+			/// <summary>The name of the item</summary>
 			Name,
 			/// <summary>The price of the item</summary>
 			Price,
@@ -426,7 +439,10 @@ namespace Green_Enviro_App
 		public enum StockTableColumns { }
 		/// <summary>An enum to give the column names of the Users table.</summary>
 		public enum UsersTableColumns
-		{   /// <summary>The username</summary>
+		{
+			/// <summary>The account identifier</summary>
+			AccountId,
+			/// <summary>The username</summary>
 			UserName,
 			/// <summary>The password. Note that passwords will be encrypted when storing them.</summary>
 			Password,

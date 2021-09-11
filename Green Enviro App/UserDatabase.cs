@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
+using TableCols = Green_Enviro_App.Database.UsersTableColumns;
 
 namespace Green_Enviro_App
 {
@@ -139,8 +139,9 @@ namespace Green_Enviro_App
                 d = MessageBox.Show("Do you really want to delete this account from the system?", "User Account Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (d == DialogResult.Yes)
                 {
-                    _database.DeleteFromDatabase(_db_table, _deletion_information);
-                    userTableDataGridView.Rows.RemoveAt(_deleted_row_index);
+                    string userAccountId = accountIdList.SelectedItem.ToString();
+                    _database.delete<TableCols>(Database.Tables.Users, TableCols.AccountId, userAccountId);
+                    //userTableDataGridView.Rows.RemoveAt(_deleted_row_index);
                     ClearUserDBFields();
                     MessageBox.Show("Account succesfully deleted");
                     LoadUserDataTable();
