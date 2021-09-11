@@ -19,6 +19,7 @@ namespace Green_Enviro_App
 		private const string VEHICLE_REG_NOT_INSERTED_ERROR = "Please insert the vehicle registration!";
 		private const string VECHICLE_TYPE_NOT_SELECTED_ERROR = "Please select the vehicle type";
 		private const string DRIVER_CELL_NOT_INSERTED_ERROR = "Please inserted the driver's contact details";
+		private const string DELIVERY_NOTE_GENERATED_SUCCESSFULLY = "Your delivery note has been successfully generated!";
 
 		private const string BUCKY = "BUCKY";
 		private const string BIN_TRUCK = "BIN TRUCK";
@@ -142,6 +143,7 @@ namespace Green_Enviro_App
 				string path = _deliveryNotesModel.generateDeliveryNote(companyName, collectorInfo);
 				clearCollectorFields();
 				displayDeliveryNote(path);
+				reportSuccess(DELIVERY_NOTE_GENERATED_SUCCESSFULLY);
 			}
 			catch (Exception ex) 
 			{
@@ -176,13 +178,6 @@ namespace Green_Enviro_App
 		{
 			DeliveryNotesList.SelectedItem = null;
 			DeliveryNotesMonths.SelectedItem = null;
-		}
-
-		/// <summary>Displays an error textbox with the given error message.</summary>
-		/// <param name="errorMessage">The error message.</param>
-		private void reportError(string errorMessage) 
-		{
-			new CustomMessageBox(this,CustomMessageBox.error,errorMessage);
 		}
 
 		private void DeliveryNotesList_SelectedIndexChanged(object sender, EventArgs e)

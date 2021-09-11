@@ -2301,6 +2301,7 @@ namespace Green_Enviro_App
 			this.dstrctCertCompanyField.Name = "dstrctCertCompanyField";
 			this.dstrctCertCompanyField.Size = new System.Drawing.Size(539, 31);
 			this.dstrctCertCompanyField.TabIndex = 42;
+			this.dstrctCertCompanyField.SelectedIndexChanged += new System.EventHandler(this.dstrctCertCompanyField_SelectedIndexChanged);
 			// 
 			// dstrctCertQuantityNumBox
 			// 

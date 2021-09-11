@@ -27,6 +27,7 @@ namespace Green_Enviro_App
          */
         Main_Form _main_form;
         Database _database;
+        FileHandles fileHandles;
         DataTable companiesDataTable;
         bool _is_company_selected = false;
         bool is_company_exist = false;
@@ -34,20 +35,24 @@ namespace Green_Enviro_App
 
         const string DESTRUCTION_CERTIFICATE_EXCEPTION = "DESTRUCTION CERTIFICATE EXCEPTION";
         const string DUPLICATE_COMPANY_EXCEPTION = "The company you have entered already exists!";
-        public DestructionCertificatesModel(Main_Form _form,Database _db)
+        public DestructionCertificatesModel(Main_Form _form,Database _db, FileHandles fh)
         {
             _main_form = _form;
             _database = _db;
-            companiesDataTable = _database.selectAll(Database.Tables.Companies);
-            //Obtaining the present time so as to always make sure the dates are accurate at run time
-            _main_form.dstrctCertExtractionDate.Value = DateTime.Now;
+            fileHandles = fh;
+            loadCompanies();
+            setupDestructionCertificates();
+        }
+        private void setupDestructionCertificates() 
+        {
+            string path = Constants.DESTRUCTION_CERTIFICATES_BASE_PATH + @"\" + Constants.CURRENT_MONTH_AND_YEAR + @"\";
+            fileHandles.createFolder(path);
         }
         /* Function defining the structure of the Destruction PDF with the 
          * save path
          */
-        private void generatePdf(string _pdf_save_path)
+        private void generatePdf(string _pdf_save_path, DestructionCertificateInfo certificateInfo)
         {
-
             try
             {
                 // Pdf Document type and size
@@ -98,7 +103,8 @@ namespace Green_Enviro_App
 
                 //----------------------------------------------------------------------------------------------------------
                 //Using the Tuple for the Unit
-                var _quantity_unit = GetQuantity();
+    
+               
 
                 //-----------------------------------------------------------------------------------------------------------
                 //Content of the pdf in strings
@@ -106,13 +112,13 @@ namespace Green_Enviro_App
                 //-----------------------------------------------------------------------------------------------------------
                 //Exception for extraction date
 
-                string extraction_date = GenerateExtractionDate();
-                string _company_for_certificate = _main_form.dstrctCertCompanyField.Text;
-                string _contact_person_of_certificate = _main_form.dstrctCertCntactPersonField.Text;
-                string _contact_person_number_of_certificate = _main_form.dstrctCertCntactNumField.Text;
-                string _contact_person_email_for_certificate = _main_form.dstrctCertEmailAddressField.Text;
-                string _description_of_product_for_certificate = _main_form.dstrctCertDescripOfProdField.Text;
-                string _product_quantity = _quantity_unit.Item1 + " kg ( " + _quantity_unit.Item2 + " PALLETS )"; //_main_form.dstrctCertQuantityNumBox.Text;
+                string extraction_date = formatExtractionDate(certificateInfo.extractionDate);
+                string _company_for_certificate = certificateInfo.companyName;
+                string _contact_person_of_certificate = certificateInfo.contactPerson;
+                string _contact_person_number_of_certificate = certificateInfo.contactNumber;
+                string _contact_person_email_for_certificate = certificateInfo.emailAddress;
+                string _description_of_product_for_certificate = certificateInfo.productDescription;
+                string _product_quantity = getQuantities(certificateInfo.productQuantity, certificateInfo.selectedUnits);
 
                 //----------------------------------------------------------------------------------------------------------------
                 //Constant paragraphs of the destruction certificate
@@ -222,68 +228,68 @@ namespace Green_Enviro_App
             if (destructionCertificateInfo.newCompany)
             {
                 AddNewCompanyToDatabase(destructionCertificateInfo);
-                
+                loadCompanies();
             }
 
-            generatePdf(_store_path_of_pdf);
+            string dcStoragePath = generateSavePath(destructionCertificateInfo.companyName);
+            try
+            {
+                generatePdf(dcStoragePath, destructionCertificateInfo);
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception(DESTRUCTION_CERTIFICATE_EXCEPTION, ex);
+            }
+            
      
         }
-
-        /* Function that acts with the behaviour of the New Company
-         * checkbox on the Destruction Certificate tab. It enables you
-         * to verify if a new company needs is entered and if so place it into the
-         * database.
-         */
-
-        // Function that verifies if the SI Unit is selected and providing a conversion
-        // From Kg to Pallets and Pallets to Kg. NB: the conversion of
-        // Pallets and Kg is not a concrete fact its from given information.
-        private Tuple<string,string,bool> GetQuantity()
+        private string generateSavePath(string companyName)
         {
-            string _value_in_kg = "";
-            string _value_in_pallets = "";
-            double _quantity_of_product = Convert.ToDouble(_main_form.dstrctCertQuantityNumBox.Value);
-            bool _is_quantity_selected = false;
+            string basePath = Constants.DESTRUCTION_CERTIFICATES_BASE_PATH;
+            string month = Constants.CURRENT_MONTH_AND_YEAR;
+            string date = Constants.DATE;
+            string fileName = companyName + " " + date;
+            string fileExtension = Constants.PDF_EXTENSION;
 
-
-            if (_main_form.dstrctCertQuantityUnit.SelectedItem.ToString() == "PALLETS")
-            {
-                double _conversion = 0;
-                _conversion = _quantity_of_product * 60;
-                _value_in_pallets = _main_form.dstrctCertQuantityNumBox.Value.ToString();
-                _value_in_kg = _conversion.ToString();
-                _is_quantity_selected = true;
-
-            }
-            else if (_main_form.dstrctCertQuantityUnit.SelectedItem.ToString() == "Kg")
-            {
-                double _conversion = 0;
-                if (_quantity_of_product > 60)
-                {
-                    _conversion = _quantity_of_product / 60;
-                    _value_in_kg = _main_form.dstrctCertQuantityNumBox.Value.ToString();
-                    _value_in_pallets = _conversion.ToString();
-                }
-                else
-                {
-                    _value_in_kg = _main_form.dstrctCertQuantityNumBox.Value.ToString();
-                    _value_in_pallets = _conversion.ToString();
-                }
-                _is_quantity_selected = true;
-            }
-            else _is_quantity_selected = false;
-
-            var _quantity = new Tuple<string, string,bool>(_value_in_kg, _value_in_pallets,_is_quantity_selected);
-            return _quantity;
+            string filePath = Generics.generateSavePath(basePath, month, fileName, fileExtension);
+            return filePath;
         }
 
-        /* Selecting the Companies table from our Database and loading
-         * it to the the main page at run time. All information is seen
-         * at the Company list combobox and will continuously be updated per 
-         * changes done to the database.
-         */
 
-        private void loadCompanies() 
+        /// <summary>Gets the quantities of the products entered in their respective quantities.</summary>
+        /// <param name="quantity">The quantity.</param>
+        /// <param name="units">The units.</param>
+        /// <returns>A string containing the quanities of the products in kg's and in pallets.</returns>
+        private string getQuantities(decimal quantity, QuantityUnits units)
+        {
+            string quantityInKg = "";
+            string quantityInPallets = "";
+            const decimal palletsToKgFactor = 60;
+            decimal convertedQuantity = Constants.DECIMAL_ZERO;
+
+            switch (units) 
+            {
+                case QuantityUnits.PALLETS:
+                    quantityInPallets = quantity.ToString();
+                    convertedQuantity = Decimal.Round(quantity * palletsToKgFactor, 2);
+                    quantityInKg = convertedQuantity.ToString();
+                    break;
+                case QuantityUnits.KG:
+                    quantityInKg = quantity.ToString();
+                    convertedQuantity = Decimal.Round(quantity/palletsToKgFactor , 2);
+                    quantityInPallets = convertedQuantity.ToString();
+                    break;
+                case QuantityUnits.Select:
+                default:
+                    break;
+            }
+
+            string quanties = quantityInKg + " KG ( " + quantityInPallets + " PALLETS )"; 
+            return quanties;
+        }
+
+		/// <summary>Loads the companies from the database.</summary>
+		private void loadCompanies() 
         {
             companiesDataTable = _database.selectAll(Database.Tables.Companies);
             int companyNameColumn = 1;
@@ -293,58 +299,38 @@ namespace Green_Enviro_App
                 companyNameList.Add(row[companyNameColumn].ToString());
             }
         }
-        public List<string> getCompanies()
+
+		/// <summary>Gets the companies names.</summary>
+		/// <returns>A list of strings containing the company names.</returns>
+		public List<string> getCompanies()
         {
-            //List<string> companyNameList = new List<string>();
-            //int companiyNameColumn = 1;
-
-            //_main_form.dstrctCertCompanyField.Items.Clear();
-
-            
+            return companyNameList;   
         }
 
-        /* Function acting with the Company Combobox, verifying if a company is selected 
-         * and providing all the required information of the company selected.
-         */
-        public void Company_Selected()
+		/// <summary>Gets the company information given the company name.</summary>
+		/// <param name="companyName">Name of the company name.</param>
+		/// <returns>A CompanyInfo object with the information. Info includes the name, contact person, contact number, email address and physical address</returns>
+        public Generics.CompanyInfo getCompanyInfo(string companyName) 
         {
-            //If no company selected do nothing
-            if (_main_form.dstrctCertCompanyField.Text == "")
-            {
-                _main_form.dstrctCertCntactPersonField.Text = "";
-                _main_form.dstrctCertCntactNumField.Text = "";
-                _main_form.dstrctCertEmailAddressField.Text = "";
-                _is_company_selected = false;
-                return;
-            }
+            DataTable companyDetails = _database.select<Database.CompaniesTableColumns>(Database.Tables.Companies,
+                                        Database.CompaniesTableColumns.Name, companyName);
 
-            //Verifies if the New Company checkbox is not selected and in that case provides
-            //all the relevant information with regards to the company selected
-            if (_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Unchecked) 
-            {
-                string _company_selected = _main_form.dstrctCertCompanyField.Text;
-                string _company_information = "Name = '" + _company_selected + "'";
-                companiesDataTable = _database.selectAll(Database.Tables.Companies);
-                DataView _dataview = companiesDataTable.DefaultView;
-                DataRow[] _row = companiesDataTable.Select(_company_information);
+            int nameColumn = 1;
+            int contactPersonColumn = 2;
+            int emailColumn = 3;
+            int contactNumbersColumn = 4;
+            int addressColumn = 5;
+            int onlyRow = 0;
 
-                int index = 0;
+            Generics.CompanyInfo companyInfo = new Generics.CompanyInfo();
+            companyInfo.companyName = companyDetails.Rows[onlyRow][nameColumn].ToString();
+            companyInfo.contactPerson = companyDetails.Rows[onlyRow][contactPersonColumn].ToString();
+            companyInfo.emailAddress = companyDetails.Rows[onlyRow][emailColumn].ToString();
+            companyInfo.contactNumber = companyDetails.Rows[onlyRow][contactNumbersColumn].ToString();
+            companyInfo.physicalAddress = companyDetails.Rows[onlyRow][addressColumn].ToString();
 
-                string _company_contact_person = _row[index].Field<string>("ContactPerson");
-                string _company_email = _row[index].Field<string>("Email");
-                string _company_contact_number = _row[index].Field<string>("ContactNumbers");
-
-                _main_form.dstrctCertCntactPersonField.Text = _company_contact_person;
-                _main_form.dstrctCertCntactNumField.Text = _company_contact_number;
-                _main_form.dstrctCertEmailAddressField.Text = _company_email;
-            }
-
-            _is_company_selected = true;
-            is_company_exist = true;
+            return companyInfo;
         }
-        /// <summary>
-        /// Function clearing the company details when the new company checkbox is checked
-        /// </summary>
 
 		/// <summary>Adds the new company to database.</summary>
 		/// <param name="destructionCertificateInfo">The destruction certificate information.</param>
@@ -353,7 +339,7 @@ namespace Green_Enviro_App
 		private void AddNewCompanyToDatabase(DestructionCertificateInfo destructionCertificateInfo)
         {
             //Throw an exception if the user tries to insert a company that already exists.
-            if (_company_list.Contains(destructionCertificateInfo.companyName)) { throw new CompanyAlreadyExistsException(); }
+            if (companyNameList.Contains(destructionCertificateInfo.companyName)) { throw new CompanyAlreadyExistsException(); }
 
             string companyName = destructionCertificateInfo.companyName;
             string contactPerson = destructionCertificateInfo.contactPerson;
@@ -371,36 +357,29 @@ namespace Green_Enviro_App
                 throw new Exception(exception.Message);
             }
         }
-        
-        /* 
-         * Function to verify the day of the date and to construct the correct sentence
-         * for the destruction certificate.
-         */
-        private string GenerateExtractionDate ()
+
+		/// <summary>Formats the extraction date so that the days have ordinals.</summary>
+		/// <param name="extractionDate">The extraction date.</param>
+		/// <returns>A string representing the extraction date.</returns>
+		private string formatExtractionDate (DateTime extractionDate)
         {
-            string _extraction_date = "";
-            string _extraction_day = _main_form.dstrctCertExtractionDate.Value.ToString("dd");
-            string _extraction_month = _main_form.dstrctCertExtractionDate.Value.ToString("MMMM");
-            string _extraction_year = _main_form.dstrctCertExtractionDate.Value.ToString("yyyy");
 
-            if (_extraction_day == "1" || _extraction_day == "31" || _extraction_day == "21")
-            {
-                _extraction_date = _extraction_day + "st of " + _extraction_month + " " + _extraction_year;
-            }
-            else if (_extraction_day == "2" || _extraction_day == "22")
-            {
-                _extraction_date = _extraction_day + "nd of " + _extraction_month + " " + _extraction_year;
-            }
-            else if (_extraction_day == "3" || _extraction_day == "23")
-            {
-                _extraction_date = _extraction_day + "rd of " + _extraction_month + " " + _extraction_year;
-            }
-            else
-            {
-                _extraction_date = _extraction_day + "th of " + _extraction_month + " " + _extraction_year;
-            }
+            string extractionDay = extractionDate.ToString("dd");
+            string extractionMonth = extractionDate.ToString("MMMM");
+            string extractionYear = extractionDate.ToString("yyyy");
+            string daySuffix = "";
 
-            return _extraction_date;
+            if (extractionDay.ToString().EndsWith("11")) daySuffix = "th of";
+            else if (extractionDay.ToString().EndsWith("12")) daySuffix = "th of";
+            else if (extractionDay.ToString().EndsWith("13")) daySuffix = "th of";
+            else if (extractionDay.ToString().EndsWith("1")) daySuffix = "st of";
+            else if (extractionDay.ToString().EndsWith("2")) daySuffix = "nd of";
+            else if (extractionDay.ToString().EndsWith("3")) daySuffix = "rd of";
+            else daySuffix = "th of";
+
+            string formatedDate = extractionDay + daySuffix + " " + extractionMonth + " " + extractionYear;
+           
+            return formatedDate;
         }
 
 		/// <summary>Class to describe all the destruction cerificate fields.</summary>
@@ -410,19 +389,19 @@ namespace Green_Enviro_App
 			/// <summary>Initializes a new instance of the <see cref="DestructionCertificateInfo" /> class.</summary>
 			public DestructionCertificateInfo() 
             {
-                extractionDate = "";
+                extractionDate = DateTime.Now;
                 companyName = "";
                 contactPerson = "";
                 contactNumber = "";
                 emailAddress = "";
                 productDescription = "";
-                productQuantity = "";
-                quantityUnit = "";
+                productQuantity = Constants.DECIMAL_ZERO;
                 newCompany = false;
+                selectedUnits = QuantityUnits.Select;
             }
 			/// <summary>Gets or sets the extraction date.</summary>
 			/// <value>The extraction date.</value>
-			public string extractionDate { set; get; }
+			public DateTime extractionDate { set; get; }
 
 			/// <summary>Gets or sets the name of the company.</summary>
 			/// <value>The name of the company.</value>
@@ -446,11 +425,7 @@ namespace Green_Enviro_App
 
 			/// <summary>Gets or sets the product quantity.</summary>
 			/// <value>The product quantity.</value>
-			public string productQuantity { set; get; }
-
-			/// <summary>Gets or sets the quantity unit.</summary>
-			/// <value>The quantity unit.</value>
-			public string quantityUnit { set; get; }
+			public decimal productQuantity { set; get; }
 
 			/// <summary>Gets or sets a value indicating whether [new company].</summary>
 			/// <value>
@@ -460,6 +435,10 @@ namespace Green_Enviro_App
 			/// <summary>Gets or sets the company address.</summary>
 			/// <value>The company address.</value>
 			public string companyAddress { set; get; }
+
+			/// <summary>Gets or sets the selected units of measurement.</summary>
+			/// <value>The selected units.</value>
+			public QuantityUnits selectedUnits { set; get; }
         }
 
 		/// <summary>Exception to throw if the user tries to insert a company that already exists</summary>
@@ -467,6 +446,14 @@ namespace Green_Enviro_App
 		public class CompanyAlreadyExistsException : Exception 
         {
             public CompanyAlreadyExistsException() : base(DUPLICATE_COMPANY_EXCEPTION) { }
+        }
+
+		/// <summary>An enum to list the units of measurement that can be used on the destruction certificate.</summary>
+		public enum QuantityUnits 
+        {
+            Select,
+            KG,
+            PALLETS
         }
     }
 }

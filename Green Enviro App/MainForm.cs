@@ -58,7 +58,7 @@ namespace Green_Enviro_App
             _sales = new Sales(this, _database, _fileHandles);
             _inventory = new Inventory(this);
             _receipt = new Receipt(this, _database, _purchases, _sales, _inventory);
-            _destructionCertificatesModel = new DestructionCertificatesModel(this,_database);
+            _destructionCertificatesModel = new DestructionCertificatesModel(this,_database, _fileHandles);
             _expenses = new Expenses(this, _database, _fileHandles);
             _wages = new Wages(this, _database, _fileHandles);
             _summaries = new Summaries(this);
@@ -569,5 +569,19 @@ namespace Green_Enviro_App
             _purchases.addToPRRequest();
 		}
 
-	}
+
+        /// <summary>Displays an error message box with the given error message.</summary>
+        /// <param name="message">The error message.</param>
+        private void reportError(string message)
+        {
+            new CustomMessageBox(this, CustomMessageBox.error, message);
+        }
+
+        /// <summary>Displays a succes message box with the given success message.</summary>
+        /// <param name="message">The error message.</param>
+        private void reportSuccess(string message) 
+        {
+            new CustomMessageBox(this, CustomMessageBox.success, message);
+        }
+    }
 }

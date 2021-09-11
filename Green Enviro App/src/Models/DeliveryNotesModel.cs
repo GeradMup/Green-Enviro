@@ -75,7 +75,7 @@ namespace Green_Enviro_App
 			graphic.DrawLine(XPens.Black, new XPoint(start_x, y), new XPoint(end_x, y));
 		}
 
-		private void insertCompanyInfo(CompanyInfo companyInfo) 
+		private void insertCompanyInfo(Generics.CompanyInfo companyInfo) 
 		{
 			double y_coordinate = 230;
 			
@@ -294,7 +294,7 @@ namespace Green_Enviro_App
 				DataTable companyData = database.select<Database.BuyersTableColumns>(Database.Tables.Buyers,
 										Database.BuyersTableColumns.Company, companyName);
 
-				CompanyInfo companyInfo = dataTableToCompanyInfo(companyData);
+				Generics.CompanyInfo companyInfo = dataTableToCompanyInfo(companyData);
 			
 				PdfDocument document = new PdfDocument();
 				PdfPage page = document.AddPage();
@@ -307,6 +307,8 @@ namespace Green_Enviro_App
 				insertDisclaimer();
 				insertColletorInfo(collectorInfo);
 				insertSignatureFields();
+
+				
 
 				pathToDeliveryNote = generateSavePath(companyInfo.companyName);
 				document.Save(pathToDeliveryNote);
@@ -324,23 +326,11 @@ namespace Green_Enviro_App
 			string basePath = Constants.DELIVERY_NOTES_BASE_PATH;
 			string month = Constants.CURRENT_MONTH_AND_YEAR;
 			string date = Constants.DATE;
-			string savePath = "";
-			
-			//savePath = basePath + @"\" + month + @"\" + companyName + @"\" + date + Constants.PDF_EXTENSION;
+			string fileName = companyName + " " + date;
+			string fileExtension = Constants.PDF_EXTENSION;
 
-			int maxDeliveries = 200;
-			string extraExtension = "";
-
-			for (int deliveryNumber = 0; deliveryNumber < maxDeliveries; deliveryNumber++) 
-			{
-				extraExtension = deliveryNumber.ToString();
-
-				savePath = basePath + @"\" + month + @"\" + companyName + @" " + date + @"_" + extraExtension + Constants.PDF_EXTENSION;
-
-				if (!File.Exists(savePath)) break;
-			}
-
-			return savePath;
+			string filePath = Generics.generateSavePath(basePath,month,fileName,fileExtension);
+			return filePath;
 		}
 
 		public List<string> getLogMonths() 
@@ -361,9 +351,9 @@ namespace Green_Enviro_App
 			return path;
 		}
 		
-		private CompanyInfo dataTableToCompanyInfo(DataTable table) 
+		private Generics.CompanyInfo dataTableToCompanyInfo(DataTable table) 
 		{
-			CompanyInfo info = new CompanyInfo();
+			Generics.CompanyInfo info = new Generics.CompanyInfo();
 			int onlyRow = 0;
 			int companyNameColumn = 1;
 			int addressColumn = 2;
@@ -419,30 +409,6 @@ namespace Green_Enviro_App
 			public string cellNumber { set; get; }
 			public string vehicleRegistration { set; get; }
 			public string vehicleType { set; get; }
-		}
-
-		internal class CompanyInfo 
-		{
-			public CompanyInfo(string _name = "Unknown", string _contactPerson = "Unknown", string _email = "Unknown",
-								string _contactNumber = "0000000000", string _physcalAddress = "Unknown") 
-			{
-				this.companyName = _name;
-				this.contactPerson = _contactPerson;
-				this.emailAddress = _email;
-				this.contactNumber = _contactNumber;
-				this.physicalAddress = _physcalAddress;
-			}
-
-			public string companyName { set; get; }
-
-			public string contactPerson { set; get; }
-
-			public string emailAddress { get; set; }
-
-			public string contactNumber { get; set; }
-
-			public string physicalAddress { get; set; }
-
 		}
 		
 		private enum LineColours

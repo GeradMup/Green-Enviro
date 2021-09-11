@@ -17,7 +17,7 @@ namespace Green_Enviro_App
 		/// <summary>The delivery notes base path</summary>
 		public static readonly string DELIVERY_NOTES_BASE_PATH;
 		/// <summary>The destruction certificates base path</summary>
-		public static readonly string DestructionCertificatesModelS_BASE_PATH;
+		public static readonly string DESTRUCTION_CERTIFICATES_BASE_PATH;
 		/// <summary>The expenses base path</summary>
 		public static readonly string EXPENSES_BASE_PATH;
 		/// <summary>The inventory base path</summary>
@@ -58,7 +58,7 @@ namespace Green_Enviro_App
 			PROJECT_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 			PURCHASES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Purchases\";
 			DELIVERY_NOTES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Delivery Notes\";
-			DestructionCertificatesModelS_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Destruction Certificates\";
+			DESTRUCTION_CERTIFICATES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Destruction Certificates\";
 			EXPENSES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Expenses\";
 			INVENTORY_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Inventory\";
 			PURCHASE_POLICE_REG_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Police Registers\Purchases\";
