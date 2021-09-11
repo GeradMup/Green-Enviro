@@ -192,9 +192,9 @@ namespace Green_Enviro_App
 			this.label48 = new System.Windows.Forms.Label();
 			this.label47 = new System.Windows.Forms.Label();
 			this.DestructionCertificates = new System.Windows.Forms.TabPage();
+			this.dstcrtNewCompanyCheckbox = new System.Windows.Forms.CheckBox();
 			this.SendDstrctCertEmailBtn = new System.Windows.Forms.Button();
 			this.dstrctCertExtractionDate = new System.Windows.Forms.DateTimePicker();
-			this.dstrctCertNewCompanyCheckBox = new System.Windows.Forms.CheckBox();
 			this.dstrctCertCompanyField = new System.Windows.Forms.ComboBox();
 			this.dstrctCertQuantityNumBox = new System.Windows.Forms.NumericUpDown();
 			this.dstrctCertQuantityUnit = new System.Windows.Forms.ComboBox();
@@ -2209,9 +2209,9 @@ namespace Green_Enviro_App
 			// 
 			// DestructionCertificates
 			// 
+			this.DestructionCertificates.Controls.Add(this.dstcrtNewCompanyCheckbox);
 			this.DestructionCertificates.Controls.Add(this.SendDstrctCertEmailBtn);
 			this.DestructionCertificates.Controls.Add(this.dstrctCertExtractionDate);
-			this.DestructionCertificates.Controls.Add(this.dstrctCertNewCompanyCheckBox);
 			this.DestructionCertificates.Controls.Add(this.dstrctCertCompanyField);
 			this.DestructionCertificates.Controls.Add(this.dstrctCertQuantityNumBox);
 			this.DestructionCertificates.Controls.Add(this.dstrctCertQuantityUnit);
@@ -2234,6 +2234,16 @@ namespace Green_Enviro_App
 			this.DestructionCertificates.TabIndex = 3;
 			this.DestructionCertificates.Text = "Destruction Certificate";
 			this.DestructionCertificates.UseVisualStyleBackColor = true;
+			// 
+			// dstcrtNewCompanyCheckbox
+			// 
+			this.dstcrtNewCompanyCheckbox.AutoSize = true;
+			this.dstcrtNewCompanyCheckbox.Location = new System.Drawing.Point(774, 125);
+			this.dstcrtNewCompanyCheckbox.Name = "dstcrtNewCompanyCheckbox";
+			this.dstcrtNewCompanyCheckbox.Size = new System.Drawing.Size(153, 27);
+			this.dstcrtNewCompanyCheckbox.TabIndex = 51;
+			this.dstcrtNewCompanyCheckbox.Text = "New Company";
+			this.dstcrtNewCompanyCheckbox.UseVisualStyleBackColor = true;
 			// 
 			// SendDstrctCertEmailBtn
 			// 
@@ -2260,18 +2270,6 @@ namespace Green_Enviro_App
 			this.dstrctCertExtractionDate.TabIndex = 49;
 			this.dstrctCertExtractionDate.TabStop = false;
 			this.dstrctCertExtractionDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
-			// 
-			// dstrctCertNewCompanyCheckBox
-			// 
-			this.dstrctCertNewCompanyCheckBox.AutoSize = true;
-			this.dstrctCertNewCompanyCheckBox.Location = new System.Drawing.Point(749, 123);
-			this.dstrctCertNewCompanyCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dstrctCertNewCompanyCheckBox.Name = "dstrctCertNewCompanyCheckBox";
-			this.dstrctCertNewCompanyCheckBox.Size = new System.Drawing.Size(153, 27);
-			this.dstrctCertNewCompanyCheckBox.TabIndex = 41;
-			this.dstrctCertNewCompanyCheckBox.Text = "New Company";
-			this.dstrctCertNewCompanyCheckBox.UseVisualStyleBackColor = true;
-			this.dstrctCertNewCompanyCheckBox.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
 			// 
 			// dstrctCertCompanyField
 			// 
@@ -3386,7 +3384,6 @@ namespace Green_Enviro_App
         private System.Windows.Forms.Label label46;
 		public System.Windows.Forms.ComboBox WagesEmployeeName;
 		public System.Windows.Forms.CheckBox PartTimeEmployeeCheckBox;
-        public System.Windows.Forms.CheckBox dstrctCertNewCompanyCheckBox;
         public System.Windows.Forms.NumericUpDown dstrctCertQuantityNumBox;
         public System.Windows.Forms.ComboBox dstrctCertQuantityUnit;
         public System.Windows.Forms.TextBox dstrctCertDescripOfProdField;
@@ -3496,5 +3493,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Panel DeliveryNoteDisplayPanel;
 		private System.Windows.Forms.Button DeliveryNoteCancel;
 		private System.Windows.Forms.Button DeliveryNotePrint;
+		private System.Windows.Forms.CheckBox dstcrtNewCompanyCheckbox;
 	}
 }

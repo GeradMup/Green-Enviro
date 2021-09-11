@@ -37,7 +37,6 @@ namespace Green_Enviro_App
         {
             _main_form = _form;
             _database = _db;
-            QuantityOfProducts();
             loadCompanies();
             //Obtaining the present time so as to always make sure the dates are accurate at run time
             _main_form.dstrctCertExtractionDate.Value = DateTime.Now;
@@ -45,7 +44,7 @@ namespace Green_Enviro_App
         /* Function defining the structure of the Destruction PDF with the 
          * save path
          */
-        private void GenerateDestructionCertificate(string _pdf_save_path)
+        private void generatePdf(string _pdf_save_path)
         {
 
             try
@@ -218,17 +217,7 @@ namespace Green_Enviro_App
          * generated
          */
         public void generateCertificate()
-        {
-            //Tuple that contains the valididty of the Destruction Certificate
-            var _generate_DC = verifyGenerateDestructionCertificate();
-            MessageBoxButtons _buttons;
-            MessageBoxIcon _icon;
-
-            string _message = _generate_DC.Item3;
-            string _title = _generate_DC.Item2;
-            string _store_path_of_pdf = _generate_DC.Item4;
-            bool _company_exist_in_database = _generate_DC.Item5;
-            _buttons = MessageBoxButtons.OK;
+        { 
             //If true make the certificate if not explain why it cannot be generated
             if (_generate_DC.Item1)
             {
@@ -239,7 +228,7 @@ namespace Green_Enviro_App
                     loadCompanies();
                 }
 
-                GenerateDestructionCertificate(_store_path_of_pdf);
+                generatePdf(_store_path_of_pdf);
                 ClearDCFields();
                 _icon = MessageBoxIcon.None;
                 CustomMessageBox msg = new CustomMessageBox(_main_form, _title, _message);
@@ -250,92 +239,6 @@ namespace Green_Enviro_App
                 MessageBox.Show(_message, _title, _buttons, _icon);
             }
 
-        }
-
-        // Function verifying the validity of all information inputted
-        private Tuple<bool, string, string,string,bool> verifyGenerateDestructionCertificate()
-        {
-            string _error = "Error!";
-            string _success = "Success!";
-            string _empty_txtbox = "";
-            string _message_type = "";
-            string _message = "";
-            string _company = _main_form.dstrctCertCompanyField.Text;
-            string _certificate_date = DateTime.Now.ToString("dd_MMMM_yyyy");
-            string _save_pdf_path = @"..//..//resources//Logs//Destruction Certificates//" + _company + "_" + _certificate_date + ".pdf";
-            bool _all_good = false;
-            bool _is_company_exist_in_db = false;       //This should not be done here
-            var _quantity_unit_selected = GetQuantity();
-
-            if (_main_form.dstrctCertExtractionDate.Checked == false)
-            {
-                _message_type = _error;
-                _message = "Extraction Date has not been selected";
-                _all_good = false;
-            }
-            else if (_is_company_selected == false)
-            {
-                _message_type = _error;
-                _message = "Company not selected";
-                _all_good = false;
-            }
-            else if (_main_form.dstrctCertCompanyField.Text == _empty_txtbox)
-            {
-                _message_type = _error;
-                _message = "No company selected or new company entered";
-                _all_good = false;
-            }
-            else if (_main_form.dstrctCertCntactPersonField.Text == _empty_txtbox)
-            {
-                _message_type = _error;
-                _message = "Contact Person not entered";
-                _all_good = false;
-            }
-            else if (_main_form.dstrctCertCntactNumField.Text == _empty_txtbox)
-            {
-                _message_type = _error;
-                _message = "Contact number not entered";
-                _all_good = false;
-            }
-            else if (_main_form.dstrctCertEmailAddressField.Text == _empty_txtbox)
-            {
-                _message_type = _error;
-                _message = "Email Address not entered";
-                _all_good = false;
-            }
-            else if (_main_form.dstrctCertDescripOfProdField.Text == _empty_txtbox)
-            {
-                _message_type = _error;
-                _message = "No product has been entered";
-                _all_good = false;
-            }
-            else if (_main_form.dstrctCertQuantityNumBox.Text == "0.000")
-            {
-                _message_type = _error;
-                _message = "Quantity not entered";
-                _all_good = false;
-            }
-            else if(_quantity_unit_selected.Item3 == false)
-            {
-                _message_type = _error;
-                _message = "Unit for the Quantity were not selected";
-                _all_good = false;
-            }
-            else if (System.IO.File.Exists(_save_pdf_path))
-            {
-                _message_type = _error;
-                _message = "PDF with similar company name already exists";
-                _all_good = false;
-            }
-            else
-            {
-                _message_type = _success;
-                _message = "Destruction Certificate has been successfully generated";
-                _all_good = true;
-            }
-
-            Tuple<bool, string, string,string,bool> _new_tuple = new Tuple<bool, string, string,string,bool>(_all_good, _message_type, _message,_save_pdf_path,_is_company_exist_in_db);
-            return _new_tuple;
         }
 
         /* Function that clears all the textboxs */
@@ -360,7 +263,7 @@ namespace Green_Enviro_App
          */
         public void FieldSettings() 
         {
-            if (_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Checked)
+            if (_main_form.dstcrtNewCompanyCheckbox.CheckState == CheckState.Checked)
             {
                 _main_form.dstrctCertCntactPersonField.ReadOnly = false;
                 _main_form.dstrctCertCntactNumField.ReadOnly = false;
@@ -378,15 +281,6 @@ namespace Green_Enviro_App
                 _main_form.dstrctCertEmailAddressField.ReadOnly = true;
                 is_company_exist = true;
             }
-        }
-
-        // SI Units for the quantity amounts provided selected by the user 
-        private void QuantityOfProducts()
-        {
-            _main_form.dstrctCertQuantityUnit.Items.Insert(0, "Select");
-            _main_form.dstrctCertQuantityUnit.Items.Insert(1,"PALLETS");
-            _main_form.dstrctCertQuantityUnit.Items.Insert(2,"Kg");
-            _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
         }
 
         // Function that verifies if the SI Unit is selected and providing a conversion

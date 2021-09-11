@@ -14,7 +14,7 @@ namespace Green_Enviro_App
 		
 		private const string ITEM_NOT_SELECTED_ERROR = "Please select an Item from the Items list!";
 		private const string QUANTITY_NOT_INSERTED_ERROR = "Please insert the quantity!";
-		private const string COMPANY_NOT_SELECTED_ERROR = "Please select the name of the company!";
+		private const string DELIVERY_COMPANY_NOT_SELECTED_ERROR = "Please select the name of the company!";
 		private const string DRIVER_NOT_INSERTED_ERROR = "Please insert the name of the driver!";
 		private const string VEHICLE_REG_NOT_INSERTED_ERROR = "Please insert the vehicle registration!";
 		private const string VECHICLE_TYPE_NOT_SELECTED_ERROR = "Please select the vehicle type";
@@ -123,7 +123,7 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void DeliveryNoteGenerate_Click(object sender, EventArgs e)
 		{
-			if (DeliveryCompaniesList.SelectedItem == null) { reportError(COMPANY_NOT_SELECTED_ERROR); return; }
+			if (DeliveryCompaniesList.SelectedItem == null) { reportError(DELIVERY_COMPANY_NOT_SELECTED_ERROR); return; }
 			if (DeliveryDriverName.Text == Constants.EMPTY_TEXT) { reportError(DRIVER_NOT_INSERTED_ERROR); return; }
 			if (DeliveryDriverCell.Text == Constants.EMPTY_TEXT) { reportError(DRIVER_CELL_NOT_INSERTED_ERROR); return; }
 			if (DeliveryVehicleReg.Text == Constants.EMPTY_TEXT) { reportError(VEHICLE_REG_NOT_INSERTED_ERROR); return; }

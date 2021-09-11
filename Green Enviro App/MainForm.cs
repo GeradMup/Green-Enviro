@@ -70,6 +70,7 @@ namespace Green_Enviro_App
             this.Owner = loginForm;
 
             initialiseDeliveryNotesTab();
+            initializeDestructionCertificatesTab();
         }
 
 		/// <summary>
@@ -567,9 +568,6 @@ namespace Green_Enviro_App
             _purchases.addToPRRequest();
 		}
 
-		private void ReceiptDefaultCustomerCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
 
-		}
 	}
 }
