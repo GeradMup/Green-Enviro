@@ -27,17 +27,18 @@ namespace Green_Enviro_App
          */
         Main_Form _main_form;
         Database _database;
-        DataTable _company_dstrctCert;
+        DataTable companiesDataTable;
         bool _is_company_selected = false;
         bool is_company_exist = false;
-        List<string> _company_list = new List<string>();
+        List<string> companyNameList = new List<string>();
 
         const string DESTRUCTION_CERTIFICATE_EXCEPTION = "DESTRUCTION CERTIFICATE EXCEPTION";
+        const string DUPLICATE_COMPANY_EXCEPTION = "The company you have entered already exists!";
         public DestructionCertificatesModel(Main_Form _form,Database _db)
         {
             _main_form = _form;
             _database = _db;
-            loadCompanies();
+            companiesDataTable = _database.selectAll(Database.Tables.Companies);
             //Obtaining the present time so as to always make sure the dates are accurate at run time
             _main_form.dstrctCertExtractionDate.Value = DateTime.Now;
         }
@@ -216,44 +217,16 @@ namespace Green_Enviro_App
         /* Function that verifies if the PDF has all information and can be
          * generated
          */
-        public void generateCertificate()
+        public void generateCertificate(DestructionCertificateInfo destructionCertificateInfo)
         { 
-            //If true make the certificate if not explain why it cannot be generated
-            if (_generate_DC.Item1)
+            if (destructionCertificateInfo.newCompany)
             {
-
-                if ((_main_form.dstrctCertNewCompanyCheckBox.CheckState == CheckState.Checked) && (_company_list.Contains(_main_form.dstrctCertCompanyField.Text) == false))
-                {
-                    AddNewCompanyToDatabase();
-                    loadCompanies();
-                }
-
-                generatePdf(_store_path_of_pdf);
-                ClearDCFields();
-                _icon = MessageBoxIcon.None;
-                CustomMessageBox msg = new CustomMessageBox(_main_form, _title, _message);
-            }
-            else
-            {
-                _icon = MessageBoxIcon.Error;
-                MessageBox.Show(_message, _title, _buttons, _icon);
+                AddNewCompanyToDatabase(destructionCertificateInfo);
+                
             }
 
-        }
-
-        /* Function that clears all the textboxs */
-        public void ClearDCFields()
-        {
-            _main_form.dstrctCertExtractionDate.Value = DateTime.Now;
-            _main_form.dstrctCertNewCompanyCheckBox.CheckState = CheckState.Unchecked;
-            _main_form.dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDownList;
-            _main_form.dstrctCertCompanyField.SelectedItem = null;
-            _main_form.dstrctCertCntactPersonField.Clear();
-            _main_form.dstrctCertCntactNumField.Clear();
-            _main_form.dstrctCertEmailAddressField.Clear();
-            _main_form.dstrctCertDescripOfProdField.Clear();
-            _main_form.dstrctCertQuantityNumBox.ResetText();
-            _main_form.dstrctCertQuantityUnit.SelectedIndex = 0;
+            generatePdf(_store_path_of_pdf);
+     
         }
 
         /* Function that acts with the behaviour of the New Company
@@ -261,27 +234,6 @@ namespace Green_Enviro_App
          * to verify if a new company needs is entered and if so place it into the
          * database.
          */
-        public void FieldSettings() 
-        {
-            if (_main_form.dstcrtNewCompanyCheckbox.CheckState == CheckState.Checked)
-            {
-                _main_form.dstrctCertCntactPersonField.ReadOnly = false;
-                _main_form.dstrctCertCntactNumField.ReadOnly = false;
-                _main_form.dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDown;
-                _main_form.dstrctCertEmailAddressField.ReadOnly = false;
-                ClearCompanyDetails();
-                is_company_exist = false;
-
-            }
-            else
-            {
-                _main_form.dstrctCertCntactPersonField.ReadOnly = true;
-                _main_form.dstrctCertCntactNumField.ReadOnly = true;
-                _main_form.dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDownList;
-                _main_form.dstrctCertEmailAddressField.ReadOnly = true;
-                is_company_exist = true;
-            }
-        }
 
         // Function that verifies if the SI Unit is selected and providing a conversion
         // From Kg to Pallets and Pallets to Kg. NB: the conversion of
@@ -330,19 +282,25 @@ namespace Green_Enviro_App
          * at the Company list combobox and will continuously be updated per 
          * changes done to the database.
          */
-        private void loadCompanies()
+
+        private void loadCompanies() 
         {
-            _company_dstrctCert = _database.selectAll(Database.Tables.Companies);
-            int _companies_table_name_column = 1;
+            companiesDataTable = _database.selectAll(Database.Tables.Companies);
+            int companyNameColumn = 1;
 
-            _main_form.dstrctCertCompanyField.Items.Clear();
-
-            foreach (DataRow row in _company_dstrctCert.Rows)
+            foreach (DataRow row in companiesDataTable.Rows)
             {
-                //Adding the companies to the Company combobox of the Destruction Certificate
-                _main_form.dstrctCertCompanyField.Items.Add(row[_companies_table_name_column]);
-                _company_list.Add(row[_companies_table_name_column].ToString());
+                companyNameList.Add(row[companyNameColumn].ToString());
             }
+        }
+        public List<string> getCompanies()
+        {
+            //List<string> companyNameList = new List<string>();
+            //int companiyNameColumn = 1;
+
+            //_main_form.dstrctCertCompanyField.Items.Clear();
+
+            
         }
 
         /* Function acting with the Company Combobox, verifying if a company is selected 
@@ -366,9 +324,9 @@ namespace Green_Enviro_App
             {
                 string _company_selected = _main_form.dstrctCertCompanyField.Text;
                 string _company_information = "Name = '" + _company_selected + "'";
-                _company_dstrctCert = _database.selectAll(Database.Tables.Companies);
-                DataView _dataview = _company_dstrctCert.DefaultView;
-                DataRow[] _row = _company_dstrctCert.Select(_company_information);
+                companiesDataTable = _database.selectAll(Database.Tables.Companies);
+                DataView _dataview = companiesDataTable.DefaultView;
+                DataRow[] _row = companiesDataTable.Select(_company_information);
 
                 int index = 0;
 
@@ -387,26 +345,31 @@ namespace Green_Enviro_App
         /// <summary>
         /// Function clearing the company details when the new company checkbox is checked
         /// </summary>
-        private void ClearCompanyDetails()
-        {
-            _main_form.dstrctCertCompanyField.Text = "";
-            _main_form.dstrctCertCntactPersonField.Clear();
-            _main_form.dstrctCertCntactNumField.Clear();
-            _main_form.dstrctCertEmailAddressField.Clear();
-        }
 
-        /* Adding the new company to the database if the checkbox is unchecked
-         */
-        private void AddNewCompanyToDatabase()
+		/// <summary>Adds the new company to database.</summary>
+		/// <param name="destructionCertificateInfo">The destruction certificate information.</param>
+		/// <exception cref="Green_Enviro_App.DestructionCertificatesModel.CompanyAlreadyExistsException">If the company being added already exists.</exception>
+		/// <exception cref="System.Exception">If there is an error while trying to add the new company to the database.</exception>
+		private void AddNewCompanyToDatabase(DestructionCertificateInfo destructionCertificateInfo)
         {
-            string companyName = _main_form.dstrctCertCompanyField.Text;
-            string contactPerson = _main_form.dstrctCertCntactPersonField.Text;
-            string contactNumber = _main_form.dstrctCertCntactNumField.Text;
-            string email = _main_form.dstrctCertEmailAddressField.Text;
-            string address = "Unknown";
+            //Throw an exception if the user tries to insert a company that already exists.
+            if (_company_list.Contains(destructionCertificateInfo.companyName)) { throw new CompanyAlreadyExistsException(); }
+
+            string companyName = destructionCertificateInfo.companyName;
+            string contactPerson = destructionCertificateInfo.contactPerson;
+            string contactNumber = destructionCertificateInfo.contactNumber;
+            string email = destructionCertificateInfo.emailAddress;
+            string address = destructionCertificateInfo.companyAddress;
             string[] values = { companyName, contactPerson, email, contactNumber, address };
-            _database.insert(Database.Tables.Companies, values);
-            CustomMessageBox mb = new CustomMessageBox(_main_form, "Success!", "New Company inserted into the database");
+
+            try
+            {
+                _database.insert(Database.Tables.Companies, values);
+            }
+            catch (Exception exception) 
+            {
+                throw new Exception(exception.Message);
+            }
         }
         
         /* 
@@ -440,9 +403,70 @@ namespace Green_Enviro_App
             return _extraction_date;
         }
 
-        public void Reset() 
+		/// <summary>Class to describe all the destruction cerificate fields.</summary>
+		internal class DestructionCertificateInfo 
         {
-            ClearCompanyDetails();
+
+			/// <summary>Initializes a new instance of the <see cref="DestructionCertificateInfo" /> class.</summary>
+			public DestructionCertificateInfo() 
+            {
+                extractionDate = "";
+                companyName = "";
+                contactPerson = "";
+                contactNumber = "";
+                emailAddress = "";
+                productDescription = "";
+                productQuantity = "";
+                quantityUnit = "";
+                newCompany = false;
+            }
+			/// <summary>Gets or sets the extraction date.</summary>
+			/// <value>The extraction date.</value>
+			public string extractionDate { set; get; }
+
+			/// <summary>Gets or sets the name of the company.</summary>
+			/// <value>The name of the company.</value>
+			public string companyName { set; get; }
+
+			/// <summary>Gets or sets the contact person.</summary>
+			/// <value>The contact person.</value>
+			public string contactPerson { set; get; }
+
+			/// <summary>Gets or sets the contact number.</summary>
+			/// <value>The contact number.</value>
+			public string contactNumber { set; get; }
+
+			/// <summary>Gets or sets the email address.</summary>
+			/// <value>The email address.</value>
+			public string emailAddress { set; get; }
+
+			/// <summary>Gets or sets the product description.</summary>
+			/// <value>The product description.</value>
+			public string productDescription { set; get; }
+
+			/// <summary>Gets or sets the product quantity.</summary>
+			/// <value>The product quantity.</value>
+			public string productQuantity { set; get; }
+
+			/// <summary>Gets or sets the quantity unit.</summary>
+			/// <value>The quantity unit.</value>
+			public string quantityUnit { set; get; }
+
+			/// <summary>Gets or sets a value indicating whether [new company].</summary>
+			/// <value>
+			///   <c>true</c> if [new company]; otherwise, <c>false</c>.</value>
+			public bool newCompany { set; get; }
+
+			/// <summary>Gets or sets the company address.</summary>
+			/// <value>The company address.</value>
+			public string companyAddress { set; get; }
+        }
+
+		/// <summary>Exception to throw if the user tries to insert a company that already exists</summary>
+		/// <seealso cref="System.Exception" />
+		public class CompanyAlreadyExistsException : Exception 
+        {
+            public CompanyAlreadyExistsException() : base(DUPLICATE_COMPANY_EXCEPTION) { }
         }
     }
 }

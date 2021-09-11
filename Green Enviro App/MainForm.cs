@@ -437,8 +437,9 @@ namespace Green_Enviro_App
             _expenses.Reset();
             _wages.Reset();
             _summaries.Reset();
-            _destructionCertificatesModel.Reset();
-		}
+            resetDestructionCertificateFields();
+
+        }
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
 		{
@@ -567,7 +568,6 @@ namespace Green_Enviro_App
 		{
             _purchases.addToPRRequest();
 		}
-
 
 	}
 }
