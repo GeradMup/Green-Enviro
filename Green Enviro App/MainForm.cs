@@ -452,6 +452,7 @@ namespace Green_Enviro_App
             {
                 PermissionDenied();
                 mainTabControl.SelectedTab = _previous_tab_page;
+
             }
          }
 
