@@ -278,7 +278,7 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
 			
 			//Initialize the delivery notes tab control.
-			initialiazeDeliveryNotesViews(resources);
+			initialiaseDeliveryNotesViews(resources);
 			this.SuspendLayout();
 			// 
 			// mainTabControl

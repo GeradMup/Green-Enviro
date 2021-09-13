@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Green_Enviro_App
+﻿namespace Green_Enviro_App
 {
+
 	partial class Main_Form
 	{
 		//Declarations of all the form controls used on the delivery notes tab.
@@ -37,7 +32,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button DeliveryNoteCancel;
 		private System.Windows.Forms.Button DeliveryNotePrint;
 		System.ComponentModel.ComponentResourceManager resources;
-		private void initialiazeDeliveryNotesViews(System.ComponentModel.ComponentResourceManager rsrc)
+		private void initialiaseDeliveryNotesViews(System.ComponentModel.ComponentResourceManager rsrc)
 		{
 			resources = rsrc;
 			createDeliveryNotesControls();
