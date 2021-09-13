@@ -37,6 +37,7 @@ namespace Green_Enviro_App
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
+			this.DeliveryNote = new System.Windows.Forms.TabPage();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
 			this.purchaseOrSaleIndicator = new System.Windows.Forms.Label();
 			this.CustomerAddress = new System.Windows.Forms.TextBox();
@@ -2981,7 +2982,8 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.ComboBox SalesLogEndDate;
 		public System.Windows.Forms.ComboBox SalesLogStartDate;
         private System.Windows.Forms.TabPage DestructionCertificates;
-        private System.Windows.Forms.Button generateDstrCertBtn;
+		private System.Windows.Forms.TabPage DeliveryNote;
+		private System.Windows.Forms.Button generateDstrCertBtn;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;

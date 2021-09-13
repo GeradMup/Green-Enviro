@@ -9,7 +9,6 @@ namespace Green_Enviro_App
 	partial class Main_Form
 	{
 		//Declarations of all the form controls used on the delivery notes tab.
-		private System.Windows.Forms.TabPage DeliveryNote;
 		private System.Windows.Forms.ComboBox DeliveryItemsList;
 		private System.Windows.Forms.Label DeliveryItemsLabel;
 		private System.Windows.Forms.Button DeliveryAddItem;
@@ -328,9 +327,8 @@ namespace Green_Enviro_App
 			this.DeliveryNotesPrevLabel.TabIndex = 22;
 			this.DeliveryNotesPrevLabel.Text = "Previous Delivery Notes";
 		}
-		private void createDeliveryNotesControls() 
-		{
-			this.DeliveryNote = new System.Windows.Forms.TabPage();
+		private void createDeliveryNotesControls()
+		{ 
 			this.DeliveryNotePrint = new System.Windows.Forms.Button();
 			this.DeliveryNoteCancel = new System.Windows.Forms.Button();
 			this.DeliveryNoteDisplayPanel = new System.Windows.Forms.Panel();
