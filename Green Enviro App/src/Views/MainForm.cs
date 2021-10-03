@@ -32,6 +32,7 @@ namespace Green_Enviro_App
         Employees _employees;
         Purchases_PR _purchasesPR;
         FileHandles _fileHandles;
+        CSVHandles _csvHandles;
 
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
@@ -53,6 +54,7 @@ namespace Green_Enviro_App
             _login_form = loginForm;
             _database = _data;
             _fileHandles = new FileHandles();
+            _csvHandles = new CSVHandles();
             _purchasesPR = new Purchases_PR(this,_fileHandles);
             _purchases = new Purchases(this, _purchasesPR, _fileHandles);
             _email = new Email();
@@ -66,7 +68,7 @@ namespace Green_Enviro_App
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
             _deliveryNotesModel = new DeliveryNotesModel(_database, _fileHandles);
-            _summariesModel = new SummariesModel(_fileHandles);
+            _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;
@@ -382,9 +384,6 @@ namespace Green_Enviro_App
                 PermissionDenied();
             }
         }
-        // *******************************************************************************************************************
-        // SUMMARIES RELATED CALLS
-        // *******************************************************************************************************************
 
         // *******************************************************************************************************************
         // PRINTER RELATED CALLS

@@ -18,8 +18,8 @@ namespace Green_Enviro_App
 		string _non_ferrous = "Non-Ferrous";
 		Main_Form _main_form;
 
-		float _total_ferrous_purchases = 0;
-		float _total_non_ferrous_purchases = 0;
+		float totalFerrousPurchases = 0;
+		float totalNonFerrousPurchases = 0;
 		float _total_ferrous_sales = 0;
 		float _total_non_ferrous_sales = 0;
 		float _total_purchases = 0;
@@ -48,8 +48,8 @@ namespace Green_Enviro_App
 		{
 			ClearFields();
 
-			_main_form.SummariesFPurchasesBox.AppendText("\n  R " + _total_ferrous_purchases.ToString());
-			_main_form.SummariesNFPurchasesBox.AppendText("\n  R " + _total_non_ferrous_purchases.ToString());
+			_main_form.SummariesFPurchasesBox.AppendText("\n  R " + totalFerrousPurchases.ToString());
+			_main_form.SummariesNFPurchasesBox.AppendText("\n  R " + totalNonFerrousPurchases.ToString());
 			
 			_main_form.SummariesFSalesBox.AppendText("\n  R " + _total_ferrous_sales.ToString());
 			_main_form.SummariesNFSalesBox.AppendText("\n  R " + _total_non_ferrous_sales.ToString());

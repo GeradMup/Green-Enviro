@@ -98,6 +98,7 @@ namespace Green_Enviro_App
 			}
 			dataGridView.Refresh();
 		}
+		
 		/// <summary>
 		/// Deletes every entry in the CSV file at the given path where the starting substring matches the provide
 		/// starting substring
@@ -148,7 +149,7 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Reads contents of a csv file given the path. 
 		/// </summary>
-		/// <param name="_path_to_log_file">The path to log file.</param>
+		/// <param name="filePath">Path to the read file.</param>
 		/// <returns name="_data_table">A data table containing the contents of the csv file</returns>
 		public DataTable getCSVContents(string filePath) 
 		{
@@ -247,7 +248,5 @@ namespace Green_Enviro_App
 			return _dates;
 		}
 
-
-	
 	}
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +11,12 @@ namespace Green_Enviro_App
 	class SummariesModel
 	{
 		FileHandles fileHandles;
+		CSVHandles csvHandles;
 
-		public SummariesModel(FileHandles fh) 
+		public SummariesModel(FileHandles fh, CSVHandles ch) 
 		{
 			fileHandles = fh;
+			csvHandles = ch;
 		}
 
 		/// <summary>
@@ -25,55 +29,61 @@ namespace Green_Enviro_App
 			return fileHandles.getLogNames(FileHandles.LogType.Purchases);
 		}
 
-		public void calculateSummaries(string selectedMonth)
+		public Summaries getSummaries(string selectedMonth)
 		{
-			string _month = _main_form.SummariesMonthSelector.SelectedItem.ToString();
-			string _path_to_purchases_file = @"..//..//resources//Logs//Purchases//" + _month + ".csv";
-			string _path_to_sales_file = @"..//..//resources//Logs//Sales//" + _month + ".csv";
-			string _path_to_expenses_file = @"..//..//resources//Logs//Expenses//" + _month + ".csv";
-			string _path_to_wages_file = @"..//..//resources//Logs//Wages//" + _month + ".csv";
-			string _path_to_total_float = @"..//..//resources//Float//" + _month + "_total_float.csv";
+			//string _month = _main_form.SummariesMonthSelector.SelectedItem.ToString();
+			//string _path_to_purchases_file = @"..//..//resources//Logs//Purchases//" + _month + ".csv";
+			//string _path_to_sales_file = @"..//..//resources//Logs//Sales//" + _month + ".csv";
+			//string _path_to_expenses_file = @"..//..//resources//Logs//Expenses//" + _month + ".csv";
+			//string _path_to_wages_file = @"..//..//resources//Logs//Wages//" + _month + ".csv";
+			//string _path_to_total_float = @"..//..//resources//Float//" + _month + "_total_float.csv";
 
 			//Read all the lines		
 
 			//Starting with the purchases
-			Purchases(_path_to_purchases_file);
-			Sales(_path_to_sales_file);
-			Wages(_path_to_wages_file);
-			Expenses(_path_to_expenses_file);
-			Float(_path_to_total_float);
-			Profit();
-			Display();
+			Purchases purchaseSummary = purchases(selectedMonth);
+
+			System.Windows.Forms.MessageBox.Show(purchaseSummary.totalPurchases.ToString());
+			System.Windows.Forms.MessageBox.Show(purchaseSummary.totalFerrousPurchases.ToString());
+			System.Windows.Forms.MessageBox.Show(purchaseSummary.totalNonFerrousPurchases.ToString());
+			//Sales(selectedMonth);
+			//Wages(selectedMonth);
+			//Expenses(selectedMonth);
+			//Float(selectedMonth);
+			//Profit();
+			//Display();
+
+			return new Summaries();
 		}
 
-		private void Purchases(string _path_to_purchases_file)
+		private Purchases purchases(string month)
 		{
-			string[] _purchases_lines = System.IO.File.ReadAllLines(_path_to_purchases_file);
-			_total_ferrous_purchases = 0;
-			_total_non_ferrous_purchases = 0;
-			int _type_column = 9;
-			int _amount_column = 8;
+			string filePath = fileHandles.pathToLogs(FileHandles.LogType.Purchases, month);
+			DataTable purchases = csvHandles.getCSVContents(filePath);
+			double totalFerrousPurchases = 0;
+			double totalNonFerrousPurchases = 0;
+			double totalPurchases = 0;
+			int typeColumn = 9;
+			int amountColumn = 8;
 
-			if (_purchases_lines.Length > 0)
+			if ( purchases.Rows.Count > 0)
 			{
-				for (int _row = 1; _row < _purchases_lines.Length; _row++)
+				foreach (DataRow purchaseEntry in purchases.Rows)
 				{
-					//For each line, we want a list of the words on the line seperated by the comma
-					string[] dataWords = _purchases_lines[_row].Split(',');
-
-					if (dataWords[_type_column] == _ferrous)
+					if (purchaseEntry[typeColumn].ToString() == Constants.FERROUS)
 					{
-						_total_ferrous_purchases += float.Parse(dataWords[_amount_column], CultureInfo.InvariantCulture);
+						totalFerrousPurchases += double.Parse(purchaseEntry[amountColumn].ToString(), CultureInfo.InvariantCulture);
 					}
-					else if (dataWords[_type_column] == _non_ferrous)
+					else if (purchaseEntry[typeColumn].ToString() == Constants.NON_FERROUS)
 					{
-						_total_non_ferrous_purchases += float.Parse(dataWords[_amount_column], CultureInfo.InvariantCulture);
+						totalNonFerrousPurchases += double.Parse(purchaseEntry[amountColumn].ToString(), CultureInfo.InvariantCulture);
 					}
 				}
 			}
-			_total_purchases = _total_non_ferrous_purchases + _total_ferrous_purchases;
+			totalPurchases = totalNonFerrousPurchases + totalFerrousPurchases;
+			return new Purchases(totalPurchases, totalFerrousPurchases, totalNonFerrousPurchases);
 		}
-
+/*
 		private void Sales(string _path_to_sales_file)
 		{
 			string[] _sales_lines = System.IO.File.ReadAllLines(_path_to_sales_file);
@@ -146,8 +156,8 @@ namespace Green_Enviro_App
 
 		private void Profit()
 		{
-			_profit = _total_ferrous_sales + _total_non_ferrous_sales - _total_ferrous_purchases - _total_non_ferrous_purchases - _total_wages - _total_expenses;
-		}
+			_profit = _total_ferrous_sales + _total_non_ferrous_sales - totalFerrousPurchases - totalNonFerrousPurchases - _total_wages - _total_expenses;
+		}*/
 
 		internal class Summaries 
 		{
@@ -223,5 +233,18 @@ namespace Green_Enviro_App
 			public double totalProfit { set; get; }
 		}
 
+
+		internal class Purchases 
+		{
+			public Purchases(double _totalPurchases = 0, double _ferrousPurchases = 0, double _nonFerrousPurchases = 0) 
+			{
+				totalPurchases = _totalPurchases;
+				totalFerrousPurchases = _ferrousPurchases;
+				totalNonFerrousPurchases = _nonFerrousPurchases;
+			}
+			public double totalPurchases { get; set; }
+			public double totalFerrousPurchases { get; set; }
+			public double totalNonFerrousPurchases { get; set; }
+		}
 	}
 }

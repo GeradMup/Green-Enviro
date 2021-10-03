@@ -53,7 +53,6 @@ namespace Green_Enviro_App
 		/// <summary>Gets the sub folders in a given path</summary>
 		/// <param name="logType">The type of log whose sub folders are required.</param>
 		/// <returns>A list of all the file names in folder</returns>
-
 		public List<string> getLogNames(LogType logType)
 		{
 			List<DateTime> dates = new List<DateTime>();

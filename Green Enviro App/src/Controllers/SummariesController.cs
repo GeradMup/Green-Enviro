@@ -7,7 +7,10 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
-	using Summaries = SummariesModel.Summaries;
+	using SummariesInfo = SummariesModel.Summaries;
+	// *******************************************************************************************************************
+	// SUMMARIES RELATED CALLS
+	// *******************************************************************************************************************
 	public partial class Main_Form : Form
 	{
 		/// <summary>
@@ -27,9 +30,7 @@ namespace Green_Enviro_App
 			//Do nothing if no month is selected
 			if (SummariesMonths.SelectedItem == null) return;
 			string selectedMonth = SummariesMonths.SelectedItem.ToString();
-			Summaries summaries =_summariesModel.getSummaries(selectedMonth);
-
-
+			SummariesInfo summaries =_summariesModel.getSummaries(selectedMonth);
 		}
 	}
 }
