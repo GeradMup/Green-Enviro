@@ -29,8 +29,6 @@ namespace Green_Enviro_App
         Database _database;
         FileHandles fileHandles;
         DataTable companiesDataTable;
-        bool _is_company_selected = false;
-        bool is_company_exist = false;
         List<string> companyNameList = new List<string>();
 
         const string DESTRUCTION_CERTIFICATE_EXCEPTION = "DESTRUCTION CERTIFICATE EXCEPTION";
