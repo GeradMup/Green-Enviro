@@ -7,11 +7,28 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
+	using Summaries = SummariesModel.Summaries;
 	public partial class Main_Form : Form
 	{
+		/// <summary>
+		/// Intializes all the controls on the summaries tab.
+		/// </summary>
 		private void intializeSummariesTab() 
 		{
 			List<string> months = _summariesModel.getMonths();
+			//Pupulates the summaries months box with the available months.
+			SummariesMonths.Items.AddRange(months.Cast<object>().ToArray());
+
+	
+		}
+
+		private void SummariesMonthSelector_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			//Do nothing if no month is selected
+			if (SummariesMonths.SelectedItem == null) return;
+			string selectedMonth = SummariesMonths.SelectedItem.ToString();
+			Summaries summaries =_summariesModel.getSummaries(selectedMonth);
+
 
 		}
 	}

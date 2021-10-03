@@ -185,28 +185,28 @@ namespace Green_Enviro_App
 			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
 			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.Summaries = new System.Windows.Forms.TabPage();
-			this.label61 = new System.Windows.Forms.Label();
+			this.SummariesTotalFloatLabel = new System.Windows.Forms.Label();
 			this.SummariesTotalFloat = new System.Windows.Forms.RichTextBox();
-			this.label57 = new System.Windows.Forms.Label();
+			this.SummariesTotalSalesLabel = new System.Windows.Forms.Label();
 			this.SummariesTotalSales = new System.Windows.Forms.RichTextBox();
-			this.label56 = new System.Windows.Forms.Label();
+			this.SummariesTotalPurchasesLabel = new System.Windows.Forms.Label();
 			this.SummariesTotalPurchases = new System.Windows.Forms.RichTextBox();
-			this.label54 = new System.Windows.Forms.Label();
+			this.SummariesProfitLabel = new System.Windows.Forms.Label();
 			this.SummariesProfitBox = new System.Windows.Forms.RichTextBox();
-			this.label53 = new System.Windows.Forms.Label();
-			this.SummariesMonthSelector = new System.Windows.Forms.ComboBox();
+			this.SummariesMonthsLabel = new System.Windows.Forms.Label();
+			this.SummariesMonths = new System.Windows.Forms.ComboBox();
 			this.SummariesExpensesBox = new System.Windows.Forms.RichTextBox();
 			this.SummariesNFSalesBox = new System.Windows.Forms.RichTextBox();
 			this.SummariesFSalesBox = new System.Windows.Forms.RichTextBox();
 			this.SummariesWagesBox = new System.Windows.Forms.RichTextBox();
 			this.SummariesNFPurchasesBox = new System.Windows.Forms.RichTextBox();
 			this.SummariesFPurchasesBox = new System.Windows.Forms.RichTextBox();
-			this.label52 = new System.Windows.Forms.Label();
-			this.label51 = new System.Windows.Forms.Label();
-			this.label50 = new System.Windows.Forms.Label();
-			this.label49 = new System.Windows.Forms.Label();
-			this.label48 = new System.Windows.Forms.Label();
-			this.label47 = new System.Windows.Forms.Label();
+			this.SummariesExpensesLabel = new System.Windows.Forms.Label();
+			this.SummariesWagesLabel = new System.Windows.Forms.Label();
+			this.SummariesNFSalesLabel = new System.Windows.Forms.Label();
+			this.SummariesNFPurchasesLabel = new System.Windows.Forms.Label();
+			this.SummariesFSalesLabel = new System.Windows.Forms.Label();
+			this.SummariesFPurchasesLabel = new System.Windows.Forms.Label();
 			this.DestructionCertificates = new System.Windows.Forms.TabPage();
 			this.dstcrtCompanyAddress = new System.Windows.Forms.TextBox();
 			this.dstcrtCompanyAddressLabel = new System.Windows.Forms.Label();
@@ -2142,28 +2142,28 @@ namespace Green_Enviro_App
 			// 
 			// Summaries
 			// 
-			this.Summaries.Controls.Add(this.label61);
+			this.Summaries.Controls.Add(this.SummariesTotalFloatLabel);
 			this.Summaries.Controls.Add(this.SummariesTotalFloat);
-			this.Summaries.Controls.Add(this.label57);
+			this.Summaries.Controls.Add(this.SummariesTotalSalesLabel);
 			this.Summaries.Controls.Add(this.SummariesTotalSales);
-			this.Summaries.Controls.Add(this.label56);
+			this.Summaries.Controls.Add(this.SummariesTotalPurchasesLabel);
 			this.Summaries.Controls.Add(this.SummariesTotalPurchases);
-			this.Summaries.Controls.Add(this.label54);
+			this.Summaries.Controls.Add(this.SummariesProfitLabel);
 			this.Summaries.Controls.Add(this.SummariesProfitBox);
-			this.Summaries.Controls.Add(this.label53);
-			this.Summaries.Controls.Add(this.SummariesMonthSelector);
+			this.Summaries.Controls.Add(this.SummariesMonthsLabel);
+			this.Summaries.Controls.Add(this.SummariesMonths);
 			this.Summaries.Controls.Add(this.SummariesExpensesBox);
 			this.Summaries.Controls.Add(this.SummariesNFSalesBox);
 			this.Summaries.Controls.Add(this.SummariesFSalesBox);
 			this.Summaries.Controls.Add(this.SummariesWagesBox);
 			this.Summaries.Controls.Add(this.SummariesNFPurchasesBox);
 			this.Summaries.Controls.Add(this.SummariesFPurchasesBox);
-			this.Summaries.Controls.Add(this.label52);
-			this.Summaries.Controls.Add(this.label51);
-			this.Summaries.Controls.Add(this.label50);
-			this.Summaries.Controls.Add(this.label49);
-			this.Summaries.Controls.Add(this.label48);
-			this.Summaries.Controls.Add(this.label47);
+			this.Summaries.Controls.Add(this.SummariesExpensesLabel);
+			this.Summaries.Controls.Add(this.SummariesWagesLabel);
+			this.Summaries.Controls.Add(this.SummariesNFSalesLabel);
+			this.Summaries.Controls.Add(this.SummariesNFPurchasesLabel);
+			this.Summaries.Controls.Add(this.SummariesFSalesLabel);
+			this.Summaries.Controls.Add(this.SummariesFPurchasesLabel);
 			this.Summaries.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Summaries.Location = new System.Drawing.Point(4, 32);
 			this.Summaries.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2173,16 +2173,16 @@ namespace Green_Enviro_App
 			this.Summaries.Text = "Summaries";
 			this.Summaries.UseVisualStyleBackColor = true;
 			// 
-			// label61
+			// SummariesTotalFloatLabel
 			// 
-			this.label61.AutoSize = true;
-			this.label61.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label61.Location = new System.Drawing.Point(1349, 129);
-			this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label61.Name = "label61";
-			this.label61.Size = new System.Drawing.Size(155, 28);
-			this.label61.TabIndex = 21;
-			this.label61.Text = "Total Float";
+			this.SummariesTotalFloatLabel.AutoSize = true;
+			this.SummariesTotalFloatLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesTotalFloatLabel.Location = new System.Drawing.Point(1349, 129);
+			this.SummariesTotalFloatLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.SummariesTotalFloatLabel.Name = "SummariesTotalFloatLabel";
+			this.SummariesTotalFloatLabel.Size = new System.Drawing.Size(155, 28);
+			this.SummariesTotalFloatLabel.TabIndex = 21;
+			this.SummariesTotalFloatLabel.Text = "Total Float";
 			// 
 			// SummariesTotalFloat
 			// 
@@ -2195,16 +2195,16 @@ namespace Green_Enviro_App
 			this.SummariesTotalFloat.TabIndex = 20;
 			this.SummariesTotalFloat.Text = " ";
 			// 
-			// label57
+			// SummariesTotalSalesLabel
 			// 
-			this.label57.AutoSize = true;
-			this.label57.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label57.Location = new System.Drawing.Point(938, 379);
-			this.label57.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label57.Name = "label57";
-			this.label57.Size = new System.Drawing.Size(155, 28);
-			this.label57.TabIndex = 19;
-			this.label57.Text = "Total Sales";
+			this.SummariesTotalSalesLabel.AutoSize = true;
+			this.SummariesTotalSalesLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesTotalSalesLabel.Location = new System.Drawing.Point(938, 379);
+			this.SummariesTotalSalesLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.SummariesTotalSalesLabel.Name = "SummariesTotalSalesLabel";
+			this.SummariesTotalSalesLabel.Size = new System.Drawing.Size(155, 28);
+			this.SummariesTotalSalesLabel.TabIndex = 19;
+			this.SummariesTotalSalesLabel.Text = "Total Sales";
 			// 
 			// SummariesTotalSales
 			// 
@@ -2217,16 +2217,16 @@ namespace Green_Enviro_App
 			this.SummariesTotalSales.TabIndex = 18;
 			this.SummariesTotalSales.Text = "";
 			// 
-			// label56
+			// SummariesTotalPurchasesLabel
 			// 
-			this.label56.AutoSize = true;
-			this.label56.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label56.Location = new System.Drawing.Point(941, 129);
-			this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label56.Name = "label56";
-			this.label56.Size = new System.Drawing.Size(207, 28);
-			this.label56.TabIndex = 17;
-			this.label56.Text = "Total Purchases";
+			this.SummariesTotalPurchasesLabel.AutoSize = true;
+			this.SummariesTotalPurchasesLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesTotalPurchasesLabel.Location = new System.Drawing.Point(941, 129);
+			this.SummariesTotalPurchasesLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.SummariesTotalPurchasesLabel.Name = "SummariesTotalPurchasesLabel";
+			this.SummariesTotalPurchasesLabel.Size = new System.Drawing.Size(207, 28);
+			this.SummariesTotalPurchasesLabel.TabIndex = 17;
+			this.SummariesTotalPurchasesLabel.Text = "Total Purchases";
 			// 
 			// SummariesTotalPurchases
 			// 
@@ -2239,16 +2239,16 @@ namespace Green_Enviro_App
 			this.SummariesTotalPurchases.TabIndex = 16;
 			this.SummariesTotalPurchases.Text = " ";
 			// 
-			// label54
+			// SummariesProfitLabel
 			// 
-			this.label54.AutoSize = true;
-			this.label54.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label54.Location = new System.Drawing.Point(938, 633);
-			this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label54.Name = "label54";
-			this.label54.Size = new System.Drawing.Size(90, 28);
-			this.label54.TabIndex = 15;
-			this.label54.Text = "Profit";
+			this.SummariesProfitLabel.AutoSize = true;
+			this.SummariesProfitLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesProfitLabel.Location = new System.Drawing.Point(938, 633);
+			this.SummariesProfitLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.SummariesProfitLabel.Name = "SummariesProfitLabel";
+			this.SummariesProfitLabel.Size = new System.Drawing.Size(90, 28);
+			this.SummariesProfitLabel.TabIndex = 15;
+			this.SummariesProfitLabel.Text = "Profit";
 			// 
 			// SummariesProfitBox
 			// 
@@ -2261,25 +2261,25 @@ namespace Green_Enviro_App
 			this.SummariesProfitBox.TabIndex = 14;
 			this.SummariesProfitBox.Text = "";
 			// 
-			// label53
+			// SummariesMonthsLabel
 			// 
-			this.label53.AutoSize = true;
-			this.label53.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label53.Location = new System.Drawing.Point(66, 39);
-			this.label53.Name = "label53";
-			this.label53.Size = new System.Drawing.Size(168, 28);
-			this.label53.TabIndex = 13;
-			this.label53.Text = "Select Month";
+			this.SummariesMonthsLabel.AutoSize = true;
+			this.SummariesMonthsLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesMonthsLabel.Location = new System.Drawing.Point(66, 39);
+			this.SummariesMonthsLabel.Name = "SummariesMonthsLabel";
+			this.SummariesMonthsLabel.Size = new System.Drawing.Size(168, 28);
+			this.SummariesMonthsLabel.TabIndex = 13;
+			this.SummariesMonthsLabel.Text = "Select Month";
 			// 
-			// SummariesMonthSelector
+			// SummariesMonths
 			// 
-			this.SummariesMonthSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.SummariesMonthSelector.FormattingEnabled = true;
-			this.SummariesMonthSelector.Location = new System.Drawing.Point(70, 75);
-			this.SummariesMonthSelector.Name = "SummariesMonthSelector";
-			this.SummariesMonthSelector.Size = new System.Drawing.Size(346, 35);
-			this.SummariesMonthSelector.TabIndex = 12;
-			this.SummariesMonthSelector.SelectedIndexChanged += new System.EventHandler(this.SummariesMonthSelector_SelectedIndexChanged);
+			this.SummariesMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.SummariesMonths.FormattingEnabled = true;
+			this.SummariesMonths.Location = new System.Drawing.Point(70, 75);
+			this.SummariesMonths.Name = "SummariesMonths";
+			this.SummariesMonths.Size = new System.Drawing.Size(346, 35);
+			this.SummariesMonths.TabIndex = 12;
+			this.SummariesMonths.SelectedIndexChanged += new System.EventHandler(this.SummariesMonthSelector_SelectedIndexChanged);
 			// 
 			// SummariesExpensesBox
 			// 
@@ -2341,64 +2341,64 @@ namespace Green_Enviro_App
 			this.SummariesFPurchasesBox.TabIndex = 6;
 			this.SummariesFPurchasesBox.Text = "";
 			// 
-			// label52
+			// SummariesExpensesLabel
 			// 
-			this.label52.AutoSize = true;
-			this.label52.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label52.Location = new System.Drawing.Point(506, 627);
-			this.label52.Name = "label52";
-			this.label52.Size = new System.Drawing.Size(194, 28);
-			this.label52.TabIndex = 5;
-			this.label52.Text = "Total Expenses";
+			this.SummariesExpensesLabel.AutoSize = true;
+			this.SummariesExpensesLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesExpensesLabel.Location = new System.Drawing.Point(506, 627);
+			this.SummariesExpensesLabel.Name = "SummariesExpensesLabel";
+			this.SummariesExpensesLabel.Size = new System.Drawing.Size(194, 28);
+			this.SummariesExpensesLabel.TabIndex = 5;
+			this.SummariesExpensesLabel.Text = "Total Expenses";
 			// 
-			// label51
+			// SummariesWagesLabel
 			// 
-			this.label51.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label51.Location = new System.Drawing.Point(66, 627);
-			this.label51.Name = "label51";
-			this.label51.Size = new System.Drawing.Size(219, 34);
-			this.label51.TabIndex = 4;
-			this.label51.Text = "Total Wages";
+			this.SummariesWagesLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesWagesLabel.Location = new System.Drawing.Point(66, 627);
+			this.SummariesWagesLabel.Name = "SummariesWagesLabel";
+			this.SummariesWagesLabel.Size = new System.Drawing.Size(219, 34);
+			this.SummariesWagesLabel.TabIndex = 4;
+			this.SummariesWagesLabel.Text = "Total Wages";
 			// 
-			// label50
+			// SummariesNFSalesLabel
 			// 
-			this.label50.AutoSize = true;
-			this.label50.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label50.Location = new System.Drawing.Point(506, 379);
-			this.label50.Name = "label50";
-			this.label50.Size = new System.Drawing.Size(233, 28);
-			this.label50.TabIndex = 3;
-			this.label50.Text = "Non-Ferrous Sales";
+			this.SummariesNFSalesLabel.AutoSize = true;
+			this.SummariesNFSalesLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesNFSalesLabel.Location = new System.Drawing.Point(506, 379);
+			this.SummariesNFSalesLabel.Name = "SummariesNFSalesLabel";
+			this.SummariesNFSalesLabel.Size = new System.Drawing.Size(233, 28);
+			this.SummariesNFSalesLabel.TabIndex = 3;
+			this.SummariesNFSalesLabel.Text = "Non-Ferrous Sales";
 			// 
-			// label49
+			// SummariesNFPurchasesLabel
 			// 
-			this.label49.AutoSize = true;
-			this.label49.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label49.Location = new System.Drawing.Point(505, 134);
-			this.label49.Name = "label49";
-			this.label49.Size = new System.Drawing.Size(285, 28);
-			this.label49.TabIndex = 2;
-			this.label49.Text = "Non-Ferrous Purchases";
+			this.SummariesNFPurchasesLabel.AutoSize = true;
+			this.SummariesNFPurchasesLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesNFPurchasesLabel.Location = new System.Drawing.Point(505, 134);
+			this.SummariesNFPurchasesLabel.Name = "SummariesNFPurchasesLabel";
+			this.SummariesNFPurchasesLabel.Size = new System.Drawing.Size(285, 28);
+			this.SummariesNFPurchasesLabel.TabIndex = 2;
+			this.SummariesNFPurchasesLabel.Text = "Non-Ferrous Purchases";
 			// 
-			// label48
+			// SummariesFSalesLabel
 			// 
-			this.label48.AutoSize = true;
-			this.label48.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label48.Location = new System.Drawing.Point(66, 372);
-			this.label48.Name = "label48";
-			this.label48.Size = new System.Drawing.Size(181, 28);
-			this.label48.TabIndex = 1;
-			this.label48.Text = "Ferrous Sales";
+			this.SummariesFSalesLabel.AutoSize = true;
+			this.SummariesFSalesLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesFSalesLabel.Location = new System.Drawing.Point(66, 372);
+			this.SummariesFSalesLabel.Name = "SummariesFSalesLabel";
+			this.SummariesFSalesLabel.Size = new System.Drawing.Size(181, 28);
+			this.SummariesFSalesLabel.TabIndex = 1;
+			this.SummariesFSalesLabel.Text = "Ferrous Sales";
 			// 
-			// label47
+			// SummariesFPurchasesLabel
 			// 
-			this.label47.AutoSize = true;
-			this.label47.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label47.Location = new System.Drawing.Point(66, 134);
-			this.label47.Name = "label47";
-			this.label47.Size = new System.Drawing.Size(233, 28);
-			this.label47.TabIndex = 0;
-			this.label47.Text = "Ferrous Purchases";
+			this.SummariesFPurchasesLabel.AutoSize = true;
+			this.SummariesFPurchasesLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.SummariesFPurchasesLabel.Location = new System.Drawing.Point(66, 134);
+			this.SummariesFPurchasesLabel.Name = "SummariesFPurchasesLabel";
+			this.SummariesFPurchasesLabel.Size = new System.Drawing.Size(233, 28);
+			this.SummariesFPurchasesLabel.TabIndex = 0;
+			this.SummariesFPurchasesLabel.Text = "Ferrous Purchases";
 			// 
 			// DestructionCertificates
 			// 
@@ -3404,14 +3404,14 @@ namespace Green_Enviro_App
         private System.Windows.Forms.Label label46;
 		public System.Windows.Forms.ComboBox WagesEmployeeName;
 		public System.Windows.Forms.CheckBox PartTimeEmployeeCheckBox;
-		private System.Windows.Forms.Label label53;
-		private System.Windows.Forms.Label label52;
-		private System.Windows.Forms.Label label51;
-		private System.Windows.Forms.Label label50;
-		private System.Windows.Forms.Label label49;
-		private System.Windows.Forms.Label label48;
-		private System.Windows.Forms.Label label47;
-		private System.Windows.Forms.Label label54;
+		private System.Windows.Forms.Label SummariesMonthsLabel;
+		private System.Windows.Forms.Label SummariesExpensesLabel;
+		private System.Windows.Forms.Label SummariesWagesLabel;
+		private System.Windows.Forms.Label SummariesNFSalesLabel;
+		private System.Windows.Forms.Label SummariesNFPurchasesLabel;
+		private System.Windows.Forms.Label SummariesFSalesLabel;
+		private System.Windows.Forms.Label SummariesFPurchasesLabel;
+		private System.Windows.Forms.Label SummariesProfitLabel;
 		private System.Windows.Forms.Button EditCustomers;
 		public System.Windows.Forms.CheckBox ReceiptDefaultCustomerCheckBox;
 		private System.Windows.Forms.Button ReprintReceiptBtn;
@@ -3419,8 +3419,8 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label55;
 		public System.Windows.Forms.TextBox FloatBox;
         private System.Windows.Forms.Button SendDstrctCertEmailBtn;
-		private System.Windows.Forms.Label label57;
-		private System.Windows.Forms.Label label56;
+		private System.Windows.Forms.Label SummariesTotalSalesLabel;
+		private System.Windows.Forms.Label SummariesTotalPurchasesLabel;
 		public System.Windows.Forms.ComboBox ReceiptSaleOrPurchase;
 		private System.Windows.Forms.TabPage Inventory;
 		public System.Windows.Forms.ComboBox InventoryLogMonth;
@@ -3432,7 +3432,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button InventoryLogRmvFilterBtn;
 		private System.Windows.Forms.Button InventoryLogFilterBtn;
 		public System.Windows.Forms.DataGridView InventoryLogGridView;
-		private System.Windows.Forms.Label label61;
+		private System.Windows.Forms.Label SummariesTotalFloatLabel;
 		private System.Windows.Forms.Button NewEmployee;
 		private System.Windows.Forms.Button LogOutBtn;
 		public System.Windows.Forms.ComboBox InvetorySummedOrNot;
@@ -3505,7 +3505,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TextBox dstrctCertCntactPersonField;
 		private System.Windows.Forms.ComboBox dstrctCertCompanyField;
 		private System.Windows.Forms.DateTimePicker dstrctCertExtractionDate;
-		private System.Windows.Forms.ComboBox SummariesMonthSelector;
+		private System.Windows.Forms.ComboBox SummariesMonths;
 		private System.Windows.Forms.RichTextBox SummariesExpensesBox;
 		private System.Windows.Forms.RichTextBox SummariesFSalesBox;
 		private System.Windows.Forms.RichTextBox SummariesWagesBox;
