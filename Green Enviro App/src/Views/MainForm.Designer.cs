@@ -168,6 +168,22 @@ namespace Green_Enviro_App
 			this.label37 = new System.Windows.Forms.Label();
 			this.label38 = new System.Windows.Forms.Label();
 			this.label39 = new System.Windows.Forms.Label();
+			this.SalesPR = new System.Windows.Forms.TabPage();
+			this.salesPRDataGridView = new System.Windows.Forms.DataGridView();
+			this.PurchasesPR = new System.Windows.Forms.TabPage();
+			this.button6 = new System.Windows.Forms.Button();
+			this.PrintPRBtn = new System.Windows.Forms.Button();
+			this.RemovePRFiltersBtn = new System.Windows.Forms.Button();
+			this.FilterPRBtn = new System.Windows.Forms.Button();
+			this.label66 = new System.Windows.Forms.Label();
+			this.PurchasesPRMonth = new System.Windows.Forms.ComboBox();
+			this.label67 = new System.Windows.Forms.Label();
+			this.label68 = new System.Windows.Forms.Label();
+			this.label69 = new System.Windows.Forms.Label();
+			this.PurchasePRType = new System.Windows.Forms.ComboBox();
+			this.PurchasePREndDate = new System.Windows.Forms.ComboBox();
+			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
+			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.Summaries = new System.Windows.Forms.TabPage();
 			this.label61 = new System.Windows.Forms.Label();
 			this.SummariesTotalFloat = new System.Windows.Forms.RichTextBox();
@@ -212,22 +228,6 @@ namespace Green_Enviro_App
 			this.label23 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
-			this.SalesPR = new System.Windows.Forms.TabPage();
-			this.salesPRDataGridView = new System.Windows.Forms.DataGridView();
-			this.PurchasesPR = new System.Windows.Forms.TabPage();
-			this.button6 = new System.Windows.Forms.Button();
-			this.PrintPRBtn = new System.Windows.Forms.Button();
-			this.RemovePRFiltersBtn = new System.Windows.Forms.Button();
-			this.FilterPRBtn = new System.Windows.Forms.Button();
-			this.label66 = new System.Windows.Forms.Label();
-			this.PurchasesPRMonth = new System.Windows.Forms.ComboBox();
-			this.label67 = new System.Windows.Forms.Label();
-			this.label68 = new System.Windows.Forms.Label();
-			this.label69 = new System.Windows.Forms.Label();
-			this.PurchasePRType = new System.Windows.Forms.ComboBox();
-			this.PurchasePREndDate = new System.Windows.Forms.ComboBox();
-			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
-			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.DeliveryNote = new System.Windows.Forms.TabPage();
 			this.DeliveryNotePrint = new System.Windows.Forms.Button();
 			this.DeliveryNoteCancel = new System.Windows.Forms.Button();
@@ -296,13 +296,13 @@ namespace Green_Enviro_App
 			this.WagesNewEmployee.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).BeginInit();
-			this.Summaries.SuspendLayout();
-			this.DestructionCertificates.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
 			this.SalesPR.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).BeginInit();
 			this.PurchasesPR.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
+			this.Summaries.SuspendLayout();
+			this.DestructionCertificates.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).BeginInit();
 			this.DeliveryNote.SuspendLayout();
 			this.DeliveryNoteDisplayPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryNotePdfDisplay)).BeginInit();
@@ -1948,6 +1948,198 @@ namespace Green_Enviro_App
 			this.label39.TabIndex = 53;
 			this.label39.Text = "Date";
 			// 
+			// SalesPR
+			// 
+			this.SalesPR.Controls.Add(this.salesPRDataGridView);
+			this.SalesPR.Location = new System.Drawing.Point(4, 32);
+			this.SalesPR.Name = "SalesPR";
+			this.SalesPR.Size = new System.Drawing.Size(1724, 867);
+			this.SalesPR.TabIndex = 8;
+			this.SalesPR.Text = "Sales PR";
+			this.SalesPR.UseVisualStyleBackColor = true;
+			// 
+			// salesPRDataGridView
+			// 
+			this.salesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+			this.salesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.salesPRDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.salesPRDataGridView.Location = new System.Drawing.Point(3, 171);
+			this.salesPRDataGridView.Name = "salesPRDataGridView";
+			this.salesPRDataGridView.RowHeadersWidth = 51;
+			this.salesPRDataGridView.RowTemplate.Height = 24;
+			this.salesPRDataGridView.Size = new System.Drawing.Size(1713, 688);
+			this.salesPRDataGridView.TabIndex = 0;
+			// 
+			// PurchasesPR
+			// 
+			this.PurchasesPR.Controls.Add(this.button6);
+			this.PurchasesPR.Controls.Add(this.PrintPRBtn);
+			this.PurchasesPR.Controls.Add(this.RemovePRFiltersBtn);
+			this.PurchasesPR.Controls.Add(this.FilterPRBtn);
+			this.PurchasesPR.Controls.Add(this.label66);
+			this.PurchasesPR.Controls.Add(this.PurchasesPRMonth);
+			this.PurchasesPR.Controls.Add(this.label67);
+			this.PurchasesPR.Controls.Add(this.label68);
+			this.PurchasesPR.Controls.Add(this.label69);
+			this.PurchasesPR.Controls.Add(this.PurchasePRType);
+			this.PurchasesPR.Controls.Add(this.PurchasePREndDate);
+			this.PurchasesPR.Controls.Add(this.PurchasePRStartDate);
+			this.PurchasesPR.Controls.Add(this.PurchasesPRDataGridView);
+			this.PurchasesPR.Location = new System.Drawing.Point(4, 32);
+			this.PurchasesPR.Name = "PurchasesPR";
+			this.PurchasesPR.Size = new System.Drawing.Size(1724, 867);
+			this.PurchasesPR.TabIndex = 9;
+			this.PurchasesPR.Text = "Purchases PR";
+			this.PurchasesPR.UseVisualStyleBackColor = true;
+			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(1095, 110);
+			this.button6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(265, 57);
+			this.button6.TabIndex = 31;
+			this.button6.Text = "Print Register";
+			this.button6.UseVisualStyleBackColor = true;
+			// 
+			// PrintPRBtn
+			// 
+			this.PrintPRBtn.Location = new System.Drawing.Point(736, 110);
+			this.PrintPRBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PrintPRBtn.Name = "PrintPRBtn";
+			this.PrintPRBtn.Size = new System.Drawing.Size(265, 57);
+			this.PrintPRBtn.TabIndex = 30;
+			this.PrintPRBtn.Text = "Print Register";
+			this.PrintPRBtn.UseVisualStyleBackColor = true;
+			// 
+			// RemovePRFiltersBtn
+			// 
+			this.RemovePRFiltersBtn.Location = new System.Drawing.Point(371, 110);
+			this.RemovePRFiltersBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.RemovePRFiltersBtn.Name = "RemovePRFiltersBtn";
+			this.RemovePRFiltersBtn.Size = new System.Drawing.Size(297, 57);
+			this.RemovePRFiltersBtn.TabIndex = 29;
+			this.RemovePRFiltersBtn.Text = "Remove Filters";
+			this.RemovePRFiltersBtn.UseVisualStyleBackColor = true;
+			// 
+			// FilterPRBtn
+			// 
+			this.FilterPRBtn.Location = new System.Drawing.Point(36, 110);
+			this.FilterPRBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.FilterPRBtn.Name = "FilterPRBtn";
+			this.FilterPRBtn.Size = new System.Drawing.Size(265, 57);
+			this.FilterPRBtn.TabIndex = 28;
+			this.FilterPRBtn.Text = "Print Register";
+			this.FilterPRBtn.UseVisualStyleBackColor = true;
+			// 
+			// label66
+			// 
+			this.label66.AutoSize = true;
+			this.label66.Location = new System.Drawing.Point(31, 17);
+			this.label66.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label66.Name = "label66";
+			this.label66.Size = new System.Drawing.Size(65, 23);
+			this.label66.TabIndex = 27;
+			this.label66.Text = "Month";
+			// 
+			// PurchasesPRMonth
+			// 
+			this.PurchasesPRMonth.DropDownHeight = 300;
+			this.PurchasesPRMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasesPRMonth.FormattingEnabled = true;
+			this.PurchasesPRMonth.IntegralHeight = false;
+			this.PurchasesPRMonth.ItemHeight = 23;
+			this.PurchasesPRMonth.Location = new System.Drawing.Point(36, 49);
+			this.PurchasesPRMonth.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PurchasesPRMonth.Name = "PurchasesPRMonth";
+			this.PurchasesPRMonth.Size = new System.Drawing.Size(269, 31);
+			this.PurchasesPRMonth.TabIndex = 26;
+			this.PurchasesPRMonth.SelectedIndexChanged += new System.EventHandler(this.PurchasesPRMonth_SelectedIndexChanged);
+			// 
+			// label67
+			// 
+			this.label67.AutoSize = true;
+			this.label67.Location = new System.Drawing.Point(1091, 17);
+			this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label67.Name = "label67";
+			this.label67.Size = new System.Drawing.Size(54, 23);
+			this.label67.TabIndex = 25;
+			this.label67.Text = "Type";
+			// 
+			// label68
+			// 
+			this.label68.AutoSize = true;
+			this.label68.Location = new System.Drawing.Point(732, 17);
+			this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label68.Name = "label68";
+			this.label68.Size = new System.Drawing.Size(98, 23);
+			this.label68.TabIndex = 24;
+			this.label68.Text = "End Date";
+			// 
+			// label69
+			// 
+			this.label69.AutoSize = true;
+			this.label69.Location = new System.Drawing.Point(367, 17);
+			this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label69.Name = "label69";
+			this.label69.Size = new System.Drawing.Size(120, 23);
+			this.label69.TabIndex = 23;
+			this.label69.Text = "Start Date";
+			// 
+			// PurchasePRType
+			// 
+			this.PurchasePRType.DropDownHeight = 300;
+			this.PurchasePRType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasePRType.FormattingEnabled = true;
+			this.PurchasePRType.IntegralHeight = false;
+			this.PurchasePRType.ItemHeight = 23;
+			this.PurchasePRType.Location = new System.Drawing.Point(1095, 49);
+			this.PurchasePRType.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PurchasePRType.Name = "PurchasePRType";
+			this.PurchasePRType.Size = new System.Drawing.Size(269, 31);
+			this.PurchasePRType.TabIndex = 22;
+			// 
+			// PurchasePREndDate
+			// 
+			this.PurchasePREndDate.DropDownHeight = 300;
+			this.PurchasePREndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasePREndDate.FormattingEnabled = true;
+			this.PurchasePREndDate.IntegralHeight = false;
+			this.PurchasePREndDate.ItemHeight = 23;
+			this.PurchasePREndDate.Location = new System.Drawing.Point(736, 49);
+			this.PurchasePREndDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PurchasePREndDate.Name = "PurchasePREndDate";
+			this.PurchasePREndDate.Size = new System.Drawing.Size(289, 31);
+			this.PurchasePREndDate.TabIndex = 21;
+			// 
+			// PurchasePRStartDate
+			// 
+			this.PurchasePRStartDate.DropDownHeight = 300;
+			this.PurchasePRStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasePRStartDate.FormattingEnabled = true;
+			this.PurchasePRStartDate.IntegralHeight = false;
+			this.PurchasePRStartDate.ItemHeight = 23;
+			this.PurchasePRStartDate.Location = new System.Drawing.Point(371, 49);
+			this.PurchasePRStartDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+			this.PurchasePRStartDate.Name = "PurchasePRStartDate";
+			this.PurchasePRStartDate.Size = new System.Drawing.Size(297, 31);
+			this.PurchasePRStartDate.TabIndex = 20;
+			// 
+			// PurchasesPRDataGridView
+			// 
+			this.PurchasesPRDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.PurchasesPRDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.PurchasesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.PurchasesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.PurchasesPRDataGridView.Location = new System.Drawing.Point(36, 198);
+			this.PurchasesPRDataGridView.Name = "PurchasesPRDataGridView";
+			this.PurchasesPRDataGridView.RowHeadersWidth = 51;
+			this.PurchasesPRDataGridView.RowTemplate.Height = 24;
+			this.PurchasesPRDataGridView.Size = new System.Drawing.Size(1655, 661);
+			this.PurchasesPRDataGridView.TabIndex = 0;
+			// 
 			// Summaries
 			// 
 			this.Summaries.Controls.Add(this.label61);
@@ -2441,198 +2633,6 @@ namespace Green_Enviro_App
 			this.label21.TabIndex = 5;
 			this.label21.Text = "Quantity";
 			// 
-			// SalesPR
-			// 
-			this.SalesPR.Controls.Add(this.salesPRDataGridView);
-			this.SalesPR.Location = new System.Drawing.Point(4, 32);
-			this.SalesPR.Name = "SalesPR";
-			this.SalesPR.Size = new System.Drawing.Size(1724, 867);
-			this.SalesPR.TabIndex = 8;
-			this.SalesPR.Text = "Sales PR";
-			this.SalesPR.UseVisualStyleBackColor = true;
-			// 
-			// salesPRDataGridView
-			// 
-			this.salesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-			this.salesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.salesPRDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.salesPRDataGridView.Location = new System.Drawing.Point(3, 171);
-			this.salesPRDataGridView.Name = "salesPRDataGridView";
-			this.salesPRDataGridView.RowHeadersWidth = 51;
-			this.salesPRDataGridView.RowTemplate.Height = 24;
-			this.salesPRDataGridView.Size = new System.Drawing.Size(1713, 688);
-			this.salesPRDataGridView.TabIndex = 0;
-			// 
-			// PurchasesPR
-			// 
-			this.PurchasesPR.Controls.Add(this.button6);
-			this.PurchasesPR.Controls.Add(this.PrintPRBtn);
-			this.PurchasesPR.Controls.Add(this.RemovePRFiltersBtn);
-			this.PurchasesPR.Controls.Add(this.FilterPRBtn);
-			this.PurchasesPR.Controls.Add(this.label66);
-			this.PurchasesPR.Controls.Add(this.PurchasesPRMonth);
-			this.PurchasesPR.Controls.Add(this.label67);
-			this.PurchasesPR.Controls.Add(this.label68);
-			this.PurchasesPR.Controls.Add(this.label69);
-			this.PurchasesPR.Controls.Add(this.PurchasePRType);
-			this.PurchasesPR.Controls.Add(this.PurchasePREndDate);
-			this.PurchasesPR.Controls.Add(this.PurchasePRStartDate);
-			this.PurchasesPR.Controls.Add(this.PurchasesPRDataGridView);
-			this.PurchasesPR.Location = new System.Drawing.Point(4, 32);
-			this.PurchasesPR.Name = "PurchasesPR";
-			this.PurchasesPR.Size = new System.Drawing.Size(1724, 867);
-			this.PurchasesPR.TabIndex = 9;
-			this.PurchasesPR.Text = "Purchases PR";
-			this.PurchasesPR.UseVisualStyleBackColor = true;
-			// 
-			// button6
-			// 
-			this.button6.Location = new System.Drawing.Point(1095, 110);
-			this.button6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(265, 57);
-			this.button6.TabIndex = 31;
-			this.button6.Text = "Print Register";
-			this.button6.UseVisualStyleBackColor = true;
-			// 
-			// PrintPRBtn
-			// 
-			this.PrintPRBtn.Location = new System.Drawing.Point(736, 110);
-			this.PrintPRBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.PrintPRBtn.Name = "PrintPRBtn";
-			this.PrintPRBtn.Size = new System.Drawing.Size(265, 57);
-			this.PrintPRBtn.TabIndex = 30;
-			this.PrintPRBtn.Text = "Print Register";
-			this.PrintPRBtn.UseVisualStyleBackColor = true;
-			// 
-			// RemovePRFiltersBtn
-			// 
-			this.RemovePRFiltersBtn.Location = new System.Drawing.Point(371, 110);
-			this.RemovePRFiltersBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.RemovePRFiltersBtn.Name = "RemovePRFiltersBtn";
-			this.RemovePRFiltersBtn.Size = new System.Drawing.Size(297, 57);
-			this.RemovePRFiltersBtn.TabIndex = 29;
-			this.RemovePRFiltersBtn.Text = "Remove Filters";
-			this.RemovePRFiltersBtn.UseVisualStyleBackColor = true;
-			// 
-			// FilterPRBtn
-			// 
-			this.FilterPRBtn.Location = new System.Drawing.Point(36, 110);
-			this.FilterPRBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.FilterPRBtn.Name = "FilterPRBtn";
-			this.FilterPRBtn.Size = new System.Drawing.Size(265, 57);
-			this.FilterPRBtn.TabIndex = 28;
-			this.FilterPRBtn.Text = "Print Register";
-			this.FilterPRBtn.UseVisualStyleBackColor = true;
-			// 
-			// label66
-			// 
-			this.label66.AutoSize = true;
-			this.label66.Location = new System.Drawing.Point(31, 17);
-			this.label66.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label66.Name = "label66";
-			this.label66.Size = new System.Drawing.Size(65, 23);
-			this.label66.TabIndex = 27;
-			this.label66.Text = "Month";
-			// 
-			// PurchasesPRMonth
-			// 
-			this.PurchasesPRMonth.DropDownHeight = 300;
-			this.PurchasesPRMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.PurchasesPRMonth.FormattingEnabled = true;
-			this.PurchasesPRMonth.IntegralHeight = false;
-			this.PurchasesPRMonth.ItemHeight = 23;
-			this.PurchasesPRMonth.Location = new System.Drawing.Point(36, 49);
-			this.PurchasesPRMonth.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.PurchasesPRMonth.Name = "PurchasesPRMonth";
-			this.PurchasesPRMonth.Size = new System.Drawing.Size(269, 31);
-			this.PurchasesPRMonth.TabIndex = 26;
-			this.PurchasesPRMonth.SelectedIndexChanged += new System.EventHandler(this.PurchasesPRMonth_SelectedIndexChanged);
-			// 
-			// label67
-			// 
-			this.label67.AutoSize = true;
-			this.label67.Location = new System.Drawing.Point(1091, 17);
-			this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label67.Name = "label67";
-			this.label67.Size = new System.Drawing.Size(54, 23);
-			this.label67.TabIndex = 25;
-			this.label67.Text = "Type";
-			// 
-			// label68
-			// 
-			this.label68.AutoSize = true;
-			this.label68.Location = new System.Drawing.Point(732, 17);
-			this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label68.Name = "label68";
-			this.label68.Size = new System.Drawing.Size(98, 23);
-			this.label68.TabIndex = 24;
-			this.label68.Text = "End Date";
-			// 
-			// label69
-			// 
-			this.label69.AutoSize = true;
-			this.label69.Location = new System.Drawing.Point(367, 17);
-			this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label69.Name = "label69";
-			this.label69.Size = new System.Drawing.Size(120, 23);
-			this.label69.TabIndex = 23;
-			this.label69.Text = "Start Date";
-			// 
-			// PurchasePRType
-			// 
-			this.PurchasePRType.DropDownHeight = 300;
-			this.PurchasePRType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.PurchasePRType.FormattingEnabled = true;
-			this.PurchasePRType.IntegralHeight = false;
-			this.PurchasePRType.ItemHeight = 23;
-			this.PurchasePRType.Location = new System.Drawing.Point(1095, 49);
-			this.PurchasePRType.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.PurchasePRType.Name = "PurchasePRType";
-			this.PurchasePRType.Size = new System.Drawing.Size(269, 31);
-			this.PurchasePRType.TabIndex = 22;
-			// 
-			// PurchasePREndDate
-			// 
-			this.PurchasePREndDate.DropDownHeight = 300;
-			this.PurchasePREndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.PurchasePREndDate.FormattingEnabled = true;
-			this.PurchasePREndDate.IntegralHeight = false;
-			this.PurchasePREndDate.ItemHeight = 23;
-			this.PurchasePREndDate.Location = new System.Drawing.Point(736, 49);
-			this.PurchasePREndDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.PurchasePREndDate.Name = "PurchasePREndDate";
-			this.PurchasePREndDate.Size = new System.Drawing.Size(289, 31);
-			this.PurchasePREndDate.TabIndex = 21;
-			// 
-			// PurchasePRStartDate
-			// 
-			this.PurchasePRStartDate.DropDownHeight = 300;
-			this.PurchasePRStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.PurchasePRStartDate.FormattingEnabled = true;
-			this.PurchasePRStartDate.IntegralHeight = false;
-			this.PurchasePRStartDate.ItemHeight = 23;
-			this.PurchasePRStartDate.Location = new System.Drawing.Point(371, 49);
-			this.PurchasePRStartDate.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-			this.PurchasePRStartDate.Name = "PurchasePRStartDate";
-			this.PurchasePRStartDate.Size = new System.Drawing.Size(297, 31);
-			this.PurchasePRStartDate.TabIndex = 20;
-			// 
-			// PurchasesPRDataGridView
-			// 
-			this.PurchasesPRDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.PurchasesPRDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.PurchasesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.PurchasesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.PurchasesPRDataGridView.Location = new System.Drawing.Point(36, 198);
-			this.PurchasesPRDataGridView.Name = "PurchasesPRDataGridView";
-			this.PurchasesPRDataGridView.RowHeadersWidth = 51;
-			this.PurchasesPRDataGridView.RowTemplate.Height = 24;
-			this.PurchasesPRDataGridView.Size = new System.Drawing.Size(1655, 661);
-			this.PurchasesPRDataGridView.TabIndex = 0;
-			// 
 			// DeliveryNote
 			// 
 			this.DeliveryNote.AllowDrop = true;
@@ -2964,7 +2964,7 @@ namespace Green_Enviro_App
 			this.comboBox1.Location = new System.Drawing.Point(51, 158);
 			this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(191, 25);
+			this.comboBox1.Size = new System.Drawing.Size(191, 24);
 			this.comboBox1.TabIndex = 53;
 			// 
 			// numericUpDown1
@@ -2993,7 +2993,7 @@ namespace Green_Enviro_App
 			this.comboBox2.Location = new System.Drawing.Point(81, 33);
 			this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(59, 25);
+			this.comboBox2.Size = new System.Drawing.Size(59, 24);
 			this.comboBox2.TabIndex = 51;
 			// 
 			// comboBox3
@@ -3007,7 +3007,7 @@ namespace Green_Enviro_App
 			this.comboBox3.Location = new System.Drawing.Point(181, 284);
 			this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(72, 25);
+			this.comboBox3.Size = new System.Drawing.Size(72, 24);
 			this.comboBox3.TabIndex = 50;
 			// 
 			// button1
@@ -3176,16 +3176,16 @@ namespace Green_Enviro_App
 			this.WagesNewEmployee.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).EndInit();
-			this.Summaries.ResumeLayout(false);
-			this.Summaries.PerformLayout();
-			this.DestructionCertificates.ResumeLayout(false);
-			this.DestructionCertificates.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
 			this.SalesPR.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).EndInit();
 			this.PurchasesPR.ResumeLayout(false);
 			this.PurchasesPR.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
+			this.Summaries.ResumeLayout(false);
+			this.Summaries.PerformLayout();
+			this.DestructionCertificates.ResumeLayout(false);
+			this.DestructionCertificates.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dstrctCertQuantityNumBox)).EndInit();
 			this.DeliveryNote.ResumeLayout(false);
 			this.DeliveryNote.PerformLayout();
 			this.DeliveryNoteDisplayPanel.ResumeLayout(false);
@@ -3411,14 +3411,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label49;
 		private System.Windows.Forms.Label label48;
 		private System.Windows.Forms.Label label47;
-		public System.Windows.Forms.ComboBox SummariesMonthSelector;
-		public System.Windows.Forms.RichTextBox SummariesExpensesBox;
-		public System.Windows.Forms.RichTextBox SummariesFSalesBox;
-		public System.Windows.Forms.RichTextBox SummariesWagesBox;
-		public System.Windows.Forms.RichTextBox SummariesNFPurchasesBox;
-		public System.Windows.Forms.RichTextBox SummariesFPurchasesBox;
 		private System.Windows.Forms.Label label54;
-		public System.Windows.Forms.RichTextBox SummariesProfitBox;
 		private System.Windows.Forms.Button EditCustomers;
 		public System.Windows.Forms.CheckBox ReceiptDefaultCustomerCheckBox;
 		private System.Windows.Forms.Button ReprintReceiptBtn;
@@ -3427,10 +3420,7 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.TextBox FloatBox;
         private System.Windows.Forms.Button SendDstrctCertEmailBtn;
 		private System.Windows.Forms.Label label57;
-		public System.Windows.Forms.RichTextBox SummariesTotalSales;
 		private System.Windows.Forms.Label label56;
-		public System.Windows.Forms.RichTextBox SummariesTotalPurchases;
-		public System.Windows.Forms.RichTextBox SummariesNFSalesBox;
 		public System.Windows.Forms.ComboBox ReceiptSaleOrPurchase;
 		private System.Windows.Forms.TabPage Inventory;
 		public System.Windows.Forms.ComboBox InventoryLogMonth;
@@ -3443,7 +3433,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button InventoryLogFilterBtn;
 		public System.Windows.Forms.DataGridView InventoryLogGridView;
 		private System.Windows.Forms.Label label61;
-		public System.Windows.Forms.RichTextBox SummariesTotalFloat;
 		private System.Windows.Forms.Button NewEmployee;
 		private System.Windows.Forms.Button LogOutBtn;
 		public System.Windows.Forms.ComboBox InvetorySummedOrNot;
@@ -3516,5 +3505,16 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TextBox dstrctCertCntactPersonField;
 		private System.Windows.Forms.ComboBox dstrctCertCompanyField;
 		private System.Windows.Forms.DateTimePicker dstrctCertExtractionDate;
+		private System.Windows.Forms.ComboBox SummariesMonthSelector;
+		private System.Windows.Forms.RichTextBox SummariesExpensesBox;
+		private System.Windows.Forms.RichTextBox SummariesFSalesBox;
+		private System.Windows.Forms.RichTextBox SummariesWagesBox;
+		private System.Windows.Forms.RichTextBox SummariesNFPurchasesBox;
+		private System.Windows.Forms.RichTextBox SummariesFPurchasesBox;
+		private System.Windows.Forms.RichTextBox SummariesProfitBox;
+		private System.Windows.Forms.RichTextBox SummariesTotalSales;
+		private System.Windows.Forms.RichTextBox SummariesTotalPurchases;
+		private System.Windows.Forms.RichTextBox SummariesNFSalesBox;
+		private System.Windows.Forms.RichTextBox SummariesTotalFloat;
 	}
 }

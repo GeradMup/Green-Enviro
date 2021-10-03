@@ -32,10 +32,10 @@ namespace Green_Enviro_App
 		public Summaries(Main_Form main) 
 		{
 			_main_form = main;
-			Setup();
+			//getMonths();
 		}
-
-		private void Setup() 
+/*
+		private void getMonths() 
 		{
 			foreach (var item in _main_form.PurchaseLogMonth.Items) 
 			{
@@ -189,7 +189,7 @@ namespace Green_Enviro_App
 
 			_main_form.SummariesProfitBox.AppendText("\n  R " + _profit);
 			
-			_main_form.SummariesTotalPurchases.AppendText("\n  R " + _total_purchases);
+			_main_form.SummariesTotalPurchases.AppendText("\n R " + _total_purchases);
 			
 			_main_form.SummariesTotalSales.AppendText("\n R " + _total_sales);
 			
@@ -234,5 +234,5 @@ namespace Green_Enviro_App
 			_main_form.SummariesMonthSelector.SelectedItem = null;
 			ClearFields();
 		}
-	}
+*/	}
 }

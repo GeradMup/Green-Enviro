@@ -37,6 +37,7 @@ namespace Green_Enviro_App
         TabPage _current_tab_page;
 
         DeliveryNotesModel _deliveryNotesModel;
+        SummariesModel _summariesModel;
         bool starting = true;
 
         public int _user_permission_level = 0;
@@ -65,12 +66,14 @@ namespace Green_Enviro_App
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
             _deliveryNotesModel = new DeliveryNotesModel(_database, _fileHandles);
+            _summariesModel = new SummariesModel(_fileHandles);
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;
 
             initialiseDeliveryNotesTab();
             initializeDestructionCertificatesTab();
+            intializeSummariesTab();
         }
 
 		/// <summary>
@@ -385,7 +388,7 @@ namespace Green_Enviro_App
 
         private void SummariesMonthSelector_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            _summaries.MonthSelected();
+           // _summaries.MonthSelected();
 		}
 
         // *******************************************************************************************************************
@@ -436,7 +439,7 @@ namespace Green_Enviro_App
             _inventory.Reset();
             _expenses.Reset();
             _wages.Reset();
-            _summaries.Reset();
+            //_summaries.Reset();
             resetDestructionCertificateFields();
 
         }
