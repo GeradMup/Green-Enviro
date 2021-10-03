@@ -2191,7 +2191,7 @@ namespace Green_Enviro_App
 			this.SummariesTotalFloat.Margin = new System.Windows.Forms.Padding(2);
 			this.SummariesTotalFloat.Name = "SummariesTotalFloat";
 			this.SummariesTotalFloat.ReadOnly = true;
-			this.SummariesTotalFloat.Size = new System.Drawing.Size(378, 170);
+			this.SummariesTotalFloat.Size = new System.Drawing.Size(356, 170);
 			this.SummariesTotalFloat.TabIndex = 20;
 			this.SummariesTotalFloat.Text = " ";
 			// 
@@ -2964,7 +2964,7 @@ namespace Green_Enviro_App
 			this.comboBox1.Location = new System.Drawing.Point(51, 158);
 			this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(191, 24);
+			this.comboBox1.Size = new System.Drawing.Size(191, 25);
 			this.comboBox1.TabIndex = 53;
 			// 
 			// numericUpDown1
@@ -2993,7 +2993,7 @@ namespace Green_Enviro_App
 			this.comboBox2.Location = new System.Drawing.Point(81, 33);
 			this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(59, 24);
+			this.comboBox2.Size = new System.Drawing.Size(59, 25);
 			this.comboBox2.TabIndex = 51;
 			// 
 			// comboBox3
@@ -3007,7 +3007,7 @@ namespace Green_Enviro_App
 			this.comboBox3.Location = new System.Drawing.Point(181, 284);
 			this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(72, 24);
+			this.comboBox3.Size = new System.Drawing.Size(72, 25);
 			this.comboBox3.TabIndex = 50;
 			// 
 			// button1
