@@ -203,5 +203,10 @@ namespace Green_Enviro_App
 			activateDeliveryNotesGrid();
 			clearSelectedDeliveryNote();
 		}
+
+		private void resetDeliveryNotes() 
+		{
+			
+		}
 	}
 }

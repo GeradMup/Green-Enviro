@@ -185,8 +185,6 @@ namespace Green_Enviro_App
 			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
 			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.Summaries = new System.Windows.Forms.TabPage();
-			this.SummariesTotalFloatLabel = new System.Windows.Forms.Label();
-			this.SummariesTotalFloat = new System.Windows.Forms.RichTextBox();
 			this.SummariesTotalSalesLabel = new System.Windows.Forms.Label();
 			this.SummariesTotalSales = new System.Windows.Forms.RichTextBox();
 			this.SummariesTotalPurchasesLabel = new System.Windows.Forms.Label();
@@ -2142,8 +2140,6 @@ namespace Green_Enviro_App
 			// 
 			// Summaries
 			// 
-			this.Summaries.Controls.Add(this.SummariesTotalFloatLabel);
-			this.Summaries.Controls.Add(this.SummariesTotalFloat);
 			this.Summaries.Controls.Add(this.SummariesTotalSalesLabel);
 			this.Summaries.Controls.Add(this.SummariesTotalSales);
 			this.Summaries.Controls.Add(this.SummariesTotalPurchasesLabel);
@@ -2172,28 +2168,6 @@ namespace Green_Enviro_App
 			this.Summaries.TabIndex = 6;
 			this.Summaries.Text = "Summaries";
 			this.Summaries.UseVisualStyleBackColor = true;
-			// 
-			// SummariesTotalFloatLabel
-			// 
-			this.SummariesTotalFloatLabel.AutoSize = true;
-			this.SummariesTotalFloatLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SummariesTotalFloatLabel.Location = new System.Drawing.Point(1349, 129);
-			this.SummariesTotalFloatLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.SummariesTotalFloatLabel.Name = "SummariesTotalFloatLabel";
-			this.SummariesTotalFloatLabel.Size = new System.Drawing.Size(155, 28);
-			this.SummariesTotalFloatLabel.TabIndex = 21;
-			this.SummariesTotalFloatLabel.Text = "Total Float";
-			// 
-			// SummariesTotalFloat
-			// 
-			this.SummariesTotalFloat.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.SummariesTotalFloat.Location = new System.Drawing.Point(1351, 160);
-			this.SummariesTotalFloat.Margin = new System.Windows.Forms.Padding(2);
-			this.SummariesTotalFloat.Name = "SummariesTotalFloat";
-			this.SummariesTotalFloat.ReadOnly = true;
-			this.SummariesTotalFloat.Size = new System.Drawing.Size(356, 170);
-			this.SummariesTotalFloat.TabIndex = 20;
-			this.SummariesTotalFloat.Text = " ";
 			// 
 			// SummariesTotalSalesLabel
 			// 
@@ -2277,7 +2251,7 @@ namespace Green_Enviro_App
 			this.SummariesMonths.FormattingEnabled = true;
 			this.SummariesMonths.Location = new System.Drawing.Point(70, 75);
 			this.SummariesMonths.Name = "SummariesMonths";
-			this.SummariesMonths.Size = new System.Drawing.Size(346, 35);
+			this.SummariesMonths.Size = new System.Drawing.Size(401, 35);
 			this.SummariesMonths.TabIndex = 12;
 			this.SummariesMonths.SelectedIndexChanged += new System.EventHandler(this.SummariesMonthSelector_SelectedIndexChanged);
 			// 
@@ -3432,7 +3406,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button InventoryLogRmvFilterBtn;
 		private System.Windows.Forms.Button InventoryLogFilterBtn;
 		public System.Windows.Forms.DataGridView InventoryLogGridView;
-		private System.Windows.Forms.Label SummariesTotalFloatLabel;
 		private System.Windows.Forms.Button NewEmployee;
 		private System.Windows.Forms.Button LogOutBtn;
 		public System.Windows.Forms.ComboBox InvetorySummedOrNot;
@@ -3515,6 +3488,5 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.RichTextBox SummariesTotalSales;
 		private System.Windows.Forms.RichTextBox SummariesTotalPurchases;
 		private System.Windows.Forms.RichTextBox SummariesNFSalesBox;
-		private System.Windows.Forms.RichTextBox SummariesTotalFloat;
 	}
 }

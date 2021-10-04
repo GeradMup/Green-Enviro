@@ -32,7 +32,7 @@ namespace Green_Enviro_App
         List<string> companyNameList = new List<string>();
 
         const string DESTRUCTION_CERTIFICATE_EXCEPTION = "DESTRUCTION CERTIFICATE EXCEPTION";
-        const string DUPLICATE_COMPANY_EXCEPTION = "The company you have entered already exists!";
+        const string DUPLICATE_COMPANY_EXCEPTION = "THE COMPANY YOU HAVE INSERTED ALREADY EXISTS!";
         public DestructionCertificatesModel(Main_Form _form,Database _db, FileHandles fh)
         {
             _main_form = _form;

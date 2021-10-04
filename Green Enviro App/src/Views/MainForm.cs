@@ -24,7 +24,6 @@ namespace Green_Enviro_App
         Expenses _expenses;
         Wages _wages;
 		DestructionCertificatesModel _destructionCertificatesModel;
-        Summaries _summaries;
         Customers _customers;
         NewCustomer _new_customer;
         Email _email;
@@ -64,7 +63,6 @@ namespace Green_Enviro_App
             _destructionCertificatesModel = new DestructionCertificatesModel(this,_database, _fileHandles);
             _expenses = new Expenses(this, _database, _fileHandles);
             _wages = new Wages(this, _database, _fileHandles);
-            _summaries = new Summaries(this);
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
             _deliveryNotesModel = new DeliveryNotesModel(_database, _fileHandles);
@@ -433,9 +431,9 @@ namespace Green_Enviro_App
             _inventory.Reset();
             _expenses.Reset();
             _wages.Reset();
-            //_summaries.Reset();
-            resetDestructionCertificateFields();
-
+            resetSummaries();
+            resetDestructionCertificate();
+            resetDeliveryNotes();
         }
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)

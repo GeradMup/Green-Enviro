@@ -28,7 +28,7 @@ namespace Green_Enviro_App
         private void initializeDestructionCertificatesTab() 
         {
             setUpProductUnits();
-            resetDestructionCertificateFields();
+            resetDestructionCertificate();
             setUpCompaniesList();
         }
         private void setUpProductUnits()
@@ -82,7 +82,7 @@ namespace Green_Enviro_App
             try
             {
                 _destructionCertificatesModel.generateCertificate(destructionInfo);
-                resetDestructionCertificateFields();
+                resetDestructionCertificate();
                 reportSuccess(DC_GENERATION_SUCCESS);
             }
             catch (Exception ex) 
@@ -127,7 +127,7 @@ namespace Green_Enviro_App
                 dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDown;
                 dstrctCertEmailAddressField.ReadOnly = false;
                 dstcrtCompanyAddress.ReadOnly = false;
-                resetDestructionCertificateFields();
+                resetDestructionCertificate();
             }
             else
             {
@@ -140,7 +140,7 @@ namespace Green_Enviro_App
         }
 
 		/// <summary>Resets the destruction certificate fields.</summary>
-		private void resetDestructionCertificateFields() 
+		private void resetDestructionCertificate() 
         {
             dstcrtCompanyAddress.Clear();
             dstrctCertCompanyField.SelectedItem = null;
