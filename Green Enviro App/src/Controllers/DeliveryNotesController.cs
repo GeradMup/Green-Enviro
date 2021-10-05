@@ -25,10 +25,15 @@ namespace Green_Enviro_App
 		private const string BIN_TRUCK = "BIN TRUCK";
 		private const string RIGID_TRUCK = "RIGID TRUCK";
 		private const string HORSE_AND_TRAILER = "HORSE AND TRAILER";
-		/// <summary>Initialises the delivery notes tab.</summary>
 
+		/// <summary>
+		/// Initialises the delivery notes tab.
+		/// </summary>
 		DGVOps deliveryNotesDgvOps;
-		/// <summary>Initialises the delivery notes tab.</summary>
+		
+		/// <summary>
+		/// Initialises the delivery notes tab.
+		/// </summary>
 		public void initialiseDeliveryNotesTab()
 		{
 
@@ -144,6 +149,7 @@ namespace Green_Enviro_App
 				clearCollectorFields();
 				displayDeliveryNote(path);
 				reportSuccess(DELIVERY_NOTE_GENERATED_SUCCESSFULLY);
+				deliveryNotesDgvOps.clearGridView();
 			}
 			catch (Exception ex) 
 			{
@@ -157,20 +163,24 @@ namespace Green_Enviro_App
 			activateDeliveryNoteDisplay();
 		}
 
-		/// <summary>Clears the product name and the quantity.</summary>
+		/// <summary>
+		/// Clears the product name and the quantity.
+		/// </summary>
 		private void clearProductFields() 
 		{
 			DeliveryItemsList.SelectedItem = null;
 			DeliveryQuantityBox.Value = Constants.DECIMAL_ZERO;
 		}
 
-		/// <summary>Clears all the fields that about the delivery driver's name and the company field.</summary>
+		/// <summary>
+		/// Clears all the fields that about the delivery driver's name and the company field.
+		/// </summary>
 		private void clearCollectorFields() 
 		{
 			DeliveryCompaniesList.SelectedItem = null;
-			DeliveryDriverName.Text = Constants.EMPTY_TEXT;
-			DeliveryDriverCell.Text = Constants.EMPTY_TEXT;
-			DeliveryVehicleReg.Text = Constants.EMPTY_TEXT;
+			DeliveryDriverName.Clear();
+			DeliveryDriverCell.Clear();
+			DeliveryVehicleReg.Clear();
 			DeliveryVehicleType.SelectedItem = null;
 		}
 
@@ -198,15 +208,16 @@ namespace Green_Enviro_App
 
 		private void DeliveryNoteCancel_Click(object sender, EventArgs e)
 		{
-			clearProductFields();
-			clearCollectorFields();
-			activateDeliveryNotesGrid();
-			clearSelectedDeliveryNote();
+			resetDeliveryNotes();
 		}
 
 		private void resetDeliveryNotes() 
 		{
-			
+			clearProductFields();
+			clearCollectorFields();
+			activateDeliveryNotesGrid();
+			clearSelectedDeliveryNote();
+			deliveryNotesDgvOps.clearGridView();
 		}
 	}
 }

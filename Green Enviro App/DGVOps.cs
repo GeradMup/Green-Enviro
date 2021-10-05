@@ -30,7 +30,9 @@ namespace Green_Enviro_App
 		string _empty_string = " ";
 		string _totals = "TOTALS";
 
-		/// <summary>Initializes a new instance of the <see cref="DGVOps" /> class.</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DGVOps" /> class.
+		/// </summary>
 		public DGVOps(DataGridView grid, ComboBox month, ComboBox startDate, ComboBox endDate, ComboBox type, Form parent) 
 		{
 			dataGridView = grid;
@@ -41,6 +43,7 @@ namespace Green_Enviro_App
 			parentForm = parent;
 		}
 
+		/// <summary>
 		/// Determines whether a valid date range is select for filtering the Purchase Log.
 		/// </summary>
 		/// <returns>
@@ -49,7 +52,6 @@ namespace Green_Enviro_App
 		/// <remark>
 		/// If an invalid date range is selected, the date fields are set back to null
 		/// </remark>
-		
 		public bool isDateFiltered()
 		{
 			//Do nothing if there are not filters selected
@@ -100,7 +102,9 @@ namespace Green_Enviro_App
 			return true;
 		}
 
-		/// <summary>Removes the filters when DataGridView Was being filtered</summary>
+		/// <summary>
+		/// Removes the filters when DataGridView Was being filtered.
+		/// </summary>
 		public void RemoveFilters()
 		{
 			startDateBox.SelectedItem = null;
@@ -108,8 +112,9 @@ namespace Green_Enviro_App
 			typeBox.SelectedItem = null;
 		}
 
-		/// <summary>Filters the grid view based on the selected dates and types.</summary>
-		/// <param name="bindingSource">The binding source for the table displayed in the data grid view.</param>
+		/// <summary>
+		/// Filters the grid view based on the selected dates and types.
+		/// </summary>
 		public void filterGridView()
 		{
 			string filterString;
@@ -145,7 +150,9 @@ namespace Green_Enviro_App
 			}
 		}
 
-		/// <summary>Highlights the totals row in the grid view to yellow.</summary>
+		/// <summary>
+		/// Highlights the totals row in the grid view to yellow.
+		/// </summary>
 		public void highlightTotalsRow() 
 		{
 			int _last_row_index = 0;
@@ -156,9 +163,9 @@ namespace Green_Enviro_App
 			dataGridView.Refresh();
 		}
 
-		//This function will add up the KG's and Amount column on the Data Grid View and adds a row to show the totals
-		/// <summary>Adds the totals row to the data grid view</summary>
-		/// <param name="dataTable"></param>
+		/// <summary>
+		/// This function will add up the KG's and Amount column on the Data Grid View and adds a row to show the totals
+		/// </summary>
 		/// <param name="kgCol"></param>
 		/// <param name="amountCol"></param>
 		public void addTotalsRow(int kgCol, int amountCol)
@@ -203,6 +210,8 @@ namespace Green_Enviro_App
 			dataTable.Rows.Add(_last_row);
 		}
 
+		/// <summary>Populates the start and end dates used to filter the grid view.</summary>
+		/// <param name="dates">A list of strings representing the dates.</param>
 		public void populateDates(HashSet<String> dates) 
 		{
 			//First Clear the start and end date fields to prepare them for the new entry
@@ -220,6 +229,8 @@ namespace Green_Enviro_App
 			RemoveFilters();
 		}
 
+		/// <summary>Populates the months drop down list used for selecting a data grid.</summary>
+		/// <param name="months">A List of strings representing the months.</param>
 		public void populateLogMonths(List<String> months) 
 		{
 			monthBox.Items.Clear();
@@ -249,6 +260,15 @@ namespace Green_Enviro_App
 				dataGridView.Columns[column].FillWeight = colWidths[column];
 			}
 
+			dataGridView.Refresh();
+		}
+
+		/// <summary>
+		/// Clears the grid view.
+		/// </summary>
+		public void clearGridView() 
+		{
+			dataGridView.DataSource = null;
 			dataGridView.Refresh();
 		}
 
@@ -290,7 +310,8 @@ namespace Green_Enviro_App
 			return colWidths;
 		}
 
-		/// <summary>Sets the types of the products and populates the types combo box. There are only two types, Ferrous or Non-ferrous.</summary>
+		/// <summary>Sets the types of the products and populates the types combo box. 
+		/// There are only two types, Ferrous or Non-ferrous.</summary>
 		public void setTypes() 
 		{
 			typeBox.Items.Clear();
@@ -298,6 +319,8 @@ namespace Green_Enviro_App
 			typeBox.Items.Add("Non-Ferous");
 		}
 
+		/// <summary>Changes the binding source being used by a data grid view from a given datatable.</summary>
+		/// <param name="dt">The DataTable.</param>
 		public void changeBindingSource(DataTable dt) 
 		{
 			dataTable = dt;
