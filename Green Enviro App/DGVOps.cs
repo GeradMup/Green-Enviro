@@ -17,17 +17,14 @@ namespace Green_Enviro_App
 	/// </summary>
 	public class DGVOps
 	{
-
 		DataGridView dataGridView;
 		ComboBox monthBox;
 		ComboBox startDateBox;
 		ComboBox endDateBox;
 		ComboBox typeBox;
 		Form parentForm;
-		private BindingSource bindingSource = new BindingSource();
-		private DataTable dataTable = new DataTable();
-
-		string _empty_string = " ";
+		private BindingSource bindingSource;
+		private DataTable dataTable;
 		string _totals = "TOTALS";
 
 		/// <summary>
@@ -41,6 +38,8 @@ namespace Green_Enviro_App
 			endDateBox = endDate;
 			typeBox = type;
 			parentForm = parent;
+			bindingSource = new BindingSource();
+			dataTable = new DataTable();
 		}
 
 		/// <summary>
@@ -50,6 +49,7 @@ namespace Green_Enviro_App
 		public DGVOps(Form parent) 
 		{
 			parentForm = parent;
+			
 		}
 		
 		/// <summary>
@@ -67,7 +67,7 @@ namespace Green_Enviro_App
 
 			//Start by assuming that the dates are filtered correctly.
 			bool dateCorrectlyFiltered = true;
-			string errorMessage = "INVALID DATE RANGE!";
+			const string errorMessage = "INVALID DATE RANGE!";
 			DateTime startDate = Convert.ToDateTime(startDateBox.SelectedItem.ToString());
 			DateTime endDate = Convert.ToDateTime(endDateBox.SelectedItem.ToString());
 
@@ -75,8 +75,8 @@ namespace Green_Enviro_App
 			if ((startDateBox.SelectedItem != null) && (endDateBox.SelectedItem == null)) dateCorrectlyFiltered = false;
 			else if ((startDateBox.SelectedItem == null) && (endDateBox.SelectedItem != null)) dateCorrectlyFiltered = false;
 			else if (startDate > endDate) dateCorrectlyFiltered = false;
-
-
+			
+			//If the dates are not selected correctly, report the error.
 			if (!dateCorrectlyFiltered) GenericControllers.reportError(parentForm, errorMessage);
 
 			return dateCorrectlyFiltered;
@@ -121,12 +121,12 @@ namespace Green_Enviro_App
 				{
 					string _item_type = typeBox.SelectedItem.ToString();
 					filterString = "Date = '{0}' OR Date = '{1}' OR Date >= '{2}' AND Date <= '{3}' AND Type = '{4}'";
-					bindingSource.Filter = string.Format(filterString, _totals, _empty_string, filterStartDate, filterEndDate, _item_type);
+					bindingSource.Filter = string.Format(filterString, _totals, Constants.EMPTY_TEXT, filterStartDate, filterEndDate, _item_type);
 				}
 				else
 				{
 					filterString = "Date = '{0}' OR Date = '{1}' OR Date >= '{2}' AND Date <= '{3}'";
-					bindingSource.Filter = string.Format(filterString, _totals, _empty_string, filterStartDate, filterEndDate);
+					bindingSource.Filter = string.Format(filterString, _totals, Constants.EMPTY_TEXT, filterStartDate, filterEndDate);
 				}
 			}
 			else
@@ -137,7 +137,7 @@ namespace Green_Enviro_App
 				{
 					string _item_type = typeBox.SelectedItem.ToString();
 					filterString = "Date = '{0}' OR Date = '{1}' OR Type = '{2}'";
-					bindingSource.Filter = string.Format(filterString, _totals, _empty_string, _item_type);
+					bindingSource.Filter = string.Format(filterString, _totals, Constants.EMPTY_TEXT, _item_type);
 				}
 			}
 		}
@@ -196,7 +196,7 @@ namespace Green_Enviro_App
 				}
 				else
 				{
-					_last_row[_cell] = _empty_string;
+					_last_row[_cell] = Constants.EMPTY_TEXT;
 				}
 			}
 			dataTable.Rows.Add(_last_row);

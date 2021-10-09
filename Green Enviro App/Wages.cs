@@ -11,13 +11,11 @@ using System.Globalization;
 
 namespace Green_Enviro_App
 {
-	class Wages : WarningInterface
+	class Wages
 	{ 
+
+/*
 		//Required objects
-		Main_Form _main_form;
-		Database _database;
-		CSVHandles csvHandles;
-		FileHandles fileHandles;
 
 		DataTable _wages_data_table = new DataTable();  //All the information about all the products the we have sold.
 		
@@ -36,13 +34,6 @@ namespace Green_Enviro_App
 			SetupWagesLogs();
 		}
 
-		//Create purchase and wages logs for each month if they don't already exist
-		private void CreateLogFiles()
-		{
-			string wagesFileHeaders = "Date,Name,Amount";
-			fileHandles.createCSVFile(FileHandles.LogType.Wages, wagesFileHeaders);
-		}
-
 		public void SetupWagesLogs()
 		{
 			List<string> logMonths = fileHandles.getLogNames(FileHandles.LogType.Wages);
@@ -53,6 +44,7 @@ namespace Green_Enviro_App
 
 			_main_form.WageDate.Value = DateTime.Now;
 		}
+
 
 		public void DisplayWagesLog()
 		{
@@ -357,14 +349,14 @@ namespace Green_Enviro_App
 
 			_main_form.WageDate.Value = DateTime.Now;
 			_main_form.WageAmount.Value = _zero;
-			_main_form.PartTimeEmployeeCheckBox.CheckState = CheckState.Unchecked;
+			_main_form.WagePartTimeEmployeeCheckBox.CheckState = CheckState.Unchecked;
 			_main_form.WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
 			_main_form.WagesEmployeeName.SelectedItem = null;
 		}
 
 		public void PartTimeEmployee() 
 		{
-			if (_main_form.PartTimeEmployeeCheckBox.CheckState == CheckState.Checked)
+			if (_main_form.WagePartTimeEmployeeCheckBox.CheckState == CheckState.Checked)
 			{
 				_main_form.WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDown;
 			}
@@ -441,6 +433,6 @@ namespace Green_Enviro_App
 		public override void PurchasePRWarning(bool actionConfirmed)
 		{
 			//throw new NotImplementedException();
-		}
+		}*/
 	}
 }

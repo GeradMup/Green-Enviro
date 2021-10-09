@@ -9,6 +9,15 @@ namespace Green_Enviro_App
 {
 	public partial class Main_Form : Form
 	{
-		private void initializeWagesTab() { }
+		DGVOps wagesDgvOps;
+
+		private void initializeWagesTab() 
+		{
+			ComboBox type = null;
+			wagesDgvOps = new DGVOps(WageLogGridView, WageLogMonths, WageLogStartDate, WageLogEndDate, type, _mainForm);
+
+			List<string> logMonths = _wagesModel.getMonths();
+			WageLogMonths.Items.AddRange(logMonths.Cast<object>().ToArray());
+		}
 	}
 }

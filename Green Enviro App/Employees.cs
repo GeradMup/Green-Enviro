@@ -34,11 +34,11 @@ namespace Green_Enviro_App
 			_employees_data_table = _database.selectAll(Database.Tables.Employees);
 			string _employee_name = "";
 
-			_main_form.WagesEmployeeName.Items.Clear();
+			//_main_form.WagesEmployeeName.Items.Clear();
 			foreach (DataRow row in _employees_data_table.Rows)
 			{
 				_employee_name = row[1].ToString() + " " + row[2].ToString();
-				_main_form.WagesEmployeeName.Items.Add(_employee_name);
+				//_main_form.WagesEmployeeName.Items.Add(_employee_name);
 			}
 		}
 

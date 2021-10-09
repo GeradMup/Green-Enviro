@@ -23,7 +23,7 @@ namespace Green_Enviro_App
         Sales _sales;
         Expenses _expenses;
         Wages _wages;
-		DestructionCertificatesModel _destructionCertificatesModel;
+		
         Customers _customers;
         NewCustomer _new_customer;
         Email _email;
@@ -38,8 +38,10 @@ namespace Green_Enviro_App
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
 
+        DestructionCertificatesModel _destructionCertificatesModel;
         DeliveryNotesModel _deliveryNotesModel;
         SummariesModel _summariesModel;
+        WagesModel _wagesModel;
         bool starting = true;
 
         public int _user_permission_level = 0;
@@ -64,11 +66,12 @@ namespace Green_Enviro_App
             _receipt = new Receipt(this, _database, _purchases, _sales, _inventory);
             _destructionCertificatesModel = new DestructionCertificatesModel(this,_database, _fileHandles);
             _expenses = new Expenses(this, _database, _fileHandles);
-            _wages = new Wages(this, _database, _fileHandles);
+            //_wages = new Wages(this, _database, _fileHandles);
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
             _deliveryNotesModel = new DeliveryNotesModel(_database, _fileHandles);
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
+            _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);
             _dgvOps = new DGVOps(this);
             _user_permission_level = permissionLevel;
 
@@ -336,29 +339,29 @@ namespace Green_Enviro_App
         //*************************************************************************************************************
         private void WageLogMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _wages.MonthSelected();
+            //_wages.MonthSelected();
         }
 
 		private void WageLogFilterBtn_Click(object sender, EventArgs e)
 		{
-            _wages.DisplayWagesLog();
+            //_wages.DisplayWagesLog();
 		}
 
 		private void WageLogRemoveFiltersBtn_Click(object sender, EventArgs e)
 		{
-            _wages.RemoveFilters();
+            //_wages.RemoveFilters();
 		}
 
 		private void ClearWageFieldsBtn_Click(object sender, EventArgs e)
 		{
-            _wages.ClearFields();
+            //_wages.ClearFields();
 		}
 
 		private void AddWageBtn_Click(object sender, EventArgs e)
 		{
             if ((_user_permission_level == 4) || (_user_permission_level == 5))
             {
-                _wages.AddWage();
+               // _wages.AddWage();
             }
             else 
             {
@@ -369,7 +372,7 @@ namespace Green_Enviro_App
 
 		private void PartTimeEmployeeCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-            _wages.PartTimeEmployee();
+            //_wages.PartTimeEmployee();
 		}
 
         private void NewEmployee_Click(object sender, EventArgs e)
@@ -434,7 +437,7 @@ namespace Green_Enviro_App
             _sales.Reset();
             _inventory.Reset();
             _expenses.Reset();
-            _wages.Reset();
+            //_wages.Reset();
             resetSummaries();
             resetDestructionCertificate();
             resetDeliveryNotes();
@@ -551,7 +554,7 @@ namespace Green_Enviro_App
 
 		private void DeleteWageBtn_Click(object sender, EventArgs e)
 		{
-            _wages.DeleteWage();
+            //_wages.DeleteWage();
 		}
 
 		private void DeleteSaleBtn_Click(object sender, EventArgs e)
