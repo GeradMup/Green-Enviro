@@ -33,9 +33,9 @@ namespace Green_Enviro_App
         }
         private void setUpProductUnits()
         {
-            string select = Generics.enumToString<DCModel.QuantityUnits>(DCModel.QuantityUnits.Select);
-            string pallets = Generics.enumToString<DCModel.QuantityUnits>(DCModel.QuantityUnits.PALLETS);
-            string kg = Generics.enumToString<DCModel.QuantityUnits>(DCModel.QuantityUnits.KG);
+            string select = GenericModels.enumToString<DCModel.QuantityUnits>(DCModel.QuantityUnits.Select);
+            string pallets = GenericModels.enumToString<DCModel.QuantityUnits>(DCModel.QuantityUnits.PALLETS);
+            string kg = GenericModels.enumToString<DCModel.QuantityUnits>(DCModel.QuantityUnits.KG);
 
             dstrctCertQuantityUnit.Items.Insert(0,select);
             dstrctCertQuantityUnit.Items.Insert(1, pallets);
@@ -56,15 +56,15 @@ namespace Green_Enviro_App
         {
             //First we verify that all the input fields have valid information
             const int zeroIndex = 0;
-            if (dstrctCertExtractionDate.Checked == false) { reportError(EXTRACTION_DATE_NOT_SELECTED_ERROR); return; }
-            if (dstrctCertCompanyField.Text == Constants.EMPTY_TEXT) { reportError(COMPANY_NOT_SELECTED_ERROR); return; }
-            if (dstrctCertCntactPersonField.Text == Constants.EMPTY_TEXT) { reportError(CONTACT_PERSON_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertCntactNumField.Text == Constants.EMPTY_TEXT) { reportError(CONTACT_NUMBER_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertEmailAddressField.Text == Constants.EMPTY_TEXT) { reportError(EMAIL_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertDescripOfProdField.Text == Constants.EMPTY_TEXT) { reportError(PRODUCT_DESCRIPTION_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertQuantityNumBox.Value == Constants.DECIMAL_ZERO) { reportError(PRODUCT_QUANTITY_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertQuantityUnit.SelectedIndex == zeroIndex) { reportError(QUANTITY_UNITS_NOT_SELECTED_ERROR); return; }
-            if (dstcrtCompanyAddress.Text == Constants.EMPTY_TEXT) { reportError(COMPANY_ADDRESS_NOT_INSERTED_ERROR); return; }
+            if (dstrctCertExtractionDate.Checked == false) { GenericControllers.reportError(_mainForm, EXTRACTION_DATE_NOT_SELECTED_ERROR); return; }
+            if (dstrctCertCompanyField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, COMPANY_NOT_SELECTED_ERROR); return; }
+            if (dstrctCertCntactPersonField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, CONTACT_PERSON_NOT_INSERTED_ERROR); return; }
+            if (dstrctCertCntactNumField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, CONTACT_NUMBER_NOT_INSERTED_ERROR); return; }
+            if (dstrctCertEmailAddressField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, EMAIL_NOT_INSERTED_ERROR); return; }
+            if (dstrctCertDescripOfProdField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, PRODUCT_DESCRIPTION_NOT_INSERTED_ERROR); return; }
+            if (dstrctCertQuantityNumBox.Value == Constants.DECIMAL_ZERO) { GenericControllers.reportError(_mainForm, PRODUCT_QUANTITY_NOT_INSERTED_ERROR); return; }
+            if (dstrctCertQuantityUnit.SelectedIndex == zeroIndex) { GenericControllers.reportError(_mainForm, QUANTITY_UNITS_NOT_SELECTED_ERROR); return; }
+            if (dstcrtCompanyAddress.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, COMPANY_ADDRESS_NOT_INSERTED_ERROR); return; }
             
             string measurementUnits = dstrctCertQuantityUnit.SelectedItem.ToString();
             DCModel.DestructionCertificateInfo destructionInfo = new DCModel.DestructionCertificateInfo();
@@ -77,17 +77,17 @@ namespace Green_Enviro_App
             destructionInfo.newCompany = dstcrtNewCompanyCheckbox.Checked;
             destructionInfo.productDescription = dstrctCertDescripOfProdField.Text;
             destructionInfo.productQuantity = dstrctCertQuantityNumBox.Value;
-            destructionInfo.selectedUnits = Generics.stringToEnum<DCModel.QuantityUnits>(measurementUnits);
+            destructionInfo.selectedUnits = GenericModels.stringToEnum<DCModel.QuantityUnits>(measurementUnits);
 
             try
             {
                 _destructionCertificatesModel.generateCertificate(destructionInfo);
                 resetDestructionCertificate();
-                reportSuccess(DC_GENERATION_SUCCESS);
+                GenericControllers.reportSuccess(_mainForm, DC_GENERATION_SUCCESS);
             }
             catch (Exception ex) 
             {
-                reportError(ex.Message);
+                GenericControllers.reportError(_mainForm, ex.Message);
             }
             
         }
@@ -103,7 +103,7 @@ namespace Green_Enviro_App
 
             try
             {
-                Generics.CompanyInfo companyInfo = _destructionCertificatesModel.getCompanyInfo(companyName);
+                GenericModels.CompanyInfo companyInfo = _destructionCertificatesModel.getCompanyInfo(companyName);
                 dstrctCertCntactPersonField.Text = companyInfo.contactPerson;
                 dstrctCertCntactNumField.Text = companyInfo.contactNumber;
                 dstrctCertEmailAddressField.Text = companyInfo.emailAddress;
@@ -111,7 +111,7 @@ namespace Green_Enviro_App
             }
             catch (Exception ex) 
             {
-                reportError(ex.Message);
+                GenericControllers.reportError(_mainForm, ex.Message);
             }
         }
 

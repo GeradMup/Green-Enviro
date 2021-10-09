@@ -32,6 +32,8 @@ namespace Green_Enviro_App
         Purchases_PR _purchasesPR;
         FileHandles _fileHandles;
         CSVHandles _csvHandles;
+        DGVOps _dgvOps;
+        Form _mainForm;
 
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
@@ -49,11 +51,11 @@ namespace Green_Enviro_App
 		public Main_Form(LoginForm loginForm, Database _data, int permissionLevel)
         {
             InitializeComponent();
-            //initialiseItemList();
             _login_form = loginForm;
             _database = _data;
             _fileHandles = new FileHandles();
             _csvHandles = new CSVHandles();
+            _mainForm = this;
             _purchasesPR = new Purchases_PR(this,_fileHandles);
             _purchases = new Purchases(this, _purchasesPR, _fileHandles);
             _email = new Email();
@@ -67,13 +69,15 @@ namespace Green_Enviro_App
             _employees = new Employees(this, _database);
             _deliveryNotesModel = new DeliveryNotesModel(_database, _fileHandles);
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
+            _dgvOps = new DGVOps(this);
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;
 
-            initialiseDeliveryNotesTab();
+            initializeDeliveryNotesTab();
             initializeDestructionCertificatesTab();
             intializeSummariesTab();
+            initializeWagesTab();
         }
 
 		/// <summary>
@@ -564,20 +568,5 @@ namespace Green_Enviro_App
 		{
             _purchases.addToPRRequest();
 		}
-
-
-        /// <summary>Displays an error message box with the given error message.</summary>
-        /// <param name="message">The error message.</param>
-        private void reportError(string message)
-        {
-            new CustomMessageBox(this, CustomMessageBox.error, message);
-        }
-
-        /// <summary>Displays a succes message box with the given success message.</summary>
-        /// <param name="message">The error message.</param>
-        private void reportSuccess(string message) 
-        {
-            new CustomMessageBox(this, CustomMessageBox.success, message);
-        }
     }
 }

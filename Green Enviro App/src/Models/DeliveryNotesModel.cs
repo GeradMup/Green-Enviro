@@ -75,7 +75,7 @@ namespace Green_Enviro_App
 			graphic.DrawLine(XPens.Black, new XPoint(start_x, y), new XPoint(end_x, y));
 		}
 
-		private void insertCompanyInfo(Generics.CompanyInfo companyInfo) 
+		private void insertCompanyInfo(GenericModels.CompanyInfo companyInfo) 
 		{
 			double y_coordinate = 230;
 			
@@ -294,7 +294,7 @@ namespace Green_Enviro_App
 				DataTable companyData = database.select<Database.BuyersTableColumns>(Database.Tables.Buyers,
 										Database.BuyersTableColumns.Company, companyName);
 
-				Generics.CompanyInfo companyInfo = dataTableToCompanyInfo(companyData);
+				GenericModels.CompanyInfo companyInfo = dataTableToCompanyInfo(companyData);
 			
 				PdfDocument document = new PdfDocument();
 				PdfPage page = document.AddPage();
@@ -329,7 +329,7 @@ namespace Green_Enviro_App
 			string fileName = companyName + " " + date;
 			string fileExtension = Constants.PDF_EXTENSION;
 
-			string filePath = Generics.generateSavePath(basePath,month,fileName,fileExtension);
+			string filePath = GenericModels.generateSavePath(basePath,month,fileName,fileExtension);
 			return filePath;
 		}
 
@@ -351,9 +351,9 @@ namespace Green_Enviro_App
 			return path;
 		}
 		
-		private Generics.CompanyInfo dataTableToCompanyInfo(DataTable table) 
+		private GenericModels.CompanyInfo dataTableToCompanyInfo(DataTable table) 
 		{
-			Generics.CompanyInfo info = new Generics.CompanyInfo();
+			GenericModels.CompanyInfo info = new GenericModels.CompanyInfo();
 			int onlyRow = 0;
 			int companyNameColumn = 1;
 			int addressColumn = 2;

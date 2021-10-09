@@ -67,11 +67,11 @@ namespace Green_Enviro_App
 			WAGES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Wages\";
 			CURRENT_MONTH_AND_YEAR = DateTime.Now.ToString("MMMM yyyy");
 			CSV_EXTENSION = ".csv";
+			PDF_EXTENSION = ".pdf";
 			FERROUS = "Ferrous";
 			NON_FERROUS = "Non-Ferrous";
 			EMPTY_TEXT = "";
 			DECIMAL_ZERO = 0.0M;
-			PDF_EXTENSION = ".pdf";
 			DATE = DateTime.Now.ToString("dd MMMM yyyy");
 			COMPANY_LETTERHEAD_PATH = PROJECT_PATH + @"\resources\Green Enviro Destruction Certificate Logo Better.png";
 			PATH_TO_DELIVERY_ITEMS = PROJECT_PATH + @"\resources\Items\Items.txt";

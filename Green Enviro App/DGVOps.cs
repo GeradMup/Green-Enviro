@@ -44,6 +44,15 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="DGVOps"/> class.
+		/// </summary>
+		/// <param name="parent">The parent form on which the data grid view will be on.</param>
+		public DGVOps(Form parent) 
+		{
+			parentForm = parent;
+		}
+		
+		/// <summary>
 		/// Determines whether a valid date range is select for filtering the Purchase Log.
 		/// </summary>
 		/// <returns>
@@ -54,40 +63,23 @@ namespace Green_Enviro_App
 		/// </remark>
 		public bool isDateFiltered()
 		{
-			//Do nothing if there are not filters selected
 			if ((startDateBox.SelectedItem == null) && (endDateBox.SelectedItem == null)) return false;
-			
-			if ((startDateBox.SelectedItem != null) && (endDateBox.SelectedItem == null))
-			{
-				//Do nothing if there are not filters selected
-				CustomMessageBox msg = new CustomMessageBox(parentForm, "Error!", "INVALID DATE RANGE!");
-				startDateBox.SelectedItem = null;
-				endDateBox.SelectedItem = null;
-				return false;
-			}
 
-			if ((startDateBox.SelectedItem == null) && (endDateBox.SelectedItem != null))
-			{
-				//Do nothing if there are not filters selected
-				CustomMessageBox msg = new CustomMessageBox(parentForm, "Error!", "INVALID DATE RANGE!");
-				startDateBox.SelectedItem = null;
-				endDateBox.SelectedItem = null;
-				return false;
-			}
+			//Start by assuming that the dates are filtered correctly.
+			bool dateCorrectlyFiltered = true;
+			string errorMessage = "INVALID DATE RANGE!";
+			DateTime startDate = Convert.ToDateTime(startDateBox.SelectedItem.ToString());
+			DateTime endDate = Convert.ToDateTime(endDateBox.SelectedItem.ToString());
 
-			DateTime _start_date = Convert.ToDateTime(startDateBox.SelectedItem.ToString());
-			DateTime _end_date = Convert.ToDateTime(endDateBox.SelectedItem.ToString());
+			//Check that the dates are filtered correctly.
+			if ((startDateBox.SelectedItem != null) && (endDateBox.SelectedItem == null)) dateCorrectlyFiltered = false;
+			else if ((startDateBox.SelectedItem == null) && (endDateBox.SelectedItem != null)) dateCorrectlyFiltered = false;
+			else if (startDate > endDate) dateCorrectlyFiltered = false;
 
-			//Checks if the ending date is is not occuring before the start date.
-			if (_start_date > _end_date)
-			{
-				CustomMessageBox msg = new CustomMessageBox(parentForm, "Error!", "INVALID DATE RANGE!");
-				startDateBox.SelectedItem = null;
-				endDateBox.SelectedItem = null;
-				return false;
-			}
 
-			return true;
+			if (!dateCorrectlyFiltered) GenericControllers.reportError(parentForm, errorMessage);
+
+			return dateCorrectlyFiltered;
 		}
 
 		/// <summary>

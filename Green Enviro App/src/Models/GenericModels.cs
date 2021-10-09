@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Green_Enviro_App
 {
 	/// <summary>This class defines all the generic objects and methods that will be used by other classes.</summary>
-	public class Generics
+	public class GenericModels
 	{
 		internal class CompanyInfo
 		{

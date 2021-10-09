@@ -249,7 +249,7 @@ namespace Green_Enviro_App
             string fileName = companyName + " " + date;
             string fileExtension = Constants.PDF_EXTENSION;
 
-            string filePath = Generics.generateSavePath(basePath, month, fileName, fileExtension);
+            string filePath = GenericModels.generateSavePath(basePath, month, fileName, fileExtension);
             return filePath;
         }
 
@@ -308,7 +308,7 @@ namespace Green_Enviro_App
 		/// <summary>Gets the company information given the company name.</summary>
 		/// <param name="companyName">Name of the company name.</param>
 		/// <returns>A CompanyInfo object with the information. Info includes the name, contact person, contact number, email address and physical address</returns>
-        public Generics.CompanyInfo getCompanyInfo(string companyName) 
+        public GenericModels.CompanyInfo getCompanyInfo(string companyName) 
         {
             DataTable companyDetails = _database.select<Database.CompaniesTableColumns>(Database.Tables.Companies,
                                         Database.CompaniesTableColumns.Name, companyName);
@@ -320,7 +320,7 @@ namespace Green_Enviro_App
             int addressColumn = 5;
             int onlyRow = 0;
 
-            Generics.CompanyInfo companyInfo = new Generics.CompanyInfo();
+            GenericModels.CompanyInfo companyInfo = new GenericModels.CompanyInfo();
             companyInfo.companyName = companyDetails.Rows[onlyRow][nameColumn].ToString();
             companyInfo.contactPerson = companyDetails.Rows[onlyRow][contactPersonColumn].ToString();
             companyInfo.emailAddress = companyDetails.Rows[onlyRow][emailColumn].ToString();

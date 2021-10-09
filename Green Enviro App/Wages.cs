@@ -41,7 +41,6 @@ namespace Green_Enviro_App
 		{
 			string wagesFileHeaders = "Date,Name,Amount";
 			fileHandles.createCSVFile(FileHandles.LogType.Wages, wagesFileHeaders);
-	
 		}
 
 		public void SetupWagesLogs()

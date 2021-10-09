@@ -89,7 +89,7 @@ namespace Green_Enviro_App
 		public DataTable selectAll(Tables _tableName)
 		{
 			DataTable _table = new DataTable();
-			string tableName = Generics.enumToString<Tables>(_tableName);
+			string tableName = GenericModels.enumToString<Tables>(_tableName);
 			try
 			{
 				openDatabase();
@@ -115,8 +115,8 @@ namespace Green_Enviro_App
 		/// <exception cref="System.Exception">If an error occurs while trying read from the database.</exception>
 		public DataTable select<TableColumn>(Tables _tableName, TableColumn _columnName, string filterValue)
 		{
-			string tableName = Generics.enumToString<Tables>(_tableName);
-			string columnName = Generics.enumToString<TableColumn>(_columnName);
+			string tableName = GenericModels.enumToString<Tables>(_tableName);
+			string columnName = GenericModels.enumToString<TableColumn>(_columnName);
 
 			string filterExpression = columnName + " = '" + filterValue + "'";
 			DataTable _table = new DataTable();
@@ -147,8 +147,8 @@ namespace Green_Enviro_App
 		/// <exception cref="System.Exception">If something goes wrong while trying to delete.</exception>
 		public Int32 delete<TableColumn>(Tables _tableName, TableColumn _identifierColumn, string identifierValue)
 		{
-			string tableName = Generics.enumToString<Tables>(_tableName);
-			string identifierColumn = Generics.enumToString<TableColumn>(_identifierColumn);
+			string tableName = GenericModels.enumToString<Tables>(_tableName);
+			string identifierColumn = GenericModels.enumToString<TableColumn>(_identifierColumn);
 			string _deletion_cmd = "DELETE FROM " + tableName + " WHERE " + identifierColumn + " = '" + identifierValue + "'";
 			Int32 rowsAffected = 0;
 			try
@@ -176,7 +176,7 @@ namespace Green_Enviro_App
 		{
 			
 
-			string tableName = Generics.enumToString<Tables>(_tableName);
+			string tableName = GenericModels.enumToString<Tables>(_tableName);
 			string tableColumns = getTableColumns(_tableName);
 			string values = formatValuesForInsertion(_values);
 			string insertionCmd = "INSERT INTO " + tableName + " (" + tableColumns + ") VALUES (" + values + ")";
@@ -212,8 +212,8 @@ namespace Green_Enviro_App
 		public Int32 update<TableColumn>(Tables _tableName, 
 			TableColumn[] columns, TableColumn _identifierColumn, string identifier, string[] values)
 		{
-			string tableName = Generics.enumToString<Tables>(_tableName);
-			string identifierColumn = Generics.enumToString<TableColumn>(_identifierColumn);
+			string tableName = GenericModels.enumToString<Tables>(_tableName);
+			string identifierColumn = GenericModels.enumToString<TableColumn>(_identifierColumn);
 			string columnValuePairs = formatValuesForUpdating<TableColumn>(columns, values);
 
 			string updateCommandText = "UPDATE " + tableName + " SET " + columnValuePairs +
