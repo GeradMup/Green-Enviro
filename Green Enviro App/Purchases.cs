@@ -13,7 +13,7 @@ using System.Globalization;
 
 namespace Green_Enviro_App
 {
-	public class Purchases : WarningInterface
+	public class Purchases
 	{
 		Main_Form _main_form;
 		CSVHandles csvHandles;
@@ -155,7 +155,7 @@ namespace Green_Enviro_App
 			//Returns a string the will be the starting substring for the row that will be deleted
 
 			csvHandles.RowsToDelete(_current_row);
-			csvHandles.ConfirmDeletion(_main_form,this);
+			//csvHandles.ConfirmDeletion(_main_form,this);
 		}
 
 		private string pathToDeleteFile()
@@ -165,25 +165,6 @@ namespace Green_Enviro_App
 			_path_to_purchase_file_to_be_deleted = @"..//..//resources//Logs//Purchases//" + selectedMonthAndYear + ".csv";
 			
 			return _path_to_purchase_file_to_be_deleted;
-		}
-
-		/// <summary>
-		/// Function that will be excecuted when after the warning message gets displayed
-		/// </summary>
-		public override void DeleteEntriesWarning(bool actionConfirmed) 
-		{
-			if (actionConfirmed == true)
-			{
-				string pathToFile = pathToDeleteFile();
-				//Recreate
-				csvHandles.DeleteInCSV(pathToFile);
-				DisplayPurchaseLog();
-			}
-			else 
-			{
-				//If user cancels the deletion, we need to remove the highlight marks
-				csvHandles.eraseHighlightMarks();
-			}
 		}
 
 		/// <summary>Adds to pr request.</summary>
@@ -200,11 +181,11 @@ namespace Green_Enviro_App
 			int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
 
 			csvHandles.highlightRow(_current_row);
-			csvHandles.ConfirmPurchasePRAddition(_main_form, this);
+			//csvHandles.ConfirmPurchasePRAddition(_main_form, this);
 
 		}
 
-		public override void PurchasePRWarning(bool actionConfirmed)
+		public void PurchasePRWarning(bool actionConfirmed)
 		{
 			if (actionConfirmed == true)
 			{

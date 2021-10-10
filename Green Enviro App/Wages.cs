@@ -117,69 +117,6 @@ namespace Green_Enviro_App
 			}
 		}
 
-
-		//This function will add up the KG's and Amount column on the Data Grid View and adds a row to show the totals
-		private void AddTotalsRow()
-		{
-			float _total_amount = 0;
-			int _amount_column = 2;
-
-
-			for (int _row = 0; _row < _main_form.WageLogGridView.Rows.Count; _row++)
-			{
-				_total_amount += float.Parse(_main_form.WageLogGridView.Rows[_row].Cells[_amount_column].Value.ToString(), CultureInfo.InvariantCulture);
-			}
-
-			DataTable _totals_table = new DataTable();
-
-			for (int _cols = 0; _cols < _main_form.WageLogGridView.Columns.Count; _cols++)
-			{
-				DataColumn _new_column = new DataColumn();
-				_totals_table.Columns.Add(_new_column);
-			}
-
-			DataRow _last_row = _wages_data_table.NewRow();
-
-			_last_row[0] = "TOTALS";
-			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
-			{
-				if (_cell == _amount_column)
-				{
-					_last_row[_cell] = _total_amount;
-				}
-				else
-				{
-					_last_row[_cell] = _empty_string;
-				}
-			}
-
-			//Add the totals rows to the data table
-			_wages_data_table.Rows.Add(_last_row);
-
-		}
-
-		public void MonthSelected()
-		{
-			string selectedMonthAndYear = _main_form.WageLogMonth.SelectedItem.ToString();
-			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Wages, selectedMonthAndYear); 
-			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);
-
-			//First Clear the start and end date fields to prepare them for the new entry
-			_main_form.WageLogStartDate.Items.Clear();
-			_main_form.WageLogEndDate.Items.Clear();
-
-			//Now Populate the drop down list with available dates only.
-			foreach (string date in dates)
-			{
-				_main_form.WageLogStartDate.Items.Add(date);
-				_main_form.WageLogEndDate.Items.Add(date);
-			}
-
-			//Change the contents displayed in the log if the month selected changes
-			RemoveFilters();
-
-		}
-
 		/// <summary>
 		/// Determines whether a valid date range is select for filtering the Purchase Log.
 		/// </summary>
@@ -354,33 +291,6 @@ namespace Green_Enviro_App
 			_main_form.WageLogMonth.SelectedItem = null;
 			RemoveFilters();
 			_main_form.WageLogGridView.DataSource = null;
-		}
-
-		/// <summary>
-		/// Deletes a sale if user made mistake.
-		/// </summary>
-		public void DeleteWage()
-		{
-			//Verify that something is selected before attempting to delete
-			if (_main_form.WageLogGridView.SelectedCells.Count == 0)
-			{
-				new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the wage to be deleted");
-				return;
-			}
-
-			//Confirm that the user is not trying to delete the totals row
-			if (_main_form.WageLogGridView.CurrentCell.RowIndex == _main_form.WageLogGridView.Rows.Count - 1)
-			{
-				new CustomMessageBox(_main_form, CustomMessageBox.error, "It's not possible to delete the TOTALS row");
-				return;
-			}
-
-			int _selected_row = _main_form.WageLogGridView.CurrentCell.RowIndex;
-			//Highlight the rows that will be deleted if the user chooses to confirm
-			//Returns a string the will be the starting substring for the row that will be deleted
-
-			csvHandles.RowsToDelete(_selected_row);
-			csvHandles.ConfirmDeletion(_main_form, this);
 		}
 
 		private string pathToDeleteFile()

@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace Green_Enviro_App
 {
-	class Expenses	: WarningInterface
+	class Expenses
 	{
 		//Required objects
 		Main_Form _main_form;
@@ -393,7 +393,7 @@ namespace Green_Enviro_App
 			int uniqueExpenseColumns = 3;
 			
 			csvHandles.RowsToDelete(_selected_row);
-			csvHandles.ConfirmDeletion(_main_form, this);
+			//csvHandles.ConfirmDeletion(_main_form, this);
 		}
 
 		private string pathToDeleteFile()
@@ -408,7 +408,7 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Function that will be excecuted when after the warning message gets displayed
 		/// </summary>
-		public override void DeleteEntriesWarning(bool actionConfirmed)
+		public void DeleteEntriesWarning(bool actionConfirmed)
 		{
 			if (actionConfirmed == true)
 			{
@@ -423,11 +423,6 @@ namespace Green_Enviro_App
 				//if the user decides to cancel the deletion
 				csvHandles.eraseHighlightMarks();
 			}
-		}
-
-		public override void PurchasePRWarning(bool actionConfirmed)
-		{
-			//throw new NotImplementedException();
 		}
 	}
 }

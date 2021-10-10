@@ -26,34 +26,15 @@ namespace Green_Enviro_App
 	}
 	public partial class Warning : Form
 	{
-		WarningInterface callerClass;
-		RequestedAction actionRequested;
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Warning"/> class.
 		/// </summary>
-		/// <param name="parent">The form to return to after displaying the error message form</param>
+		/// <param name="parent">The form to return to after displaying the error message form.</param>
 		/// <param name="message">The message.</param>
-		/// <param name="callingClass">The class from which the WarningInterface class was invoked</param>
-		/// <param name="requestedAction">The action that the user was trying to perform before the warning popped up</param>
-		public Warning(Form parent, string message, WarningInterface callingClass, RequestedAction requestedAction)
+		/// <param name="_warningType">The warning type.</param>
+		public Warning()
 		{
 			InitializeComponent();
-			callerClass = callingClass;
-			actionRequested = requestedAction;
-
-			this.BackColor = FormColor(requestedAction);
-			
-			this.Title.Text = FormTitles(requestedAction);
-			this.CustomMsg.Text = message;
-			this.Owner = parent;
-			this.Owner.Enabled = false;
-			this.Enabled = true;
-			
-
-			this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width, Screen.PrimaryScreen.WorkingArea.Height - this.Height);
-			this.Activate();
-			this.Show();
 		}
 
 		/// <summary>
@@ -63,52 +44,59 @@ namespace Green_Enviro_App
 		/// </summary>
 		public bool actionConfirmed = false;
 
-		private void Exit()
+		/// <summary>
+		/// Shows the warning.
+		/// </summary>
+		/// <param name="parent">The parent form.</param>
+		/// <param name="message">The warning message.</param>
+		/// <param name="_warningType">Type of the warning.</param>
+		public void showWarning(Form parent, string message, WarningType _warningType) 
+		{
+			this.BackColor = formColor(_warningType);
+			this.Title.Text = formTitles(_warningType);
+			this.CustomMsg.Text = message;
+
+			this.Enabled = true;
+			this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width, Screen.PrimaryScreen.WorkingArea.Height - this.Height);
+			this.Owner = parent;
+			this.Owner.Enabled = false;
+			this.Activate();
+			this.ShowDialog();
+		}
+
+		private void exit()
 		{
 			this.Owner.Enabled = true;
 			this.Owner.Show();
 			this.Hide();
 			this.Enabled = false;
-			if (actionRequested == RequestedAction.DeleteEntry)
-			{
-				callerClass.DeleteEntriesWarning(actionConfirmed);
-			}
-			else if (actionRequested == RequestedAction.AddPurchaseToPr)
-			{
-				callerClass.PurchasePRWarning(actionConfirmed);
-			}
-			else if (actionRequested == RequestedAction.AddSaleToPr) 
-			{
-				
-			}
-			
 			this.Close();
 		}
 
 		private void ConfirmBtn_Click(object sender, EventArgs e)
 		{
 			actionConfirmed = true;
-			Exit();
+			exit();
 		}
 
 		private void CancelBtn_Click(object sender, EventArgs e)
 		{
 			actionConfirmed = false;
-			Exit();
+			exit();
 		}
 
-		private string FormTitles(RequestedAction action) 
+		private string formTitles(WarningType warningType) 
 		{
 			string formTitle = "";
-			switch (action) 
+			switch (warningType) 
 			{
-				case RequestedAction.DeleteEntry:
+				case WarningType.RegularWarning:
 					formTitle = "*******WARNING*******";
 					break;
-				case RequestedAction.AddPurchaseToPr:
-					formTitle = "*******CONFIRM*******";
+				case WarningType.CriticalWarning:
+					formTitle = "***CRITICAL WARNING***";
 					break;
-				case RequestedAction.AddSaleToPr:
+				case WarningType.ConfirmationWarning:
 					formTitle = "*******CONFIRM*******";
 					break;
 				default:
@@ -117,24 +105,43 @@ namespace Green_Enviro_App
 			return formTitle;
 		}
 
-		private Color FormColor(RequestedAction action) 
+		private Color formColor(WarningType warningType) 
 		{
 			Color formColor = Color.White;
-			switch (action)
+			switch (warningType)
 			{
-				case RequestedAction.DeleteEntry:
+				case WarningType.RegularWarning:
+					formColor = Color.Orange;
+					break;
+				case WarningType.CriticalWarning:
 					formColor = Color.OrangeRed;
 					break;
-				case RequestedAction.AddPurchaseToPr:
-					formColor = Color.GreenYellow;
-					break;
-				case RequestedAction.AddSaleToPr:
+				case WarningType.ConfirmationWarning:
 					formColor = Color.Green;
 					break;
 				default:
 					break;
 			}
 			return formColor;
+		}
+
+		/// <summary>
+		/// Enum class to define the types of warnings that can occur.
+		/// </summary>
+		public enum WarningType 
+		{
+			/// <summary>
+			/// The regular warning
+			/// </summary>
+			RegularWarning,
+			/// <summary>
+			/// The critical warning
+			/// </summary>
+			CriticalWarning,
+			/// <summary>
+			/// The confirmation warning
+			/// </summary>
+			ConfirmationWarning
 		}
 	}
 }

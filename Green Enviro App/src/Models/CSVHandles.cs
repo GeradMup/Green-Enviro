@@ -31,22 +31,6 @@ namespace Green_Enviro_App
 		public CSVHandles() { }
 
 		/// <summary>
-		/// This function will request the user to confirm that they want to go ahead with deleting the entries
-		/// After confirmation, the WarningWaitingFunction will be excecuted (Called from the warning class)
-		/// </summary>
-		public void ConfirmDeletion(Form returnForm, WarningInterface returnClass)
-		{
-			string warningMessage = "YOU ARE ABOUT TO DELETE ALL THE ENTRIES HIGHLIGHTED IN RED!!!";
-			Warning warning = new Warning(returnForm, warningMessage, returnClass, RequestedAction.DeleteEntry);
-		}
-
-		public void ConfirmPurchasePRAddition(Form returnForm, WarningInterface returnClass) 
-		{
-			string warningMessage = "YOU ARE ABOUT TO ADD THE HIGHLIGHTED ENTRY TO THE PURCHASE POLICE REGISTER";
-			Warning warning = new Warning(returnForm, warningMessage, returnClass, RequestedAction.AddPurchaseToPr);
-		}
-
-		/// <summary>
 		/// This function will highlight all the rows that need to be deleted so that the user can 
 		/// confirm that they want to delete those rows
 		/// </summary>

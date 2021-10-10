@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace Green_Enviro_App
 {
-	public class Sales : WarningInterface
+	public class Sales
 	{
 		//First we need to know what month it is
 
@@ -565,7 +565,7 @@ namespace Green_Enviro_App
 			//Returns a string the will be the starting substring for the row that will be deleted
 
 			csvHandles.RowsToDelete(_selected_row);
-			csvHandles.ConfirmDeletion(_main_form, this);
+			//csvHandles.ConfirmDeletion(_main_form, this);
 		}
 
 		private string pathToDeleteFile()
@@ -575,31 +575,6 @@ namespace Green_Enviro_App
 			_path_to_purchase_file_to_be_deleted = @"..//..//resources//Logs//Sales//" + selectedMonthAndYear + ".csv";
 
 			return _path_to_purchase_file_to_be_deleted;
-		}
-
-		/// <summary>
-		/// Function that will be excecuted when after the warning message gets displayed
-		/// </summary>
-		public override void DeleteEntriesWarning(bool actionConfirmed)
-		{
-			if (actionConfirmed == true)
-			{
-				string pathToFile = pathToDeleteFile();
-				//Recreate
-				csvHandles.DeleteInCSV(pathToFile);
-				DisplaySalesLog();
-			}
-			else
-			{
-				//Remove the red highlighting on the previously selected rows
-				//if the user decides to cancel the deletion
-				csvHandles.eraseHighlightMarks();
-			}
-		}
-
-		public override void PurchasePRWarning(bool actionConfirmed)
-		{
-			//throw new NotImplementedException();
 		}
 	}
 

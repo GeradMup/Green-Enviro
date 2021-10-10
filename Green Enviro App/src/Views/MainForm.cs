@@ -42,6 +42,7 @@ namespace Green_Enviro_App
         DeliveryNotesModel _deliveryNotesModel;
         SummariesModel _summariesModel;
         WagesModel _wagesModel;
+        Warning _warnings;
         bool starting = true;
 
         public int _user_permission_level = 0;
@@ -73,6 +74,7 @@ namespace Green_Enviro_App
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
             _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);
             _dgvOps = new DGVOps(this);
+            _warnings = new Warning();
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;
@@ -338,10 +340,6 @@ namespace Green_Enviro_App
         // WAGES RELATED CALLS
         //*************************************************************************************************************
 
-		private void WageLogFilterBtn_Click(object sender, EventArgs e)
-		{
-            //_wages.DisplayWagesLog();
-		}
 
 		private void WageLogRemoveFiltersBtn_Click(object sender, EventArgs e)
 		{
@@ -546,11 +544,6 @@ namespace Green_Enviro_App
 		private void DeleteExpenseBtn_Click(object sender, EventArgs e)
 		{
             _expenses.DeleteExpense();
-		}
-
-		private void DeleteWageBtn_Click(object sender, EventArgs e)
-		{
-            //_wages.DeleteWage();
 		}
 
 		private void DeleteSaleBtn_Click(object sender, EventArgs e)

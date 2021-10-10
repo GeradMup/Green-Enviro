@@ -317,6 +317,15 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
+		/// Highlights the selected row in the data grid view.
+		/// </summary>
+		/// <param name="selectedRow">The selected row.</param>
+		public void highlightRowRed(int selectedRow)
+		{
+			dataGridView.Rows[selectedRow].DefaultCellStyle.BackColor = Color.Red;
+		}
+
+		/// <summary>
 		/// Class to describe the data that gets filled onto a grid view.
 		/// </summary>
 		internal class GridViewData 
