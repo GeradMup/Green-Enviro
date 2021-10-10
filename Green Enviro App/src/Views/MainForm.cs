@@ -337,10 +337,6 @@ namespace Green_Enviro_App
         //*************************************************************************************************************
         // WAGES RELATED CALLS
         //*************************************************************************************************************
-        private void WageLogMonth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //_wages.MonthSelected();
-        }
 
 		private void WageLogFilterBtn_Click(object sender, EventArgs e)
 		{

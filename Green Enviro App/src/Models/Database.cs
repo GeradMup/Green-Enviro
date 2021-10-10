@@ -247,25 +247,25 @@ namespace Green_Enviro_App
 			switch (_tableName) 
 			{
 				case Tables.Buyers:
-					tableNames = enumFieldsToString<BuyersTableColumns>();
+					tableNames = GenericModels.enumFieldsToString<BuyersTableColumns>();
 					break;
 				case Tables.Companies:
-					tableNames = enumFieldsToString<CompaniesTableColumns>();
+					tableNames = GenericModels.enumFieldsToString<CompaniesTableColumns>();
 					break;
 				case Tables.Customers:
-					tableNames = enumFieldsToString<CustomersTableColumns>();
+					tableNames = GenericModels.enumFieldsToString<CustomersTableColumns>();
 					break;
 				case Tables.Employees:
-					tableNames = enumFieldsToString<EmployeesTableColumns>();
+					tableNames = GenericModels.enumFieldsToString<EmployeesTableColumns>();
 					break;
 				case Tables.Items:
-					tableNames = enumFieldsToString<ItemsTableColumns>();
+					tableNames = GenericModels.enumFieldsToString<ItemsTableColumns>();
 					break;
 				case Tables.Stock:
-					tableNames = enumFieldsToString<StockTableColumns>();
+					tableNames = GenericModels.enumFieldsToString<StockTableColumns>();
 					break;
 				case Tables.Users:
-					tableNames = enumFieldsToString<UsersTableColumns>();
+					tableNames = GenericModels.enumFieldsToString<UsersTableColumns>();
 					break;
 				default:
 					break;
@@ -274,23 +274,6 @@ namespace Green_Enviro_App
 			return tableNames;
 		}
 
-		/// <summary>Function to generate a string containing all the fields of a given enum type.</summary>
-		/// <typeparam name="EnumType">The enum type.</typeparam>
-		/// <returns>A string representing all the fields of the enum seperated by commas.</returns>
-		private string enumFieldsToString<EnumType>() 
-		{
-			string[] values = Enum.GetNames(typeof(EnumType));
-			string stringValues = "";
-
-			foreach (string value in values)
-			{
-				stringValues = stringValues + "," + value;
-			}
-
-			//remove the first comma
-			stringValues = stringValues.Remove(0, 1);
-			return stringValues;
-		}
 
 		/// <summary>A function to convert an array of strings into one string seperated by commas.</summary>
 		/// <param name="values">The array of strings.</param>

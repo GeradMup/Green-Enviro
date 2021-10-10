@@ -54,6 +54,24 @@ namespace Green_Enviro_App
 			return enumField;
 		}
 
+		/// <summary>Function to generate a string containing all the fields of a given enum type.</summary>
+		/// <typeparam name="EnumType">The enum type.</typeparam>
+		/// <returns>A string representing all the fields of the enum seperated by commas.</returns>
+		public static string enumFieldsToString<EnumType>()
+		{
+			string[] values = Enum.GetNames(typeof(EnumType));
+			string stringValues = "";
+
+			foreach (string value in values)
+			{
+				stringValues = stringValues + "," + value;
+			}
+
+			//remove the first comma
+			stringValues = stringValues.Remove(0, 1);
+			return stringValues;
+		}
+
 		/// <summary>Generates the path to save a file.</summary>
 		/// <param name="basePath">The base path to the file. If a file with a given path already exists, a number is appended to the file name to make it unique.</param>
 		/// <param name="month">The month which will be used in the path.</param>

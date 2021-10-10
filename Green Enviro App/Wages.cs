@@ -34,18 +34,6 @@ namespace Green_Enviro_App
 			SetupWagesLogs();
 		}
 
-		public void SetupWagesLogs()
-		{
-			List<string> logMonths = fileHandles.getLogNames(FileHandles.LogType.Wages);
-			foreach (string logMonth in logMonths)
-			{
-				_main_form.WageLogMonth.Items.Add(logMonth);
-			}
-
-			_main_form.WageDate.Value = DateTime.Now;
-		}
-
-
 		public void DisplayWagesLog()
 		{
 
@@ -172,12 +160,6 @@ namespace Green_Enviro_App
 
 		public void MonthSelected()
 		{
-			if (_main_form.WageLogMonth.SelectedItem == null)
-			{
-				//Do nothing if no month is selected
-				return;
-			}
-
 			string selectedMonthAndYear = _main_form.WageLogMonth.SelectedItem.ToString();
 			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Wages, selectedMonthAndYear); 
 			HashSet<string> dates = csvHandles.getDatesInFile(pathToLogFile);

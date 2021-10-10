@@ -226,15 +226,13 @@ namespace Green_Enviro_App
 		public void populateLogMonths(List<String> months) 
 		{
 			monthBox.Items.Clear();
-			foreach(String month in months) 
-			{
-				monthBox.Items.Add(month);
-			}
+			monthBox.Items.AddRange(months.Cast<object>().ToArray());
 		}
 
 		/// <summary>Populates the grid view that does not need to be filtered after populating</summary>
 		/// <param name="colWidths">The widths of each column in the grid view</param>
-		public void populateGridView(List<float> colWidths) 
+		/// <param name="includesTotals">Indicates whether the data grid already contains a totals row or not.</param>
+		public void populateGridView(List<float> colWidths, bool includesTotals = true) 
 		{
 			//Disable automatic re-sizing so that the grid can populate quickly
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -247,10 +245,8 @@ namespace Green_Enviro_App
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
 			dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-			for (int column = 0; column < colWidths.Count(); column++) 
-			{
-				dataGridView.Columns[column].FillWeight = colWidths[column];
-			}
+			for (int column = 0; column < colWidths.Count(); column++) dataGridView.Columns[column].FillWeight = colWidths[column];
+			if (includesTotals) highlightTotalsRow();
 
 			dataGridView.Refresh();
 		}
@@ -270,7 +266,8 @@ namespace Green_Enviro_App
 		/// <param name="amountCol">The amount column.</param>
 		public void populateAndFilterGrid(List<float> colWidths, int kgColumn = 0, int amountCol = 0) 
 		{
-			populateGridView(colWidths);
+			bool includesTotals = false;
+			populateGridView(colWidths, includesTotals);
 
 			//Check first if anything is being filtered 
 			filterGridView();
@@ -281,7 +278,7 @@ namespace Green_Enviro_App
 				highlightTotalsRow();
 			}
 
-				dataGridView.Refresh();
+			dataGridView.Refresh();
 		}
 
 		/// <summary>Gives the default column widths for DataGridViews consisting of 9 Columns.</summary>
@@ -307,8 +304,8 @@ namespace Green_Enviro_App
 		public void setTypes() 
 		{
 			typeBox.Items.Clear();
-			typeBox.Items.Add("Ferous");
-			typeBox.Items.Add("Non-Ferous");
+			typeBox.Items.Add(Constants.FERROUS);
+			typeBox.Items.Add(Constants.NON_FERROUS);
 		}
 
 		/// <summary>Changes the binding source being used by a data grid view from a given datatable.</summary>
@@ -319,5 +316,42 @@ namespace Green_Enviro_App
 			bindingSource.DataSource = dt;
 		}
 
+		/// <summary>
+		/// Class to describe the data that gets filled onto a grid view.
+		/// </summary>
+		internal class GridViewData 
+		{	
+			/// <summary>
+			/// Gets or sets the data into a DataTable.
+			/// </summary>
+			/// <value>
+			/// The data.
+			/// </value>
+			public DataTable data { set; get; }
+
+			/// <summary>
+			/// Gets or sets a list of strings containing the dates to be used on the grid view for filtering.
+			/// </summary>
+			/// <value>
+			/// The dates.
+			/// </value>
+			public HashSet<string> dates { set; get; }
+
+			/// <summary>
+			/// Gets or sets the total KGS.
+			/// </summary>
+			/// <value>
+			/// The total KGS.
+			/// </value>
+			public double totalKgs { set; get; }
+
+			/// <summary>
+			/// Gets or sets the total amount.
+			/// </summary>
+			/// <value>
+			/// The total amount.
+			/// </value>
+			public double totalAmount { get; set; }
+		}
 	}
 }
