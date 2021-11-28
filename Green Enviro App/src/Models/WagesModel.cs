@@ -86,6 +86,24 @@ namespace Green_Enviro_App
 			return gridViewData(wageLogMonth);
 		}
 
+		public List<string> getEmployees()
+		{
+
+			DataTable employees = database.selectAll(Database.Tables.Employees);
+			List<string> employeesString = new List<string>();
+			int employeeNameColumn = 1;
+			int employeeSurnameColumn = 2;
+			string employeeNameAndSurname = "";
+			int rowIndex = 0;
+			foreach (DataRow row in employees.Rows)
+			{
+				employeeNameAndSurname = row[employeeNameColumn].ToString() + " " + row[employeeSurnameColumn].ToString();
+				employeesString.Add(employeeNameAndSurname);
+			}
+
+			return employeesString;
+		}
+
 		enum WagesLogHeaders 
 		{
 			Date,

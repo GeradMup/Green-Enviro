@@ -229,6 +229,16 @@ namespace Green_Enviro_App
 			monthBox.Items.AddRange(months.Cast<object>().ToArray());
 		}
 
+
+		/// <summary>Populates a general given ComboBox with the given data as a list of strings.</summary>
+		/// <param name="comboBox">The combo box.</param>
+		/// <param name="data">The data.</param>
+		public void populateComboBox(ComboBox comboBox, List<string> data) 
+		{
+			comboBox.Items.Clear();
+			comboBox.Items.AddRange(data.Cast<object>().ToArray());
+		}
+
 		/// <summary>Populates the grid view that does not need to be filtered after populating</summary>
 		/// <param name="colWidths">The widths of each column in the grid view</param>
 		/// <param name="includesTotals">Indicates whether the data grid already contains a totals row or not.</param>

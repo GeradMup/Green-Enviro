@@ -20,6 +20,8 @@ namespace Green_Enviro_App
 			ComboBox type = new ComboBox();
 			wagesDgvOps = new DGVOps(WageLogGridView, WageLogMonths, WageLogStartDate, WageLogEndDate, type, _mainForm);
 			wagesDgvOps.populateLogMonths(_wagesModel.getMonths());
+			wagesDgvOps.populateComboBox(WagesEmployeeName, _wagesModel.getEmployees());
+			
 			WageDate.Value = DateTime.Now;
 		}
 

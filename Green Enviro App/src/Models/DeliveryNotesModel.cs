@@ -223,12 +223,12 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>This function fetches all the items from the Database and returns a List of strings with the names.</summary>
-		/// <param name="database">The database.</param>
 		/// <returns>A List of strings representing the item names.</returns>
 		public List<string> getItemNames() 
 		{
+			string ITEMS = "ITEMS";
 			DataTable items = csvHandles.getCSVContents(Constants.PATH_TO_DELIVERY_ITEMS);
-			List<string> itemList = items.Rows.OfType<DataRow>().Select(dr => (string)dr["ITEMS"]).ToList();
+			List<string> itemList = items.Rows.OfType<DataRow>().Select(dr => (string)dr[ITEMS]).ToList();
 			return itemList;
 		}
 
