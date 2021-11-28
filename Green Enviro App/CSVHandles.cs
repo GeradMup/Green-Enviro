@@ -14,6 +14,8 @@ namespace Green_Enviro_App
 	/// <summary>This class handles all the reading, writing. deleting, etc from CSV Files.</summary>
 	class CSVHandles
 	{
+
+
 		private static string startingSubstringForLineToBeDeleted = "";
 		private List<int> highlightedRows = new List<int>();
 		DataGridView dataGridView;
@@ -28,7 +30,21 @@ namespace Green_Enviro_App
 			numberOfColumns = unqCols;
 		}
 
-		public CSVHandles() { }
+		/// <summary>
+		/// This function will request the user to confirm that they want to go ahead with deleting the entries
+		/// After confirmation, the WarningWaitingFunction will be excecuted (Called from the warning class)
+		/// </summary>
+		public void ConfirmDeletion(Form returnForm, WarningInterface returnClass)
+		{
+			string warningMessage = "YOU ARE ABOUT TO DELETE ALL THE ENTRIES HIGHLIGHTED IN RED!!!";
+			Warning warning = new Warning(returnForm, warningMessage, returnClass, RequestedAction.DeleteEntry);
+		}
+
+		public void ConfirmPurchasePRAddition(Form returnForm, WarningInterface returnClass) 
+		{
+			string warningMessage = "YOU ARE ABOUT TO ADD THE HIGHLIGHTED ENTRY TO THE PURCHASE POLICE REGISTER";
+			Warning warning = new Warning(returnForm, warningMessage, returnClass, RequestedAction.AddPurchaseToPr);
+		}
 
 		/// <summary>
 		/// This function will highlight all the rows that need to be deleted so that the user can 
@@ -82,7 +98,6 @@ namespace Green_Enviro_App
 			}
 			dataGridView.Refresh();
 		}
-		
 		/// <summary>
 		/// Deletes every entry in the CSV file at the given path where the starting substring matches the provide
 		/// starting substring
@@ -109,12 +124,6 @@ namespace Green_Enviro_App
 			File.WriteAllText(path, _csv_content.ToString());
 		}
 
-		
-		public void setDeleteRowInfo(string rowInfo) 
-		{
-			startingSubstringForLineToBeDeleted = rowInfo;
-		}
-
 		private Predicate<string> startsWithRequiredString = delegate (string line)
 		{
 			//return true if the given line starts with the given condition
@@ -136,10 +145,42 @@ namespace Green_Enviro_App
 			}
 		}
 
+		public void createCSVFile(LogType logType, string headers) 
+		{
+			//First Check if the files exist for each month
+			//If the file does not exist, create it
+			string path = pathToLogs(logType);
+			if (File.Exists(path)) return;
+			string copyPath = path;
+			createFolder(ref copyPath);
+			StringBuilder _csv_content = new StringBuilder();
+			_csv_content.AppendLine(headers);
+			//_csv_content.AppendLine("\n");
+			File.AppendAllText(path, _csv_content.ToString());
+			
+		}
+
+		public void createFolder(ref string path) 
+		{
+			char lastChar = path[path.Length - 1];
+			char forwardSlash = '\\';
+
+			//recursively call this function so that we can get the folder name that contains this file
+			if (lastChar != forwardSlash) 
+			{
+				path = path.Remove(path.Length - 1, 1);
+				createFolder(ref path);
+			}
+
+			if (Directory.Exists(path)) return;
+
+			System.IO.Directory.CreateDirectory(path);
+		}
+
 		/// <summary>
 		/// Reads contents of a csv file given the path. 
 		/// </summary>
-		/// <param name="filePath">Path to the read file.</param>
+		/// <param name="_path_to_log_file">The path to log file.</param>
 		/// <returns name="_data_table">A data table containing the contents of the csv file</returns>
 		public DataTable getCSVContents(string filePath) 
 		{
@@ -174,6 +215,37 @@ namespace Green_Enviro_App
 				}
 			}
 			return _data_table;
+		}
+
+		/// <summary>Gets the sub folders in a given path</summary>
+		/// <param name="logType">The type of log whose sub folders are required.</param>
+		/// <returns>A list of all the file names in folder</returns>
+
+		public List<string> getLogNames(LogType logType) 
+		{
+			List<DateTime> dates = new List<DateTime>();
+
+			bool basePathOnly = true;
+			string monthAndYear = null;
+			string pathToFolder = pathToLogs(logType, monthAndYear, basePathOnly);
+			DirectoryInfo directoryInfo = new DirectoryInfo(pathToFolder);
+			DirectoryInfo[] folders = directoryInfo.GetDirectories();
+
+			foreach (DirectoryInfo folder in folders)
+			{
+				string folderName = folder.Name;
+				dates.Add(DateTime.ParseExact(folderName, "MMMM yyyy", null));
+			}
+			//The files are named after the month in which they were created.
+			//Here we try to order the dates
+
+			dates.Sort((x, y) => DateTime.Compare(x, y));
+			List<String> sortedDates = new List<String>();
+			foreach (DateTime date in dates) 
+			{
+				sortedDates.Add(date.ToString("MMMM yyyy"));
+			}
+			return sortedDates;
 		}
 
 		/// <summary>Adds strings to a CSV file given a list of the strings and the path to the file</summary>
@@ -238,5 +310,75 @@ namespace Green_Enviro_App
 			return _dates;
 		}
 
+		/// <summary>
+		/// Generates a path to the sales logs based on the current month of the year or the month selected by the user. The function can also generate only the base path based on the usere choice.
+		/// </summary>
+		/// <param name="logType">The Type of Log whose path is needed.</param>
+		/// <param name="monthAndYear">An optional parameter to specify the month for the log needed. If left as null, the current month will be selected.</param>
+		/// <param name="basePathOnly">An Optional parameter that specifies whether the caller is looking for the base path only or the full path.</param>
+		/// <returns>A string representing the path.</returns>
+		public string pathToLogs(LogType logType, string monthAndYear = null, bool basePathOnly = false)
+		{
+			if (basePathOnly) return getBasePath(logType);
+
+			string date = "";
+			string path = "";
+			if (monthAndYear == null) date = Constants.CURRENT_MONTH_AND_YEAR;
+			else date = monthAndYear;
+
+			path = getBasePath(logType) + date + "\\" + date + Constants.CSV_EXTENSION;
+			return path;
+		}
+
+		private string getBasePath(LogType logType) 
+		{
+			string basePath = "";
+			switch (logType)
+			{
+				case LogType.DeliveryNotes:
+					basePath = Constants.DELIVERY_NOTES_BASE_PATH;
+					break;
+				case LogType.DestructionCertificates:
+					basePath = Constants.DESTRUCTION_CERTIFICATES_BASE_PATH;
+					break;
+				case LogType.Expenses:
+					basePath = Constants.EXPENSES_BASE_PATH;
+					break;
+				case LogType.Inventory:
+					basePath = Constants.INVENTORY_BASE_PATH;
+					break;
+				case LogType.PurchasesPoliceRegisters:
+					basePath = Constants.PURCHASE_POLICE_REG_BASE_PATH;
+					break;
+				case LogType.SalesPoliceRegisters:
+					basePath = Constants.SALES_POLICE_REG_BASE_PATH;
+					break;
+				case LogType.Purchases:
+					basePath = Constants.PURCHASES_BASE_PATH;
+					break;
+				case LogType.Sales:
+					basePath = Constants.SALES_BASE_PATH;
+					break;
+				case LogType.Wages:
+					basePath = Constants.WAGES_BASE_PATH;
+					break;
+				default:
+					break;
+			}
+			return basePath;
+		}
+
+		public enum LogType 
+		{
+			DeliveryNotes,
+			DestructionCertificates,
+			Expenses,
+			Inventory,
+			SalesPoliceRegisters,
+			PurchasesPoliceRegisters,
+			Purchases,
+			Sales,
+			Wages
+		}
 	}
 }

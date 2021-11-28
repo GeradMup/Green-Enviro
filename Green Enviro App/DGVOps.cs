@@ -325,6 +325,36 @@ namespace Green_Enviro_App
 			dataGridView.Rows[selectedRow].DefaultCellStyle.BackColor = Color.Red;
 		}
 
+		/// <summary>Removes the row highlights from the given row number.</summary>
+		/// <param name="rowNumber">The row number.</param>
+		public void removeRowHighlights(int rowNumber) 
+		{
+			dataGridView.Rows[rowNumber].DefaultCellStyle.BackColor = Color.White;
+		}
+
+		/// <summary>Converts the columns of a row into a comma seperated string.</summary>
+		/// <param name="rowNumber">The row number.</param>
+		/// <returns>A string containg the information from the row.</returns>
+		public string getRowInfo(int rowNumber) 
+		{
+			List<string> columnInfo = new List<string>();
+			string rowInfo = "";
+			string columnValue = "";
+			int numberOfColumns = dataGridView.Columns.Count;
+			//Here we try to extract the entire row that is to be deleted. We want to get all the column entries into a
+			//comma seperated string
+			for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)
+			{
+				columnValue = dataGridView.Rows[rowNumber].Cells[columnIndex].Value.ToString();
+				rowInfo += columnValue + ",";
+			}
+
+			//remove the last comma in the string
+			rowInfo = rowInfo.Remove(rowInfo.Length - 1, 1);
+
+			return rowInfo;
+		}
+
 		/// <summary>
 		/// Class to describe the data that gets filled onto a grid view.
 		/// </summary>

@@ -30,6 +30,11 @@ namespace Green_Enviro_App
 			string selectedMonth = WageLogMonths.SelectedItem.ToString();
 
 			GridViewData gridData = _wagesModel.gridViewData(selectedMonth);
+			updateDataGridView(gridData);
+		}
+
+		private void updateDataGridView(GridViewData gridData) 
+		{
 			wagesDgvOps.populateDates(gridData.dates);
 			wagesDgvOps.changeBindingSource(gridData.data);
 			wagesDgvOps.populateGridView(wageGridColumnWidths());
@@ -61,15 +66,21 @@ namespace Green_Enviro_App
 			//Highlight the rows that will be deleted if the user chooses to confirm
 			int selectedRow = WageLogGridView.CurrentCell.RowIndex;
 			wagesDgvOps.highlightRowRed(selectedRow);
-			
 			_warnings.showWarning(_mainForm, DELETING_WARNING_MESSAGE, Warning.WarningType.CriticalWarning);
 
-			if (_warnings.actionConfirmed) MessageBox.Show("Confirmed");
-			else MessageBox.Show("Not Confirmed!");
+			//Check if the user has confirmed the deletion of the row
+			if (_warnings.actionConfirmed) 
+			{
+				string rowToDelete = wagesDgvOps.getRowInfo(selectedRow);
+				string wageLogMonth = WageLogMonths.SelectedItem.ToString();
+				GridViewData newGridData =_wagesModel.deleteWage(rowToDelete, wageLogMonth);
+				updateDataGridView(newGridData);
+			}
+			else wagesDgvOps.removeRowHighlights(selectedRow);
 		}
 
 		/// <summary>
-		/// Deletes a sale if user made mistake.
+		/// Deletes a wage if user made mistake.
 		/// </summary>
 		public void DeleteWage()
 		{

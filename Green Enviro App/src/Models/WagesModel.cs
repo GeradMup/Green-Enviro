@@ -71,6 +71,21 @@ namespace Green_Enviro_App
 			return gridData;
 		}
 
+		/// <summary>Deletes a wedge entry from the log file given the wage information and the log month and returns the updated DataGridView</summary>
+		/// <param name="wageInfo">The wage information.</param>
+		/// <param name="wageLogMonth">The wage log month.</param>
+		/// <returns>The updated DataGridView.</returns>
+		public GridViewData deleteWage(string wageInfo, string wageLogMonth) 
+		{
+			string pathToLog = fileHandles.pathToLogs(FileHandles.LogType.Wages, wageLogMonth);
+			
+			//First update the substring that identifies the row to be deleted.
+			csvHandles.setDeleteRowInfo(wageInfo);
+			csvHandles.DeleteInCSV(pathToLog);
+
+			return gridViewData(wageLogMonth);
+		}
+
 		enum WagesLogHeaders 
 		{
 			Date,
