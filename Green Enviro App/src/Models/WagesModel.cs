@@ -71,10 +71,10 @@ namespace Green_Enviro_App
 			return gridData;
 		}
 
-		/// <summary>Deletes a wedge entry from the log file given the wage information and the log month and returns the updated DataGridView</summary>
+		/// <summary>Deletes a wedge entry from the log file given the wage information and the log month and returns the updated GridData</summary>
 		/// <param name="wageInfo">The wage information.</param>
 		/// <param name="wageLogMonth">The wage log month.</param>
-		/// <returns>The updated DataGridView.</returns>
+		/// <returns>The updated GridData.</returns>
 		public GridViewData deleteWage(string wageInfo, string wageLogMonth) 
 		{
 			string pathToLog = fileHandles.pathToLogs(FileHandles.LogType.Wages, wageLogMonth);
@@ -86,22 +86,29 @@ namespace Green_Enviro_App
 			return gridViewData(wageLogMonth);
 		}
 
+		/// <summary>Gets all the employees who are registered in the company.</summary>
+		/// <returns>A list of strings containing all the employees names and surnames.</returns>
 		public List<string> getEmployees()
 		{
-
 			DataTable employees = database.selectAll(Database.Tables.Employees);
 			List<string> employeesString = new List<string>();
 			int employeeNameColumn = 1;
 			int employeeSurnameColumn = 2;
 			string employeeNameAndSurname = "";
-			int rowIndex = 0;
 			foreach (DataRow row in employees.Rows)
 			{
 				employeeNameAndSurname = row[employeeNameColumn].ToString() + " " + row[employeeSurnameColumn].ToString();
 				employeesString.Add(employeeNameAndSurname);
 			}
-
 			return employeesString;
+		}
+
+		/// <summary>Adds a new wage entry and returns the DataGridInfo with the updated wages.</summary>
+		/// <param name="info">The wage information.</param>
+		/// <returns>The updated grid data</returns>
+		public GridViewData addWage(WageInfo info) 
+		{
+			return new GridViewData();
 		}
 
 		enum WagesLogHeaders 
@@ -109,6 +116,31 @@ namespace Green_Enviro_App
 			Date,
 			Name,
 			Amount
+		}
+
+
+		/// <summary>Class object to hold the information required when recording a wage.</summary>
+		internal class WageInfo 
+		{
+			/// <summary>Initializes a new instance of the <see cref="WageInfo" /> class.</summary>
+			public WageInfo() 
+			{
+				employeeName = "";
+				paymentDate = DateTime.Now;
+				amount = Constants.DECIMAL_ZERO;
+			}
+
+			/// <summary>Gets or sets the name of the employee.</summary>
+			/// <value>The name of the employee.</value>
+			public string employeeName { set; get; }
+
+			/// <summary>Gets or sets the payment date.</summary>
+			/// <value>The payment date.</value>
+			public DateTime paymentDate { set; get; }
+
+			/// <summary>Gets or sets the payment amount.</summary>
+			/// <value>The amount.</value>
+			public decimal amount { set; get; }
 		}
 	}
 }

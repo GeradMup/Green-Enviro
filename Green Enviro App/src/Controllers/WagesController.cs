@@ -8,6 +8,7 @@ using System.Windows.Forms;
 namespace Green_Enviro_App
 {
 	using GridViewData = DGVOps.GridViewData;
+	using WageInfo = WagesModel.WageInfo;
 
 	public partial class Main_Form : Form
 	{
@@ -51,9 +52,11 @@ namespace Green_Enviro_App
 			return colWidths;
 		}
 
+		/// <summary>Handles the Click event of the DeleteWageBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void DeleteWageBtn_Click(object sender, EventArgs e)
 		{
-			//_wages.DeleteWage();
 			const string NO_SELECTION_ERROR = "Please select the wage to be deleted";
 			const string DELETING_TOTALS_ERROR = "It's not possible to delete the TOTALS row";
 			const string DELETING_WARNING_MESSAGE = "Are you sure you want to delete this entry?";
@@ -81,12 +84,35 @@ namespace Green_Enviro_App
 			else wagesDgvOps.removeRowHighlights(selectedRow);
 		}
 
-		/// <summary>
-		/// Deletes a wage if user made mistake.
-		/// </summary>
-		public void DeleteWage()
+		/// <summary>Handles the Click event of the AddWageBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+		private void AddWageBtn_Click(object sender, EventArgs e)
 		{
-			
+			const string NO_AMOUNT_INSERTED = "Please Insert the Amount!";
+			const string NO_EMPLOYEE_INSERTED = "Please Insert the Employee Name";
+
+			//First check that an amount has been inserted by the user.
+			if (WageAmount.Value == Constants.DECIMAL_ZERO)
+			{ GenericControllers.reportError(_mainForm, NO_AMOUNT_INSERTED); return; }
+
+			//Second check that the user has selected an employee to pay the wage.
+			if (WagesEmployeeName.Text == Constants.EMPTY_TEXT)
+			{ GenericControllers.reportError(_mainForm, NO_EMPLOYEE_INSERTED); return; }
+
+			WageInfo wageInfo = new WageInfo();
+			wageInfo.employeeName = getEmployeeName();
+			wageInfo.paymentDate = WageDate.Value;
+			wageInfo.amount = WageAmount.Value;
+			GridViewData newGridData = _wagesModel.addWage(wageInfo);
+			updateDataGridView(newGridData);
+		}
+
+		//A helper function to check if the user is trying to pay a part time employee or existing employees.
+		private string getEmployeeName() 
+		{
+			if (WagePartTimeEmployeeCheckBox.CheckState == CheckState.Checked) return WagesEmployeeName.Text;
+			return WagesEmployeeName.SelectedItem.ToString();
 		}
 
 

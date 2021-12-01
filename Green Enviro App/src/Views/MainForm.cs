@@ -351,18 +351,6 @@ namespace Green_Enviro_App
             //_wages.ClearFields();
 		}
 
-		private void AddWageBtn_Click(object sender, EventArgs e)
-		{
-            if ((_user_permission_level == 4) || (_user_permission_level == 5))
-            {
-               // _wages.AddWage();
-            }
-            else 
-            {
-                PermissionDenied();
-            }
-            
-		}
 
 		private void PartTimeEmployeeCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
