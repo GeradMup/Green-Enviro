@@ -113,7 +113,7 @@ namespace Green_Enviro_App
 				List<String> lines = new List<String>();
 				lines.Add(purchaseEntry);
 				string successMessage = "Purchase added to Purchase Police Register";
-				csvHandles.addToCSV(fileHandles.pathToLogs(FileHandles.LogType.PurchasesPoliceRegisters), lines, _main_form, successMessage);
+				//csvHandles.addToCSV(fileHandles.pathToLogs(FileHandles.LogType.PurchasesPoliceRegisters), lines, _main_form, successMessage);
 			}
 		}
 	}

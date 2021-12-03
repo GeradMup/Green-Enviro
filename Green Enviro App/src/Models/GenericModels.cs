@@ -98,4 +98,13 @@ namespace Green_Enviro_App
 			return savePath;
 		}
 	}
+
+
+	/// <summary>The exception thrown when a given path does not exist.</summary>
+	public class PathDoesNotExist : Exception 
+	{
+		const string EXCEPTION_MESSAGE = "The specified path does not exist!";
+		/// <summary>Initializes a new instance of the <see cref="PathDoesNotExist" /> class.</summary>
+		public PathDoesNotExist() : base(EXCEPTION_MESSAGE){}
+	}
 }

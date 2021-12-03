@@ -52,6 +52,10 @@ namespace Green_Enviro_App
 		public static readonly string PATH_TO_DELIVERY_ITEMS;
 		/// <summary>Path to the signature of the company's operations director.</summary>
 		public static readonly string SINGNATURE_IMAGE_PATH;
+
+		/// <summary>The format to use when naming log names from a date.</summary>
+		public static readonly string LOG_NAME_DATE_FORMAT;
+
 		/// <summary>Initializes a new instance of the <see cref="Constants" /> class.</summary>
 		static Constants()
 		{
@@ -76,6 +80,7 @@ namespace Green_Enviro_App
 			COMPANY_LETTERHEAD_PATH = PROJECT_PATH + @"\resources\Green Enviro Destruction Certificate Logo Better.png";
 			PATH_TO_DELIVERY_ITEMS = PROJECT_PATH + @"\resources\Items\Items.txt";
 			SINGNATURE_IMAGE_PATH = PROJECT_PATH + @"\resources\Green Enviro Signature.jpeg";
+			LOG_NAME_DATE_FORMAT = "MMMM yyyy";
 		}
 	}
 }

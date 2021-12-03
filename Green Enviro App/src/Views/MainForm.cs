@@ -352,11 +352,6 @@ namespace Green_Enviro_App
 		}
 
 
-		private void PartTimeEmployeeCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-            //_wages.PartTimeEmployee();
-		}
-
         private void NewEmployee_Click(object sender, EventArgs e)
         {
             if ((_user_permission_level == 4) || (_user_permission_level == 5))

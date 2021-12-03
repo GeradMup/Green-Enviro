@@ -13,14 +13,15 @@ namespace Green_Enviro_App
 	public partial class Main_Form : Form
 	{
 		DGVOps wagesDgvOps;
-
+		List<string> allWageLogs;
 		private void initializeWagesTab() 
 		{
 			//DGVOps contains methods that makes use of the type ComboBox but since we do not have one for wages, we will create
 			//a fake one.
 			ComboBox type = new ComboBox();
 			wagesDgvOps = new DGVOps(WageLogGridView, WageLogMonths, WageLogStartDate, WageLogEndDate, type, _mainForm);
-			wagesDgvOps.populateLogMonths(_wagesModel.getMonths());
+			allWageLogs = _wagesModel.getMonths();
+			wagesDgvOps.populateLogMonths(allWageLogs);
 			wagesDgvOps.populateComboBox(WagesEmployeeName, _wagesModel.getEmployees());
 			
 			WageDate.Value = DateTime.Now;
@@ -101,18 +102,56 @@ namespace Green_Enviro_App
 			{ GenericControllers.reportError(_mainForm, NO_EMPLOYEE_INSERTED); return; }
 
 			WageInfo wageInfo = new WageInfo();
-			wageInfo.employeeName = getEmployeeName();
+			wageInfo.employeeName = WagesEmployeeName.Text;
 			wageInfo.paymentDate = WageDate.Value;
 			wageInfo.amount = WageAmount.Value;
-			GridViewData newGridData = _wagesModel.addWage(wageInfo);
-			updateDataGridView(newGridData);
+			string logMonth = WageDate.Value.ToString(Constants.LOG_NAME_DATE_FORMAT);
+			try
+			{
+				GridViewData newGridData = _wagesModel.addWage(wageInfo);
+				updateDataGridView(newGridData);
+				clearWageEntryFields();
+				selectWageLog(logMonth);
+			}
+			catch (Exception ex) 
+			{
+				GenericControllers.reportError(_mainForm, ex.Message);
+			}
 		}
 
-		//A helper function to check if the user is trying to pay a part time employee or existing employees.
-		private string getEmployeeName() 
+		/// <summary>Handles the CheckedChanged event of the PartTimeEmployeeCheckBox control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+		private void PartTimeEmployeeCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-			if (WagePartTimeEmployeeCheckBox.CheckState == CheckState.Checked) return WagesEmployeeName.Text;
-			return WagesEmployeeName.SelectedItem.ToString();
+			//Convert the drop down list into a drop down so that user can type in a new name.
+			WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDown;
+		}
+
+		/// <summary>Sets the currently selected wage log to the given month's log.</summary>
+		/// <param name="month">The month.</param>
+		private void selectWageLog(string month) 
+		{
+			WageLogMonths.SelectedIndex = WageLogMonths.Items.IndexOf(month);
+		}
+
+		/// <summary>Clears all fields on the Wages tab.</summary>
+		private void clearAllWageFields()
+		{
+			WageLogMonths.SelectedItem = null;
+			WageLogStartDate.SelectedItem = null;
+			WageLogEndDate.SelectedItem = null;
+			WageDate.Value = DateTime.Now;
+			clearWageEntryFields();
+		}
+
+		/// <summary>Clears the wage entry fields.</summary>
+		private void clearWageEntryFields() 
+		{
+			WageAmount.Value = Constants.DECIMAL_ZERO;
+			WagePartTimeEmployeeCheckBox.CheckState = CheckState.Checked;
+			WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
+			WagesEmployeeName.SelectedItem = null;
 		}
 
 

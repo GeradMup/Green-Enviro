@@ -66,7 +66,7 @@ namespace Green_Enviro_App
 			foreach (DirectoryInfo folder in folders)
 			{
 				string folderName = folder.Name;
-				dates.Add(DateTime.ParseExact(folderName, "MMMM yyyy", null));
+				dates.Add(DateTime.ParseExact(folderName, Constants.LOG_NAME_DATE_FORMAT, null));
 			}
 			//The files are named after the month in which they were created.
 			//Here we try to order the dates
@@ -75,7 +75,7 @@ namespace Green_Enviro_App
 			List<String> sortedDates = new List<String>();
 			foreach (DateTime date in dates)
 			{
-				sortedDates.Add(date.ToString("MMMM yyyy"));
+				sortedDates.Add(date.ToString(Constants.LOG_NAME_DATE_FORMAT));
 			}
 			return sortedDates;
 		}

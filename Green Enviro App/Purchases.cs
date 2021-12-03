@@ -63,7 +63,7 @@ namespace Green_Enviro_App
 		public void AddPurchase(List<string> purchasedItems)
 		{
 			string successMessage = "Purchase Completed";
-			csvHandles.addToCSV(fileHandles.pathToLogs(FileHandles.LogType.Purchases), purchasedItems,_main_form, successMessage);
+			//csvHandles.addToCSV(fileHandles.pathToLogs(FileHandles.LogType.Purchases), purchasedItems,_main_form, successMessage);
 			DisplayPurchaseLog();
 		}
 

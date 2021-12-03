@@ -124,7 +124,6 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Erases the highlight marks that were made when indicating which rows will be deleted
 		/// </summary>
-		/// <param name="dataGridView">The data grid view.</param>
 		public void eraseHighlightMarks() 
 		{
 			//Remove the red highlighting on the previously selected rows
@@ -179,10 +178,16 @@ namespace Green_Enviro_App
 		/// <summary>Adds strings to a CSV file given a list of the strings and the path to the file</summary>
 		/// <param name="path">The path.</param>
 		/// <param name="lines">The lines.</param>
-		/// <param name="parent_form">The form we will return to after showing the success CustomMessageBox Form</param>
-		/// <param name="successMessage">The message to be displayed when writing to the csv file was successful</param>
-		public void addToCSV(string path, List<string> lines, Form parent_form, string successMessage) 
+		/// <exception cref="FailedToAddToCSVFile">Throws an exception if something goes wrong in the process of
+		/// adding content to a CSV file.</exception>
+		/// <exception cref="PathDoesNotExist">Throws an exception if the given file path is invalid.</exception>
+		public void addToCSV(string path, List<string> lines) 
 		{
+			//First let us check if the given file path is valid or not.
+			//If the path does not exist, we throw an exception.
+			if (!File.Exists(path)) throw new PathDoesNotExist();
+
+
 			StringBuilder _csv_content = new StringBuilder();
 
 			foreach (string line in lines)
@@ -190,15 +195,14 @@ namespace Green_Enviro_App
 				_csv_content.AppendLine(line);
 			}
 
+			//Try to save your lines in the CSV file. If the process fails, through an exception.
 			try
 			{
 				File.AppendAllText(path, _csv_content.ToString());
-
-				CustomMessageBox box = new CustomMessageBox(parent_form, CustomMessageBox.success, successMessage);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				MessageBox.Show("Error! \n" + ex.Message);
+				throw new FailedToAddToCSVFile();
 			}
 		}
 
@@ -238,5 +242,13 @@ namespace Green_Enviro_App
 			return _dates;
 		}
 
+	}
+
+	/// <summary>The exception to be thrown when adding lines to a CSV file have failed.</summary>
+	public class FailedToAddToCSVFile : Exception
+	{
+		const string EXCEPTION_MESSAGE = "FAILED TO ADD CONTENTS TO THE CSV FILE!";
+		/// <summary>Initializes a new instance of the <see cref="FailedToAddToCSVFile" /> class.</summary>
+		public FailedToAddToCSVFile() : base(EXCEPTION_MESSAGE){}
 	}
 }

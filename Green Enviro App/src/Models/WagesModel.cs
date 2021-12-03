@@ -104,11 +104,25 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>Adds a new wage entry and returns the DataGridInfo with the updated wages.</summary>
-		/// <param name="info">The wage information.</param>
+		/// <param name="wageInfo">The wage information.</param>
 		/// <returns>The updated grid data</returns>
-		public GridViewData addWage(WageInfo info) 
+		public GridViewData addWage(WageInfo wageInfo) 
 		{
-			return new GridViewData();
+			string paymentMonth = wageInfo.paymentDate.ToString("MMMM yyyy");
+			string currentTime = DateTime.Now.ToString("HH:mm:ss");
+			string wageInfoString = wageInfo.paymentDate.ToString("dd MMMM yyyy ") + currentTime + "," + wageInfo.employeeName + "," + wageInfo.amount.ToString();
+			string pathToWageLog = fileHandles.pathToLogs(FileHandles.LogType.Wages, paymentMonth);
+
+			try
+			{
+				csvHandles.addToCSV(pathToWageLog, new List<string>(){ wageInfoString });
+			}
+			catch (Exception ex) 
+			{
+				throw new Exception(ex.Message);
+			}
+			
+			return gridViewData(paymentMonth);
 		}
 
 		enum WagesLogHeaders 
