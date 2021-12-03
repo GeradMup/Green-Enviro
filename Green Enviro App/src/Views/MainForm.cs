@@ -22,7 +22,6 @@ namespace Green_Enviro_App
         Purchases _purchases;
         Sales _sales;
         Expenses _expenses;
-        Wages _wages;
 		
         Customers _customers;
         NewCustomer _new_customer;
