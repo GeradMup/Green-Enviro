@@ -49,7 +49,6 @@ namespace Green_Enviro_App
 		public DGVOps(Form parent) 
 		{
 			parentForm = parent;
-			
 		}
 		
 		/// <summary>
@@ -229,7 +228,6 @@ namespace Green_Enviro_App
 			monthBox.Items.AddRange(months.Cast<object>().ToArray());
 		}
 
-
 		/// <summary>Populates a general given ComboBox with the given data as a list of strings.</summary>
 		/// <param name="comboBox">The combo box.</param>
 		/// <param name="data">The data.</param>
@@ -290,6 +288,15 @@ namespace Green_Enviro_App
 
 			dataGridView.Refresh();
 		}
+
+
+		/// <summary>Resets the grid.</summary>
+		public void resetGrid() 
+		{
+			changeBindingSource(null);
+			dataGridView.Refresh();
+		}
+
 
 		/// <summary>Gives the default column widths for DataGridViews consisting of 9 Columns.</summary>
 		/// <returns>A list of floats containing the dafault column widths.</returns>

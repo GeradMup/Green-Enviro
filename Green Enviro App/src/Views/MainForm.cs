@@ -340,18 +340,6 @@ namespace Green_Enviro_App
         // WAGES RELATED CALLS
         //*************************************************************************************************************
 
-
-		private void WageLogRemoveFiltersBtn_Click(object sender, EventArgs e)
-		{
-            //_wages.RemoveFilters();
-		}
-
-		private void ClearWageFieldsBtn_Click(object sender, EventArgs e)
-		{
-            //_wages.ClearFields();
-		}
-
-
         private void NewEmployee_Click(object sender, EventArgs e)
         {
             if ((_user_permission_level == 4) || (_user_permission_level == 5))
@@ -414,7 +402,7 @@ namespace Green_Enviro_App
             _sales.Reset();
             _inventory.Reset();
             _expenses.Reset();
-            //_wages.Reset();
+            resetWages();
             resetSummaries();
             resetDestructionCertificate();
             resetDeliveryNotes();

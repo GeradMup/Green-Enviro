@@ -136,12 +136,13 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>Clears all fields on the Wages tab.</summary>
-		private void clearAllWageFields()
+		private void resetWages()
 		{
 			WageLogMonths.SelectedItem = null;
 			WageLogStartDate.SelectedItem = null;
 			WageLogEndDate.SelectedItem = null;
 			WageDate.Value = DateTime.Now;
+			wagesDgvOps.resetGrid();
 			clearWageEntryFields();
 		}
 
@@ -153,6 +154,12 @@ namespace Green_Enviro_App
 			WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
 			WagesEmployeeName.SelectedItem = null;
 		}
+
+		private void ClearWageFieldsBtn_Click(object sender, EventArgs e)
+		{
+			resetWages();
+		}
+
 
 
 	}
