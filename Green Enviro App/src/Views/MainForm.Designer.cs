@@ -131,12 +131,12 @@ namespace Green_Enviro_App
 			this.Expenses = new System.Windows.Forms.TabPage();
 			this.DeleteExpenseBtn = new System.Windows.Forms.Button();
 			this.ExpenseAmount = new System.Windows.Forms.NumericUpDown();
-			this.ExpenseDescriptionBox = new System.Windows.Forms.TextBox();
+			this.ExpenseDescription = new System.Windows.Forms.TextBox();
 			this.ExpenseDate = new System.Windows.Forms.DateTimePicker();
 			this.ExpensesLogRemoveFiltersBtn = new System.Windows.Forms.Button();
 			this.ExpensesLogFilterBtn = new System.Windows.Forms.Button();
 			this.label28 = new System.Windows.Forms.Label();
-			this.ExpensesLogMonth = new System.Windows.Forms.ComboBox();
+			this.ExpensesLogMonths = new System.Windows.Forms.ComboBox();
 			this.label29 = new System.Windows.Forms.Label();
 			this.label30 = new System.Windows.Forms.Label();
 			this.ExpensesLogEndDate = new System.Windows.Forms.ComboBox();
@@ -1453,12 +1453,12 @@ namespace Green_Enviro_App
 			// 
 			this.Expenses.Controls.Add(this.DeleteExpenseBtn);
 			this.Expenses.Controls.Add(this.ExpenseAmount);
-			this.Expenses.Controls.Add(this.ExpenseDescriptionBox);
+			this.Expenses.Controls.Add(this.ExpenseDescription);
 			this.Expenses.Controls.Add(this.ExpenseDate);
 			this.Expenses.Controls.Add(this.ExpensesLogRemoveFiltersBtn);
 			this.Expenses.Controls.Add(this.ExpensesLogFilterBtn);
 			this.Expenses.Controls.Add(this.label28);
-			this.Expenses.Controls.Add(this.ExpensesLogMonth);
+			this.Expenses.Controls.Add(this.ExpensesLogMonths);
 			this.Expenses.Controls.Add(this.label29);
 			this.Expenses.Controls.Add(this.label30);
 			this.Expenses.Controls.Add(this.ExpensesLogEndDate);
@@ -1479,7 +1479,7 @@ namespace Green_Enviro_App
 			// 
 			// DeleteExpenseBtn
 			// 
-			this.DeleteExpenseBtn.Location = new System.Drawing.Point(1389, 98);
+			this.DeleteExpenseBtn.Location = new System.Drawing.Point(1387, 110);
 			this.DeleteExpenseBtn.Name = "DeleteExpenseBtn";
 			this.DeleteExpenseBtn.Size = new System.Drawing.Size(276, 45);
 			this.DeleteExpenseBtn.TabIndex = 53;
@@ -1490,7 +1490,7 @@ namespace Green_Enviro_App
 			// ExpenseAmount
 			// 
 			this.ExpenseAmount.DecimalPlaces = 2;
-			this.ExpenseAmount.Location = new System.Drawing.Point(176, 213);
+			this.ExpenseAmount.Location = new System.Drawing.Point(176, 175);
 			this.ExpenseAmount.Margin = new System.Windows.Forms.Padding(4);
 			this.ExpenseAmount.Maximum = new decimal(new int[] {
             200000,
@@ -1501,17 +1501,17 @@ namespace Green_Enviro_App
 			this.ExpenseAmount.Size = new System.Drawing.Size(223, 31);
 			this.ExpenseAmount.TabIndex = 51;
 			// 
-			// ExpenseDescriptionBox
+			// ExpenseDescription
 			// 
-			this.ExpenseDescriptionBox.Location = new System.Drawing.Point(176, 120);
-			this.ExpenseDescriptionBox.Name = "ExpenseDescriptionBox";
-			this.ExpenseDescriptionBox.Size = new System.Drawing.Size(422, 31);
-			this.ExpenseDescriptionBox.TabIndex = 50;
+			this.ExpenseDescription.Location = new System.Drawing.Point(176, 106);
+			this.ExpenseDescription.Name = "ExpenseDescription";
+			this.ExpenseDescription.Size = new System.Drawing.Size(422, 31);
+			this.ExpenseDescription.TabIndex = 50;
 			// 
 			// ExpenseDate
 			// 
 			this.ExpenseDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ExpenseDate.Location = new System.Drawing.Point(176, 23);
+			this.ExpenseDate.Location = new System.Drawing.Point(176, 38);
 			this.ExpenseDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ExpenseDate.MaxDate = new System.DateTime(2028, 7, 1, 0, 0, 0, 0);
 			this.ExpenseDate.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
@@ -1524,7 +1524,7 @@ namespace Green_Enviro_App
 			// 
 			// ExpensesLogRemoveFiltersBtn
 			// 
-			this.ExpensesLogRemoveFiltersBtn.Location = new System.Drawing.Point(1077, 98);
+			this.ExpensesLogRemoveFiltersBtn.Location = new System.Drawing.Point(1077, 109);
 			this.ExpensesLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ExpensesLogRemoveFiltersBtn.Name = "ExpensesLogRemoveFiltersBtn";
 			this.ExpensesLogRemoveFiltersBtn.Size = new System.Drawing.Size(278, 46);
@@ -1535,7 +1535,7 @@ namespace Green_Enviro_App
 			// 
 			// ExpensesLogFilterBtn
 			// 
-			this.ExpensesLogFilterBtn.Location = new System.Drawing.Point(753, 98);
+			this.ExpensesLogFilterBtn.Location = new System.Drawing.Point(753, 109);
 			this.ExpensesLogFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ExpensesLogFilterBtn.Name = "ExpensesLogFilterBtn";
 			this.ExpensesLogFilterBtn.Size = new System.Drawing.Size(290, 46);
@@ -1553,19 +1553,19 @@ namespace Green_Enviro_App
 			this.label28.TabIndex = 47;
 			this.label28.Text = "Month";
 			// 
-			// ExpensesLogMonth
+			// ExpensesLogMonths
 			// 
-			this.ExpensesLogMonth.DropDownHeight = 300;
-			this.ExpensesLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ExpensesLogMonth.FormattingEnabled = true;
-			this.ExpensesLogMonth.IntegralHeight = false;
-			this.ExpensesLogMonth.ItemHeight = 23;
-			this.ExpensesLogMonth.Location = new System.Drawing.Point(753, 50);
-			this.ExpensesLogMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ExpensesLogMonth.Name = "ExpensesLogMonth";
-			this.ExpensesLogMonth.Size = new System.Drawing.Size(290, 31);
-			this.ExpensesLogMonth.TabIndex = 46;
-			this.ExpensesLogMonth.SelectedIndexChanged += new System.EventHandler(this.ExpensesLogMonth_SelectedIndexChanged);
+			this.ExpensesLogMonths.DropDownHeight = 300;
+			this.ExpensesLogMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ExpensesLogMonths.FormattingEnabled = true;
+			this.ExpensesLogMonths.IntegralHeight = false;
+			this.ExpensesLogMonths.ItemHeight = 23;
+			this.ExpensesLogMonths.Location = new System.Drawing.Point(753, 50);
+			this.ExpensesLogMonths.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ExpensesLogMonths.Name = "ExpensesLogMonths";
+			this.ExpensesLogMonths.Size = new System.Drawing.Size(290, 31);
+			this.ExpensesLogMonths.TabIndex = 46;
+			this.ExpensesLogMonths.SelectedIndexChanged += new System.EventHandler(this.ExpensesLogMonth_SelectedIndexChanged);
 			// 
 			// label29
 			// 
@@ -1656,7 +1656,7 @@ namespace Green_Enviro_App
 			// label31
 			// 
 			this.label31.AutoSize = true;
-			this.label31.Location = new System.Drawing.Point(16, 215);
+			this.label31.Location = new System.Drawing.Point(15, 177);
 			this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label31.Name = "label31";
 			this.label31.Size = new System.Drawing.Size(76, 23);
@@ -1666,7 +1666,7 @@ namespace Green_Enviro_App
 			// label33
 			// 
 			this.label33.AutoSize = true;
-			this.label33.Location = new System.Drawing.Point(15, 123);
+			this.label33.Location = new System.Drawing.Point(15, 109);
 			this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label33.Name = "label33";
 			this.label33.Size = new System.Drawing.Size(131, 23);
@@ -3300,23 +3300,16 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TabPage Expenses;
 		private System.Windows.Forms.TabPage Summaries;
 		private System.Windows.Forms.Button ReceiptPriceEditBtn;
-		public System.Windows.Forms.DateTimePicker ExpenseDate;
 		private System.Windows.Forms.Button ExpensesLogRemoveFiltersBtn;
 		private System.Windows.Forms.Button ExpensesLogFilterBtn;
 		private System.Windows.Forms.Label label28;
-		public System.Windows.Forms.ComboBox ExpensesLogMonth;
 		private System.Windows.Forms.Label label29;
 		private System.Windows.Forms.Label label30;
-		public System.Windows.Forms.ComboBox ExpensesLogEndDate;
-		public System.Windows.Forms.ComboBox ExpensesLogStartDate;
-		public System.Windows.Forms.DataGridView ExpensesLogGridView;
 		private System.Windows.Forms.Button ClearExpenseFieldsBtn;
 		private System.Windows.Forms.Button AddExpenseBtn;
 		private System.Windows.Forms.Label label31;
 		private System.Windows.Forms.Label label33;
 		private System.Windows.Forms.Label label34;
-		public System.Windows.Forms.NumericUpDown ExpenseAmount;
-		public System.Windows.Forms.TextBox ExpenseDescriptionBox;
 		private System.Windows.Forms.Label WagesMonthLabel;
 		private System.Windows.Forms.Label WagesEndDateLabel;
 		private System.Windows.Forms.Label WagesStartDateLabel;
@@ -3460,5 +3453,12 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.ComboBox WageLogStartDate;
 		private System.Windows.Forms.ComboBox WagesEmployeeName;
 		private System.Windows.Forms.CheckBox WagePartTimeEmployeeCheckBox;
+		private System.Windows.Forms.DateTimePicker ExpenseDate;
+		private System.Windows.Forms.ComboBox ExpensesLogMonths;
+		private System.Windows.Forms.ComboBox ExpensesLogEndDate;
+		private System.Windows.Forms.ComboBox ExpensesLogStartDate;
+		private System.Windows.Forms.DataGridView ExpensesLogGridView;
+		private System.Windows.Forms.NumericUpDown ExpenseAmount;
+		private System.Windows.Forms.TextBox ExpenseDescription;
 	}
 }

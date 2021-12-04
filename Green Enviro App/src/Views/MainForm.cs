@@ -21,7 +21,7 @@ namespace Green_Enviro_App
         Database _database;
         Purchases _purchases;
         Sales _sales;
-        Expenses _expenses;
+        //Expenses _expenses;
 		
         Customers _customers;
         NewCustomer _new_customer;
@@ -41,6 +41,7 @@ namespace Green_Enviro_App
         DeliveryNotesModel _deliveryNotesModel;
         SummariesModel _summariesModel;
         WagesModel _wagesModel;
+        ExpensesModel _expensesModel;
         Warning _warnings;
         bool starting = true;
 
@@ -64,14 +65,18 @@ namespace Green_Enviro_App
             _sales = new Sales(this, _database, _fileHandles);
             _inventory = new Inventory(this);
             _receipt = new Receipt(this, _database, _purchases, _sales, _inventory);
-            _destructionCertificatesModel = new DestructionCertificatesModel(this,_database, _fileHandles);
-            _expenses = new Expenses(this, _database, _fileHandles);
+            
+            //_expenses = new Expenses(this, _database, _fileHandles);
             //_wages = new Wages(this, _database, _fileHandles);
             _customers = new Customers(this,_database, _receipt);
             _employees = new Employees(this, _database);
+
+            _destructionCertificatesModel = new DestructionCertificatesModel(this, _database, _fileHandles);
             _deliveryNotesModel = new DeliveryNotesModel(_database, _fileHandles);
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
             _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);
+            _expensesModel = new ExpensesModel(_database,_csvHandles,_fileHandles);
+            
             _dgvOps = new DGVOps(this);
             _warnings = new Warning();
             _user_permission_level = permissionLevel;
@@ -82,6 +87,7 @@ namespace Green_Enviro_App
             initializeDestructionCertificatesTab();
             intializeSummariesTab();
             initializeWagesTab();
+            initializeExpensesTab();
         }
 
 		/// <summary>
@@ -299,8 +305,8 @@ namespace Green_Enviro_App
         //*************************************************************************************************************
 		private void AddExpenseBtn_Click(object sender, EventArgs e)
 		{
-            _expenses.AddExpense();
-            _expenses.DisplayExpensesLog();
+           // _expenses.AddExpense();
+           // _expenses.DisplayExpensesLog();
 
             /*
             if ((_user_permission_level == 4) || (_user_permission_level == 5))
@@ -317,22 +323,22 @@ namespace Green_Enviro_App
 
 		private void ExpensesLogMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            _expenses.MonthSelected();
+            //_expenses.MonthSelected();
 		}
 
 		private void ExpensesLogFilterBtn_Click(object sender, EventArgs e)
 		{
-            _expenses.DisplayExpensesLog();
+            //_expenses.DisplayExpensesLog();
 		}
 
 		private void ExpensesLogRemoveFiltersBtn_Click(object sender, EventArgs e)
 		{
-            _expenses.RemoveFilters();
+            //_expenses.RemoveFilters();
 		}
 
 		private void ClearExpenseFieldsBtn_Click(object sender, EventArgs e)
 		{
-            _expenses.ClearFields();
+            //_expenses.ClearFields();
 		}
 
         //*************************************************************************************************************
@@ -400,7 +406,7 @@ namespace Green_Enviro_App
             _purchases.Reset();
             _sales.Reset();
             _inventory.Reset();
-            _expenses.Reset();
+            //_expenses.Reset();
             resetWages();
             resetSummaries();
             resetDestructionCertificate();
@@ -513,7 +519,7 @@ namespace Green_Enviro_App
 
 		private void DeleteExpenseBtn_Click(object sender, EventArgs e)
 		{
-            _expenses.DeleteExpense();
+            //_expenses.DeleteExpense();
 		}
 
 		private void DeleteSaleBtn_Click(object sender, EventArgs e)

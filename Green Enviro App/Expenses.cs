@@ -11,6 +11,7 @@ using System.Globalization;
 
 namespace Green_Enviro_App
 {
+	/*
 	class Expenses
 	{
 		//Required objects
@@ -270,7 +271,7 @@ namespace Green_Enviro_App
 			StringBuilder _csv_content = new StringBuilder();
 			string timeWhenEntered = DateTime.Now.ToString(" HH:mm:ss");
 			string _date = _main_form.ExpenseDate.Value.ToString("dd MMMM yyyy") + timeWhenEntered;
-			string _description = _main_form.ExpenseDescriptionBox.Text;
+			string _description = _main_form.ExpenseDescription.Text;
 			string _amount = _main_form.ExpenseAmount.Value.ToString();
 
 			string _new_expense = _date + "," + _description + "," + _amount;
@@ -333,7 +334,7 @@ namespace Green_Enviro_App
 				_all_good = false;
 				_error_message = "Please Insert the Amount";
 			}
-			else if (_main_form.ExpenseDescriptionBox.Text == _no_entry_string)
+			else if (_main_form.ExpenseDescription.Text == _no_entry_string)
 			{
 				_all_good = false;
 				_error_message = "Please Insert the Description";
@@ -357,7 +358,7 @@ namespace Green_Enviro_App
 
 			_main_form.ExpenseDate.Value = DateTime.Now;
 			_main_form.ExpenseAmount.Value = _zero;
-			_main_form.ExpenseDescriptionBox.Text = "";
+			_main_form.ExpenseDescription.Text = "";
 		}
 
 		public void Reset() 
@@ -425,4 +426,5 @@ namespace Green_Enviro_App
 			}
 		}
 	}
+	*/
 }

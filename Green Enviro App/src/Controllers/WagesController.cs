@@ -13,17 +13,14 @@ namespace Green_Enviro_App
 	public partial class Main_Form : Form
 	{
 		DGVOps wagesDgvOps;
-		List<string> allWageLogs;
 		private void initializeWagesTab() 
 		{
 			//DGVOps contains methods that makes use of the type ComboBox but since we do not have one for wages, we will create
 			//a fake one.
-			ComboBox type = new ComboBox();
-			wagesDgvOps = new DGVOps(WageLogGridView, WageLogMonths, WageLogStartDate, WageLogEndDate, type, _mainForm);
-			allWageLogs = _wagesModel.getMonths();
-			wagesDgvOps.populateLogMonths(allWageLogs);
+			ComboBox fakeType = new ComboBox();
+			wagesDgvOps = new DGVOps(WageLogGridView, WageLogMonths, WageLogStartDate, WageLogEndDate, fakeType, _mainForm);
+			wagesDgvOps.populateLogMonths(_wagesModel.getMonths());
 			wagesDgvOps.populateComboBox(WagesEmployeeName, _wagesModel.getEmployees());
-			
 			WageDate.Value = DateTime.Now;
 		}
 
@@ -155,12 +152,12 @@ namespace Green_Enviro_App
 			WagesEmployeeName.SelectedItem = null;
 		}
 
+		/// <summary>Handles the Click event of the ClearWageFieldsBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void ClearWageFieldsBtn_Click(object sender, EventArgs e)
 		{
 			resetWages();
 		}
-
-
-
 	}
 }
