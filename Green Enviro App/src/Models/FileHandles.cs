@@ -81,7 +81,7 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
-		/// Generates a path to the sales logs based on the current month of the year or the month selected by the user. The function can also generate only the base path based on the usere choice.
+		/// Generates a path to the logs based on the current month of the year or the month selected by the user. The function can also generate only the base path based on the usere choice.
 		/// </summary>
 		/// <param name="logType">The Type of Log whose path is needed.</param>
 		/// <param name="monthAndYear">An optional parameter to specify the month for the log needed. If left as null, the current month will be selected.</param>

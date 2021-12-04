@@ -13,6 +13,7 @@ namespace Green_Enviro_App
 	public partial class Main_Form : Form
 	{
 		DGVOps wagesDgvOps;
+		/// <summary>Initializes all the controls on the wages tab.</summary>
 		private void initializeWagesTab() 
 		{
 			//DGVOps contains methods that makes use of the type ComboBox but since we do not have one for wages, we will create
@@ -24,6 +25,9 @@ namespace Green_Enviro_App
 			WageDate.Value = DateTime.Now;
 		}
 
+		/// <summary>Event called whenever a user changes wage log month.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs">EventArgs</see> instance containing the event data.</param>
 		private void WageLogMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			//Do nothing if no month is selected
@@ -32,8 +36,11 @@ namespace Green_Enviro_App
 
 			GridViewData gridData = _wagesModel.gridViewData(selectedMonth);
 			updateDataGridView(gridData);
+			wagesDgvOps.populateDates(_wagesModel.getDatesInLog(selectedMonth));
 		}
 
+		/// <summary>Updates the data grid view.</summary>
+		/// <param name="gridData">The grid data.</param>
 		private void updateDataGridView(GridViewData gridData) 
 		{
 			wagesDgvOps.populateDates(gridData.dates);
@@ -41,6 +48,8 @@ namespace Green_Enviro_App
 			wagesDgvOps.populateGridView(wageGridColumnWidths());
 		}
 
+		/// <summary>Defines the column widths for the wages grid view.</summary>
+		/// <returns>A list of doubles containing all the column widths.</returns>
 		private List<float> wageGridColumnWidths() 
 		{
 			List<float> colWidths = new List<float>();
@@ -158,6 +167,22 @@ namespace Green_Enviro_App
 		private void ClearWageFieldsBtn_Click(object sender, EventArgs e)
 		{
 			resetWages();
+		}
+
+		/// <summary>Handles the Click event of the WagesLogFilterBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="T:System.EventArgs">EventArgs</see> instance containing the event data.</param>
+		private void WagesLogFilterBtn_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		/// <summary>Handles the Click event of the WagesLogRemoveFilterBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="T:System.EventArgs">EventArgs</see> instance containing the event data.</param>
+		private void WagesLogRemoveFilterBtn_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

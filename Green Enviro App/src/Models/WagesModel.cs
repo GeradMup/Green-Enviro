@@ -28,7 +28,9 @@ namespace Green_Enviro_App
 			createLogFiles();
 		}
 
-		//Create purchase and wages logs for each month if they don't already exist
+		/// <summary>
+		/// Class object to hold the information required when recording a wage.
+		/// </summary>
 		private void createLogFiles()
 		{
 			string wagesFileHeaders = GenericModels.enumFieldsToString<WagesLogHeaders>();
@@ -42,6 +44,15 @@ namespace Green_Enviro_App
 		public List<string> getMonths() 
 		{
 			return fileHandles.getLogNames(FileHandles.LogType.Wages);
+		}
+
+		/// <summary>Gets the dates in the selected wage log.</summary>
+		/// <param name="month">The month.</param>
+		/// <returns>A HashSet of strings representing the dates in the selected wages log file.</returns>
+		public HashSet<string> getDatesInLog(string month) 
+		{
+			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Wages, month);
+			return csvHandles.getDatesInFile(pathToLogFile);
 		}
 
 		/// <summary>
@@ -125,6 +136,9 @@ namespace Green_Enviro_App
 			return gridViewData(paymentMonth);
 		}
 
+		/// <summary>
+		/// Enum class to define the wage log file headers.
+		/// </summary>
 		enum WagesLogHeaders 
 		{
 			Date,
@@ -132,8 +146,9 @@ namespace Green_Enviro_App
 			Amount
 		}
 
-
-		/// <summary>Class object to hold the information required when recording a wage.</summary>
+		/// <summary>
+		/// Class object to hold the information required when recording a wage.
+		/// </summary>
 		internal class WageInfo 
 		{
 			/// <summary>Initializes a new instance of the <see cref="WageInfo" /> class.</summary>
