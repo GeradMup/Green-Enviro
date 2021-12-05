@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
+
+	/// <summary>
+	/// Class CustomMessageBox is used to display any error or success messages to the user.
+	/// </summary>
 	public partial class CustomMessageBox : Form
 	{
 
@@ -18,6 +22,11 @@ namespace Green_Enviro_App
 		/// <summary>The success message</summary>
 		public const string success = "Success!";
 
+
+		/// <summary>Initializes a new instance of the <see cref="CustomMessageBox"></see> class.</summary>
+		/// <param name="parent">The active form before activating the <see cref="CustomMessageBox"></see> form.</param>
+		/// <param name="title">The title of the message.</param>
+		/// <param name="message">The message to display.</param>
 		public CustomMessageBox(Form parent, string title, string message) 
 		{
 			InitializeComponent();
