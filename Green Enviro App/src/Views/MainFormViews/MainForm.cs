@@ -42,6 +42,7 @@ namespace Green_Enviro_App
         SummariesModel _summariesModel;
         WagesModel _wagesModel;
         ExpensesModel _expensesModel;
+        EmployeesModel _employeesModel;
         Warning _warnings;
         bool starting = true;
 
@@ -69,14 +70,16 @@ namespace Green_Enviro_App
             //_expenses = new Expenses(this, _database, _fileHandles);
             //_wages = new Wages(this, _database, _fileHandles);
             _customers = new Customers(this,_database, _receipt);
-            _employees = new Employees(this, _database);
+           
 
             _destructionCertificatesModel = new DestructionCertificatesModel(this, _database, _fileHandles);
             _deliveryNotesModel = new DeliveryNotesModel(_database, _fileHandles);
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
             _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);
             _expensesModel = new ExpensesModel(_database,_csvHandles,_fileHandles);
-            
+            _employeesModel = new EmployeesModel(_database);
+
+            _employees = new Employees(this, _employeesModel);
             _dgvOps = new DGVOps(this);
             _warnings = new Warning();
             _user_permission_level = permissionLevel;

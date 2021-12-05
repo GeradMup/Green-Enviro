@@ -33,7 +33,7 @@ namespace Green_Enviro_App
 		private const int DGV_EXTRA_ROWS = 1;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="DGVOps" /> class.
+		/// Initializes a new instance of the <see cref="DGVOps"> DGVOps </see> class.
 		/// </summary>
 		public DGVOps(DataGridView grid, ComboBox month, ComboBox startDate, ComboBox endDate, ComboBox type, Form parent) 
 		{
@@ -42,6 +42,18 @@ namespace Green_Enviro_App
 			startDateBox = startDate;
 			endDateBox = endDate;
 			typeBox = type;
+			parentForm = parent;
+			bindingSource = new BindingSource();
+			dataTable = new DataTable();
+		}
+
+
+		/// <summary>Initializes a new instance of the <see cref="DGVOps" /> class for classes that need limited fuctionality of the DGVOps class.</summary>
+		/// <param name="grid">The data grid to operate on.</param>
+		/// <param name="parent">The parent form before displaying the Data Grid.</param>
+		public DGVOps(DataGridView grid, Form parent) 
+		{
+			dataGridView = grid;
 			parentForm = parent;
 			bindingSource = new BindingSource();
 			dataTable = new DataTable();

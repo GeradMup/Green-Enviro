@@ -8,30 +8,47 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
+	/// <summary>
+	/// Class to handle all the details about the employees.
+	/// </summary>
 	public partial class Employees : Form
 	{
 		DataTable _employees_data_table = new DataTable();
-		Main_Form _main_form;
-		Database _database;
-		/// <summary>Initializes a new instance of the <see cref="Employees" /> class.</summary>
+		Main_Form _mainForm;
+		EmployeesModel _employeesModel;
+		DGVOps employeesDgvOps;
+		/// <summary>Initializes a new instance of the <see cref="Employees" />Employees class.</summary>
 		/// <param name="main">The main.</param>
-		/// <param name="data">The data.</param>
-		public Employees(Main_Form main, Database data)
+		/// <param name="em">The employees model object.</param>
+		public Employees(Main_Form main, EmployeesModel em)
 		{
 			InitializeComponent();
 
-			_main_form = main;
-			_database = data;
+			_mainForm = main;
+			_employeesModel = em;
 
-			this.Owner = _main_form;
+			employeesDgvOps = new DGVOps(EmployeesGridView, this);
+			employeesDgvOps.changeBindingSource(_employeesModel.getEmployees());
+			employeesDgvOps.populateGridView(employeesGridColumnWidths());
+		}
 
-			LoadEmployees();
+		private List<float> employeesGridColumnWidths()
+		{
+			List<float> columnWidths = new List<float>();
+			columnWidths.Add(20.0F);
+			columnWidths.Add(70.0F);
+			columnWidths.Add(70.0F);
+			columnWidths.Add(100.0F);
+			columnWidths.Add(40.0F);
+			columnWidths.Add(250.0F);
+			columnWidths.Add(75.0F);
+			return columnWidths;
 		}
 
 		private void LoadEmployees()
 		{
 
-			_employees_data_table = _database.selectAll(Database.Tables.Employees);
+			//_employees_data_table = _database.selectAll(Database.Tables.Employees);
 			string _employee_name = "";
 
 			//_main_form.WagesEmployeeName.Items.Clear();
@@ -42,6 +59,7 @@ namespace Green_Enviro_App
 			}
 		}
 
+		/*
 		private void EmployeesAddEmployeeBtn_Click(object sender, EventArgs e)
 		{
 			if (validEntries() == false)
@@ -72,7 +90,7 @@ namespace Green_Enviro_App
 				CustomMessageBox box = new CustomMessageBox(this, "Error!", "Failed To Inserted New Employee!");
 			}
 		}
-
+		*/
 		private bool validEntries()
 		{
 			bool _all_good = false;
@@ -125,20 +143,33 @@ namespace Green_Enviro_App
 
 		public void Exit()
 		{
-			this.Owner.Enabled = true;
-			this.Owner.Show();
+			_mainForm.Enabled = true;
+			_mainForm.Show();
 			this.Hide();
 			this.Enabled = false;
 		}
 
+		//* * * * * * * * * * * * * * * * * EVENT HANDLERS * * * * * * * * * * * * * * * * * * * 
+		
+		/// <summary>Handles the Click event of the EmployeesViewGridBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void EmployeesViewGridBtn_Click(object sender, EventArgs e)
 		{
 			EmployeesGridPanel.Dock = DockStyle.Fill;
 		}
 
+		/// <summary>Handles the Click event of the EmployeesCloseGridBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="System.EventArgs" /> instance containing the event data.</param>
 		private void EmployeesCloseGridBtn_Click(object sender, System.EventArgs e)
 		{
 			EmployeesGridPanel.Dock = DockStyle.None;
 		}
+
+		/// <summary>Handles the Click event of the EmployeesAddEmployeeBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+		private void EmployeesAddEmployeeBtn_Click(object sender, EventArgs e) { }
 	}
 }
