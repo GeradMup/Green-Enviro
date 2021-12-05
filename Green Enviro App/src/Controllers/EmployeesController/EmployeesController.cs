@@ -8,6 +8,8 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
+	using EmployeeInfo = EmployeesModel.EmployeeInfo;
+
 	/// <summary>
 	/// Class to handle all the details about the employees.
 	/// </summary>
@@ -17,6 +19,7 @@ namespace Green_Enviro_App
 		Main_Form _mainForm;
 		EmployeesModel _employeesModel;
 		DGVOps employeesDgvOps;
+		
 		/// <summary>Initializes a new instance of the <see cref="Employees" />Employees class.</summary>
 		/// <param name="main">The main.</param>
 		/// <param name="em">The employees model object.</param>
@@ -28,10 +31,20 @@ namespace Green_Enviro_App
 			_employeesModel = em;
 
 			employeesDgvOps = new DGVOps(EmployeesGridView, this);
+			updateGridView();
+		}
+
+		/// <summary>
+		/// Updates the employees data grid view if some changes take place.
+		/// </summary>
+		private void updateGridView() 
+		{
 			employeesDgvOps.changeBindingSource(_employeesModel.getEmployees());
 			employeesDgvOps.populateGridView(employeesGridColumnWidths());
 		}
 
+		/// <summary>Configures the column widths for the employees Data Grid View.</summary>
+		/// <returns>A list of floats containing the column widths.</returns>
 		private List<float> employeesGridColumnWidths()
 		{
 			List<float> columnWidths = new List<float>();
@@ -98,19 +111,19 @@ namespace Green_Enviro_App
 			string _error_message = "";
 			string _no_text = "";
 
-			if (EmployeeNameField.Text == _no_text)
+			if (EmployeeName.Text == _no_text)
 			{
 				_error_message = "Employee Name Not Entered";
 			}
-			else if (EmployeeSurnameField.Text == _no_text)
+			else if (EmployeeSurname.Text == _no_text)
 			{
 				_error_message = "Employee Surname Not Entered";
 			}
-			else if (EmployeeIdentificationField.Text == _no_text)
+			else if (EmployeeIdentification.Text == _no_text)
 			{
 				_error_message = "Employee Identification Not Entered";
 			}
-			else if (EmployeeGenderField.SelectedItem == null)
+			else if (EmployeeGender.SelectedItem == null)
 			{
 				_error_message = "Employee Gender Not Selected";
 			}
@@ -135,10 +148,10 @@ namespace Green_Enviro_App
 
 		public void ClearFields()
 		{
-			EmployeeNameField.Text = "";
-			EmployeeSurnameField.Text = "";
-			EmployeeIdentificationField.Text = "";
-			EmployeeGenderField.SelectedItem = null;
+			EmployeeName.Text = "";
+			EmployeeSurname.Text = "";
+			EmployeeIdentification.Text = "";
+			EmployeeGender.SelectedItem = null;
 		}
 
 		public void Exit()
@@ -170,6 +183,42 @@ namespace Green_Enviro_App
 		/// <summary>Handles the Click event of the EmployeesAddEmployeeBtn control.</summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-		private void EmployeesAddEmployeeBtn_Click(object sender, EventArgs e) { }
+		private void EmployeesAddEmployeeBtn_Click(object sender, EventArgs e) 
+		{
+			const string NO_NAME_ERROR = "Please insert the Employee Name!";
+			const string NO_SURNAME_ERROR = "Please insert the Employee Surname!";
+			const string NO_ID_ERROR = "Please insert the Employee Identification Number!";
+			const string NO_GENDER_ERROR = "Please insert the Employee Gender!";
+			const string NO_ADDRESS_ERROR = "Please insert the Employee Address!";
+			const string NO_CELL_ERROR = "Please insert the Employee Cell Number!";
+			const string EMPLOYEE_ADDED = "New Employee has been added to the Database!";
+
+			if (EmployeeName.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(this, NO_NAME_ERROR); return; }
+			if (EmployeeSurname.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(this, NO_SURNAME_ERROR); return; }
+			if (EmployeeIdentification.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(this, NO_ID_ERROR); return; }
+			if (EmployeeGender.SelectedItem == null) { GenericControllers.reportError(this, NO_GENDER_ERROR); return; }
+			if (EmployeeAddress.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(this, NO_ADDRESS_ERROR); return; }
+			if (EmployeeCellNumber.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(this, NO_CELL_ERROR); return; }
+
+			EmployeeInfo employeeInfo = new EmployeeInfo();
+			employeeInfo.employeeName = EmployeeName.Text;
+			employeeInfo.employeeSurname = EmployeeSurname.Text;
+			employeeInfo.employeeId = EmployeeIdentification.Text;
+			employeeInfo.employeeGender = EmployeeGender.Text;
+			employeeInfo.employeeAddress = EmployeeAddress.Text;
+			employeeInfo.employeeCell = EmployeeCellNumber.Text;
+
+			try
+			{
+				_employeesModel.addEmployee(employeeInfo);
+				updateGridView();
+				GenericControllers.reportSuccess(this, EMPLOYEE_ADDED);
+			}
+			catch (Exception ex) 
+			{
+				GenericControllers.reportError(this, ex.Message);
+			}
+			
+		}
 	}
 }

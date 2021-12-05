@@ -31,22 +31,22 @@ namespace Green_Enviro_App
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Employees));
-			this.EmployeeNameField = new System.Windows.Forms.TextBox();
+			this.EmployeeName = new System.Windows.Forms.TextBox();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.EmployeeSurnameField = new System.Windows.Forms.TextBox();
-			this.EmployeeIdentificationField = new System.Windows.Forms.TextBox();
+			this.EmployeeSurname = new System.Windows.Forms.TextBox();
+			this.EmployeeIdentification = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.EmployeeGenderLabel = new System.Windows.Forms.Label();
 			this.EmployeeIDLabel = new System.Windows.Forms.Label();
 			this.EmployeeSurnameLabel = new System.Windows.Forms.Label();
 			this.EmployeeNameLabel = new System.Windows.Forms.Label();
-			this.EmployeeGenderField = new System.Windows.Forms.ComboBox();
+			this.EmployeeGender = new System.Windows.Forms.ComboBox();
 			this.EmployeesAddEmployeeBtn = new System.Windows.Forms.Button();
 			this.EmployeesDoneBtn = new System.Windows.Forms.Button();
 			this.EmployeeAddressLabel = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.EmployeeAddress = new System.Windows.Forms.TextBox();
 			this.EmployeeCellNumberLabel = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.EmployeeCellNumber = new System.Windows.Forms.TextBox();
 			this.EmployeesCancelBtn = new System.Windows.Forms.Button();
 			this.EmployeesGridView = new System.Windows.Forms.DataGridView();
 			this.EmployeesCloseGridBtn = new System.Windows.Forms.Button();
@@ -56,13 +56,13 @@ namespace Green_Enviro_App
 			this.EmployeesGridPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// EmployeeNameField
+			// EmployeeName
 			// 
-			this.EmployeeNameField.Location = new System.Drawing.Point(267, 139);
-			this.EmployeeNameField.Margin = new System.Windows.Forms.Padding(5);
-			this.EmployeeNameField.Name = "EmployeeNameField";
-			this.EmployeeNameField.Size = new System.Drawing.Size(371, 34);
-			this.EmployeeNameField.TabIndex = 0;
+			this.EmployeeName.Location = new System.Drawing.Point(267, 139);
+			this.EmployeeName.Margin = new System.Windows.Forms.Padding(5);
+			this.EmployeeName.Name = "EmployeeName";
+			this.EmployeeName.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeName.TabIndex = 0;
 			// 
 			// contextMenuStrip1
 			// 
@@ -70,21 +70,21 @@ namespace Green_Enviro_App
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
 			// 
-			// EmployeeSurnameField
+			// EmployeeSurname
 			// 
-			this.EmployeeSurnameField.Location = new System.Drawing.Point(267, 199);
-			this.EmployeeSurnameField.Margin = new System.Windows.Forms.Padding(5);
-			this.EmployeeSurnameField.Name = "EmployeeSurnameField";
-			this.EmployeeSurnameField.Size = new System.Drawing.Size(371, 34);
-			this.EmployeeSurnameField.TabIndex = 2;
+			this.EmployeeSurname.Location = new System.Drawing.Point(267, 199);
+			this.EmployeeSurname.Margin = new System.Windows.Forms.Padding(5);
+			this.EmployeeSurname.Name = "EmployeeSurname";
+			this.EmployeeSurname.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeSurname.TabIndex = 2;
 			// 
-			// EmployeeIdentificationField
+			// EmployeeIdentification
 			// 
-			this.EmployeeIdentificationField.Location = new System.Drawing.Point(267, 260);
-			this.EmployeeIdentificationField.Margin = new System.Windows.Forms.Padding(5);
-			this.EmployeeIdentificationField.Name = "EmployeeIdentificationField";
-			this.EmployeeIdentificationField.Size = new System.Drawing.Size(371, 34);
-			this.EmployeeIdentificationField.TabIndex = 3;
+			this.EmployeeIdentification.Location = new System.Drawing.Point(267, 260);
+			this.EmployeeIdentification.Margin = new System.Windows.Forms.Padding(5);
+			this.EmployeeIdentification.Name = "EmployeeIdentification";
+			this.EmployeeIdentification.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeIdentification.TabIndex = 3;
 			// 
 			// label1
 			// 
@@ -132,17 +132,17 @@ namespace Green_Enviro_App
 			this.EmployeeNameLabel.TabIndex = 9;
 			this.EmployeeNameLabel.Text = "Name";
 			// 
-			// EmployeeGenderField
+			// EmployeeGender
 			// 
-			this.EmployeeGenderField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.EmployeeGenderField.FormattingEnabled = true;
-			this.EmployeeGenderField.Items.AddRange(new object[] {
+			this.EmployeeGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.EmployeeGender.FormattingEnabled = true;
+			this.EmployeeGender.Items.AddRange(new object[] {
             "Male",
             "Female"});
-			this.EmployeeGenderField.Location = new System.Drawing.Point(267, 321);
-			this.EmployeeGenderField.Name = "EmployeeGenderField";
-			this.EmployeeGenderField.Size = new System.Drawing.Size(318, 35);
-			this.EmployeeGenderField.TabIndex = 10;
+			this.EmployeeGender.Location = new System.Drawing.Point(267, 321);
+			this.EmployeeGender.Name = "EmployeeGender";
+			this.EmployeeGender.Size = new System.Drawing.Size(318, 35);
+			this.EmployeeGender.TabIndex = 10;
 			// 
 			// EmployeesAddEmployeeBtn
 			// 
@@ -173,13 +173,13 @@ namespace Green_Enviro_App
 			this.EmployeeAddressLabel.TabIndex = 13;
 			this.EmployeeAddressLabel.Text = "Address";
 			// 
-			// textBox1
+			// EmployeeAddress
 			// 
-			this.textBox1.Location = new System.Drawing.Point(267, 386);
-			this.textBox1.Margin = new System.Windows.Forms.Padding(5);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(371, 34);
-			this.textBox1.TabIndex = 14;
+			this.EmployeeAddress.Location = new System.Drawing.Point(267, 386);
+			this.EmployeeAddress.Margin = new System.Windows.Forms.Padding(5);
+			this.EmployeeAddress.Name = "EmployeeAddress";
+			this.EmployeeAddress.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeAddress.TabIndex = 14;
 			// 
 			// EmployeeCellNumberLabel
 			// 
@@ -190,13 +190,13 @@ namespace Green_Enviro_App
 			this.EmployeeCellNumberLabel.TabIndex = 15;
 			this.EmployeeCellNumberLabel.Text = "Cell Number";
 			// 
-			// textBox2
+			// EmployeeCellNumber
 			// 
-			this.textBox2.Location = new System.Drawing.Point(267, 446);
-			this.textBox2.Margin = new System.Windows.Forms.Padding(5);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(371, 34);
-			this.textBox2.TabIndex = 16;
+			this.EmployeeCellNumber.Location = new System.Drawing.Point(267, 446);
+			this.EmployeeCellNumber.Margin = new System.Windows.Forms.Padding(5);
+			this.EmployeeCellNumber.Name = "EmployeeCellNumber";
+			this.EmployeeCellNumber.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeCellNumber.TabIndex = 16;
 			// 
 			// EmployeesCancelBtn
 			// 
@@ -263,21 +263,21 @@ namespace Green_Enviro_App
 			this.Controls.Add(this.EmployeesGridPanel);
 			this.Controls.Add(this.EmployeesViewGridBtn);
 			this.Controls.Add(this.EmployeesCancelBtn);
-			this.Controls.Add(this.textBox2);
+			this.Controls.Add(this.EmployeeCellNumber);
 			this.Controls.Add(this.EmployeeCellNumberLabel);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.EmployeeAddress);
 			this.Controls.Add(this.EmployeeAddressLabel);
 			this.Controls.Add(this.EmployeesDoneBtn);
 			this.Controls.Add(this.EmployeesAddEmployeeBtn);
-			this.Controls.Add(this.EmployeeGenderField);
+			this.Controls.Add(this.EmployeeGender);
 			this.Controls.Add(this.EmployeeNameLabel);
 			this.Controls.Add(this.EmployeeSurnameLabel);
 			this.Controls.Add(this.EmployeeIDLabel);
 			this.Controls.Add(this.EmployeeGenderLabel);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.EmployeeIdentificationField);
-			this.Controls.Add(this.EmployeeSurnameField);
-			this.Controls.Add(this.EmployeeNameField);
+			this.Controls.Add(this.EmployeeIdentification);
+			this.Controls.Add(this.EmployeeSurname);
+			this.Controls.Add(this.EmployeeName);
 			this.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -295,22 +295,22 @@ namespace Green_Enviro_App
 
 		#endregion
 
-		private System.Windows.Forms.TextBox EmployeeNameField;
+		private System.Windows.Forms.TextBox EmployeeName;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-		private System.Windows.Forms.TextBox EmployeeSurnameField;
-		private System.Windows.Forms.TextBox EmployeeIdentificationField;
+		private System.Windows.Forms.TextBox EmployeeSurname;
+		private System.Windows.Forms.TextBox EmployeeIdentification;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label EmployeeGenderLabel;
 		private System.Windows.Forms.Label EmployeeIDLabel;
 		private System.Windows.Forms.Label EmployeeSurnameLabel;
 		private System.Windows.Forms.Label EmployeeNameLabel;
-		private System.Windows.Forms.ComboBox EmployeeGenderField;
+		private System.Windows.Forms.ComboBox EmployeeGender;
 		private System.Windows.Forms.Button EmployeesAddEmployeeBtn;
 		private System.Windows.Forms.Button EmployeesDoneBtn;
 		private System.Windows.Forms.Label EmployeeAddressLabel;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox EmployeeAddress;
 		private System.Windows.Forms.Label EmployeeCellNumberLabel;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox EmployeeCellNumber;
 		private System.Windows.Forms.Button EmployeesCancelBtn;
 		private System.Windows.Forms.Button EmployeesCloseGridBtn;
 		private System.Windows.Forms.Button EmployeesViewGridBtn;

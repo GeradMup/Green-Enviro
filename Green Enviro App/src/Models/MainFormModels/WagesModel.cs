@@ -160,7 +160,9 @@ namespace Green_Enviro_App
 		/// </summary>
 		internal class WageInfo 
 		{
-			/// <summary>Initializes a new instance of the <see cref="WageInfo" /> class.</summary>
+			/// <summary>
+			/// Initializes a new instance of the <see cref="WageInfo" /> Wages class.
+			/// </summary>
 			public WageInfo() 
 			{
 				employeeName = "";
