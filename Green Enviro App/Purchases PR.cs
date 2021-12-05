@@ -62,7 +62,7 @@ namespace Green_Enviro_App
 			dgvOps.populateDates(_dates);
 
 			dgvOps.changeBindingSource(dataTable);
-			if (dataTable.Rows.Count > 0)	dgvOps.populateAndFilterGrid(dgvOps.defaultColWidths());
+			//if (dataTable.Rows.Count > 0)	dgvOps.populateAndFilterGrid(dgvOps.defaultColWidths());
 			
 		}
 

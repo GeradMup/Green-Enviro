@@ -80,7 +80,7 @@ namespace Green_Enviro_App
 				int amountCol = 8;
 
 				dgvOps.changeBindingSource(_purchases_data_table);
-				dgvOps.populateAndFilterGrid(dgvOps.defaultColWidths(), kgColumn, amountCol);
+				//dgvOps.populateAndFilterGrid(dgvOps.defaultColWidths(), kgColumn, amountCol);
 			}
 		}
 
@@ -112,7 +112,7 @@ namespace Green_Enviro_App
 		/// </summary>
 		public void RemoveFilters() 
 		{
-			dgvOps.RemoveFilters();
+			dgvOps.removeGridViewFilters();
 			DisplayPurchaseLog();
 		}
 

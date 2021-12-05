@@ -23,6 +23,7 @@ namespace Green_Enviro_App
 			wagesDgvOps.populateLogMonths(_wagesModel.getMonths());
 			wagesDgvOps.populateComboBox(WagesEmployeeName, _wagesModel.getEmployees());
 			WageDate.Value = DateTime.Now;
+			wagesDgvOps.setupTotalsRow(_wagesModel.getAmountColumn());
 		}
 
 		/// <summary>Event called whenever a user changes wage log month.</summary>
@@ -33,10 +34,9 @@ namespace Green_Enviro_App
 			//Do nothing if no month is selected
 			if (WageLogMonths.SelectedItem == null) return;
 			string selectedMonth = WageLogMonths.SelectedItem.ToString();
-
-			GridViewData gridData = _wagesModel.gridViewData(selectedMonth);
-			updateDataGridView(gridData);
+ 
 			wagesDgvOps.populateDates(_wagesModel.getDatesInLog(selectedMonth));
+			updateDataGridView(_wagesModel.gridViewData(selectedMonth));
 		}
 
 		/// <summary>Updates the data grid view.</summary>
@@ -174,7 +174,7 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="T:System.EventArgs">EventArgs</see> instance containing the event data.</param>
 		private void WagesLogFilterBtn_Click(object sender, EventArgs e)
 		{
-
+			wagesDgvOps.filterGridView();
 		}
 
 		/// <summary>Handles the Click event of the WagesLogRemoveFilterBtn control.</summary>
@@ -182,7 +182,7 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="T:System.EventArgs">EventArgs</see> instance containing the event data.</param>
 		private void WagesLogRemoveFilterBtn_Click(object sender, EventArgs e)
 		{
-
+			wagesDgvOps.removeGridViewFilters();
 		}
 	}
 }

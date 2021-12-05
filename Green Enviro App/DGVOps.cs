@@ -25,7 +25,12 @@ namespace Green_Enviro_App
 		Form parentForm;
 		private BindingSource bindingSource;
 		private DataTable dataTable;
-		string _totals = "TOTALS";
+		private string _totals = "TOTALS";
+		//Start by assuming that DGV does not contain any kgs or totals columns
+		private bool containsTotals = false;
+		private int kgsColumn = -1;
+		private int amountColumn = -1;
+		private const int DGV_EXTRA_ROWS = 1;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DGVOps" /> class.
@@ -40,6 +45,18 @@ namespace Green_Enviro_App
 			parentForm = parent;
 			bindingSource = new BindingSource();
 			dataTable = new DataTable();
+		}
+
+
+		/// <summary>Configures the DGV so that the totals row can be added if it is required.</summary>
+		/// <param name="_amountColumn">The amount column.</param>
+		/// <param name="_kgsColumn">The KGS column.</param>
+		public void setupTotalsRow(int _amountColumn = -1, int _kgsColumn = -1) 
+		{
+			this.kgsColumn = _kgsColumn;
+			this.amountColumn = _amountColumn;
+
+			if ((kgsColumn != -1) || (amountColumn != -1))  containsTotals = true; 
 		}
 
 		/// <summary>
@@ -62,7 +79,7 @@ namespace Green_Enviro_App
 		/// </remark>
 		public bool isDateFiltered()
 		{
-			if ((startDateBox.SelectedItem == null) && (endDateBox.SelectedItem == null)) return false;
+			if ((startDateBox.SelectedItem == null) || (endDateBox.SelectedItem == null)) return false;
 
 			//Start by assuming that the dates are filtered correctly.
 			bool dateCorrectlyFiltered = true;
@@ -96,11 +113,14 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Removes the filters when DataGridView Was being filtered.
 		/// </summary>
-		public void RemoveFilters()
+		public void removeGridViewFilters()
 		{
 			startDateBox.SelectedItem = null;
 			endDateBox.SelectedItem = null;
 			typeBox.SelectedItem = null;
+			bindingSource.RemoveFilter();
+			addTotalsRow();
+			highlightTotalsRow();
 		}
 
 		/// <summary>
@@ -109,13 +129,15 @@ namespace Green_Enviro_App
 		public void filterGridView()
 		{
 			string filterString;
+
+			//If no filters are inserted, don't do anything.
+			if ((isDateFiltered() == false) && (isDateFiltered() == false)) return;
+
 			//Filter according to the date ranges if the dates have been selected correctly
 			if (isDateFiltered() == true)
 			{
 				string filterStartDate = startDateBox.SelectedItem.ToString();
 				string filterEndDate = endDateBox.SelectedItem.ToString();
-
-
 				if (isTypeFiltered() == true)
 				{
 					string _item_type = typeBox.SelectedItem.ToString();
@@ -139,6 +161,8 @@ namespace Green_Enviro_App
 					bindingSource.Filter = string.Format(filterString, _totals, Constants.EMPTY_TEXT, _item_type);
 				}
 			}
+			addTotalsRow();
+			highlightTotalsRow();
 		}
 
 		/// <summary>
@@ -146,6 +170,9 @@ namespace Green_Enviro_App
 		/// </summary>
 		public void highlightTotalsRow() 
 		{
+			//First check if the data grid view has been filled yet before trying to highlihgt the last row.
+			if (dataGridView.Rows.Count == 0) return;
+
 			int _last_row_index = 0;
 			_last_row_index = dataGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 
@@ -155,41 +182,51 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
-		/// This function will add up the KG's and Amount column on the Data Grid View and adds a row to show the totals
+		/// This function sums up the KG's and Amount column on the Data Grid View and adds it as the last row in the DGV
 		/// </summary>
 		/// <param name="kgCol"></param>
 		/// <param name="amountCol"></param>
-		public void addTotalsRow(int kgCol, int amountCol)
+		private void addTotalsRow()
 		{
+			//Check if the DGV contains totals first before attempting to add them.
+			if (!containsTotals) return;
+
+			//We will use -1 to indicate that a DataGridView does not contain the Kg's column.
+			if (kgsColumn == -1) { addAmountTotalsRow(); return; }
+
 			float _total_kg = 0;
 			float _total_amount = 0;
 
-			for (int _row = 0; _row < dataGridView.Rows.Count; _row++)
+			//Here we sum up the KG's and the Amounts column.
+			for (int _row = 0; _row < dataGridView.Rows.Count-DGV_EXTRA_ROWS; _row++)
 			{
-				_total_amount += float.Parse(dataGridView.Rows[_row].Cells[amountCol].Value.ToString(), CultureInfo.InvariantCulture);
-				_total_kg += float.Parse(dataGridView.Rows[_row].Cells[kgCol].Value.ToString(), CultureInfo.InvariantCulture);
+				_total_amount += float.Parse(dataGridView.Rows[_row].Cells[amountColumn].Value.ToString(), CultureInfo.InvariantCulture);
+				_total_kg += float.Parse(dataGridView.Rows[_row].Cells[kgsColumn].Value.ToString(), CultureInfo.InvariantCulture);
 			}
 
-			//CustomMessageBox box = new CustomMessageBox("Total", "Kg's : " + _total_kg.ToString() + "\n" + "Amount : " + _total_amount.ToString());
-
+			//Here we make a small DataTable that will contain the totals.
 			DataTable _totals_table = new DataTable();
 
+			//Make sure that the DataTable has the same number of columns as the DataGridView.
 			for (int _cols = 0; _cols < dataGridView.Columns.Count; _cols++)
 			{
 				DataColumn _new_column = new DataColumn();
 				_totals_table.Columns.Add(_new_column);
 			}
 
+			//Now we make DataRow that will go in the DataTable.
 			DataRow _last_row = dataTable.NewRow();
 
 			_last_row[0] = _totals;
+
+			//Now we must find the right column in the DataTable to insert the Amount and the KG's totals.
 			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
 			{
-				if (_cell == amountCol)
+				if (_cell == amountColumn)
 				{
 					_last_row[_cell] = _total_amount;
 				}
-				else if (_cell == kgCol)
+				else if (_cell == kgsColumn)
 				{
 					_last_row[_cell] = _total_kg;
 				}
@@ -198,7 +235,58 @@ namespace Green_Enviro_App
 					_last_row[_cell] = Constants.EMPTY_TEXT;
 				}
 			}
-			dataTable.Rows.Add(_last_row);
+			//dataTable.Rows.Add(_last_row);
+
+			int lastRow = dataGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
+			dataGridView.Rows[lastRow].Cells[0].Value = _totals;
+			dataGridView.Rows[lastRow].Cells[kgsColumn].Value = _total_kg;
+			dataGridView.Rows[lastRow].Cells[amountColumn].Value = _total_amount;
+		}
+
+		/// <summary>
+		/// Sums up the totals column and adds it as the last row of the DataGridView.
+		/// </summary>
+		private void addAmountTotalsRow() 
+		{
+			float totalAmount = 0;
+
+			//Here we sum up the KG's and the Amounts column.
+			for (int _row = 0; _row < dataGridView.Rows.Count-DGV_EXTRA_ROWS; _row++)
+			{
+				totalAmount += float.Parse(dataGridView.Rows[_row].Cells[amountColumn].Value.ToString(), CultureInfo.InvariantCulture);
+			}
+
+			//Here we make a small DataTable that will contain the totals.
+			DataTable _totals_table = new DataTable();
+
+			//Make sure that the DataTable has the same number of columns as the DataGridView.
+			for (int _cols = 0; _cols < dataGridView.Columns.Count; _cols++)
+			{
+				DataColumn _new_column = new DataColumn();
+				_totals_table.Columns.Add(_new_column);
+			}
+
+			//Now we make DataRow that will go in the DataTable.
+			DataRow _last_row = dataTable.NewRow();
+
+			_last_row[0] = _totals;
+
+			//Now we must find the right column in the DataTable to insert the Amount and the KG's totals.
+			for (int _cell = 1; _cell < _last_row.ItemArray.Length; _cell++)
+			{
+				if (_cell == amountColumn)
+				{
+					_last_row[_cell] = totalAmount;
+				}
+				else
+				{
+					_last_row[_cell] = Constants.EMPTY_TEXT;
+				}
+			}
+			//dataTable.Rows.Add(_last_row);
+			int lastRow = dataGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
+			dataGridView.Rows[lastRow].Cells[0].Value = _totals;
+			dataGridView.Rows[lastRow].Cells[amountColumn].Value = totalAmount;
 		}
 
 		/// <summary>Populates the start and end dates used to filter the grid view.</summary>
@@ -217,10 +305,12 @@ namespace Green_Enviro_App
 			}
 
 			//Remove any previous filters
-			RemoveFilters();
+			//removeGridViewFilters();
 		}
 
-		/// <summary>Populates the months drop down list used for selecting a data grid.</summary>
+		/// <summary>
+		/// Populates the months drop down list used for selecting a data grid.
+		/// </summary>
 		/// <param name="months">A List of strings representing the months.</param>
 		public void populateLogMonths(List<String> months) 
 		{
@@ -239,8 +329,7 @@ namespace Green_Enviro_App
 
 		/// <summary>Populates the grid view that does not need to be filtered after populating</summary>
 		/// <param name="colWidths">The widths of each column in the grid view</param>
-		/// <param name="includesTotals">Indicates whether the data grid already contains a totals row or not.</param>
-		public void populateGridView(List<float> colWidths, bool includesTotals = true) 
+		public void populateGridView(List<float> colWidths) 
 		{
 			//Disable automatic re-sizing so that the grid can populate quickly
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -253,8 +342,28 @@ namespace Green_Enviro_App
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
 			dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+			//Change the column widths.
 			for (int column = 0; column < colWidths.Count(); column++) dataGridView.Columns[column].FillWeight = colWidths[column];
-			if (includesTotals) highlightTotalsRow();
+
+			//After populating the DGV, add the last row that will be used for totals.
+			
+			DataTable _totals_table = new DataTable();
+
+			//Make sure that the DataTable has the same number of columns as the DataGridView.
+			for (int _cols = 0; _cols < dataGridView.Columns.Count; _cols++)
+			{
+				DataColumn _new_column = new DataColumn();
+				_totals_table.Columns.Add(_new_column);
+			}
+
+			//Now we make DataRow that will go in the DataTable.
+			//DataRow emptyRow = dataTable.NewRow();
+			DataRow lastRow = dataTable.NewRow();
+			//dataTable.Rows.Add(emptyRow);
+			dataTable.Rows.Add(lastRow);
+
+			//Add totals row and highlight the totals row
+			if (containsTotals) addTotalsRow(); highlightTotalsRow();
 
 			dataGridView.Refresh();
 		}
@@ -268,35 +377,14 @@ namespace Green_Enviro_App
 			dataGridView.Refresh();
 		}
 
-		/// <summary>Populates and filters the grid view.</summary>
-		/// <param name="colWidths">The column widths.</param>
-		/// <param name="kgColumn">The kg column.</param>
-		/// <param name="amountCol">The amount column.</param>
-		public void populateAndFilterGrid(List<float> colWidths, int kgColumn = 0, int amountCol = 0) 
-		{
-			bool includesTotals = false;
-			populateGridView(colWidths, includesTotals);
-
-			//Check first if anything is being filtered 
-			filterGridView();
-
-			if ((kgColumn != 0) && (amountCol != 0))
-			{
-				addTotalsRow(kgColumn, amountCol);
-				highlightTotalsRow();
-			}
-
-			dataGridView.Refresh();
-		}
-
-
-		/// <summary>Resets the grid.</summary>
+		/// <summary>
+		/// Resets the grid.
+		/// </summary>
 		public void resetGrid() 
 		{
 			changeBindingSource(null);
 			dataGridView.Refresh();
 		}
-
 
 		/// <summary>Gives the default column widths for DataGridViews consisting of 9 Columns.</summary>
 		/// <returns>A list of floats containing the dafault column widths.</returns>

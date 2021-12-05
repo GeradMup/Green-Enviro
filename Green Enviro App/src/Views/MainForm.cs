@@ -247,11 +247,6 @@ namespace Green_Enviro_App
             _purchases.MonthSelected();
 		}
 
-		private void removeFiltersBtn_Click(object sender, EventArgs e)
-		{
-            _purchases.RemoveFilters();
-		}
-
         private void SendDstrctCertEmailBtn_Click(object sender, EventArgs e)
         {
             //_email.Show();
@@ -536,6 +531,5 @@ namespace Green_Enviro_App
 		{
             _purchases.addToPRRequest();
 		}
-
 	}
 }

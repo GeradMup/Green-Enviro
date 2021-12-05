@@ -68,6 +68,7 @@ namespace Green_Enviro_App
 			gridData.dates = csvHandles.getDatesInFile(pathToLog);
 
 			//After reading the data from the file, now we want to add the total to the amount column
+			/*
 			DataRow totalsRow = gridData.data.NewRow();
 			string amountColumn = GenericModels.enumToString<WagesLogHeaders>(WagesLogHeaders.Amount);
 
@@ -79,6 +80,7 @@ namespace Green_Enviro_App
 			for (int x = 0; x < totalsRow.ItemArray.Length; x++) totalsRow[x] = string.Empty;
 			totalsRow[amountColumn] = total;
 			gridData.data.Rows.Add(totalsRow);
+			*/
 			return gridData;
 		}
 
@@ -134,6 +136,13 @@ namespace Green_Enviro_App
 			}
 			
 			return gridViewData(paymentMonth);
+		}
+
+		/// <summary>Gets the column number where the amounts are.</summary>
+		/// <returns>An integer representing the amount column number.</returns>
+		public int getAmountColumn() 
+		{
+			return (int)WagesLogHeaders.Amount;
 		}
 
 		/// <summary>

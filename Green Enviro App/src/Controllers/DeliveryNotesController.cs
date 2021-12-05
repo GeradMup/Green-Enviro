@@ -120,7 +120,6 @@ namespace Green_Enviro_App
 			List<float> columnWidths = new List<float> { 300.0F, 100.0F};
 			deliveryNotesDgvOps.changeBindingSource(itemsTable);
 			deliveryNotesDgvOps.populateGridView(columnWidths);
-
 			clearProductFields();
 		}
 

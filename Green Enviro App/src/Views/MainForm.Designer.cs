@@ -148,20 +148,20 @@ namespace Green_Enviro_App
 			this.label33 = new System.Windows.Forms.Label();
 			this.label34 = new System.Windows.Forms.Label();
 			this.WagesNewEmployee = new System.Windows.Forms.TabPage();
+			this.WagesEndDateLabel = new System.Windows.Forms.Label();
 			this.WagesLogRemoveFilterBtn = new System.Windows.Forms.Button();
-			this.WagesLogFilterBtn = new System.Windows.Forms.Button();
-			this.WageDeleteBtn = new System.Windows.Forms.Button();
+			this.WageLogEndDate = new System.Windows.Forms.ComboBox();
+			this.WagesMonthLabel = new System.Windows.Forms.Label();
 			this.NewEmployee = new System.Windows.Forms.Button();
+			this.WagesStartDateLabel = new System.Windows.Forms.Label();
+			this.WagesLogFilterBtn = new System.Windows.Forms.Button();
+			this.WageLogStartDate = new System.Windows.Forms.ComboBox();
+			this.WageLogMonths = new System.Windows.Forms.ComboBox();
 			this.WagePartTimeEmployeeCheckBox = new System.Windows.Forms.CheckBox();
 			this.WagesEmployeeName = new System.Windows.Forms.ComboBox();
 			this.WageAmount = new System.Windows.Forms.NumericUpDown();
+			this.WageDeleteBtn = new System.Windows.Forms.Button();
 			this.WageDate = new System.Windows.Forms.DateTimePicker();
-			this.WagesMonthLabel = new System.Windows.Forms.Label();
-			this.WageLogMonths = new System.Windows.Forms.ComboBox();
-			this.WagesEndDateLabel = new System.Windows.Forms.Label();
-			this.WagesStartDateLabel = new System.Windows.Forms.Label();
-			this.WageLogEndDate = new System.Windows.Forms.ComboBox();
-			this.WageLogStartDate = new System.Windows.Forms.ComboBox();
 			this.WageLogGridView = new System.Windows.Forms.DataGridView();
 			this.WageClearFieldsBtn = new System.Windows.Forms.Button();
 			this.WageAddBtn = new System.Windows.Forms.Button();
@@ -846,7 +846,6 @@ namespace Green_Enviro_App
 			this.removeFiltersBtn.TabIndex = 18;
 			this.removeFiltersBtn.Text = "Remove Filters";
 			this.removeFiltersBtn.UseVisualStyleBackColor = true;
-			this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
 			// 
 			// PurchseLogGridView
 			// 
@@ -1687,20 +1686,20 @@ namespace Green_Enviro_App
 			// 
 			// WagesNewEmployee
 			// 
+			this.WagesNewEmployee.Controls.Add(this.WagesEndDateLabel);
 			this.WagesNewEmployee.Controls.Add(this.WagesLogRemoveFilterBtn);
-			this.WagesNewEmployee.Controls.Add(this.WagesLogFilterBtn);
-			this.WagesNewEmployee.Controls.Add(this.WageDeleteBtn);
+			this.WagesNewEmployee.Controls.Add(this.WageLogEndDate);
+			this.WagesNewEmployee.Controls.Add(this.WagesMonthLabel);
 			this.WagesNewEmployee.Controls.Add(this.NewEmployee);
+			this.WagesNewEmployee.Controls.Add(this.WagesStartDateLabel);
+			this.WagesNewEmployee.Controls.Add(this.WagesLogFilterBtn);
+			this.WagesNewEmployee.Controls.Add(this.WageLogStartDate);
+			this.WagesNewEmployee.Controls.Add(this.WageLogMonths);
 			this.WagesNewEmployee.Controls.Add(this.WagePartTimeEmployeeCheckBox);
 			this.WagesNewEmployee.Controls.Add(this.WagesEmployeeName);
 			this.WagesNewEmployee.Controls.Add(this.WageAmount);
+			this.WagesNewEmployee.Controls.Add(this.WageDeleteBtn);
 			this.WagesNewEmployee.Controls.Add(this.WageDate);
-			this.WagesNewEmployee.Controls.Add(this.WagesMonthLabel);
-			this.WagesNewEmployee.Controls.Add(this.WageLogMonths);
-			this.WagesNewEmployee.Controls.Add(this.WagesEndDateLabel);
-			this.WagesNewEmployee.Controls.Add(this.WagesStartDateLabel);
-			this.WagesNewEmployee.Controls.Add(this.WageLogEndDate);
-			this.WagesNewEmployee.Controls.Add(this.WageLogStartDate);
 			this.WagesNewEmployee.Controls.Add(this.WageLogGridView);
 			this.WagesNewEmployee.Controls.Add(this.WageClearFieldsBtn);
 			this.WagesNewEmployee.Controls.Add(this.WageAddBtn);
@@ -1715,38 +1714,47 @@ namespace Green_Enviro_App
 			this.WagesNewEmployee.Text = "Wages";
 			this.WagesNewEmployee.UseVisualStyleBackColor = true;
 			// 
+			// WagesEndDateLabel
+			// 
+			this.WagesEndDateLabel.AutoSize = true;
+			this.WagesEndDateLabel.Location = new System.Drawing.Point(1450, 15);
+			this.WagesEndDateLabel.Name = "WagesEndDateLabel";
+			this.WagesEndDateLabel.Size = new System.Drawing.Size(98, 23);
+			this.WagesEndDateLabel.TabIndex = 62;
+			this.WagesEndDateLabel.Text = "End Date";
+			// 
 			// WagesLogRemoveFilterBtn
 			// 
-			this.WagesLogRemoveFilterBtn.Location = new System.Drawing.Point(1398, 98);
+			this.WagesLogRemoveFilterBtn.Location = new System.Drawing.Point(1454, 88);
 			this.WagesLogRemoveFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.WagesLogRemoveFilterBtn.Name = "WagesLogRemoveFilterBtn";
-			this.WagesLogRemoveFilterBtn.Size = new System.Drawing.Size(317, 46);
+			this.WagesLogRemoveFilterBtn.Size = new System.Drawing.Size(364, 46);
 			this.WagesLogRemoveFilterBtn.TabIndex = 74;
 			this.WagesLogRemoveFilterBtn.Text = "Remove Filters";
 			this.WagesLogRemoveFilterBtn.UseVisualStyleBackColor = true;
 			this.WagesLogRemoveFilterBtn.Click += new System.EventHandler(this.WagesLogRemoveFilterBtn_Click);
 			// 
-			// WagesLogFilterBtn
+			// WageLogEndDate
 			// 
-			this.WagesLogFilterBtn.Location = new System.Drawing.Point(1084, 98);
-			this.WagesLogFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.WagesLogFilterBtn.Name = "WagesLogFilterBtn";
-			this.WagesLogFilterBtn.Size = new System.Drawing.Size(308, 46);
-			this.WagesLogFilterBtn.TabIndex = 73;
-			this.WagesLogFilterBtn.Text = "Filter";
-			this.WagesLogFilterBtn.UseVisualStyleBackColor = true;
-			this.WagesLogFilterBtn.Click += new System.EventHandler(this.WagesLogFilterBtn_Click);
+			this.WageLogEndDate.DropDownHeight = 300;
+			this.WageLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.WageLogEndDate.FormattingEnabled = true;
+			this.WageLogEndDate.IntegralHeight = false;
+			this.WageLogEndDate.ItemHeight = 23;
+			this.WageLogEndDate.Location = new System.Drawing.Point(1454, 40);
+			this.WageLogEndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageLogEndDate.Name = "WageLogEndDate";
+			this.WageLogEndDate.Size = new System.Drawing.Size(364, 31);
+			this.WageLogEndDate.TabIndex = 60;
 			// 
-			// WageDeleteBtn
+			// WagesMonthLabel
 			// 
-			this.WageDeleteBtn.Location = new System.Drawing.Point(812, 98);
-			this.WageDeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.WageDeleteBtn.Name = "WageDeleteBtn";
-			this.WageDeleteBtn.Size = new System.Drawing.Size(266, 46);
-			this.WageDeleteBtn.TabIndex = 72;
-			this.WageDeleteBtn.Text = "Delete Wage";
-			this.WageDeleteBtn.UseVisualStyleBackColor = true;
-			this.WageDeleteBtn.Click += new System.EventHandler(this.DeleteWageBtn_Click);
+			this.WagesMonthLabel.AutoSize = true;
+			this.WagesMonthLabel.Location = new System.Drawing.Point(681, 15);
+			this.WagesMonthLabel.Name = "WagesMonthLabel";
+			this.WagesMonthLabel.Size = new System.Drawing.Size(65, 23);
+			this.WagesMonthLabel.TabIndex = 64;
+			this.WagesMonthLabel.Text = "Month";
 			// 
 			// NewEmployee
 			// 
@@ -1758,6 +1766,53 @@ namespace Green_Enviro_App
 			this.NewEmployee.Text = "New Employee";
 			this.NewEmployee.UseVisualStyleBackColor = true;
 			this.NewEmployee.Click += new System.EventHandler(this.NewEmployee_Click);
+			// 
+			// WagesStartDateLabel
+			// 
+			this.WagesStartDateLabel.AutoSize = true;
+			this.WagesStartDateLabel.Location = new System.Drawing.Point(1068, 15);
+			this.WagesStartDateLabel.Name = "WagesStartDateLabel";
+			this.WagesStartDateLabel.Size = new System.Drawing.Size(120, 23);
+			this.WagesStartDateLabel.TabIndex = 61;
+			this.WagesStartDateLabel.Text = "Start Date";
+			// 
+			// WagesLogFilterBtn
+			// 
+			this.WagesLogFilterBtn.Location = new System.Drawing.Point(1072, 88);
+			this.WagesLogFilterBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WagesLogFilterBtn.Name = "WagesLogFilterBtn";
+			this.WagesLogFilterBtn.Size = new System.Drawing.Size(372, 46);
+			this.WagesLogFilterBtn.TabIndex = 73;
+			this.WagesLogFilterBtn.Text = "Filter";
+			this.WagesLogFilterBtn.UseVisualStyleBackColor = true;
+			this.WagesLogFilterBtn.Click += new System.EventHandler(this.WagesLogFilterBtn_Click);
+			// 
+			// WageLogStartDate
+			// 
+			this.WageLogStartDate.DropDownHeight = 300;
+			this.WageLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.WageLogStartDate.FormattingEnabled = true;
+			this.WageLogStartDate.IntegralHeight = false;
+			this.WageLogStartDate.ItemHeight = 23;
+			this.WageLogStartDate.Location = new System.Drawing.Point(1072, 40);
+			this.WageLogStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageLogStartDate.Name = "WageLogStartDate";
+			this.WageLogStartDate.Size = new System.Drawing.Size(372, 31);
+			this.WageLogStartDate.TabIndex = 59;
+			// 
+			// WageLogMonths
+			// 
+			this.WageLogMonths.DropDownHeight = 300;
+			this.WageLogMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.WageLogMonths.FormattingEnabled = true;
+			this.WageLogMonths.IntegralHeight = false;
+			this.WageLogMonths.ItemHeight = 23;
+			this.WageLogMonths.Location = new System.Drawing.Point(685, 40);
+			this.WageLogMonths.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageLogMonths.Name = "WageLogMonths";
+			this.WageLogMonths.Size = new System.Drawing.Size(378, 31);
+			this.WageLogMonths.TabIndex = 63;
+			this.WageLogMonths.SelectedIndexChanged += new System.EventHandler(this.WageLogMonth_SelectedIndexChanged);
 			// 
 			// WagePartTimeEmployeeCheckBox
 			// 
@@ -1795,6 +1850,17 @@ namespace Green_Enviro_App
 			this.WageAmount.Size = new System.Drawing.Size(172, 31);
 			this.WageAmount.TabIndex = 68;
 			// 
+			// WageDeleteBtn
+			// 
+			this.WageDeleteBtn.Location = new System.Drawing.Point(685, 88);
+			this.WageDeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.WageDeleteBtn.Name = "WageDeleteBtn";
+			this.WageDeleteBtn.Size = new System.Drawing.Size(378, 46);
+			this.WageDeleteBtn.TabIndex = 72;
+			this.WageDeleteBtn.Text = "Delete Wage";
+			this.WageDeleteBtn.UseVisualStyleBackColor = true;
+			this.WageDeleteBtn.Click += new System.EventHandler(this.DeleteWageBtn_Click);
+			// 
 			// WageDate
 			// 
 			this.WageDate.CalendarFont = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1809,73 +1875,6 @@ namespace Green_Enviro_App
 			this.WageDate.TabStop = false;
 			this.WageDate.Value = new System.DateTime(2021, 1, 22, 0, 0, 0, 0);
 			// 
-			// WagesMonthLabel
-			// 
-			this.WagesMonthLabel.AutoSize = true;
-			this.WagesMonthLabel.Location = new System.Drawing.Point(808, 20);
-			this.WagesMonthLabel.Name = "WagesMonthLabel";
-			this.WagesMonthLabel.Size = new System.Drawing.Size(65, 23);
-			this.WagesMonthLabel.TabIndex = 64;
-			this.WagesMonthLabel.Text = "Month";
-			// 
-			// WageLogMonths
-			// 
-			this.WageLogMonths.DropDownHeight = 300;
-			this.WageLogMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.WageLogMonths.FormattingEnabled = true;
-			this.WageLogMonths.IntegralHeight = false;
-			this.WageLogMonths.ItemHeight = 23;
-			this.WageLogMonths.Location = new System.Drawing.Point(812, 47);
-			this.WageLogMonths.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.WageLogMonths.Name = "WageLogMonths";
-			this.WageLogMonths.Size = new System.Drawing.Size(266, 31);
-			this.WageLogMonths.TabIndex = 63;
-			this.WageLogMonths.SelectedIndexChanged += new System.EventHandler(this.WageLogMonth_SelectedIndexChanged);
-			// 
-			// WagesEndDateLabel
-			// 
-			this.WagesEndDateLabel.AutoSize = true;
-			this.WagesEndDateLabel.Location = new System.Drawing.Point(1394, 22);
-			this.WagesEndDateLabel.Name = "WagesEndDateLabel";
-			this.WagesEndDateLabel.Size = new System.Drawing.Size(98, 23);
-			this.WagesEndDateLabel.TabIndex = 62;
-			this.WagesEndDateLabel.Text = "End Date";
-			// 
-			// WagesStartDateLabel
-			// 
-			this.WagesStartDateLabel.AutoSize = true;
-			this.WagesStartDateLabel.Location = new System.Drawing.Point(1080, 22);
-			this.WagesStartDateLabel.Name = "WagesStartDateLabel";
-			this.WagesStartDateLabel.Size = new System.Drawing.Size(120, 23);
-			this.WagesStartDateLabel.TabIndex = 61;
-			this.WagesStartDateLabel.Text = "Start Date";
-			// 
-			// WageLogEndDate
-			// 
-			this.WageLogEndDate.DropDownHeight = 300;
-			this.WageLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.WageLogEndDate.FormattingEnabled = true;
-			this.WageLogEndDate.IntegralHeight = false;
-			this.WageLogEndDate.ItemHeight = 23;
-			this.WageLogEndDate.Location = new System.Drawing.Point(1398, 47);
-			this.WageLogEndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.WageLogEndDate.Name = "WageLogEndDate";
-			this.WageLogEndDate.Size = new System.Drawing.Size(317, 31);
-			this.WageLogEndDate.TabIndex = 60;
-			// 
-			// WageLogStartDate
-			// 
-			this.WageLogStartDate.DropDownHeight = 300;
-			this.WageLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.WageLogStartDate.FormattingEnabled = true;
-			this.WageLogStartDate.IntegralHeight = false;
-			this.WageLogStartDate.ItemHeight = 23;
-			this.WageLogStartDate.Location = new System.Drawing.Point(1084, 47);
-			this.WageLogStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.WageLogStartDate.Name = "WageLogStartDate";
-			this.WageLogStartDate.Size = new System.Drawing.Size(308, 31);
-			this.WageLogStartDate.TabIndex = 59;
-			// 
 			// WageLogGridView
 			// 
 			this.WageLogGridView.AllowUserToAddRows = false;
@@ -1885,13 +1884,13 @@ namespace Green_Enviro_App
 			this.WageLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.WageLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.WageLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.WageLogGridView.Location = new System.Drawing.Point(812, 158);
+			this.WageLogGridView.Location = new System.Drawing.Point(685, 158);
 			this.WageLogGridView.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
 			this.WageLogGridView.Name = "WageLogGridView";
 			this.WageLogGridView.ReadOnly = true;
 			this.WageLogGridView.RowHeadersWidth = 51;
 			this.WageLogGridView.RowTemplate.Height = 24;
-			this.WageLogGridView.Size = new System.Drawing.Size(903, 702);
+			this.WageLogGridView.Size = new System.Drawing.Size(1030, 702);
 			this.WageLogGridView.TabIndex = 58;
 			// 
 			// WageClearFieldsBtn
@@ -3336,9 +3335,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label label31;
 		private System.Windows.Forms.Label label33;
 		private System.Windows.Forms.Label label34;
-		private System.Windows.Forms.Label WagesMonthLabel;
-		private System.Windows.Forms.Label WagesEndDateLabel;
-		private System.Windows.Forms.Label WagesStartDateLabel;
 		public System.Windows.Forms.DataGridView WageLogGridView;
 		private System.Windows.Forms.Button WageClearFieldsBtn;
 		private System.Windows.Forms.Button WageAddBtn;
@@ -3419,7 +3415,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button DeletePurchaseBtn;
 		private System.Windows.Forms.Button DeleteExpenseBtn;
 		private System.Windows.Forms.Button DeleteSaleBtn;
-		private System.Windows.Forms.Button WageDeleteBtn;
 		private System.Windows.Forms.Button button6;
 		public System.Windows.Forms.DataGridView PurchasesPRDataGridView;
 		public System.Windows.Forms.DataGridView salesPRDataGridView;
@@ -3474,9 +3469,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.RichTextBox SummariesNFSalesBox;
 		private System.Windows.Forms.NumericUpDown WageAmount;
 		private System.Windows.Forms.DateTimePicker WageDate;
-		private System.Windows.Forms.ComboBox WageLogMonths;
-		private System.Windows.Forms.ComboBox WageLogEndDate;
-		private System.Windows.Forms.ComboBox WageLogStartDate;
 		private System.Windows.Forms.ComboBox WagesEmployeeName;
 		private System.Windows.Forms.CheckBox WagePartTimeEmployeeCheckBox;
 		private System.Windows.Forms.DateTimePicker ExpenseDate;
@@ -3486,7 +3478,14 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.DataGridView ExpensesLogGridView;
 		private System.Windows.Forms.NumericUpDown ExpenseAmount;
 		private System.Windows.Forms.TextBox ExpenseDescription;
+		private System.Windows.Forms.Label WagesEndDateLabel;
 		private System.Windows.Forms.Button WagesLogRemoveFilterBtn;
+		private System.Windows.Forms.ComboBox WageLogEndDate;
+		private System.Windows.Forms.Label WagesMonthLabel;
+		private System.Windows.Forms.Label WagesStartDateLabel;
 		private System.Windows.Forms.Button WagesLogFilterBtn;
+		private System.Windows.Forms.ComboBox WageLogStartDate;
+		private System.Windows.Forms.ComboBox WageLogMonths;
+		private System.Windows.Forms.Button WageDeleteBtn;
 	}
 }
