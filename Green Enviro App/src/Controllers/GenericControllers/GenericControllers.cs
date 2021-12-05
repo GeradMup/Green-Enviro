@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App 
 {
-	class GenericControllers : Form
+	class GenericControllers
 	{
 		/// <summary>
 		/// Displays an error box with the given message.

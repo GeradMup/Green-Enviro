@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +10,12 @@ namespace Green_Enviro_App
 {
 	public partial class Employees : Form
 	{
-
 		DataTable _employees_data_table = new DataTable();
 		Main_Form _main_form;
 		Database _database;
+		/// <summary>Initializes a new instance of the <see cref="Employees" /> class.</summary>
+		/// <param name="main">The main.</param>
+		/// <param name="data">The data.</param>
 		public Employees(Main_Form main, Database data)
 		{
 			InitializeComponent();
@@ -30,7 +30,7 @@ namespace Green_Enviro_App
 
 		private void LoadEmployees()
 		{
-			
+
 			_employees_data_table = _database.selectAll(Database.Tables.Employees);
 			string _employee_name = "";
 
@@ -44,7 +44,7 @@ namespace Green_Enviro_App
 
 		private void EmployeesAddEmployeeBtn_Click(object sender, EventArgs e)
 		{
-			if (validEntries() == false) 
+			if (validEntries() == false)
 			{
 				return;
 			}
@@ -67,13 +67,13 @@ namespace Green_Enviro_App
 				ClearFields();
 				Exit();
 			}
-			else 
+			else
 			{
 				CustomMessageBox box = new CustomMessageBox(this, "Error!", "Failed To Inserted New Employee!");
 			}
 		}
 
-		private bool validEntries() 
+		private bool validEntries()
 		{
 			bool _all_good = false;
 			string _message_title = "Error!";
@@ -96,12 +96,12 @@ namespace Green_Enviro_App
 			{
 				_error_message = "Employee Gender Not Selected";
 			}
-			else 
+			else
 			{
 				_all_good = true;
 			}
 
-			if (_all_good == false) 
+			if (_all_good == false)
 			{
 				CustomMessageBox box = new CustomMessageBox(this, _message_title, _error_message);
 			}
@@ -115,7 +115,7 @@ namespace Green_Enviro_App
 			Exit();
 		}
 
-		public void ClearFields() 
+		public void ClearFields()
 		{
 			EmployeeNameField.Text = "";
 			EmployeeSurnameField.Text = "";
@@ -123,12 +123,22 @@ namespace Green_Enviro_App
 			EmployeeGenderField.SelectedItem = null;
 		}
 
-		public void Exit() 
+		public void Exit()
 		{
 			this.Owner.Enabled = true;
 			this.Owner.Show();
 			this.Hide();
 			this.Enabled = false;
+		}
+
+		private void EmployeesViewGridBtn_Click(object sender, EventArgs e)
+		{
+			EmployeesGridPanel.Dock = DockStyle.Fill;
+		}
+
+		private void EmployeesCloseGridBtn_Click(object sender, System.EventArgs e)
+		{
+			EmployeesGridPanel.Dock = DockStyle.None;
 		}
 	}
 }
