@@ -19,6 +19,8 @@ namespace Green_Enviro_App
 		Main_Form _mainForm;
 		EmployeesModel _employeesModel;
 		DGVOps employeesDgvOps;
+		private bool editingEmployee = false;
+		private string employeeIdentifier = "";
 		
 		/// <summary>Initializes a new instance of the <see cref="Employees" />Employees class.</summary>
 		/// <param name="main">The main.</param>
@@ -58,102 +60,37 @@ namespace Green_Enviro_App
 			return columnWidths;
 		}
 
-		private void LoadEmployees()
-		{
-
-			//_employees_data_table = _database.selectAll(Database.Tables.Employees);
-			string _employee_name = "";
-
-			//_main_form.WagesEmployeeName.Items.Clear();
-			foreach (DataRow row in _employees_data_table.Rows)
-			{
-				_employee_name = row[1].ToString() + " " + row[2].ToString();
-				//_main_form.WagesEmployeeName.Items.Add(_employee_name);
-			}
-		}
-
-		/*
-		private void EmployeesAddEmployeeBtn_Click(object sender, EventArgs e)
-		{
-			if (validEntries() == false)
-			{
-				return;
-			}
-
-			string name = EmployeeNameField.Text;
-			string surname = EmployeeSurnameField.Text;
-			string identification = EmployeeIdentificationField.Text;
-			string gender = EmployeeGenderField.SelectedItem.ToString();
-			string address = "Unknown";
-			string cell = "0000000000";
-
-			string[] values = { name, surname, identification, gender, address, cell };
-
-			Int32 _rows_affected = _database.insert(Database.Tables.Employees, values);
-
-			if (_rows_affected == 1)
-			{
-				CustomMessageBox box = new CustomMessageBox(this, "Success!", "New Employee Inserted!");
-				LoadEmployees();
-				ClearFields();
-				Exit();
-			}
-			else
-			{
-				CustomMessageBox box = new CustomMessageBox(this, "Error!", "Failed To Inserted New Employee!");
-			}
-		}
-		*/
-		private bool validEntries()
-		{
-			bool _all_good = false;
-			string _message_title = "Error!";
-			string _error_message = "";
-			string _no_text = "";
-
-			if (EmployeeName.Text == _no_text)
-			{
-				_error_message = "Employee Name Not Entered";
-			}
-			else if (EmployeeSurname.Text == _no_text)
-			{
-				_error_message = "Employee Surname Not Entered";
-			}
-			else if (EmployeeIdentification.Text == _no_text)
-			{
-				_error_message = "Employee Identification Not Entered";
-			}
-			else if (EmployeeGender.SelectedItem == null)
-			{
-				_error_message = "Employee Gender Not Selected";
-			}
-			else
-			{
-				_all_good = true;
-			}
-
-			if (_all_good == false)
-			{
-				CustomMessageBox box = new CustomMessageBox(this, _message_title, _error_message);
-			}
-
-			return _all_good;
-
-		}
+		/// <summary>Handles the Click event of the EmployeesCancelBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void EmployeesCancelBtn_Click(object sender, EventArgs e)
 		{
 			ClearFields();
 			Exit();
 		}
 
+		/// <summary>
+		/// Clears all the fields on the Employees page.
+		/// </summary>
 		public void ClearFields()
 		{
-			EmployeeName.Text = "";
-			EmployeeSurname.Text = "";
-			EmployeeIdentification.Text = "";
+			EmployeeName.Text = Constants.EMPTY_TEXT;
+			EmployeeSurname.Text = Constants.EMPTY_TEXT;
+			EmployeeIdentification.Text = Constants.EMPTY_TEXT;
 			EmployeeGender.SelectedItem = null;
+			EmployeeAddress.Text = Constants.EMPTY_TEXT;
+			EmployeeCellNumber.Text = Constants.EMPTY_TEXT;
+			employeeIdentifier = Constants.EMPTY_TEXT;
+			EmployeeGender.DropDownStyle = ComboBoxStyle.DropDownList;
+			EmployeeGender.SelectedItem = null;
+
+			editingEmployee = false;
+
 		}
 
+		/// <summary>
+		/// Closes the Employees form and opens the main form on the wages tab.
+		/// </summary>
 		public void Exit()
 		{
 			_mainForm.Enabled = true;
@@ -170,6 +107,10 @@ namespace Green_Enviro_App
 		private void EmployeesViewGridBtn_Click(object sender, EventArgs e)
 		{
 			EmployeesGridPanel.Dock = DockStyle.Fill;
+			
+			//All the buttons added after the employees grid panel remain visible on top of the panel
+			//Here wer hide them to ensure that when viewing the panel, we don't see the buttons.
+			EmployeesEditBtn.Visible = false;
 		}
 
 		/// <summary>Handles the Click event of the EmployeesCloseGridBtn control.</summary>
@@ -178,6 +119,7 @@ namespace Green_Enviro_App
 		private void EmployeesCloseGridBtn_Click(object sender, System.EventArgs e)
 		{
 			EmployeesGridPanel.Dock = DockStyle.None;
+			EmployeesEditBtn.Visible = true;
 		}
 
 		/// <summary>Handles the Click event of the EmployeesAddEmployeeBtn control.</summary>
@@ -191,7 +133,7 @@ namespace Green_Enviro_App
 			const string NO_GENDER_ERROR = "Please insert the Employee Gender!";
 			const string NO_ADDRESS_ERROR = "Please insert the Employee Address!";
 			const string NO_CELL_ERROR = "Please insert the Employee Cell Number!";
-			const string EMPLOYEE_ADDED = "New Employee has been added to the Database!";
+			const string EMPLOYEE_ADDED = "Employee details have been added or updated!";
 
 			if (EmployeeName.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(this, NO_NAME_ERROR); return; }
 			if (EmployeeSurname.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(this, NO_SURNAME_ERROR); return; }
@@ -210,15 +152,36 @@ namespace Green_Enviro_App
 
 			try
 			{
-				_employeesModel.addEmployee(employeeInfo);
+				if (editingEmployee == true) _employeesModel.updateEmployee(employeeInfo, employeeIdentifier);
+				else _employeesModel.addEmployee(employeeInfo);
+
 				updateGridView();
 				GenericControllers.reportSuccess(this, EMPLOYEE_ADDED);
+				ClearFields();
 			}
 			catch (Exception ex) 
 			{
 				GenericControllers.reportError(this, ex.Message);
 			}
 			
+		}
+
+		/// <summary>Handles the Click event of the EmployeesEditBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+		private void EmployeesEditBtn_Click(object sender, EventArgs e)
+		{
+			List<string> selectedRowInfo = employeesDgvOps.getSeletedRow();
+			EmployeeName.Text = selectedRowInfo[1];
+			EmployeeSurname.Text = selectedRowInfo[2];
+			EmployeeIdentification.Text = selectedRowInfo[3];
+			EmployeeGender.DropDownStyle = ComboBoxStyle.DropDown;
+			EmployeeGender.Text = selectedRowInfo[4];
+			EmployeeAddress.Text = selectedRowInfo[5];
+			EmployeeCellNumber.Text = selectedRowInfo[6];
+
+			editingEmployee = true;
+			employeeIdentifier = selectedRowInfo[3];
 		}
 	}
 }

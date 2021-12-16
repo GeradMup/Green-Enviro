@@ -72,6 +72,15 @@ namespace Green_Enviro_App
 			return stringValues;
 		}
 
+		/// <summary>Creates an array with all the enum fields.</summary>
+		/// <typeparam name="EnumType">The enum type.</typeparam>
+		/// <returns>List&lt;EnumType&gt;.
+		/// containing the all the enum fields.</returns>
+		public static EnumType[] enumFieldsToList<EnumType>()
+		{
+			return Enum.GetValues(typeof(EnumType)).Cast<EnumType>().ToArray();
+		}
+
 		/// <summary>Generates the path to save a file.</summary>
 		/// <param name="basePath">The base path to the file. If a file with a given path already exists, a number is appended to the file name to make it unique.</param>
 		/// <param name="month">The month which will be used in the path.</param>

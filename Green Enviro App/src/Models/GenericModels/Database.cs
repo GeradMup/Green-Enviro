@@ -44,7 +44,9 @@ namespace Green_Enviro_App
 			//Sets up the first Database which stores the URL of the actual database file
 		}
 
-		/// <summary>Opens a connection to the database</summary>
+		/// <summary>
+		/// Opens a connection to the database
+		/// </summary>
 		private void openDatabase()
 		{
 			if (_connection != null)
@@ -68,7 +70,9 @@ namespace Green_Enviro_App
 			}
 		}
 
-		/// <summary>Closes the connection to a the database</summary>
+		/// <summary>
+		/// Closes the connection to a the database
+		/// </summary>
 		private static void closeDatabase()
 		{
 			if (_connection == null)
@@ -209,7 +213,7 @@ namespace Green_Enviro_App
 		/// <param name="identifier">The identifier value.</param>
 		/// <param name="values">The values to be updated in the table.</param>
 		/// <returns>Int32 value representing how many table rows were updated.</returns>
-		public Int32 update<TableColumn>(Tables _tableName, 
+		public void update<TableColumn>(Tables _tableName, 
 			TableColumn[] columns, TableColumn _identifierColumn, string identifier, string[] values)
 		{
 			string tableName = GenericModels.enumToString<Tables>(_tableName);
@@ -219,22 +223,17 @@ namespace Green_Enviro_App
 			string updateCommandText = "UPDATE " + tableName + " SET " + columnValuePairs +
 				" WHERE " + identifierColumn + " = '" + identifier + "'";
 
-			Int32 rowsAffected = 0;
-
 			try
 			{
 				openDatabase();
 				_command.CommandText = updateCommandText;
-				rowsAffected = _command.ExecuteNonQuery();
+				_command.ExecuteNonQuery();
 				closeDatabase();
 			}
 			catch (Exception ex)
 			{
 				throw new Exception(DATABASE_UPDATING_EXCEPTION, ex);
 			}
-
-			
-			return rowsAffected;
 		}
 
 		/// <summary>Creates a string representing columns of a database table.</summary>
@@ -274,7 +273,6 @@ namespace Green_Enviro_App
 			return tableNames;
 		}
 
-
 		/// <summary>A function to convert an array of strings into one string seperated by commas.</summary>
 		/// <param name="values">The array of strings.</param>
 		/// <returns>A single string combining the arrary of strings seperated by commas.</returns>
@@ -308,7 +306,8 @@ namespace Green_Enviro_App
 			return columnValuePairs;
 		}
 
-		/// <summary>Enum class giving the names of all the tables in the database.</summary>
+		/// <summary>
+		/// Enum class giving the names of all the tables in the database.</summary>
 		public enum Tables
 		{
 			/// <summary>The buyers table</summary>
@@ -328,7 +327,9 @@ namespace Green_Enviro_App
 			Users
 		}
 
-		/// <summary>An enum to give the column names of the Buyers table.</summary>
+		/// <summary>
+		/// An enum to give the column names of the Buyers table.
+		/// </summary>
 		public enum BuyersTableColumns
 		{
 			/// <summary>The company name.</summary>
@@ -343,7 +344,9 @@ namespace Green_Enviro_App
 			Email
 		}
 
-		/// <summary>An enum to give the column names of the columns in the Companies table.</summary>
+		/// <summary>
+		/// An enum to give the column names of the columns in the Companies table.
+		/// </summary>
 		public enum CompaniesTableColumns
 		{
 			/// <summary> The name of the company</summary>
@@ -358,7 +361,9 @@ namespace Green_Enviro_App
 			Address
 		}
 
-		/// <summary>An enum to give the column names of the Customers table.</summary>
+		/// <summary>
+		/// An enum to give the column names of the Customers table.
+		/// </summary>
 		public enum CustomersTableColumns
 		{
 			/// <summary>The customer number</summary>
@@ -375,7 +380,9 @@ namespace Green_Enviro_App
 			Address
 		}
 
-		/// <summary>An enum to give the column names of the Employees table.</summary>
+		/// <summary>
+		/// An enum to give the column names of the Employees table.
+		/// </summary>
 		public enum EmployeesTableColumns
 		{   /// <summary>The name of the employee</summary>
 			Name,
@@ -391,7 +398,9 @@ namespace Green_Enviro_App
 			Cell
 		}
 
-		/// <summary>An enum to give the column names of the Items table.</summary>
+		/// <summary>
+		/// An enum to give the column names of the Items table.
+		/// </summary>
 		public enum ItemsTableColumns
 		{
 			/// <summary>The item identifier</summary>
@@ -408,9 +417,14 @@ namespace Green_Enviro_App
 			Type
 		}
 
-		/// <summary>An enum to give the column names of the Stock table.</summary>
+		/// <summary>
+		/// An enum to give the column names of the Stock table.
+		/// </summary>
 		public enum StockTableColumns { }
-		/// <summary>An enum to give the column names of the Users table.</summary>
+		
+		/// <summary>
+		/// An enum to give the column names of the Users table.
+		/// </summary>
 		public enum UsersTableColumns
 		{
 			/// <summary>The account identifier</summary>

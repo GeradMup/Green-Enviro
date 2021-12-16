@@ -131,7 +131,11 @@ namespace Green_Enviro_App
 		private void PartTimeEmployeeCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			//Convert the drop down list into a drop down so that user can type in a new name.
-			WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDown;
+			if (WagesEmployeeName.DropDownStyle == ComboBoxStyle.DropDown)
+			{ WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDownList; return; }
+
+			if (WagesEmployeeName.DropDownStyle == ComboBoxStyle.DropDownList)
+			{ WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDown; return; }
 		}
 
 		/// <summary>Sets the currently selected wage log to the given month's log.</summary>
@@ -141,7 +145,9 @@ namespace Green_Enviro_App
 			WageLogMonths.SelectedIndex = WageLogMonths.Items.IndexOf(month);
 		}
 
-		/// <summary>Clears all fields on the Wages tab.</summary>
+		/// <summary>
+		/// Clears all fields on the Wages tab.
+		/// </summary>
 		private void resetWages()
 		{
 			WageLogMonths.SelectedItem = null;
@@ -152,11 +158,13 @@ namespace Green_Enviro_App
 			clearWageEntryFields();
 		}
 
-		/// <summary>Clears the wage entry fields.</summary>
+		/// <summary>
+		/// Clears the wage entry fields.
+		/// </summary>
 		private void clearWageEntryFields() 
 		{
 			WageAmount.Value = Constants.DECIMAL_ZERO;
-			WagePartTimeEmployeeCheckBox.CheckState = CheckState.Checked;
+			WagePartTimeEmployeeCheckBox.CheckState = CheckState.Unchecked;
 			WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDownList;
 			WagesEmployeeName.SelectedItem = null;
 		}

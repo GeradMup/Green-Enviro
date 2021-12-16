@@ -65,12 +65,13 @@ namespace Green_Enviro_App
 			string _dealer_price = PricesGridView[3, e.RowIndex].Value.ToString();
 
 			DialogResult dialogResult = MessageBox.Show("Are you sure you want to change the price?", "Confirm Edit", MessageBoxButtons.YesNo);
+			/*
 			if (dialogResult == DialogResult.Yes)
 			{
 				
 				string[] values = { _price, _dealer_price };   
 				string identifier = _item_name;
-
+				
 				Database.ItemsTableColumns[] columnsToUpdate = {Database.ItemsTableColumns.Price, Database.ItemsTableColumns.DealerPrice };
 				Database.ItemsTableColumns tableIdentifier = Database.ItemsTableColumns.Name;
 				Int32 rowsAffected = _database.update<Database.ItemsTableColumns>(
@@ -89,6 +90,7 @@ namespace Green_Enviro_App
 			{
 				CancelEdit(e);
 			}
+			*/
 		}
 
 		private void PricesGridView_CellBeginEdit(object sender, DataGridViewCellEventArgs e)

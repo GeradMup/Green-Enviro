@@ -59,7 +59,6 @@ namespace Green_Enviro_App
 			dataTable = new DataTable();
 		}
 
-
 		/// <summary>Configures the DGV so that the totals row can be added if it is required.</summary>
 		/// <param name="_amountColumn">The amount column.</param>
 		/// <param name="_kgsColumn">The KGS column.</param>
@@ -468,6 +467,21 @@ namespace Green_Enviro_App
 
 			//remove the last comma in the string
 			rowInfo = rowInfo.Remove(rowInfo.Length - 1, 1);
+
+			return rowInfo;
+		}
+
+		/// <summary>Gets the contents of the selected row in the DGV.</summary>
+		/// <returns>A List of strings containing the row information.</returns>
+		public List<string> getSeletedRow() 
+		{
+			int selectedRow = dataGridView.CurrentCell.RowIndex;
+			List<string> rowInfo = new List<string>();
+
+			for (int column = 0; column < dataGridView.Columns.Count; column++) 
+			{
+				rowInfo.Add(dataGridView.Rows[selectedRow].Cells[column].Value.ToString());
+			}
 
 			return rowInfo;
 		}

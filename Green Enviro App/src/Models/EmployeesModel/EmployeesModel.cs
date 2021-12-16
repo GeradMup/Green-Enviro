@@ -34,18 +34,42 @@ namespace Green_Enviro_App
 		/// <exception cref="System.Exception"></exception>
 		public void addEmployee(EmployeeInfo employeeInfo)
 		{
-			string[] employeeInfoString = { employeeInfo.employeeName,
-											employeeInfo.employeeSurname,
-											employeeInfo.employeeId,
-											employeeInfo.employeeGender,
-											employeeInfo.employeeAddress,
-											employeeInfo.employeeCell };
+			string[] employeeInfoArray = { employeeInfo.employeeName,
+										   employeeInfo.employeeSurname,
+										   employeeInfo.employeeId,
+										   employeeInfo.employeeGender,
+										   employeeInfo.employeeAddress,
+										   employeeInfo.employeeCell };
 
 			try
 			{
-				database.insert(Database.Tables.Employees, employeeInfoString);
+				database.insert(Database.Tables.Employees, employeeInfoArray);
 			}
 			catch (Exception ex) 
+			{
+				throw new Exception(ex.Message);
+			}
+		}
+
+		/// <summary>Updates employee existing employee details.</summary>
+		/// <param name="employeeInfo">The employee information.</param>
+		/// <param name="employeeIdentifier">Unique identifier number for the employee.</param>
+		public void updateEmployee(EmployeeInfo employeeInfo, string employeeIdentifier) 
+		{
+			string[] employeeInfoArray = { employeeInfo.employeeName,
+										   employeeInfo.employeeSurname,
+										   employeeInfo.employeeId,
+										   employeeInfo.employeeGender,
+										   employeeInfo.employeeAddress,
+										   employeeInfo.employeeCell };
+
+			Database.EmployeesTableColumns[] columns = GenericModels.enumFieldsToList<Database.EmployeesTableColumns>();
+			Database.EmployeesTableColumns identifierColumn = Database.EmployeesTableColumns.Identification;
+			try
+			{
+				database.update<Database.EmployeesTableColumns>(Database.Tables.Employees, columns, identifierColumn, employeeIdentifier, employeeInfoArray);
+			}
+			catch (Exception ex)
 			{
 				throw new Exception(ex.Message);
 			}

@@ -52,6 +52,7 @@ namespace Green_Enviro_App
 			this.EmployeesCloseGridBtn = new System.Windows.Forms.Button();
 			this.EmployeesViewGridBtn = new System.Windows.Forms.Button();
 			this.EmployeesGridPanel = new System.Windows.Forms.Panel();
+			this.EmployeesEditBtn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.EmployeesGridView)).BeginInit();
 			this.EmployeesGridPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -61,7 +62,7 @@ namespace Green_Enviro_App
 			this.EmployeeName.Location = new System.Drawing.Point(267, 139);
 			this.EmployeeName.Margin = new System.Windows.Forms.Padding(5);
 			this.EmployeeName.Name = "EmployeeName";
-			this.EmployeeName.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeName.Size = new System.Drawing.Size(371, 29);
 			this.EmployeeName.TabIndex = 0;
 			// 
 			// contextMenuStrip1
@@ -75,7 +76,7 @@ namespace Green_Enviro_App
 			this.EmployeeSurname.Location = new System.Drawing.Point(267, 199);
 			this.EmployeeSurname.Margin = new System.Windows.Forms.Padding(5);
 			this.EmployeeSurname.Name = "EmployeeSurname";
-			this.EmployeeSurname.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeSurname.Size = new System.Drawing.Size(371, 29);
 			this.EmployeeSurname.TabIndex = 2;
 			// 
 			// EmployeeIdentification
@@ -83,7 +84,7 @@ namespace Green_Enviro_App
 			this.EmployeeIdentification.Location = new System.Drawing.Point(267, 260);
 			this.EmployeeIdentification.Margin = new System.Windows.Forms.Padding(5);
 			this.EmployeeIdentification.Name = "EmployeeIdentification";
-			this.EmployeeIdentification.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeIdentification.Size = new System.Drawing.Size(371, 29);
 			this.EmployeeIdentification.TabIndex = 3;
 			// 
 			// label1
@@ -92,7 +93,7 @@ namespace Green_Enviro_App
 			this.label1.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(569, 18);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(426, 70);
+			this.label1.Size = new System.Drawing.Size(336, 56);
 			this.label1.TabIndex = 5;
 			this.label1.Text = "New Employee";
 			// 
@@ -101,7 +102,7 @@ namespace Green_Enviro_App
 			this.EmployeeGenderLabel.AutoSize = true;
 			this.EmployeeGenderLabel.Location = new System.Drawing.Point(31, 328);
 			this.EmployeeGenderLabel.Name = "EmployeeGenderLabel";
-			this.EmployeeGenderLabel.Size = new System.Drawing.Size(90, 28);
+			this.EmployeeGenderLabel.Size = new System.Drawing.Size(70, 22);
 			this.EmployeeGenderLabel.TabIndex = 6;
 			this.EmployeeGenderLabel.Text = "Gender";
 			// 
@@ -110,7 +111,7 @@ namespace Green_Enviro_App
 			this.EmployeeIDLabel.AutoSize = true;
 			this.EmployeeIDLabel.Location = new System.Drawing.Point(31, 266);
 			this.EmployeeIDLabel.Name = "EmployeeIDLabel";
-			this.EmployeeIDLabel.Size = new System.Drawing.Size(194, 28);
+			this.EmployeeIDLabel.Size = new System.Drawing.Size(150, 22);
 			this.EmployeeIDLabel.TabIndex = 7;
 			this.EmployeeIDLabel.Text = "Identification";
 			// 
@@ -119,7 +120,7 @@ namespace Green_Enviro_App
 			this.EmployeeSurnameLabel.AutoSize = true;
 			this.EmployeeSurnameLabel.Location = new System.Drawing.Point(31, 205);
 			this.EmployeeSurnameLabel.Name = "EmployeeSurnameLabel";
-			this.EmployeeSurnameLabel.Size = new System.Drawing.Size(103, 28);
+			this.EmployeeSurnameLabel.Size = new System.Drawing.Size(80, 22);
 			this.EmployeeSurnameLabel.TabIndex = 8;
 			this.EmployeeSurnameLabel.Text = "Surname";
 			// 
@@ -128,7 +129,7 @@ namespace Green_Enviro_App
 			this.EmployeeNameLabel.AutoSize = true;
 			this.EmployeeNameLabel.Location = new System.Drawing.Point(31, 145);
 			this.EmployeeNameLabel.Name = "EmployeeNameLabel";
-			this.EmployeeNameLabel.Size = new System.Drawing.Size(64, 28);
+			this.EmployeeNameLabel.Size = new System.Drawing.Size(50, 22);
 			this.EmployeeNameLabel.TabIndex = 9;
 			this.EmployeeNameLabel.Text = "Name";
 			// 
@@ -141,7 +142,7 @@ namespace Green_Enviro_App
             "Female"});
 			this.EmployeeGender.Location = new System.Drawing.Point(267, 321);
 			this.EmployeeGender.Name = "EmployeeGender";
-			this.EmployeeGender.Size = new System.Drawing.Size(318, 35);
+			this.EmployeeGender.Size = new System.Drawing.Size(318, 30);
 			this.EmployeeGender.TabIndex = 10;
 			// 
 			// EmployeesAddEmployeeBtn
@@ -150,7 +151,7 @@ namespace Green_Enviro_App
 			this.EmployeesAddEmployeeBtn.Name = "EmployeesAddEmployeeBtn";
 			this.EmployeesAddEmployeeBtn.Size = new System.Drawing.Size(245, 57);
 			this.EmployeesAddEmployeeBtn.TabIndex = 11;
-			this.EmployeesAddEmployeeBtn.Text = "Add Employee";
+			this.EmployeesAddEmployeeBtn.Text = "Add/Update  Employee";
 			this.EmployeesAddEmployeeBtn.UseVisualStyleBackColor = true;
 			this.EmployeesAddEmployeeBtn.Click += new System.EventHandler(this.EmployeesAddEmployeeBtn_Click);
 			// 
@@ -169,7 +170,7 @@ namespace Green_Enviro_App
 			this.EmployeeAddressLabel.AutoSize = true;
 			this.EmployeeAddressLabel.Location = new System.Drawing.Point(31, 392);
 			this.EmployeeAddressLabel.Name = "EmployeeAddressLabel";
-			this.EmployeeAddressLabel.Size = new System.Drawing.Size(103, 28);
+			this.EmployeeAddressLabel.Size = new System.Drawing.Size(80, 22);
 			this.EmployeeAddressLabel.TabIndex = 13;
 			this.EmployeeAddressLabel.Text = "Address";
 			// 
@@ -178,7 +179,7 @@ namespace Green_Enviro_App
 			this.EmployeeAddress.Location = new System.Drawing.Point(267, 386);
 			this.EmployeeAddress.Margin = new System.Windows.Forms.Padding(5);
 			this.EmployeeAddress.Name = "EmployeeAddress";
-			this.EmployeeAddress.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeAddress.Size = new System.Drawing.Size(371, 29);
 			this.EmployeeAddress.TabIndex = 14;
 			// 
 			// EmployeeCellNumberLabel
@@ -186,7 +187,7 @@ namespace Green_Enviro_App
 			this.EmployeeCellNumberLabel.AutoSize = true;
 			this.EmployeeCellNumberLabel.Location = new System.Drawing.Point(31, 446);
 			this.EmployeeCellNumberLabel.Name = "EmployeeCellNumberLabel";
-			this.EmployeeCellNumberLabel.Size = new System.Drawing.Size(155, 28);
+			this.EmployeeCellNumberLabel.Size = new System.Drawing.Size(120, 22);
 			this.EmployeeCellNumberLabel.TabIndex = 15;
 			this.EmployeeCellNumberLabel.Text = "Cell Number";
 			// 
@@ -195,7 +196,7 @@ namespace Green_Enviro_App
 			this.EmployeeCellNumber.Location = new System.Drawing.Point(267, 446);
 			this.EmployeeCellNumber.Margin = new System.Windows.Forms.Padding(5);
 			this.EmployeeCellNumber.Name = "EmployeeCellNumber";
-			this.EmployeeCellNumber.Size = new System.Drawing.Size(371, 34);
+			this.EmployeeCellNumber.Size = new System.Drawing.Size(371, 29);
 			this.EmployeeCellNumber.TabIndex = 16;
 			// 
 			// EmployeesCancelBtn
@@ -206,6 +207,7 @@ namespace Green_Enviro_App
 			this.EmployeesCancelBtn.TabIndex = 17;
 			this.EmployeesCancelBtn.Text = "Cancel";
 			this.EmployeesCancelBtn.UseVisualStyleBackColor = true;
+			this.EmployeesCancelBtn.Click += new System.EventHandler(this.EmployeesCancelBtn_Click);
 			// 
 			// EmployeesGridView
 			// 
@@ -254,12 +256,23 @@ namespace Green_Enviro_App
 			this.EmployeesGridPanel.Size = new System.Drawing.Size(835, 596);
 			this.EmployeesGridPanel.TabIndex = 22;
 			// 
+			// EmployeesEditBtn
+			// 
+			this.EmployeesEditBtn.Location = new System.Drawing.Point(307, 642);
+			this.EmployeesEditBtn.Name = "EmployeesEditBtn";
+			this.EmployeesEditBtn.Size = new System.Drawing.Size(138, 57);
+			this.EmployeesEditBtn.TabIndex = 23;
+			this.EmployeesEditBtn.Text = "Edit Employee";
+			this.EmployeesEditBtn.UseVisualStyleBackColor = true;
+			this.EmployeesEditBtn.Click += new System.EventHandler(this.EmployeesEditBtn_Click);
+			// 
 			// Employees
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Highlight;
 			this.ClientSize = new System.Drawing.Size(1517, 741);
+			this.Controls.Add(this.EmployeesEditBtn);
 			this.Controls.Add(this.EmployeesGridPanel);
 			this.Controls.Add(this.EmployeesViewGridBtn);
 			this.Controls.Add(this.EmployeesCancelBtn);
@@ -316,5 +329,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button EmployeesViewGridBtn;
 		private System.Windows.Forms.DataGridView EmployeesGridView;
 		private System.Windows.Forms.Panel EmployeesGridPanel;
+		private System.Windows.Forms.Button EmployeesEditBtn;
 	}
 }
