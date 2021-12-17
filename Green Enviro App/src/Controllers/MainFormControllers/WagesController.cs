@@ -35,13 +35,12 @@ namespace Green_Enviro_App
 			if (WageLogMonths.SelectedItem == null) return;
 			string selectedMonth = WageLogMonths.SelectedItem.ToString();
  
-			wagesDgvOps.populateDates(_wagesModel.getDatesInLog(selectedMonth));
-			updateDataGridView(_wagesModel.gridViewData(selectedMonth));
+			updateWagesGridView(_wagesModel.gridViewData(selectedMonth));
 		}
 
 		/// <summary>Updates the data grid view.</summary>
 		/// <param name="gridData">The grid data.</param>
-		private void updateDataGridView(GridViewData gridData) 
+		private void updateWagesGridView(GridViewData gridData) 
 		{
 			wagesDgvOps.populateDates(gridData.dates);
 			wagesDgvOps.changeBindingSource(gridData.data);
@@ -86,7 +85,7 @@ namespace Green_Enviro_App
 				string rowToDelete = wagesDgvOps.getRowInfo(selectedRow);
 				string wageLogMonth = WageLogMonths.SelectedItem.ToString();
 				GridViewData newGridData =_wagesModel.deleteWage(rowToDelete, wageLogMonth);
-				updateDataGridView(newGridData);
+				updateWagesGridView(newGridData);
 			}
 			else wagesDgvOps.removeRowHighlights(selectedRow);
 		}
@@ -115,9 +114,9 @@ namespace Green_Enviro_App
 			try
 			{
 				GridViewData newGridData = _wagesModel.addWage(wageInfo);
-				updateDataGridView(newGridData);
+				updateWagesGridView(newGridData);
 				clearWageEntryFields();
-				selectWageLog(logMonth);
+				wagesDgvOps.selectMonth(logMonth);
 			}
 			catch (Exception ex) 
 			{
@@ -136,13 +135,6 @@ namespace Green_Enviro_App
 
 			if (WagesEmployeeName.DropDownStyle == ComboBoxStyle.DropDownList)
 			{ WagesEmployeeName.DropDownStyle = ComboBoxStyle.DropDown; return; }
-		}
-
-		/// <summary>Sets the currently selected wage log to the given month's log.</summary>
-		/// <param name="month">The month.</param>
-		private void selectWageLog(string month) 
-		{
-			WageLogMonths.SelectedIndex = WageLogMonths.Items.IndexOf(month);
 		}
 
 		/// <summary>

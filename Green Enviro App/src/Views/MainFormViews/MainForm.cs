@@ -301,43 +301,7 @@ namespace Green_Enviro_App
         //*************************************************************************************************************
         // EXPENSES RELATED CALLS
         //*************************************************************************************************************
-		private void AddExpenseBtn_Click(object sender, EventArgs e)
-		{
-           // _expenses.AddExpense();
-           // _expenses.DisplayExpensesLog();
-
-            /*
-            if ((_user_permission_level == 4) || (_user_permission_level == 5))
-            {
-                _expenses.AddExpense();
-                _expenses.DisplayExpensesLog();
-            }
-            else 
-            {
-                PermissionDenied();
-            }*/
-
-        }
-
-		private void ExpensesLogMonth_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            //_expenses.MonthSelected();
-		}
-
-		private void ExpensesLogFilterBtn_Click(object sender, EventArgs e)
-		{
-            //_expenses.DisplayExpensesLog();
-		}
-
-		private void ExpensesLogRemoveFiltersBtn_Click(object sender, EventArgs e)
-		{
-            //_expenses.RemoveFilters();
-		}
-
-		private void ClearExpenseFieldsBtn_Click(object sender, EventArgs e)
-		{
-            //_expenses.ClearFields();
-		}
+		
 
         //*************************************************************************************************************
         // WAGES RELATED CALLS
@@ -409,6 +373,7 @@ namespace Green_Enviro_App
             resetSummaries();
             resetDestructionCertificate();
             resetDeliveryNotes();
+            resetExpenses();
         }
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)

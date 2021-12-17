@@ -49,7 +49,7 @@ namespace Green_Enviro_App
 		/// <summary>Gets the dates in the selected wage log.</summary>
 		/// <param name="month">The month.</param>
 		/// <returns>A HashSet of strings representing the dates in the selected wages log file.</returns>
-		public HashSet<string> getDatesInLog(string month) 
+		public HashSet<string> getLogDates(string month) 
 		{
 			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Wages, month);
 			return csvHandles.getDatesInFile(pathToLogFile);

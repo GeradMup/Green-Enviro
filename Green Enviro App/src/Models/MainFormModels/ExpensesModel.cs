@@ -25,20 +25,56 @@ namespace Green_Enviro_App
 			createLogFiles();
 		}
 
-		/// <summary>Creates the expenses log files for each month.</summary>
+		/// <summary>
+		/// Creates the expenses log files for each month.
+		/// </summary>
 		private void createLogFiles() 
 		{
 			string expensesLogHeaders = GenericModels.enumFieldsToString<ExpensesLogHeaders>();
 			fileHandles.createCSVFile(FileHandles.LogType.Expenses, expensesLogHeaders);
 		}
 
-		/// <summary>Gets all the months for which expenses have been recorded.</summary>
+		/// <summary>
+		/// Gets all the months for which expenses have been recorded.
+		/// </summary>
 		public List<string> getMonths() 
 		{
 			return fileHandles.getLogNames(FileHandles.LogType.Expenses);
 		}
 
-		/// <summary>Enum class to describe the Expenses Log headers.</summary>
+		/// <summary>Gets the log dates.</summary>
+		/// <param name="month">The month.</param>
+		/// <returns>HashSet of strings containing all the dates.</returns>
+		public HashSet<string> getLogDates(string month) 
+		{
+			string pathToLogFile = fileHandles.pathToLogs(FileHandles.LogType.Expenses, month);
+			return csvHandles.getDatesInFile(pathToLogFile);
+		}
+
+
+		/// <summary>Gets the amount column.</summary>
+		/// <returns>An integer representing the amount column number.</returns>
+		public int getAmountColumn()
+		{
+			return (int)ExpensesLogHeaders.Amount;
+		}
+
+
+		/// <summary>Gets the grid view data.</summary>
+		/// <param name="month">The month.</param>
+		/// <returns>An object of type GridViewData.</returns>
+		public DGVOps.GridViewData gridViewData(string month) 
+		{
+			string pathToLog = fileHandles.pathToLogs(FileHandles.LogType.Expenses, month);
+			GridViewData gridData = new GridViewData();
+			gridData.data = csvHandles.getCSVContents(pathToLog);
+			gridData.dates = csvHandles.getDatesInFile(pathToLog);
+			return gridData;
+		}
+
+		/// <summary>
+		/// Enum class to describe the Expenses Log headers.
+		/// </summary>
 		enum ExpensesLogHeaders 
 		{
 			Date,

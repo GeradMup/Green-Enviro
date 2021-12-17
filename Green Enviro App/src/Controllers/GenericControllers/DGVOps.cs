@@ -486,6 +486,13 @@ namespace Green_Enviro_App
 			return rowInfo;
 		}
 
+		/// <summary>Sets the currently selected log to the given month's log.</summary>
+		/// <param name="month">The month.</param>
+		public void selectMonth(string month) 
+		{
+			monthBox.SelectedIndex = monthBox.Items.IndexOf(month);
+		}
+
 		/// <summary>
 		/// Class to describe the data that gets filled onto a grid view.
 		/// </summary>
