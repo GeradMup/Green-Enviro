@@ -32,12 +32,17 @@ namespace Green_Enviro_App
 		static SqlConnection _connection;
 		static SqlCommand _command;
 		const string DATABASE_SELECTING_ALL_EXCEPTION = "Database selecting all Exception!";
-		const string DATABASE_INSERTION_EXCEPTION = "Database insertion exception";
+		const string DATABASE_INSERTION_EXCEPTION = "Database insertion error! " +
+													"\nClose the Green Enviro program and run the 'Close SQL Program.'";
 		const string DATABASE_SELECTING_EXCEPTION = "Database selecting exception";
-		const string DATABASE_UPDATING_EXCEPTION = "Databse updating exception";
-		const string DATABASE_OPENING_EXCEPTION = "Database opening exception";
-		const string DATABASE_DELETING_EXCEPTION = "Database deleting exception";
-		
+		const string DATABASE_UPDATING_EXCEPTION = "Databse updating error! \nTry the following : " +
+													"\n1. Check that you are not using an ID number that is already taken!" +
+													"\n2. Close the Green Enviro program and run the 'Close SQL Program.'";
+		const string DATABASE_OPENING_EXCEPTION = "Database opening error!" +
+													"\nClose the Green Enviro program and run the 'Close SQL Program.'";
+		const string DATABASE_DELETING_EXCEPTION = "Database deleting error!" +
+													"\nClose the Green Enviro program and run the 'Close SQL Program.'";
+
 		/// <summary>Initializes a new instance of the <see cref="Database" /> class.</summary>
 		public Database()
 		{
@@ -64,9 +69,9 @@ namespace Green_Enviro_App
 				_command = _connection.CreateCommand();
 				_command.CommandType = CommandType.Text;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				throw new Exception(DATABASE_OPENING_EXCEPTION, ex);
+				throw new Exception(DATABASE_OPENING_EXCEPTION);
 			}
 		}
 
