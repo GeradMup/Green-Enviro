@@ -35,7 +35,7 @@ namespace Green_Enviro_App
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.EmployeeSurname = new System.Windows.Forms.TextBox();
 			this.EmployeeIdentification = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
+			this.EmployeesFormLabel = new System.Windows.Forms.Label();
 			this.EmployeeGenderLabel = new System.Windows.Forms.Label();
 			this.EmployeeIDLabel = new System.Windows.Forms.Label();
 			this.EmployeeSurnameLabel = new System.Windows.Forms.Label();
@@ -87,15 +87,17 @@ namespace Green_Enviro_App
 			this.EmployeeIdentification.Size = new System.Drawing.Size(371, 29);
 			this.EmployeeIdentification.TabIndex = 3;
 			// 
-			// label1
+			// EmployeesFormLabel
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(569, 18);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(336, 56);
-			this.label1.TabIndex = 5;
-			this.label1.Text = "New Employee";
+			this.EmployeesFormLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.EmployeesFormLabel.AutoSize = true;
+			this.EmployeesFormLabel.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EmployeesFormLabel.Location = new System.Drawing.Point(569, 18);
+			this.EmployeesFormLabel.Name = "EmployeesFormLabel";
+			this.EmployeesFormLabel.Size = new System.Drawing.Size(388, 56);
+			this.EmployeesFormLabel.TabIndex = 5;
+			this.EmployeesFormLabel.Text = "Edit Employees";
 			// 
 			// EmployeeGenderLabel
 			// 
@@ -287,7 +289,7 @@ namespace Green_Enviro_App
 			this.Controls.Add(this.EmployeeSurnameLabel);
 			this.Controls.Add(this.EmployeeIDLabel);
 			this.Controls.Add(this.EmployeeGenderLabel);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.EmployeesFormLabel);
 			this.Controls.Add(this.EmployeeIdentification);
 			this.Controls.Add(this.EmployeeSurname);
 			this.Controls.Add(this.EmployeeName);
@@ -312,7 +314,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.TextBox EmployeeSurname;
 		private System.Windows.Forms.TextBox EmployeeIdentification;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label EmployeesFormLabel;
 		private System.Windows.Forms.Label EmployeeGenderLabel;
 		private System.Windows.Forms.Label EmployeeIDLabel;
 		private System.Windows.Forms.Label EmployeeSurnameLabel;

@@ -37,16 +37,16 @@ namespace Green_Enviro_App
             string pallets = GenericModels.enumToString<DCModel.QuantityUnits>(DCModel.QuantityUnits.PALLETS);
             string kg = GenericModels.enumToString<DCModel.QuantityUnits>(DCModel.QuantityUnits.KG);
 
-            dstrctCertQuantityUnit.Items.Insert(0,select);
-            dstrctCertQuantityUnit.Items.Insert(1, pallets);
-            dstrctCertQuantityUnit.Items.Insert(2, kg);
-            dstrctCertQuantityUnit.SelectedIndex = 0;
+            DestructionCertQnttyUnit.Items.Insert(0,select);
+            DestructionCertQnttyUnit.Items.Insert(1, pallets);
+            DestructionCertQnttyUnit.Items.Insert(2, kg);
+            DestructionCertQnttyUnit.SelectedIndex = 0;
         }
 
         private void setUpCompaniesList() 
         {
             List<string> companies = _destructionCertificatesModel.getCompanies();
-            dstrctCertCompanyField.Items.AddRange(companies.Cast<object>().ToArray());
+            DestructionCertCompany.Items.AddRange(companies.Cast<object>().ToArray());
         }
 
 		/// <summary>Handles the Click event of the generateDstrCertBtn control.</summary>
@@ -56,27 +56,27 @@ namespace Green_Enviro_App
         {
             //First we verify that all the input fields have valid information
             const int zeroIndex = 0;
-            if (dstrctCertExtractionDate.Checked == false) { GenericControllers.reportError(_mainForm, EXTRACTION_DATE_NOT_SELECTED_ERROR); return; }
-            if (dstrctCertCompanyField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, COMPANY_NOT_SELECTED_ERROR); return; }
-            if (dstrctCertCntactPersonField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, CONTACT_PERSON_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertCntactNumField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, CONTACT_NUMBER_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertEmailAddressField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, EMAIL_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertDescripOfProdField.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, PRODUCT_DESCRIPTION_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertQuantityNumBox.Value == Constants.DECIMAL_ZERO) { GenericControllers.reportError(_mainForm, PRODUCT_QUANTITY_NOT_INSERTED_ERROR); return; }
-            if (dstrctCertQuantityUnit.SelectedIndex == zeroIndex) { GenericControllers.reportError(_mainForm, QUANTITY_UNITS_NOT_SELECTED_ERROR); return; }
-            if (dstcrtCompanyAddress.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, COMPANY_ADDRESS_NOT_INSERTED_ERROR); return; }
+            if (DestructionCertExtractionDate.Checked == false) { GenericControllers.reportError(_mainForm, EXTRACTION_DATE_NOT_SELECTED_ERROR); return; }
+            if (DestructionCertCompany.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, COMPANY_NOT_SELECTED_ERROR); return; }
+            if (DestructionCertCntactPerson.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, CONTACT_PERSON_NOT_INSERTED_ERROR); return; }
+            if (DestructionCertCntactNum.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, CONTACT_NUMBER_NOT_INSERTED_ERROR); return; }
+            if (DestructionCertEmailAddress.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, EMAIL_NOT_INSERTED_ERROR); return; }
+            if (DestructionCertDescripOfPrdct.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, PRODUCT_DESCRIPTION_NOT_INSERTED_ERROR); return; }
+            if (DestructionCertQntty.Value == Constants.DECIMAL_ZERO) { GenericControllers.reportError(_mainForm, PRODUCT_QUANTITY_NOT_INSERTED_ERROR); return; }
+            if (DestructionCertQnttyUnit.SelectedIndex == zeroIndex) { GenericControllers.reportError(_mainForm, QUANTITY_UNITS_NOT_SELECTED_ERROR); return; }
+            if (DestructionCertCmpnyAddress.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, COMPANY_ADDRESS_NOT_INSERTED_ERROR); return; }
             
-            string measurementUnits = dstrctCertQuantityUnit.SelectedItem.ToString();
+            string measurementUnits = DestructionCertQnttyUnit.SelectedItem.ToString();
             DCModel.DestructionCertificateInfo destructionInfo = new DCModel.DestructionCertificateInfo();
-            destructionInfo.companyAddress = dstcrtCompanyAddress.Text;
-            destructionInfo.companyName = dstrctCertCompanyField.Text;
-            destructionInfo.contactNumber = dstrctCertCntactNumField.Text;
-            destructionInfo.contactPerson = dstrctCertCntactPersonField.Text;
-            destructionInfo.emailAddress = dstrctCertEmailAddressField.Text;
-            destructionInfo.extractionDate = dstrctCertExtractionDate.Value;
-            destructionInfo.newCompany = dstcrtNewCompanyCheckbox.Checked;
-            destructionInfo.productDescription = dstrctCertDescripOfProdField.Text;
-            destructionInfo.productQuantity = dstrctCertQuantityNumBox.Value;
+            destructionInfo.companyAddress = DestructionCertCmpnyAddress.Text;
+            destructionInfo.companyName = DestructionCertCompany.Text;
+            destructionInfo.contactNumber = DestructionCertCntactNum.Text;
+            destructionInfo.contactPerson = DestructionCertCntactPerson.Text;
+            destructionInfo.emailAddress = DestructionCertEmailAddress.Text;
+            destructionInfo.extractionDate = DestructionCertExtractionDate.Value;
+            destructionInfo.newCompany = DestructionCertNewCompanyCheckbox.Checked;
+            destructionInfo.productDescription = DestructionCertDescripOfPrdct.Text;
+            destructionInfo.productQuantity = DestructionCertQntty.Value;
             destructionInfo.selectedUnits = GenericModels.stringToEnum<DCModel.QuantityUnits>(measurementUnits);
 
             try
@@ -97,17 +97,17 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void dstrctCertCompanyField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dstrctCertCompanyField.SelectedItem == null) return;
+            if (DestructionCertCompany.SelectedItem == null) return;
 
-            string companyName = dstrctCertCompanyField.SelectedItem.ToString();
+            string companyName = DestructionCertCompany.SelectedItem.ToString();
 
             try
             {
                 GenericModels.CompanyInfo companyInfo = _destructionCertificatesModel.getCompanyInfo(companyName);
-                dstrctCertCntactPersonField.Text = companyInfo.contactPerson;
-                dstrctCertCntactNumField.Text = companyInfo.contactNumber;
-                dstrctCertEmailAddressField.Text = companyInfo.emailAddress;
-                dstcrtCompanyAddress.Text = companyInfo.physicalAddress;
+                DestructionCertCntactPerson.Text = companyInfo.contactPerson;
+                DestructionCertCntactNum.Text = companyInfo.contactNumber;
+                DestructionCertEmailAddress.Text = companyInfo.emailAddress;
+                DestructionCertCmpnyAddress.Text = companyInfo.physicalAddress;
             }
             catch (Exception ex) 
             {
@@ -120,38 +120,38 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void dstcrtNewCompanyCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            if (dstcrtNewCompanyCheckbox.Checked)
+            if (DestructionCertNewCompanyCheckbox.Checked)
             {
-                dstrctCertCntactPersonField.ReadOnly = false;
-                dstrctCertCntactNumField.ReadOnly = false;
-                dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDown;
-                dstrctCertEmailAddressField.ReadOnly = false;
-                dstcrtCompanyAddress.ReadOnly = false;
+                DestructionCertCntactPerson.ReadOnly = false;
+                DestructionCertCntactNum.ReadOnly = false;
+                DestructionCertCompany.DropDownStyle = ComboBoxStyle.DropDown;
+                DestructionCertEmailAddress.ReadOnly = false;
+                DestructionCertCmpnyAddress.ReadOnly = false;
                 resetDestructionCertificate();
             }
             else
             {
-                dstrctCertCntactPersonField.ReadOnly = true;
-                dstrctCertCntactNumField.ReadOnly = true;
-                dstrctCertCompanyField.DropDownStyle = ComboBoxStyle.DropDownList;
-                dstrctCertEmailAddressField.ReadOnly = true;
-                dstcrtCompanyAddress.ReadOnly = true;
+                DestructionCertCntactPerson.ReadOnly = true;
+                DestructionCertCntactNum.ReadOnly = true;
+                DestructionCertCompany.DropDownStyle = ComboBoxStyle.DropDownList;
+                DestructionCertEmailAddress.ReadOnly = true;
+                DestructionCertCmpnyAddress.ReadOnly = true;
             }   
         }
 
 		/// <summary>Resets the destruction certificate fields.</summary>
 		private void resetDestructionCertificate() 
         {
-            dstcrtCompanyAddress.Clear();
-            dstrctCertCompanyField.SelectedItem = null;
-            dstrctCertCntactNumField.Clear();
-            dstrctCertCntactPersonField.Clear();
-            dstrctCertEmailAddressField.Clear();
-            dstrctCertExtractionDate.Value = DateTime.Now;
-            dstcrtNewCompanyCheckbox.CheckState = CheckState.Unchecked;
-            dstrctCertDescripOfProdField.Clear();
-            dstrctCertQuantityNumBox.Value = Constants.DECIMAL_ZERO;
-            dstrctCertQuantityUnit.SelectedIndex = 0;
+            DestructionCertCmpnyAddress.Clear();
+            DestructionCertCompany.SelectedItem = null;
+            DestructionCertCntactNum.Clear();
+            DestructionCertCntactPerson.Clear();
+            DestructionCertEmailAddress.Clear();
+            DestructionCertExtractionDate.Value = DateTime.Now;
+            DestructionCertNewCompanyCheckbox.CheckState = CheckState.Unchecked;
+            DestructionCertDescripOfPrdct.Clear();
+            DestructionCertQntty.Value = Constants.DECIMAL_ZERO;
+            DestructionCertQnttyUnit.SelectedIndex = 0;
         }
     }
 }
