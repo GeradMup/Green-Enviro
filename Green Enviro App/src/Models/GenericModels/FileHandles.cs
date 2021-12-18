@@ -13,12 +13,13 @@ namespace Green_Enviro_App
 		/// <summary>Creates a CSV file for the specified log type and with the given headers..</summary>
 		/// <param name="logType">Type of the log.</param>
 		/// <param name="headers">The headers.</param>
-		public void createCSVFile(LogType logType, string headers)
+		/// <returns><c>true</c> if a new file has been created, <c>false</c> if the file already exists.</returns>
+		public bool createCSVFile(LogType logType, string headers)
 		{
 			//First Check if the files exist for each month
 			//If the file does not exist, create it
 			string path = pathToLogs(logType);
-			if (File.Exists(path)) return;
+			if (File.Exists(path)) return false;
 			string copyPath = path;
 			folderPath(ref copyPath);
 			createFolder(copyPath);
@@ -26,7 +27,7 @@ namespace Green_Enviro_App
 			_csv_content.AppendLine(headers);
 			//_csv_content.AppendLine("\n");
 			File.AppendAllText(path, _csv_content.ToString());
-
+			return true;
 		}
 
 		private void folderPath(ref string path)

@@ -329,7 +329,9 @@ namespace Green_Enviro_App
 			/// table.</summary>
 			Stock,
 			/// <summary>The users table.</summary>
-			Users
+			Users,
+			/// <summary>The FixedExpenses table.</summary>
+			FixedExpenses
 		}
 
 		/// <summary>
@@ -444,5 +446,14 @@ namespace Green_Enviro_App
 			PermissionLevel
 		}
 
+		/// <summary> 
+		/// Enum to give the column names of the FixedExpenses table.</summary>
+		public enum FixedExpensesTableColumns 
+		{
+			/// <summary>The name of the fixed expense. </summary>
+			Name,
+			/// <summary> The amount or cost of the fixed expense. </summary>
+			Amount
+		}	
 	}
 }

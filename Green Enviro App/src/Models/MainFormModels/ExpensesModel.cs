@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,26 @@ namespace Green_Enviro_App
 		private void createLogFiles() 
 		{
 			string expensesLogHeaders = GenericModels.enumFieldsToString<ExpensesLogHeaders>();
-			fileHandles.createCSVFile(FileHandles.LogType.Expenses, expensesLogHeaders);
+			bool newFileCreated = fileHandles.createCSVFile(FileHandles.LogType.Expenses, expensesLogHeaders);
+			if (newFileCreated) addFixedExpenses();
+
+		}
+
+		/// <summary>
+		/// Adds the fixed expenses.
+		/// </summary>
+		private void addFixedExpenses() 
+		{
+			DataTable fixedExpenses = database.selectAll(Database.Tables.FixedExpenses);
+			ExpenseInfo expenseInfo = new ExpenseInfo();
+
+			foreach (DataRow expense in fixedExpenses.Rows) 
+			{
+				expenseInfo.date = DateTime.Now;
+				expenseInfo.description = expense[1].ToString();
+				expenseInfo.amount = (decimal)expense[2];
+				addExpense(expenseInfo);
+			}
 		}
 
 		/// <summary>
