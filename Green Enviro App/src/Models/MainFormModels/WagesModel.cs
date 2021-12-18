@@ -84,11 +84,11 @@ namespace Green_Enviro_App
 			return gridData;
 		}
 
-		/// <summary>Deletes a wedge entry from the log file given the wage information and the log month and returns the updated GridData</summary>
+		/// <summary>Deletes a wage entry from the log file given the wage information and the log month.</summary>
 		/// <param name="wageInfo">The wage information.</param>
 		/// <param name="wageLogMonth">The wage log month.</param>
-		/// <returns>The updated GridData.</returns>
-		public GridViewData deleteWage(string wageInfo, string wageLogMonth) 
+		/// <returns>The updated GridData after the deletion.</returns>
+		public GridViewData deleteWage(string wageInfo, string wageLogMonth)  
 		{
 			string pathToLog = fileHandles.pathToLogs(FileHandles.LogType.Wages, wageLogMonth);
 			
@@ -121,7 +121,7 @@ namespace Green_Enviro_App
 		/// <returns>The updated grid data</returns>
 		public GridViewData addWage(WageInfo wageInfo) 
 		{
-			string paymentMonth = wageInfo.paymentDate.ToString("MMMM yyyy");
+			string paymentMonth = wageInfo.paymentDate.ToString(Constants.LOG_NAME_DATE_FORMAT);
 			string currentTime = DateTime.Now.ToString("HH:mm:ss");
 			string wageInfoString = wageInfo.paymentDate.ToString("dd MMMM yyyy ") + currentTime + "," + wageInfo.employeeName + "," + wageInfo.amount.ToString();
 			string pathToWageLog = fileHandles.pathToLogs(FileHandles.LogType.Wages, paymentMonth);

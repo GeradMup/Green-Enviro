@@ -51,7 +51,6 @@ namespace Green_Enviro_App
 			return csvHandles.getDatesInFile(pathToLogFile);
 		}
 
-
 		/// <summary>Gets the amount column.</summary>
 		/// <returns>An integer representing the amount column number.</returns>
 		public int getAmountColumn()
@@ -59,17 +58,50 @@ namespace Green_Enviro_App
 			return (int)ExpensesLogHeaders.Amount;
 		}
 
-
 		/// <summary>Gets the grid view data.</summary>
 		/// <param name="month">The month.</param>
 		/// <returns>An object of type GridViewData.</returns>
-		public DGVOps.GridViewData gridViewData(string month) 
+		public GridViewData gridViewData(string month) 
 		{
 			string pathToLog = fileHandles.pathToLogs(FileHandles.LogType.Expenses, month);
 			GridViewData gridData = new GridViewData();
 			gridData.data = csvHandles.getCSVContents(pathToLog);
 			gridData.dates = csvHandles.getDatesInFile(pathToLog);
 			return gridData;
+		}
+
+		/// <summary>Deletes an expense entry with the given information in the given expenses log.</summary>
+		/// <param name="expenseInfo">The expense information.</param>
+		/// <param name="month">The log month.</param>
+		/// <returns>The updated grid view data after the deletion.</returns>
+		public GridViewData deleteExpense(string expenseInfo, string month) 
+		{
+			string pathToLog = fileHandles.pathToLogs(FileHandles.LogType.Expenses, month);
+
+			//First update the substring that identifies the row to be deleted.
+			csvHandles.setDeleteRowInfo(expenseInfo);
+			csvHandles.DeleteInCSV(pathToLog);
+
+			return gridViewData(month);			
+		}
+
+		public GridViewData addExpense(ExpenseInfo	expenseInfo) 
+		{
+			string paymentMonth = expenseInfo.date.ToString(Constants.LOG_NAME_DATE_FORMAT);
+			string currentTime = DateTime.Now.ToString("HH:mm:ss");
+			string expensesInfoString = expenseInfo.date.ToString("dd MMMM yyyy ") + currentTime + "," + expenseInfo.description + "," + expenseInfo.amount.ToString();
+			string pathToExpensesLog = fileHandles.pathToLogs(FileHandles.LogType.Expenses, paymentMonth);
+
+			try
+			{
+				csvHandles.addToCSV(pathToExpensesLog, new List<string>() { expensesInfoString });
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+
+			return gridViewData(paymentMonth);
 		}
 
 		/// <summary>
@@ -84,7 +116,24 @@ namespace Green_Enviro_App
 
 		internal class ExpenseInfo 
 		{
-			
+
+			/// <summary>
+			/// Creates a new instance of the <see cref="ExpenseInfo" /> class.</summary>
+			public ExpenseInfo() 
+			{
+				date = DateTime.Now;
+				description = "";
+				amount = Constants.DECIMAL_ZERO;
+			}
+			public DateTime date { get; set; }
+
+			/// <summary>Gets or sets the description of the expense.</summary>
+			/// <value>The description.</value>
+			public string description { get; set; }
+
+			/// <summary>Gets or sets the amount that the expense costed.</summary>
+			/// <value>The amount.</value>
+			public decimal amount { set; get; }
 		}
 	}
 }

@@ -31,6 +31,7 @@ namespace Green_Enviro_App
 		private int kgsColumn = -1;
 		private int amountColumn = -1;
 		private const int DGV_EXTRA_ROWS = 1;
+		private int selectedRow = -1;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DGVOps"> DGVOps </see> class.
@@ -391,7 +392,7 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Resets the grid.
 		/// </summary>
-		public void resetGrid() 
+		public void resetGridView() 
 		{
 			changeBindingSource(null);
 			dataGridView.Refresh();
@@ -433,25 +434,23 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
-		/// Highlights the selected row in the data grid view.
+		/// Highlights the selected row in the data grid view with the red colour.
 		/// </summary>
-		/// <param name="selectedRow">The selected row.</param>
-		public void highlightRowRed(int selectedRow)
+		public void highlightSelectedRowRed()
 		{
+			selectedRow = dataGridView.CurrentCell.RowIndex;
 			dataGridView.Rows[selectedRow].DefaultCellStyle.BackColor = Color.Red;
 		}
 
-		/// <summary>Removes the row highlights from the given row number.</summary>
-		/// <param name="rowNumber">The row number.</param>
-		public void removeRowHighlights(int rowNumber) 
+		/// <summary>Removes the row highlights from the previously highlighted rows.</summary>
+		public void removeRowHighlights() 
 		{
-			dataGridView.Rows[rowNumber].DefaultCellStyle.BackColor = Color.White;
+			dataGridView.Rows[selectedRow].DefaultCellStyle.BackColor = Color.White;
 		}
 
-		/// <summary>Converts the columns of a row into a comma seperated string.</summary>
-		/// <param name="rowNumber">The row number.</param>
+		/// <summary>Converts the columns of the selected row into a comma seperated string.</summary>
 		/// <returns>A string containg the information from the row.</returns>
-		public string getRowInfo(int rowNumber) 
+		public string getSelectedRowInfo() 
 		{
 			List<string> columnInfo = new List<string>();
 			string rowInfo = "";
@@ -461,7 +460,8 @@ namespace Green_Enviro_App
 			//comma seperated string
 			for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)
 			{
-				columnValue = dataGridView.Rows[rowNumber].Cells[columnIndex].Value.ToString();
+				//The value of the selected row is set in the highlightSelectedRowRed function.
+				columnValue = dataGridView.Rows[selectedRow].Cells[columnIndex].Value.ToString();
 				rowInfo += columnValue + ",";
 			}
 
@@ -491,6 +491,23 @@ namespace Green_Enviro_App
 		public void selectMonth(string month) 
 		{
 			monthBox.SelectedIndex = monthBox.Items.IndexOf(month);
+		}
+
+
+		/// <summary>Checks if any row in the data grid view is selected.</summary>
+		/// <returns>
+		///   <c>true</c> if a row is selected, <c>false</c> otherwise.</returns>
+		public bool noRowSelected() 
+		{
+			return (dataGridView.SelectedCells.Count == 0) ? true : false;
+		}
+
+		/// <summary>Checks if the totals row is selected in the data grid view.</summary>
+		/// <returns>
+		///   <c>true</c> if the totals row is currently selected, <c>false</c> otherwise.</returns>
+		public bool totalsRowSelected() 
+		{
+			return (dataGridView.CurrentCell.RowIndex == dataGridView.Rows.Count - 1) ? true : false;
 		}
 
 		/// <summary>

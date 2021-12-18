@@ -67,27 +67,25 @@ namespace Green_Enviro_App
 			const string DELETING_TOTALS_ERROR = "It's not possible to delete the TOTALS row";
 			const string DELETING_WARNING_MESSAGE = "Are you sure you want to delete this entry?";
 			//Verify that something is selected before attempting to delete
-			if (WageLogGridView.SelectedCells.Count == 0) 
+			if (wagesDgvOps.noRowSelected()) 
 			{ GenericControllers.reportError(_mainForm , NO_SELECTION_ERROR); return; }
 
 			//Confirm that the user is not trying to delete the totals row
-			if (WageLogGridView.CurrentCell.RowIndex == WageLogGridView.Rows.Count - 1)
+			if (wagesDgvOps.totalsRowSelected())
 			{ GenericControllers.reportError(_mainForm, DELETING_TOTALS_ERROR); return; }
 
-			//Highlight the rows that will be deleted if the user chooses to confirm
-			int selectedRow = WageLogGridView.CurrentCell.RowIndex;
-			wagesDgvOps.highlightRowRed(selectedRow);
+			wagesDgvOps.highlightSelectedRowRed();
 			_warnings.showWarning(_mainForm, DELETING_WARNING_MESSAGE, Warning.WarningType.CriticalWarning);
 
 			//Check if the user has confirmed the deletion of the row
 			if (_warnings.actionConfirmed) 
 			{
-				string rowToDelete = wagesDgvOps.getRowInfo(selectedRow);
+				string rowToDelete = wagesDgvOps.getSelectedRowInfo();
 				string wageLogMonth = WageLogMonths.SelectedItem.ToString();
 				GridViewData newGridData =_wagesModel.deleteWage(rowToDelete, wageLogMonth);
 				updateWagesGridView(newGridData);
 			}
-			else wagesDgvOps.removeRowHighlights(selectedRow);
+			else wagesDgvOps.removeRowHighlights();
 		}
 
 		/// <summary>Handles the Click event of the AddWageBtn control.</summary>
@@ -97,6 +95,7 @@ namespace Green_Enviro_App
 		{
 			const string NO_AMOUNT_INSERTED = "Please Insert the Amount!";
 			const string NO_EMPLOYEE_INSERTED = "Please Insert the Employee Name";
+			const string WAGE_ADDED_SUCCESSFULLY = "Wage has been recorded!";
 
 			//First check that an amount has been inserted by the user.
 			if (WageAmount.Value == Constants.DECIMAL_ZERO)
@@ -105,6 +104,8 @@ namespace Green_Enviro_App
 			//Second check that the user has selected an employee to pay the wage.
 			if (WagesEmployeeName.Text == Constants.EMPTY_TEXT)
 			{ GenericControllers.reportError(_mainForm, NO_EMPLOYEE_INSERTED); return; }
+
+			//Remove grid filters before trying to add a wage.
 
 			WageInfo wageInfo = new WageInfo();
 			wageInfo.employeeName = WagesEmployeeName.Text;
@@ -117,6 +118,7 @@ namespace Green_Enviro_App
 				updateWagesGridView(newGridData);
 				clearWageEntryFields();
 				wagesDgvOps.selectMonth(logMonth);
+				GenericControllers.reportSuccess(_mainForm, WAGE_ADDED_SUCCESSFULLY);
 			}
 			catch (Exception ex) 
 			{
@@ -146,7 +148,7 @@ namespace Green_Enviro_App
 			WageLogStartDate.SelectedItem = null;
 			WageLogEndDate.SelectedItem = null;
 			WageDate.Value = DateTime.Now;
-			wagesDgvOps.resetGrid();
+			wagesDgvOps.resetGridView();
 			clearWageEntryFields();
 		}
 

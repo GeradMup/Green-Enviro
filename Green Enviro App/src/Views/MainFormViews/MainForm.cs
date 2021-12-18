@@ -480,11 +480,6 @@ namespace Green_Enviro_App
             _purchases.DeletePurchase();
 		}
 
-		private void DeleteExpenseBtn_Click(object sender, EventArgs e)
-		{
-            //_expenses.DeleteExpense();
-		}
-
 		private void DeleteSaleBtn_Click(object sender, EventArgs e)
 		{
             _sales.DeleteSale();
