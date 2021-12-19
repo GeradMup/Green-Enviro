@@ -494,5 +494,10 @@ namespace Green_Enviro_App
 		{
             _purchases.addToPRRequest();
 		}
+
+		private void AddExpenseBtn_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

@@ -17,11 +17,13 @@ namespace Green_Enviro_App
 	public partial class CustomMessageBox : Form
 	{
 
-		/// <summary>The error message</summary>
+		/// <summary>
+		/// The error message</summary>
 		public const string error = "Error!";
-		/// <summary>The success message</summary>
+		
+		/// <summary>
+		/// The success message</summary>
 		public const string success = "Success!";
-
 
 		/// <summary>Initializes a new instance of the <see cref="CustomMessageBox"></see> class.</summary>
 		/// <param name="parent">The active form before activating the <see cref="CustomMessageBox"></see> form.</param>
@@ -50,6 +52,9 @@ namespace Green_Enviro_App
 			this.Show();
 		}
 
+		/// <summary>Handles the Click event of the OkBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void OkBtn_Click(object sender, EventArgs e)
 		{
 			this.Owner.Enabled = true;

@@ -274,6 +274,7 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+			this.EditFixedExpensesBtn = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -1462,6 +1463,7 @@ namespace Green_Enviro_App
 			// 
 			// Expenses
 			// 
+			this.Expenses.Controls.Add(this.EditFixedExpensesBtn);
 			this.Expenses.Controls.Add(this.ExpensesDeleteBtn);
 			this.Expenses.Controls.Add(this.ExpenseAmount);
 			this.Expenses.Controls.Add(this.ExpenseDescription);
@@ -3165,6 +3167,16 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// EditFixedExpensesBtn
+			// 
+			this.EditFixedExpensesBtn.Location = new System.Drawing.Point(16, 364);
+			this.EditFixedExpensesBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.EditFixedExpensesBtn.Name = "EditFixedExpensesBtn";
+			this.EditFixedExpensesBtn.Size = new System.Drawing.Size(214, 46);
+			this.EditFixedExpensesBtn.TabIndex = 54;
+			this.EditFixedExpensesBtn.Text = "Edit Fixed Expenses";
+			this.EditFixedExpensesBtn.UseVisualStyleBackColor = true;
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3549,5 +3561,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.ComboBox WageLogStartDate;
 		private System.Windows.Forms.ComboBox WageLogMonths;
 		private System.Windows.Forms.Button WageDeleteBtn;
+		private System.Windows.Forms.Button EditFixedExpensesBtn;
 	}
 }

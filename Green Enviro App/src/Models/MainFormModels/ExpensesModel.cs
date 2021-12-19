@@ -105,6 +105,10 @@ namespace Green_Enviro_App
 			return gridViewData(month);			
 		}
 
+		/// <summary>Adds a new expense to the records of expenses.</summary>
+		/// <param name="expenseInfo">The expense information.</param>
+		/// <returns>The updated grid view data after recording the expense.</returns>
+		/// <exception cref="System.Exception">If somthing goes wrong with the insertion of the expense.</exception>
 		public GridViewData addExpense(ExpenseInfo	expenseInfo) 
 		{
 			string paymentMonth = expenseInfo.date.ToString(Constants.LOG_NAME_DATE_FORMAT);
