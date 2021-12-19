@@ -43,6 +43,8 @@ namespace Green_Enviro_App
         WagesModel _wagesModel;
         ExpensesModel _expensesModel;
         EmployeesModel _employeesModel;
+        FixedExpensesModel _fixedExpensesModel;
+        FixedExpensesViews _fixedExpensesViews;
         Warning _warnings;
         bool starting = true;
 
@@ -78,6 +80,8 @@ namespace Green_Enviro_App
             _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);
             _expensesModel = new ExpensesModel(_database,_csvHandles,_fileHandles);
             _employeesModel = new EmployeesModel(_database);
+            _fixedExpensesModel = new FixedExpensesModel(_database);
+            _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);
 
             _employees = new Employees(this, _employeesModel);
             _dgvOps = new DGVOps(this);
@@ -493,11 +497,6 @@ namespace Green_Enviro_App
 		private void AddToPRBtn_Click(object sender, EventArgs e)
 		{
             _purchases.addToPRRequest();
-		}
-
-		private void AddExpenseBtn_Click(object sender, EventArgs e)
-		{
-
 		}
 	}
 }

@@ -272,9 +272,9 @@ namespace Green_Enviro_App
 			this.label44 = new System.Windows.Forms.Label();
 			this.label45 = new System.Windows.Forms.Label();
 			this.label46 = new System.Windows.Forms.Label();
-			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.EditFixedExpensesBtn = new System.Windows.Forms.Button();
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
@@ -3026,7 +3026,7 @@ namespace Green_Enviro_App
 			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox2.FormattingEnabled = true;
 			this.comboBox2.IntegralHeight = false;
-			this.comboBox2.ItemHeight = 16;
+			this.comboBox2.ItemHeight = 13;
 			this.comboBox2.Location = new System.Drawing.Point(81, 33);
 			this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox2.Name = "comboBox2";
@@ -3040,7 +3040,7 @@ namespace Green_Enviro_App
 			this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox3.FormattingEnabled = true;
 			this.comboBox3.IntegralHeight = false;
-			this.comboBox3.ItemHeight = 16;
+			this.comboBox3.ItemHeight = 13;
 			this.comboBox3.Location = new System.Drawing.Point(181, 284);
 			this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
 			this.comboBox3.Name = "comboBox3";
@@ -3176,6 +3176,7 @@ namespace Green_Enviro_App
 			this.EditFixedExpensesBtn.TabIndex = 54;
 			this.EditFixedExpensesBtn.Text = "Edit Fixed Expenses";
 			this.EditFixedExpensesBtn.UseVisualStyleBackColor = true;
+			this.EditFixedExpensesBtn.Click += new System.EventHandler(this.EditFixedExpensesBtn_Click);
 			// 
 			// Main_Form
 			// 

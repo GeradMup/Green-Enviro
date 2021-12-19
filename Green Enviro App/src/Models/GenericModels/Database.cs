@@ -271,6 +271,9 @@ namespace Green_Enviro_App
 				case Tables.Users:
 					tableNames = GenericModels.enumFieldsToString<UsersTableColumns>();
 					break;
+				case Tables.FixedExpenses:
+					tableNames = GenericModels.enumFieldsToString<FixedExpensesTableColumns>();
+					break;
 				default:
 					break;
 			}
