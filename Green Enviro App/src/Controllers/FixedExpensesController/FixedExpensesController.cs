@@ -116,7 +116,6 @@ namespace Green_Enviro_App
 			{
 				GenericControllers.reportError(this, ex.Message);
 			}
-
 		}
 
 		/// <summary>Handles the Click event of the EditExpenseBtn control.</summary>

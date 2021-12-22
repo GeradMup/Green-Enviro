@@ -92,7 +92,7 @@ namespace Green_Enviro_App
 			string date = Constants.DATE;
 			string savePath = "";
 
-			int maxFilesNumber = 200;
+			const int maxFilesNumber = 200;
 			string extraExtension = "";
 
 			for (int fileNumber = 0; fileNumber < maxFilesNumber; fileNumber++)

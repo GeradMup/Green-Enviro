@@ -183,8 +183,6 @@ namespace Green_Enviro_App
 		/// </returns>
 		public Int32 insert(Tables _tableName, string[] _values)
 		{
-			
-
 			string tableName = GenericModels.enumToString<Tables>(_tableName);
 			string tableColumns = getTableColumns(_tableName);
 			string values = formatValuesForInsertion(_values);
