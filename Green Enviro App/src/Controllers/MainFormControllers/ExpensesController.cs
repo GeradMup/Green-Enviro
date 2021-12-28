@@ -59,6 +59,8 @@ namespace Green_Enviro_App
 			const string NO_AMOUNT_ERROR = "Please insert the amount of the expense!";
 			const string EXPENSE_ADDED_SUCCESSFULLY = "Expense has been recorded!";
 
+
+
 			//First check that there is a description inserted.
 			if (ExpenseDescription.Text == Constants.EMPTY_TEXT) 
 			{ GenericControllers.reportError(_mainForm, NO_DESCRIPTION_ERROR); return; }
@@ -183,6 +185,14 @@ namespace Green_Enviro_App
 		{
 			this.Enabled = false;
 			_fixedExpensesViews.activateForm();
+		}
+
+		/// <summary>Handles the KeyPress event of the ExpenseDescription control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
+		private void ExpenseDescription_KeyPress(object sender, KeyPressEventArgs e)
+		{ 
+			if (Constants.SPECIAL_CHARACTERS.Contains(e.KeyChar)) e.Handled = true;
 		}
 	}
 }
