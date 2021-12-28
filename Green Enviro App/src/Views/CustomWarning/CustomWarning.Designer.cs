@@ -1,7 +1,7 @@
 ﻿
 namespace Green_Enviro_App
 {
-	partial class Warning
+	partial class CustomWarning
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@ namespace Green_Enviro_App
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Warning));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomWarning));
 			this.CustomMsg = new System.Windows.Forms.Label();
 			this.ConfirmBtn = new System.Windows.Forms.Button();
 			this.CancelBtn = new System.Windows.Forms.Button();

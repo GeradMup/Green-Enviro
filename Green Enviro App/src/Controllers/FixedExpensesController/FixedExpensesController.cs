@@ -11,6 +11,7 @@ namespace Green_Enviro_App
 	public partial class FixedExpensesViews
 	{
 		DGVOps fixedExpensesDGVOps;
+		CustomWarning warning;
 		private string selectedItemName = "";
 		private bool editingFixedExpense = false;
 		private string previousExpenseName = "";
@@ -20,6 +21,7 @@ namespace Green_Enviro_App
 		private void initializeFixedExpenses() 
 		{
 			fixedExpensesDGVOps = new DGVOps(FixedExpenseDGV, this);
+			warning = new CustomWarning();
 		}
 
 		/// <summary>
@@ -125,6 +127,9 @@ namespace Green_Enviro_App
 		{
 			//First check that something is selected first. 
 			if (fixedExpensesDGVOps.noRowSelected()) return;
+
+			//Check if the selected row is empty.
+			if (fixedExpensesDGVOps.selectedRowEmpty()) return;
 			
 			List<string> selectedRow = fixedExpensesDGVOps.getSeletedRow();
 			selectedItemName = selectedRow[1];
@@ -139,6 +144,37 @@ namespace Green_Enviro_App
 			//the values in the database.
 			previousExpenseName = selectedRow[1];
 
+		}
+
+		/// <summary>Handles the Click event of the DeleteExpenseBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+		private void DeleteExpenseBtn_Click(object sender, EventArgs e)
+		{
+			const string EXPENSE_DELETED = "The expense has been deleted!";
+			const string DELETION_WARNING = "You are about to delete the row highlighted in red!";
+			//Check if any row has been selected first
+			if (fixedExpensesDGVOps.noRowSelected()) return;
+			if (fixedExpensesDGVOps.selectedRowEmpty()) return;
+
+			//Warn the user before deleting
+			fixedExpensesDGVOps.highlightSelectedRowRed();
+			warning.showWarning(this, DELETION_WARNING, CustomWarning.WarningType.CriticalWarning);
+			if (warning.actionConfirmed == false) { fixedExpensesDGVOps.removeRowHighlights(); return; }
+
+			List<string> selectedRow = fixedExpensesDGVOps.getSeletedRow();
+			string expenseName = selectedRow[1];
+
+			try
+			{
+				_fixedExpensesModel.deleteExpense(expenseName);
+				updateFixedExpensesGridView();
+				GenericControllers.reportSuccess(this, EXPENSE_DELETED);
+			}
+			catch (Exception ex) 
+			{
+				GenericControllers.reportError(this, ex.Message);
+			}
 		}
 	}
 }

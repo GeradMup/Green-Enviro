@@ -202,8 +202,6 @@ namespace Green_Enviro_App
 			{
 				throw new Exception(DATABASE_INSERTION_EXCEPTION, ex);
 			}
-
-			
 			return rowsAffected;
 		}
 

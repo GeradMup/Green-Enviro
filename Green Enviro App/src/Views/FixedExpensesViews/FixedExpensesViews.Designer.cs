@@ -39,6 +39,7 @@ namespace Green_Enviro_App
 			this.FixedExpenseDGV = new System.Windows.Forms.DataGridView();
 			this.DoneBtn = new System.Windows.Forms.Button();
 			this.EditExpenseBtn = new System.Windows.Forms.Button();
+			this.DeleteExpenseBtn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.FixedExpenseDGV)).BeginInit();
 			this.SuspendLayout();
@@ -98,7 +99,7 @@ namespace Green_Enviro_App
 			// AddExpenseBtn
 			// 
 			this.AddExpenseBtn.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.AddExpenseBtn.Location = new System.Drawing.Point(81, 252);
+			this.AddExpenseBtn.Location = new System.Drawing.Point(277, 176);
 			this.AddExpenseBtn.Name = "AddExpenseBtn";
 			this.AddExpenseBtn.Size = new System.Drawing.Size(289, 53);
 			this.AddExpenseBtn.TabIndex = 6;
@@ -122,9 +123,9 @@ namespace Green_Enviro_App
 			// DoneBtn
 			// 
 			this.DoneBtn.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.DoneBtn.Location = new System.Drawing.Point(81, 326);
+			this.DoneBtn.Location = new System.Drawing.Point(81, 246);
 			this.DoneBtn.Name = "DoneBtn";
-			this.DoneBtn.Size = new System.Drawing.Size(289, 53);
+			this.DoneBtn.Size = new System.Drawing.Size(190, 53);
 			this.DoneBtn.TabIndex = 8;
 			this.DoneBtn.Text = "Done";
 			this.DoneBtn.UseVisualStyleBackColor = true;
@@ -135,17 +136,29 @@ namespace Green_Enviro_App
 			this.EditExpenseBtn.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.EditExpenseBtn.Location = new System.Drawing.Point(81, 176);
 			this.EditExpenseBtn.Name = "EditExpenseBtn";
-			this.EditExpenseBtn.Size = new System.Drawing.Size(289, 53);
+			this.EditExpenseBtn.Size = new System.Drawing.Size(190, 53);
 			this.EditExpenseBtn.TabIndex = 9;
 			this.EditExpenseBtn.Text = "Edit Expense";
 			this.EditExpenseBtn.UseVisualStyleBackColor = true;
 			this.EditExpenseBtn.Click += new System.EventHandler(this.EditExpenseBtn_Click);
+			// 
+			// DeleteExpenseBtn
+			// 
+			this.DeleteExpenseBtn.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.DeleteExpenseBtn.Location = new System.Drawing.Point(277, 246);
+			this.DeleteExpenseBtn.Name = "DeleteExpenseBtn";
+			this.DeleteExpenseBtn.Size = new System.Drawing.Size(289, 53);
+			this.DeleteExpenseBtn.TabIndex = 10;
+			this.DeleteExpenseBtn.Text = "Delete Expense";
+			this.DeleteExpenseBtn.UseVisualStyleBackColor = true;
+			this.DeleteExpenseBtn.Click += new System.EventHandler(this.DeleteExpenseBtn_Click);
 			// 
 			// FixedExpensesViews
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1815, 906);
+			this.Controls.Add(this.DeleteExpenseBtn);
 			this.Controls.Add(this.EditExpenseBtn);
 			this.Controls.Add(this.DoneBtn);
 			this.Controls.Add(this.FixedExpenseDGV);
@@ -180,5 +193,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.DataGridView FixedExpenseDGV;
 		private System.Windows.Forms.Button DoneBtn;
 		private System.Windows.Forms.Button EditExpenseBtn;
+		private System.Windows.Forms.Button DeleteExpenseBtn;
 	}
 }

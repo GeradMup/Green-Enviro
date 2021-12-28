@@ -11,28 +11,14 @@ using System.Windows.Forms;
 namespace Green_Enviro_App
 {
 	/// <summary>
-	///   The requested action is used to identify which class invoked this class 
-	///   and hence figure out the correct return action after the warming message
-	///   been displayed
+	/// Custom form control to present warning messages to the users before critical actions such as deletions.
 	/// </summary>
-	public enum RequestedAction 
-	{
-		/// <summary>The action of deleting a Sale, Purchase or any other recorded entries</summary>
-		DeleteEntry,
-		/// <summary>The action of adding a purchase entry to the police register</summary>
-		AddPurchaseToPr,
-		/// <summary>The action of adding a sale entry to a police register</summary>
-		AddSaleToPr
-	}
-	public partial class Warning : Form
+	public partial class CustomWarning : Form
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Warning"/> class.
+		/// Initializes a new instance of the <see cref="CustomWarning"/> class.
 		/// </summary>
-		/// <param name="parent">The form to return to after displaying the error message form.</param>
-		/// <param name="message">The message.</param>
-		/// <param name="_warningType">The warning type.</param>
-		public Warning()
+		public CustomWarning()
 		{
 			InitializeComponent();
 		}

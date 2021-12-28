@@ -69,13 +69,32 @@ namespace Green_Enviro_App
 			string[] expenseInfoString = { expenseInfo.name, expenseInfo.amount.ToString() };
 			DataTable expenses;
 			try
-			{
-				System.Windows.Forms.MessageBox.Show(expenseInfoString[1]);
-
+			{ 
 				database.update<FixedExpensesTableColumns>(Database.Tables.FixedExpenses, tableColumns, expenseNameColumn, expenseName, expenseInfoString);
 				expenses = getExpenses();
 			}
 			catch (Exception ex) 
+			{
+				throw new Exception(ex.Message);
+			}
+			return expenses;
+		}
+
+		/// <summary>Deletes the fixed expense given its name and returns an updated data grid after the deletion.</summary>
+		/// <param name="expenseName">Name of the expense.</param>
+		/// <returns>The updated fixed expenses after the deletion.</returns>
+		/// <exception cref="System.Exception"></exception>
+		public DataTable deleteExpense(string expenseName) 
+		{
+			FixedExpensesTableColumns expenseNameColumn = FixedExpensesTableColumns.Name;
+			DataTable expenses;
+
+			try
+			{
+				database.delete<FixedExpensesTableColumns>(Database.Tables.FixedExpenses, expenseNameColumn, expenseName);
+				expenses = getExpenses();
+			}
+			catch (Exception ex)
 			{
 				throw new Exception(ex.Message);
 			}

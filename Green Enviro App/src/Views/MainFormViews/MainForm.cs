@@ -45,7 +45,7 @@ namespace Green_Enviro_App
         EmployeesModel _employeesModel;
         FixedExpensesModel _fixedExpensesModel;
         FixedExpensesViews _fixedExpensesViews;
-        Warning _warnings;
+        CustomWarning _warnings;
         bool starting = true;
 
         public int _user_permission_level = 0;
@@ -85,7 +85,7 @@ namespace Green_Enviro_App
 
             _employees = new Employees(this, _employeesModel);
             _dgvOps = new DGVOps(this);
-            _warnings = new Warning();
+            _warnings = new CustomWarning();
             _user_permission_level = permissionLevel;
 
             this.Owner = loginForm;

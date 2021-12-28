@@ -493,7 +493,6 @@ namespace Green_Enviro_App
 			monthBox.SelectedIndex = monthBox.Items.IndexOf(month);
 		}
 
-
 		/// <summary>Checks if any row in the data grid view is selected.</summary>
 		/// <returns>
 		///   <c>true</c> if a row is selected, <c>false</c> otherwise.</returns>
@@ -508,6 +507,16 @@ namespace Green_Enviro_App
 		public bool totalsRowSelected() 
 		{
 			return (dataGridView.CurrentCell.RowIndex == dataGridView.Rows.Count - 1) ? true : false;
+		}
+
+		/// <summary>Checks if the selected row in the data grid view is empty or not.</summary>
+		/// <returns>True if empty, other wise, false.</returns>
+		public bool selectedRowEmpty() 
+		{
+			int selectedRow = dataGridView.CurrentCell.RowIndex;
+			int firstColumn = 0;
+			if (dataGridView.Rows[selectedRow].Cells[firstColumn].Value.ToString() == Constants.EMPTY_TEXT) return true;
+			else return false;
 		}
 
 		/// <summary>

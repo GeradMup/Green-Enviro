@@ -136,7 +136,7 @@ namespace Green_Enviro_App
 
 			//Highlight the rows that will be deleted if the user chooses to confirm
 			expensesDgvOps.highlightSelectedRowRed();
-			_warnings.showWarning(_mainForm, DELETING_WARNING_MESSAGE, Warning.WarningType.CriticalWarning);
+			_warnings.showWarning(_mainForm, DELETING_WARNING_MESSAGE, CustomWarning.WarningType.CriticalWarning);
 
 			//Check if the user has confirmed the deletion of the row
 			if (_warnings.actionConfirmed)

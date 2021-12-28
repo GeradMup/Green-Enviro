@@ -75,7 +75,7 @@ namespace Green_Enviro_App
 			{ GenericControllers.reportError(_mainForm, DELETING_TOTALS_ERROR); return; }
 
 			wagesDgvOps.highlightSelectedRowRed();
-			_warnings.showWarning(_mainForm, DELETING_WARNING_MESSAGE, Warning.WarningType.CriticalWarning);
+			_warnings.showWarning(_mainForm, DELETING_WARNING_MESSAGE, CustomWarning.WarningType.CriticalWarning);
 
 			//Check if the user has confirmed the deletion of the row
 			if (_warnings.actionConfirmed) 
