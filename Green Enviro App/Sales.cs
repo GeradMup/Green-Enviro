@@ -45,8 +45,8 @@ namespace Green_Enviro_App
 		public void SetTypes()
 		{
 			//Also setup the Ferrous or Non-Ferrous Selector
-			_main_form.SaleTypeBx.Items.Add(Constants.FERROUS);
-			_main_form.SaleTypeBx.Items.Add(Constants.NON_FERROUS);
+			_main_form.SaleType.Items.Add(Constants.FERROUS);
+			_main_form.SaleType.Items.Add(Constants.NON_FERROUS);
 
 			_main_form.SalesLogType.Items.Add(Constants.FERROUS);
 			_main_form.SalesLogType.Items.Add(Constants.NON_FERROUS);
@@ -81,7 +81,7 @@ namespace Green_Enviro_App
 
 			//MessageBox.Show("All Customers: " + _customers.Rows.Count.ToString());
 
-			_main_form.SaleCompanyNameList.Items.Clear();
+			_main_form.SaleCompanyName.Items.Clear();
 			_buyers_list.Clear();
 
 			int _company_name_index = 1;
@@ -89,7 +89,7 @@ namespace Green_Enviro_App
 			foreach (DataRow row in _buyers.Rows)
 			{
 				//Selects the customer numbers and adds to the drop down list on the receipt page
-				_main_form.SaleCompanyNameList.Items.Add(row[_company_name_index]);
+				_main_form.SaleCompanyName.Items.Add(row[_company_name_index]);
 				_buyers_list.Add(row[_company_name_index].ToString());
 			}
 		}
@@ -353,13 +353,13 @@ namespace Green_Enviro_App
 			
 			if (_main_form.NewCompanyCheckBox.CheckState == CheckState.Checked)
 			{
-				_main_form.SaleCompanyNameList.DropDownStyle = ComboBoxStyle.DropDown;
+				_main_form.SaleCompanyName.DropDownStyle = ComboBoxStyle.DropDown;
 				_unknown_company = true;
 				
 			}
 			else 
 			{
-				_main_form.SaleCompanyNameList.DropDownStyle = ComboBoxStyle.DropDownList;
+				_main_form.SaleCompanyName.DropDownStyle = ComboBoxStyle.DropDownList;
 				_unknown_company = true;
 			}
 		}
@@ -375,7 +375,7 @@ namespace Green_Enviro_App
 			if (_main_form.NewCompanyCheckBox.CheckState == CheckState.Checked) 
 			{
 				//Check if the added company name does not already exist
-				if (_buyers_list.Contains(_main_form.SaleCompanyNameList.Text) == false) 
+				if (_buyers_list.Contains(_main_form.SaleCompanyName.Text) == false) 
 				{
 					//Add the new company
 					AddNewBuyer();
@@ -386,10 +386,10 @@ namespace Green_Enviro_App
 
 			string timeWhenEntered = DateTime.Now.ToString(" HH:mm:ss");
 			string _sale_date = _main_form.SaleDate.Value.ToString("dd MMMM yyyy") + timeWhenEntered;
-			string _company = _main_form.SaleCompanyNameList.Text;
-			string _quantity = _main_form.SaleQuantityBx.Value.ToString();
+			string _company = _main_form.SaleCompanyName.Text;
+			string _quantity = _main_form.SaleQuantity.Value.ToString();
 			string _amount = _main_form.SaleAmount.Value.ToString();
-			string _type = _main_form.SaleTypeBx.Text;
+			string _type = _main_form.SaleType.Text;
 
 			
 			string _new_sale = _sale_date + "," + _company + "," + _quantity + "," + _amount + "," + _type;
@@ -471,12 +471,12 @@ namespace Green_Enviro_App
 
 			//First verify that all fields have been filled in correctly
 
-			if (_main_form.SaleQuantityBx.Value == _zero)
+			if (_main_form.SaleQuantity.Value == _zero)
 			{
 				_all_good = false;
 				_error_message = "Please Insert the Quantity";
 			}
-			else if (_main_form.SaleTypeBx.Text == _no_text)
+			else if (_main_form.SaleType.Text == _no_text)
 			{
 				_all_good = false;
 				_error_message = "Please Select the goods type";
@@ -486,7 +486,7 @@ namespace Green_Enviro_App
 				_all_good = false;
 				_error_message = "Please Insert the Sale Amount";
 			}
-			else if (_main_form.SaleCompanyNameList.Text == _no_text)
+			else if (_main_form.SaleCompanyName.Text == _no_text)
 			{
 				_all_good = false;
 				_error_message = "Please Select the a Company";
@@ -506,7 +506,7 @@ namespace Green_Enviro_App
 
 		private void AddNewBuyer() 
 		{
-			string companyName = _main_form.SaleCompanyNameList.Text;
+			string companyName = _main_form.SaleCompanyName.Text;
 			string address = "Unknown";
 			string contactPerson = "Unknown";
 			string contactNumber = "0000000000";
@@ -526,10 +526,10 @@ namespace Green_Enviro_App
 			decimal _zero = (decimal)0.00;
 
 			_main_form.SaleDate.Value = DateTime.Now;
-			_main_form.SaleQuantityBx.Value = _zero;
+			_main_form.SaleQuantity.Value = _zero;
 			_main_form.NewCompanyCheckBox.CheckState = CheckState.Unchecked;
-			_main_form.SaleCompanyNameList.DropDownStyle = ComboBoxStyle.DropDownList;
-			_main_form.SaleTypeBx.SelectedItem = null;
+			_main_form.SaleCompanyName.DropDownStyle = ComboBoxStyle.DropDownList;
+			_main_form.SaleType.SelectedItem = null;
 			_main_form.SaleAmount.Value = _zero;
 		}
 

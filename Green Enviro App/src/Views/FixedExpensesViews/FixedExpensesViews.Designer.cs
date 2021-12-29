@@ -62,6 +62,7 @@ namespace Green_Enviro_App
 			this.ExpenseName.Name = "ExpenseName";
 			this.ExpenseName.Size = new System.Drawing.Size(326, 26);
 			this.ExpenseName.TabIndex = 1;
+			this.ExpenseName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ExpenseName_KeyPress);
 			// 
 			// ExpenseNameLabel
 			// 

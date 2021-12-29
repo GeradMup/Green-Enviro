@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
@@ -70,6 +71,7 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void DoneBtn_Click(object sender, EventArgs e)
 		{
+			clearEntryFields();
 			closeForm();
 		}
 
@@ -175,6 +177,14 @@ namespace Green_Enviro_App
 			{
 				GenericControllers.reportError(this, ex.Message);
 			}
+		}
+
+		/// <summary>Handles the KeyPress event of the ExpenseName control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="KeyPressEventArgs" /> instance containing the event data.</param>
+		private void ExpenseName_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (Constants.SPECIAL_CHARACTERS.Contains(e.KeyChar)) e.Handled = true;
 		}
 	}
 }
