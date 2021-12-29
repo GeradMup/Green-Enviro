@@ -20,7 +20,6 @@ namespace Green_Enviro_App
         Receipt _receipt;
         Database _database;
         Purchases _purchases;
-        Sales _sales;
         //Expenses _expenses;
 		
         Customers _customers;
@@ -65,9 +64,9 @@ namespace Green_Enviro_App
             _purchasesPR = new Purchases_PR(this,_fileHandles);
             _purchases = new Purchases(this, _purchasesPR, _fileHandles);
             _email = new Email();
-            _sales = new Sales(this, _database, _fileHandles);
+            //_sales = new Sales(this, _database, _fileHandles);
             _inventory = new Inventory(this);
-            _receipt = new Receipt(this, _database, _purchases, _sales, _inventory);
+            //_receipt = new Receipt(this, _database, _purchases, _sales, _inventory);
             
             //_expenses = new Expenses(this, _database, _fileHandles);
             //_wages = new Wages(this, _database, _fileHandles);
@@ -95,6 +94,7 @@ namespace Green_Enviro_App
             intializeSummariesTab();
             initializeWagesTab();
             initializeExpensesTab();
+            initializeSalesTab();
         }
 
 		/// <summary>
@@ -263,43 +263,6 @@ namespace Green_Enviro_App
         //******************************************************************************************************************************
         //SALES LOG RELATED CALLS
         //******************************************************************************************************************************
-        private void FilterSalesLogBtn_Click(object sender, EventArgs e)
-		{
-            _sales.DisplaySalesLog();
-		}
-
-		private void SalesLogMonth_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            _sales.MonthSelected();
-        }
-
-		private void NewCompanyCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-            _sales.UnknownCompany();
-		}
-
-		private void AddSaleBtn_Click(object sender, EventArgs e)
-		{
-            if ((_user_permission_level == 4) || (_user_permission_level == 5))
-            {
-                _sales.AddSale();
-            }
-            else 
-            {
-                PermissionDenied();
-            }
-            
-		}
-
-        private void RemoveSalesLogFiltersBtn_Click(object sender, EventArgs e)
-        {
-            _sales.RemoveFilters();
-        }
-
-		private void ClearSalesFields_Click(object sender, EventArgs e)
-		{
-            _sales.ClearFields();
-		}
 
 
         //*************************************************************************************************************
@@ -370,7 +333,7 @@ namespace Green_Enviro_App
             _previous_tab_page = e.TabPage;
             _receipt.ResetReceipt();
             _purchases.Reset();
-            _sales.Reset();
+            //_sales.Reset();
             _inventory.Reset();
             //_expenses.Reset();
             resetWages();
@@ -378,6 +341,7 @@ namespace Green_Enviro_App
             resetDestructionCertificate();
             resetDeliveryNotes();
             resetExpenses();
+            resetSales();
         }
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
@@ -483,12 +447,6 @@ namespace Green_Enviro_App
 		{
             _purchases.DeletePurchase();
 		}
-
-		private void DeleteSaleBtn_Click(object sender, EventArgs e)
-		{
-            _sales.DeleteSale();
-		}
-
 		private void PurchasesPRMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
             _purchasesPR.monthSelected();
