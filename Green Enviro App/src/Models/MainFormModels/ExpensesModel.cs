@@ -85,8 +85,15 @@ namespace Green_Enviro_App
 		{
 			string pathToLog = fileHandles.pathToLogs(FileHandles.LogType.Expenses, month);
 			GridViewData gridData = new GridViewData();
-			gridData.data = csvHandles.getCSVContents(pathToLog);
-			gridData.dates = csvHandles.getDatesInFile(pathToLog);
+			try
+			{
+				gridData.data = csvHandles.getCSVContents(pathToLog);
+				gridData.dates = csvHandles.getDatesInFile(pathToLog);
+			}
+			catch (Exception ex) 
+			{
+				throw new Exception(ex.Message);
+			}
 			return gridData;
 		}
 

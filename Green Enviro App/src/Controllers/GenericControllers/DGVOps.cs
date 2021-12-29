@@ -442,7 +442,8 @@ namespace Green_Enviro_App
 			dataGridView.Rows[selectedRow].DefaultCellStyle.BackColor = Color.Red;
 		}
 
-		/// <summary>Removes the row highlights from the previously highlighted rows.</summary>
+		/// <summary>
+		/// Removes the row highlights from the previously highlighted rows.</summary>
 		public void removeRowHighlights() 
 		{
 			dataGridView.Rows[selectedRow].DefaultCellStyle.BackColor = Color.White;
@@ -519,6 +520,13 @@ namespace Green_Enviro_App
 			else return false;
 		}
 
+		/// <summary>Checks if any log month is selected.</summary>
+		/// <returns>True if a month is selected, False otherwise.</returns>
+		
+		public bool logMonthSelected() 
+		{
+			return (monthBox.SelectedItem == null) ? false : true;
+		}
 		/// <summary>
 		/// Class to describe the data that gets filled onto a grid view.
 		/// </summary>

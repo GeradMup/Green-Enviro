@@ -1006,7 +1006,7 @@ namespace Green_Enviro_App
 			// 
 			// SalesLogDeleteBtn
 			// 
-			this.SalesLogDeleteBtn.Location = new System.Drawing.Point(1125, 68);
+			this.SalesLogDeleteBtn.Location = new System.Drawing.Point(1125, 74);
 			this.SalesLogDeleteBtn.Margin = new System.Windows.Forms.Padding(2);
 			this.SalesLogDeleteBtn.Name = "SalesLogDeleteBtn";
 			this.SalesLogDeleteBtn.Size = new System.Drawing.Size(295, 37);
@@ -1073,18 +1073,18 @@ namespace Green_Enviro_App
 			// 
 			// SalesLogRemoveFiltersBtn
 			// 
-			this.SalesLogRemoveFiltersBtn.Location = new System.Drawing.Point(820, 68);
+			this.SalesLogRemoveFiltersBtn.Location = new System.Drawing.Point(820, 74);
 			this.SalesLogRemoveFiltersBtn.Margin = new System.Windows.Forms.Padding(2);
 			this.SalesLogRemoveFiltersBtn.Name = "SalesLogRemoveFiltersBtn";
 			this.SalesLogRemoveFiltersBtn.Size = new System.Drawing.Size(296, 37);
 			this.SalesLogRemoveFiltersBtn.TabIndex = 28;
 			this.SalesLogRemoveFiltersBtn.Text = "Remove Filters";
 			this.SalesLogRemoveFiltersBtn.UseVisualStyleBackColor = true;
-			this.SalesLogRemoveFiltersBtn.Click += new System.EventHandler(this.RemoveSalesLogFiltersBtn_Click);
+			this.SalesLogRemoveFiltersBtn.Click += new System.EventHandler(this.SalesLogRemoveFiltersBtn_Click);
 			// 
 			// SalesLogFilterBtn
 			// 
-			this.SalesLogFilterBtn.Location = new System.Drawing.Point(515, 68);
+			this.SalesLogFilterBtn.Location = new System.Drawing.Point(515, 74);
 			this.SalesLogFilterBtn.Margin = new System.Windows.Forms.Padding(2);
 			this.SalesLogFilterBtn.Name = "SalesLogFilterBtn";
 			this.SalesLogFilterBtn.Size = new System.Drawing.Size(295, 37);
@@ -1198,13 +1198,13 @@ namespace Green_Enviro_App
 			this.SalesLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.SalesLogGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.SalesLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.SalesLogGridView.Location = new System.Drawing.Point(516, 109);
+			this.SalesLogGridView.Location = new System.Drawing.Point(516, 121);
 			this.SalesLogGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.SalesLogGridView.Name = "SalesLogGridView";
 			this.SalesLogGridView.ReadOnly = true;
 			this.SalesLogGridView.RowHeadersWidth = 51;
 			this.SalesLogGridView.RowTemplate.Height = 24;
-			this.SalesLogGridView.Size = new System.Drawing.Size(860, 579);
+			this.SalesLogGridView.Size = new System.Drawing.Size(860, 567);
 			this.SalesLogGridView.TabIndex = 15;
 			// 
 			// SalesClearBtn

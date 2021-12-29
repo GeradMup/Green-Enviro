@@ -42,6 +42,8 @@ namespace Green_Enviro_App
         WagesModel _wagesModel;
         ExpensesModel _expensesModel;
         EmployeesModel _employeesModel;
+        SalesModel _salesModel;
+
         FixedExpensesModel _fixedExpensesModel;
         FixedExpensesViews _fixedExpensesViews;
         CustomWarning _warnings;
@@ -81,6 +83,7 @@ namespace Green_Enviro_App
             _employeesModel = new EmployeesModel(_database);
             _fixedExpensesModel = new FixedExpensesModel(_database);
             _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);
+            _salesModel = new SalesModel(_database, _fileHandles, _csvHandles);
 
             _employees = new Employees(this, _employeesModel);
             _dgvOps = new DGVOps(this);
@@ -331,7 +334,7 @@ namespace Green_Enviro_App
         private void mainTabControl_Deselected(object sender, TabControlEventArgs e)
 		{
             _previous_tab_page = e.TabPage;
-            _receipt.ResetReceipt();
+            //_receipt.ResetReceipt();
             _purchases.Reset();
             //_sales.Reset();
             _inventory.Reset();
