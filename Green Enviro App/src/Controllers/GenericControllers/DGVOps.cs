@@ -48,7 +48,6 @@ namespace Green_Enviro_App
 			dataTable = new DataTable();
 		}
 
-
 		/// <summary>Initializes a new instance of the <see cref="DGVOps" /> class for classes that need limited fuctionality of the DGVOps class.</summary>
 		/// <param name="grid">The data grid to operate on.</param>
 		/// <param name="parent">The parent form before displaying the Data Grid.</param>
@@ -127,12 +126,20 @@ namespace Green_Enviro_App
 		/// </summary>
 		public void removeGridViewFilters()
 		{
-			startDateBox.SelectedItem = null;
-			endDateBox.SelectedItem = null;
-			typeBox.SelectedItem = null;
+			resetFilterFields();
 			bindingSource.RemoveFilter();
 			addTotalsRow();
 			highlightTotalsRow();
+		}
+
+		/// <summary>
+		/// Resets the grid filtering conditions fields.
+		/// </summary>
+		private void resetFilterFields() 
+		{
+			if (startDateBox != null) startDateBox.SelectedItem = null;
+			if (endDateBox != null) endDateBox.SelectedItem = null;
+			if (typeBox != null) typeBox.SelectedItem = null;
 		}
 
 		/// <summary>
@@ -143,7 +150,7 @@ namespace Green_Enviro_App
 			string filterString;
 
 			//If no filters are inserted, don't do anything.
-			if ((isDateFiltered() == false) && (isDateFiltered() == false)) return;
+			if ((isDateFiltered() == false) && (isTypeFiltered() == false)) return;
 
 			//Filter according to the date ranges if the dates have been selected correctly
 			if (isDateFiltered() == true)
@@ -343,6 +350,9 @@ namespace Green_Enviro_App
 		/// <param name="colWidths">The widths of each column in the grid view</param>
 		public void populateGridView(List<float> colWidths) 
 		{
+			resetFilterFields();
+			bindingSource.RemoveFilter();
+
 			//Disable automatic re-sizing so that the grid can populate quickly
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 			dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
@@ -375,7 +385,11 @@ namespace Green_Enviro_App
 			dataTable.Rows.Add(lastRow);
 
 			//Add totals row and highlight the totals row
-			if (containsTotals) addTotalsRow(); highlightTotalsRow();
+			if (containsTotals == true) 
+			{ 
+				addTotalsRow(); 
+				highlightTotalsRow(); 
+			}
 
 			dataGridView.Refresh();
 		}
@@ -522,11 +536,19 @@ namespace Green_Enviro_App
 
 		/// <summary>Checks if any log month is selected.</summary>
 		/// <returns>True if a month is selected, False otherwise.</returns>
-		
 		public bool logMonthSelected() 
 		{
 			return (monthBox.SelectedItem == null) ? false : true;
 		}
+
+		/// <summary>Determines whether the data grid view is empty on not.</summary>
+		/// <returns>
+		///   <c>true</c> if [grid is empty]; otherwise, <c>false</c>.</returns>
+		private bool isGridEmpty() 
+		{
+			return (dataGridView.Rows.Count == 0) ? true : false;
+		}
+
 		/// <summary>
 		/// Class to describe the data that gets filled onto a grid view.
 		/// </summary>

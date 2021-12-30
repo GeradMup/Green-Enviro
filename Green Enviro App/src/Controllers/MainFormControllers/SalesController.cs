@@ -20,6 +20,7 @@ namespace Green_Enviro_App
 			salesDgvOps.populateLogMonths(_salesModel.getMonths());
 			SaleDate.Value = DateTime.Now;
 			salesDgvOps.setupTotalsRow(_salesModel.getAmountColumn(), _salesModel.getQuantityColumn());
+			salesDgvOps.setTypes();
 		}
 
 		/// <summary>
@@ -84,15 +85,29 @@ namespace Green_Enviro_App
 			salesDgvOps.removeGridViewFilters();
 		}
 
-
 		private void resetSales() 
 		{
 		
 		}
 
-		private void DeleteSaleBtn_Click(object sender, EventArgs e)
+		private void SalesLogDeleteBtn_Click(object sender, EventArgs e)
 		{
-			//_sales.DeleteSale();
+			const string CANNOT_DELETE_TOTALS = "You cannot delete the totals!";
+			const string NO_ROW_SELECTED = "You have not selected a row to delete!";
+			const string DELETION_WARNING = "Warning\nYou are about to delete the entry highlighted in red!";
+
+			if (salesDgvOps.selectedRowEmpty()) return;
+			if (salesDgvOps.noRowSelected()) { GenericControllers.reportError(_mainForm, NO_ROW_SELECTED); return; }
+			if (salesDgvOps.totalsRowSelected()) { GenericControllers.reportError(_mainForm, CANNOT_DELETE_TOTALS); return; }
+
+			salesDgvOps.highlightSelectedRowRed();
+			//Show waring before proceeding.
+
+			_warnings.showWarning(_mainForm, DELETION_WARNING, CustomWarning.WarningType.CriticalWarning);
+			if (_warnings.actionConfirmed == false) { salesDgvOps.removeRowHighlights(); return; }
+
+
+
 		}
 
 

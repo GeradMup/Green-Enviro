@@ -13,7 +13,10 @@ namespace Green_Enviro_App
 	public partial class Main_Form : Form
 	{
 		DGVOps wagesDgvOps;
-		/// <summary>Initializes all the controls on the wages tab.</summary>
+		
+		/// <summary>
+		/// Initializes all the controls on the wages tab.
+		/// </summary>
 		private void initializeWagesTab() 
 		{
 			//DGVOps contains methods that makes use of the type ComboBox but since we do not have one for wages, we will create
@@ -34,7 +37,6 @@ namespace Green_Enviro_App
 			//Do nothing if no month is selected
 			if (WageLogMonths.SelectedItem == null) return;
 			string selectedMonth = WageLogMonths.SelectedItem.ToString();
- 
 			updateWagesGridView(_wagesModel.gridViewData(selectedMonth));
 		}
 

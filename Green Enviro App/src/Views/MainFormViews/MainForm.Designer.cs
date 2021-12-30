@@ -1013,7 +1013,7 @@ namespace Green_Enviro_App
 			this.SalesLogDeleteBtn.TabIndex = 32;
 			this.SalesLogDeleteBtn.Text = "Delete Sale";
 			this.SalesLogDeleteBtn.UseVisualStyleBackColor = true;
-			this.SalesLogDeleteBtn.Click += new System.EventHandler(this.DeleteSaleBtn_Click);
+			this.SalesLogDeleteBtn.Click += new System.EventHandler(this.SalesLogDeleteBtn_Click);
 			// 
 			// SaleAmount
 			// 
