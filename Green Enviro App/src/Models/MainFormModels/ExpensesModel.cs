@@ -106,8 +106,8 @@ namespace Green_Enviro_App
 			string pathToLog = fileHandles.pathToLogs(FileHandles.LogType.Expenses, month);
 
 			//First update the substring that identifies the row to be deleted.
-			csvHandles.setDeleteRowInfo(expenseInfo);
-			csvHandles.DeleteInCSV(pathToLog);
+			csvHandles.setRowToDelete(expenseInfo);
+			csvHandles.deleteInCSV(pathToLog);
 
 			return gridViewData(month);			
 		}
@@ -119,8 +119,9 @@ namespace Green_Enviro_App
 		public GridViewData addExpense(ExpenseInfo	expenseInfo) 
 		{
 			string paymentMonth = expenseInfo.date.ToString(Constants.LOG_NAME_DATE_FORMAT);
-			string currentTime = DateTime.Now.ToString("HH:mm:ss");
-			string expensesInfoString = expenseInfo.date.ToString("dd MMMM yyyy ") + currentTime + "," + expenseInfo.description + "," + expenseInfo.amount.ToString();
+			string currentTime = DateTime.Now.ToString(Constants.TIME_FORMAT);
+			string paymentDate = expenseInfo.date.ToString(Constants.DATE_FORMAT) + currentTime;
+			string expensesInfoString = paymentDate + "," + expenseInfo.description + "," + expenseInfo.amount.ToString();
 			string pathToExpensesLog = fileHandles.pathToLogs(FileHandles.LogType.Expenses, paymentMonth);
 
 			try

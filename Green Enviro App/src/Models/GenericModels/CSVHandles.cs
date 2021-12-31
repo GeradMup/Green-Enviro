@@ -84,11 +84,11 @@ namespace Green_Enviro_App
 		}
 		
 		/// <summary>
-		/// Deletes every entry in the CSV file at the given path where the starting substring matches the provide
-		/// starting substring
+		/// Deletes every entry in the CSV file at the given path where the starting substring matches the provide starting substring.
+		/// Use the <see cref="setRowToDelete">setRowToDelete</see> method to set the starting substring to be deleted.
 		/// </summary>
 		/// <param name="path">The path.</param>
-		public void DeleteInCSV(string path)
+		public void deleteInCSV(string path)
 		{
 			string[] lines = System.IO.File.ReadAllLines(path);
 			//Create a list from the array
@@ -110,7 +110,7 @@ namespace Green_Enviro_App
 		}
 
 		
-		public void setDeleteRowInfo(string rowInfo) 
+		public void setRowToDelete(string rowInfo) 
 		{
 			startingSubstringForLineToBeDeleted = rowInfo;
 		}

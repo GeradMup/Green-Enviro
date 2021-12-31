@@ -549,6 +549,13 @@ namespace Green_Enviro_App
 			return (dataGridView.Rows.Count == 0) ? true : false;
 		}
 
+		/// <summary>Gets the sected month.</summary>
+		/// <returns>The name of the selected month in string format.</returns>
+		public string getSelectedMonth() 
+		{
+			return monthBox.SelectedItem.ToString();
+		}
+
 		/// <summary>
 		/// Class to describe the data that gets filled onto a grid view.
 		/// </summary>

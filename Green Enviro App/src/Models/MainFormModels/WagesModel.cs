@@ -93,8 +93,8 @@ namespace Green_Enviro_App
 			string pathToLog = fileHandles.pathToLogs(FileHandles.LogType.Wages, wageLogMonth);
 			
 			//First update the substring that identifies the row to be deleted.
-			csvHandles.setDeleteRowInfo(wageInfo);
-			csvHandles.DeleteInCSV(pathToLog);
+			csvHandles.setRowToDelete(wageInfo);
+			csvHandles.deleteInCSV(pathToLog);
 
 			return gridViewData(wageLogMonth);
 		}

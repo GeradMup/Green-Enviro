@@ -92,7 +92,6 @@ namespace Green_Enviro_App
 			this.SalesLogDeleteBtn = new System.Windows.Forms.Button();
 			this.SaleAmount = new System.Windows.Forms.NumericUpDown();
 			this.SaleQuantity = new System.Windows.Forms.NumericUpDown();
-			this.NewCompanyCheckBox = new System.Windows.Forms.CheckBox();
 			this.SaleDate = new System.Windows.Forms.DateTimePicker();
 			this.SalesLogRemoveFiltersBtn = new System.Windows.Forms.Button();
 			this.SalesLogFilterBtn = new System.Windows.Forms.Button();
@@ -974,7 +973,6 @@ namespace Green_Enviro_App
 			this.SalesPage.Controls.Add(this.SalesLogDeleteBtn);
 			this.SalesPage.Controls.Add(this.SaleAmount);
 			this.SalesPage.Controls.Add(this.SaleQuantity);
-			this.SalesPage.Controls.Add(this.NewCompanyCheckBox);
 			this.SalesPage.Controls.Add(this.SaleDate);
 			this.SalesPage.Controls.Add(this.SalesLogRemoveFiltersBtn);
 			this.SalesPage.Controls.Add(this.SalesLogFilterBtn);
@@ -1044,18 +1042,6 @@ namespace Green_Enviro_App
 			this.SaleQuantity.Size = new System.Drawing.Size(118, 26);
 			this.SaleQuantity.TabIndex = 30;
 			this.SaleQuantity.ThousandsSeparator = true;
-			// 
-			// NewCompanyCheckBox
-			// 
-			this.NewCompanyCheckBox.AutoSize = true;
-			this.NewCompanyCheckBox.Location = new System.Drawing.Point(129, 89);
-			this.NewCompanyCheckBox.Margin = new System.Windows.Forms.Padding(2);
-			this.NewCompanyCheckBox.Name = "NewCompanyCheckBox";
-			this.NewCompanyCheckBox.Size = new System.Drawing.Size(127, 23);
-			this.NewCompanyCheckBox.TabIndex = 29;
-			this.NewCompanyCheckBox.Text = "New Company";
-			this.NewCompanyCheckBox.UseVisualStyleBackColor = true;
-			this.NewCompanyCheckBox.CheckedChanged += new System.EventHandler(this.NewCompanyCheckBox_CheckedChanged);
 			// 
 			// SaleDate
 			// 
@@ -3391,7 +3377,6 @@ namespace Green_Enviro_App
 		public System.Windows.Forms.ComboBox SaleType;
 		public System.Windows.Forms.ComboBox SaleCompanyName;
 		public System.Windows.Forms.DataGridView SalesLogGridView;
-		public System.Windows.Forms.CheckBox NewCompanyCheckBox;
 		private Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter customersTableAdapter1;
 		public System.Windows.Forms.NumericUpDown SaleQuantity;
 		public System.Windows.Forms.NumericUpDown PriceBox;

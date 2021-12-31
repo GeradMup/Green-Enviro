@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
+	using SaleInfo = SalesModel.SaleInfo;
 	public partial class Main_Form : Form
 	{
 		DGVOps salesDgvOps;
@@ -21,6 +22,15 @@ namespace Green_Enviro_App
 			SaleDate.Value = DateTime.Now;
 			salesDgvOps.setupTotalsRow(_salesModel.getAmountColumn(), _salesModel.getQuantityColumn());
 			salesDgvOps.setTypes();
+			salesDgvOps.populateComboBox(SaleType, new List<string>(){Constants.FERROUS, Constants.NON_FERROUS });
+			try
+			{
+				salesDgvOps.populateComboBox(SaleCompanyName, _salesModel.getCompanies());
+			}
+			catch (Exception ex) 
+			{
+				GenericControllers.reportError(_mainForm, ex.Message);
+			}
 		}
 
 		/// <summary>
@@ -85,11 +95,9 @@ namespace Green_Enviro_App
 			salesDgvOps.removeGridViewFilters();
 		}
 
-		private void resetSales() 
-		{
-		
-		}
-
+		/// <summary>Handles the Click event of the SalesLogDeleteBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void SalesLogDeleteBtn_Click(object sender, EventArgs e)
 		{
 			const string CANNOT_DELETE_TOTALS = "You cannot delete the totals!";
@@ -104,34 +112,88 @@ namespace Green_Enviro_App
 			//Show waring before proceeding.
 
 			_warnings.showWarning(_mainForm, DELETION_WARNING, CustomWarning.WarningType.CriticalWarning);
-			if (_warnings.actionConfirmed == false) { salesDgvOps.removeRowHighlights(); return; }
-
-
-
+			if (_warnings.actionConfirmed)
+			{
+				string rowToDelete = salesDgvOps.getSelectedRowInfo();
+				string month = salesDgvOps.getSelectedMonth();
+				_salesModel.deleteSale(rowToDelete, month);
+				updateSalesGridView(month);
+			}
+			else 
+			{
+				salesDgvOps.removeRowHighlights(); 
+				return;
+			}
 		}
 
-
-		private void NewCompanyCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-			//_sales.UnknownCompany();
-		}
-
+		/// <summary>Handles the Click event of the AddSaleBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void AddSaleBtn_Click(object sender, EventArgs e)
 		{
-			if ((_user_permission_level == 4) || (_user_permission_level == 5))
-			{
-				//_sales.AddSale();
-			}
-			else
-			{
-				PermissionDenied();
-			}
+			const string NO_COMPANY_ERROR = "Please selected the company where the sale was made!";
+			const string NO_SALE_TYPE_ERROR = "Please selected the sale type!";
+			const string NO_QUANTITY_ERROR = "Please insert the quanitity of the sale!";
+			const string NO_AMOUNT_ERROR = "Please insert the amount of the sale!";
+			const string SALE_RECORDED = "The sale has been recorded!";
 
+			if (SaleCompanyName.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, NO_COMPANY_ERROR); return; }
+			if (SaleType.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, NO_SALE_TYPE_ERROR); return; }
+			if (SaleQuantity.Value == Constants.DECIMAL_ZERO) { GenericControllers.reportError(_mainForm, NO_QUANTITY_ERROR); return; }
+			if (SaleAmount.Value == Constants.DECIMAL_ZERO) { GenericControllers.reportError(_mainForm, NO_AMOUNT_ERROR); return; }
+
+			SaleInfo saleInfo = new SaleInfo();
+			saleInfo.date = SaleDate.Value;
+			saleInfo.company = SaleCompanyName.Text;
+			saleInfo.quantity = SaleQuantity.Value;
+			saleInfo.amount = SaleAmount.Value;
+			saleInfo.type = SaleType.Text;
+
+			string currentLogMonth = SaleDate.Value.ToString(Constants.LOG_NAME_DATE_FORMAT);
+
+			try
+			{
+				_salesModel.addSale(saleInfo);
+				salesDgvOps.selectMonth(currentLogMonth);
+				GenericControllers.reportSuccess(_mainForm, SALE_RECORDED);
+				clearSalesFields();
+			}
+			catch (Exception ex) 
+			{
+				GenericControllers.reportError(_mainForm, ex.Message);
+			}
 		}
 
+		/// <summary>Handles the Click event of the ClearSalesFields control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
 		private void ClearSalesFields_Click(object sender, EventArgs e)
 		{
-			//_sales.ClearFields();
+			clearSalesFields();
+		}
+
+		/// <summary>
+		/// Clears the sales ebtry fields except the date.
+		/// </summary>
+		private void clearSalesFields() 
+		{
+			SaleCompanyName.SelectedItem = null;
+			SaleQuantity.Value = Constants.DECIMAL_ZERO;
+			SaleAmount.Value = Constants.DECIMAL_ZERO;
+			SaleType.SelectedItem = null;
+		}
+
+		/// <summary>
+		/// Resets the sales tab page.</summary>
+		private void resetSales()
+		{
+			clearSalesFields();
+			SaleDate.Value = DateTime.Now;
+			salesDgvOps.resetGridView();
+			SalesLogMonth.SelectedItem = null;
+			SalesLogStartDate.SelectedItem = null;
+			SalesLogEndDate.SelectedItem = null;
+			SalesLogType.SelectedItem = null;
 		}
 	}
 }

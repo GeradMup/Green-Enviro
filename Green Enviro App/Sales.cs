@@ -348,22 +348,6 @@ namespace Green_Enviro_App
 			DisplaySalesLog();
 		}
 
-		public void UnknownCompany() 
-		{
-			
-			if (_main_form.NewCompanyCheckBox.CheckState == CheckState.Checked)
-			{
-				_main_form.SaleCompanyName.DropDownStyle = ComboBoxStyle.DropDown;
-				_unknown_company = true;
-				
-			}
-			else 
-			{
-				_main_form.SaleCompanyName.DropDownStyle = ComboBoxStyle.DropDownList;
-				_unknown_company = true;
-			}
-		}
-
 		public void AddSale()
 		{
 			if (ValidEntries() == false) 
@@ -372,7 +356,7 @@ namespace Green_Enviro_App
 			}
 
 			//Check if the user is trying to add a new company
-			if (_main_form.NewCompanyCheckBox.CheckState == CheckState.Checked) 
+			if (1==1) 
 			{
 				//Check if the added company name does not already exist
 				if (_buyers_list.Contains(_main_form.SaleCompanyName.Text) == false) 
@@ -527,7 +511,7 @@ namespace Green_Enviro_App
 
 			_main_form.SaleDate.Value = DateTime.Now;
 			_main_form.SaleQuantity.Value = _zero;
-			_main_form.NewCompanyCheckBox.CheckState = CheckState.Unchecked;
+			//_main_form.NewCompanyCheckBox.CheckState = CheckState.Unchecked;
 			_main_form.SaleCompanyName.DropDownStyle = ComboBoxStyle.DropDownList;
 			_main_form.SaleType.SelectedItem = null;
 			_main_form.SaleAmount.Value = _zero;

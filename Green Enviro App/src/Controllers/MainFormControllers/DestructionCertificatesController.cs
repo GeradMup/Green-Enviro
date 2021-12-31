@@ -127,7 +127,7 @@ namespace Green_Enviro_App
                 DestructionCertCompany.DropDownStyle = ComboBoxStyle.DropDown;
                 DestructionCertEmailAddress.ReadOnly = false;
                 DestructionCertCmpnyAddress.ReadOnly = false;
-                resetDestructionCertificate();
+                clearDestructionCertFields();
             }
             else
             {
@@ -142,16 +142,21 @@ namespace Green_Enviro_App
 		/// <summary>Resets the destruction certificate fields.</summary>
 		private void resetDestructionCertificate() 
         {
-            DestructionCertCmpnyAddress.Clear();
-            DestructionCertCompany.SelectedItem = null;
-            DestructionCertCntactNum.Clear();
-            DestructionCertCntactPerson.Clear();
-            DestructionCertEmailAddress.Clear();
+            clearDestructionCertFields();
             DestructionCertExtractionDate.Value = DateTime.Now;
             DestructionCertNewCompanyCheckbox.CheckState = CheckState.Unchecked;
             DestructionCertDescripOfPrdct.Clear();
             DestructionCertQntty.Value = Constants.DECIMAL_ZERO;
             DestructionCertQnttyUnit.SelectedIndex = 0;
+        }
+
+        private void clearDestructionCertFields() 
+        {
+            DestructionCertCmpnyAddress.Clear();
+            DestructionCertCompany.SelectedItem = null;
+            DestructionCertCntactNum.Clear();
+            DestructionCertCntactPerson.Clear();
+            DestructionCertEmailAddress.Clear();
         }
     }
 }

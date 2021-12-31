@@ -68,9 +68,8 @@ namespace Green_Enviro_App
 		private void DeliveryNotesMonths_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (DeliveryNotesMonths.SelectedItem == null) return;
-			string selectedMonthAndYear = DeliveryNotesMonths.SelectedItem.ToString();
-			List<string> deliveryNotes = _deliveryNotesModel.getDeliveryNotes(selectedMonthAndYear);
-			DeliveryNotesList.Items.AddRange(deliveryNotes.Cast<object>().ToArray());
+			string month = DeliveryNotesMonths.SelectedItem.ToString();
+			deliveryNotesDgvOps.populateComboBox(DeliveryNotesList, _deliveryNotesModel.getDeliveryNotes(month));
 		}
 
 		private void activateDeliveryNotesGrid() 

@@ -54,6 +54,10 @@ namespace Green_Enviro_App
 		public static readonly string SINGNATURE_IMAGE_PATH;
 		/// <summary>The format to use when naming log names from a date.</summary>
 		public static readonly string LOG_NAME_DATE_FORMAT;
+		/// <summary>The time format to use for logging transaction times.</summary>
+		public static readonly string TIME_FORMAT;
+		/// <summary>The date format to use for logging transaction dates.</summary>
+		public static readonly string DATE_FORMAT;
 		/// <summary>Special input characters to be ignored if users input them.</summary>
 		public static readonly string SPECIAL_CHARACTERS;
 
@@ -83,6 +87,8 @@ namespace Green_Enviro_App
 			SINGNATURE_IMAGE_PATH = PROJECT_PATH + @"\resources\Green Enviro Signature.jpeg";
 			LOG_NAME_DATE_FORMAT = "MMMM yyyy";
 			SPECIAL_CHARACTERS = ",";
+			TIME_FORMAT = "HH:mm:ss";
+			DATE_FORMAT = "dd MMMM yyyy ";
 		}
 	}
 }
