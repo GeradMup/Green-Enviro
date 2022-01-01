@@ -18,7 +18,6 @@ namespace Green_Enviro_App
 		private void initializeSalesTab() 
 		{
 			salesDgvOps = new DGVOps(SalesLogGridView, SalesLogMonth, SalesLogStartDate, SalesLogEndDate, SalesLogType, _mainForm);
-			salesDgvOps.populateLogMonths(_salesModel.getMonths());
 			SaleDate.Value = DateTime.Now;
 			salesDgvOps.setupTotalsRow(_salesModel.getAmountColumn(), _salesModel.getQuantityColumn());
 			salesDgvOps.setTypes();
@@ -26,6 +25,7 @@ namespace Green_Enviro_App
 			try
 			{
 				salesDgvOps.populateComboBox(SaleCompanyName, _salesModel.getCompanies());
+				salesDgvOps.populateLogMonths(_salesModel.getMonths());
 			}
 			catch (Exception ex) 
 			{
@@ -116,8 +116,15 @@ namespace Green_Enviro_App
 			{
 				string rowToDelete = salesDgvOps.getSelectedRowInfo();
 				string month = salesDgvOps.getSelectedMonth();
-				_salesModel.deleteSale(rowToDelete, month);
-				updateSalesGridView(month);
+				try
+				{
+					_salesModel.deleteSale(rowToDelete, month);
+					updateSalesGridView(month);
+				}
+				catch (Exception ex) 
+				{
+					GenericControllers.reportError(_mainForm, ex.Message);
+				}
 			}
 			else 
 			{

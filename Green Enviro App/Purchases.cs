@@ -36,8 +36,8 @@ namespace Green_Enviro_App
 			_purchases_pr = purchasesPR;
 			fileHandles = fh;
 			int uniquePurchaseColumns = 5;
-			csvHandles = new CSVHandles(_main_form.PurchseLogGridView, uniquePurchaseColumns);
-			dgvOps = new DGVOps(_main_form.PurchseLogGridView, _main_form.PurchaseLogMonth,
+			csvHandles = new CSVHandles(_main_form.PurchasesLogGridView, uniquePurchaseColumns);
+			dgvOps = new DGVOps(_main_form.PurchasesLogGridView, _main_form.PurchaseLogMonth,
 								_main_form.PurchaseLogStartDate, _main_form.PurchaseLogEndDate,
 								_main_form.PurchaseLogType, _main_form);
 			CreateLogFiles();
@@ -127,7 +127,7 @@ namespace Green_Enviro_App
 		{
 			_main_form.PurchaseLogMonth.SelectedItem = null;
 			RemoveFilters();
-			_main_form.PurchseLogGridView.DataSource = null;
+			_main_form.PurchasesLogGridView.DataSource = null;
 		}
 
 		/// <summary>
@@ -137,20 +137,20 @@ namespace Green_Enviro_App
 		public void DeletePurchase() 
 		{
 			//Verify that something is selected before attempting to delete
-			if (_main_form.PurchseLogGridView.SelectedCells.Count == 0) 
+			if (_main_form.PurchasesLogGridView.SelectedCells.Count == 0) 
 			{
 				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the purchase to be deleted");
 				return;
 			}
 
 			//Confirm that the use is not trying to delete the totals column
-			if (_main_form.PurchseLogGridView.CurrentCell.RowIndex == _main_form.PurchseLogGridView.Rows.Count-1)
+			if (_main_form.PurchasesLogGridView.CurrentCell.RowIndex == _main_form.PurchasesLogGridView.Rows.Count-1)
 			{
 				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "It's not possible to delete the TOTALS row");
 				return;
 			}
 
-			int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
+			int _current_row = _main_form.PurchasesLogGridView.CurrentCell.RowIndex;
 			//Highlight the rows that will be deleted if the user chooses to confirm
 			//Returns a string the will be the starting substring for the row that will be deleted
 
@@ -172,13 +172,13 @@ namespace Green_Enviro_App
 		public void addToPRRequest() 
 		{
 			//Verify that something is selected before attempting to add it to the police register
-			if (_main_form.PurchseLogGridView.SelectedCells.Count == 0)
+			if (_main_form.PurchasesLogGridView.SelectedCells.Count == 0)
 			{
 				CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please select the purchase to be added");
 				return;
 			}
 
-			int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
+			int _current_row = _main_form.PurchasesLogGridView.CurrentCell.RowIndex;
 
 			csvHandles.highlightRow(_current_row);
 			//csvHandles.ConfirmPurchasePRAddition(_main_form, this);
@@ -191,15 +191,15 @@ namespace Green_Enviro_App
 			{
 				//Here we will handle the code for copying items over to the police register
 				csvHandles.eraseHighlightMarks();
-				int _current_row = _main_form.PurchseLogGridView.CurrentCell.RowIndex;
+				int _current_row = _main_form.PurchasesLogGridView.CurrentCell.RowIndex;
 
 				string purchaseInfo = "";
 
 				//Copy all the elements in the columns of the data gridview and append them to a string. 
 				//The string will have a comma at the beginning and therefore must be removed
-				for (int column = 0; column < _main_form.PurchseLogGridView.ColumnCount; column++) 
+				for (int column = 0; column < _main_form.PurchasesLogGridView.ColumnCount; column++) 
 				{
-					purchaseInfo = purchaseInfo + "," + _main_form.PurchseLogGridView.Rows[_current_row].Cells[column].Value.ToString();
+					purchaseInfo = purchaseInfo + "," + _main_form.PurchasesLogGridView.Rows[_current_row].Cells[column].Value.ToString();
 				}
 
 				//Remove the comma at the beginning of the string

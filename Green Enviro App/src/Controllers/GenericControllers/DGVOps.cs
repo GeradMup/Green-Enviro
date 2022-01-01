@@ -412,24 +412,6 @@ namespace Green_Enviro_App
 			dataGridView.Refresh();
 		}
 
-		/// <summary>Gives the default column widths for DataGridViews consisting of 9 Columns.</summary>
-		/// <returns>A list of floats containing the dafault column widths.</returns>
-		public List<float> defaultColWidths()
-		{
-			List<float> colWidths = new List<float>();
-			colWidths.Add(180F);
-			colWidths.Add(110F);
-			colWidths.Add(130F);
-			colWidths.Add(130F);
-			colWidths.Add(40F);
-			colWidths.Add(80F);
-			colWidths.Add(50F);
-			colWidths.Add(50F);
-			colWidths.Add(60F);
-
-			return colWidths;
-		}
-
 		/// <summary>Sets the types of the products and populates the types combo box. 
 		/// There are only two types, Ferrous or Non-ferrous.</summary>
 		public void setTypes() 

@@ -19,8 +19,7 @@ namespace Green_Enviro_App
         LoginForm _login_form;
         Receipt _receipt;
         Database _database;
-        Purchases _purchases;
-        //Expenses _expenses;
+        //Purchases _purchases;
 		
         Customers _customers;
         NewCustomer _new_customer;
@@ -43,6 +42,7 @@ namespace Green_Enviro_App
         ExpensesModel _expensesModel;
         EmployeesModel _employeesModel;
         SalesModel _salesModel;
+        PurchasesModel _purchasesModel;
 
         FixedExpensesModel _fixedExpensesModel;
         FixedExpensesViews _fixedExpensesViews;
@@ -64,14 +64,9 @@ namespace Green_Enviro_App
             _csvHandles = new CSVHandles();
             _mainForm = this;
             _purchasesPR = new Purchases_PR(this,_fileHandles);
-            _purchases = new Purchases(this, _purchasesPR, _fileHandles);
+            //_purchases = new Purchases(this, _purchasesPR, _fileHandles);
             _email = new Email();
-            //_sales = new Sales(this, _database, _fileHandles);
             _inventory = new Inventory(this);
-            //_receipt = new Receipt(this, _database, _purchases, _sales, _inventory);
-            
-            //_expenses = new Expenses(this, _database, _fileHandles);
-            //_wages = new Wages(this, _database, _fileHandles);
             _customers = new Customers(this,_database, _receipt);
            
 
@@ -81,9 +76,11 @@ namespace Green_Enviro_App
             _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);
             _expensesModel = new ExpensesModel(_database,_csvHandles,_fileHandles);
             _employeesModel = new EmployeesModel(_database);
+            
             _fixedExpensesModel = new FixedExpensesModel(_database);
             _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);
             _salesModel = new SalesModel(_database, _fileHandles, _csvHandles);
+            _purchasesModel = new PurchasesModel(_fileHandles, _csvHandles);
 
             _employees = new Employees(this, _employeesModel);
             _dgvOps = new DGVOps(this);
@@ -98,6 +95,7 @@ namespace Green_Enviro_App
             initializeWagesTab();
             initializeExpensesTab();
             initializeSalesTab();
+            initializePurchasesTab();
         }
 
 		/// <summary>
@@ -247,15 +245,6 @@ namespace Green_Enviro_App
         //PURCHASE LOG RELATED CALLS
         //******************************************************************************************************************************
 
-        private void FilterPurchaseLogBtn_Click(object sender, EventArgs e)
-        {
-            _purchases.filterGrid();
-        }
-
-		private void PurchaseLogMonth_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            _purchases.MonthSelected();
-		}
 
         private void SendDstrctCertEmailBtn_Click(object sender, EventArgs e)
         {
@@ -321,7 +310,7 @@ namespace Green_Enviro_App
 		{
             _previous_tab_page = e.TabPage;
             //_receipt.ResetReceipt();
-            _purchases.Reset();
+            //_purchases.Reset();
             //_sales.Reset();
             _inventory.Reset();
             //_expenses.Reset();
@@ -331,6 +320,7 @@ namespace Green_Enviro_App
             resetDeliveryNotes();
             resetExpenses();
             resetSales();
+            resetPurchases();
         }
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
@@ -406,13 +396,13 @@ namespace Green_Enviro_App
             printer.PageSettings.PrinterSettings.DefaultPageSettings.PaperSize = sizeA3;
 
 
-            PurchseLogGridView.Rows[PurchseLogGridView.Rows.Count - 1].Visible = false;
-            var fontInfo = PurchseLogGridView.Font;
-            PurchseLogGridView.DefaultCellStyle.Font = new Font("Consolas", 10);
-            printer.PrintDataGridView(this.PurchseLogGridView);
-            PurchseLogGridView.Rows[PurchseLogGridView.Rows.Count - 1].Visible = true;
+            PurchasesLogGridView.Rows[PurchasesLogGridView.Rows.Count - 1].Visible = false;
+            var fontInfo = PurchasesLogGridView.Font;
+            PurchasesLogGridView.DefaultCellStyle.Font = new Font("Consolas", 10);
+            printer.PrintDataGridView(this.PurchasesLogGridView);
+            PurchasesLogGridView.Rows[PurchasesLogGridView.Rows.Count - 1].Visible = true;
 
-            PurchseLogGridView.DefaultCellStyle.Font = fontInfo;
+            PurchasesLogGridView.DefaultCellStyle.Font = fontInfo;
         }
 
 		private void Main_Form_FormClosed(object sender, FormClosedEventArgs e)
@@ -432,18 +422,10 @@ namespace Green_Enviro_App
             }
 		}
 
-		private void DeletePurchaseBtn_Click(object sender, EventArgs e)
-		{
-            _purchases.DeletePurchase();
-		}
+
 		private void PurchasesPRMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
             _purchasesPR.monthSelected();
-		}
-
-		private void AddToPRBtn_Click(object sender, EventArgs e)
-		{
-            _purchases.addToPRRequest();
 		}
 	}
 }
