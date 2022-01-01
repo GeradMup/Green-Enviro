@@ -133,17 +133,17 @@ namespace Green_Enviro_App
         //*************************************************************************************************************************
         private void addItemBtn_Click(object sender, EventArgs e)
         {
-            _receipt.addItems();
+            //_receipt.addItems();
         }
 
 		private void PriceOverrideCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-            _receipt.ManualPrice();
+            //_receipt.ManualPrice();
         }
 
 		private void customerNumbersList_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            _receipt.UpdateCustomerDetails();
+            //_receipt.UpdateCustomerDetails();
 		}
 
         private void PurchaseBtn_Click(object sender, EventArgs e)
@@ -160,7 +160,7 @@ namespace Green_Enviro_App
                     _receipt.CompletePurchaseOrSale();
                 }*/
 
-                _receipt.CompletePurchaseOrSale();
+                //_receipt.CompletePurchaseOrSale();
             }
             else if ((ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
                 ||(ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale)) 
@@ -174,23 +174,23 @@ namespace Green_Enviro_App
                     PermissionDenied();
                 }*/
 
-                _receipt.CompletePurchaseOrSale();
+               // _receipt.CompletePurchaseOrSale();
             } 
         }
 
 		private void CancelPurchaseBtn_Click(object sender, EventArgs e)
 		{
-            _receipt.ResetReceipt();
+            //_receipt.ResetReceipt();
 		}
 
         private void itemList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _receipt.ItemChanged();
+            //_receipt.ItemChanged();
         }
 
         private void DealerPriceCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            _receipt.ItemChanged();
+            //_receipt.ItemChanged();
         }
 
         private void ReceiptPriceEditBtn_Click(object sender, EventArgs e)
@@ -205,7 +205,7 @@ namespace Green_Enviro_App
                 PermissionDenied();
             }*/
 
-            _receipt.EditPrices();
+            //_receipt.EditPrices();
         }
 
         private void ReprintReceiptBtn_Click(object sender, EventArgs e)
@@ -216,7 +216,7 @@ namespace Green_Enviro_App
             }
             else
             {
-                _receipt.PrintReceipt();
+                //_receipt.PrintReceipt();
             }
         }
 
@@ -224,7 +224,7 @@ namespace Green_Enviro_App
         {
             if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
             {
-                _receipt.EditFloat();
+                //_receipt.EditFloat();
             }
             else
             {
@@ -239,7 +239,7 @@ namespace Green_Enviro_App
 			
 			if (e.KeyCode == Keys.Enter)
             {
-                _receipt.UpdateCustomerDetails();
+               // _receipt.UpdateCustomerDetails();
             }
         }
 
@@ -363,7 +363,7 @@ namespace Green_Enviro_App
 
 		private void EditCustomers_Click(object sender, EventArgs e)
 		{
-            _receipt.ResetReceipt();
+            //_receipt.ResetReceipt();
             //We will no longer check the permission level before editing the customers
             /*if ((_user_permission_level == 4) || (_user_permission_level == 5))
             {
@@ -428,7 +428,7 @@ namespace Green_Enviro_App
             }
             else 
             {
-                _receipt.SaleOrPurchaseChanged();
+                //_receipt.SaleOrPurchaseChanged();
             }
 		}
 

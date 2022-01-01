@@ -239,7 +239,7 @@ namespace Green_Enviro_App
 			try
 			{
 				NewCustomerIdPictureBox.Image.Save(_path_to_image, System.Drawing.Imaging.ImageFormat.Jpeg);
-				_receipt.setupCustomerList();
+				//_receipt.setupCustomerList();
 				CustomMessageBox mb = new CustomMessageBox(this, CustomMessageBox.success, "Customer details saved");
 				Exit();
 			}

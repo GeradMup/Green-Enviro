@@ -14,13 +14,14 @@ using System.Globalization;
 
 namespace Green_Enviro_App
 {
+    
     public class Receipt
     {
 
         Main_Form _main_form;
         Database _database;
         Purchases _purchases;
-        Sales _sales;
+        //Sales _sales;
         Items _items_form;
         Float _float;
         Inventory _inventory;
@@ -29,7 +30,7 @@ namespace Green_Enviro_App
         DataTable _customers;
         List<string> _purchased_items = new List<string>();
         List<string> _purchased_quantities = new List<string>();
-        List<CasualSale> _sold_items = new List<CasualSale>();
+        //List<CasualSale> _sold_items = new List<CasualSale>();
 
         string _receipt_content = "";
         float _running_total = 0;
@@ -71,14 +72,14 @@ namespace Green_Enviro_App
         }
 
         public PurchaseOrSaleType purchaseOrSaleType = new PurchaseOrSaleType();
-
+        /*
         public Receipt(Main_Form form, Database data, Purchases logs, Sales sales, Inventory inventory) 
         {
             _main_form = form;
             _database = data;
             _purchases = logs;
             _inventory = inventory;
-            _sales = sales;
+           // _sales = sales;
             _items_form = new Items(this,_database);
             _float = new Float(this, _main_form);
             _items_form.Owner = _main_form;
@@ -707,6 +708,7 @@ namespace Green_Enviro_App
             
             
         }
-
+        */
 	}
+    
 }

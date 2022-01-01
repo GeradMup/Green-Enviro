@@ -45,7 +45,7 @@ namespace Green_Enviro_App
         private void Exit()
         {
             ClearFields();
-            _receipt.ResetReceipt();
+            //_receipt.ResetReceipt();
             this.Owner.Enabled = true;
             this.Owner.Show();
             this.Hide();
@@ -78,7 +78,7 @@ namespace Green_Enviro_App
 
 		private void CustomersDoneBtn_Click(object sender, EventArgs e)
 		{
-            _receipt.setupCustomerList();
+           // _receipt.setupCustomerList();
             LoadCustomersDataTable();
             Exit();
 		}

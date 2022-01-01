@@ -106,7 +106,7 @@ namespace Green_Enviro_App
 
 		private void PriceChangeCpltBtn_Click(object sender, EventArgs e)
 		{
-			_receit.SetupPriceList();
+			//_receit.SetupPriceList();
 
 			this.Owner.Enabled = true;
 			this.Owner.Show();
