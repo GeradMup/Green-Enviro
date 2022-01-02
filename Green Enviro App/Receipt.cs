@@ -20,8 +20,6 @@ namespace Green_Enviro_App
 
         Main_Form _main_form;
         Database _database;
-        Purchases _purchases;
-        //Sales _sales;
         Items _items_form;
         Float _float;
         Inventory _inventory;
