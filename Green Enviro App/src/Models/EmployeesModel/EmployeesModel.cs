@@ -63,7 +63,7 @@ namespace Green_Enviro_App
 										   employeeInfo.employeeAddress,
 										   employeeInfo.employeeCell };
 
-			Database.EmployeesTableColumns[] columns = GenericModels.enumFieldsToList<Database.EmployeesTableColumns>();
+			Database.EmployeesTableColumns[] columns = GenericModels.enumFieldsToArray<Database.EmployeesTableColumns>();
 			Database.EmployeesTableColumns identifierColumn = Database.EmployeesTableColumns.Identification;
 			try
 			{

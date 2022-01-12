@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -44,7 +45,7 @@ namespace Green_Enviro_App
 			return enumName;
 		}
 
-		/// <summary>Generic function that converts a string into an enum type.</summary>
+		/// <summary>Converts a string into an enum type.</summary>
 		/// <typeparam name="EnumType">The type of enum to convert to.</typeparam>
 		/// <param name="enumName">Name of the enum.</param>
 		/// <returns>The a field of the given enum type after conversion.</returns>
@@ -54,7 +55,7 @@ namespace Green_Enviro_App
 			return enumField;
 		}
 
-		/// <summary>Function to generate a string containing all the fields of a given enum type.</summary>
+		/// <summary>Generates a string containing all the fields of a given enum type.</summary>
 		/// <typeparam name="EnumType">The enum type.</typeparam>
 		/// <returns>A string representing all the fields of the enum seperated by commas.</returns>
 		public static string enumFieldsToString<EnumType>()
@@ -76,9 +77,19 @@ namespace Green_Enviro_App
 		/// <typeparam name="EnumType">The enum type.</typeparam>
 		/// <returns>List&lt;EnumType&gt;.
 		/// containing the all the enum fields.</returns>
-		public static EnumType[] enumFieldsToList<EnumType>()
+		public static EnumType[] enumFieldsToArray<EnumType>()
 		{
 			return Enum.GetValues(typeof(EnumType)).Cast<EnumType>().ToArray();
+		}
+
+		/// <summary>Generates a List of strings containing all the enum fields.</summary>
+		/// <typeparam name="EnumType">The enum type.</typeparam>
+		/// <returns>A List of strings representing all the enum fields.</returns>
+		public static List<string> enumFieldsToStringList<EnumType>() 
+		{
+			List<EnumType> enumList =  Enum.GetValues(typeof(EnumType)).Cast<EnumType>().ToList();
+			List<string> enumStringList = enumList.Select(s => s.ToString()).ToList();
+			return enumStringList;
 		}
 
 		/// <summary>Generates the path to save a file.</summary>
@@ -105,6 +116,12 @@ namespace Green_Enviro_App
 			}
 
 			return savePath;
+		}
+
+		public static Image byteArrayToImage(byte[] byteArray) 
+		{
+			MemoryStream memoryStream = new MemoryStream(byteArray);
+			return Image.FromStream(memoryStream);
 		}
 	}
 

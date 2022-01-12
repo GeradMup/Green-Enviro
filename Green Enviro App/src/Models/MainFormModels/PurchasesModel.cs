@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -142,6 +143,9 @@ namespace Green_Enviro_App
 				surname = "";
 				id = "";
 				number = 0;
+				address = "";
+				cell = "";
+				idPicture = null;
 			}
 			/// <summary>Gets or sets the purchase date.</summary>
 			/// <value>The date.</value>
@@ -158,16 +162,25 @@ namespace Green_Enviro_App
 			/// <summary>Gets or sets the customer number.</summary>
 			/// <value>The number.</value>
 			public int number { set; get; }
+			/// <summary>Gets or sets the customer's address.</summary>
+			/// <value>The address.</value>
+			public string address { set; get; }
+			/// <summary>Gets or sets the customer's cell number.</summary>
+			/// <value>The cell.</value>
+			public string cell { set; get; }
+			/// <summary> Gets or sets the identifier picture. </summary>
+			/// <value> The identifier picture. </value>
+			public Image idPicture { set; get; }
 		}
 
 		/// <summary>
 		/// Object to describe the item info during a purchase.
 		/// </summary>
-		internal class ItemInfo 
+		internal class PurchasedItemInfo 
 		{
 			/// <summary>
-			/// Initializes a new instance of the <see cref="ItemInfo" /> class.</summary>
-			public ItemInfo() 
+			/// Initializes a new instance of the <see cref="PurchasedItemInfo" /> class.</summary>
+			public PurchasedItemInfo() 
 			{
 				name = "";
 				quantity = Constants.DECIMAL_ZERO;
@@ -175,18 +188,23 @@ namespace Green_Enviro_App
 				totalPrice = Constants.DECIMAL_ZERO;
 				type = "";
 			}
+
 			/// <summary>Gets or sets the item name.</summary>
 			/// <value>The name.</value>
 			public string name { set; get; }
+			
 			/// <summary>Gets or sets the item quantity.</summary>
 			/// <value>The quantity.</value>
 			public decimal quantity { set; get; }
+			
 			/// <summary>Gets or sets the item's unit price.</summary>
 			/// <value>The unit price.</value>
 			public decimal unitPrice { set; get; }
+			
 			/// <summary>Gets or sets the item's total price.</summary>
 			/// <value>The total price.</value>
 			public decimal totalPrice { set; get; }
+			
 			/// <summary>Gets or sets the item type. Item type can be Ferrous or Non-Ferrous.</summary>
 			/// <value>The type.</value>
 			public string type { set; get; }

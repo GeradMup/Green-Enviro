@@ -60,6 +60,10 @@ namespace Green_Enviro_App
 		public static readonly string DATE_FORMAT;
 		/// <summary>Special input characters to be ignored if users input them.</summary>
 		public static readonly string SPECIAL_CHARACTERS;
+		/// <summary>Base path to the folder with the customer ID pictures.</summary>
+		public static readonly string CUSTOMERS_BASE_PATH;
+		/// <summary>The file extension for JPEG files.</summary>
+		public static readonly string JPG_EXTENSION;
 
 		/// <summary>Initializes a new instance of the <see cref="Constants" /> class.</summary>
 		static Constants()
@@ -74,9 +78,11 @@ namespace Green_Enviro_App
 			SALES_POLICE_REG_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Police Registers\Sales\";
 			SALES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Sales\";
 			WAGES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Wages\";
+			CUSTOMERS_BASE_PATH = PROJECT_PATH + @"Customers\";
 			CURRENT_MONTH_AND_YEAR = DateTime.Now.ToString("MMMM yyyy");
 			CSV_EXTENSION = ".csv";
 			PDF_EXTENSION = ".pdf";
+			JPG_EXTENSION = ".jpg";
 			FERROUS = "Ferrous";
 			NON_FERROUS = "Non-Ferrous";
 			EMPTY_TEXT = "";

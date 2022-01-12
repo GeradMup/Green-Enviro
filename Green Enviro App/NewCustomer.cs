@@ -249,7 +249,7 @@ namespace Green_Enviro_App
 			}
 		}
 
-		public void EditCustomer() 
+		public void EditCustomer()
 		{
 
 			string customerNumber = NewCustomerNumber.Value.ToString();
@@ -258,30 +258,32 @@ namespace Green_Enviro_App
 			string customerSurname = NewCustomerSurname.Text;
 			string customerCell = "0" + NewCustomerCell.Value.ToString();
 			string customerAddress = NewCustomerAddress.Text;
+			byte[] customerIdPictureBytes = imageToByteArray(NewCustomerIdPictureBox.Image);
 
-
+			MessageBox.Show(customerIdPictureBytes.Length.ToString());
+			//int byteEncodedInteger = BitConverter.ToInt32(customerIdPictureBytes, 0);
+			//MessageBox.Show(base64Image);
 			//string _column_value_pairs = "ID = '" + _customer_id + "', Name = '" + _customer_name + "', Surname = '" + _customer_surname + "', Cell = '" + _customer_cell + "', Address = '" + _customer_address + "'";
 			//string _identification_column = "CustomerNumber";
 			//string _identifier = "'" + _customer_number + "'";
-			
-			TableCols[] columnsToUpdate = {TableCols.ID, TableCols.Name,TableCols.Surname,TableCols.Cell, TableCols.Address};
-			TableCols identifierColumnName = TableCols.CustomerNumber;
-			string identifier = customerNumber;
-			string[] values = {customerId, customerName, customerSurname, customerCell, customerAddress};
-			
-			/*
-			Int32 rowsAffected = _database.update<Database.CustomersTableColumns>(Database.Tables.Customers, 
-				columnsToUpdate,identifierColumnName,identifier,values);
 
-			if (rowsAffected == 1)
-			{
-				SaveIdPicture(customerNumber);
-			}
-			else
-			{
-				CustomMessageBox mb = new CustomMessageBox(this, CustomMessageBox.error, "Failed to update customer details");
-			}
-			*/
+			//TableCols[] columnsToUpdate = { TableCols.ID, TableCols.Name, TableCols.Surname, TableCols.Cell, TableCols.Address, TableCols.IDPicture };
+			//TableCols identifierColumnName = TableCols.CustomerNumber;
+			//string identifier = customerNumber;
+			//string[] values = { customerId, customerName, customerSurname, customerCell, customerAddress, base64Image };
+
+
+			//_database.update<Database.CustomersTableColumns>(Database.Tables.Customers,
+			//	columnsToUpdate, identifierColumnName, identifier, values);
+			//MessageBox.Show("Testing Pictures");
+
+		}
+
+		private byte[] imageToByteArray(Image image) 
+		{
+			MemoryStream memoryStream = new MemoryStream();
+			image.Save(memoryStream, image.RawFormat);
+			return memoryStream.ToArray();
 		}
 		
 

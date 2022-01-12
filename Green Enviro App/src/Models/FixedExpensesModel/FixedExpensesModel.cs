@@ -64,7 +64,7 @@ namespace Green_Enviro_App
 		/// <exception cref="System.Exception">If something goes wrong with the database update or selection.</exception>
 		public DataTable updateExpense(FixedExpenseInfo expenseInfo, string expenseName) 
 		{
-			FixedExpensesTableColumns[] tableColumns = GenericModels.enumFieldsToList<FixedExpensesTableColumns>();
+			FixedExpensesTableColumns[] tableColumns = GenericModels.enumFieldsToArray<FixedExpensesTableColumns>();
 			FixedExpensesTableColumns expenseNameColumn = FixedExpensesTableColumns.Name;
 			string[] expenseInfoString = { expenseInfo.name, expenseInfo.amount.ToString() };
 			DataTable expenses;

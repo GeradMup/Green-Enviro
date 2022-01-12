@@ -61,71 +61,9 @@ namespace Green_Enviro_App
         bool dateCaptured = false;
         string transaction_time = "";
         string transaction_date_and_time = "";
-        public struct PurchaseOrSaleType { 
-            public string purchase { get { return "Purchase"; } }
 
-            public string formalSale { get { return "Formal Sale"; } }
 
-            public string casualSale { get { return "Casual sale"; } }
-        }
-
-        public PurchaseOrSaleType purchaseOrSaleType = new PurchaseOrSaleType();
         /*
-        public Receipt(Main_Form form, Database data, Purchases logs, Sales sales, Inventory inventory) 
-        {
-            _main_form = form;
-            _database = data;
-            _purchases = logs;
-            _inventory = inventory;
-           // _sales = sales;
-            _items_form = new Items(this,_database);
-            _float = new Float(this, _main_form);
-            _items_form.Owner = _main_form;
-            _float.Owner = _main_form;
-
-            SetupPriceList();
-            setupReceipt();
-            SetSalePurchase();
-            setupCustomerList();
-            //SetupFloat();
-        }
-        
-        public void SetupPriceList() 
-        {
-            //Gets all items from the database and stores them in a DataTable named _items
-            _items = _database.selectAll(Database.Tables.Items);
-
-            //MessageBox.Show("All Items: " + _items.Rows.Count.ToString());
-
-            int _name_column = 1;
-            int _type_column = 4;
-
-            HashSet<string> _types = new HashSet<string>();
-
-            _main_form.itemList.Items.Clear();
-            foreach (DataRow row in _items.Rows) 
-            {
-                //Selects only the name of the items and stores them in a drop down list that will appear on the receipt page
-                _main_form.itemList.Items.Add(row[_name_column]);
-                _types.Add(row[_type_column].ToString());
-            }
-
-            string _first_arg = "";
-            string _second_arg = "";
-
-            foreach (string type in _types) 
-            {
-                if (type[0] == 'F') 
-                {
-                    _first_arg = type;
-                }
-
-                if (type[0] == 'N') 
-                {
-                    _second_arg = type;
-                }
-            }
-        }
 
         public void setupCustomerList() 
         {
@@ -136,11 +74,11 @@ namespace Green_Enviro_App
 
             int _customer_number_column = 0;
 
-            _main_form.customerNumbersList.Items.Clear();
+            _main_form.ReceiptCustomerNumbers.Items.Clear();
             foreach (DataRow row in _customers.Rows)
             {
                 //Selects the customer numbers and adds to the drop down list on the receipt page
-                _main_form.customerNumbersList.Items.Add(row[_customer_number_column]);
+                _main_form.ReceiptCustomerNumbers.Items.Add(row[_customer_number_column]);
             }
         }
 
@@ -190,15 +128,6 @@ namespace Green_Enviro_App
             _main_form.receiptBox.ScrollToCaret();
 
             _main_form.receiptBox.ReadOnly = true;
-        }
-
-        private void SetSalePurchase() 
-        {
-            _main_form.ReceiptSaleOrPurchase.Items.Clear();
-            _main_form.ReceiptSaleOrPurchase.Items.Insert(0, _purchase);
-            _main_form.ReceiptSaleOrPurchase.Items.Insert(1, _formal_sale);
-            _main_form.ReceiptSaleOrPurchase.Items.Insert(2, _casual_sale);
-            _main_form.ReceiptSaleOrPurchase.SelectedIndex = 0;
         }
 
         public void addItems() 
@@ -316,7 +245,7 @@ namespace Green_Enviro_App
             decimal _zero = (decimal)0.00;
             string _no_text = "";
             
-            if ((_main_form.customerNumbersList.Text == _no_text) && (_main_form.ReceiptDefaultCustomerCheckBox.CheckState == CheckState.Unchecked)
+            if ((_main_form.ReceiptCustomerNumbers.Text == _no_text) && (_main_form.ReceiptDefaultCustomerCheckBox.CheckState == CheckState.Unchecked)
                 && (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _purchase))
             {
                 //First check if customer details have been selected
@@ -348,35 +277,6 @@ namespace Green_Enviro_App
             return _all_good;
         }
 
-        private float getPrice(string itemName) 
-        {
-            string _filter_expression = "Name = '" + itemName + "'";
-
-            DataView dataView = _items.DefaultView;
-            //Selects all the rows were the filter value matches
-            DataRow[] _row = _items.Select(_filter_expression);
-
-            //We are only interested in the first value. 
-            //There will be only one row since all the rows have unique names
-
-            int _only_row = 0;
-            int _price_column;
-
-            if ((_main_form.DealerPriceCheckBox.CheckState == CheckState.Checked))
-            {
-                //Coloumn 3 contains dealer prices
-                _price_column = 3;
-            }
-            else 
-            {
-                //Column 2 contains regular prices
-                _price_column = 2;
-            }
-            
-            float _price = float.Parse(_row[_only_row][_price_column].ToString(), CultureInfo.InvariantCulture);
-
-            return _price;
-        }
 
         private void ClearFields() 
         {
@@ -388,7 +288,7 @@ namespace Green_Enviro_App
         public void UpdateCustomerDetails(bool dropDownList = false) 
         {
             //Check if the purchase has been cancelled. Reset the customer details if purchase was cancelled
-            if (_main_form.customerNumbersList.Text == "") 
+            if (_main_form.ReceiptCustomerNumbers.Text == "") 
             {
                 ClearCustomerDetails();
                 return;
@@ -408,7 +308,7 @@ namespace Green_Enviro_App
                 return;
             }
 
-            _customer_number = _main_form.customerNumbersList.Text;
+            _customer_number = _main_form.ReceiptCustomerNumbers.Text;
 
             string _filter_expression = "CustomerNumber = '" + _customer_number + "'";
 
@@ -555,10 +455,10 @@ namespace Green_Enviro_App
 
         public void ResetReceipt() 
         {
-            _main_form.customerNumbersList.DropDownStyle = ComboBoxStyle.DropDownList;
-            _main_form.customerNumbersList.SelectedItem = null;
+            _main_form.ReceiptCustomerNumbers.DropDownStyle = ComboBoxStyle.DropDownList;
+            _main_form.ReceiptCustomerNumbers.SelectedItem = null;
             UpdateCustomerDetails(true);    //Also clear if the customer numbers have been changed to a drop down list
-            _main_form.customerNumbersList.DropDownStyle = ComboBoxStyle.DropDown;
+            _main_form.ReceiptCustomerNumbers.DropDownStyle = ComboBoxStyle.DropDown;
             _main_form.itemList.SelectedItem = null;
             
             _main_form.ReceiptSaleOrPurchase.SelectedIndex = 0;
@@ -680,33 +580,7 @@ namespace Green_Enviro_App
             _main_form.Enabled = false;
         }
 
-
-		/// <summary>
-        /// Sales or purchase option changed.
-        /// Function to change how the colours are updated when the transaction type changes
-        /// Green represents a normal purchase
-        /// Yellow represents a formal sale
-        /// Red represents a casual sale
-        /// </summary>
-		public void SaleOrPurchaseChanged() 
-        {
-            _main_form.purchaseOrSaleIndicator.Text = _main_form.ReceiptSaleOrPurchase.SelectedItem.ToString();
-            if (_main_form.purchaseOrSaleIndicator.Text == _purchase) 
-            {
-                _main_form.purchaseOrSaleIndicator.BackColor = Color.GreenYellow;
-            }
-            if (_main_form.purchaseOrSaleIndicator.Text == _casual_sale) 
-            {
-                _main_form.purchaseOrSaleIndicator.BackColor = Color.Red;
-            }
-            if (_main_form.purchaseOrSaleIndicator.Text == _formal_sale) 
-            {
-                _main_form.purchaseOrSaleIndicator.BackColor = Color.Yellow;
-            }
-            
-            
-        }
         */
-	}
-    
+    }
+
 }

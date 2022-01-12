@@ -383,7 +383,9 @@ namespace Green_Enviro_App
 			/// <summary>The customer's cellphone number.</summary>
 			Cell,
 			/// <summary>The address of the customer.</summary>
-			Address
+			Address,
+			/// <summary>The ID Picture of the customer.</summary>
+			IDPicture
 		}
 
 		/// <summary>

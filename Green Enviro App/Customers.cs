@@ -66,6 +66,7 @@ namespace Green_Enviro_App
         {
             //Gets all user details and stores them in a DataTable 
             _data_table = _database.selectAll(Database.Tables.Customers);
+            _data_table.Columns.RemoveAt(_data_table.Columns.Count - 1);
             _binding_source.DataSource = _data_table;
             CustomersDataGridView.DataSource = _binding_source;
         }

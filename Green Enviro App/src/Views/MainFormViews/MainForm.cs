@@ -17,10 +17,8 @@ namespace Green_Enviro_App
     public partial class Main_Form : Form
     {
         LoginForm _login_form;
-        Receipt _receipt;
         Database _database;
-        //Purchases _purchases;
-		
+        Receipt _receipt;
         Customers _customers;
         NewCustomer _new_customer;
         Email _email;
@@ -43,6 +41,7 @@ namespace Green_Enviro_App
         EmployeesModel _employeesModel;
         SalesModel _salesModel;
         PurchasesModel _purchasesModel;
+        ReceiptModel _receiptModel;
 
         FixedExpensesModel _fixedExpensesModel;
         FixedExpensesViews _fixedExpensesViews;
@@ -76,6 +75,7 @@ namespace Green_Enviro_App
             _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);
             _expensesModel = new ExpensesModel(_database,_csvHandles,_fileHandles);
             _employeesModel = new EmployeesModel(_database);
+            _receiptModel = new ReceiptModel(_database, _fileHandles, _csvHandles);
             
             _fixedExpensesModel = new FixedExpensesModel(_database);
             _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);
@@ -96,6 +96,7 @@ namespace Green_Enviro_App
             initializeExpensesTab();
             initializeSalesTab();
             initializePurchasesTab();
+            initializeReceiptTab();
         }
 
 		/// <summary>
@@ -134,46 +135,9 @@ namespace Green_Enviro_App
             //_receipt.addItems();
         }
 
-		private void PriceOverrideCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-            //_receipt.ManualPrice();
-        }
-
-		private void customerNumbersList_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            //_receipt.UpdateCustomerDetails();
-		}
-
         private void PurchaseBtn_Click(object sender, EventArgs e)
         {
-            //Check if the current transaction is to be a purchase or sale first
-            if (ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.purchase)
-            {
-                /*if ((_user_permission_level == 2))
-                {
-                    PermissionDenied();
-                }
-                else
-                {
-                    _receipt.CompletePurchaseOrSale();
-                }*/
-
-                //_receipt.CompletePurchaseOrSale();
-            }
-            else if ((ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
-                ||(ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale)) 
-            {
-                /*if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
-                {
-					_receipt.CompletePurchaseOrSale();
-                }
-                else
-                {
-                    PermissionDenied();
-                }*/
-
-               // _receipt.CompletePurchaseOrSale();
-            } 
+         
         }
 
 		private void CancelPurchaseBtn_Click(object sender, EventArgs e)
@@ -181,15 +145,6 @@ namespace Green_Enviro_App
             //_receipt.ResetReceipt();
 		}
 
-        private void itemList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //_receipt.ItemChanged();
-        }
-
-        private void DealerPriceCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            //_receipt.ItemChanged();
-        }
 
         private void ReceiptPriceEditBtn_Click(object sender, EventArgs e)
         {
@@ -231,16 +186,6 @@ namespace Green_Enviro_App
             
         }
 
-        private void customerNumbersList_KeyDown(object sender, KeyEventArgs e)
-        {
-
-			
-			if (e.KeyCode == Keys.Enter)
-            {
-               // _receipt.UpdateCustomerDetails();
-            }
-        }
-
         //******************************************************************************************************************************
         //PURCHASE LOG RELATED CALLS
         //******************************************************************************************************************************
@@ -274,9 +219,9 @@ namespace Green_Enviro_App
         private void PrintReceipt_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
 		{
             Graphics _printing_graphic = this.CreateGraphics();
-            Bitmap map = new Bitmap(receiptBox.Size.Width, receiptBox.Size.Height, _printing_graphic);
+            Bitmap map = new Bitmap(ReceiptSlip.Size.Width, ReceiptSlip.Size.Height, _printing_graphic);
             Graphics _print_image = Graphics.FromImage(map);
-            _print_image.CopyFromScreen(receiptBox.Location.X, receiptBox.Location.Y, 0, 0, receiptBox.Size);
+            _print_image.CopyFromScreen(ReceiptSlip.Location.X, ReceiptSlip.Location.Y, 0, 0, ReceiptSlip.Size);
 		}
 
         // *******************************************************************************************************************
@@ -309,11 +254,6 @@ namespace Green_Enviro_App
         private void mainTabControl_Deselected(object sender, TabControlEventArgs e)
 		{
             _previous_tab_page = e.TabPage;
-            //_receipt.ResetReceipt();
-            //_purchases.Reset();
-            //_sales.Reset();
-            _inventory.Reset();
-            //_expenses.Reset();
             resetWages();
             resetSummaries();
             resetDestructionCertificate();
@@ -349,22 +289,6 @@ namespace Green_Enviro_App
 		{
             this.Hide();
             _login_form.Show();
-        }
-
-		private void EditCustomers_Click(object sender, EventArgs e)
-		{
-            //_receipt.ResetReceipt();
-            //We will no longer check the permission level before editing the customers
-            /*if ((_user_permission_level == 4) || (_user_permission_level == 5))
-            {
-                _customers.ActivateForm();
-            }
-            else
-            {
-                PermissionDenied();
-            }*/
-
-            _customers.ActivateForm();
         }
 
 		private void PrintPolice()
@@ -408,18 +332,6 @@ namespace Green_Enviro_App
 		private void Main_Form_FormClosed(object sender, FormClosedEventArgs e)
 		{
             Application.Exit();
-		}
-
-		private void ReceiptSaleOrPurchase_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            if (starting == true)
-            {
-                starting = false;
-            }
-            else 
-            {
-                //_receipt.SaleOrPurchaseChanged();
-            }
 		}
 
 

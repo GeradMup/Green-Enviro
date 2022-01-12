@@ -340,7 +340,7 @@ namespace Green_Enviro_App
 		/// <summary>Populates a general given ComboBox with the given data as a list of strings.</summary>
 		/// <param name="comboBox">The combo box.</param>
 		/// <param name="data">The data.</param>
-		public void populateComboBox(ComboBox comboBox, List<string> data) 
+		public void populateComboBox<T>(ComboBox comboBox, List<T> data) 
 		{
 			comboBox.Items.Clear();
 			comboBox.Items.AddRange(data.Cast<object>().ToArray());
