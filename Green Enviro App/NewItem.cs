@@ -12,8 +12,8 @@ namespace Green_Enviro_App
 {
 	public partial class NewItem : Form
 	{
-		Items _items;
-		public NewItem(Items p)
+		ItemsClass _items;
+		public NewItem(ItemsClass p)
 		{
 			InitializeComponent();
 			_items = p;

@@ -1,7 +1,7 @@
 ﻿
 namespace Green_Enviro_App
 {
-	partial class Items
+	partial class ItemsClass
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@ namespace Green_Enviro_App
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Items));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemsClass));
 			this.PricesGridView = new System.Windows.Forms.DataGridView();
 			this.ItemsChangeCpltBtn = new System.Windows.Forms.Button();
 			this.ItemsNewItemBtn = new System.Windows.Forms.Button();

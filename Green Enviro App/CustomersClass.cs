@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using TableCols = Green_Enviro_App.Database.CustomersTableColumns;
 namespace Green_Enviro_App
 {
-	public partial class Customers : Form
+	public partial class CustomersClass : Form
 	{
 
         //Here we generate the database so as to interact with the database
@@ -24,7 +24,7 @@ namespace Green_Enviro_App
         /*
          * Loading the database table for the new users into the class 
          */
-        public Customers(Main_Form main, Database _db, Receipt receipt)
+        public CustomersClass(Main_Form main, Database _db, Receipt receipt)
         {
             InitializeComponent();
             _database = _db;

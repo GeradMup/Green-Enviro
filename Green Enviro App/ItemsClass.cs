@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using TableCols = Green_Enviro_App.Database.ItemsTableColumns;
 namespace Green_Enviro_App
 {
-	public partial class Items : Form
+	public partial class ItemsClass : Form
 	{
 
 		Database _database;
@@ -19,10 +19,10 @@ namespace Green_Enviro_App
 		string _previous_value = "";
 		DataTable _items;
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Items" /> class.
+		/// Initializes a new instance of the <see cref="ItemsClass" /> class.
 		/// Class/Form used to all the price related editing
 		/// </summary>
-		public Items(Receipt rcpt, Database db)
+		public ItemsClass(Receipt rcpt, Database db)
 		{
 			InitializeComponent();
 

@@ -16,12 +16,12 @@ namespace Green_Enviro_App
 	{
 		Database _database;
 		Main_Form _main_form;
-		Customers _customers;
+		CustomersClass _customers;
 		DataTable _customers_data_table = new DataTable();
 		Receipt _receipt;
 		string _customers_table_name = "Customers";
 		bool _editing_customer = false;
-		public NewCustomer(Customers customers,Main_Form main, Database data, Receipt receipt)
+		public NewCustomer(CustomersClass customers,Main_Form main, Database data, Receipt receipt)
 		{
 			InitializeComponent();
 

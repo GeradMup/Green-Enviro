@@ -21,7 +21,7 @@ namespace Green_Enviro_App
         Database _database;
         //Purchases _purchases;
 		
-        Customers _customers;
+        CustomersClass _customers;
         NewCustomer _new_customer;
         Email _email;
         Inventory _inventory;
@@ -67,7 +67,7 @@ namespace Green_Enviro_App
             //_purchases = new Purchases(this, _purchasesPR, _fileHandles);
             _email = new Email();
             _inventory = new Inventory(this);
-            _customers = new Customers(this,_database, _receipt);
+            _customers = new CustomersClass(this,_database, _receipt);
            
 
             _destructionCertificatesModel = new DestructionCertificatesModel(this, _database, _fileHandles);
