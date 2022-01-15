@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
@@ -217,11 +218,25 @@ namespace Green_Enviro_App
 
             // Alright here we will add the code so that we insert into the DB once we enter a new user
             // To add a new user its the same principle as adding a row 
-            string[] values = { userName, encryptedPassword, userEmail, userPermissionLevel.ToString() };
-                _database.insert(Database.Tables.Users, values);// Do not know if the list requires permission lvl
+            //string[] values = { userName, encryptedPassword, userEmail, userPermissionLevel.ToString() };
+            //    _database.insert(Database.Tables.Users, values);// Do not know if the list requires permission lvl
 
-            // This is still the original list storage way to keep track of new users
-            Credentials _new_user = new Credentials(newUserNameField.Text, encryptedPassword, emailAddressField.Text, userPermissionLevel);
+            using (DataEntities context = new DataEntities()) 
+            {
+                User newUser = new User()
+                {
+                    Username = userName,
+                    Password =  encryptedPassword,
+                    Email = userEmail,
+                    PermissionLevel = userPermissionLevel
+                };
+
+                context.Users.Add(newUser);
+                context.SaveChanges();
+            }
+
+                // This is still the original list storage way to keep track of new users
+                Credentials _new_user = new Credentials(newUserNameField.Text, encryptedPassword, emailAddressField.Text, userPermissionLevel);
             _credentials.Add(_new_user);
         }
         /*
