@@ -71,7 +71,7 @@ namespace Green_Enviro_App
            
 
             _destructionCertificatesModel = new DestructionCertificatesModel(this, _database, _fileHandles);
-            _deliveryNotesModel = new DeliveryNotesModel(_database, _fileHandles);
+            _deliveryNotesModel = new DeliveryNotesModel(_fileHandles);
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
             _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);
             _expensesModel = new ExpensesModel(_database,_csvHandles,_fileHandles);

@@ -53,6 +53,8 @@ namespace Green_Enviro_App
 			DeliveryItemsList.Items.AddRange(itemNames.Cast<object>().ToArray());
 		}
 
+		/// <summary>
+		/// Populates the delivery notes companies.</summary>
 		private void populateDeliveryNotesCompanies() 
 		{
 			List<string> companyNames = _deliveryNotesModel.getCompanyNames();
@@ -61,7 +63,7 @@ namespace Green_Enviro_App
 
 		private void populateDeliveryNotesMonths() 
 		{
-			List<string> deliveryNotes = _deliveryNotesModel.getLogMonths();
+			List<string> deliveryNotes = _deliveryNotesModel.getMonths();
 			DeliveryNotesMonths.Items.AddRange(deliveryNotes.Cast<object>().ToArray());
 		}
 

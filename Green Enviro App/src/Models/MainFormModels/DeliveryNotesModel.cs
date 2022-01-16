@@ -10,6 +10,7 @@ using PdfSharp.Drawing;
 using System.IO;
 using System.Data;
 using System.Windows.Forms;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
@@ -26,15 +27,13 @@ namespace Green_Enviro_App
 		XFont regularFont = new XFont(fontName,regularFontSize);
 		XFont regularFontBold = new XFont(fontName, regularFontSize, XFontStyle.Bold);
 		XGraphics graphic;
-		Database database;
 		Products productsInfo;
 		CSVHandles csvHandles;
 		FileHandles fileHandles;
 
 		const string GENERATING_DELIVERY_NOTE_EXCEPTION = "Unable to generate delivery note exception!";
-		public DeliveryNotesModel(Database db, FileHandles fh) 
+		public DeliveryNotesModel(FileHandles fh) 
 		{
-			database = db;
 			fileHandles = fh;
 			System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 			productsInfo = new Products();
@@ -43,12 +42,18 @@ namespace Green_Enviro_App
 			setUpDeliveryNotes();
 		}
 
+		/// <summary>
+		/// Creates the folder to save the delivery notes for the month if it does not already exist.
+		/// </summary>
 		private void setUpDeliveryNotes() 
 		{
 			string path = Constants.DELIVERY_NOTES_BASE_PATH + @"\" + Constants.CURRENT_MONTH_AND_YEAR + @"\";
 			fileHandles.createFolder(path);
 		}
-		
+
+		/// <summary>
+		/// Inserts the copmany letter head on the delivery note.
+		/// </summary>
 		private void insertHeader() 
 		{
 			XImage letterHeadImage = XImage.FromFile(Constants.COMPANY_LETTERHEAD_PATH);
@@ -75,7 +80,9 @@ namespace Green_Enviro_App
 			graphic.DrawLine(XPens.Black, new XPoint(start_x, y), new XPoint(end_x, y));
 		}
 
-		private void insertCompanyInfo(GenericModels.CompanyInfo companyInfo) 
+		/// <summary>Inserts the information of the company to which the delivery is to be made.</summary>
+		/// <param name="companyInfo">The company information.</param>
+		private void insertCompanyInfo(Company companyInfo) 
 		{
 			double y_coordinate = 230;
 			
@@ -84,24 +91,29 @@ namespace Green_Enviro_App
 			insertKeyValueLine("Date :", date, ref y_coordinate, x_offset);
 
 			x_offset = 53.5;
-			insertKeyValueLine("Company :", companyInfo.companyName, ref y_coordinate, x_offset);
+			insertKeyValueLine("Company :", companyInfo.Name, ref y_coordinate, x_offset);
 
 			x_offset = 80;
-			insertKeyValueLine("Contact Person :", companyInfo.contactPerson, ref y_coordinate, x_offset);
+			insertKeyValueLine("Contact Person :", companyInfo.ContactPerson, ref y_coordinate, x_offset);
 
 			x_offset = 36;
-			insertKeyValueLine("Email :", companyInfo.emailAddress, ref y_coordinate, x_offset);
+			insertKeyValueLine("Email :", companyInfo.Email, ref y_coordinate, x_offset);
 
 			x_offset = 91;
-			insertKeyValueLine("Contact Numbers :", companyInfo.contactNumber, ref y_coordinate, x_offset);
+			insertKeyValueLine("Contact Numbers :", companyInfo.ContactNumbers, ref y_coordinate, x_offset);
 
 			x_offset = 46;
-			insertKeyValueLine("Address :", companyInfo.physicalAddress, ref y_coordinate, x_offset);
+			insertKeyValueLine("Address :", companyInfo.Address, ref y_coordinate, x_offset);
 
 			drawHorizontalLine(LineColours.black);
 
 		}
-		
+
+		/// <summary>Helper function for populating the delivery note strings.</summary>
+		/// <param name="key">The key.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="y_coordinate">The y coordinate.</param>
+		/// <param name="xValue_offset">The x value offset.</param>
 		private void insertKeyValueLine(string key, string value, ref double y_coordinate, double xValue_offset) 
 		{
 			
@@ -112,6 +124,9 @@ namespace Green_Enviro_App
 			currentLine = y_coordinate;
 		}
 
+		/// <summary>
+		/// Inserts the table and its headers.
+		/// </summary>
 		private void insertTableAndHeaders() 
 		{
 			currentLine += (nextSentenceOffset * 1);
@@ -129,6 +144,9 @@ namespace Green_Enviro_App
 
 		}
 
+		/// <summary>
+		/// Inserts the products to be delivered.
+		/// </summary>
 		private void insertProducts() 
 		{
 			foreach (Product product in productsInfo.products) 
@@ -149,6 +167,8 @@ namespace Green_Enviro_App
 			drawHorizontalLine(LineColours.black);
 		}
 
+		/// <summary>Helper function for drawing the horizontal lines right across the page.</summary>
+		/// <param name="lineColour">The line colour.</param>
 		private void drawHorizontalLine(LineColours lineColour) 
 		{
 			double start_x = 40;
@@ -168,6 +188,9 @@ namespace Green_Enviro_App
 			}
 		}
 
+		/// <summary>
+		/// Inserts the disclaimer section of the delivery note.
+		/// </summary>
 		private void insertDisclaimer() 
 		{
 			string disclaimerLineOne = "Green Enviro SA Recycling hereby states that it is the lawful owner of the above listed goods and " +
@@ -188,6 +211,8 @@ namespace Green_Enviro_App
 			drawHorizontalLine(LineColours.black);
 		}
 
+		/// <summary>Inserts the information of the person delivering the goods.</summary>
+		/// <param name="collectorInfo">The collector information.</param>
 		private void insertColletorInfo(CollectorInformation collectorInfo) 
 		{
 			currentLine += (2* nextSentenceOffset);
@@ -203,6 +228,9 @@ namespace Green_Enviro_App
 			insertKeyValueLine("Time : ", DateTime.Now.ToString("HH : MM "), ref currentLine, xValue_offset);
 		}
 
+		/// <summary>
+		/// Inserts the signature fields.
+		/// </summary>
 		private void insertSignatureFields()
 		{
 			currentLine += nextSentenceOffset * 2;
@@ -232,12 +260,16 @@ namespace Green_Enviro_App
 			return itemList;
 		}
 
+		/// <summary>Gets the company names.</summary>
+		/// <returns>A List of strings representing the company names.</returns>
 		public List<string> getCompanyNames() 
 		{
-			DataTable buyers = database.selectAll(Database.Tables.Buyers);
-			int companyNameColumn = 1;
-			List<string> buyersList = buyers.Rows.OfType<DataRow>().Select(dr => (string)dr[companyNameColumn]).ToList();
-			return buyersList;
+			List<string> companyNames;
+			using (DataEntities context = new DataEntities()) 
+			{
+				companyNames = context.Buyers.Select(column => column.Company).ToList();
+			}
+			return companyNames;
 		}
 
 		/// <summary>Adds the product to the list of products on the delivery note.</summary>
@@ -276,10 +308,6 @@ namespace Green_Enviro_App
 			return dataTable;
 		}
 
-		////////////////////////////////////////////////////////////////////////////////////////////
-		// ALL THE INTERNAL CLASSES GO IN THIS SECTION
-		////////////////////////////////////////////////////////////////////////////////////////////
-
 		/// <summary>Generates the delivery note after all the entries have been added.</summary>
 		/// <param name="companyName">Name of the company name.</param>
 		/// <param name="collectorInfo">The information about the person tansporting the delivery.</param>
@@ -291,17 +319,23 @@ namespace Green_Enviro_App
 			try
 			{
 				// New document
-				DataTable companyData = database.select<Database.BuyersTableColumns>(Database.Tables.Buyers,
-										Database.BuyersTableColumns.Company, companyName);
+				//DataTable companyData = database.select<Database.BuyersTableColumns>(Database.Tables.Buyers,
+				//						Database.BuyersTableColumns.Company, companyName);
 
-				GenericModels.CompanyInfo companyInfo = dataTableToCompanyInfo(companyData);
-			
+				//GenericModels.CompanyInfo companyInfo = dataTableToCompanyInfo(companyData);
+
+				Company company;
+				using (DataEntities context = new DataEntities()) 
+				{
+					company = context.Companies.Where(_company => _company.Name == companyName).FirstOrDefault<Company>();
+				}
+
 				PdfDocument document = new PdfDocument();
 				PdfPage page = document.AddPage();
 				graphic = XGraphics.FromPdfPage(page);
 
 				insertHeader();
-				insertCompanyInfo(companyInfo);
+				insertCompanyInfo(company);
 				insertTableAndHeaders();
 				insertProducts();
 				insertDisclaimer();
@@ -310,7 +344,7 @@ namespace Green_Enviro_App
 
 				
 
-				pathToDeliveryNote = generateSavePath(companyInfo.companyName);
+				pathToDeliveryNote = generateSavePath(company.Name);
 				document.Save(pathToDeliveryNote);
 			}
 			catch (Exception ex) 
@@ -321,6 +355,9 @@ namespace Green_Enviro_App
 			return pathToDeliveryNote;
 		}
 
+		/// <summary>Generates the path to save the new delivery note.</summary>
+		/// <param name="companyName">Name of the company.</param>
+		/// <returns>A string representing the path where the new delivery note should be saved.</returns>
 		private string generateSavePath(string companyName) 
 		{
 			string basePath = Constants.DELIVERY_NOTES_BASE_PATH;
@@ -333,17 +370,26 @@ namespace Green_Enviro_App
 			return filePath;
 		}
 
-		public List<string> getLogMonths() 
+		/// <summary>Gets the months for which delivery notes have been made.</summary>
+		/// <returns>A string representing all the months for which delivery notes have been made.</returns>
+		public List<string> getMonths() 
 		{
 			return fileHandles.getLogNames(FileHandles.LogType.DeliveryNotes);
 		}
 
+		/// <summary>Gets the names of all the delivery notes that were generated in the given month.</summary>
+		/// <param name="monthAndYeah">The month and yeah.</param>
+		/// <returns>A list of strings representing the names of all the delivery notes.</returns>
 		public List<string> getDeliveryNotes(string monthAndYeah) 
 		{
 			string path = Constants.DELIVERY_NOTES_BASE_PATH + @"\" + monthAndYeah;
 			return fileHandles.getfilesInFolder(path);
 		}
 
+		/// <summary>Gets the path to the currently selected delivery note.</summary>
+		/// <param name="selectedDeliveryNote">The selected delivery note.</param>
+		/// <param name="selectedMonthAndYear">The selected month and year.</param>
+		/// <returns>A string representing the path to the currently selected delivery note.</returns>
 		public string getPathToDeliveryNote(string selectedDeliveryNote, string selectedMonthAndYear) 
 		{
 			string basePath = Constants.DELIVERY_NOTES_BASE_PATH;
@@ -351,25 +397,9 @@ namespace Green_Enviro_App
 			return path;
 		}
 		
-		private GenericModels.CompanyInfo dataTableToCompanyInfo(DataTable table) 
-		{
-			GenericModels.CompanyInfo info = new GenericModels.CompanyInfo();
-			int onlyRow = 0;
-			int companyNameColumn = 1;
-			int addressColumn = 2;
-			int contactPersonColumn = 3;
-			int contactNumberColumn = 4;
-			int emailColumn = 5;
-
-			info.companyName = table.Rows[onlyRow][companyNameColumn].ToString();
-			info.physicalAddress = table.Rows[onlyRow][addressColumn].ToString();
-			info.contactPerson = table.Rows[onlyRow][contactPersonColumn].ToString();
-			info.contactNumber = table.Rows[onlyRow][contactNumberColumn].ToString();
-			info.emailAddress = table.Rows[onlyRow][emailColumn].ToString();
-			
-			return info;
-		}
-		/// <summary>Describes the products to be Delivered.</summary>
+		/// <summary>
+		/// Describes the products to be Delivered.
+		/// </summary>
 		internal class Products
 		{
 			public Products() 
@@ -384,6 +414,10 @@ namespace Green_Enviro_App
 			public List<Product> products { get; set; }
 		}
 
+
+		/// <summary>
+		/// Describes a single product that goes on the Delivery note.
+		/// </summary>
 		internal class Product 
 		{
 			public Product(string _name, double _quantity) 
@@ -395,6 +429,8 @@ namespace Green_Enviro_App
 			public double quantity { get; set; }
 		}
 
+		/// <summary>
+		/// Describes the person delivering the goods.</summary>
 		internal class CollectorInformation
 		{
 			public CollectorInformation(string _name = "Unknown", string _cellNumber = "0000000000", string _vehicleReg = "000000",
@@ -410,7 +446,9 @@ namespace Green_Enviro_App
 			public string vehicleRegistration { set; get; }
 			public string vehicleType { set; get; }
 		}
-		
+
+		/// <summary>
+		/// Describes all the colours for the lines to be drawn on the Delivery Note.</summary>
 		private enum LineColours
 		{
 			black,
