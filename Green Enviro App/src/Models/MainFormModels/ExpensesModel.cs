@@ -4,13 +4,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
 	using GridViewData = DGVOps.GridViewData;
 	class ExpensesModel
 	{
-		Database database;
 		CSVHandles csvHandles;
 		FileHandles fileHandles;
 
@@ -18,9 +18,8 @@ namespace Green_Enviro_App
 		/// <param name="db">The database.</param>
 		/// <param name="csvH">The CSV h.</param>
 		/// <param name="fh">The fh.</param>
-		public ExpensesModel(Database db, CSVHandles csvH, FileHandles fh) 
+		public ExpensesModel(CSVHandles csvH, FileHandles fh) 
 		{
-			database = db;
 			csvHandles = csvH;
 			fileHandles = fh;
 			createLogFiles();
@@ -33,23 +32,28 @@ namespace Green_Enviro_App
 		{
 			string expensesLogHeaders = GenericModels.enumFieldsToString<ExpensesLogHeaders>();
 			bool newFileCreated = fileHandles.createCSVFile(FileHandles.LogType.Expenses, expensesLogHeaders);
-			if (newFileCreated) addFixedExpenses();
-
+			if (newFileCreated) recordFixedExpenses();
 		}
 
 		/// <summary>
-		/// Adds the fixed expenses.
+		/// Records fixed expenses at the begining of every month.
 		/// </summary>
-		private void addFixedExpenses() 
+		private void recordFixedExpenses() 
 		{
-			DataTable fixedExpenses = database.selectAll(Database.Tables.FixedExpenses);
+			//DataTable fixedExpenses = database.selectAll(Database.Tables.FixedExpenses);
 			ExpenseInfo expenseInfo = new ExpenseInfo();
 
-			foreach (DataRow expense in fixedExpenses.Rows) 
+			List<FixedExpens> fixedExpenses;
+			using (DataEntities context = new DataEntities())
+			{
+				fixedExpenses = context.FixedExpenses.ToList();
+			}	 
+
+			foreach (FixedExpens expense in fixedExpenses) 
 			{
 				expenseInfo.date = DateTime.Now;
-				expenseInfo.description = expense[1].ToString();
-				expenseInfo.amount = (decimal)expense[2];
+				expenseInfo.description = expense.Name;
+				expenseInfo.amount = expense.Amount;
 				addExpense(expenseInfo);
 			}
 		}

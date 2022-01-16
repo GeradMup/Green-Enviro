@@ -237,8 +237,6 @@ namespace Green_Enviro_App
             {
                 throw new Exception(DESTRUCTION_CERTIFICATE_EXCEPTION, ex);
             }
-            
-     
         }
         private string generateSavePath(string companyName)
         {

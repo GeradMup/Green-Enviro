@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FastMember;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
@@ -13,24 +15,35 @@ namespace Green_Enviro_App
 	/// Class to handle all the business logic regarding fixed expenses.</summary>
 	public class FixedExpensesModel
 	{
-		Database database;
 
-		/// <summary>Initializes a new instance of the <see cref="FixedExpensesModel" /> class.</summary>
-		/// <param name="db">The database.</param>
-		public FixedExpensesModel(Database db)
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FixedExpensesModel" /> class.</summary>
+		public FixedExpensesModel()
 		{
-			database = db;
 		}
 
 		/// <summary>Gets the expenses.</summary>
 		/// <returns>A DataTable containing the expenses.</returns>
 		public DataTable getExpenses()
 		{
-			DataTable expenses;
+			DataTable expenses = new DataTable();
+			List<FixedExpens> fixedExpenses;
 
 			try
 			{
-				expenses = database.selectAll(Database.Tables.FixedExpenses);
+				using (DataEntities context = new DataEntities()) 
+				{
+					string name = "Name";
+					string amount = "Amount";
+					string id = "Id";
+					fixedExpenses = context.FixedExpenses.ToList();
+					using (ObjectReader reader = ObjectReader.Create(fixedExpenses, id, name, amount )) 
+					{
+						expenses.Load(reader);
+					}
+				}
+
 			}
 			catch (Exception ex) 
 			{
@@ -43,11 +56,20 @@ namespace Green_Enviro_App
 		/// <returns>Returns a DataTable with the updated fixed expenses.</returns>
 		public DataTable addExpense(FixedExpenseInfo expenseInfo) 
 		{
-			string[] expenseInfoString = {expenseInfo.name, expenseInfo.amount.ToString() };
 			DataTable expenses;
 			try
 			{
-				database.insert(Database.Tables.FixedExpenses, expenseInfoString);
+				using (DataEntities context = new DataEntities()) 
+				{
+					FixedExpens newExpense = new FixedExpens()
+					{
+						Name = expenseInfo.name,
+						Amount = expenseInfo.amount
+					};
+
+					context.FixedExpenses.Add(newExpense);
+					context.SaveChanges();
+				}
 				expenses = getExpenses();
 			}
 			catch (Exception ex) 
@@ -64,13 +86,19 @@ namespace Green_Enviro_App
 		/// <exception cref="System.Exception">If something goes wrong with the database update or selection.</exception>
 		public DataTable updateExpense(FixedExpenseInfo expenseInfo, string expenseName) 
 		{
-			FixedExpensesTableColumns[] tableColumns = GenericModels.enumFieldsToList<FixedExpensesTableColumns>();
-			FixedExpensesTableColumns expenseNameColumn = FixedExpensesTableColumns.Name;
-			string[] expenseInfoString = { expenseInfo.name, expenseInfo.amount.ToString() };
 			DataTable expenses;
 			try
-			{ 
-				database.update<FixedExpensesTableColumns>(Database.Tables.FixedExpenses, tableColumns, expenseNameColumn, expenseName, expenseInfoString);
+			{
+				using (DataEntities context = new DataEntities()) 
+				{
+					FixedExpens expense = context.FixedExpenses.SingleOrDefault(_exp => _exp.Name == expenseName);
+					if (expense != null) 
+					{
+						expense.Name = expenseInfo.name;
+						expense.Amount = expenseInfo.amount;
+						context.SaveChanges();
+					}
+				}
 				expenses = getExpenses();
 			}
 			catch (Exception ex) 
@@ -86,13 +114,16 @@ namespace Green_Enviro_App
 		/// <exception cref="System.Exception"></exception>
 		public DataTable deleteExpense(string expenseName) 
 		{
-			FixedExpensesTableColumns expenseNameColumn = FixedExpensesTableColumns.Name;
 			DataTable expenses;
-
 			try
 			{
-				database.delete<FixedExpensesTableColumns>(Database.Tables.FixedExpenses, expenseNameColumn, expenseName);
-				expenses = getExpenses();
+				using (DataEntities context = new DataEntities()) 
+				{
+					context.FixedExpenses.Remove(context.FixedExpenses.Single(exp => exp.Name == expenseName));
+					context.SaveChanges();
+				}
+
+					expenses = getExpenses();
 			}
 			catch (Exception ex)
 			{

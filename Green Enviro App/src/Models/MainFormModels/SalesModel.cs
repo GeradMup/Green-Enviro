@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
@@ -14,7 +15,6 @@ namespace Green_Enviro_App
 	/// </summary>
 	class SalesModel
 	{
-		Database database;
 		FileHandles fileHandles;
 		CSVHandles csvHandles;
 
@@ -22,9 +22,8 @@ namespace Green_Enviro_App
 		/// <param name="db">The database object.</param>
 		/// <param name="fh">The fileHandles object.</param>
 		/// <param name="csvh">The CSVHandles object.</param>
-		public SalesModel(Database db, FileHandles fh, CSVHandles csvh) 
+		public SalesModel(FileHandles fh, CSVHandles csvh) 
 		{
-			database = db;
 			fileHandles = fh;
 			csvHandles = csvh;
 			createLogFile();
@@ -47,9 +46,10 @@ namespace Green_Enviro_App
 			List<string> companiesList;
 			try
 			{
-				DataTable buyers = database.selectAll(Database.Tables.Buyers);
-				string companies = GenericModels.enumToString<Database.BuyersTableColumns>(Database.BuyersTableColumns.Company);
-				companiesList = buyers.AsEnumerable().Select(r => r.Field<string>(companies)).ToList();
+				using (DataEntities context = new DataEntities()) 
+				{
+					companiesList = context.Buyers.Select(_buyers => _buyers.Company).ToList();
+				}
 			}
 			catch (Exception ex) 
 			{

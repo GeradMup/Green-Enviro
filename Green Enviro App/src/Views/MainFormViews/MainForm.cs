@@ -73,13 +73,13 @@ namespace Green_Enviro_App
             _destructionCertificatesModel = new DestructionCertificatesModel(this, _fileHandles);
             _deliveryNotesModel = new DeliveryNotesModel(_fileHandles);
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
-            _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);
-            _expensesModel = new ExpensesModel(_database,_csvHandles,_fileHandles);
+            _wagesModel = new WagesModel(_csvHandles,_fileHandles);
+            _expensesModel = new ExpensesModel(_csvHandles,_fileHandles);
             _employeesModel = new EmployeesModel(_database);
             
-            _fixedExpensesModel = new FixedExpensesModel(_database);
+            _fixedExpensesModel = new FixedExpensesModel();
             _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);
-            _salesModel = new SalesModel(_database, _fileHandles, _csvHandles);
+            _salesModel = new SalesModel(_fileHandles, _csvHandles);
             _purchasesModel = new PurchasesModel(_fileHandles, _csvHandles);
 
             _employees = new Employees(this, _employeesModel);

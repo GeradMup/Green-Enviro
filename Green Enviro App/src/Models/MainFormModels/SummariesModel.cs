@@ -12,7 +12,6 @@ namespace Green_Enviro_App
 	{
 		FileHandles fileHandles;
 		CSVHandles csvHandles;
-
 		public SummariesModel(FileHandles fh, CSVHandles ch) 
 		{
 			fileHandles = fh;

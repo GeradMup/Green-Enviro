@@ -4,13 +4,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
 	using GridViewData = DGVOps.GridViewData;
 	class WagesModel
 	{
-		Database database;
 		CSVHandles csvHandles;
 		FileHandles fileHandles;
 
@@ -20,9 +20,8 @@ namespace Green_Enviro_App
 		/// <param name="db">The database calss object.</param>
 		/// <param name="csvH">The CSV Handler class object.</param>
 		/// <param name="fH">The file handler class object.</param>
-		public WagesModel(Database db, CSVHandles csvH, FileHandles fH) 
+		public WagesModel( CSVHandles csvH, FileHandles fH) 
 		{
-			database = db;
 			csvHandles = csvH;
 			fileHandles = fH;
 			createLogFiles();
@@ -103,14 +102,19 @@ namespace Green_Enviro_App
 		/// <returns>A list of strings containing all the employees names and surnames.</returns>
 		public List<string> getEmployees()
 		{
-			DataTable employees = database.selectAll(Database.Tables.Employees);
+			//DataTable employees = database.selectAll(Database.Tables.Employees);
 			List<string> employeesString = new List<string>();
-			int employeeNameColumn = 1;
-			int employeeSurnameColumn = 2;
 			string employeeNameAndSurname = "";
-			foreach (DataRow row in employees.Rows)
+
+			List<Employee> employees;
+			using (DataEntities context = new DataEntities()) 
 			{
-				employeeNameAndSurname = row[employeeNameColumn].ToString() + " " + row[employeeSurnameColumn].ToString();
+				employees = context.Employees.ToList();
+			}
+			
+			foreach (Employee employee in employees)
+			{
+				employeeNameAndSurname = employee.Name + " " + employee.Surname;
 				employeesString.Add(employeeNameAndSurname);
 			}
 			return employeesString;

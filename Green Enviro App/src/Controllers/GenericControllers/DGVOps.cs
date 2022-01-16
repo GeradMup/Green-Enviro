@@ -380,13 +380,14 @@ namespace Green_Enviro_App
 
 			//Now we make DataRow that will go in the DataTable.
 			//DataRow emptyRow = dataTable.NewRow();
-			DataRow lastRow = dataTable.NewRow();
-			//dataTable.Rows.Add(emptyRow);
-			dataTable.Rows.Add(lastRow);
+
 
 			//Add totals row and highlight the totals row
 			if (containsTotals == true) 
-			{ 
+			{
+				DataRow lastRow = dataTable.NewRow();
+				//dataTable.Rows.Add(emptyRow);
+				dataTable.Rows.Add(lastRow);
 				addTotalsRow(); 
 				highlightTotalsRow(); 
 			}
