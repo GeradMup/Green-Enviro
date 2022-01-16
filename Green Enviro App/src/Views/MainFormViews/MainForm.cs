@@ -70,7 +70,7 @@ namespace Green_Enviro_App
             _customers = new CustomersClass(this,_database, _receipt);
            
 
-            _destructionCertificatesModel = new DestructionCertificatesModel(this, _database, _fileHandles);
+            _destructionCertificatesModel = new DestructionCertificatesModel(this, _fileHandles);
             _deliveryNotesModel = new DeliveryNotesModel(_fileHandles);
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
             _wagesModel = new WagesModel(_database,_csvHandles,_fileHandles);

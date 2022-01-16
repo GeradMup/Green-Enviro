@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DCModel = Green_Enviro_App.DestructionCertificatesModel;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
@@ -46,6 +47,7 @@ namespace Green_Enviro_App
         private void setUpCompaniesList() 
         {
             List<string> companies = _destructionCertificatesModel.getCompanies();
+            DestructionCertCompany.Items.Clear();
             DestructionCertCompany.Items.AddRange(companies.Cast<object>().ToArray());
         }
 
@@ -83,6 +85,7 @@ namespace Green_Enviro_App
             {
                 _destructionCertificatesModel.generateCertificate(destructionInfo);
                 resetDestructionCertificate();
+                setUpCompaniesList();
                 GenericControllers.reportSuccess(_mainForm, DC_GENERATION_SUCCESS);
             }
             catch (Exception ex) 
@@ -103,11 +106,11 @@ namespace Green_Enviro_App
 
             try
             {
-                GenericModels.CompanyInfo companyInfo = _destructionCertificatesModel.getCompanyInfo(companyName);
-                DestructionCertCntactPerson.Text = companyInfo.contactPerson;
-                DestructionCertCntactNum.Text = companyInfo.contactNumber;
-                DestructionCertEmailAddress.Text = companyInfo.emailAddress;
-                DestructionCertCmpnyAddress.Text = companyInfo.physicalAddress;
+                Company companyInfo = _destructionCertificatesModel.getCompanyInfo(companyName);
+                DestructionCertCntactPerson.Text = companyInfo.ContactPerson;
+                DestructionCertCntactNum.Text = companyInfo.ContactNumbers;
+                DestructionCertEmailAddress.Text = companyInfo.Email;
+                DestructionCertCmpnyAddress.Text = companyInfo.Address;
             }
             catch (Exception ex) 
             {

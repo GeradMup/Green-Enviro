@@ -13,6 +13,7 @@ using System.IO;
 using System.Globalization;
 using System.Web.UI.WebControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
@@ -26,17 +27,15 @@ namespace Green_Enviro_App
          * with othe classes that are needed to make the certificate
          */
         Main_Form _main_form;
-        Database _database;
         FileHandles fileHandles;
         DataTable companiesDataTable;
         List<string> companyNameList = new List<string>();
 
         const string DESTRUCTION_CERTIFICATE_EXCEPTION = "DESTRUCTION CERTIFICATE EXCEPTION";
         const string DUPLICATE_COMPANY_EXCEPTION = "THE COMPANY YOU HAVE INSERTED ALREADY EXISTS!";
-        public DestructionCertificatesModel(Main_Form _form,Database _db, FileHandles fh)
+        public DestructionCertificatesModel(Main_Form _form, FileHandles fh)
         {
             _main_form = _form;
-            _database = _db;
             fileHandles = fh;
             loadCompanies();
             setupDestructionCertificates();
@@ -264,17 +263,18 @@ namespace Green_Enviro_App
             string quantityInPallets = "";
             const decimal palletsToKgFactor = 60;
             decimal convertedQuantity = Constants.DECIMAL_ZERO;
+            int signficantFigures = 1;
 
             switch (units) 
             {
                 case QuantityUnits.PALLETS:
                     quantityInPallets = quantity.ToString();
-                    convertedQuantity = Decimal.Round(quantity * palletsToKgFactor, 2);
+                    convertedQuantity = Decimal.Round(quantity * palletsToKgFactor, signficantFigures);
                     quantityInKg = convertedQuantity.ToString();
                     break;
                 case QuantityUnits.KG:
                     quantityInKg = quantity.ToString();
-                    convertedQuantity = Decimal.Round(quantity/palletsToKgFactor , 2);
+                    convertedQuantity = Decimal.Round(quantity/palletsToKgFactor , signficantFigures);
                     quantityInPallets = convertedQuantity.ToString();
                     break;
                 case QuantityUnits.Select:
@@ -289,12 +289,9 @@ namespace Green_Enviro_App
 		/// <summary>Loads the companies from the database.</summary>
 		private void loadCompanies() 
         {
-            companiesDataTable = _database.selectAll(Database.Tables.Companies);
-            int companyNameColumn = 1;
-
-            foreach (DataRow row in companiesDataTable.Rows)
+            using (DataEntities context = new DataEntities()) 
             {
-                companyNameList.Add(row[companyNameColumn].ToString());
+                companyNameList = context.Companies.Select(column => column.Name).ToList();
             }
         }
 
@@ -308,25 +305,13 @@ namespace Green_Enviro_App
 		/// <summary>Gets the company information given the company name.</summary>
 		/// <param name="companyName">Name of the company name.</param>
 		/// <returns>A CompanyInfo object with the information. Info includes the name, contact person, contact number, email address and physical address</returns>
-        public GenericModels.CompanyInfo getCompanyInfo(string companyName) 
+        public Company getCompanyInfo(string companyName) 
         {
-            DataTable companyDetails = _database.select<Database.CompaniesTableColumns>(Database.Tables.Companies,
-                                        Database.CompaniesTableColumns.Name, companyName);
-
-            int nameColumn = 1;
-            int contactPersonColumn = 2;
-            int emailColumn = 3;
-            int contactNumbersColumn = 4;
-            int addressColumn = 5;
-            int onlyRow = 0;
-
-            GenericModels.CompanyInfo companyInfo = new GenericModels.CompanyInfo();
-            companyInfo.companyName = companyDetails.Rows[onlyRow][nameColumn].ToString();
-            companyInfo.contactPerson = companyDetails.Rows[onlyRow][contactPersonColumn].ToString();
-            companyInfo.emailAddress = companyDetails.Rows[onlyRow][emailColumn].ToString();
-            companyInfo.contactNumber = companyDetails.Rows[onlyRow][contactNumbersColumn].ToString();
-            companyInfo.physicalAddress = companyDetails.Rows[onlyRow][addressColumn].ToString();
-
+            Company companyInfo;
+            using (DataEntities context = new DataEntities()) 
+            {
+                companyInfo = context.Companies.Where(_company => _company.Name == companyName).FirstOrDefault<Company>();
+            }
             return companyInfo;
         }
 
@@ -337,18 +322,25 @@ namespace Green_Enviro_App
 		private void AddNewCompanyToDatabase(DestructionCertificateInfo destructionCertificateInfo)
         {
             //Throw an exception if the user tries to insert a company that already exists.
-            if (companyNameList.Contains(destructionCertificateInfo.companyName)) { throw new CompanyAlreadyExistsException(); }
-
-            string companyName = destructionCertificateInfo.companyName;
-            string contactPerson = destructionCertificateInfo.contactPerson;
-            string contactNumber = destructionCertificateInfo.contactNumber;
-            string email = destructionCertificateInfo.emailAddress;
-            string address = destructionCertificateInfo.companyAddress;
-            string[] values = { companyName, contactPerson, email, contactNumber, address };
+            if (companyNameList.Contains(destructionCertificateInfo.companyName, StringComparer.OrdinalIgnoreCase)) 
+            { throw new CompanyAlreadyExistsException(); }
 
             try
-            {
-                _database.insert(Database.Tables.Companies, values);
+            { 
+                using (DataEntities context = new DataEntities()) 
+                {
+                    Company newCompany = new Company() 
+                    {
+                        Name = destructionCertificateInfo.companyName,
+                        ContactPerson = destructionCertificateInfo.contactPerson,
+                        Email = destructionCertificateInfo.emailAddress,
+                        ContactNumbers = destructionCertificateInfo.contactNumber,
+                        Address = destructionCertificateInfo.companyAddress
+                    };
+
+                    context.Companies.Add(newCompany);
+                    context.SaveChanges();
+                }
             }
             catch (Exception exception) 
             {
