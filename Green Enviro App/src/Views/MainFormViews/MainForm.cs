@@ -64,7 +64,6 @@ namespace Green_Enviro_App
             _csvHandles = new CSVHandles();
             _mainForm = this;
             _purchasesPR = new Purchases_PR(this,_fileHandles);
-            //_purchases = new Purchases(this, _purchasesPR, _fileHandles);
             _email = new Email();
             _inventory = new Inventory(this);
             _customers = new CustomersClass(this,_database, _receipt);
@@ -75,7 +74,7 @@ namespace Green_Enviro_App
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
             _wagesModel = new WagesModel(_csvHandles,_fileHandles);
             _expensesModel = new ExpensesModel(_csvHandles,_fileHandles);
-            _employeesModel = new EmployeesModel(_database);
+            _employeesModel = new EmployeesModel();
             
             _fixedExpensesModel = new FixedExpensesModel();
             _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);

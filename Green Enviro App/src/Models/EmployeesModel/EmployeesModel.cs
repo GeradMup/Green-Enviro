@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FastMember;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
@@ -12,21 +14,37 @@ namespace Green_Enviro_App
 	/// </summary>
 	public class EmployeesModel
 	{
-		Database database;
 		/// <summary>
 		/// Initializes a new instance of the <see cref="EmployeesModel">EmployeesModel</see> class.
 		/// </summary>
-		/// <param name="db">The database.</param>
-		public EmployeesModel(Database db) 
+		public EmployeesModel() 
 		{
-			database = db;
 		}
 
 		/// <summary>Gets the employees and their information and returns a DataTable.</summary>
 		/// <returns>DataTable.</returns>
 		public DataTable getEmployees() 
 		{
-			return database.selectAll(Database.Tables.Employees);
+			List<Employee> employees;
+			DataTable employeesTable = new DataTable();
+			using (DataEntities context = new DataEntities())
+			{
+				employees = context.Employees.ToList();
+
+				string key = "Id";
+				string name = "Name";
+				string surname = "Surname";
+				string id = "Identification";
+				string gender = "Gender";
+				string address = "Address";
+				string cell = "Cell";
+				using (ObjectReader reader = ObjectReader.Create(employees, key, name, surname, id, gender, address, cell))
+				{
+					employeesTable.Load(reader);
+				}
+			}
+
+			return employeesTable;
 		}
 
 		/// <summary>Adds new employee to the database.</summary>
@@ -34,16 +52,22 @@ namespace Green_Enviro_App
 		/// <exception cref="System.Exception"></exception>
 		public void addEmployee(EmployeeInfo employeeInfo)
 		{
-			string[] employeeInfoArray = { employeeInfo.employeeName,
-										   employeeInfo.employeeSurname,
-										   employeeInfo.employeeId,
-										   employeeInfo.employeeGender,
-										   employeeInfo.employeeAddress,
-										   employeeInfo.employeeCell };
-
 			try
 			{
-				database.insert(Database.Tables.Employees, employeeInfoArray);
+				using (DataEntities context = new DataEntities()) 
+				{
+					Employee newEmployee = new Employee()
+					{
+						Name = employeeInfo.employeeName,
+						Surname = employeeInfo.employeeSurname,
+						Identification = employeeInfo.employeeId,
+						Gender = employeeInfo.employeeGender,
+						Address = employeeInfo.employeeAddress,
+						Cell = employeeInfo.employeeCell
+					};
+					context.Employees.Add(newEmployee);
+					context.SaveChanges();
+				}
 			}
 			catch (Exception ex) 
 			{
@@ -56,18 +80,22 @@ namespace Green_Enviro_App
 		/// <param name="employeeIdentifier">Unique identifier number for the employee.</param>
 		public void updateEmployee(EmployeeInfo employeeInfo, string employeeIdentifier) 
 		{
-			string[] employeeInfoArray = { employeeInfo.employeeName,
-										   employeeInfo.employeeSurname,
-										   employeeInfo.employeeId,
-										   employeeInfo.employeeGender,
-										   employeeInfo.employeeAddress,
-										   employeeInfo.employeeCell };
-
-			Database.EmployeesTableColumns[] columns = GenericModels.enumFieldsToList<Database.EmployeesTableColumns>();
-			Database.EmployeesTableColumns identifierColumn = Database.EmployeesTableColumns.Identification;
 			try
 			{
-				database.update<Database.EmployeesTableColumns>(Database.Tables.Employees, columns, identifierColumn, employeeIdentifier, employeeInfoArray);
+				using (DataEntities context = new DataEntities()) 
+				{
+					Employee employee = context.Employees.SingleOrDefault(_emp => _emp.Identification == employeeIdentifier);
+					if (employee != null) 
+					{
+						employee.Name = employeeInfo.employeeName;
+						employee.Surname = employeeInfo.employeeSurname;
+						employee.Identification = employeeInfo.employeeId;
+						employee.Gender = employeeInfo.employeeGender;
+						employee.Address = employeeInfo.employeeAddress;
+						employee.Cell = employeeInfo.employeeCell;
+						context.SaveChanges();
+					}
+				}
 			}
 			catch (Exception ex)
 			{
