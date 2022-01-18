@@ -7,12 +7,12 @@
       <Diagram DiagramId="81b8b0b562cf436cac187e39a96637a3" Name="Diagram1">
         <EntityTypeShape EntityType="Green_Enviro_App.Buyer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Green_Enviro_App.Company" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Green_Enviro_App.Customer" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Green_Enviro_App.Employee" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Green_Enviro_App.FixedExpens" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Green_Enviro_App.Item" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Green_Enviro_App.Stock" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Green_Enviro_App.User" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Green_Enviro_App.Customer" Width="1.5" PointX="0.875" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

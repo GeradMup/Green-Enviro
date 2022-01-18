@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Green_Enviro_App.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Green_Enviro_App.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Buyers">
           <Key>
             <PropertyRef Name="Id" />
@@ -37,7 +37,7 @@
           <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Cell" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="IDPicture" Type="varchar(max)" Nullable="false" />
+          <Property Name="IDPicture" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -98,8 +98,7 @@
           <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Green_Enviro_App" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -124,18 +123,6 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ContactNumbers" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CustomerNumber" />
-          </Key>
-          <Property Name="CustomerNumber" Type="Int32" Nullable="false" />
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Cell" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IDPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -189,13 +176,25 @@
         <EntityContainer Name="DataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Buyers" EntityType="Self.Buyer" />
           <EntitySet Name="Companies" EntityType="Self.Company" />
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="FixedExpenses" EntityType="Self.FixedExpens" />
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Stocks" EntityType="Self.Stock" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Customers" EntityType="Green_Enviro_App.Customer" />
         </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerNumber" />
+          </Key>
+          <Property Name="CustomerNumber" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cell" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IDPicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -223,19 +222,6 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ContactNumbers" ColumnName="ContactNumbers" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="Green_Enviro_App.Customer">
-              <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Cell" ColumnName="Cell" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="IDPicture" ColumnName="IDPicture" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -290,6 +276,19 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="PermissionLevel" ColumnName="PermissionLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Green_Enviro_App.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="IDPicture" ColumnName="IDPicture" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Cell" ColumnName="Cell" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

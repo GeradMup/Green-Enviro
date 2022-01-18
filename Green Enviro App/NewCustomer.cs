@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using TableCols = Green_Enviro_App.Database.CustomersTableColumns;
+using Green_Enviro_App.src.DataAccess;
+using FastMember;
 
 namespace Green_Enviro_App
 {
 	public partial class NewCustomer : Form
 	{
-		Database _database;
 		Main_Form _main_form;
 		CustomersClass _customers;
 		DataTable _customers_data_table = new DataTable();
 		Receipt _receipt;
 		string _customers_table_name = "Customers";
 		bool _editing_customer = false;
-		public NewCustomer(CustomersClass customers,Main_Form main, Database data, Receipt receipt)
+		public NewCustomer(CustomersClass customers,Main_Form main, Receipt receipt)
 		{
 			InitializeComponent();
 
-			_database = data;
 			this.Owner = customers;
 			_main_form = main;
 			_customers = customers;
@@ -52,7 +52,22 @@ namespace Green_Enviro_App
 
 		private void LoadCustomers() 
 		{
-			_customers_data_table = _database.selectAll(Database.Tables.Customers);
+			List<Customer> customers;
+			using (DataEntities context = new DataEntities()) 
+			{
+				customers = context.Customers.ToList();
+				string customerNum = "CustomerNumber";
+				string id = "ID";
+				string name = "Name";
+				string surname = "Surname";
+				string cell = "Cell";
+				string address = "Address";
+
+				using (ObjectReader reader = ObjectReader.Create(customers, customerNum, id, name, surname, cell, address))
+				{
+					_customers_data_table.Load(reader);
+				}
+			}
 		}
 
 		private bool NoDuplicates() 
@@ -112,7 +127,7 @@ namespace Green_Enviro_App
 			NewCustomerSurname.Text = customerInfo._surname;
 			NewCustomerCell.Value = decimal.Parse(customerInfo._cell);
 			NewCustomerAddress.Text = customerInfo._address;
-			NewCustomerIdPictureBox.Image = customerInfo._image;
+			NewCustomerIdPicture.Image = customerInfo._image;
 
 			NewCustomerNumber.ReadOnly = true;
 		}
@@ -146,7 +161,7 @@ namespace Green_Enviro_App
 			{
 				_error_message = "Please Enter the ID or Passport Number";
 			}
-			else if (NewCustomerIdPictureBox.Image == null)
+			else if (NewCustomerIdPicture.Image == null)
 			{
 				_error_message = "Please Insert the ID/Passport Picture";
 			}
@@ -180,7 +195,7 @@ namespace Green_Enviro_App
 
 			if (_new_dialog.ShowDialog() == DialogResult.OK) 
 			{
-				NewCustomerIdPictureBox.Image = Image.FromFile(_new_dialog.FileName);
+				NewCustomerIdPicture.Image = Image.FromFile(_new_dialog.FileName);
 			}
 		}
 
@@ -215,20 +230,29 @@ namespace Green_Enviro_App
 
 		private void AddCustomer() 
 		{
-			string number = NewCustomerNumber.Value.ToString();
-			string id = NewCustomerID.Text;
-			string name = NewCustomerName.Text;
-			string surname = NewCustomerSurname.Text;
 			string cell = "0" + NewCustomerCell.Value.ToString();
-			string address = NewCustomerAddress.Text;
-
-			string[] values = { number, id, name, surname, cell, address };
-
-			Int32 _rows_affected = _database.insert(Database.Tables.Customers, values);
-
-			if (_rows_affected == 1) 
+			Image idPic = NewCustomerIdPicture.Image;
+			byte[] idPicBytes;
+			using (MemoryStream mStream = new MemoryStream()) 
 			{
-				SaveIdPicture(number);
+				idPic.Save(mStream, idPic.RawFormat);
+				idPicBytes = mStream.ToArray();
+			}
+
+			using (DataEntities context = new DataEntities())
+			{
+				Customer newCustomer = new Customer()
+				{
+					CustomerNumber = (int)NewCustomerNumber.Value,
+					ID = NewCustomerID.Text,
+					Name = NewCustomerName.Text,
+					Surname = NewCustomerSurname.Text,
+					Cell = cell,
+					Address = NewCustomerAddress.Text,
+					IDPicture = idPicBytes
+				};
+				context.Customers.Add(newCustomer);
+				context.SaveChanges();
 			}
 		}
 
@@ -238,7 +262,7 @@ namespace Green_Enviro_App
 			string _path_to_image = _path_to_main_folder + @"\Customers\" + customerNumber + ".jpg";
 			try
 			{
-				NewCustomerIdPictureBox.Image.Save(_path_to_image, System.Drawing.Imaging.ImageFormat.Jpeg);
+				NewCustomerIdPicture.Image.Save(_path_to_image, System.Drawing.Imaging.ImageFormat.Jpeg);
 				//_receipt.setupCustomerList();
 				CustomMessageBox mb = new CustomMessageBox(this, CustomMessageBox.success, "Customer details saved");
 				Exit();
@@ -293,7 +317,7 @@ namespace Green_Enviro_App
 			NewCustomerSurname.Text = "";
 			NewCustomerCell.Value = 0;
 			NewCustomerAddress.Text = "";
-			NewCustomerIdPictureBox.Image = null;
+			NewCustomerIdPicture.Image = null;
 			NewCustomerNumber.ReadOnly = false;
 		}
 	}

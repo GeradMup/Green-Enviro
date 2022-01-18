@@ -41,13 +41,13 @@ namespace Green_Enviro_App
 			this.NewCustomerCancelBtn = new System.Windows.Forms.Button();
 			this.NewCustomerConfirmBtn = new System.Windows.Forms.Button();
 			this.label5 = new System.Windows.Forms.Label();
-			this.NewCustomerIdPictureBox = new System.Windows.Forms.PictureBox();
+			this.NewCustomerIdPicture = new System.Windows.Forms.PictureBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.NewCustomerCell = new System.Windows.Forms.NumericUpDown();
 			this.NewCustomerAddress = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerNumber)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPictureBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPicture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerCell)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -56,7 +56,7 @@ namespace Green_Enviro_App
 			this.NewCustomerName.Location = new System.Drawing.Point(200, 124);
 			this.NewCustomerName.Margin = new System.Windows.Forms.Padding(5);
 			this.NewCustomerName.Name = "NewCustomerName";
-			this.NewCustomerName.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerName.Size = new System.Drawing.Size(348, 29);
 			this.NewCustomerName.TabIndex = 0;
 			// 
 			// NewCustomerSurname
@@ -64,7 +64,7 @@ namespace Green_Enviro_App
 			this.NewCustomerSurname.Location = new System.Drawing.Point(200, 195);
 			this.NewCustomerSurname.Margin = new System.Windows.Forms.Padding(5);
 			this.NewCustomerSurname.Name = "NewCustomerSurname";
-			this.NewCustomerSurname.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerSurname.Size = new System.Drawing.Size(348, 29);
 			this.NewCustomerSurname.TabIndex = 1;
 			// 
 			// NewCustomerID
@@ -72,7 +72,7 @@ namespace Green_Enviro_App
 			this.NewCustomerID.Location = new System.Drawing.Point(200, 270);
 			this.NewCustomerID.Margin = new System.Windows.Forms.Padding(5);
 			this.NewCustomerID.Name = "NewCustomerID";
-			this.NewCustomerID.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerID.Size = new System.Drawing.Size(348, 29);
 			this.NewCustomerID.TabIndex = 2;
 			// 
 			// label1
@@ -80,7 +80,7 @@ namespace Green_Enviro_App
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(40, 130);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(64, 28);
+			this.label1.Size = new System.Drawing.Size(50, 22);
 			this.label1.TabIndex = 3;
 			this.label1.Text = "Name";
 			// 
@@ -89,7 +89,7 @@ namespace Green_Enviro_App
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(40, 273);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(38, 28);
+			this.label2.Size = new System.Drawing.Size(30, 22);
 			this.label2.TabIndex = 4;
 			this.label2.Text = "ID";
 			// 
@@ -98,7 +98,7 @@ namespace Green_Enviro_App
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(40, 198);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(103, 28);
+			this.label3.Size = new System.Drawing.Size(80, 22);
 			this.label3.TabIndex = 5;
 			this.label3.Text = "Surname";
 			// 
@@ -111,7 +111,7 @@ namespace Green_Enviro_App
             0,
             0});
 			this.NewCustomerNumber.Name = "NewCustomerNumber";
-			this.NewCustomerNumber.Size = new System.Drawing.Size(197, 34);
+			this.NewCustomerNumber.Size = new System.Drawing.Size(197, 29);
 			this.NewCustomerNumber.TabIndex = 5;
 			// 
 			// label4
@@ -119,7 +119,7 @@ namespace Green_Enviro_App
 			this.label4.AutoSize = true;
 			this.label4.Location = new System.Drawing.Point(40, 500);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(168, 28);
+			this.label4.Size = new System.Drawing.Size(130, 22);
 			this.label4.TabIndex = 7;
 			this.label4.Text = "Customer No.";
 			// 
@@ -159,26 +159,26 @@ namespace Green_Enviro_App
 			this.label5.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label5.Location = new System.Drawing.Point(501, 9);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(426, 70);
+			this.label5.Size = new System.Drawing.Size(336, 56);
 			this.label5.TabIndex = 12;
 			this.label5.Text = "New Customer";
 			// 
-			// NewCustomerIdPictureBox
+			// NewCustomerIdPicture
 			// 
-			this.NewCustomerIdPictureBox.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.NewCustomerIdPictureBox.Location = new System.Drawing.Point(672, 114);
-			this.NewCustomerIdPictureBox.Name = "NewCustomerIdPictureBox";
-			this.NewCustomerIdPictureBox.Size = new System.Drawing.Size(625, 438);
-			this.NewCustomerIdPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.NewCustomerIdPictureBox.TabIndex = 13;
-			this.NewCustomerIdPictureBox.TabStop = false;
+			this.NewCustomerIdPicture.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.NewCustomerIdPicture.Location = new System.Drawing.Point(672, 114);
+			this.NewCustomerIdPicture.Name = "NewCustomerIdPicture";
+			this.NewCustomerIdPicture.Size = new System.Drawing.Size(625, 438);
+			this.NewCustomerIdPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.NewCustomerIdPicture.TabIndex = 13;
+			this.NewCustomerIdPicture.TabStop = false;
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Location = new System.Drawing.Point(40, 427);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(64, 28);
+			this.label6.Size = new System.Drawing.Size(50, 22);
 			this.label6.TabIndex = 14;
 			this.label6.Text = "Cell";
 			// 
@@ -187,7 +187,7 @@ namespace Green_Enviro_App
 			this.label7.AutoSize = true;
 			this.label7.Location = new System.Drawing.Point(40, 351);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(103, 28);
+			this.label7.Size = new System.Drawing.Size(80, 22);
 			this.label7.TabIndex = 15;
 			this.label7.Text = "Address";
 			// 
@@ -200,7 +200,7 @@ namespace Green_Enviro_App
             0,
             0});
 			this.NewCustomerCell.Name = "NewCustomerCell";
-			this.NewCustomerCell.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerCell.Size = new System.Drawing.Size(348, 29);
 			this.NewCustomerCell.TabIndex = 4;
 			// 
 			// NewCustomerAddress
@@ -208,12 +208,12 @@ namespace Green_Enviro_App
 			this.NewCustomerAddress.Location = new System.Drawing.Point(200, 348);
 			this.NewCustomerAddress.Margin = new System.Windows.Forms.Padding(5);
 			this.NewCustomerAddress.Name = "NewCustomerAddress";
-			this.NewCustomerAddress.Size = new System.Drawing.Size(348, 34);
+			this.NewCustomerAddress.Size = new System.Drawing.Size(348, 29);
 			this.NewCustomerAddress.TabIndex = 3;
 			// 
 			// NewCustomer
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Highlight;
 			this.ClientSize = new System.Drawing.Size(1340, 655);
@@ -221,7 +221,7 @@ namespace Green_Enviro_App
 			this.Controls.Add(this.NewCustomerCell);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.label6);
-			this.Controls.Add(this.NewCustomerIdPictureBox);
+			this.Controls.Add(this.NewCustomerIdPicture);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.NewCustomerConfirmBtn);
 			this.Controls.Add(this.NewCustomerCancelBtn);
@@ -241,7 +241,7 @@ namespace Green_Enviro_App
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Green Envrio SA Recycling";
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerNumber)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPictureBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.NewCustomerIdPicture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.NewCustomerCell)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -262,7 +262,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button NewCustomerCancelBtn;
 		private System.Windows.Forms.Button NewCustomerConfirmBtn;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.PictureBox NewCustomerIdPictureBox;
+		private System.Windows.Forms.PictureBox NewCustomerIdPicture;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.NumericUpDown NewCustomerCell;

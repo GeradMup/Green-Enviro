@@ -66,7 +66,7 @@ namespace Green_Enviro_App
             _purchasesPR = new Purchases_PR(this,_fileHandles);
             _email = new Email();
             _inventory = new Inventory(this);
-            _customers = new CustomersClass(this,_database, _receipt);
+            _customers = new CustomersClass(this, _receipt);
            
 
             _destructionCertificatesModel = new DestructionCertificatesModel(this, _fileHandles);

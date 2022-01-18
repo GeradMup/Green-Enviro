@@ -20,6 +20,6 @@ namespace Green_Enviro_App.src.DataAccess
         public string Surname { get; set; }
         public string Cell { get; set; }
         public string Address { get; set; }
-        public string IDPicture { get; set; }
+        public byte[] IDPicture { get; set; }
     }
 }

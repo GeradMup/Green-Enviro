@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TableCols = Green_Enviro_App.Database.CustomersTableColumns;
+using Green_Enviro_App.src.DataAccess;
+using FastMember;
+
 namespace Green_Enviro_App
 {
 	public partial class CustomersClass : Form
 	{
-
-        //Here we generate the database so as to interact with the database
-        Database _database;
         //Here we generate a data table so as to interact with the tables of the database
         DataTable _data_table = new DataTable();
         BindingSource _binding_source = new BindingSource();
@@ -24,13 +24,12 @@ namespace Green_Enviro_App
         /*
          * Loading the database table for the new users into the class 
          */
-        public CustomersClass(Main_Form main, Database _db, Receipt receipt)
+        public CustomersClass(Main_Form main, Receipt receipt)
         {
             InitializeComponent();
-            _database = _db;
             this.Owner = main;
             _receipt = receipt;
-            _new_customer = new NewCustomer(this, main, _database, _receipt);
+            _new_customer = new NewCustomer(this, main, _receipt);
             LoadCustomersDataTable();
         }
 
@@ -65,7 +64,24 @@ namespace Green_Enviro_App
         public void LoadCustomersDataTable()
         {
             //Gets all user details and stores them in a DataTable 
-            _data_table = _database.selectAll(Database.Tables.Customers);
+            //_data_table = _database.selectAll(Database.Tables.Customers);
+            List<Customer> customers;
+            using (DataEntities context = new DataEntities()) 
+            {
+                customers = context.Customers.ToList();
+                string customerNum = "CustomerNumber";
+                string id = "ID";
+                string name = "Name";
+                string surname = "Surname";
+                string cell = "Cell";
+                string address = "Address";
+
+                using (ObjectReader reader = ObjectReader.Create(customers, customerNum, id, name, surname, cell, address)) 
+                {
+                    _data_table.Load(reader);
+                }
+            }
+
             _binding_source.DataSource = _data_table;
             CustomersDataGridView.DataSource = _binding_source;
         }
@@ -112,13 +128,18 @@ namespace Green_Enviro_App
 		private void CustomersDeleteBtn_Click(object sender, EventArgs e)
 		{
             int _current_row = CustomersDataGridView.CurrentCell.RowIndex;
-            string customerNumber = CustomersDataGridView[0, _current_row].Value.ToString();
-
-            Int32 _rows_affected = _database.delete<TableCols>(Database.Tables.Customers, TableCols.CustomerNumber,customerNumber);
-            if (_rows_affected == 1)
+            int customerNumber = (int)CustomersDataGridView[0, _current_row].Value;
+            using (DataEntities context = new DataEntities()) 
             {
-                LoadCustomersDataTable();
-                CustomMessageBox mb = new CustomMessageBox(this, "Success!", "Customer Deleted");
+                Customer customer = context.Customers.FirstOrDefault(_customer => _customer.CustomerNumber == customerNumber);
+
+                if (customer != null) 
+                {
+                    context.Customers.Remove(customer);
+                    context.SaveChanges();
+                    LoadCustomersDataTable();
+                    CustomMessageBox mb = new CustomMessageBox(this, "Success!", "Customer Deleted");
+                }
             }
         }
 
