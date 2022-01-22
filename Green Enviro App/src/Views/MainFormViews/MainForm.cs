@@ -16,7 +16,7 @@ namespace Green_Enviro_App
 {
     public partial class Main_Form : Form
     {
-        LoginForm _login_form;
+        LoginViews _login_form;
         Receipt _receipt;
         //Purchases _purchases;
 		
@@ -61,7 +61,7 @@ namespace Green_Enviro_App
 		/// <param name="loginForm">An object of the login form control</param>
 		/// <param name="_data">Database</param>
 		/// <param name="permissionLevel"></param>
-		public Main_Form(LoginForm loginForm, Database _data, int permissionLevel)
+		public Main_Form(LoginViews loginForm, Database _data, int permissionLevel)
         {
             InitializeComponent();
             _login_form = loginForm;

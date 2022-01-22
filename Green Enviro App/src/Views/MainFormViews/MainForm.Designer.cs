@@ -254,7 +254,6 @@ namespace Green_Enviro_App
 			this.DeliveryQuantityLabel = new System.Windows.Forms.Label();
 			this.DeliveryItemsList = new System.Windows.Forms.ComboBox();
 			this.DeliveryItemsLabel = new System.Windows.Forms.Label();
-			this.customersTableAdapter1 = new Green_Enviro_App.Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -536,7 +535,6 @@ namespace Green_Enviro_App
 			this.ReceiptPriceEditBtn.TabIndex = 27;
 			this.ReceiptPriceEditBtn.Text = "Edit Items";
 			this.ReceiptPriceEditBtn.UseVisualStyleBackColor = true;
-			this.ReceiptPriceEditBtn.Click += new System.EventHandler(this.ReceiptPriceEditBtn_Click);
 			// 
 			// ReceiptPrice
 			// 
@@ -2976,10 +2974,6 @@ namespace Green_Enviro_App
 			this.DeliveryItemsLabel.TabIndex = 1;
 			this.DeliveryItemsLabel.Text = "Items";
 			// 
-			// customersTableAdapter1
-			// 
-			this.customersTableAdapter1.ClearBeforeFill = true;
-			// 
 			// checkBox1
 			// 
 			this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -3290,7 +3284,6 @@ namespace Green_Enviro_App
         private System.Windows.Forms.Label DestructionCertDescripOfPrdctLabel;
         private System.Windows.Forms.Label DestructionCertCompanyLabel;
         private System.Windows.Forms.Label DestructionCertQnttyLabel;
-		private Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter customersTableAdapter1;
 		private System.Windows.Forms.TabPage WagesNewEmployee;
 		private System.Windows.Forms.TabPage Expenses;
 		private System.Windows.Forms.TabPage Summaries;

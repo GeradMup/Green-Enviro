@@ -32,7 +32,6 @@ namespace Green_Enviro_App
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserDatabaseForm));
 			this.userTableDataGridView = new System.Windows.Forms.DataGridView();
-			this.green_Enviro_DataDataSet = new Green_Enviro_App.Green_Enviro_DataDataSet();
 			this.greenEnviroDataDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.accountIdList = new System.Windows.Forms.ComboBox();
 			this.usernameSelectedForDeletionField = new System.Windows.Forms.TextBox();
@@ -45,7 +44,6 @@ namespace Green_Enviro_App
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.userTableDataGridView)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.green_Enviro_DataDataSet)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.greenEnviroDataDataSetBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -59,15 +57,10 @@ namespace Green_Enviro_App
 			this.userTableDataGridView.RowHeadersWidth = 51;
 			this.userTableDataGridView.Size = new System.Drawing.Size(705, 398);
 			this.userTableDataGridView.TabIndex = 0;
-			// 
-			// green_Enviro_DataDataSet
-			// 
-			this.green_Enviro_DataDataSet.DataSetName = "Green_Enviro_DataDataSet";
-			this.green_Enviro_DataDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
 			// 
 			// greenEnviroDataDataSetBindingSource
 			// 
-			this.greenEnviroDataDataSetBindingSource.DataSource = this.green_Enviro_DataDataSet;
 			this.greenEnviroDataDataSetBindingSource.Position = 0;
 			// 
 			// accountIdList
@@ -197,7 +190,6 @@ namespace Green_Enviro_App
 			this.Text = "User Database";
 			this.Load += new System.EventHandler(this.UserAccountsForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.userTableDataGridView)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.green_Enviro_DataDataSet)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.greenEnviroDataDataSetBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -208,7 +200,6 @@ namespace Green_Enviro_App
 
         private System.Windows.Forms.DataGridView userTableDataGridView;
         private System.Windows.Forms.BindingSource greenEnviroDataDataSetBindingSource;
-        private Green_Enviro_DataDataSet green_Enviro_DataDataSet;
         public System.Windows.Forms.ComboBox accountIdList;
         private System.Windows.Forms.TextBox usernameSelectedForDeletionField;
         private System.Windows.Forms.TextBox emailSelectedForDeletionField;

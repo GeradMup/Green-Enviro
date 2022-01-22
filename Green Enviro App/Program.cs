@@ -20,7 +20,7 @@ namespace Green_Enviro_App
             AppDomain.CurrentDomain.SetData("DataDirectory", projectPath);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm(args));
+            Application.Run(new LoginViews(args));
         }
     }
 }

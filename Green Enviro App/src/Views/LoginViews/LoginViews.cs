@@ -44,29 +44,14 @@ namespace Green_Enviro_App
 	/// Class for handling all the Login related tasks.  
     /// <br />
 	/// </summary>
-	public partial class LoginForm : Form
+	public partial class LoginViews : Form
     {
         bool _application_runnig = true;
 
-        //Creates a variable of type Database
-        static Database _database;
-
         //Creates the main form for the program
         Main_Form _mainForm;
-
-        //Instance to view user data table for deletion
-        static UserDatabaseForm _user_db_deletion;
-
-
-        //Creates a single instance of the CreateAccount class
-        CreateAccount _account;
-
-        //Master Password (Changeable depending on the devs)
-        string _master_password;
+        LoginModel _loginModel;
         int _user_permission_level = 0;
-
-        //Encryption instantiation 
-        InformationEncryption _client_password = new InformationEncryption();
 
         List<Credentials> _all_credentials;
 
@@ -74,39 +59,46 @@ namespace Green_Enviro_App
         string _sql_server_path = @"..//..//..//Close SQL Server//bin//Debug//Close SQL Server.exe";
         bool _main_program_pass = false;
         bool _already_logged_in = false;
-        public LoginForm(string[] args)
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="LoginViews"/> class.
+		/// </summary>
+		/// <param name="args">Command line arguments.</param>
+		public LoginViews(string[] args)
         {
 
-            if (args.Length > 0)
-            {
-                _user_permission_level = int.Parse(args[0].ToString());
-				_main_program_pass = true; 
-            }
+       //     if (args.Length > 0)
+        //    {
+         //       _user_permission_level = int.Parse(args[0].ToString());
+		//		_main_program_pass = true; 
+        //    }
 
             InitializeComponent();
 
             //Creates an Instance of the Database class
-            _database = new Database();
+        //    _database = new Database();
 
             //Creates a new instances of UserDatabaseForm class
-            _user_db_deletion = new UserDatabaseForm(_database);
+        //    _user_db_deletion = new UserDatabaseForm(_database);
 
             //Creates a new instance of CreateAccoutn class
-            _account = new CreateAccount(_database, _user_db_deletion);
+        //    _account = new CreateAccount(_database, _user_db_deletion);
 
-            _all_credentials = _account._credentials;
+        //    _all_credentials = _account._credentials;
             //MessageBox.Show(_all_credentials[0].user_permission_level.ToString());
 
             InformationEncryption _decryption = new InformationEncryption();
-            _master_password = _decryption.Decrypt(_all_credentials[0].password);
+            //    _master_password = _decryption.Decrypt(_all_credentials[0].password);
 
-			//Creates the main form for the program
-			_mainForm = new Main_Form(this,_database, _user_permission_level);
+            //Creates the main form for the program
+            //	_mainForm = new Main_Form(this,_database, _user_permission_level);
+
+            _loginModel = new LoginModel();
         }
 
         //********************************************************************************************************
 
-        void PromptDatabaseSnyc()
+        void promptDatabaseSnyc()
         {
             //First open the Sync App to prompt users if they want to synchronize data 
             
@@ -115,9 +107,14 @@ namespace Green_Enviro_App
             this.Close();
         }
 
-        //********************************************************************************************************
+		//********************************************************************************************************
 
-        private void LoginForm_KeyPress(object sender, KeyEventArgs e)
+		/// <summary>
+		/// Handles the KeyPress event of the LoginForm control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+		private void LoginForm_KeyPress(object sender, KeyEventArgs e)
         {
             this.KeyPreview = true;
             if (e.KeyCode == Keys.Escape)
@@ -125,12 +122,13 @@ namespace Green_Enviro_App
                 this.Close();
             }
         }
-        private void loginBtn_Click(object sender, EventArgs e)
-        {
-            login();
-        }
 
-        private void LoginForm_KeyPress(object sender, KeyPressEventArgs e)
+		/// <summary>
+		/// Handles the KeyPress event of the LoginForm control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+		private void LoginForm_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Try to login if the uses presses the enter key while the login form is active
             if (e.KeyChar == (char)Keys.Enter)
@@ -162,7 +160,7 @@ namespace Green_Enviro_App
             while (index < _all_credentials.Count) 
             {
 
-                if (_all_credentials[index].user_name.Contains(usernameField.Text)) 
+                if (_all_credentials[index].user_name.Contains(Username.Text)) 
                 {
                     _user_name = _all_credentials[index].user_name;
                     _user_exists = true;
@@ -175,7 +173,7 @@ namespace Green_Enviro_App
             {
                 // First Decrypt the password at the correct index and the check if the entered password matches
                 string _decrypted_psword = _decryption.Decrypt(_all_credentials[index].password);
-                if (_decrypted_psword == passwordField.Text)
+                if (_decrypted_psword == Password.Text)
                 {
                     _user_permission_level = _all_credentials[index].user_permission_level;
                     return true;
@@ -208,7 +206,7 @@ namespace Green_Enviro_App
                 bool validLogin = verifyCredentials();
 				if (validLogin) 
                 {
-                    PromptDatabaseSnyc();
+                    promptDatabaseSnyc();
                 }
             }
             else
@@ -236,91 +234,19 @@ namespace Green_Enviro_App
 
         private void ClearFields() 
         {
-            usernameField.Clear();
-            passwordField.Clear();
+            Username.Clear();
+            Password.Clear();
         }
 
-        private void createAccountButton_Click(object sender, EventArgs e)
-        {
-            bool validLogin = verifyCredentials();
-
-            if (validLogin == false) 
-            {
-                return;
-            }
-
-            if (_user_permission_level != 5) 
-            {
-                CustomMessageBox box = new CustomMessageBox(this, "Error!", "Permission Denied");
-                return;
-            }
-            _account.Activate();
-            _account.Show();
-        }
-        private bool AdminPass()
-        {
-            string content = Interaction.InputBox("Enter Master Password: ", "Administrator", default);
-            if (content == _master_password)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private void OpenCreateAccountFrom(bool _pswrd)
-        {
-                //Creates a new instance everytime the new account button is clicked.
-                _account.Activate();
-                _account.Show();
-        }
         private void checkBox_Show_Hide_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_Show_Hide.Checked)
+            if (ShowPassword.Checked)
             {
-                passwordField.UseSystemPasswordChar = true;
+                Password.UseSystemPasswordChar = true;
             }
             else
             {
-                passwordField.UseSystemPasswordChar = false;
-            }
-        }
-
-        private void AccountRemovalField_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            bool validLogin = verifyCredentials();
-
-            if (validLogin == false)
-            {
-                return;
-            }
-
-            if (_user_permission_level != 5)
-            {
-                CustomMessageBox box = new CustomMessageBox(this, "Error!", "Permission Denied");
-                return;
-            }
-
-            OpenDeleteAccountForm(true);
-
-        }
-
-        private void OpenDeleteAccountForm(bool _pswrd)
-        {
-            bool _correct_admin_psword = _pswrd;
-            if (_correct_admin_psword)
-            {
-                // MessageBox.Show("Correct master Password", "Administrator", MessageBoxButtons.OK);
-                //_user_db_deletion.BindDataGridToUserTable();
-                _user_db_deletion.Activate();
-
-                _user_db_deletion.Show();
-            }
-            else
-            {
-                MessageBox.Show("Incorrect master password", "Administrator", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Password.UseSystemPasswordChar = false;
             }
         }
 
@@ -336,5 +262,7 @@ namespace Green_Enviro_App
         { 
             Application.Exit();
         }
+
+
 	}
 }
