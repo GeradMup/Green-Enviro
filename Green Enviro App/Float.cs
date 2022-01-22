@@ -105,15 +105,15 @@ namespace Green_Enviro_App
 			_float_value = double.Parse(_string_float, CultureInfo.InvariantCulture);
 			_total_float = double.Parse(_string_total_float, CultureInfo.InvariantCulture);
 			
-			_main_form.FloatBox.Text = "R " + String.Format("{0:n}", _float_value);
+			//_main_form.FloatBox.Text = "R " + String.Format("{0:n}", _float_value);
 
 			if (_float_value > 5000)
 			{
-				_main_form.FloatBox.BackColor = Color.GreenYellow;
+			//	_main_form.FloatBox.BackColor = Color.GreenYellow;
 			}
 			else
 			{
-				_main_form.FloatBox.BackColor = Color.Red;
+			//	_main_form.FloatBox.BackColor = Color.Red;
 			}
 		}
 	}

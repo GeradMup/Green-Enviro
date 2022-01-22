@@ -38,41 +38,41 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
-			this.purchaseOrSaleIndicator = new System.Windows.Forms.Label();
+			this.ReceiptTransactionIndicator = new System.Windows.Forms.Label();
 			this.CustomerAddress = new System.Windows.Forms.TextBox();
 			this.CustomerCellNumber = new System.Windows.Forms.TextBox();
-			this.label65 = new System.Windows.Forms.Label();
-			this.label64 = new System.Windows.Forms.Label();
+			this.CustomerAddressLabel = new System.Windows.Forms.Label();
+			this.CustomerCellLabel = new System.Windows.Forms.Label();
 			this.LogOutBtn = new System.Windows.Forms.Button();
-			this.ReceiptSaleOrPurchase = new System.Windows.Forms.ComboBox();
-			this.AddFloatBtn = new System.Windows.Forms.Button();
-			this.FloatBox = new System.Windows.Forms.TextBox();
-			this.label55 = new System.Windows.Forms.Label();
-			this.ReprintReceiptBtn = new System.Windows.Forms.Button();
-			this.ReceiptDefaultCustomerCheckBox = new System.Windows.Forms.CheckBox();
-			this.EditCustomers = new System.Windows.Forms.Button();
+			this.ReceiptTransactionType = new System.Windows.Forms.ComboBox();
+			this.ReceiptAddFloatBtn = new System.Windows.Forms.Button();
+			this.ReceiptFloat = new System.Windows.Forms.TextBox();
+			this.ReceiptFloatLabel = new System.Windows.Forms.Label();
+			this.ReceiptReprintBtn = new System.Windows.Forms.Button();
+			this.DefaultCustomer = new System.Windows.Forms.CheckBox();
+			this.EditCustomersBtn = new System.Windows.Forms.Button();
 			this.ReceiptPriceEditBtn = new System.Windows.Forms.Button();
-			this.PriceBox = new System.Windows.Forms.NumericUpDown();
-			this.quantityBox = new System.Windows.Forms.NumericUpDown();
-			this.CancelPurchaseBtn = new System.Windows.Forms.Button();
-			this.PurchaseBtn = new System.Windows.Forms.Button();
-			this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
-			this.CustomerSurnameTextBox = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.CustomerIDNumberTextBox = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.customerNumbersList = new System.Windows.Forms.ComboBox();
-			this.IDPictureBox = new System.Windows.Forms.PictureBox();
-			this.DealerPriceCheckBox = new System.Windows.Forms.CheckBox();
-			this.PriceOverrideCheckBox = new System.Windows.Forms.CheckBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
+			this.ReceiptPrice = new System.Windows.Forms.NumericUpDown();
+			this.ReceiptQuantity = new System.Windows.Forms.NumericUpDown();
+			this.ReceiptCancelBtn = new System.Windows.Forms.Button();
+			this.ReceiptPurchaseBtn = new System.Windows.Forms.Button();
+			this.CustomerName = new System.Windows.Forms.TextBox();
+			this.CustomerSurname = new System.Windows.Forms.TextBox();
+			this.CustomerNameLabel = new System.Windows.Forms.Label();
+			this.CustomerSurnameLabel = new System.Windows.Forms.Label();
+			this.CustomerIDNumber = new System.Windows.Forms.TextBox();
+			this.CustomerIDLabel = new System.Windows.Forms.Label();
+			this.CustomerNumbersLabel = new System.Windows.Forms.Label();
+			this.CustomerNumbersList = new System.Windows.Forms.ComboBox();
+			this.CustomerIDPicture = new System.Windows.Forms.PictureBox();
+			this.ReceiptDealerPrice = new System.Windows.Forms.CheckBox();
+			this.ReceiptPriceOverride = new System.Windows.Forms.CheckBox();
+			this.ReceiptPriceLabel = new System.Windows.Forms.Label();
+			this.ReceiptQuantityLabel = new System.Windows.Forms.Label();
 			this.logo = new System.Windows.Forms.PictureBox();
-			this.itemList = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.addItemBtn = new System.Windows.Forms.Button();
+			this.ReceiptItemList = new System.Windows.Forms.ComboBox();
+			this.ReceiptItemLabel = new System.Windows.Forms.Label();
+			this.ReceiptAddItemBtn = new System.Windows.Forms.Button();
 			this.receiptBox = new System.Windows.Forms.RichTextBox();
 			this.PurchasesPage = new System.Windows.Forms.TabPage();
 			this.PurchaseDeleteBtn = new System.Windows.Forms.Button();
@@ -276,9 +276,9 @@ namespace Green_Enviro_App
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.quantityBox)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ReceiptPrice)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ReceiptQuantity)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.CustomerIDPicture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
 			this.PurchasesPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesLogGridView)).BeginInit();
@@ -341,41 +341,41 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
-			this.ReceiptPage.Controls.Add(this.purchaseOrSaleIndicator);
+			this.ReceiptPage.Controls.Add(this.ReceiptTransactionIndicator);
 			this.ReceiptPage.Controls.Add(this.CustomerAddress);
 			this.ReceiptPage.Controls.Add(this.CustomerCellNumber);
-			this.ReceiptPage.Controls.Add(this.label65);
-			this.ReceiptPage.Controls.Add(this.label64);
+			this.ReceiptPage.Controls.Add(this.CustomerAddressLabel);
+			this.ReceiptPage.Controls.Add(this.CustomerCellLabel);
 			this.ReceiptPage.Controls.Add(this.LogOutBtn);
-			this.ReceiptPage.Controls.Add(this.ReceiptSaleOrPurchase);
-			this.ReceiptPage.Controls.Add(this.AddFloatBtn);
-			this.ReceiptPage.Controls.Add(this.FloatBox);
-			this.ReceiptPage.Controls.Add(this.label55);
-			this.ReceiptPage.Controls.Add(this.ReprintReceiptBtn);
-			this.ReceiptPage.Controls.Add(this.ReceiptDefaultCustomerCheckBox);
-			this.ReceiptPage.Controls.Add(this.EditCustomers);
+			this.ReceiptPage.Controls.Add(this.ReceiptTransactionType);
+			this.ReceiptPage.Controls.Add(this.ReceiptAddFloatBtn);
+			this.ReceiptPage.Controls.Add(this.ReceiptFloat);
+			this.ReceiptPage.Controls.Add(this.ReceiptFloatLabel);
+			this.ReceiptPage.Controls.Add(this.ReceiptReprintBtn);
+			this.ReceiptPage.Controls.Add(this.DefaultCustomer);
+			this.ReceiptPage.Controls.Add(this.EditCustomersBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptPriceEditBtn);
-			this.ReceiptPage.Controls.Add(this.PriceBox);
-			this.ReceiptPage.Controls.Add(this.quantityBox);
-			this.ReceiptPage.Controls.Add(this.CancelPurchaseBtn);
-			this.ReceiptPage.Controls.Add(this.PurchaseBtn);
-			this.ReceiptPage.Controls.Add(this.CustomerNameTextBox);
-			this.ReceiptPage.Controls.Add(this.CustomerSurnameTextBox);
-			this.ReceiptPage.Controls.Add(this.label7);
-			this.ReceiptPage.Controls.Add(this.label6);
-			this.ReceiptPage.Controls.Add(this.CustomerIDNumberTextBox);
-			this.ReceiptPage.Controls.Add(this.label5);
-			this.ReceiptPage.Controls.Add(this.label4);
-			this.ReceiptPage.Controls.Add(this.customerNumbersList);
-			this.ReceiptPage.Controls.Add(this.IDPictureBox);
-			this.ReceiptPage.Controls.Add(this.DealerPriceCheckBox);
-			this.ReceiptPage.Controls.Add(this.PriceOverrideCheckBox);
-			this.ReceiptPage.Controls.Add(this.label3);
-			this.ReceiptPage.Controls.Add(this.label2);
+			this.ReceiptPage.Controls.Add(this.ReceiptPrice);
+			this.ReceiptPage.Controls.Add(this.ReceiptQuantity);
+			this.ReceiptPage.Controls.Add(this.ReceiptCancelBtn);
+			this.ReceiptPage.Controls.Add(this.ReceiptPurchaseBtn);
+			this.ReceiptPage.Controls.Add(this.CustomerName);
+			this.ReceiptPage.Controls.Add(this.CustomerSurname);
+			this.ReceiptPage.Controls.Add(this.CustomerNameLabel);
+			this.ReceiptPage.Controls.Add(this.CustomerSurnameLabel);
+			this.ReceiptPage.Controls.Add(this.CustomerIDNumber);
+			this.ReceiptPage.Controls.Add(this.CustomerIDLabel);
+			this.ReceiptPage.Controls.Add(this.CustomerNumbersLabel);
+			this.ReceiptPage.Controls.Add(this.CustomerNumbersList);
+			this.ReceiptPage.Controls.Add(this.CustomerIDPicture);
+			this.ReceiptPage.Controls.Add(this.ReceiptDealerPrice);
+			this.ReceiptPage.Controls.Add(this.ReceiptPriceOverride);
+			this.ReceiptPage.Controls.Add(this.ReceiptPriceLabel);
+			this.ReceiptPage.Controls.Add(this.ReceiptQuantityLabel);
 			this.ReceiptPage.Controls.Add(this.logo);
-			this.ReceiptPage.Controls.Add(this.itemList);
-			this.ReceiptPage.Controls.Add(this.label1);
-			this.ReceiptPage.Controls.Add(this.addItemBtn);
+			this.ReceiptPage.Controls.Add(this.ReceiptItemList);
+			this.ReceiptPage.Controls.Add(this.ReceiptItemLabel);
+			this.ReceiptPage.Controls.Add(this.ReceiptAddItemBtn);
 			this.ReceiptPage.Controls.Add(this.receiptBox);
 			this.ReceiptPage.Location = new System.Drawing.Point(4, 28);
 			this.ReceiptPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -386,17 +386,17 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
 			// 
-			// purchaseOrSaleIndicator
+			// ReceiptTransactionIndicator
 			// 
-			this.purchaseOrSaleIndicator.AutoSize = true;
-			this.purchaseOrSaleIndicator.BackColor = System.Drawing.Color.Red;
-			this.purchaseOrSaleIndicator.Font = new System.Drawing.Font("Consolas", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.purchaseOrSaleIndicator.Location = new System.Drawing.Point(240, 14);
-			this.purchaseOrSaleIndicator.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.purchaseOrSaleIndicator.Name = "purchaseOrSaleIndicator";
-			this.purchaseOrSaleIndicator.Size = new System.Drawing.Size(130, 47);
-			this.purchaseOrSaleIndicator.TabIndex = 78;
-			this.purchaseOrSaleIndicator.Text = "Start";
+			this.ReceiptTransactionIndicator.AutoSize = true;
+			this.ReceiptTransactionIndicator.BackColor = System.Drawing.Color.Red;
+			this.ReceiptTransactionIndicator.Font = new System.Drawing.Font("Consolas", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ReceiptTransactionIndicator.Location = new System.Drawing.Point(240, 14);
+			this.ReceiptTransactionIndicator.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.ReceiptTransactionIndicator.Name = "ReceiptTransactionIndicator";
+			this.ReceiptTransactionIndicator.Size = new System.Drawing.Size(130, 47);
+			this.ReceiptTransactionIndicator.TabIndex = 78;
+			this.ReceiptTransactionIndicator.Text = "Start";
 			// 
 			// CustomerAddress
 			// 
@@ -416,25 +416,25 @@ namespace Green_Enviro_App
 			this.CustomerCellNumber.Size = new System.Drawing.Size(261, 26);
 			this.CustomerCellNumber.TabIndex = 76;
 			// 
-			// label65
+			// CustomerAddressLabel
 			// 
-			this.label65.AutoSize = true;
-			this.label65.Location = new System.Drawing.Point(560, 321);
-			this.label65.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label65.Name = "label65";
-			this.label65.Size = new System.Drawing.Size(72, 19);
-			this.label65.TabIndex = 75;
-			this.label65.Text = "Address";
+			this.CustomerAddressLabel.AutoSize = true;
+			this.CustomerAddressLabel.Location = new System.Drawing.Point(560, 321);
+			this.CustomerAddressLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.CustomerAddressLabel.Name = "CustomerAddressLabel";
+			this.CustomerAddressLabel.Size = new System.Drawing.Size(72, 19);
+			this.CustomerAddressLabel.TabIndex = 75;
+			this.CustomerAddressLabel.Text = "Address";
 			// 
-			// label64
+			// CustomerCellLabel
 			// 
-			this.label64.AutoSize = true;
-			this.label64.Location = new System.Drawing.Point(560, 265);
-			this.label64.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label64.Name = "label64";
-			this.label64.Size = new System.Drawing.Size(45, 19);
-			this.label64.TabIndex = 74;
-			this.label64.Text = "Cell";
+			this.CustomerCellLabel.AutoSize = true;
+			this.CustomerCellLabel.Location = new System.Drawing.Point(560, 265);
+			this.CustomerCellLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.CustomerCellLabel.Name = "CustomerCellLabel";
+			this.CustomerCellLabel.Size = new System.Drawing.Size(45, 19);
+			this.CustomerCellLabel.TabIndex = 74;
+			this.CustomerCellLabel.Text = "Cell";
 			// 
 			// LogOutBtn
 			// 
@@ -448,284 +448,284 @@ namespace Green_Enviro_App
 			this.LogOutBtn.UseVisualStyleBackColor = true;
 			this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click_1);
 			// 
-			// ReceiptSaleOrPurchase
+			// ReceiptTransactionType
 			// 
-			this.ReceiptSaleOrPurchase.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.ReceiptSaleOrPurchase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ReceiptSaleOrPurchase.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ReceiptSaleOrPurchase.FormattingEnabled = true;
-			this.ReceiptSaleOrPurchase.Location = new System.Drawing.Point(38, 18);
-			this.ReceiptSaleOrPurchase.Margin = new System.Windows.Forms.Padding(2);
-			this.ReceiptSaleOrPurchase.Name = "ReceiptSaleOrPurchase";
-			this.ReceiptSaleOrPurchase.Size = new System.Drawing.Size(174, 27);
-			this.ReceiptSaleOrPurchase.TabIndex = 35;
-			this.ReceiptSaleOrPurchase.SelectedIndexChanged += new System.EventHandler(this.ReceiptSaleOrPurchase_SelectedIndexChanged);
+			this.ReceiptTransactionType.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.ReceiptTransactionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ReceiptTransactionType.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ReceiptTransactionType.FormattingEnabled = true;
+			this.ReceiptTransactionType.Location = new System.Drawing.Point(38, 18);
+			this.ReceiptTransactionType.Margin = new System.Windows.Forms.Padding(2);
+			this.ReceiptTransactionType.Name = "ReceiptTransactionType";
+			this.ReceiptTransactionType.Size = new System.Drawing.Size(174, 27);
+			this.ReceiptTransactionType.TabIndex = 35;
+			this.ReceiptTransactionType.SelectedIndexChanged += new System.EventHandler(this.ReceiptTransactionType_SelectedIndexChanged);
 			// 
-			// AddFloatBtn
+			// ReceiptAddFloatBtn
 			// 
-			this.AddFloatBtn.Location = new System.Drawing.Point(220, 110);
-			this.AddFloatBtn.Margin = new System.Windows.Forms.Padding(2);
-			this.AddFloatBtn.Name = "AddFloatBtn";
-			this.AddFloatBtn.Size = new System.Drawing.Size(131, 38);
-			this.AddFloatBtn.TabIndex = 34;
-			this.AddFloatBtn.Text = "Add Float";
-			this.AddFloatBtn.UseVisualStyleBackColor = true;
-			this.AddFloatBtn.Click += new System.EventHandler(this.AddFloatBtn_Click);
+			this.ReceiptAddFloatBtn.Location = new System.Drawing.Point(220, 110);
+			this.ReceiptAddFloatBtn.Margin = new System.Windows.Forms.Padding(2);
+			this.ReceiptAddFloatBtn.Name = "ReceiptAddFloatBtn";
+			this.ReceiptAddFloatBtn.Size = new System.Drawing.Size(131, 38);
+			this.ReceiptAddFloatBtn.TabIndex = 34;
+			this.ReceiptAddFloatBtn.Text = "Add Float";
+			this.ReceiptAddFloatBtn.UseVisualStyleBackColor = true;
+			this.ReceiptAddFloatBtn.Click += new System.EventHandler(this.AddFloatBtn_Click);
 			// 
-			// FloatBox
+			// ReceiptFloat
 			// 
-			this.FloatBox.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FloatBox.Location = new System.Drawing.Point(40, 113);
-			this.FloatBox.Margin = new System.Windows.Forms.Padding(2);
-			this.FloatBox.Name = "FloatBox";
-			this.FloatBox.ReadOnly = true;
-			this.FloatBox.Size = new System.Drawing.Size(172, 36);
-			this.FloatBox.TabIndex = 33;
-			this.FloatBox.TabStop = false;
+			this.ReceiptFloat.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ReceiptFloat.Location = new System.Drawing.Point(40, 113);
+			this.ReceiptFloat.Margin = new System.Windows.Forms.Padding(2);
+			this.ReceiptFloat.Name = "ReceiptFloat";
+			this.ReceiptFloat.ReadOnly = true;
+			this.ReceiptFloat.Size = new System.Drawing.Size(172, 36);
+			this.ReceiptFloat.TabIndex = 33;
+			this.ReceiptFloat.TabStop = false;
 			// 
-			// label55
+			// ReceiptFloatLabel
 			// 
-			this.label55.AutoSize = true;
-			this.label55.Location = new System.Drawing.Point(37, 92);
-			this.label55.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label55.Name = "label55";
-			this.label55.Size = new System.Drawing.Size(144, 19);
-			this.label55.TabIndex = 32;
-			this.label55.Text = "Remaining Float";
+			this.ReceiptFloatLabel.AutoSize = true;
+			this.ReceiptFloatLabel.Location = new System.Drawing.Point(37, 92);
+			this.ReceiptFloatLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.ReceiptFloatLabel.Name = "ReceiptFloatLabel";
+			this.ReceiptFloatLabel.Size = new System.Drawing.Size(144, 19);
+			this.ReceiptFloatLabel.TabIndex = 32;
+			this.ReceiptFloatLabel.Text = "Remaining Float";
 			// 
-			// ReprintReceiptBtn
+			// ReceiptReprintBtn
 			// 
-			this.ReprintReceiptBtn.AllowDrop = true;
-			this.ReprintReceiptBtn.Location = new System.Drawing.Point(33, 622);
-			this.ReprintReceiptBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ReprintReceiptBtn.Name = "ReprintReceiptBtn";
-			this.ReprintReceiptBtn.Size = new System.Drawing.Size(328, 50);
-			this.ReprintReceiptBtn.TabIndex = 31;
-			this.ReprintReceiptBtn.Text = "Re-print Receipt";
-			this.ReprintReceiptBtn.UseVisualStyleBackColor = true;
-			this.ReprintReceiptBtn.Click += new System.EventHandler(this.ReprintReceiptBtn_Click);
+			this.ReceiptReprintBtn.AllowDrop = true;
+			this.ReceiptReprintBtn.Location = new System.Drawing.Point(33, 622);
+			this.ReceiptReprintBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptReprintBtn.Name = "ReceiptReprintBtn";
+			this.ReceiptReprintBtn.Size = new System.Drawing.Size(328, 50);
+			this.ReceiptReprintBtn.TabIndex = 31;
+			this.ReceiptReprintBtn.Text = "Re-print Receipt";
+			this.ReceiptReprintBtn.UseVisualStyleBackColor = true;
+			this.ReceiptReprintBtn.Click += new System.EventHandler(this.ReprintReceiptBtn_Click);
 			// 
-			// ReceiptDefaultCustomerCheckBox
+			// DefaultCustomer
 			// 
-			this.ReceiptDefaultCustomerCheckBox.AutoSize = true;
-			this.ReceiptDefaultCustomerCheckBox.Location = new System.Drawing.Point(563, 22);
-			this.ReceiptDefaultCustomerCheckBox.Margin = new System.Windows.Forms.Padding(2);
-			this.ReceiptDefaultCustomerCheckBox.Name = "ReceiptDefaultCustomerCheckBox";
-			this.ReceiptDefaultCustomerCheckBox.Size = new System.Drawing.Size(91, 23);
-			this.ReceiptDefaultCustomerCheckBox.TabIndex = 30;
-			this.ReceiptDefaultCustomerCheckBox.Text = "Default";
-			this.ReceiptDefaultCustomerCheckBox.UseVisualStyleBackColor = true;
+			this.DefaultCustomer.AutoSize = true;
+			this.DefaultCustomer.Location = new System.Drawing.Point(563, 22);
+			this.DefaultCustomer.Margin = new System.Windows.Forms.Padding(2);
+			this.DefaultCustomer.Name = "DefaultCustomer";
+			this.DefaultCustomer.Size = new System.Drawing.Size(91, 23);
+			this.DefaultCustomer.TabIndex = 30;
+			this.DefaultCustomer.Text = "Default";
+			this.DefaultCustomer.UseVisualStyleBackColor = true;
 			// 
-			// EditCustomers
+			// EditCustomersBtn
 			// 
-			this.EditCustomers.Location = new System.Drawing.Point(698, 354);
-			this.EditCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.EditCustomers.Name = "EditCustomers";
-			this.EditCustomers.Size = new System.Drawing.Size(178, 26);
-			this.EditCustomers.TabIndex = 28;
-			this.EditCustomers.Text = "Edit Customers";
-			this.EditCustomers.UseVisualStyleBackColor = true;
-			this.EditCustomers.Click += new System.EventHandler(this.EditCustomers_Click);
+			this.EditCustomersBtn.Location = new System.Drawing.Point(698, 351);
+			this.EditCustomersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.EditCustomersBtn.Name = "EditCustomersBtn";
+			this.EditCustomersBtn.Size = new System.Drawing.Size(178, 33);
+			this.EditCustomersBtn.TabIndex = 28;
+			this.EditCustomersBtn.Text = "Edit Customers";
+			this.EditCustomersBtn.UseVisualStyleBackColor = true;
+			this.EditCustomersBtn.Click += new System.EventHandler(this.EditCustomers_Click);
 			// 
 			// ReceiptPriceEditBtn
 			// 
 			this.ReceiptPriceEditBtn.Location = new System.Drawing.Point(162, 242);
 			this.ReceiptPriceEditBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ReceiptPriceEditBtn.Name = "ReceiptPriceEditBtn";
-			this.ReceiptPriceEditBtn.Size = new System.Drawing.Size(190, 26);
+			this.ReceiptPriceEditBtn.Size = new System.Drawing.Size(190, 32);
 			this.ReceiptPriceEditBtn.TabIndex = 27;
 			this.ReceiptPriceEditBtn.Text = "Edit Items";
 			this.ReceiptPriceEditBtn.UseVisualStyleBackColor = true;
 			this.ReceiptPriceEditBtn.Click += new System.EventHandler(this.ReceiptPriceEditBtn_Click);
 			// 
-			// PriceBox
+			// ReceiptPrice
 			// 
-			this.PriceBox.DecimalPlaces = 2;
-			this.PriceBox.Location = new System.Drawing.Point(162, 351);
-			this.PriceBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PriceBox.Maximum = new decimal(new int[] {
+			this.ReceiptPrice.DecimalPlaces = 2;
+			this.ReceiptPrice.Location = new System.Drawing.Point(162, 351);
+			this.ReceiptPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptPrice.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
-			this.PriceBox.Name = "PriceBox";
-			this.PriceBox.ReadOnly = true;
-			this.PriceBox.Size = new System.Drawing.Size(131, 26);
-			this.PriceBox.TabIndex = 26;
-			this.PriceBox.ThousandsSeparator = true;
+			this.ReceiptPrice.Name = "ReceiptPrice";
+			this.ReceiptPrice.ReadOnly = true;
+			this.ReceiptPrice.Size = new System.Drawing.Size(131, 26);
+			this.ReceiptPrice.TabIndex = 26;
+			this.ReceiptPrice.ThousandsSeparator = true;
 			// 
-			// quantityBox
+			// ReceiptQuantity
 			// 
-			this.quantityBox.DecimalPlaces = 2;
-			this.quantityBox.Location = new System.Drawing.Point(162, 396);
-			this.quantityBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.quantityBox.Maximum = new decimal(new int[] {
+			this.ReceiptQuantity.DecimalPlaces = 2;
+			this.ReceiptQuantity.Location = new System.Drawing.Point(162, 396);
+			this.ReceiptQuantity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptQuantity.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-			this.quantityBox.Name = "quantityBox";
-			this.quantityBox.Size = new System.Drawing.Size(131, 26);
-			this.quantityBox.TabIndex = 25;
-			this.quantityBox.ThousandsSeparator = true;
+			this.ReceiptQuantity.Name = "ReceiptQuantity";
+			this.ReceiptQuantity.Size = new System.Drawing.Size(131, 26);
+			this.ReceiptQuantity.TabIndex = 25;
+			this.ReceiptQuantity.ThousandsSeparator = true;
 			// 
-			// CancelPurchaseBtn
+			// ReceiptCancelBtn
 			// 
-			this.CancelPurchaseBtn.AllowDrop = true;
-			this.CancelPurchaseBtn.Location = new System.Drawing.Point(33, 550);
-			this.CancelPurchaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.CancelPurchaseBtn.Name = "CancelPurchaseBtn";
-			this.CancelPurchaseBtn.Size = new System.Drawing.Size(328, 50);
-			this.CancelPurchaseBtn.TabIndex = 24;
-			this.CancelPurchaseBtn.Text = "Cancel";
-			this.CancelPurchaseBtn.UseVisualStyleBackColor = true;
-			this.CancelPurchaseBtn.Click += new System.EventHandler(this.CancelPurchaseBtn_Click);
+			this.ReceiptCancelBtn.AllowDrop = true;
+			this.ReceiptCancelBtn.Location = new System.Drawing.Point(33, 550);
+			this.ReceiptCancelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptCancelBtn.Name = "ReceiptCancelBtn";
+			this.ReceiptCancelBtn.Size = new System.Drawing.Size(328, 50);
+			this.ReceiptCancelBtn.TabIndex = 24;
+			this.ReceiptCancelBtn.Text = "Cancel";
+			this.ReceiptCancelBtn.UseVisualStyleBackColor = true;
+			this.ReceiptCancelBtn.Click += new System.EventHandler(this.CancelPurchaseBtn_Click);
 			// 
-			// PurchaseBtn
+			// ReceiptPurchaseBtn
 			// 
-			this.PurchaseBtn.AllowDrop = true;
-			this.PurchaseBtn.Location = new System.Drawing.Point(208, 475);
-			this.PurchaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PurchaseBtn.Name = "PurchaseBtn";
-			this.PurchaseBtn.Size = new System.Drawing.Size(153, 50);
-			this.PurchaseBtn.TabIndex = 23;
-			this.PurchaseBtn.Text = "Purchase/Sale";
-			this.PurchaseBtn.UseVisualStyleBackColor = true;
-			this.PurchaseBtn.Click += new System.EventHandler(this.PurchaseBtn_Click);
+			this.ReceiptPurchaseBtn.AllowDrop = true;
+			this.ReceiptPurchaseBtn.Location = new System.Drawing.Point(208, 475);
+			this.ReceiptPurchaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptPurchaseBtn.Name = "ReceiptPurchaseBtn";
+			this.ReceiptPurchaseBtn.Size = new System.Drawing.Size(153, 50);
+			this.ReceiptPurchaseBtn.TabIndex = 23;
+			this.ReceiptPurchaseBtn.Text = "Purchase/Sale";
+			this.ReceiptPurchaseBtn.UseVisualStyleBackColor = true;
+			this.ReceiptPurchaseBtn.Click += new System.EventHandler(this.PurchaseBtn_Click);
 			// 
-			// CustomerNameTextBox
+			// CustomerName
 			// 
-			this.CustomerNameTextBox.Location = new System.Drawing.Point(698, 150);
-			this.CustomerNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.CustomerNameTextBox.Name = "CustomerNameTextBox";
-			this.CustomerNameTextBox.ReadOnly = true;
-			this.CustomerNameTextBox.Size = new System.Drawing.Size(261, 26);
-			this.CustomerNameTextBox.TabIndex = 22;
+			this.CustomerName.Location = new System.Drawing.Point(698, 150);
+			this.CustomerName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.CustomerName.Name = "CustomerName";
+			this.CustomerName.ReadOnly = true;
+			this.CustomerName.Size = new System.Drawing.Size(261, 26);
+			this.CustomerName.TabIndex = 22;
 			// 
-			// CustomerSurnameTextBox
+			// CustomerSurname
 			// 
-			this.CustomerSurnameTextBox.Location = new System.Drawing.Point(698, 206);
-			this.CustomerSurnameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.CustomerSurnameTextBox.Name = "CustomerSurnameTextBox";
-			this.CustomerSurnameTextBox.ReadOnly = true;
-			this.CustomerSurnameTextBox.Size = new System.Drawing.Size(261, 26);
-			this.CustomerSurnameTextBox.TabIndex = 21;
+			this.CustomerSurname.Location = new System.Drawing.Point(698, 206);
+			this.CustomerSurname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.CustomerSurname.Name = "CustomerSurname";
+			this.CustomerSurname.ReadOnly = true;
+			this.CustomerSurname.Size = new System.Drawing.Size(261, 26);
+			this.CustomerSurname.TabIndex = 21;
 			// 
-			// label7
+			// CustomerNameLabel
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(560, 152);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(45, 19);
-			this.label7.TabIndex = 20;
-			this.label7.Text = "Name";
+			this.CustomerNameLabel.AutoSize = true;
+			this.CustomerNameLabel.Location = new System.Drawing.Point(560, 152);
+			this.CustomerNameLabel.Name = "CustomerNameLabel";
+			this.CustomerNameLabel.Size = new System.Drawing.Size(45, 19);
+			this.CustomerNameLabel.TabIndex = 20;
+			this.CustomerNameLabel.Text = "Name";
 			// 
-			// label6
+			// CustomerSurnameLabel
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(560, 206);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(72, 19);
-			this.label6.TabIndex = 19;
-			this.label6.Text = "Surname";
+			this.CustomerSurnameLabel.AutoSize = true;
+			this.CustomerSurnameLabel.Location = new System.Drawing.Point(560, 206);
+			this.CustomerSurnameLabel.Name = "CustomerSurnameLabel";
+			this.CustomerSurnameLabel.Size = new System.Drawing.Size(72, 19);
+			this.CustomerSurnameLabel.TabIndex = 19;
+			this.CustomerSurnameLabel.Text = "Surname";
 			// 
-			// CustomerIDNumberTextBox
+			// CustomerIDNumber
 			// 
-			this.CustomerIDNumberTextBox.Location = new System.Drawing.Point(698, 99);
-			this.CustomerIDNumberTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.CustomerIDNumberTextBox.Name = "CustomerIDNumberTextBox";
-			this.CustomerIDNumberTextBox.ReadOnly = true;
-			this.CustomerIDNumberTextBox.Size = new System.Drawing.Size(261, 26);
-			this.CustomerIDNumberTextBox.TabIndex = 18;
+			this.CustomerIDNumber.Location = new System.Drawing.Point(698, 99);
+			this.CustomerIDNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.CustomerIDNumber.Name = "CustomerIDNumber";
+			this.CustomerIDNumber.ReadOnly = true;
+			this.CustomerIDNumber.Size = new System.Drawing.Size(261, 26);
+			this.CustomerIDNumber.TabIndex = 18;
 			// 
-			// label5
+			// CustomerIDLabel
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(560, 102);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(27, 19);
-			this.label5.TabIndex = 17;
-			this.label5.Text = "ID";
+			this.CustomerIDLabel.AutoSize = true;
+			this.CustomerIDLabel.Location = new System.Drawing.Point(560, 102);
+			this.CustomerIDLabel.Name = "CustomerIDLabel";
+			this.CustomerIDLabel.Size = new System.Drawing.Size(27, 19);
+			this.CustomerIDLabel.TabIndex = 17;
+			this.CustomerIDLabel.Text = "ID";
 			// 
-			// label4
+			// CustomerNumbersLabel
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(560, 58);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(144, 19);
-			this.label4.TabIndex = 16;
-			this.label4.Text = "Customer Number";
+			this.CustomerNumbersLabel.AutoSize = true;
+			this.CustomerNumbersLabel.Location = new System.Drawing.Point(560, 58);
+			this.CustomerNumbersLabel.Name = "CustomerNumbersLabel";
+			this.CustomerNumbersLabel.Size = new System.Drawing.Size(144, 19);
+			this.CustomerNumbersLabel.TabIndex = 16;
+			this.CustomerNumbersLabel.Text = "Customer Number";
 			// 
-			// customerNumbersList
+			// CustomerNumbersList
 			// 
-			this.customerNumbersList.DropDownHeight = 300;
-			this.customerNumbersList.FormattingEnabled = true;
-			this.customerNumbersList.IntegralHeight = false;
-			this.customerNumbersList.ItemHeight = 19;
-			this.customerNumbersList.Location = new System.Drawing.Point(873, 56);
-			this.customerNumbersList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.customerNumbersList.Name = "customerNumbersList";
-			this.customerNumbersList.Size = new System.Drawing.Size(86, 27);
-			this.customerNumbersList.TabIndex = 15;
-			this.customerNumbersList.SelectedIndexChanged += new System.EventHandler(this.customerNumbersList_SelectedIndexChanged);
-			this.customerNumbersList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.customerNumbersList_KeyDown);
+			this.CustomerNumbersList.DropDownHeight = 300;
+			this.CustomerNumbersList.FormattingEnabled = true;
+			this.CustomerNumbersList.IntegralHeight = false;
+			this.CustomerNumbersList.ItemHeight = 19;
+			this.CustomerNumbersList.Location = new System.Drawing.Point(873, 56);
+			this.CustomerNumbersList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.CustomerNumbersList.Name = "CustomerNumbersList";
+			this.CustomerNumbersList.Size = new System.Drawing.Size(86, 27);
+			this.CustomerNumbersList.TabIndex = 15;
+			this.CustomerNumbersList.SelectedIndexChanged += new System.EventHandler(this.customerNumbersList_SelectedIndexChanged);
+			this.CustomerNumbersList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.customerNumbersList_KeyDown);
 			// 
-			// IDPictureBox
+			// CustomerIDPicture
 			// 
-			this.IDPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.CustomerIDPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.IDPictureBox.BackColor = System.Drawing.Color.Transparent;
-			this.IDPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.IDPictureBox.Location = new System.Drawing.Point(563, 396);
-			this.IDPictureBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.IDPictureBox.Name = "IDPictureBox";
-			this.IDPictureBox.Size = new System.Drawing.Size(448, 292);
-			this.IDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.IDPictureBox.TabIndex = 1;
-			this.IDPictureBox.TabStop = false;
+			this.CustomerIDPicture.BackColor = System.Drawing.Color.Transparent;
+			this.CustomerIDPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.CustomerIDPicture.Location = new System.Drawing.Point(563, 396);
+			this.CustomerIDPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.CustomerIDPicture.Name = "CustomerIDPicture";
+			this.CustomerIDPicture.Size = new System.Drawing.Size(448, 292);
+			this.CustomerIDPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.CustomerIDPicture.TabIndex = 1;
+			this.CustomerIDPicture.TabStop = false;
 			// 
-			// DealerPriceCheckBox
+			// ReceiptDealerPrice
 			// 
-			this.DealerPriceCheckBox.AutoSize = true;
-			this.DealerPriceCheckBox.Location = new System.Drawing.Point(162, 290);
-			this.DealerPriceCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.DealerPriceCheckBox.Name = "DealerPriceCheckBox";
-			this.DealerPriceCheckBox.Size = new System.Drawing.Size(136, 23);
-			this.DealerPriceCheckBox.TabIndex = 14;
-			this.DealerPriceCheckBox.Text = "Dealer Price";
-			this.DealerPriceCheckBox.UseVisualStyleBackColor = true;
-			this.DealerPriceCheckBox.CheckedChanged += new System.EventHandler(this.DealerPriceCheckBox_CheckedChanged);
+			this.ReceiptDealerPrice.AutoSize = true;
+			this.ReceiptDealerPrice.Location = new System.Drawing.Point(162, 290);
+			this.ReceiptDealerPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptDealerPrice.Name = "ReceiptDealerPrice";
+			this.ReceiptDealerPrice.Size = new System.Drawing.Size(136, 23);
+			this.ReceiptDealerPrice.TabIndex = 14;
+			this.ReceiptDealerPrice.Text = "Dealer Price";
+			this.ReceiptDealerPrice.UseVisualStyleBackColor = true;
+			this.ReceiptDealerPrice.CheckedChanged += new System.EventHandler(this.DealerPriceCheckBox_CheckedChanged);
 			// 
-			// PriceOverrideCheckBox
+			// ReceiptPriceOverride
 			// 
-			this.PriceOverrideCheckBox.AutoSize = true;
-			this.PriceOverrideCheckBox.Location = new System.Drawing.Point(162, 318);
-			this.PriceOverrideCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PriceOverrideCheckBox.Name = "PriceOverrideCheckBox";
-			this.PriceOverrideCheckBox.Size = new System.Drawing.Size(136, 23);
-			this.PriceOverrideCheckBox.TabIndex = 13;
-			this.PriceOverrideCheckBox.Text = "Manual Price";
-			this.PriceOverrideCheckBox.UseVisualStyleBackColor = true;
-			this.PriceOverrideCheckBox.CheckedChanged += new System.EventHandler(this.PriceOverrideCheckBox_CheckedChanged);
+			this.ReceiptPriceOverride.AutoSize = true;
+			this.ReceiptPriceOverride.Location = new System.Drawing.Point(162, 318);
+			this.ReceiptPriceOverride.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptPriceOverride.Name = "ReceiptPriceOverride";
+			this.ReceiptPriceOverride.Size = new System.Drawing.Size(136, 23);
+			this.ReceiptPriceOverride.TabIndex = 13;
+			this.ReceiptPriceOverride.Text = "Manual Price";
+			this.ReceiptPriceOverride.UseVisualStyleBackColor = true;
+			this.ReceiptPriceOverride.CheckedChanged += new System.EventHandler(this.PriceOverrideCheckBox_CheckedChanged);
 			// 
-			// label3
+			// ReceiptPriceLabel
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(35, 353);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(54, 19);
-			this.label3.TabIndex = 11;
-			this.label3.Text = "Price";
+			this.ReceiptPriceLabel.AutoSize = true;
+			this.ReceiptPriceLabel.Location = new System.Drawing.Point(35, 353);
+			this.ReceiptPriceLabel.Name = "ReceiptPriceLabel";
+			this.ReceiptPriceLabel.Size = new System.Drawing.Size(54, 19);
+			this.ReceiptPriceLabel.TabIndex = 11;
+			this.ReceiptPriceLabel.Text = "Price";
 			// 
-			// label2
+			// ReceiptQuantityLabel
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(35, 398);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(81, 19);
-			this.label2.TabIndex = 9;
-			this.label2.Text = "Quantity";
+			this.ReceiptQuantityLabel.AutoSize = true;
+			this.ReceiptQuantityLabel.Location = new System.Drawing.Point(35, 398);
+			this.ReceiptQuantityLabel.Name = "ReceiptQuantityLabel";
+			this.ReceiptQuantityLabel.Size = new System.Drawing.Size(81, 19);
+			this.ReceiptQuantityLabel.TabIndex = 9;
+			this.ReceiptQuantityLabel.Text = "Quantity";
 			// 
 			// logo
 			// 
@@ -742,40 +742,40 @@ namespace Green_Enviro_App
 			this.logo.TabStop = false;
 			this.logo.Visible = false;
 			// 
-			// itemList
+			// ReceiptItemList
 			// 
-			this.itemList.DropDownHeight = 300;
-			this.itemList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.itemList.FormattingEnabled = true;
-			this.itemList.IntegralHeight = false;
-			this.itemList.ItemHeight = 19;
-			this.itemList.Location = new System.Drawing.Point(162, 198);
-			this.itemList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.itemList.Name = "itemList";
-			this.itemList.Size = new System.Drawing.Size(190, 27);
-			this.itemList.TabIndex = 7;
-			this.itemList.SelectedIndexChanged += new System.EventHandler(this.itemList_SelectedIndexChanged);
+			this.ReceiptItemList.DropDownHeight = 300;
+			this.ReceiptItemList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ReceiptItemList.FormattingEnabled = true;
+			this.ReceiptItemList.IntegralHeight = false;
+			this.ReceiptItemList.ItemHeight = 19;
+			this.ReceiptItemList.Location = new System.Drawing.Point(162, 198);
+			this.ReceiptItemList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptItemList.Name = "ReceiptItemList";
+			this.ReceiptItemList.Size = new System.Drawing.Size(190, 27);
+			this.ReceiptItemList.TabIndex = 7;
+			this.ReceiptItemList.SelectedIndexChanged += new System.EventHandler(this.itemList_SelectedIndexChanged);
 			// 
-			// label1
+			// ReceiptItemLabel
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(35, 199);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(45, 19);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Item";
+			this.ReceiptItemLabel.AutoSize = true;
+			this.ReceiptItemLabel.Location = new System.Drawing.Point(35, 199);
+			this.ReceiptItemLabel.Name = "ReceiptItemLabel";
+			this.ReceiptItemLabel.Size = new System.Drawing.Size(45, 19);
+			this.ReceiptItemLabel.TabIndex = 3;
+			this.ReceiptItemLabel.Text = "Item";
 			// 
-			// addItemBtn
+			// ReceiptAddItemBtn
 			// 
-			this.addItemBtn.AllowDrop = true;
-			this.addItemBtn.Location = new System.Drawing.Point(33, 475);
-			this.addItemBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.addItemBtn.Name = "addItemBtn";
-			this.addItemBtn.Size = new System.Drawing.Size(153, 50);
-			this.addItemBtn.TabIndex = 1;
-			this.addItemBtn.Text = "Add Item";
-			this.addItemBtn.UseVisualStyleBackColor = true;
-			this.addItemBtn.Click += new System.EventHandler(this.addItemBtn_Click);
+			this.ReceiptAddItemBtn.AllowDrop = true;
+			this.ReceiptAddItemBtn.Location = new System.Drawing.Point(33, 475);
+			this.ReceiptAddItemBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptAddItemBtn.Name = "ReceiptAddItemBtn";
+			this.ReceiptAddItemBtn.Size = new System.Drawing.Size(153, 50);
+			this.ReceiptAddItemBtn.TabIndex = 1;
+			this.ReceiptAddItemBtn.Text = "Add Item";
+			this.ReceiptAddItemBtn.UseVisualStyleBackColor = true;
+			this.ReceiptAddItemBtn.Click += new System.EventHandler(this.addItemBtn_Click);
 			// 
 			// receiptBox
 			// 
@@ -3189,9 +3189,9 @@ namespace Green_Enviro_App
 			this.mainTabControl.ResumeLayout(false);
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PriceBox)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.quantityBox)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.IDPictureBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ReceiptPrice)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ReceiptQuantity)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.CustomerIDPicture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
 			this.PurchasesPage.ResumeLayout(false);
 			this.PurchasesPage.PerformLayout();
@@ -3239,114 +3239,34 @@ namespace Green_Enviro_App
 
 		private System.Windows.Forms.TabControl mainTabControl;
 		private System.Windows.Forms.TabPage ReceiptPage;
-		private System.Windows.Forms.Button addItemBtn;
+		private System.Windows.Forms.Button ReceiptAddItemBtn;
 		private System.Windows.Forms.TabPage PurchasesPage;
 		private System.Windows.Forms.TabPage SalesPage;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label ReceiptItemLabel;
 		private System.Windows.Forms.BindingSource bindingSource1;
+		private System.Windows.Forms.Label ReceiptQuantityLabel;
 
-		/// <summary>
-		/// ComboBox for containing the design and contents of the receipt
-		/// </summary>
-		public System.Windows.Forms.RichTextBox receiptBox;
+		private System.Windows.Forms.Label ReceiptPriceLabel;
 
-		/// <summary>
-		/// List of Items that the company buys
-		/// </summary>
-		public System.Windows.Forms.ComboBox itemList;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label CustomerIDLabel;
 
-		/// <summary>
-		/// Picturebox for inserting the company logo that will go on the receipt
-		/// </summary>
-		public System.Windows.Forms.PictureBox logo;
+		private System.Windows.Forms.Label CustomerNumbersLabel;
 
-		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label CustomerNameLabel;
 
-		/// <summary>
-		///  Check box that will allow users to chose whether to use dealer prices or not
-		/// </summary>
-		public System.Windows.Forms.CheckBox DealerPriceCheckBox;
+		private System.Windows.Forms.Label CustomerSurnameLabel;
 
-		/// <summary>
-		/// Check box for selecting whether users can manually insert the price of items or not
-		/// </summary>
-		public System.Windows.Forms.CheckBox PriceOverrideCheckBox;
+		private System.Windows.Forms.Button ReceiptPurchaseBtn;
 
-		/// <summary>
-		/// Field that will show the ID Number of the selected customer
-		/// </summary>
-		public System.Windows.Forms.TextBox CustomerIDNumberTextBox;
-
-		private System.Windows.Forms.Label label5;
-
-		private System.Windows.Forms.Label label4;
-
-		/// <summary>
-		/// Combo box from where the customer numbers can be selected
-		/// </summary>
-		public System.Windows.Forms.ComboBox customerNumbersList;
-
-		/// <summary>
-		/// Field that will show the name of the selected customer. 
-		/// Selecting customers can only be done using the customer numbers combo box
-		/// </summary>
-		public System.Windows.Forms.TextBox CustomerNameTextBox;
-
-		/// <summary>
-		/// Field that will show the surname of the selected customer. 
-		/// Selecting customers can only be done using the customer numbers combo box
-		/// </summary>
-		public System.Windows.Forms.TextBox CustomerSurnameTextBox;
-
-		private System.Windows.Forms.Label label7;
-
-		private System.Windows.Forms.Label label6;
-
-		/// <summary>
-		/// Picture box that will show the ID Picture of the selected customer. 
-		/// Selecting customers can only be done using the customer numbers combo box
-		/// </summary>
-		public System.Windows.Forms.PictureBox IDPictureBox;
-
-		private System.Windows.Forms.Button PurchaseBtn;
-
-		private System.Windows.Forms.Button CancelPurchaseBtn;
-
-		/// <summary>
-		/// Combo box used to set the log filter to either ferrous or non ferrous
-		/// </summary>
-		public System.Windows.Forms.ComboBox PurchaseLogType;
-
-		/// <summary>
-		/// Combo box used to set the start date for the log filter.
-		/// When set, the Data Grid View will filter out all entries that were made before this date
-		/// </summary>
-		public System.Windows.Forms.ComboBox PurchaseLogEndDate;
-
-		/// <summary>
-		/// Combo box used to set the end date for the log filter.
-		/// When set, the Data Grid View will filter out all entries that were made after this date
-		/// </summary>
-		public System.Windows.Forms.ComboBox PurchaseLogStartDate;
+		private System.Windows.Forms.Button ReceiptCancelBtn;
 
 		private System.Windows.Forms.Button PurchaseLogFilterBtn;
 
 		private System.Windows.Forms.Label PurchaseLogMonthLabel;
 
-
-		/// <summary>
-		/// Combo box used to select the month for which the user wants to view purchase logs
-		/// </summary>
-		public System.Windows.Forms.ComboBox PurchaseLogMonth;
 		private System.Windows.Forms.Label PurchaseLogTypeLabel;
 		private System.Windows.Forms.Label PurchaseLogEndDateLabel;
 		private System.Windows.Forms.Label PurchaseLogStartDateLabel;
-
-		/// <summary>
-		/// Data Grid View for viewing all the purchase logs
-		/// </summary>
-		public System.Windows.Forms.DataGridView PurchasesLogGridView;
 		private System.Windows.Forms.Button PurchaseLogRemoveFiltersBtn;
 		private System.Windows.Forms.Label SaleTypeLabel;
 		private System.Windows.Forms.Label SaleQuantityLabel;
@@ -3358,13 +3278,9 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button SalesLogRemoveFiltersBtn;
 		private System.Windows.Forms.Button SalesLogFilterBtn;
 		private System.Windows.Forms.Label SalesLogMonthLabel;
-		public System.Windows.Forms.ComboBox SalesLogMonth;
 		private System.Windows.Forms.Label SaleItemTypeLabel;
 		private System.Windows.Forms.Label SalesLogEndDateLabel;
 		private System.Windows.Forms.Label SalesLogStartDateLabel;
-		public System.Windows.Forms.ComboBox SalesLogType;
-		public System.Windows.Forms.ComboBox SalesLogEndDate;
-		public System.Windows.Forms.ComboBox SalesLogStartDate;
         private System.Windows.Forms.TabPage DestructionCertificates;
         private System.Windows.Forms.Button DestructionCertGenBtn;
         private System.Windows.Forms.Label DestructionCertExtractionDateLabel;
@@ -3374,15 +3290,7 @@ namespace Green_Enviro_App
         private System.Windows.Forms.Label DestructionCertDescripOfPrdctLabel;
         private System.Windows.Forms.Label DestructionCertCompanyLabel;
         private System.Windows.Forms.Label DestructionCertQnttyLabel;
-		public System.Windows.Forms.DateTimePicker SaleDate;
-		public System.Windows.Forms.ComboBox SaleType;
-		public System.Windows.Forms.ComboBox SaleCompanyName;
-		public System.Windows.Forms.DataGridView SalesLogGridView;
 		private Green_Enviro_DataDataSetTableAdapters.CustomersTableAdapter customersTableAdapter1;
-		public System.Windows.Forms.NumericUpDown SaleQuantity;
-		public System.Windows.Forms.NumericUpDown PriceBox;
-		public System.Windows.Forms.NumericUpDown quantityBox;
-		public System.Windows.Forms.NumericUpDown SaleAmount;
 		private System.Windows.Forms.TabPage WagesNewEmployee;
 		private System.Windows.Forms.TabPage Expenses;
 		private System.Windows.Forms.TabPage Summaries;
@@ -3397,22 +3305,12 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label ExpenseAmountLabel;
 		private System.Windows.Forms.Label ExpenseDescriptionLabel;
 		private System.Windows.Forms.Label ExpenseDateLabel;
-		public System.Windows.Forms.DataGridView WageLogGridView;
 		private System.Windows.Forms.Button WageClearFieldsBtn;
 		private System.Windows.Forms.Button WageAddBtn;
 		private System.Windows.Forms.Label WageAmountLabel;
 		private System.Windows.Forms.Label WageEmployeeLabel;
 		private System.Windows.Forms.Label WagesDateLabel;
-        public System.Windows.Forms.CheckBox checkBox1;
-        public System.Windows.Forms.ComboBox comboBox1;
-        public System.Windows.Forms.NumericUpDown numericUpDown1;
-        public System.Windows.Forms.ComboBox comboBox2;
-        public System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button1;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.TextBox textBox2;
-        public System.Windows.Forms.TextBox textBox3;
-        public System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label42;
@@ -3428,58 +3326,40 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label SummariesFSalesLabel;
 		private System.Windows.Forms.Label SummariesFPurchasesLabel;
 		private System.Windows.Forms.Label SummariesProfitLabel;
-		private System.Windows.Forms.Button EditCustomers;
-		public System.Windows.Forms.CheckBox ReceiptDefaultCustomerCheckBox;
-		private System.Windows.Forms.Button ReprintReceiptBtn;
-		private System.Windows.Forms.Button AddFloatBtn;
-		private System.Windows.Forms.Label label55;
-		public System.Windows.Forms.TextBox FloatBox;
+		private System.Windows.Forms.Button EditCustomersBtn;
+		private System.Windows.Forms.Button ReceiptReprintBtn;
+		private System.Windows.Forms.Button ReceiptAddFloatBtn;
+		private System.Windows.Forms.Label ReceiptFloatLabel;
         private System.Windows.Forms.Button DestructionCertEmailBtn;
 		private System.Windows.Forms.Label SummariesTotalSalesLabel;
 		private System.Windows.Forms.Label SummariesTotalPurchasesLabel;
-		public System.Windows.Forms.ComboBox ReceiptSaleOrPurchase;
 		private System.Windows.Forms.TabPage Inventory;
-		public System.Windows.Forms.ComboBox InventoryLogMonth;
-		public System.Windows.Forms.ComboBox InventoryLogEndDate;
-		public System.Windows.Forms.ComboBox InventoryLogStartDate;
 		private System.Windows.Forms.Label label60;
 		private System.Windows.Forms.Label label59;
 		private System.Windows.Forms.Label label58;
 		private System.Windows.Forms.Button InventoryLogRmvFilterBtn;
 		private System.Windows.Forms.Button InventoryLogFilterBtn;
-		public System.Windows.Forms.DataGridView InventoryLogGridView;
 		private System.Windows.Forms.Button WagesEditEmployeesBtn;
 		private System.Windows.Forms.Button LogOutBtn;
-		public System.Windows.Forms.ComboBox InvetorySummedOrNot;
 		private System.Windows.Forms.Label label62;
-		public System.Windows.Forms.ComboBox InventoryLogType;
 		private System.Windows.Forms.Label label63;
 		private System.Windows.Forms.Button AddToPRBtn;
-		public System.Windows.Forms.TextBox CustomerAddress;
-		public System.Windows.Forms.TextBox CustomerCellNumber;
-		private System.Windows.Forms.Label label65;
-		private System.Windows.Forms.Label label64;
+		private System.Windows.Forms.Label CustomerAddressLabel;
+		private System.Windows.Forms.Label CustomerCellLabel;
 		private System.Windows.Forms.TabPage SalesPR;
 		private System.Windows.Forms.TabPage PurchasesPR;
 		private System.Windows.Forms.Button PrintPRBtn;
 		private System.Windows.Forms.Button RemovePRFiltersBtn;
 		private System.Windows.Forms.Button FilterPRBtn;
 		private System.Windows.Forms.Label label66;
-		public System.Windows.Forms.ComboBox PurchasesPRMonth;
 		private System.Windows.Forms.Label label67;
 		private System.Windows.Forms.Label label68;
 		private System.Windows.Forms.Label label69;
-		public System.Windows.Forms.ComboBox PurchasePRType;
-		public System.Windows.Forms.ComboBox PurchasePREndDate;
-		public System.Windows.Forms.ComboBox PurchasePRStartDate;
 		private System.Windows.Forms.ColorDialog colorDialog1;
-		public System.Windows.Forms.Label purchaseOrSaleIndicator;
 		private System.Windows.Forms.Button PurchaseDeleteBtn;
 		private System.Windows.Forms.Button ExpensesDeleteBtn;
 		private System.Windows.Forms.Button SalesLogDeleteBtn;
 		private System.Windows.Forms.Button button6;
-		public System.Windows.Forms.DataGridView PurchasesPRDataGridView;
-		public System.Windows.Forms.DataGridView salesPRDataGridView;
 		private System.Windows.Forms.TabPage DeliveryNote;
 		private System.Windows.Forms.ComboBox DeliveryItemsList;
 		private System.Windows.Forms.Label DeliveryItemsLabel;
@@ -3550,5 +3430,60 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.ComboBox WageLogMonths;
 		private System.Windows.Forms.Button WageDeleteBtn;
 		private System.Windows.Forms.Button EditFixedExpensesBtn;
+		private System.Windows.Forms.RichTextBox receiptBox;
+		private System.Windows.Forms.ComboBox ReceiptItemList;
+		private System.Windows.Forms.PictureBox logo;
+		private System.Windows.Forms.CheckBox ReceiptDealerPrice;
+		private System.Windows.Forms.CheckBox ReceiptPriceOverride;
+		private System.Windows.Forms.TextBox CustomerIDNumber;
+		private System.Windows.Forms.ComboBox CustomerNumbersList;
+		private System.Windows.Forms.TextBox CustomerName;
+		private System.Windows.Forms.TextBox CustomerSurname;
+		private System.Windows.Forms.PictureBox CustomerIDPicture;
+		private System.Windows.Forms.ComboBox PurchaseLogType;
+		private System.Windows.Forms.ComboBox PurchaseLogEndDate;
+		private System.Windows.Forms.ComboBox PurchaseLogStartDate;
+		private System.Windows.Forms.ComboBox PurchaseLogMonth;
+		private System.Windows.Forms.DataGridView PurchasesLogGridView;
+		private System.Windows.Forms.ComboBox SalesLogMonth;
+		private System.Windows.Forms.ComboBox SalesLogType;
+		private System.Windows.Forms.ComboBox SalesLogEndDate;
+		private System.Windows.Forms.ComboBox SalesLogStartDate;
+		private System.Windows.Forms.DateTimePicker SaleDate;
+		private System.Windows.Forms.ComboBox SaleType;
+		private System.Windows.Forms.ComboBox SaleCompanyName;
+		private System.Windows.Forms.DataGridView SalesLogGridView;
+		private System.Windows.Forms.NumericUpDown SaleQuantity;
+		private System.Windows.Forms.NumericUpDown ReceiptPrice;
+		private System.Windows.Forms.NumericUpDown ReceiptQuantity;
+		private System.Windows.Forms.NumericUpDown SaleAmount;
+		private System.Windows.Forms.DataGridView WageLogGridView;
+		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.ComboBox comboBox3;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.CheckBox DefaultCustomer;
+		private System.Windows.Forms.TextBox ReceiptFloat;
+		private System.Windows.Forms.ComboBox ReceiptTransactionType;
+		private System.Windows.Forms.ComboBox InventoryLogMonth;
+		private System.Windows.Forms.ComboBox InventoryLogEndDate;
+		private System.Windows.Forms.ComboBox InventoryLogStartDate;
+		private System.Windows.Forms.DataGridView InventoryLogGridView;
+		private System.Windows.Forms.ComboBox InvetorySummedOrNot;
+		private System.Windows.Forms.ComboBox InventoryLogType;
+		private System.Windows.Forms.TextBox CustomerAddress;
+		private System.Windows.Forms.TextBox CustomerCellNumber;
+		private System.Windows.Forms.ComboBox PurchasesPRMonth;
+		private System.Windows.Forms.ComboBox PurchasePRType;
+		private System.Windows.Forms.ComboBox PurchasePREndDate;
+		private System.Windows.Forms.ComboBox PurchasePRStartDate;
+		private System.Windows.Forms.Label ReceiptTransactionIndicator;
+		private System.Windows.Forms.DataGridView PurchasesPRDataGridView;
+		private System.Windows.Forms.DataGridView salesPRDataGridView;
 	}
 }

@@ -65,8 +65,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="DealerPrice" Type="float" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="DealerPrice" Type="decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Stock">
@@ -144,16 +144,6 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
-        <EntityType Name="Item">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Price" Type="Double" Nullable="false" />
-          <Property Name="DealerPrice" Type="Double" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="Stock">
           <Key>
             <PropertyRef Name="Id" />
@@ -178,10 +168,10 @@
           <EntitySet Name="Companies" EntityType="Self.Company" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="FixedExpenses" EntityType="Self.FixedExpens" />
-          <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Stocks" EntityType="Self.Stock" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Customers" EntityType="Green_Enviro_App.Customer" />
+          <EntitySet Name="Items" EntityType="Green_Enviro_App.Item" />
         </EntityContainer>
         <EntityType Name="Customer">
           <Key>
@@ -194,6 +184,16 @@
           <Property Name="Cell" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IDPicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="DealerPrice" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -247,17 +247,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="Green_Enviro_App.Item">
-              <MappingFragment StoreEntitySet="Items">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="DealerPrice" ColumnName="DealerPrice" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Stocks">
             <EntityTypeMapping TypeName="Green_Enviro_App.Stock">
               <MappingFragment StoreEntitySet="Stock">
@@ -289,6 +278,17 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="Green_Enviro_App.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DealerPrice" ColumnName="DealerPrice" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

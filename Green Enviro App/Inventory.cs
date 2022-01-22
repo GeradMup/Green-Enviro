@@ -16,6 +16,7 @@ namespace Green_Enviro_App
 	
 	public class Inventory
 	{
+		/*
 		static string _month = DateTime.Now.ToString("MMMM yyyy");
 		string _path_to_inventory = @"..//..//resources//Logs//Inventory//" + _month + ".csv";
 		Main_Form _main_form;
@@ -399,6 +400,6 @@ namespace Green_Enviro_App
 			_main_form.InventoryLogMonth.SelectedItem = null;
 			RemoveFilters();
 			_main_form.InventoryLogGridView.DataSource = null;
-		}
+		}*/
 	}
 }

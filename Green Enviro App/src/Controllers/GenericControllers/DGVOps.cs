@@ -59,17 +59,6 @@ namespace Green_Enviro_App
 			dataTable = new DataTable();
 		}
 
-		/// <summary>Configures the DGV so that the totals row can be added if it is required.</summary>
-		/// <param name="_amountColumn">The amount column.</param>
-		/// <param name="_kgsColumn">The KGS column.</param>
-		public void setupTotalsRow(int _amountColumn = -1, int _kgsColumn = -1) 
-		{
-			this.kgsColumn = _kgsColumn;
-			this.amountColumn = _amountColumn;
-
-			if ((kgsColumn != -1) || (amountColumn != -1))  containsTotals = true; 
-		}
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DGVOps"/> class.
 		/// </summary>
@@ -77,6 +66,17 @@ namespace Green_Enviro_App
 		public DGVOps(Form parent) 
 		{
 			parentForm = parent;
+		}
+
+		/// <summary>Configures the DGV so that the totals row can be added if it is required.</summary>
+		/// <param name="_amountColumn">The amount column.</param>
+		/// <param name="_kgsColumn">The KGS column.</param>
+		public void setupTotalsRow(int _amountColumn = -1, int _kgsColumn = -1)
+		{
+			this.kgsColumn = _kgsColumn;
+			this.amountColumn = _amountColumn;
+
+			if ((kgsColumn != -1) || (amountColumn != -1)) containsTotals = true;
 		}
 		
 		/// <summary>

@@ -18,7 +18,6 @@ namespace Green_Enviro_App
     {
         LoginForm _login_form;
         Receipt _receipt;
-        Database _database;
         //Purchases _purchases;
 		
         CustomersClass _customers;
@@ -26,7 +25,7 @@ namespace Green_Enviro_App
         Email _email;
         Inventory _inventory;
         Employees _employees;
-        Purchases_PR _purchasesPR;
+        //Purchases_PR _purchasesPR;
         FileHandles _fileHandles;
         CSVHandles _csvHandles;
         DGVOps _dgvOps;
@@ -35,6 +34,7 @@ namespace Green_Enviro_App
         TabPage _previous_tab_page;
         TabPage _current_tab_page;
 
+        //Main Form Models
         DestructionCertificatesModel _destructionCertificatesModel;
         DeliveryNotesModel _deliveryNotesModel;
         SummariesModel _summariesModel;
@@ -43,8 +43,14 @@ namespace Green_Enviro_App
         EmployeesModel _employeesModel;
         SalesModel _salesModel;
         PurchasesModel _purchasesModel;
+        ReceiptModel _receiptModel;
 
+        //Other Models
         FixedExpensesModel _fixedExpensesModel;
+        
+        //Other Controllers
+
+        //Other Views
         FixedExpensesViews _fixedExpensesViews;
         CustomWarning _warnings;
         bool starting = true;
@@ -59,28 +65,27 @@ namespace Green_Enviro_App
         {
             InitializeComponent();
             _login_form = loginForm;
-            _database = _data;
             _fileHandles = new FileHandles();
             _csvHandles = new CSVHandles();
             _mainForm = this;
-            _purchasesPR = new Purchases_PR(this,_fileHandles);
+            //_purchasesPR = new Purchases_PR(this,_fileHandles);
             _email = new Email();
-            _inventory = new Inventory(this);
+            //_inventory = new Inventory();
             _customers = new CustomersClass(this, _receipt);
            
-
+            //Main form models
             _destructionCertificatesModel = new DestructionCertificatesModel(this, _fileHandles);
             _deliveryNotesModel = new DeliveryNotesModel(_fileHandles);
             _summariesModel = new SummariesModel(_fileHandles, _csvHandles);
             _wagesModel = new WagesModel(_csvHandles,_fileHandles);
             _expensesModel = new ExpensesModel(_csvHandles,_fileHandles);
             _employeesModel = new EmployeesModel();
+            _salesModel = new SalesModel(_fileHandles, _csvHandles);
+            _purchasesModel = new PurchasesModel(_fileHandles, _csvHandles);
+            _receiptModel = new ReceiptModel(_fileHandles, _csvHandles);
             
             _fixedExpensesModel = new FixedExpensesModel();
             _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);
-            _salesModel = new SalesModel(_fileHandles, _csvHandles);
-            _purchasesModel = new PurchasesModel(_fileHandles, _csvHandles);
-
             _employees = new Employees(this, _employeesModel);
             _dgvOps = new DGVOps(this);
             _warnings = new CustomWarning();
@@ -95,6 +100,7 @@ namespace Green_Enviro_App
             initializeExpensesTab();
             initializeSalesTab();
             initializePurchasesTab();
+            initialiseReceiptTab();
         }
 
 		/// <summary>
@@ -146,7 +152,7 @@ namespace Green_Enviro_App
         private void PurchaseBtn_Click(object sender, EventArgs e)
         {
             //Check if the current transaction is to be a purchase or sale first
-            if (ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.purchase)
+            if (ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.purchase)
             {
                 /*if ((_user_permission_level == 2))
                 {
@@ -159,8 +165,8 @@ namespace Green_Enviro_App
 
                 //_receipt.CompletePurchaseOrSale();
             }
-            else if ((ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
-                ||(ReceiptSaleOrPurchase.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale)) 
+            else if ((ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
+                ||(ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale)) 
             {
                 /*if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
                 {
@@ -188,21 +194,6 @@ namespace Green_Enviro_App
         private void DealerPriceCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             //_receipt.ItemChanged();
-        }
-
-        private void ReceiptPriceEditBtn_Click(object sender, EventArgs e)
-        {
-            //We will no longer check the permission level before editing prices
-            /*if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
-            {
-                _receipt.EditPrices();
-            }
-            else 
-            {
-                PermissionDenied();
-            }*/
-
-            //_receipt.EditPrices();
         }
 
         private void ReprintReceiptBtn_Click(object sender, EventArgs e)
@@ -283,22 +274,22 @@ namespace Green_Enviro_App
         // *******************************************************************************************************************
         private void InventoryLogMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            _inventory.MonthSelected();
+           // _inventory.MonthSelected();
 		}
 
         private void InventoryLogFilterBtn_Click(object sender, EventArgs e)
         {
-            _inventory.DisplayLog();
+            //_inventory.DisplayLog();
         }
 
         private void InventoryLogRmvFilterBtn_Click(object sender, EventArgs e)
         {
-            _inventory.RemoveFilters();
+            //_inventory.RemoveFilters();
         }
 
         private void InvetorySummedOrNot_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _inventory.DisplayLog();
+            //_inventory.DisplayLog();
         }
 
         // *******************************************************************************************************************
@@ -311,7 +302,7 @@ namespace Green_Enviro_App
             //_receipt.ResetReceipt();
             //_purchases.Reset();
             //_sales.Reset();
-            _inventory.Reset();
+            //_inventory.Reset();
             //_expenses.Reset();
             resetWages();
             resetSummaries();
@@ -363,7 +354,7 @@ namespace Green_Enviro_App
                 PermissionDenied();
             }*/
 
-            _customers.ActivateForm();
+            //_customers.ActivateForm();
         }
 
 		private void PrintPolice()
@@ -409,22 +400,10 @@ namespace Green_Enviro_App
             Application.Exit();
 		}
 
-		private void ReceiptSaleOrPurchase_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            if (starting == true)
-            {
-                starting = false;
-            }
-            else 
-            {
-                //_receipt.SaleOrPurchaseChanged();
-            }
-		}
-
 
 		private void PurchasesPRMonth_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            _purchasesPR.monthSelected();
+            //_purchasesPR.monthSelected();
 		}
 	}
 }

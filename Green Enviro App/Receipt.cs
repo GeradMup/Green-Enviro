@@ -20,7 +20,7 @@ namespace Green_Enviro_App
 
         Main_Form _main_form;
         Database _database;
-        ItemsClass _items_form;
+       ItemsViews _items_form;
         Float _float;
         Inventory _inventory;
 
@@ -615,10 +615,7 @@ namespace Green_Enviro_App
 
         public void EditPrices() 
         {
-            ClearFields();
-            _items_form.Enabled = true;
-            _items_form.Activate();
-            _items_form.Show();
+
         }
 
         public void PrintReceipt() 

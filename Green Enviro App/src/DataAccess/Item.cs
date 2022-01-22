@@ -16,8 +16,8 @@ namespace Green_Enviro_App.src.DataAccess
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double Price { get; set; }
-        public double DealerPrice { get; set; }
+        public decimal Price { get; set; }
+        public decimal DealerPrice { get; set; }
         public string Type { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Green_Enviro_App
 {
+	/*
 	public class Purchases_PR
 	{
 		Main_Form _main_form;
@@ -116,5 +117,5 @@ namespace Green_Enviro_App
 				//csvHandles.addToCSV(fileHandles.pathToLogs(FileHandles.LogType.PurchasesPoliceRegisters), lines, _main_form, successMessage);
 			}
 		}
-	}
+	}*/
 }
