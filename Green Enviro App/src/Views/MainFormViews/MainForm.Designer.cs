@@ -51,7 +51,7 @@ namespace Green_Enviro_App
 			this.ReceiptReprintBtn = new System.Windows.Forms.Button();
 			this.DefaultCustomer = new System.Windows.Forms.CheckBox();
 			this.EditCustomersBtn = new System.Windows.Forms.Button();
-			this.ReceiptPriceEditBtn = new System.Windows.Forms.Button();
+			this.ReceiptItemsEditBtn = new System.Windows.Forms.Button();
 			this.ReceiptPrice = new System.Windows.Forms.NumericUpDown();
 			this.ReceiptQuantity = new System.Windows.Forms.NumericUpDown();
 			this.ReceiptCancelBtn = new System.Windows.Forms.Button();
@@ -353,7 +353,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Controls.Add(this.ReceiptReprintBtn);
 			this.ReceiptPage.Controls.Add(this.DefaultCustomer);
 			this.ReceiptPage.Controls.Add(this.EditCustomersBtn);
-			this.ReceiptPage.Controls.Add(this.ReceiptPriceEditBtn);
+			this.ReceiptPage.Controls.Add(this.ReceiptItemsEditBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptPrice);
 			this.ReceiptPage.Controls.Add(this.ReceiptQuantity);
 			this.ReceiptPage.Controls.Add(this.ReceiptCancelBtn);
@@ -526,15 +526,16 @@ namespace Green_Enviro_App
 			this.EditCustomersBtn.UseVisualStyleBackColor = true;
 			this.EditCustomersBtn.Click += new System.EventHandler(this.EditCustomers_Click);
 			// 
-			// ReceiptPriceEditBtn
+			// ReceiptItemsEditBtn
 			// 
-			this.ReceiptPriceEditBtn.Location = new System.Drawing.Point(162, 242);
-			this.ReceiptPriceEditBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ReceiptPriceEditBtn.Name = "ReceiptPriceEditBtn";
-			this.ReceiptPriceEditBtn.Size = new System.Drawing.Size(190, 32);
-			this.ReceiptPriceEditBtn.TabIndex = 27;
-			this.ReceiptPriceEditBtn.Text = "Edit Items";
-			this.ReceiptPriceEditBtn.UseVisualStyleBackColor = true;
+			this.ReceiptItemsEditBtn.Location = new System.Drawing.Point(162, 242);
+			this.ReceiptItemsEditBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptItemsEditBtn.Name = "ReceiptItemsEditBtn";
+			this.ReceiptItemsEditBtn.Size = new System.Drawing.Size(190, 32);
+			this.ReceiptItemsEditBtn.TabIndex = 27;
+			this.ReceiptItemsEditBtn.Text = "Edit Items";
+			this.ReceiptItemsEditBtn.UseVisualStyleBackColor = true;
+			this.ReceiptItemsEditBtn.Click += new System.EventHandler(this.ReceiptItemsEditBtn_Click);
 			// 
 			// ReceiptPrice
 			// 
@@ -3287,7 +3288,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TabPage WagesNewEmployee;
 		private System.Windows.Forms.TabPage Expenses;
 		private System.Windows.Forms.TabPage Summaries;
-		private System.Windows.Forms.Button ReceiptPriceEditBtn;
+		private System.Windows.Forms.Button ReceiptItemsEditBtn;
 		private System.Windows.Forms.Button ExpensesLogRemoveFiltersBtn;
 		private System.Windows.Forms.Button ExpensesLogFilterBtn;
 		private System.Windows.Forms.Label ExpensesLogMonthsLabel;

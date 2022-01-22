@@ -49,8 +49,6 @@ namespace Green_Enviro_App
         bool _application_runnig = true;
 
         //Creates the main form for the program
-        Main_Form _mainForm;
-        LoginModel _loginModel;
         int _user_permission_level = 0;
 
         List<Credentials> _all_credentials;
@@ -74,7 +72,7 @@ namespace Green_Enviro_App
         //    }
 
             InitializeComponent();
-
+            intializeLoginForm();
             //Creates an Instance of the Database class
         //    _database = new Database();
 
@@ -87,13 +85,12 @@ namespace Green_Enviro_App
         //    _all_credentials = _account._credentials;
             //MessageBox.Show(_all_credentials[0].user_permission_level.ToString());
 
-            InformationEncryption _decryption = new InformationEncryption();
-            //    _master_password = _decryption.Decrypt(_all_credentials[0].password);
+           
 
             //Creates the main form for the program
             //	_mainForm = new Main_Form(this,_database, _user_permission_level);
 
-            _loginModel = new LoginModel();
+            
         }
 
         //********************************************************************************************************
@@ -189,7 +186,7 @@ namespace Green_Enviro_App
                 bool validLogin = verifyCredentials();
 				if (validLogin) 
                 {
-					StartMainProgram();
+					//StartMainProgram();
                 }
             }
 
@@ -197,7 +194,7 @@ namespace Green_Enviro_App
             {
                 _main_program_pass = false;
                 _already_logged_in = true;
-                StartMainProgram();
+               // StartMainProgram();
                 return;
             }
 
@@ -216,15 +213,6 @@ namespace Green_Enviro_App
                 MessageBoxIcon.Exclamation);
                 //_client_password.PrintCryptography(passwordField.Text);
             }
-        }
-
-        private void StartMainProgram() 
-        {
-            ClearFields();
-            this.Hide();
-            _mainForm._user_permission_level = _user_permission_level;
-            _mainForm.Activate();
-            _mainForm.Show();
         }
 
         private void clear_button_Click(object sender, EventArgs e)

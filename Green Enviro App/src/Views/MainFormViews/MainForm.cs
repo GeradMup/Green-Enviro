@@ -61,7 +61,7 @@ namespace Green_Enviro_App
 		/// <param name="loginForm">An object of the login form control</param>
 		/// <param name="_data">Database</param>
 		/// <param name="permissionLevel"></param>
-		public Main_Form(LoginViews loginForm, Database _data, int permissionLevel)
+		public Main_Form(LoginViews loginForm, int permissionLevel)
         {
             InitializeComponent();
             _login_form = loginForm;

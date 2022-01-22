@@ -34,11 +34,12 @@ namespace Green_Enviro_App
 			{
 				user = context.Users.SingleOrDefault(_user => _user.Username == username);
 			}
+			if (user == null) return false;
 
-			if (user != null) 
-			{
-				return false;
-			}
+			InformationEncryption infoEncryptor = new InformationEncryption();
+			string storedPassword = infoEncryptor.Decrypt(user.Password);
+			if (storedPassword != password) return false;
+
 			return true;
 		}
 
