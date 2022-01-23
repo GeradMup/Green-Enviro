@@ -26,12 +26,19 @@ namespace Green_Enviro_App
 			csvHandles = csvh;
 		}
 
+		/// <summary>
+		/// Gets all the items that the company buys.
+		/// </summary>
+		/// <returns>A list of strings representing the item names.</returns>
 		public List<string> getItems() 
 		{
 			List<string> items;
 			using (DataEntities context = new DataEntities()) 
 			{
-				items = context.Items.Select(_item => _item.Name).ToList();
+				items = context.Items
+					.OrderBy(_item => _item.Id)
+					.Select(_item => _item.Name)
+					.ToList();
 			}
 			return items;
 		}

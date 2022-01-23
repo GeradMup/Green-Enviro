@@ -39,9 +39,7 @@ namespace Green_Enviro_App
 			this.Password = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.ClearBtn = new System.Windows.Forms.Button();
-			this.CreateAccountButton = new System.Windows.Forms.Button();
-			this.ShowPassword = new System.Windows.Forms.CheckBox();
-			this.Users = new System.Windows.Forms.LinkLabel();
+			this.ManageUsers = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// contextMenuStrip1
@@ -116,7 +114,7 @@ namespace Green_Enviro_App
 			// 
 			// ClearBtn
 			// 
-			this.ClearBtn.Location = new System.Drawing.Point(586, 361);
+			this.ClearBtn.Location = new System.Drawing.Point(289, 361);
 			this.ClearBtn.Margin = new System.Windows.Forms.Padding(6);
 			this.ClearBtn.Name = "ClearBtn";
 			this.ClearBtn.Size = new System.Drawing.Size(131, 53);
@@ -125,47 +123,23 @@ namespace Green_Enviro_App
 			this.ClearBtn.UseVisualStyleBackColor = true;
 			this.ClearBtn.Click += new System.EventHandler(this.clear_button_Click);
 			// 
-			// CreateAccountButton
+			// ManageUsers
 			// 
-			this.CreateAccountButton.Location = new System.Drawing.Point(306, 361);
-			this.CreateAccountButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.CreateAccountButton.Name = "CreateAccountButton";
-			this.CreateAccountButton.Size = new System.Drawing.Size(223, 53);
-			this.CreateAccountButton.TabIndex = 9;
-			this.CreateAccountButton.Text = "Create Account";
-			this.CreateAccountButton.UseVisualStyleBackColor = true;
-			// 
-			// ShowPassword
-			// 
-			this.ShowPassword.AutoSize = true;
-			this.ShowPassword.Location = new System.Drawing.Point(629, 281);
-			this.ShowPassword.Margin = new System.Windows.Forms.Padding(6);
-			this.ShowPassword.Name = "ShowPassword";
-			this.ShowPassword.Size = new System.Drawing.Size(64, 23);
-			this.ShowPassword.TabIndex = 10;
-			this.ShowPassword.Text = "Show";
-			this.ShowPassword.UseVisualStyleBackColor = true;
-			this.ShowPassword.CheckedChanged += new System.EventHandler(this.checkBox_Show_Hide_CheckedChanged);
-			// 
-			// Users
-			// 
-			this.Users.AutoSize = true;
-			this.Users.Location = new System.Drawing.Point(759, 282);
-			this.Users.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-			this.Users.Name = "Users";
-			this.Users.Size = new System.Drawing.Size(54, 19);
-			this.Users.TabIndex = 11;
-			this.Users.TabStop = true;
-			this.Users.Text = "Users";
+			this.ManageUsers.Location = new System.Drawing.Point(458, 361);
+			this.ManageUsers.Margin = new System.Windows.Forms.Padding(6);
+			this.ManageUsers.Name = "ManageUsers";
+			this.ManageUsers.Size = new System.Drawing.Size(188, 53);
+			this.ManageUsers.TabIndex = 9;
+			this.ManageUsers.Text = "Manage Users";
+			this.ManageUsers.UseVisualStyleBackColor = true;
+			this.ManageUsers.Click += new System.EventHandler(this.ManageUsers_Click);
 			// 
 			// LoginViews
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(983, 458);
-			this.Controls.Add(this.Users);
-			this.Controls.Add(this.ShowPassword);
-			this.Controls.Add(this.CreateAccountButton);
+			this.Controls.Add(this.ManageUsers);
 			this.Controls.Add(this.ClearBtn);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.Password);
@@ -197,9 +171,7 @@ namespace Green_Enviro_App
         private System.Windows.Forms.TextBox Password;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button ClearBtn;
-        private System.Windows.Forms.Button CreateAccountButton;
-        private System.Windows.Forms.CheckBox ShowPassword;
-        private System.Windows.Forms.LinkLabel Users;
-    }
+		private System.Windows.Forms.Button ManageUsers;
+	}
 }
 

@@ -52,7 +52,6 @@ namespace Green_Enviro_App
         int _user_permission_level = 0;
 
         List<Credentials> _all_credentials;
-        string _sql_server_path = @"..//..//..//Close SQL Server//bin//Debug//Close SQL Server.exe";
         bool _main_program_pass = false;
         bool _already_logged_in = false;
         private int userPermissionLevel = -1;
@@ -165,18 +164,6 @@ namespace Green_Enviro_App
             Password.Clear();
         }
 
-        private void checkBox_Show_Hide_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ShowPassword.Checked)
-            {
-                Password.UseSystemPasswordChar = true;
-            }
-            else
-            {
-                Password.UseSystemPasswordChar = false;
-            }
-        }
-
 		private void LoginForm_Activated(object sender, EventArgs e)
 		{
             if (_main_program_pass) 
@@ -185,11 +172,14 @@ namespace Green_Enviro_App
             }
 		}
 
+		/// <summary>
+		/// Handles the FormClosing event of the LoginForm control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
 		private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         { 
             Application.Exit();
         }
-
-
 	}
 }

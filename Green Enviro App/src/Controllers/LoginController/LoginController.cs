@@ -42,13 +42,27 @@ namespace Green_Enviro_App
 			if ((Username.Text == Constants.EMPTY_TEXT) || (Password.Text == Constants.EMPTY_TEXT)) 
 			{ GenericControllers.reportError(this, INVALID_CREDENTIALS_ERROR); return; }
 
-			userPermissionLevel = _loginModel.verifyCredentials(Username.Text, Password.Text);
+			string userName = Username.Text.Trim();
+			string password = Password.Text.Trim();
+			userPermissionLevel = _loginModel.verifyCredentials(userName, password);
 
 			if(userPermissionLevel == -1) { GenericControllers.reportError(this, INVALID_CREDENTIALS_ERROR); return; }
 
 			//If the password has been verified, lets start the main program.
 			promptDatabaseSnyc();
 			
+		}
+
+		/// <summary>
+		/// Handles the Click event of the ManageUsers control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void ManageUsers_Click(object sender, EventArgs e)
+		{
+			UsersModel usersModel = new UsersModel();
+			UsersViews usersVeiws = new UsersViews(usersModel);
+			usersVeiws.activateForm(this);
 		}
 
 		/// <summary>
