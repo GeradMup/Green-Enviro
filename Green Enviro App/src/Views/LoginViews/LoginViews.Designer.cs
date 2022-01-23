@@ -100,7 +100,7 @@ namespace Green_Enviro_App
 			this.Password.Size = new System.Drawing.Size(284, 32);
 			this.Password.TabIndex = 6;
 			this.Password.Text = "Master";
-			this.Password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordField_KeyPress);
+			this.Password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Password_KeyPress);
 			// 
 			// label3
 			// 

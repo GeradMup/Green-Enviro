@@ -52,72 +52,20 @@ namespace Green_Enviro_App
         int _user_permission_level = 0;
 
         List<Credentials> _all_credentials;
-
-        string _sync_exe_path = @"..//..//..//Green Enviro Sync//bin//Debug//Green Enviro Sync.exe";
         string _sql_server_path = @"..//..//..//Close SQL Server//bin//Debug//Close SQL Server.exe";
         bool _main_program_pass = false;
         bool _already_logged_in = false;
-
-		/// <summary>
+        private int userPermissionLevel = -1;
+		
+        /// <summary>
 		/// Initializes a new instance of the <see cref="LoginViews"/> class.
 		/// </summary>
 		/// <param name="args">Command line arguments.</param>
 		public LoginViews(string[] args)
-        {
-
-       //     if (args.Length > 0)
-        //    {
-         //       _user_permission_level = int.Parse(args[0].ToString());
-		//		_main_program_pass = true; 
-        //    }
-
+        { 
+            if (args.Length > 0) userPermissionLevel = int.Parse(args[0]); 
             InitializeComponent();
-            intializeLoginForm();
-            //Creates an Instance of the Database class
-        //    _database = new Database();
-
-            //Creates a new instances of UserDatabaseForm class
-        //    _user_db_deletion = new UserDatabaseForm(_database);
-
-            //Creates a new instance of CreateAccoutn class
-        //    _account = new CreateAccount(_database, _user_db_deletion);
-
-        //    _all_credentials = _account._credentials;
-            //MessageBox.Show(_all_credentials[0].user_permission_level.ToString());
-
-           
-
-            //Creates the main form for the program
-            //	_mainForm = new Main_Form(this,_database, _user_permission_level);
-
-            
-        }
-
-        //********************************************************************************************************
-
-        void promptDatabaseSnyc()
-        {
-            //First open the Sync App to prompt users if they want to synchronize data 
-            
-            string _absolute_path = Path.GetFullPath(_sync_exe_path);
-            Process.Start(_absolute_path, _user_permission_level.ToString());
-            this.Close();
-        }
-
-		//********************************************************************************************************
-
-		/// <summary>
-		/// Handles the KeyPress event of the LoginForm control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
-		private void LoginForm_KeyPress(object sender, KeyEventArgs e)
-        {
-            this.KeyPreview = true;
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
+            intializeLoginForm();  
         }
 
 		/// <summary>
@@ -128,15 +76,6 @@ namespace Green_Enviro_App
 		private void LoginForm_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Try to login if the uses presses the enter key while the login form is active
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                login();
-            }
-        }
-
-        private void passwordField_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //Try to Login if the user presses the enter key while the password field is active
             if (e.KeyChar == (char)Keys.Enter)
             {
                 login();
@@ -217,10 +156,10 @@ namespace Green_Enviro_App
 
         private void clear_button_Click(object sender, EventArgs e)
         {
-            ClearFields();
+            clearLoginFields();
         }
 
-        private void ClearFields() 
+        private void clearLoginFields()
         {
             Username.Clear();
             Password.Clear();

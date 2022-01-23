@@ -12,6 +12,10 @@ namespace Green_Enviro_App
 	{
 		/// <summary>The main project path where the solution is located</summary>
 		public static readonly string PROJECT_PATH;
+		/// <summary>The path to the database sync program.</summary>
+		public static readonly string DATABASE_SYNC_PROGRAM_PATH;
+		/// <summary>The path to the main program's excecutable.</summary>
+		public static readonly string MAIN_PROGRAM_PATH;
 		/// <summary>The purchases base path</summary>
 		public static readonly string PURCHASES_BASE_PATH;
 		/// <summary>The delivery notes base path</summary>
@@ -65,6 +69,8 @@ namespace Green_Enviro_App
 		static Constants()
 		{
 			PROJECT_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+			DATABASE_SYNC_PROGRAM_PATH = PROJECT_PATH + @"\Green Enviro Sync\bin\Debug\Green Enviro Sync.exe";
+			MAIN_PROGRAM_PATH = PROJECT_PATH + @"\bin\Debug\Green Enviro App.exe";
 			PURCHASES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Purchases\";
 			DELIVERY_NOTES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Delivery Notes\";
 			DESTRUCTION_CERTIFICATES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Destruction Certificates\";

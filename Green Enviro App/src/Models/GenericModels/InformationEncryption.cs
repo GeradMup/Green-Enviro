@@ -63,16 +63,5 @@ namespace Green_Enviro_App
             string decryption = UTF8Encoding.UTF8.GetString(output_array);
             return decryption;
         }
-
-        /*public void PrintCryptography(string plaintext)
-        {
-            string ciphertext = Encrypt(plaintext, _128_cipher_key);
-            string decrypted_text = Decrypt(ciphertext, _128_cipher_key);
-            Console.WriteLine(plaintext);
-            Console.WriteLine("");
-            Console.WriteLine(ciphertext);
-            Console.WriteLine("");
-            Console.WriteLine(decrypted_text);
-        }*/
     }
 }
