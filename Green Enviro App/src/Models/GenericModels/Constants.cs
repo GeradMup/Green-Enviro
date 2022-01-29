@@ -64,6 +64,8 @@ namespace Green_Enviro_App
 		public static readonly string DATE_FORMAT;
 		/// <summary>Special input characters to be ignored if users input them.</summary>
 		public static readonly string SPECIAL_CHARACTERS;
+		/// <summary>Permission denied error string.</summary>
+		public static readonly string PERMISSION_DENIED;
 
 		/// <summary>Initializes a new instance of the <see cref="Constants" /> class.</summary>
 		static Constants()
@@ -95,6 +97,7 @@ namespace Green_Enviro_App
 			SPECIAL_CHARACTERS = ",";
 			TIME_FORMAT = "HH:mm:ss";
 			DATE_FORMAT = "dd MMMM yyyy ";
+			PERMISSION_DENIED = "Permission Denied!";
 		}
 	}
 }

@@ -37,8 +37,7 @@ namespace Green_Enviro_App
 			}
 			if (user == null) return -1;
 
-			InformationEncryption infoEncryptor = new InformationEncryption();
-			string storedPassword = infoEncryptor.Decrypt(user.Password);
+			string storedPassword = InforEncryptor.Decrypt(user.Password);
 			if (storedPassword != password) return -1;
 
 			return user.PermissionLevel;
@@ -54,30 +53,8 @@ namespace Green_Enviro_App
 			ProcessStartInfo info = new ProcessStartInfo(Constants.DATABASE_SYNC_PROGRAM_PATH);
 			string permissionLevel = userPermissionLevel.ToString();
 			string mainProgramPath = Constants.MAIN_PROGRAM_PATH;
-			info.Arguments = permissionLevel + " " + base64Encoder(mainProgramPath);
+			info.Arguments = permissionLevel + " " + GenericModels.base64Encoder(mainProgramPath);
 			return info;
-		}
-
-		/// <summary>
-		/// Converts a regular string into a Base64 string.
-		/// </summary>
-		/// <param name="plainString">The plain string.</param>
-		/// <returns></returns>
-		public string base64Encoder(string plainString) 
-		{
-			byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainString);
-			return System.Convert.ToBase64String(plainTextBytes);
-		}
-
-		/// <summary>
-		/// Converts a regular string into a base64 string.
-		/// </summary>
-		/// <param name="base64String">The base64 string.</param>
-		/// <returns></returns>
-		public string base64Decoder(string base64String) 
-		{
-			byte[] base64Bytes = System.Convert.FromBase64String(base64String);
-			return System.Text.Encoding.UTF8.GetString(base64Bytes);
 		}
 	}
 }

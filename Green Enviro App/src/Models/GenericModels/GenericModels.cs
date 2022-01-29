@@ -10,29 +10,6 @@ namespace Green_Enviro_App
 	/// <summary>This class defines all the generic objects and methods that will be used by other classes.</summary>
 	public class GenericModels
 	{
-		internal class CompanyInfo
-		{
-			public CompanyInfo(string _name = "Unknown", string _contactPerson = "Unknown", string _email = "Unknown",
-								string _contactNumber = "0000000000", string _physcalAddress = "Unknown")
-			{
-				this.companyName = _name;
-				this.contactPerson = _contactPerson;
-				this.emailAddress = _email;
-				this.contactNumber = _contactNumber;
-				this.physicalAddress = _physcalAddress;
-			}
-
-			public string companyName { set; get; }
-
-			public string contactPerson { set; get; }
-
-			public string emailAddress { get; set; }
-
-			public string contactNumber { get; set; }
-
-			public string physicalAddress { get; set; }
-
-		}
 
 		/// <summary>Converts the name of any enum field into a string.</summary>
 		/// <typeparam name="EnumType">The name of the enum class.</typeparam>
@@ -105,6 +82,28 @@ namespace Green_Enviro_App
 			}
 
 			return savePath;
+		}
+
+		/// <summary>
+		/// Converts a regular string into a Base64 string.
+		/// </summary>
+		/// <param name="plainString">The plain string.</param>
+		/// <returns></returns>
+		public static string base64Encoder(string plainString)
+		{
+			byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainString);
+			return System.Convert.ToBase64String(plainTextBytes);
+		}
+
+		/// <summary>
+		/// Converts a regular string into a base64 string.
+		/// </summary>
+		/// <param name="base64String">The base64 string.</param>
+		/// <returns></returns>
+		public static string base64Decoder(string base64String)
+		{
+			byte[] base64Bytes = System.Convert.FromBase64String(base64String);
+			return System.Text.Encoding.UTF8.GetString(base64Bytes);
 		}
 	}
 

@@ -80,7 +80,7 @@
         </EntityType>
         <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="Username" />
           </Key>
           <Property Name="AccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
@@ -153,25 +153,15 @@
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="DealerPrice" Type="Double" Nullable="false" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="AccountId" />
-          </Key>
-          <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PermissionLevel" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="DataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Buyers" EntityType="Self.Buyer" />
           <EntitySet Name="Companies" EntityType="Self.Company" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="FixedExpenses" EntityType="Self.FixedExpens" />
           <EntitySet Name="Stocks" EntityType="Self.Stock" />
-          <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Customers" EntityType="Green_Enviro_App.Customer" />
           <EntitySet Name="Items" EntityType="Green_Enviro_App.Item" />
+          <EntitySet Name="Users" EntityType="Green_Enviro_App.User" />
         </EntityContainer>
         <EntityType Name="Customer">
           <Key>
@@ -194,6 +184,16 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="DealerPrice" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="AccountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PermissionLevel" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -257,17 +257,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Green_Enviro_App.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PermissionLevel" ColumnName="PermissionLevel" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="Green_Enviro_App.Customer">
               <MappingFragment StoreEntitySet="Customers">
@@ -289,6 +278,17 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Green_Enviro_App.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PermissionLevel" ColumnName="PermissionLevel" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -98,7 +98,6 @@ namespace Green_Enviro_App
 			this.Password.Size = new System.Drawing.Size(284, 32);
 			this.Password.TabIndex = 6;
 			this.Password.Text = "Master";
-			this.Password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Password_KeyPress);
 			// 
 			// label3
 			// 
@@ -121,7 +120,6 @@ namespace Green_Enviro_App
 			this.ClearBtn.TabIndex = 8;
 			this.ClearBtn.Text = "Clear";
 			this.ClearBtn.UseVisualStyleBackColor = true;
-			this.ClearBtn.Click += new System.EventHandler(this.clear_button_Click);
 			// 
 			// ManageUsers
 			// 
@@ -154,9 +152,7 @@ namespace Green_Enviro_App
 			this.Name = "LoginViews";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Green Enviro SA Recycling";
-			this.Activated += new System.EventHandler(this.LoginForm_Activated);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
-			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginForm_KeyPress);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

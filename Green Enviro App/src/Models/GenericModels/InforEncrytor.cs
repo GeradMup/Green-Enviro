@@ -11,7 +11,7 @@ using System.Security.Cryptography;
 
 namespace Green_Enviro_App
 {
-    class InformationEncryption
+    class InforEncryptor
         //This class serve as to encrypt all information that need to be protected
     {
         //Encryption and Decryption done through the cryptographic technique DES but here its a tripleDES
@@ -25,7 +25,7 @@ namespace Green_Enviro_App
         //Cipher  key for 196 bits (changeable depending on devs) !!!! 24 characters
         private const string _196_cipher_key = "ElijahisTheProphetofFire";
 
-        public string Encrypt(string plaintext)
+        public static string Encrypt(string plaintext)
         {
             //Storing the psword or plaintext into a byte array as the content is converted into bytes
             byte[] input_array = UTF8Encoding.UTF8.GetBytes(plaintext);
@@ -45,7 +45,7 @@ namespace Green_Enviro_App
             return encryption;
         }
         //Function that decrypts any encrypted information.
-        public string Decrypt(string input)
+        public static string Decrypt(string input)
         {
             //Containing any input information into a array
             byte[] input_array = Convert.FromBase64String(input);

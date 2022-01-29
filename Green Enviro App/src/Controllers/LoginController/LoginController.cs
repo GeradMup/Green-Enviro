@@ -15,6 +15,7 @@ namespace Green_Enviro_App
 		Main_Form _mainForm;
 		LoginModel _loginModel;
 		private const int adminUserLevel = 3;
+		private const int masterUserLevel = 5;
 
 		/// <summary>
 		/// Intializes the login form.
@@ -24,7 +25,6 @@ namespace Green_Enviro_App
 			_loginModel = new LoginModel();
 			if (userPermissionLevel != -1) 
 			{
-				_mainForm = new Main_Form(this, userPermissionLevel);
 				startMainProgram();
 			}
 			
@@ -38,18 +38,18 @@ namespace Green_Enviro_App
 		private void LoginBtn_Click(object sender, EventArgs e)
 		{
 			const string INVALID_CREDENTIALS_ERROR = "Invalid credentials!";
-
-			if ((Username.Text == Constants.EMPTY_TEXT) || (Password.Text == Constants.EMPTY_TEXT)) 
-			{ GenericControllers.reportError(this, INVALID_CREDENTIALS_ERROR); return; }
-
 			string userName = Username.Text.Trim();
 			string password = Password.Text.Trim();
+
+			if ((userName == string.Empty) || (Password.Text == string.Empty)) 
+			{ GenericControllers.reportError(this, INVALID_CREDENTIALS_ERROR); return; }
 			userPermissionLevel = _loginModel.verifyCredentials(userName, password);
 
 			if(userPermissionLevel == -1) { GenericControllers.reportError(this, INVALID_CREDENTIALS_ERROR); return; }
 
 			//If the password has been verified, lets start the main program.
-			promptDatabaseSnyc();
+			if (userPermissionLevel < adminUserLevel) { startMainProgram(); return; }
+			else { promptDatabaseSnyc(); }
 			
 		}
 
@@ -60,6 +60,11 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void ManageUsers_Click(object sender, EventArgs e)
 		{
+			string userName = Username.Text.Trim();
+			string password = Password.Text.Trim();
+			userPermissionLevel = _loginModel.verifyCredentials(userName, password);
+
+			if (userPermissionLevel < masterUserLevel) { GenericControllers.reportError(this, Constants.PERMISSION_DENIED); return; }
 			UsersModel usersModel = new UsersModel();
 			UsersViews usersVeiws = new UsersViews(usersModel);
 			usersVeiws.activateForm(this);
@@ -70,35 +75,29 @@ namespace Green_Enviro_App
 		/// </summary>
 		private void startMainProgram()
 		{
+			_mainForm = new Main_Form(this, userPermissionLevel);
 			clearLoginFields();
-			this.Hide();
 			_mainForm.Activate();
 			_mainForm.Show();
+			this.Hide();
 		}
 
 		/// <summary>
 		/// Prompts the user if they want to update the database if there is an active internet connection.
 		/// This process will close the main program and opens the sync program.
 		/// </summary>
-		void promptDatabaseSnyc()
-		{
-			if (userPermissionLevel < adminUserLevel) { startMainProgram(); return; }
+		void promptDatabaseSnyc() { 
 			Process.Start(_loginModel.processStartInfo(userPermissionLevel));
 			this.Close();
 		}
 
 		/// <summary>
-		/// Handles the KeyPress event of the Password control.
+		/// Clears the login fields.
 		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
-		private void Password_KeyPress(object sender, KeyPressEventArgs e)
+		private void clearLoginFields()
 		{
-			//Try to Login if the user presses the enter key while the password field is active
-			if (e.KeyChar == (char)Keys.Enter)
-			{
-				login();
-			}
+			Username.Clear();
+			Password.Clear();
 		}
 	}
 }
