@@ -59,6 +59,13 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="Float">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FloatValue" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="Items">
           <Key>
             <PropertyRef Name="Id" />
@@ -94,6 +101,7 @@
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FixedExpenses" EntityType="Self.FixedExpenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Float" EntityType="Self.Float" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -162,6 +170,7 @@
           <EntitySet Name="Customers" EntityType="Green_Enviro_App.Customer" />
           <EntitySet Name="Items" EntityType="Green_Enviro_App.Item" />
           <EntitySet Name="Users" EntityType="Green_Enviro_App.User" />
+          <EntitySet Name="Floats" EntityType="Green_Enviro_App.Float" />
         </EntityContainer>
         <EntityType Name="Customer">
           <Key>
@@ -194,6 +203,13 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PermissionLevel" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Float">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FloatValue" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -289,6 +305,14 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Floats">
+            <EntityTypeMapping TypeName="Green_Enviro_App.Float">
+              <MappingFragment StoreEntitySet="Float">
+                <ScalarProperty Name="FloatValue" ColumnName="FloatValue" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

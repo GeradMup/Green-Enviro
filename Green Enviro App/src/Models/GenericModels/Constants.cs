@@ -66,7 +66,10 @@ namespace Green_Enviro_App
 		public static readonly string SPECIAL_CHARACTERS;
 		/// <summary>Permission denied error string.</summary>
 		public static readonly string PERMISSION_DENIED;
-
+		/// <summary>Admin permission level.</summary>
+		public static readonly int ADMIN_PERMISSION_LEVEL;
+		/// <summary>Elevated permission level.</summary>
+		public static readonly int ELEVATED_PERMISSION_LEVEL;
 		/// <summary>Initializes a new instance of the <see cref="Constants" /> class.</summary>
 		static Constants()
 		{
@@ -98,6 +101,8 @@ namespace Green_Enviro_App
 			TIME_FORMAT = "HH:mm:ss";
 			DATE_FORMAT = "dd MMMM yyyy ";
 			PERMISSION_DENIED = "Permission Denied!";
+			ADMIN_PERMISSION_LEVEL = 5;
+			ELEVATED_PERMISSION_LEVEL = 3;
 		}
 	}
 }

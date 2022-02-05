@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Green_Enviro_App.src.Models.CustomersModel
+namespace Green_Enviro_App
 {
 	class CustomersModel
 	{

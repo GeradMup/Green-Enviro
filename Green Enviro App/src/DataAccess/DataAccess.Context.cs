@@ -33,5 +33,6 @@ namespace Green_Enviro_App.src.DataAccess
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Float> Floats { get; set; }
     }
 }

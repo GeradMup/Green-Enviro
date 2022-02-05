@@ -55,7 +55,7 @@ namespace Green_Enviro_App
         CustomWarning _warnings;
         bool starting = true;
 
-        public int _user_permission_level = 0;
+        public int userPermissionLevel = 0;
 
 		/// <summary>This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.</summary>
 		/// <param name="loginForm">An object of the login form control</param>
@@ -89,7 +89,7 @@ namespace Green_Enviro_App
             _employees = new Employees(this, _employeesModel);
             _dgvOps = new DGVOps(this);
             _warnings = new CustomWarning();
-            _user_permission_level = permissionLevel;
+            userPermissionLevel = permissionLevel;
 
             this.Owner = loginForm;
 
@@ -154,7 +154,7 @@ namespace Green_Enviro_App
             //Check if the current transaction is to be a purchase or sale first
             if (ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.purchase)
             {
-                /*if ((_user_permission_level == 2))
+                /*if ((userPermissionLevel == 2))
                 {
                     PermissionDenied();
                 }
@@ -168,7 +168,7 @@ namespace Green_Enviro_App
             else if ((ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
                 ||(ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale)) 
             {
-                /*if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
+                /*if ((userPermissionLevel == 3) || (userPermissionLevel == 4) || (userPermissionLevel == 5))
                 {
 					_receipt.CompletePurchaseOrSale();
                 }
@@ -198,7 +198,7 @@ namespace Green_Enviro_App
 
         private void ReprintReceiptBtn_Click(object sender, EventArgs e)
         {
-            if ((_user_permission_level == 2))
+            if ((userPermissionLevel == 2))
             {
                 PermissionDenied();
             }
@@ -206,19 +206,6 @@ namespace Green_Enviro_App
             {
                 //_receipt.PrintReceipt();
             }
-        }
-
-        private void AddFloatBtn_Click(object sender, EventArgs e)
-        {
-            if ((_user_permission_level == 3) || (_user_permission_level == 4) || (_user_permission_level == 5))
-            {
-                //_receipt.EditFloat();
-            }
-            else
-            {
-                PermissionDenied();
-            }
-            
         }
 
         private void customerNumbersList_KeyDown(object sender, KeyEventArgs e)
@@ -244,7 +231,7 @@ namespace Green_Enviro_App
 
         private void NewEmployee_Click(object sender, EventArgs e)
         {
-            if ((_user_permission_level == 4) || (_user_permission_level == 5))
+            if ((userPermissionLevel == 4) || (userPermissionLevel == 5))
             {
                 this.Enabled = false;
                 _employees.Enabled = true;
@@ -317,10 +304,10 @@ namespace Green_Enviro_App
 		{
             _current_tab_page = e.TabPage;
 
-            if ((e.TabPage.Name == "ReceiptPage") && (_user_permission_level == 1)) return;
-            else if ((e.TabPage.Name == "Expenses") && (_user_permission_level == 1)) return;
-            else if ((e.TabPage.Name == "DestructionCertificates") && (_user_permission_level == 1)) return;
-            else if (_user_permission_level == 1)
+            if ((e.TabPage.Name == "ReceiptPage") && (userPermissionLevel == 1)) return;
+            else if ((e.TabPage.Name == "Expenses") && (userPermissionLevel == 1)) return;
+            else if ((e.TabPage.Name == "DestructionCertificates") && (userPermissionLevel == 1)) return;
+            else if (userPermissionLevel == 1)
             {
                 PermissionDenied();
                 mainTabControl.SelectedTab = _previous_tab_page;
@@ -345,7 +332,7 @@ namespace Green_Enviro_App
 		{
             //_receipt.ResetReceipt();
             //We will no longer check the permission level before editing the customers
-            /*if ((_user_permission_level == 4) || (_user_permission_level == 5))
+            /*if ((userPermissionLevel == 4) || (userPermissionLevel == 5))
             {
                 _customers.ActivateForm();
             }

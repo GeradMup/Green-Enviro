@@ -58,7 +58,7 @@ namespace Green_Enviro_App
 			this.CustomersDataGridView.ReadOnly = true;
 			this.CustomersDataGridView.RowHeadersWidth = 51;
 			this.CustomersDataGridView.RowTemplate.Height = 24;
-			this.CustomersDataGridView.Size = new System.Drawing.Size(1153, 708);
+			this.CustomersDataGridView.Size = new System.Drawing.Size(1153, 738);
 			this.CustomersDataGridView.TabIndex = 0;
 			// 
 			// label4
@@ -67,7 +67,7 @@ namespace Green_Enviro_App
 			this.label4.Location = new System.Drawing.Point(36, 321);
 			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(164, 23);
+			this.label4.Size = new System.Drawing.Size(135, 19);
 			this.label4.TabIndex = 28;
 			this.label4.Text = "Identification";
 			// 
@@ -77,7 +77,7 @@ namespace Green_Enviro_App
 			this.label3.Location = new System.Drawing.Point(36, 223);
 			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(87, 23);
+			this.label3.Size = new System.Drawing.Size(72, 19);
 			this.label3.TabIndex = 27;
 			this.label3.Text = "Surname";
 			// 
@@ -87,7 +87,7 @@ namespace Green_Enviro_App
 			this.label2.Location = new System.Drawing.Point(36, 125);
 			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(54, 23);
+			this.label2.Size = new System.Drawing.Size(45, 19);
 			this.label2.TabIndex = 26;
 			this.label2.Text = "Name";
 			// 
@@ -107,7 +107,7 @@ namespace Green_Enviro_App
 			this.CustomersSurname.Location = new System.Drawing.Point(40, 260);
 			this.CustomersSurname.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersSurname.Name = "CustomersSurname";
-			this.CustomersSurname.Size = new System.Drawing.Size(203, 31);
+			this.CustomersSurname.Size = new System.Drawing.Size(203, 26);
 			this.CustomersSurname.TabIndex = 22;
 			this.CustomersSurname.TextChanged += new System.EventHandler(this.CustomersSurname_TextChanged);
 			// 
@@ -116,7 +116,7 @@ namespace Green_Enviro_App
 			this.CustomersIdentification.Location = new System.Drawing.Point(40, 358);
 			this.CustomersIdentification.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersIdentification.Name = "CustomersIdentification";
-			this.CustomersIdentification.Size = new System.Drawing.Size(203, 31);
+			this.CustomersIdentification.Size = new System.Drawing.Size(203, 26);
 			this.CustomersIdentification.TabIndex = 21;
 			this.CustomersIdentification.TextChanged += new System.EventHandler(this.CustomersIdentification_TextChanged);
 			// 
@@ -125,7 +125,7 @@ namespace Green_Enviro_App
 			this.CustomersName.Location = new System.Drawing.Point(40, 156);
 			this.CustomersName.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersName.Name = "CustomersName";
-			this.CustomersName.Size = new System.Drawing.Size(203, 31);
+			this.CustomersName.Size = new System.Drawing.Size(203, 26);
 			this.CustomersName.TabIndex = 20;
 			this.CustomersName.TextChanged += new System.EventHandler(this.CustomersName_TextChanged);
 			// 
@@ -149,7 +149,7 @@ namespace Green_Enviro_App
 			this.label5.Location = new System.Drawing.Point(569, 31);
 			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(388, 56);
+			this.label5.Size = new System.Drawing.Size(314, 45);
 			this.label5.TabIndex = 31;
 			this.label5.Text = "Edit Customers";
 			// 
@@ -175,9 +175,9 @@ namespace Green_Enviro_App
 			this.CustomersEditBtn.UseVisualStyleBackColor = true;
 			this.CustomersEditBtn.Click += new System.EventHandler(this.CustomersEditBtn_Click);
 			// 
-			// Customers
+			// CustomersClass
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Teal;
 			this.ClientSize = new System.Drawing.Size(1516, 875);
@@ -197,7 +197,7 @@ namespace Green_Enviro_App
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4);
-			this.Name = "Customers";
+			this.Name = "CustomersClass";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Customers";
 			((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).EndInit();

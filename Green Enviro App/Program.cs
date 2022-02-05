@@ -16,7 +16,7 @@ namespace Green_Enviro_App
         [STAThread]
         static void Main(string[] args)
         {
-            string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + @"\Data";
+            string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             AppDomain.CurrentDomain.SetData("DataDirectory", projectPath);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

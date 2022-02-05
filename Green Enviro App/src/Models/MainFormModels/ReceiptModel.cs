@@ -42,5 +42,58 @@ namespace Green_Enviro_App
 			}
 			return items;
 		}
+
+		/// <summary>
+		/// Gets the float.
+		/// </summary>
+		/// <returns>A decimal value representing the float.</returns>
+		public decimal getFloat() 
+		{
+			decimal floatVal;
+			using (DataEntities context = new DataEntities()) 
+			{
+				floatVal = context.Floats.First().FloatValue;
+			}
+			return floatVal;
+		}
+
+		/// <summary>
+		/// Adds the float.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		public void editFloat(decimal value) 
+		{
+			using (DataEntities context = new DataEntities())
+			{
+				Float savedFloat = context.Floats.First();
+				savedFloat.FloatValue = savedFloat.FloatValue + value;
+				context.SaveChanges();
+			}
+		}
+
+		/// <summary>
+		/// Indicates the current state of the float level.
+		/// </summary>
+		/// <param name="floatValue">The float value.</param>
+		/// <returns>An object indicating the current state of the float level.</returns>
+		public FloatLevel floatLevel(decimal floatValue) 
+		{
+			decimal goodLevel = 5000;
+			decimal runningOutLevel = 3000;
+
+			if (floatValue > goodLevel) { return FloatLevel.StillGood; }
+			if ((floatValue < goodLevel) && (floatValue > runningOutLevel)) { return FloatLevel.RunningOut; }
+			else { return FloatLevel.VeryLow; }
+		}
+
+		/// <summary>
+		/// Enum Values to describe the state of the float level
+		/// </summary>
+		public enum FloatLevel
+		{
+			StillGood,
+			RunningOut,
+			VeryLow
+		}
 	}
 }

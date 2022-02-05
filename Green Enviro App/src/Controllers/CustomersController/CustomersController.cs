@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace Green_Enviro_App.src.Controllers.CustomersController
+namespace Green_Enviro_App
 {
-	class CustomersController
+	public class CustomersController
 	{
-	}
+    }
 }

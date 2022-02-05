@@ -38,6 +38,11 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.EditFloatGroup = new System.Windows.Forms.GroupBox();
+			this.SaveFloat = new System.Windows.Forms.Button();
+			this.AddFloatAmount = new System.Windows.Forms.Label();
+			this.AddFloatValue = new System.Windows.Forms.NumericUpDown();
+			this.RemainingFloat = new System.Windows.Forms.NumericUpDown();
 			this.ReceiptTransactionIndicator = new System.Windows.Forms.Label();
 			this.CustomerAddress = new System.Windows.Forms.TextBox();
 			this.CustomerCellNumber = new System.Windows.Forms.TextBox();
@@ -46,7 +51,6 @@ namespace Green_Enviro_App
 			this.LogOutBtn = new System.Windows.Forms.Button();
 			this.ReceiptTransactionType = new System.Windows.Forms.ComboBox();
 			this.ReceiptAddFloatBtn = new System.Windows.Forms.Button();
-			this.ReceiptFloat = new System.Windows.Forms.TextBox();
 			this.ReceiptFloatLabel = new System.Windows.Forms.Label();
 			this.ReceiptReprintBtn = new System.Windows.Forms.Button();
 			this.DefaultCustomer = new System.Windows.Forms.CheckBox();
@@ -275,6 +279,9 @@ namespace Green_Enviro_App
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
+			this.EditFloatGroup.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.AddFloatValue)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.RemainingFloat)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ReceiptPrice)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ReceiptQuantity)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.CustomerIDPicture)).BeginInit();
@@ -340,6 +347,8 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.EditFloatGroup);
+			this.ReceiptPage.Controls.Add(this.RemainingFloat);
 			this.ReceiptPage.Controls.Add(this.ReceiptTransactionIndicator);
 			this.ReceiptPage.Controls.Add(this.CustomerAddress);
 			this.ReceiptPage.Controls.Add(this.CustomerCellNumber);
@@ -348,7 +357,6 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Controls.Add(this.LogOutBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptTransactionType);
 			this.ReceiptPage.Controls.Add(this.ReceiptAddFloatBtn);
-			this.ReceiptPage.Controls.Add(this.ReceiptFloat);
 			this.ReceiptPage.Controls.Add(this.ReceiptFloatLabel);
 			this.ReceiptPage.Controls.Add(this.ReceiptReprintBtn);
 			this.ReceiptPage.Controls.Add(this.DefaultCustomer);
@@ -384,6 +392,81 @@ namespace Green_Enviro_App
 			this.ReceiptPage.TabIndex = 0;
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
+			// 
+			// EditFloatGroup
+			// 
+			this.EditFloatGroup.BackColor = System.Drawing.Color.LightSteelBlue;
+			this.EditFloatGroup.Controls.Add(this.SaveFloat);
+			this.EditFloatGroup.Controls.Add(this.AddFloatAmount);
+			this.EditFloatGroup.Controls.Add(this.AddFloatValue);
+			this.EditFloatGroup.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.EditFloatGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.EditFloatGroup.Location = new System.Drawing.Point(358, 112);
+			this.EditFloatGroup.Name = "EditFloatGroup";
+			this.EditFloatGroup.Size = new System.Drawing.Size(371, 138);
+			this.EditFloatGroup.TabIndex = 80;
+			this.EditFloatGroup.TabStop = false;
+			this.EditFloatGroup.Text = "Edit Float";
+			// 
+			// SaveFloat
+			// 
+			this.SaveFloat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.SaveFloat.Location = new System.Drawing.Point(56, 80);
+			this.SaveFloat.Name = "SaveFloat";
+			this.SaveFloat.Size = new System.Drawing.Size(262, 37);
+			this.SaveFloat.TabIndex = 2;
+			this.SaveFloat.Text = "Add";
+			this.SaveFloat.UseVisualStyleBackColor = false;
+			this.SaveFloat.Click += new System.EventHandler(this.SaveFloat_Click);
+			// 
+			// AddFloatAmount
+			// 
+			this.AddFloatAmount.AutoSize = true;
+			this.AddFloatAmount.Location = new System.Drawing.Point(52, 39);
+			this.AddFloatAmount.Name = "AddFloatAmount";
+			this.AddFloatAmount.Size = new System.Drawing.Size(63, 19);
+			this.AddFloatAmount.TabIndex = 1;
+			this.AddFloatAmount.Text = "Amount";
+			// 
+			// AddFloatValue
+			// 
+			this.AddFloatValue.DecimalPlaces = 2;
+			this.AddFloatValue.Location = new System.Drawing.Point(148, 37);
+			this.AddFloatValue.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+			this.AddFloatValue.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+			this.AddFloatValue.Name = "AddFloatValue";
+			this.AddFloatValue.Size = new System.Drawing.Size(170, 26);
+			this.AddFloatValue.TabIndex = 0;
+			// 
+			// RemainingFloat
+			// 
+			this.RemainingFloat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.RemainingFloat.DecimalPlaces = 2;
+			this.RemainingFloat.InterceptArrowKeys = false;
+			this.RemainingFloat.Location = new System.Drawing.Point(41, 114);
+			this.RemainingFloat.Maximum = new decimal(new int[] {
+            200000,
+            0,
+            0,
+            0});
+			this.RemainingFloat.Minimum = new decimal(new int[] {
+            200000,
+            0,
+            0,
+            -2147483648});
+			this.RemainingFloat.Name = "RemainingFloat";
+			this.RemainingFloat.ReadOnly = true;
+			this.RemainingFloat.Size = new System.Drawing.Size(171, 26);
+			this.RemainingFloat.TabIndex = 79;
+			this.RemainingFloat.ThousandsSeparator = true;
 			// 
 			// ReceiptTransactionIndicator
 			// 
@@ -438,6 +521,7 @@ namespace Green_Enviro_App
 			// LogOutBtn
 			// 
 			this.LogOutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.LogOutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.LogOutBtn.Location = new System.Drawing.Point(1200, 634);
 			this.LogOutBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.LogOutBtn.Name = "LogOutBtn";
@@ -462,25 +546,14 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptAddFloatBtn
 			// 
-			this.ReceiptAddFloatBtn.Location = new System.Drawing.Point(220, 110);
+			this.ReceiptAddFloatBtn.Location = new System.Drawing.Point(220, 112);
 			this.ReceiptAddFloatBtn.Margin = new System.Windows.Forms.Padding(2);
 			this.ReceiptAddFloatBtn.Name = "ReceiptAddFloatBtn";
-			this.ReceiptAddFloatBtn.Size = new System.Drawing.Size(131, 38);
+			this.ReceiptAddFloatBtn.Size = new System.Drawing.Size(131, 30);
 			this.ReceiptAddFloatBtn.TabIndex = 34;
 			this.ReceiptAddFloatBtn.Text = "Add Float";
 			this.ReceiptAddFloatBtn.UseVisualStyleBackColor = true;
 			this.ReceiptAddFloatBtn.Click += new System.EventHandler(this.AddFloatBtn_Click);
-			// 
-			// ReceiptFloat
-			// 
-			this.ReceiptFloat.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ReceiptFloat.Location = new System.Drawing.Point(40, 113);
-			this.ReceiptFloat.Margin = new System.Windows.Forms.Padding(2);
-			this.ReceiptFloat.Name = "ReceiptFloat";
-			this.ReceiptFloat.ReadOnly = true;
-			this.ReceiptFloat.Size = new System.Drawing.Size(172, 36);
-			this.ReceiptFloat.TabIndex = 33;
-			this.ReceiptFloat.TabStop = false;
 			// 
 			// ReceiptFloatLabel
 			// 
@@ -495,6 +568,7 @@ namespace Green_Enviro_App
 			// ReceiptReprintBtn
 			// 
 			this.ReceiptReprintBtn.AllowDrop = true;
+			this.ReceiptReprintBtn.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.ReceiptReprintBtn.Location = new System.Drawing.Point(33, 622);
 			this.ReceiptReprintBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ReceiptReprintBtn.Name = "ReceiptReprintBtn";
@@ -571,6 +645,7 @@ namespace Green_Enviro_App
 			// ReceiptCancelBtn
 			// 
 			this.ReceiptCancelBtn.AllowDrop = true;
+			this.ReceiptCancelBtn.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.ReceiptCancelBtn.Location = new System.Drawing.Point(33, 550);
 			this.ReceiptCancelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ReceiptCancelBtn.Name = "ReceiptCancelBtn";
@@ -583,6 +658,7 @@ namespace Green_Enviro_App
 			// ReceiptPurchaseBtn
 			// 
 			this.ReceiptPurchaseBtn.AllowDrop = true;
+			this.ReceiptPurchaseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.ReceiptPurchaseBtn.Location = new System.Drawing.Point(208, 475);
 			this.ReceiptPurchaseBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ReceiptPurchaseBtn.Name = "ReceiptPurchaseBtn";
@@ -767,6 +843,7 @@ namespace Green_Enviro_App
 			// ReceiptAddItemBtn
 			// 
 			this.ReceiptAddItemBtn.AllowDrop = true;
+			this.ReceiptAddItemBtn.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.ReceiptAddItemBtn.Location = new System.Drawing.Point(33, 475);
 			this.ReceiptAddItemBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.ReceiptAddItemBtn.Name = "ReceiptAddItemBtn";
@@ -3184,6 +3261,10 @@ namespace Green_Enviro_App
 			this.mainTabControl.ResumeLayout(false);
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
+			this.EditFloatGroup.ResumeLayout(false);
+			this.EditFloatGroup.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.AddFloatValue)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.RemainingFloat)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ReceiptPrice)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ReceiptQuantity)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.CustomerIDPicture)).EndInit();
@@ -3462,7 +3543,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.CheckBox DefaultCustomer;
-		private System.Windows.Forms.TextBox ReceiptFloat;
 		private System.Windows.Forms.ComboBox ReceiptTransactionType;
 		private System.Windows.Forms.ComboBox InventoryLogMonth;
 		private System.Windows.Forms.ComboBox InventoryLogEndDate;
@@ -3479,5 +3559,10 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label ReceiptTransactionIndicator;
 		private System.Windows.Forms.DataGridView PurchasesPRDataGridView;
 		private System.Windows.Forms.DataGridView salesPRDataGridView;
+		private System.Windows.Forms.NumericUpDown RemainingFloat;
+		private System.Windows.Forms.GroupBox EditFloatGroup;
+		private System.Windows.Forms.Button SaveFloat;
+		private System.Windows.Forms.Label AddFloatAmount;
+		private System.Windows.Forms.NumericUpDown AddFloatValue;
 	}
 }
