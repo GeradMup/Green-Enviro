@@ -17,12 +17,12 @@ namespace Green_Enviro_App
 	public partial class NewCustomer : Form
 	{
 		Main_Form _main_form;
-		CustomersClass _customers;
+		CustomersViews _customers;
 		DataTable _customers_data_table = new DataTable();
 		Receipt _receipt;
 		string _customers_table_name = "Customers";
 		bool _editing_customer = false;
-		public NewCustomer(CustomersClass customers,Main_Form main, Receipt receipt)
+		public NewCustomer(CustomersViews customers,Main_Form main, Receipt receipt)
 		{
 			InitializeComponent();
 

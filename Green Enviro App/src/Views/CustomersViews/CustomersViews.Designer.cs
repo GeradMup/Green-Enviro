@@ -1,7 +1,7 @@
 ﻿
 namespace Green_Enviro_App
 {
-	partial class CustomersClass
+	partial class CustomersViews
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,8 +29,8 @@ namespace Green_Enviro_App
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomersClass));
-			this.CustomersDataGridView = new System.Windows.Forms.DataGridView();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomersViews));
+			this.CustomersDataGrid = new System.Windows.Forms.DataGridView();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -39,27 +39,27 @@ namespace Green_Enviro_App
 			this.CustomersIdentification = new System.Windows.Forms.TextBox();
 			this.CustomersName = new System.Windows.Forms.TextBox();
 			this.CustomersDoneBtn = new System.Windows.Forms.Button();
-			this.label5 = new System.Windows.Forms.Label();
+			this.EditCustomersFormLabel = new System.Windows.Forms.Label();
 			this.CustomersNewCustomer = new System.Windows.Forms.Button();
 			this.CustomersEditBtn = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.CustomersDataGrid)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// CustomersDataGridView
+			// CustomersDataGrid
 			// 
-			this.CustomersDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.CustomersDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.CustomersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.CustomersDataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
-			this.CustomersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.CustomersDataGridView.Location = new System.Drawing.Point(351, 125);
-			this.CustomersDataGridView.Name = "CustomersDataGridView";
-			this.CustomersDataGridView.ReadOnly = true;
-			this.CustomersDataGridView.RowHeadersWidth = 51;
-			this.CustomersDataGridView.RowTemplate.Height = 24;
-			this.CustomersDataGridView.Size = new System.Drawing.Size(1153, 738);
-			this.CustomersDataGridView.TabIndex = 0;
+			this.CustomersDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.CustomersDataGrid.BackgroundColor = System.Drawing.SystemColors.Control;
+			this.CustomersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.CustomersDataGrid.Location = new System.Drawing.Point(351, 125);
+			this.CustomersDataGrid.Name = "CustomersDataGrid";
+			this.CustomersDataGrid.ReadOnly = true;
+			this.CustomersDataGrid.RowHeadersWidth = 51;
+			this.CustomersDataGrid.RowTemplate.Height = 24;
+			this.CustomersDataGrid.Size = new System.Drawing.Size(1153, 738);
+			this.CustomersDataGrid.TabIndex = 0;
 			// 
 			// label4
 			// 
@@ -140,18 +140,17 @@ namespace Green_Enviro_App
 			this.CustomersDoneBtn.UseVisualStyleBackColor = true;
 			this.CustomersDoneBtn.Click += new System.EventHandler(this.CustomersDoneBtn_Click);
 			// 
-			// label5
+			// EditCustomersFormLabel
 			// 
-			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.EditCustomersFormLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("Consolas", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(569, 31);
-			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(314, 45);
-			this.label5.TabIndex = 31;
-			this.label5.Text = "Edit Customers";
+			this.EditCustomersFormLabel.Font = new System.Drawing.Font("Consolas", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EditCustomersFormLabel.Location = new System.Drawing.Point(656, 23);
+			this.EditCustomersFormLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.EditCustomersFormLabel.Name = "EditCustomersFormLabel";
+			this.EditCustomersFormLabel.Size = new System.Drawing.Size(314, 45);
+			this.EditCustomersFormLabel.TabIndex = 31;
+			this.EditCustomersFormLabel.Text = "Edit Customers";
 			// 
 			// CustomersNewCustomer
 			// 
@@ -175,7 +174,7 @@ namespace Green_Enviro_App
 			this.CustomersEditBtn.UseVisualStyleBackColor = true;
 			this.CustomersEditBtn.Click += new System.EventHandler(this.CustomersEditBtn_Click);
 			// 
-			// CustomersClass
+			// CustomersViews
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -183,7 +182,7 @@ namespace Green_Enviro_App
 			this.ClientSize = new System.Drawing.Size(1516, 875);
 			this.Controls.Add(this.CustomersEditBtn);
 			this.Controls.Add(this.CustomersNewCustomer);
-			this.Controls.Add(this.label5);
+			this.Controls.Add(this.EditCustomersFormLabel);
 			this.Controls.Add(this.CustomersDoneBtn);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
@@ -192,15 +191,16 @@ namespace Green_Enviro_App
 			this.Controls.Add(this.CustomersSurname);
 			this.Controls.Add(this.CustomersIdentification);
 			this.Controls.Add(this.CustomersName);
-			this.Controls.Add(this.CustomersDataGridView);
+			this.Controls.Add(this.CustomersDataGrid);
 			this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4);
-			this.Name = "CustomersClass";
+			this.Name = "CustomersViews";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Customers";
-			((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).EndInit();
+			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			((System.ComponentModel.ISupportInitialize)(this.CustomersDataGrid)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -208,7 +208,7 @@ namespace Green_Enviro_App
 
 		#endregion
 
-		private System.Windows.Forms.DataGridView CustomersDataGridView;
+		private System.Windows.Forms.DataGridView CustomersDataGrid;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
@@ -217,7 +217,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TextBox CustomersIdentification;
 		private System.Windows.Forms.TextBox CustomersName;
 		private System.Windows.Forms.Button CustomersDoneBtn;
-		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label EditCustomersFormLabel;
 		private System.Windows.Forms.Button CustomersNewCustomer;
 		private System.Windows.Forms.Button CustomersEditBtn;
 	}

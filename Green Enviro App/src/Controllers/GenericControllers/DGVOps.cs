@@ -143,6 +143,17 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
+		/// Filters the grid view given specific column name and value pairs.
+		/// </summary>
+		/// <param name="columnName">Name of the column.</param>
+		/// <param name="value">The value.</param>
+		public void filterGridView(string columnName, string value) 
+		{
+			bindingSource.Filter = string.Format("{0} like '%{1}%'", columnName, value);
+			dataGridView.Refresh();
+		}
+
+		/// <summary>
 		/// Filters the grid view based on the selected dates and types.
 		/// </summary>
 		public void filterGridView()
@@ -340,7 +351,7 @@ namespace Green_Enviro_App
 		/// <summary>Populates a general given ComboBox with the given data as a list of strings.</summary>
 		/// <param name="comboBox">The combo box.</param>
 		/// <param name="data">The data.</param>
-		public void populateComboBox(ComboBox comboBox, List<string> data) 
+		public void populateComboBox<T>(ComboBox comboBox, List<T> data) 
 		{
 			comboBox.Items.Clear();
 			comboBox.Items.AddRange(data.Cast<object>().ToArray());

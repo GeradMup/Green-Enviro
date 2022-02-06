@@ -24,7 +24,7 @@ namespace Green_Enviro_App
 			ReceiptTransactionType.SelectedIndex = 0;
 
 			receiptDGVOps.populateComboBox(ReceiptItemList, _receiptModel.getItems());
-
+			receiptDGVOps.populateComboBox(CustomerNumbersList, _receiptModel.customerNumbers());
 			//Setup the float //Disable the side arrows
 			RemainingFloat.Controls[0].Enabled = false;
 			updateFloat();
@@ -73,6 +73,7 @@ namespace Green_Enviro_App
 			items.activateForm(this);  
 		}
 
+		#region FLOAT AND ITEMS
 		/// <summary>
 		/// Handles the Click event of the AddFloatBtn control.
 		/// </summary>
@@ -103,15 +104,33 @@ namespace Green_Enviro_App
 			try
 			{
 				_receiptModel.editFloat(floatValue);
-				AddFloatValue.Value = decimal.Zero;
-				EditFloatGroup.Enabled = false;
-				EditFloatGroup.Visible = false;
+				closeEditFloatGroup();
 				updateFloat();
 			}
 			catch (Exception ex) 
 			{
 				GenericControllers.reportError(this, ex.Message);
 			}
+		}
+
+		/// <summary>
+		/// Handles the Click event of the EditFloatCancel control.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void EditFloatCancel_Click(object sender, EventArgs e)
+		{
+			closeEditFloatGroup();
+		}
+
+		/// <summary>
+		/// Closes the Edit Float Group
+		/// </summary>
+		private void closeEditFloatGroup() 
+		{
+			AddFloatValue.Value = decimal.Zero;
+			EditFloatGroup.Enabled = false;
+			EditFloatGroup.Visible = false;
 		}
 
 		/// <summary>
@@ -139,6 +158,59 @@ namespace Green_Enviro_App
 			}
 		}
 
+		/// <summary>
+		/// Handles the SelectedIndexChanged event of the ReceiptItemList control.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ReceiptItemList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			const string NO_ITEM_SELECTED = "No item selected!";
+			if (ReceiptItemList.SelectedItem == null) { GenericControllers.reportError(this, NO_ITEM_SELECTED); return; }
+
+			//We always want to start with the normal proce.
+			ReceiptDealerPrice.CheckState = CheckState.Unchecked;
+			string itemName = ReceiptItemList.Text;
+			decimal price = _receiptModel.getPrice(itemName);
+			ReceiptItemPrice.Value = price;
+		}
+
+		/// <summary>
+		/// Handles the CheckedChanged event of the DealerPriceCheckbox
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ReceiptDealerPrice_CheckedChanged(object sender, EventArgs e)
+		{
+			const string NO_ITEM_SELECTED = "No item selected!";
+			if (ReceiptItemList.SelectedItem == null) 
+			{ 
+				GenericControllers.reportError(this, NO_ITEM_SELECTED);
+				ReceiptDealerPrice.CheckState = CheckState.Unchecked;
+				return; 
+			}
+
+			if (ReceiptDealerPrice.CheckState == CheckState.Checked)
+			{
+				string itemName = ReceiptItemList.Text;
+				decimal dealerPrice = _receiptModel.getDealerPrice(itemName);
+				ReceiptItemPrice.Value = dealerPrice;
+			}
+			else { ReceiptItemList_SelectedIndexChanged(sender, e); }
+		}
+		#endregion FLOAT AND ITEMS
+
+		#region CUSTOMERS
+		private void EditCustomers_Click(object sender, EventArgs e)
+		{
+			resetReceipt();
+			CustomersModel customerModel = new CustomersModel();
+			CustomersViews customersViews = new CustomersViews(customerModel);
+
+			customersViews.activateForm(this);
+		}
+		#endregion CUSTOMERS
 		private void clearFields() { }
+		private void resetReceipt() { }
 	}
 }

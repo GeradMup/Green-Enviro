@@ -13,7 +13,7 @@ using FastMember;
 
 namespace Green_Enviro_App
 {
-	public partial class CustomersClass : Form
+	public partial class CustomersViews : Form
 	{
         //Here we generate a data table so as to interact with the tables of the database
         DataTable _data_table = new DataTable();
@@ -24,31 +24,44 @@ namespace Green_Enviro_App
         /*
          * Loading the database table for the new users into the class 
          */
-        public CustomersClass(Main_Form main, Receipt receipt)
+
+        Form parentForm;
+        CustomersModel customersModel;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CustomersViews"/> class.
+		/// </summary>
+		/// <param name="cm">The cm.</param>
+		public CustomersViews(CustomersModel cm)
         {
             InitializeComponent();
-            this.Owner = main;
-            _receipt = receipt;
-            _new_customer = new NewCustomer(this, main, _receipt);
-            LoadCustomersDataTable();
+
+            customersModel = cm;
+            initializeCustomers();
         }
 
-        public void ActivateForm()
+		/// <summary>
+		/// Activates the Customers form.
+		/// </summary>
+		public void activateForm(Form parent)
         {
-            this.Owner.Enabled = false;
+            parentForm = parent;
             this.Activate();
             this.Enabled = true;
             this.Show();
+            parentForm.Enabled = false;
+            parentForm.Hide();
         }
 
         private void Exit()
         {
             ClearFields();
-            //_receipt.ResetReceipt();
-            this.Owner.Enabled = true;
-            this.Owner.Show();
+            //_receipt.ResetReceipt()
             this.Hide();
             this.Enabled = false;
+            parentForm.Activate();
+            parentForm.Enabled = true;
+            parentForm.Show();
         }
 
         private void ClearFields()
@@ -83,41 +96,7 @@ namespace Green_Enviro_App
             }
 
             _binding_source.DataSource = _data_table;
-            CustomersDataGridView.DataSource = _binding_source;
-        }
-
-        public void filterCustomersTable(string condition, string value) 
-        {
-            _binding_source.Filter = string.Format("{0} like '%{1}%'", condition, value);
-            CustomersDataGridView.Refresh();
-        }
-
-		private void CustomersDoneBtn_Click(object sender, EventArgs e)
-		{
-           // _receipt.setupCustomerList();
-            LoadCustomersDataTable();
-            Exit();
-		}
-
-		private void CustomersName_TextChanged(object sender, EventArgs e)
-		{
-            string _name_column_header = "Name";
-            string _customer_name = CustomersName.Text;
-            filterCustomersTable(_name_column_header, _customer_name);
-		}
-
-		private void CustomersSurname_TextChanged(object sender, EventArgs e)
-		{
-            string _surname_column_header = "Surname";
-            string _customer_surname = CustomersSurname.Text;
-            filterCustomersTable(_surname_column_header, _customer_surname);
-        }
-
-		private void CustomersIdentification_TextChanged(object sender, EventArgs e)
-		{
-            string _id_column_header = "ID";
-            string _customer_id = CustomersIdentification.Text;
-            filterCustomersTable(_id_column_header, _customer_id);
+            CustomersDataGrid.DataSource = _binding_source;
         }
 
 		private void CustomersNewCustomer_Click(object sender, EventArgs e)
@@ -127,8 +106,8 @@ namespace Green_Enviro_App
 
 		private void CustomersDeleteBtn_Click(object sender, EventArgs e)
 		{
-            int _current_row = CustomersDataGridView.CurrentCell.RowIndex;
-            int customerNumber = (int)CustomersDataGridView[0, _current_row].Value;
+            int _current_row = CustomersDataGrid.CurrentCell.RowIndex;
+            int customerNumber = (int)CustomersDataGrid[0, _current_row].Value;
             using (DataEntities context = new DataEntities()) 
             {
                 Customer customer = context.Customers.FirstOrDefault(_customer => _customer.CustomerNumber == customerNumber);
@@ -145,7 +124,7 @@ namespace Green_Enviro_App
 
 		private void CustomersEditBtn_Click(object sender, EventArgs e)
 		{
-            if (CustomersDataGridView.SelectedCells.Count == 0) 
+            if (CustomersDataGrid.SelectedCells.Count == 0) 
             {
                 CustomMessageBox mb = new CustomMessageBox(this, CustomMessageBox.error, "Please select a customer to edit");
                 return;
@@ -153,13 +132,13 @@ namespace Green_Enviro_App
 
             NewCustomer.CustomerInfo editCustomer = new NewCustomer.CustomerInfo();
 
-            int _current_row = CustomersDataGridView.CurrentCell.RowIndex;
-            editCustomer._number = CustomersDataGridView[0, _current_row].Value.ToString();
-            editCustomer._id = CustomersDataGridView[1, _current_row].Value.ToString();
-            editCustomer._name = CustomersDataGridView[2, _current_row].Value.ToString();
-            editCustomer._surname = CustomersDataGridView[3, _current_row].Value.ToString();
-            editCustomer._cell = CustomersDataGridView[4, _current_row].Value.ToString();
-            editCustomer._address = CustomersDataGridView[5, _current_row].Value.ToString();
+            int _current_row = CustomersDataGrid.CurrentCell.RowIndex;
+            editCustomer._number = CustomersDataGrid[0, _current_row].Value.ToString();
+            editCustomer._id = CustomersDataGrid[1, _current_row].Value.ToString();
+            editCustomer._name = CustomersDataGrid[2, _current_row].Value.ToString();
+            editCustomer._surname = CustomersDataGrid[3, _current_row].Value.ToString();
+            editCustomer._cell = CustomersDataGrid[4, _current_row].Value.ToString();
+            editCustomer._address = CustomersDataGrid[5, _current_row].Value.ToString();
 
             string _path_to_id_picture = @"..//..//Customers//" + editCustomer._number + ".jpg";
             Image _id_picture = Image.FromFile(_path_to_id_picture);

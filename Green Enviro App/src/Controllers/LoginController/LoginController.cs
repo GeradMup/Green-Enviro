@@ -77,9 +77,7 @@ namespace Green_Enviro_App
 		{
 			_mainForm = new Main_Form(this, userPermissionLevel);
 			clearLoginFields();
-			_mainForm.Activate();
-			_mainForm.Show();
-			this.Hide();
+			_mainForm.activateForm(this);
 		}
 
 		/// <summary>

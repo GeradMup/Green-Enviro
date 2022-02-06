@@ -20,7 +20,7 @@ namespace Green_Enviro_App
         Receipt _receipt;
         //Purchases _purchases;
 		
-        CustomersClass _customers;
+        CustomersViews _customers;
         NewCustomer _new_customer;
         Email _email;
         Inventory _inventory;
@@ -53,13 +53,11 @@ namespace Green_Enviro_App
         //Other Views
         FixedExpensesViews _fixedExpensesViews;
         CustomWarning _warnings;
-        bool starting = true;
 
         public int userPermissionLevel = 0;
-
+        private Form parentForm;
 		/// <summary>This is the main class for the program. Co-ordinates all the objects of the program <see cref="Main_Form" /> class.</summary>
 		/// <param name="loginForm">An object of the login form control</param>
-		/// <param name="_data">Database</param>
 		/// <param name="permissionLevel"></param>
 		public Main_Form(LoginViews loginForm, int permissionLevel)
         {
@@ -70,8 +68,6 @@ namespace Green_Enviro_App
             _mainForm = this;
             //_purchasesPR = new Purchases_PR(this,_fileHandles);
             _email = new Email();
-            //_inventory = new Inventory();
-            _customers = new CustomersClass(this, _receipt);
            
             //Main form models
             _destructionCertificatesModel = new DestructionCertificatesModel(this, _fileHandles);
@@ -186,16 +182,6 @@ namespace Green_Enviro_App
             //_receipt.ResetReceipt();
 		}
 
-        private void itemList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //_receipt.ItemChanged();
-        }
-
-        private void DealerPriceCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            //_receipt.ItemChanged();
-        }
-
         private void ReprintReceiptBtn_Click(object sender, EventArgs e)
         {
             if ((userPermissionLevel == 2))
@@ -307,11 +293,10 @@ namespace Green_Enviro_App
             if ((e.TabPage.Name == "ReceiptPage") && (userPermissionLevel == 1)) return;
             else if ((e.TabPage.Name == "Expenses") && (userPermissionLevel == 1)) return;
             else if ((e.TabPage.Name == "DestructionCertificates") && (userPermissionLevel == 1)) return;
-            else if (userPermissionLevel == 1)
+            else if (userPermissionLevel < Constants.ELEVATED_PERMISSION_LEVEL)
             {
                 PermissionDenied();
                 mainTabControl.SelectedTab = _previous_tab_page;
-
             }
          }
 
@@ -322,27 +307,43 @@ namespace Green_Enviro_App
             CustomMessageBox box = new CustomMessageBox(this, messageTitle, message);
         }
 
+		/// <summary>
+		/// Handles the 1 event of the LogOutBtn_Click control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void LogOutBtn_Click_1(object sender, EventArgs e)
 		{
+            closeForm();
+        }
+
+		/// <summary>
+		/// Activates the main form.
+		/// </summary>
+		/// <param name="parent">The parent.</param>
+		public void activateForm(Form parent) 
+        {
+            this.Activate();
+            this.Enabled = true;
+            this.Show();
+            parentForm = parent;
+            parentForm.Enabled = false;
+            parentForm.Hide();
+        }
+
+		/// <summary>
+		/// Closes the main form.
+		/// </summary>
+		public void closeForm() 
+        {
+            this.Enabled = false;
             this.Hide();
-            _login_form.Show();
+            parentForm.Activate();
+            parentForm.Enabled = true;
+            parentForm.Show();
         }
 
-		private void EditCustomers_Click(object sender, EventArgs e)
-		{
-            //_receipt.ResetReceipt();
-            //We will no longer check the permission level before editing the customers
-            /*if ((userPermissionLevel == 4) || (userPermissionLevel == 5))
-            {
-                _customers.ActivateForm();
-            }
-            else
-            {
-                PermissionDenied();
-            }*/
 
-            //_customers.ActivateForm();
-        }
 
 		private void PrintPolice()
 		{
@@ -392,5 +393,6 @@ namespace Green_Enviro_App
 		{
             //_purchasesPR.monthSelected();
 		}
+
 	}
 }

@@ -26,6 +26,7 @@ namespace Green_Enviro_App
 			csvHandles = csvh;
 		}
 
+		#region ITEM PRICES AND FLOAT
 		/// <summary>
 		/// Gets all the items that the company buys.
 		/// </summary>
@@ -41,6 +42,35 @@ namespace Green_Enviro_App
 					.ToList();
 			}
 			return items;
+		}
+
+		/// <summary>
+		/// Gets the item's price given its name.
+		/// </summary>
+		/// <returns>A decimal value represneting the price.</returns>
+		public decimal getPrice(string name) 
+		{
+			decimal price;
+			using (DataEntities context = new DataEntities()) 
+			{
+				price = context.Items.FirstOrDefault(_item => _item.Name == name).Price;	
+			}
+			return price;
+		}
+
+		/// <summary>
+		/// Gets the dealer price give the dealer price.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <returns>A decimal value representing the dealer price.</returns>
+		public decimal getDealerPrice(string name) 
+		{
+			decimal dealerPrice;
+			using (DataEntities context = new DataEntities()) 
+			{
+				dealerPrice = context.Items.FirstOrDefault(_item => _item.Name == name).DealerPrice;
+			}
+			return dealerPrice;
 		}
 
 		/// <summary>
@@ -70,6 +100,7 @@ namespace Green_Enviro_App
 				context.SaveChanges();
 			}
 		}
+		
 
 		/// <summary>
 		/// Indicates the current state of the float level.
@@ -95,5 +126,25 @@ namespace Green_Enviro_App
 			RunningOut,
 			VeryLow
 		}
+		#endregion ITEM PRICES AND FLOAT
+
+		#region CUSTOMERS RELATED CODE		
+		/// <summary>
+		/// Gets the customer numbers.
+		/// </summary>
+		/// <returns></returns>
+		public List<int> customerNumbers() 
+		{
+			List<int> customerNames;
+			using (DataEntities context = new DataEntities()) 
+			{
+				customerNames = context.Customers
+								.OrderBy(_customer => _customer.CustomerNumber)
+								.Select(_customer => _customer.CustomerNumber)
+								.ToList();
+			}
+			return customerNames;
+		}
+		#endregion CUSTOMERS RELATED CODE
 	}
 }
