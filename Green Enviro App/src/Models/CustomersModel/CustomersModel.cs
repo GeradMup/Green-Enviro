@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,16 +51,122 @@ namespace Green_Enviro_App
 			{
 				imageBytes = context.Customers.FirstOrDefault(_customer => _customer.CustomerNumber == customerNumber).IDPicture;
 			}
-			Image image;
-			if (imageBytes.Length > 0)
+			if (imageBytes != null)
 			{
-				image = (Bitmap)((new ImageConverter()).ConvertFrom(imageBytes));
+				deleteTempPicture();
+				using (var ms = new MemoryStream(imageBytes))
+				{
+					using (var fs = new FileStream(Constants.TEMP_IMAGE_PATH, FileMode.Create))
+					{
+						ms.WriteTo(fs);
+					}
+				}
+				return new Bitmap(Constants.TEMP_IMAGE_PATH);
 			}
-			else 
-			{
-				image = null;
-			}
-			return image;
+			else return null;
 		}
+
+		/// <summary>
+		/// Inserts a new customer into the database.
+		/// </summary>
+		/// <param name="customer"></param>
+		/// <param name="idPicture">The identifier pic.</param>
+		public void addCustomer(Customer customer, Image idPicture)  
+		{
+			using (DataEntities context = new DataEntities()) 
+			{
+				Customer testCustomer = context.Customers.FirstOrDefault(_customer => _customer.CustomerNumber == customer.CustomerNumber);
+
+
+				if (testCustomer.CustomerNumber == customer.CustomerNumber) { throw new CustomerNumberExistsException(customer.CustomerNumber); }
+				Customer newCustomer = new Customer
+				{
+					CustomerNumber = customer.CustomerNumber,
+					ID = customer.ID,
+					Name = customer.Name,
+					Surname = customer.Surname,
+					Cell = customer.Cell,
+					Address = customer.Address,
+				};
+
+				newCustomer.IDPicture = (idPicture == null) ? new byte[] { } : imageToByteArray(idPicture);
+				context.Customers.Add(newCustomer);
+				context.SaveChanges();
+			}
+		}
+
+		/// <summary>
+		/// converts an Image to byte array.
+		/// </summary>
+		/// <param name="image">The image.</param>
+		/// <returns>The byte array representation of the image.</returns>
+		private byte[] imageToByteArray(Image image) 
+		{
+			using (MemoryStream mStream = new MemoryStream())
+			{
+				image.Save(mStream, image.RawFormat);
+				return mStream.ToArray();
+			}
+		}
+
+		/// <summary>
+		/// Converts byte array to image.
+		/// </summary>
+		/// <param name="imageBytes"></param>
+		/// <returns></returns>
+		private Image byteArrayToImage(byte[] imageBytes) 
+		{
+			using (MemoryStream mStream = new MemoryStream(imageBytes))
+			{
+				return Image.FromStream(mStream);
+			}
+		}
+
+		/// <summary>
+		/// Updates a customer information.
+		/// </summary>
+		/// <param name="customer"></param>
+		/// <param name="image"></param>
+		public void updateCustomer(Customer customer, Image image)
+		{
+			using (DataEntities context = new DataEntities()) 
+			{
+				Customer updateCustomer = context.Customers.FirstOrDefault(_customer => _customer.CustomerNumber == customer.CustomerNumber);
+				updateCustomer.ID = customer.ID;
+				updateCustomer.Name = customer.Name;
+				updateCustomer.Surname = customer.Surname;
+				updateCustomer.Cell = customer.Cell;
+				updateCustomer.Address = customer.Address;
+				updateCustomer.IDPicture = (image == null) ? new byte[] { } : imageToByteArray(image);
+				context.SaveChanges();
+			}
+		}
+
+		/// <summary>
+		/// Deletes the temporary image stored.
+		/// </summary>
+		private void deleteTempPicture()
+		{
+			if (File.Exists(Constants.TEMP_IMAGE_PATH))
+			{
+				File.Delete(Constants.TEMP_IMAGE_PATH);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Exception thrown when a customer number has been duplicated.
+	/// </summary>
+	/// <seealso cref="System.Exception" />
+	public class CustomerNumberExistsException : Exception 
+	{
+		const string message1 = "Customer number ";
+		const string message2 = " already exists!";
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CustomerNumberExistsException"/> class.
+		/// </summary>
+		/// <param name="number">The number.</param>
+		public CustomerNumberExistsException(int number) : base(message1 + number.ToString() + message2){ }
 	}
 }

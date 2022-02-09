@@ -41,8 +41,28 @@ namespace Green_Enviro_App
 			this.CustomersDoneBtn = new System.Windows.Forms.Button();
 			this.EditCustomersFormLabel = new System.Windows.Forms.Label();
 			this.CustomersNewCustomer = new System.Windows.Forms.Button();
-			this.CustomersEditBtn = new System.Windows.Forms.Button();
+			this.EditCustomersGroup = new System.Windows.Forms.GroupBox();
+			this.EditCustomerNumberLabel = new System.Windows.Forms.Label();
+			this.EditCustomerNumber = new System.Windows.Forms.NumericUpDown();
+			this.UploadIdPicture = new System.Windows.Forms.Button();
+			this.CancelEdit = new System.Windows.Forms.Button();
+			this.SaveCustomer = new System.Windows.Forms.Button();
+			this.EditAddressLabel = new System.Windows.Forms.Label();
+			this.EditCellLabel = new System.Windows.Forms.Label();
+			this.EditIdLabel = new System.Windows.Forms.Label();
+			this.EditSurnameLabel = new System.Windows.Forms.Label();
+			this.EditNameLabel = new System.Windows.Forms.Label();
+			this.EditAddress = new System.Windows.Forms.TextBox();
+			this.EditCellNumber = new System.Windows.Forms.TextBox();
+			this.EditIDNumber = new System.Windows.Forms.TextBox();
+			this.EditSurname = new System.Windows.Forms.TextBox();
+			this.EditName = new System.Windows.Forms.TextBox();
+			this.IdPictureBox = new System.Windows.Forms.PictureBox();
+			this.EditCustomerEdit = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.CustomersDataGrid)).BeginInit();
+			this.EditCustomersGroup.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.EditCustomerNumber)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.IdPictureBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// CustomersDataGrid
@@ -60,6 +80,7 @@ namespace Green_Enviro_App
 			this.CustomersDataGrid.RowTemplate.Height = 24;
 			this.CustomersDataGrid.Size = new System.Drawing.Size(1153, 738);
 			this.CustomersDataGrid.TabIndex = 0;
+			this.CustomersDataGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomersDataGrid_CellContentDoubleClick);
 			// 
 			// label4
 			// 
@@ -93,7 +114,8 @@ namespace Green_Enviro_App
 			// 
 			// CustomersDeleteBtn
 			// 
-			this.CustomersDeleteBtn.Location = new System.Drawing.Point(40, 529);
+			this.CustomersDeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.CustomersDeleteBtn.Location = new System.Drawing.Point(40, 744);
 			this.CustomersDeleteBtn.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersDeleteBtn.Name = "CustomersDeleteBtn";
 			this.CustomersDeleteBtn.Size = new System.Drawing.Size(287, 48);
@@ -131,7 +153,8 @@ namespace Green_Enviro_App
 			// 
 			// CustomersDoneBtn
 			// 
-			this.CustomersDoneBtn.Location = new System.Drawing.Point(40, 692);
+			this.CustomersDoneBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.CustomersDoneBtn.Location = new System.Drawing.Point(40, 815);
 			this.CustomersDoneBtn.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersDoneBtn.Name = "CustomersDoneBtn";
 			this.CustomersDoneBtn.Size = new System.Drawing.Size(287, 48);
@@ -154,7 +177,8 @@ namespace Green_Enviro_App
 			// 
 			// CustomersNewCustomer
 			// 
-			this.CustomersNewCustomer.Location = new System.Drawing.Point(40, 613);
+			this.CustomersNewCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.CustomersNewCustomer.Location = new System.Drawing.Point(40, 674);
 			this.CustomersNewCustomer.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersNewCustomer.Name = "CustomersNewCustomer";
 			this.CustomersNewCustomer.Size = new System.Drawing.Size(287, 48);
@@ -163,16 +187,189 @@ namespace Green_Enviro_App
 			this.CustomersNewCustomer.UseVisualStyleBackColor = true;
 			this.CustomersNewCustomer.Click += new System.EventHandler(this.CustomersNewCustomer_Click);
 			// 
-			// CustomersEditBtn
+			// EditCustomersGroup
 			// 
-			this.CustomersEditBtn.Location = new System.Drawing.Point(40, 451);
-			this.CustomersEditBtn.Margin = new System.Windows.Forms.Padding(4);
-			this.CustomersEditBtn.Name = "CustomersEditBtn";
-			this.CustomersEditBtn.Size = new System.Drawing.Size(287, 48);
-			this.CustomersEditBtn.TabIndex = 33;
-			this.CustomersEditBtn.Text = "Edit Customer";
-			this.CustomersEditBtn.UseVisualStyleBackColor = true;
-			this.CustomersEditBtn.Click += new System.EventHandler(this.CustomersEditBtn_Click);
+			this.EditCustomersGroup.BackColor = System.Drawing.Color.DarkGreen;
+			this.EditCustomersGroup.Controls.Add(this.EditCustomerNumberLabel);
+			this.EditCustomersGroup.Controls.Add(this.EditCustomerNumber);
+			this.EditCustomersGroup.Controls.Add(this.UploadIdPicture);
+			this.EditCustomersGroup.Controls.Add(this.CancelEdit);
+			this.EditCustomersGroup.Controls.Add(this.SaveCustomer);
+			this.EditCustomersGroup.Controls.Add(this.EditAddressLabel);
+			this.EditCustomersGroup.Controls.Add(this.EditCellLabel);
+			this.EditCustomersGroup.Controls.Add(this.EditIdLabel);
+			this.EditCustomersGroup.Controls.Add(this.EditSurnameLabel);
+			this.EditCustomersGroup.Controls.Add(this.EditNameLabel);
+			this.EditCustomersGroup.Controls.Add(this.EditAddress);
+			this.EditCustomersGroup.Controls.Add(this.EditCellNumber);
+			this.EditCustomersGroup.Controls.Add(this.EditIDNumber);
+			this.EditCustomersGroup.Controls.Add(this.EditSurname);
+			this.EditCustomersGroup.Controls.Add(this.EditName);
+			this.EditCustomersGroup.Controls.Add(this.IdPictureBox);
+			this.EditCustomersGroup.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EditCustomersGroup.Location = new System.Drawing.Point(156, 150);
+			this.EditCustomersGroup.Name = "EditCustomersGroup";
+			this.EditCustomersGroup.Size = new System.Drawing.Size(1348, 685);
+			this.EditCustomersGroup.TabIndex = 34;
+			this.EditCustomersGroup.TabStop = false;
+			this.EditCustomersGroup.Text = "Edit Cusomers Group";
+			// 
+			// EditCustomerNumberLabel
+			// 
+			this.EditCustomerNumberLabel.AutoSize = true;
+			this.EditCustomerNumberLabel.Location = new System.Drawing.Point(29, 67);
+			this.EditCustomerNumberLabel.Name = "EditCustomerNumberLabel";
+			this.EditCustomerNumberLabel.Size = new System.Drawing.Size(144, 19);
+			this.EditCustomerNumberLabel.TabIndex = 15;
+			this.EditCustomerNumberLabel.Text = "Customer Number";
+			// 
+			// EditCustomerNumber
+			// 
+			this.EditCustomerNumber.Location = new System.Drawing.Point(33, 94);
+			this.EditCustomerNumber.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+			this.EditCustomerNumber.Name = "EditCustomerNumber";
+			this.EditCustomerNumber.Size = new System.Drawing.Size(175, 26);
+			this.EditCustomerNumber.TabIndex = 14;
+			// 
+			// UploadIdPicture
+			// 
+			this.UploadIdPicture.Location = new System.Drawing.Point(33, 532);
+			this.UploadIdPicture.Name = "UploadIdPicture";
+			this.UploadIdPicture.Size = new System.Drawing.Size(362, 56);
+			this.UploadIdPicture.TabIndex = 13;
+			this.UploadIdPicture.Text = "Updload ID Picture";
+			this.UploadIdPicture.UseVisualStyleBackColor = true;
+			this.UploadIdPicture.Click += new System.EventHandler(this.UploadIdPicture_Click);
+			// 
+			// CancelEdit
+			// 
+			this.CancelEdit.Location = new System.Drawing.Point(220, 610);
+			this.CancelEdit.Name = "CancelEdit";
+			this.CancelEdit.Size = new System.Drawing.Size(175, 56);
+			this.CancelEdit.TabIndex = 12;
+			this.CancelEdit.Text = "Cancel";
+			this.CancelEdit.UseVisualStyleBackColor = true;
+			this.CancelEdit.Click += new System.EventHandler(this.CancelEdit_Click);
+			// 
+			// SaveCustomer
+			// 
+			this.SaveCustomer.Location = new System.Drawing.Point(33, 610);
+			this.SaveCustomer.Name = "SaveCustomer";
+			this.SaveCustomer.Size = new System.Drawing.Size(175, 56);
+			this.SaveCustomer.TabIndex = 11;
+			this.SaveCustomer.Text = "Save";
+			this.SaveCustomer.UseVisualStyleBackColor = true;
+			this.SaveCustomer.Click += new System.EventHandler(this.SaveCustomer_Click);
+			// 
+			// EditAddressLabel
+			// 
+			this.EditAddressLabel.AutoSize = true;
+			this.EditAddressLabel.Location = new System.Drawing.Point(29, 451);
+			this.EditAddressLabel.Name = "EditAddressLabel";
+			this.EditAddressLabel.Size = new System.Drawing.Size(72, 19);
+			this.EditAddressLabel.TabIndex = 10;
+			this.EditAddressLabel.Text = "Address";
+			// 
+			// EditCellLabel
+			// 
+			this.EditCellLabel.AutoSize = true;
+			this.EditCellLabel.Location = new System.Drawing.Point(29, 378);
+			this.EditCellLabel.Name = "EditCellLabel";
+			this.EditCellLabel.Size = new System.Drawing.Size(108, 19);
+			this.EditCellLabel.TabIndex = 9;
+			this.EditCellLabel.Text = "Cell Number";
+			// 
+			// EditIdLabel
+			// 
+			this.EditIdLabel.AutoSize = true;
+			this.EditIdLabel.Location = new System.Drawing.Point(29, 299);
+			this.EditIdLabel.Name = "EditIdLabel";
+			this.EditIdLabel.Size = new System.Drawing.Size(90, 19);
+			this.EditIdLabel.TabIndex = 8;
+			this.EditIdLabel.Text = "ID Number";
+			// 
+			// EditSurnameLabel
+			// 
+			this.EditSurnameLabel.AutoSize = true;
+			this.EditSurnameLabel.Location = new System.Drawing.Point(29, 219);
+			this.EditSurnameLabel.Name = "EditSurnameLabel";
+			this.EditSurnameLabel.Size = new System.Drawing.Size(72, 19);
+			this.EditSurnameLabel.TabIndex = 7;
+			this.EditSurnameLabel.Text = "Surname";
+			// 
+			// EditNameLabel
+			// 
+			this.EditNameLabel.AutoSize = true;
+			this.EditNameLabel.Location = new System.Drawing.Point(29, 140);
+			this.EditNameLabel.Name = "EditNameLabel";
+			this.EditNameLabel.Size = new System.Drawing.Size(45, 19);
+			this.EditNameLabel.TabIndex = 6;
+			this.EditNameLabel.Text = "Name";
+			// 
+			// EditAddress
+			// 
+			this.EditAddress.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EditAddress.Location = new System.Drawing.Point(33, 477);
+			this.EditAddress.Name = "EditAddress";
+			this.EditAddress.Size = new System.Drawing.Size(362, 29);
+			this.EditAddress.TabIndex = 5;
+			// 
+			// EditCellNumber
+			// 
+			this.EditCellNumber.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EditCellNumber.Location = new System.Drawing.Point(33, 404);
+			this.EditCellNumber.Name = "EditCellNumber";
+			this.EditCellNumber.Size = new System.Drawing.Size(362, 29);
+			this.EditCellNumber.TabIndex = 4;
+			// 
+			// EditIDNumber
+			// 
+			this.EditIDNumber.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EditIDNumber.Location = new System.Drawing.Point(33, 325);
+			this.EditIDNumber.Name = "EditIDNumber";
+			this.EditIDNumber.Size = new System.Drawing.Size(362, 29);
+			this.EditIDNumber.TabIndex = 3;
+			// 
+			// EditSurname
+			// 
+			this.EditSurname.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EditSurname.Location = new System.Drawing.Point(33, 245);
+			this.EditSurname.Name = "EditSurname";
+			this.EditSurname.Size = new System.Drawing.Size(362, 29);
+			this.EditSurname.TabIndex = 2;
+			// 
+			// EditName
+			// 
+			this.EditName.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.EditName.Location = new System.Drawing.Point(33, 166);
+			this.EditName.Name = "EditName";
+			this.EditName.Size = new System.Drawing.Size(362, 29);
+			this.EditName.TabIndex = 1;
+			// 
+			// IdPictureBox
+			// 
+			this.IdPictureBox.BackColor = System.Drawing.Color.Honeydew;
+			this.IdPictureBox.Location = new System.Drawing.Point(452, 73);
+			this.IdPictureBox.Name = "IdPictureBox";
+			this.IdPictureBox.Size = new System.Drawing.Size(879, 593);
+			this.IdPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.IdPictureBox.TabIndex = 0;
+			this.IdPictureBox.TabStop = false;
+			// 
+			// EditCustomerEdit
+			// 
+			this.EditCustomerEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.EditCustomerEdit.Location = new System.Drawing.Point(38, 595);
+			this.EditCustomerEdit.Name = "EditCustomerEdit";
+			this.EditCustomerEdit.Size = new System.Drawing.Size(291, 50);
+			this.EditCustomerEdit.TabIndex = 35;
+			this.EditCustomerEdit.Text = "Edit Customer";
+			this.EditCustomerEdit.UseVisualStyleBackColor = true;
+			this.EditCustomerEdit.Click += new System.EventHandler(this.EditCustomerEdit_Click);
 			// 
 			// CustomersViews
 			// 
@@ -180,7 +377,7 @@ namespace Green_Enviro_App
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Teal;
 			this.ClientSize = new System.Drawing.Size(1516, 875);
-			this.Controls.Add(this.CustomersEditBtn);
+			this.Controls.Add(this.EditCustomersGroup);
 			this.Controls.Add(this.CustomersNewCustomer);
 			this.Controls.Add(this.EditCustomersFormLabel);
 			this.Controls.Add(this.CustomersDoneBtn);
@@ -192,6 +389,7 @@ namespace Green_Enviro_App
 			this.Controls.Add(this.CustomersIdentification);
 			this.Controls.Add(this.CustomersName);
 			this.Controls.Add(this.CustomersDataGrid);
+			this.Controls.Add(this.EditCustomerEdit);
 			this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -201,6 +399,10 @@ namespace Green_Enviro_App
 			this.Text = "Customers";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			((System.ComponentModel.ISupportInitialize)(this.CustomersDataGrid)).EndInit();
+			this.EditCustomersGroup.ResumeLayout(false);
+			this.EditCustomersGroup.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.EditCustomerNumber)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.IdPictureBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -219,6 +421,23 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button CustomersDoneBtn;
 		private System.Windows.Forms.Label EditCustomersFormLabel;
 		private System.Windows.Forms.Button CustomersNewCustomer;
-		private System.Windows.Forms.Button CustomersEditBtn;
+		private System.Windows.Forms.GroupBox EditCustomersGroup;
+		private System.Windows.Forms.TextBox EditAddress;
+		private System.Windows.Forms.TextBox EditCellNumber;
+		private System.Windows.Forms.TextBox EditIDNumber;
+		private System.Windows.Forms.TextBox EditSurname;
+		private System.Windows.Forms.TextBox EditName;
+		private System.Windows.Forms.PictureBox IdPictureBox;
+		private System.Windows.Forms.Label EditAddressLabel;
+		private System.Windows.Forms.Label EditCellLabel;
+		private System.Windows.Forms.Label EditIdLabel;
+		private System.Windows.Forms.Label EditSurnameLabel;
+		private System.Windows.Forms.Label EditNameLabel;
+		private System.Windows.Forms.Button UploadIdPicture;
+		private System.Windows.Forms.Button CancelEdit;
+		private System.Windows.Forms.Button SaveCustomer;
+		private System.Windows.Forms.Label EditCustomerNumberLabel;
+		private System.Windows.Forms.NumericUpDown EditCustomerNumber;
+		private System.Windows.Forms.Button EditCustomerEdit;
 	}
 }

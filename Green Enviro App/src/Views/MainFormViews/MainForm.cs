@@ -21,7 +21,6 @@ namespace Green_Enviro_App
         //Purchases _purchases;
 		
         CustomersViews _customers;
-        NewCustomer _new_customer;
         Email _email;
         Inventory _inventory;
         Employees _employees;
