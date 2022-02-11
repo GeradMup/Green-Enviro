@@ -99,33 +99,6 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
-		/// converts an Image to byte array.
-		/// </summary>
-		/// <param name="image">The image.</param>
-		/// <returns>The byte array representation of the image.</returns>
-		private byte[] imageToByteArray(Image image) 
-		{
-			using (MemoryStream mStream = new MemoryStream())
-			{
-				image.Save(mStream, image.RawFormat);
-				return mStream.ToArray();
-			}
-		}
-
-		/// <summary>
-		/// Converts byte array to image.
-		/// </summary>
-		/// <param name="imageBytes"></param>
-		/// <returns></returns>
-		private Image byteArrayToImage(byte[] imageBytes) 
-		{
-			using (MemoryStream mStream = new MemoryStream(imageBytes))
-			{
-				return Image.FromStream(mStream);
-			}
-		}
-
-		/// <summary>
 		/// Updates a customer information.
 		/// </summary>
 		/// <param name="customer"></param>
@@ -142,6 +115,52 @@ namespace Green_Enviro_App
 				updateCustomer.Address = customer.Address;
 				updateCustomer.IDPicture = (image == null) ? new byte[] { } : imageToByteArray(image);
 				context.SaveChanges();
+			}
+		}
+
+		/// <summary>
+		/// Deletes the customer with the give customer number
+		/// </summary>
+		/// <param name="customerNumber">The customer number.</param>
+		public void deleteCustomer(int customerNumber) 
+		{
+			using (DataEntities context = new DataEntities()) 
+			{
+				Customer customer = context.Customers.FirstOrDefault(_customer => _customer.CustomerNumber == customerNumber);
+
+				if (customer == null) { throw new CustomerNotFoundException(); }
+				else 
+				{
+					context.Customers.Remove(customer);
+					context.SaveChanges();
+				}
+			}
+		}
+
+		/// <summary>
+		/// converts an Image to byte array.
+		/// </summary>
+		/// <param name="image">The image.</param>
+		/// <returns>The byte array representation of the image.</returns>
+		private byte[] imageToByteArray(Image image)
+		{
+			using (MemoryStream mStream = new MemoryStream())
+			{
+				image.Save(mStream, image.RawFormat);
+				return mStream.ToArray();
+			}
+		}
+
+		/// <summary>
+		/// Converts byte array to image.
+		/// </summary>
+		/// <param name="imageBytes"></param>
+		/// <returns></returns>
+		private Image byteArrayToImage(byte[] imageBytes)
+		{
+			using (MemoryStream mStream = new MemoryStream(imageBytes))
+			{
+				return Image.FromStream(mStream);
 			}
 		}
 
@@ -187,5 +206,18 @@ namespace Green_Enviro_App
 		/// </summary>
 		/// <param name="idNumber">The identifier number.</param>
 		public IDNumberExistsException(string idNumber) : base(message1 + idNumber + message2) { }
+	}
+
+	/// <summary>
+	/// Exception thrown when a customer does not exists.
+	/// </summary>
+	/// <seealso cref="System.Exception" />
+	public class CustomerNotFoundException : Exception 
+	{
+		const string error = "The required customer does not exist!";
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CustomerNotFoundException"/> class.
+		/// </summary>
+		public CustomerNotFoundException() : base(error) { }
 	}
 }

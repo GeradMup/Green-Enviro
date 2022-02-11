@@ -154,13 +154,14 @@ namespace Green_Enviro_App
 			// CustomersDoneBtn
 			// 
 			this.CustomersDoneBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.CustomersDoneBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
 			this.CustomersDoneBtn.Location = new System.Drawing.Point(40, 815);
 			this.CustomersDoneBtn.Margin = new System.Windows.Forms.Padding(4);
 			this.CustomersDoneBtn.Name = "CustomersDoneBtn";
 			this.CustomersDoneBtn.Size = new System.Drawing.Size(287, 48);
 			this.CustomersDoneBtn.TabIndex = 30;
 			this.CustomersDoneBtn.Text = "Done";
-			this.CustomersDoneBtn.UseVisualStyleBackColor = true;
+			this.CustomersDoneBtn.UseVisualStyleBackColor = false;
 			this.CustomersDoneBtn.Click += new System.EventHandler(this.CustomersDoneBtn_Click);
 			// 
 			// EditCustomersFormLabel

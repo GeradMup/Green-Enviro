@@ -171,7 +171,27 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void CustomersDeleteBtn_Click(object sender, EventArgs e)
 		{
+			const string NO_SELECTION_ERROR = "No Customer has been selected!";
+			const string CONFIRM_DELETION = "You are about to delete the highlighted customer!";
+			const string CUSTOMER_DELETED = "The customer has been deleted!";
 
+			if (customersDgvOps.noRowSelected()) { GenericControllers.reportError(this, NO_SELECTION_ERROR); return; }
+			customersDgvOps.highlightSelectedRowRed();
+
+			CustomWarning warning = new CustomWarning();
+			warning.showWarning(this, CONFIRM_DELETION, CustomWarning.WarningType.CriticalWarning);
+
+			if (warning.actionConfirmed)
+			{
+				List<string> selectedRow = customersDgvOps.getSeletedRow();
+				int customerNumber = int.Parse(selectedRow[0]);
+				customersModel.deleteCustomer(customerNumber);
+				updateDataGrid();
+			}
+			else 
+			{
+				customersDgvOps.removeRowHighlights();	
+			}
 		}
 
 		/// <summary>
