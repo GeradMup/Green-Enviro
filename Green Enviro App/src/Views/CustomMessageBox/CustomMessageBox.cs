@@ -27,24 +27,25 @@ namespace Green_Enviro_App
 
 		/// <summary>Initializes a new instance of the <see cref="CustomMessageBox"></see> class.</summary>
 		/// <param name="parent">The active form before activating the <see cref="CustomMessageBox"></see> form.</param>
-		/// <param name="title">The title of the message.</param>
+		/// <param name="messageType">The type of message. Type can be 'Success' or 'Error'</param>
 		/// <param name="message">The message to display.</param>
-		public CustomMessageBox(Form parent, string title, string message) 
+		public CustomMessageBox(Form parent, MessageType messageType, string message) 
 		{
 			InitializeComponent();
-
-			if (title == "Error!") 
+			string title = "";
+			if (messageType == MessageType.error) 
 			{
+				title = error;
 				this.BackColor = Color.Red;
 			}
-
-			if (title == "Success!") 
+			else if (messageType == MessageType.success) 
 			{
+				title = success;
 				this.BackColor = Color.GreenYellow;	
 			}
 
 			this.Text = title;
-			this.CustomMsg.Text = message;
+			this.CustomMsg.Text = title + "\n\n" + message;
 			this.Owner = parent;
 			this.Owner.Enabled = false;
 			this.Enabled = true;
@@ -62,6 +63,15 @@ namespace Green_Enviro_App
 			this.Hide();
 			this.Enabled = false;
 			this.Close();
+		}
+
+		/// <summary>
+		/// Enum class to describe the message types. Type is either success or error
+		/// </summary>
+		public enum MessageType 
+		{
+			error,
+			success
 		}
 	}
 }

@@ -51,7 +51,8 @@ namespace Green_Enviro_App
 			{
 				imageBytes = context.Customers.FirstOrDefault(_customer => _customer.CustomerNumber == customerNumber).IDPicture;
 			}
-			if (imageBytes != null)
+			int zeroLength = 0;
+			if (imageBytes.Length != zeroLength)
 			{
 				deleteTempPicture();
 				using (var ms = new MemoryStream(imageBytes))
@@ -76,9 +77,11 @@ namespace Green_Enviro_App
 			using (DataEntities context = new DataEntities()) 
 			{
 				Customer testCustomer = context.Customers.FirstOrDefault(_customer => _customer.CustomerNumber == customer.CustomerNumber);
+				if (testCustomer != null) { throw new CustomerNumberExistsException(customer.CustomerNumber); }
 
+				testCustomer = context.Customers.FirstOrDefault(_customer => _customer.ID == customer.ID);
+				if (testCustomer != null) { throw new IDNumberExistsException(customer.ID); }
 
-				if (testCustomer.CustomerNumber == customer.CustomerNumber) { throw new CustomerNumberExistsException(customer.CustomerNumber); }
 				Customer newCustomer = new Customer
 				{
 					CustomerNumber = customer.CustomerNumber,
@@ -168,5 +171,21 @@ namespace Green_Enviro_App
 		/// </summary>
 		/// <param name="number">The number.</param>
 		public CustomerNumberExistsException(int number) : base(message1 + number.ToString() + message2){ }
+	}
+
+	/// <summary>
+	/// Exception thrown when a customer ID has been duplicated.
+	/// </summary>
+	/// <seealso cref="System.Exception" />
+	public class IDNumberExistsException : Exception 
+	{
+		const string message1 = "Customer ID ";
+		const string message2 = " already exists!";
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IDNumberExistsException"/> class.
+		/// </summary>
+		/// <param name="idNumber">The identifier number.</param>
+		public IDNumberExistsException(string idNumber) : base(message1 + idNumber + message2) { }
 	}
 }

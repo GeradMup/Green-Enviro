@@ -301,9 +301,8 @@ namespace Green_Enviro_App
 
         private void PermissionDenied() 
         {
-            string message = "Permision Denied!";
-            string messageTitle = CustomMessageBox.error;
-            CustomMessageBox box = new CustomMessageBox(this, messageTitle, message);
+            string message = "Permision Denied!"; 
+            new CustomMessageBox(this, CustomMessageBox.MessageType.error, message);
         }
 
 		/// <summary>

@@ -146,7 +146,8 @@ namespace Green_Enviro_App
 			}
 			catch (Exception ex) 
 			{
-				GenericControllers.reportError(this, ex.Message);
+				string errorMessage = ex.Message;
+				GenericControllers.reportError(this, errorMessage);
 			}
 		}
 
@@ -160,6 +161,7 @@ namespace Green_Enviro_App
 			editingCustomer = false;
 			EditCustomersGroup.Enabled = true;
 			EditCustomersGroup.Visible = true;
+			EditCustomerNumber.ReadOnly = false;
 		}
 
 		/// <summary>
@@ -204,6 +206,7 @@ namespace Green_Enviro_App
 		/// </summary>
 		private void clearEditFields() 
 		{
+			EditCustomerNumber.Value = decimal.Zero;
 			EditIDNumber.Clear();
 			EditName.Clear();
 			EditSurname.Clear();

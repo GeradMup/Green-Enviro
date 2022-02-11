@@ -104,7 +104,7 @@ namespace Green_Enviro_App
 			if (PREntries.Contains(purchaseEntry))
 			{
 				string errorMessage = "THIS PURCHASE HAS ALREADY BEEN ADDED TO THE POLICE REGISTER!!!";
-				CustomMessageBox mb = new CustomMessageBox(_main_form,CustomMessageBox.error, errorMessage);
+				CustomMessageBox mb = new CustomMessageBox(_main_form,CustomMessageBox.MessageType.error, errorMessage);
 			}
 			else
 			{

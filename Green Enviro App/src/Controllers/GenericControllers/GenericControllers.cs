@@ -15,7 +15,7 @@ namespace Green_Enviro_App
 		/// <param name="parentForm">The parent form.</param>
 		/// <param name="message">The message.</param>
 		public static void reportError(Form parentForm, string message) 
-		{ new CustomMessageBox(parentForm, CustomMessageBox.error, message); }
+		{ new CustomMessageBox(parentForm, CustomMessageBox.MessageType.error, message); }
 
 		/// <summary>
 		/// Displays a success box with the given message.
@@ -23,6 +23,6 @@ namespace Green_Enviro_App
 		/// <param name="parentForm">The parent form.</param>
 		/// <param name="message">The message.</param>
 		public static void reportSuccess(Form parentForm, string message)
-		{ new CustomMessageBox(parentForm, CustomMessageBox.success, message); }
+		{ new CustomMessageBox(parentForm, CustomMessageBox.MessageType.success, message); }
 	}
 }

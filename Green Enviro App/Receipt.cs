@@ -217,7 +217,7 @@ namespace Green_Enviro_App
                 //Start by checking that the user entered a price
                 if (_main_form.PriceBox.Value == (decimal)0.00) 
                 {
-                    CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.error, "Please insert the Price");
+                    CustomMessageBox mb = new CustomMessageBox(_main_form, CustomMessageBox.MessageType.error, "Please insert the Price");
                     return;
                 }
                 //Reads both a comma or a point as the decimal indicator for parsing to float 
@@ -403,7 +403,7 @@ namespace Green_Enviro_App
             if (_customer_selected == true) 
             {
                 string _error_message = "Can not change customer details during transaction. \nPress Cancel and start from the begining!";
-                CustomMessageBox box = new CustomMessageBox(_main_form, CustomMessageBox.error, _error_message);                
+                CustomMessageBox box = new CustomMessageBox(_main_form, CustomMessageBox.MessageType.error, _error_message);                
                 return;
             }
 
