@@ -1,35 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Green_Enviro_App.src.DataAccess;
 
 namespace Green_Enviro_App
 {
 	using FloatLevel = ReceiptModel.FloatLevel;
+	using PurchaseItem = ReceiptModel.PurchaseItem;
 	public partial class Main_Form : Form
 	{
 		DGVOps receiptDGVOps;
-
+		
 		/// <summary>
 		/// Initialises the receipt tab.
 		/// </summary>
-		private void initialiseReceiptTab() 
+		private void initialiseReceiptTab()
 		{
-			receiptDGVOps = new DGVOps(this);
+			receiptDGVOps = new DGVOps(receiptDataGrid, this);
 
 			receiptDGVOps.populateComboBox(ReceiptTransactionType, ReceiptModel.TRANSACTIONS);
 			ReceiptTransactionType.SelectedIndex = 0;
 
-			receiptDGVOps.populateComboBox(ReceiptItemList, _receiptModel.getItems());
-			receiptDGVOps.populateComboBox(CustomerNumbersList, _receiptModel.customerNumbers());
+			refreshItemsList();
+			refreshCustomersList();
 			//Setup the float //Disable the side arrows
 			RemainingFloat.Controls[0].Enabled = false;
 			updateFloat();
 			EditFloatGroup.Enabled = false;
 			EditFloatGroup.Visible = false;
+
+			//Receipt data table
+			setupReceiptGrid();
 		}
 
 		/// <summary>Handles the SelectedIndexChanged event of the ReceiptTransactionType control.</summary>
@@ -43,37 +49,93 @@ namespace Green_Enviro_App
 			string formalSale = ReceiptModel.TRANSACTIONS[2];
 
 			//Green colour represents a purchase
-			if (ReceiptTransactionType.Text == purchase) 
+			if (ReceiptTransactionType.Text == purchase)
 			{
 				ReceiptTransactionIndicator.Text = purchase;
 				ReceiptTransactionIndicator.BackColor = Color.GreenYellow;
 			}
 
-			if (ReceiptTransactionType.Text == casualSale) 
+			if (ReceiptTransactionType.Text == casualSale)
 			{
 				ReceiptTransactionIndicator.Text = casualSale;
 				ReceiptTransactionIndicator.BackColor = Color.Orange;
 			}
 
-			if(ReceiptTransactionType.Text == formalSale) 
+			if (ReceiptTransactionType.Text == formalSale)
 			{
 				ReceiptTransactionIndicator.Text = formalSale;
 				ReceiptTransactionIndicator.BackColor = Color.Red;
 			}
 		}
 
-		/// <summary>Handles the Click event of the ReceiptPriceEditBtn control.</summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-		private void ReceiptItemsEditBtn_Click(object sender, EventArgs e)
-		{
-			clearFields();
+		#region RECEIPT GRID
 
-			ItemsViews items = new ItemsViews();
-			items.activateForm(this);  
+		/// <summary>
+		/// Setups the receipt grid.
+		/// </summary>
+		private void setupReceiptGrid() 
+		{
+			int amountColumn = 3;
+			int kgsColumn = 1;
+			receiptDGVOps.changeBindingSource(_receiptModel.receiptGrid());
+			receiptDGVOps.populateGridView(receiptDGVColumns());
+			receiptDGVOps.setupTotalsRow(amountColumn, kgsColumn);
 		}
 
-		#region FLOAT AND ITEMS
+		/// <summary>
+		/// Configures the column widths of the receipt grid view
+		/// </summary>
+		/// <returns>A List of floats representing the column widths. </returns>
+		List<float> receiptDGVColumns() 
+		{
+			List<float> columnWidths = new List<float>();
+
+			//columnWidths.Add(10.0F);
+			columnWidths.Add(20.0F);
+			columnWidths.Add(18.0F);
+			columnWidths.Add(13.0F);
+			columnWidths.Add(20.0F);
+			columnWidths.Add(20.0F); 
+
+			return columnWidths;
+		}
+
+		/// <summary>
+		/// Handles the Click event of the addItemBtn control.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void addItemBtn_Click(object sender, EventArgs e)
+		{
+			const string NO_ITEM_ERROR = "No Item selected!";
+			const string NO_PRICE_ERROR = "No Price inserted!";
+			const string NO_QUANTITY_ERROR = "No Quantity inserted!";
+
+			if (ReceiptItemList.Text == string.Empty) { GenericControllers.reportError(this, NO_ITEM_ERROR); return; }
+			if (ReceiptItemPrice.Value == decimal.Zero) { GenericControllers.reportError(this, NO_PRICE_ERROR); return; }
+			if (ReceiptItemQuantity.Value == decimal.Zero) { GenericControllers.reportError(this, NO_QUANTITY_ERROR); refreshReceiptGrid(); return; }
+
+			PurchaseItem item = new PurchaseItem();
+			item.Name = ReceiptItemList.Text;
+			item.Quantity = ReceiptItemQuantity.Value;
+			item.Price = ReceiptItemPrice.Value;
+			_receiptModel.addItem(item);
+			refreshReceiptGrid();
+		}
+
+		/// <summary>
+		/// Refreshes the items receipt grid
+		/// </summary>
+		private void refreshReceiptGrid() 
+		{
+			receiptDGVOps.resetGridView();
+			receiptDGVOps.changeBindingSource(_receiptModel.getAllItems());
+			receiptDGVOps.populateGridView(receiptDGVColumns());
+		}
+		#endregion RECEIPT GRID [ END ]
+
+		#region FLOAT
+
 		/// <summary>
 		/// Handles the Click event of the AddFloatBtn control.
 		/// </summary>
@@ -81,7 +143,7 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void AddFloatBtn_Click(object sender, EventArgs e)
 		{
-			if (userPermissionLevel < Constants.ELEVATED_PERMISSION_LEVEL){ PermissionDenied(); return; }
+			if (userPermissionLevel < Constants.ELEVATED_PERMISSION_LEVEL) { PermissionDenied(); return; }
 			else
 			{
 				clearFields();
@@ -107,7 +169,7 @@ namespace Green_Enviro_App
 				closeEditFloatGroup();
 				updateFloat();
 			}
-			catch (Exception ex) 
+			catch (Exception ex)
 			{
 				GenericControllers.reportError(this, ex.Message);
 			}
@@ -126,7 +188,7 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Closes the Edit Float Group
 		/// </summary>
-		private void closeEditFloatGroup() 
+		private void closeEditFloatGroup()
 		{
 			AddFloatValue.Value = decimal.Zero;
 			EditFloatGroup.Enabled = false;
@@ -158,6 +220,17 @@ namespace Green_Enviro_App
 			}
 		}
 
+		#endregion FLOAT [ END ]
+
+		#region ITEMS
+		/// <summary>
+		/// Refreshes the items list.
+		/// </summary>
+		private void refreshItemsList()
+		{
+			receiptDGVOps.populateComboBox(ReceiptItemList, _receiptModel.getItems());
+		}
+
 		/// <summary>
 		/// Handles the SelectedIndexChanged event of the ReceiptItemList control.
 		/// </summary>
@@ -182,12 +255,15 @@ namespace Green_Enviro_App
 		/// <param name="e"></param>
 		private void ReceiptDealerPrice_CheckedChanged(object sender, EventArgs e)
 		{
+			//First check if we are removing the checkstate of the ReceiptDealerPrice CheckBox
+			if ((ReceiptItemList.SelectedItem == null) && (ReceiptDealerPrice.CheckState == CheckState.Unchecked)) return;
+
 			const string NO_ITEM_SELECTED = "No item selected!";
-			if (ReceiptItemList.SelectedItem == null) 
-			{ 
+			if (ReceiptItemList.SelectedItem == null)
+			{
 				GenericControllers.reportError(this, NO_ITEM_SELECTED);
 				ReceiptDealerPrice.CheckState = CheckState.Unchecked;
-				return; 
+				return;
 			}
 
 			if (ReceiptDealerPrice.CheckState == CheckState.Checked)
@@ -197,20 +273,130 @@ namespace Green_Enviro_App
 				ReceiptItemPrice.Value = dealerPrice;
 			}
 			else { ReceiptItemList_SelectedIndexChanged(sender, e); }
+			//If the receipt is unchecked, call the normal function to put in the regular price
 		}
-		#endregion FLOAT AND ITEMS
 
-		#region CUSTOMERS
+		/// <summary>Handles the Click event of the ReceiptPriceEditBtn control.</summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+		private void ReceiptItemsEditBtn_Click(object sender, EventArgs e)
+		{
+			clearFields();
+			ItemsViews.editingItemsCompleteCallback callback = editingItemsCompleted;
+			ItemsViews items = new ItemsViews();
+			items.activateForm(this, callback);
+		}
+
+		/// <summary>
+		/// Function called when items editing is completed.
+		/// </summary>
+		public void editingItemsCompleted() 
+		{
+			refreshItemsList();
+		}
+
+		/// <summary>
+		/// Handles the CheckedChanged event of the PriceOverrideCheckBox control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void PriceOverrideCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			//Make the price editable when the price override checkbox is checked.
+			if (ReceiptPriceOverride.CheckState == CheckState.Checked) { ReceiptItemPrice.ReadOnly = false; }
+			else { ReceiptItemPrice.ReadOnly = true; }
+		}
+
+		#endregion ITEMS [ END ]
+
+		#region CUSTOMERS		
+		/// <summary>
+		/// Refreshes the customers list.
+		/// </summary>
+		private void refreshCustomersList() 
+		{
+			receiptDGVOps.populateComboBox(CustomerNumbersList, _receiptModel.customerNumbers());
+		}
+
+		/// <summary>
+		/// Handles the Click event of the EditCustomers control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void EditCustomers_Click(object sender, EventArgs e)
 		{
-			resetReceipt();
+			CustomersViews.editingCustomersCompleteCallback callback = editingCustomersCompleted;
+			clearCustomersFields();
 			CustomersModel customerModel = new CustomersModel();
 			CustomersViews customersViews = new CustomersViews(customerModel);
 
-			customersViews.activateForm(this);
+			customersViews.activateForm(this, callback);
 		}
-		#endregion CUSTOMERS
+
+		/// <summary>
+		/// Function called when editing items has been complted.
+		/// </summary>
+		public void editingCustomersCompleted() 
+		{
+			refreshCustomersList();
+		}
+
+		/// <summary>
+		/// Handles the SelectedIndexChanged event of the customerNumbersList control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void customerNumbersList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+			//Do nothing if there is no customer selected.
+			if (CustomerNumbersList.Text == string.Empty) return;
+
+			int customerNum = int.Parse(CustomerNumbersList.Text);
+			Customer selectedCustomer = _receiptModel.getCustomer(customerNum);
+			Image customerId = _receiptModel.getIdPicture(selectedCustomer.IDPicture);
+
+			CustomerName.Text = selectedCustomer.Name;
+			CustomerSurname.Text = selectedCustomer.Surname;
+			CustomerAddress.Text = selectedCustomer.Address;
+			CustomerCellNumber.Text = selectedCustomer.Cell;
+			CustomerIDNumber.Text = selectedCustomer.ID;
+			CustomerIDPicture.Image = customerId;
+		}
+
+		/// <summary>
+		/// Handles the KeyDown event of the customerNumbersList control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+		private void customerNumbersList_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				EventArgs fakeEvent = new EventArgs();
+				customerNumbersList_SelectedIndexChanged(sender, fakeEvent);
+			}
+		}
+
+		/// <summary>
+		/// Clears the customers fields.
+		/// </summary>
+		private void clearCustomersFields() 
+		{
+			CustomerNumbersList.SelectedItem = null;
+			CustomerNumbersList.Text = string.Empty;
+			CustomerName.Clear();
+			CustomerSurname.Clear();
+			CustomerAddress.Clear();
+			CustomerCellNumber.Clear();
+			CustomerIDNumber.Clear();
+			CustomerIDPicture.Image = null;
+			//CustomerIDPicture.Image.Dispose();
+		}
+		#endregion CUSTOMERS [ END ]
+
 		private void clearFields() { }
-		private void resetReceipt() { }
+		private void resetReceipt() 
+		{ }
 	}
 }

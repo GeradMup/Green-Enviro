@@ -38,7 +38,9 @@ namespace Green_Enviro_App
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
+			this.receiptDataGrid = new System.Windows.Forms.DataGridView();
 			this.EditFloatGroup = new System.Windows.Forms.GroupBox();
+			this.EditFloatCancel = new System.Windows.Forms.Button();
 			this.SaveFloat = new System.Windows.Forms.Button();
 			this.AddFloatAmount = new System.Windows.Forms.Label();
 			this.AddFloatValue = new System.Windows.Forms.NumericUpDown();
@@ -57,7 +59,7 @@ namespace Green_Enviro_App
 			this.EditCustomersBtn = new System.Windows.Forms.Button();
 			this.ReceiptItemsEditBtn = new System.Windows.Forms.Button();
 			this.ReceiptItemPrice = new System.Windows.Forms.NumericUpDown();
-			this.ReceiptQuantity = new System.Windows.Forms.NumericUpDown();
+			this.ReceiptItemQuantity = new System.Windows.Forms.NumericUpDown();
 			this.ReceiptCancelBtn = new System.Windows.Forms.Button();
 			this.ReceiptPurchaseBtn = new System.Windows.Forms.Button();
 			this.CustomerName = new System.Windows.Forms.TextBox();
@@ -277,14 +279,14 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.EditFloatCancel = new System.Windows.Forms.Button();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.receiptDataGrid)).BeginInit();
 			this.EditFloatGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.AddFloatValue)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.RemainingFloat)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ReceiptItemPrice)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.ReceiptQuantity)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ReceiptItemQuantity)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.CustomerIDPicture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
 			this.PurchasesPage.SuspendLayout();
@@ -348,6 +350,7 @@ namespace Green_Enviro_App
 			// 
 			// ReceiptPage
 			// 
+			this.ReceiptPage.Controls.Add(this.receiptDataGrid);
 			this.ReceiptPage.Controls.Add(this.EditFloatGroup);
 			this.ReceiptPage.Controls.Add(this.RemainingFloat);
 			this.ReceiptPage.Controls.Add(this.ReceiptTransactionIndicator);
@@ -364,7 +367,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Controls.Add(this.EditCustomersBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptItemsEditBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptItemPrice);
-			this.ReceiptPage.Controls.Add(this.ReceiptQuantity);
+			this.ReceiptPage.Controls.Add(this.ReceiptItemQuantity);
 			this.ReceiptPage.Controls.Add(this.ReceiptCancelBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptPurchaseBtn);
 			this.ReceiptPage.Controls.Add(this.CustomerName);
@@ -394,6 +397,22 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Text = "Receipt";
 			this.ReceiptPage.UseVisualStyleBackColor = true;
 			// 
+			// receiptDataGrid
+			// 
+			this.receiptDataGrid.AllowUserToAddRows = false;
+			this.receiptDataGrid.AllowUserToDeleteRows = false;
+			this.receiptDataGrid.AllowUserToResizeColumns = false;
+			this.receiptDataGrid.AllowUserToResizeRows = false;
+			this.receiptDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.receiptDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.receiptDataGrid.Location = new System.Drawing.Point(1009, 18);
+			this.receiptDataGrid.Name = "receiptDataGrid";
+			this.receiptDataGrid.ReadOnly = true;
+			this.receiptDataGrid.RowHeadersVisible = false;
+			this.receiptDataGrid.Size = new System.Drawing.Size(363, 654);
+			this.receiptDataGrid.TabIndex = 81;
+			// 
 			// EditFloatGroup
 			// 
 			this.EditFloatGroup.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -409,6 +428,17 @@ namespace Green_Enviro_App
 			this.EditFloatGroup.TabIndex = 80;
 			this.EditFloatGroup.TabStop = false;
 			this.EditFloatGroup.Text = "Edit Float";
+			// 
+			// EditFloatCancel
+			// 
+			this.EditFloatCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.EditFloatCancel.Location = new System.Drawing.Point(183, 80);
+			this.EditFloatCancel.Name = "EditFloatCancel";
+			this.EditFloatCancel.Size = new System.Drawing.Size(135, 37);
+			this.EditFloatCancel.TabIndex = 3;
+			this.EditFloatCancel.Text = "Cancel";
+			this.EditFloatCancel.UseVisualStyleBackColor = false;
+			this.EditFloatCancel.Click += new System.EventHandler(this.EditFloatCancel_Click);
 			// 
 			// SaveFloat
 			// 
@@ -629,20 +659,20 @@ namespace Green_Enviro_App
 			this.ReceiptItemPrice.TabIndex = 26;
 			this.ReceiptItemPrice.ThousandsSeparator = true;
 			// 
-			// ReceiptQuantity
+			// ReceiptItemQuantity
 			// 
-			this.ReceiptQuantity.DecimalPlaces = 2;
-			this.ReceiptQuantity.Location = new System.Drawing.Point(162, 396);
-			this.ReceiptQuantity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.ReceiptQuantity.Maximum = new decimal(new int[] {
+			this.ReceiptItemQuantity.DecimalPlaces = 2;
+			this.ReceiptItemQuantity.Location = new System.Drawing.Point(162, 396);
+			this.ReceiptItemQuantity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.ReceiptItemQuantity.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-			this.ReceiptQuantity.Name = "ReceiptQuantity";
-			this.ReceiptQuantity.Size = new System.Drawing.Size(131, 26);
-			this.ReceiptQuantity.TabIndex = 25;
-			this.ReceiptQuantity.ThousandsSeparator = true;
+			this.ReceiptItemQuantity.Name = "ReceiptItemQuantity";
+			this.ReceiptItemQuantity.Size = new System.Drawing.Size(131, 26);
+			this.ReceiptItemQuantity.TabIndex = 25;
+			this.ReceiptItemQuantity.ThousandsSeparator = true;
 			// 
 			// ReceiptCancelBtn
 			// 
@@ -749,15 +779,12 @@ namespace Green_Enviro_App
 			// 
 			// CustomerIDPicture
 			// 
-			this.CustomerIDPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.CustomerIDPicture.BackColor = System.Drawing.Color.Transparent;
 			this.CustomerIDPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.CustomerIDPicture.Location = new System.Drawing.Point(563, 396);
 			this.CustomerIDPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.CustomerIDPicture.Name = "CustomerIDPicture";
-			this.CustomerIDPicture.Size = new System.Drawing.Size(448, 292);
+			this.CustomerIDPicture.Size = new System.Drawing.Size(436, 276);
 			this.CustomerIDPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.CustomerIDPicture.TabIndex = 1;
 			this.CustomerIDPicture.TabStop = false;
@@ -865,7 +892,7 @@ namespace Green_Enviro_App
 			this.receiptBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.receiptBox.Name = "receiptBox";
 			this.receiptBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.receiptBox.Size = new System.Drawing.Size(346, 589);
+			this.receiptBox.Size = new System.Drawing.Size(346, 487);
 			this.receiptBox.TabIndex = 0;
 			this.receiptBox.Text = "";
 			this.receiptBox.WordWrap = false;
@@ -3240,17 +3267,6 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// EditFloatCancel
-			// 
-			this.EditFloatCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.EditFloatCancel.Location = new System.Drawing.Point(183, 80);
-			this.EditFloatCancel.Name = "EditFloatCancel";
-			this.EditFloatCancel.Size = new System.Drawing.Size(135, 37);
-			this.EditFloatCancel.TabIndex = 3;
-			this.EditFloatCancel.Text = "Cancel";
-			this.EditFloatCancel.UseVisualStyleBackColor = false;
-			this.EditFloatCancel.Click += new System.EventHandler(this.EditFloatCancel_Click);
-			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3274,12 +3290,13 @@ namespace Green_Enviro_App
 			this.mainTabControl.ResumeLayout(false);
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.receiptDataGrid)).EndInit();
 			this.EditFloatGroup.ResumeLayout(false);
 			this.EditFloatGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.AddFloatValue)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.RemainingFloat)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ReceiptItemPrice)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.ReceiptQuantity)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ReceiptItemQuantity)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.CustomerIDPicture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
 			this.PurchasesPage.ResumeLayout(false);
@@ -3543,7 +3560,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.DataGridView SalesLogGridView;
 		private System.Windows.Forms.NumericUpDown SaleQuantity;
 		private System.Windows.Forms.NumericUpDown ReceiptItemPrice;
-		private System.Windows.Forms.NumericUpDown ReceiptQuantity;
+		private System.Windows.Forms.NumericUpDown ReceiptItemQuantity;
 		private System.Windows.Forms.NumericUpDown SaleAmount;
 		private System.Windows.Forms.DataGridView WageLogGridView;
 		private System.Windows.Forms.CheckBox checkBox1;
@@ -3578,5 +3595,6 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Label AddFloatAmount;
 		private System.Windows.Forms.NumericUpDown AddFloatValue;
 		private System.Windows.Forms.Button EditFloatCancel;
+		private System.Windows.Forms.DataGridView receiptDataGrid;
 	}
 }

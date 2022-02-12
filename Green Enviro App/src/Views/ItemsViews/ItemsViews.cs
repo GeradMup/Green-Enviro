@@ -17,12 +17,8 @@ namespace Green_Enviro_App
 	/// <seealso cref="System.Windows.Forms.Form" />
 	public partial class ItemsViews : Form
 	{
-
-		Database _database;
-		Receipt _receit;
-		string _previous_value = "";
-		DataTable _items;
 		Form parentForm;
+		editingItemsCompleteCallback callbackFunct;
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ItemsViews" /> class.
 		/// Class/Form used to all the price related editing
@@ -37,8 +33,10 @@ namespace Green_Enviro_App
 		/// Activates the items form.
 		/// </summary>
 		/// <param name="parent">The parent.</param>
-		public void activateForm(Form parent) 
+		/// <param name="cf">The callback function to call when editing items is completed.</param>
+		public void activateForm(Form parent, editingItemsCompleteCallback cf) 
 		{
+			callbackFunct = cf;
 			parentForm = parent;
 			this.Enabled = true;
 			this.Activate();
@@ -54,8 +52,13 @@ namespace Green_Enviro_App
 		{
 			this.Enabled = false;
 			parentForm.Enabled = true;
+			callbackFunct();
 			this.Close();
-			
 		}
+
+		/// <summary>
+		/// Delagate for function to be called when editing items has been completed.
+		/// </summary>
+		public delegate void editingItemsCompleteCallback();
 	}
 }

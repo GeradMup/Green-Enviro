@@ -42,6 +42,10 @@ namespace Green_Enviro_App
 			this.ItemName = new System.Windows.Forms.TextBox();
 			this.EditPriceCancel = new System.Windows.Forms.Button();
 			this.EditPriceDone = new System.Windows.Forms.Button();
+			this.ItemNameLabel = new System.Windows.Forms.Label();
+			this.ItemTypeLabel = new System.Windows.Forms.Label();
+			this.ItemPriceLabel = new System.Windows.Forms.Label();
+			this.ItemDealerPriceLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.ItemsGrid)).BeginInit();
 			this.EditItemGroupBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ItemDealerPrice)).BeginInit();
@@ -117,6 +121,10 @@ namespace Green_Enviro_App
 			// EditItemGroupBox
 			// 
 			this.EditItemGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.EditItemGroupBox.Controls.Add(this.ItemDealerPriceLabel);
+			this.EditItemGroupBox.Controls.Add(this.ItemPriceLabel);
+			this.EditItemGroupBox.Controls.Add(this.ItemTypeLabel);
+			this.EditItemGroupBox.Controls.Add(this.ItemNameLabel);
 			this.EditItemGroupBox.Controls.Add(this.ItemDealerPrice);
 			this.EditItemGroupBox.Controls.Add(this.ItemPrice);
 			this.EditItemGroupBox.Controls.Add(this.ItemType);
@@ -126,7 +134,7 @@ namespace Green_Enviro_App
 			this.EditItemGroupBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.EditItemGroupBox.Location = new System.Drawing.Point(80, 199);
 			this.EditItemGroupBox.Name = "EditItemGroupBox";
-			this.EditItemGroupBox.Size = new System.Drawing.Size(792, 141);
+			this.EditItemGroupBox.Size = new System.Drawing.Size(792, 162);
 			this.EditItemGroupBox.TabIndex = 5;
 			this.EditItemGroupBox.TabStop = false;
 			this.EditItemGroupBox.Text = "Edit Item";
@@ -134,7 +142,7 @@ namespace Green_Enviro_App
 			// ItemDealerPrice
 			// 
 			this.ItemDealerPrice.DecimalPlaces = 2;
-			this.ItemDealerPrice.Location = new System.Drawing.Point(631, 34);
+			this.ItemDealerPrice.Location = new System.Drawing.Point(631, 52);
 			this.ItemDealerPrice.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -147,7 +155,7 @@ namespace Green_Enviro_App
 			// ItemPrice
 			// 
 			this.ItemPrice.DecimalPlaces = 2;
-			this.ItemPrice.Location = new System.Drawing.Point(485, 34);
+			this.ItemPrice.Location = new System.Drawing.Point(485, 52);
 			this.ItemPrice.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -161,21 +169,21 @@ namespace Green_Enviro_App
 			// 
 			this.ItemType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.ItemType.FormattingEnabled = true;
-			this.ItemType.Location = new System.Drawing.Point(264, 34);
+			this.ItemType.Location = new System.Drawing.Point(264, 52);
 			this.ItemType.Name = "ItemType";
 			this.ItemType.Size = new System.Drawing.Size(215, 27);
 			this.ItemType.TabIndex = 6;
 			// 
 			// ItemName
 			// 
-			this.ItemName.Location = new System.Drawing.Point(22, 34);
+			this.ItemName.Location = new System.Drawing.Point(22, 52);
 			this.ItemName.Name = "ItemName";
 			this.ItemName.Size = new System.Drawing.Size(236, 26);
 			this.ItemName.TabIndex = 2;
 			// 
 			// EditPriceCancel
 			// 
-			this.EditPriceCancel.Location = new System.Drawing.Point(223, 78);
+			this.EditPriceCancel.Location = new System.Drawing.Point(223, 96);
 			this.EditPriceCancel.Name = "EditPriceCancel";
 			this.EditPriceCancel.Size = new System.Drawing.Size(195, 42);
 			this.EditPriceCancel.TabIndex = 1;
@@ -185,13 +193,54 @@ namespace Green_Enviro_App
 			// 
 			// EditPriceDone
 			// 
-			this.EditPriceDone.Location = new System.Drawing.Point(23, 78);
+			this.EditPriceDone.Location = new System.Drawing.Point(23, 96);
 			this.EditPriceDone.Name = "EditPriceDone";
 			this.EditPriceDone.Size = new System.Drawing.Size(194, 42);
 			this.EditPriceDone.TabIndex = 0;
 			this.EditPriceDone.Text = "Done";
 			this.EditPriceDone.UseVisualStyleBackColor = true;
 			this.EditPriceDone.Click += new System.EventHandler(this.EditPriceDone_Click);
+			// 
+			// ItemNameLabel
+			// 
+			this.ItemNameLabel.AutoSize = true;
+			this.ItemNameLabel.BackColor = System.Drawing.Color.DarkSlateGray;
+			this.ItemNameLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.ItemNameLabel.Location = new System.Drawing.Point(19, 30);
+			this.ItemNameLabel.Name = "ItemNameLabel";
+			this.ItemNameLabel.Size = new System.Drawing.Size(45, 19);
+			this.ItemNameLabel.TabIndex = 9;
+			this.ItemNameLabel.Text = "Name";
+			// 
+			// ItemTypeLabel
+			// 
+			this.ItemTypeLabel.AutoSize = true;
+			this.ItemTypeLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.ItemTypeLabel.Location = new System.Drawing.Point(260, 30);
+			this.ItemTypeLabel.Name = "ItemTypeLabel";
+			this.ItemTypeLabel.Size = new System.Drawing.Size(45, 19);
+			this.ItemTypeLabel.TabIndex = 10;
+			this.ItemTypeLabel.Text = "Type";
+			// 
+			// ItemPriceLabel
+			// 
+			this.ItemPriceLabel.AutoSize = true;
+			this.ItemPriceLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.ItemPriceLabel.Location = new System.Drawing.Point(481, 30);
+			this.ItemPriceLabel.Name = "ItemPriceLabel";
+			this.ItemPriceLabel.Size = new System.Drawing.Size(54, 19);
+			this.ItemPriceLabel.TabIndex = 11;
+			this.ItemPriceLabel.Text = "Price";
+			// 
+			// ItemDealerPriceLabel
+			// 
+			this.ItemDealerPriceLabel.AutoSize = true;
+			this.ItemDealerPriceLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.ItemDealerPriceLabel.Location = new System.Drawing.Point(627, 30);
+			this.ItemDealerPriceLabel.Name = "ItemDealerPriceLabel";
+			this.ItemDealerPriceLabel.Size = new System.Drawing.Size(117, 19);
+			this.ItemDealerPriceLabel.TabIndex = 12;
+			this.ItemDealerPriceLabel.Text = "Dealer Price";
 			// 
 			// ItemsViews
 			// 
@@ -236,5 +285,9 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TextBox ItemName;
 		private System.Windows.Forms.Button EditPriceCancel;
 		private System.Windows.Forms.Button EditPriceDone;
+		private System.Windows.Forms.Label ItemDealerPriceLabel;
+		private System.Windows.Forms.Label ItemPriceLabel;
+		private System.Windows.Forms.Label ItemTypeLabel;
+		private System.Windows.Forms.Label ItemNameLabel;
 	}
 }

@@ -420,7 +420,10 @@ namespace Green_Enviro_App
 		/// </summary>
 		public void resetGridView() 
 		{
+
 			changeBindingSource(null);
+			dataGridView.Rows.Clear();
+			dataGridView.DataSource = null;
 			dataGridView.Refresh();
 		}
 

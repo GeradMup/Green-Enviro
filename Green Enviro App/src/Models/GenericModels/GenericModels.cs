@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -104,6 +105,33 @@ namespace Green_Enviro_App
 		{
 			byte[] base64Bytes = System.Convert.FromBase64String(base64String);
 			return System.Text.Encoding.UTF8.GetString(base64Bytes);
+		}
+
+		/// <summary>
+		/// converts an Image to byte array.
+		/// </summary>
+		/// <param name="image">The image.</param>
+		/// <returns>The byte array representation of the image.</returns>
+		public static byte[] imageToByteArray(Image image)
+		{
+			using (MemoryStream mStream = new MemoryStream())
+			{
+				image.Save(mStream, image.RawFormat);
+				return mStream.ToArray();
+			}
+		}
+
+		/// <summary>
+		/// Converts byte array to image.
+		/// </summary>
+		/// <param name="imageBytes"></param>
+		/// <returns></returns>
+		public static Image byteArrayToImage(byte[] imageBytes)
+		{
+			using (MemoryStream mStream = new MemoryStream(imageBytes))
+			{
+				return Image.FromStream(mStream);
+			}
 		}
 	}
 

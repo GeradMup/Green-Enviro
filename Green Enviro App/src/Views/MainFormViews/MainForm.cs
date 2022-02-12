@@ -126,24 +126,6 @@ namespace Green_Enviro_App
             Application.Exit();
         }
 
-        //*************************************************************************************************************************
-        //RECEIPT RELATED CALLS
-        //*************************************************************************************************************************
-        private void addItemBtn_Click(object sender, EventArgs e)
-        {
-            //_receipt.addItems();
-        }
-
-		private void PriceOverrideCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-            //_receipt.ManualPrice();
-        }
-
-		private void customerNumbersList_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            //_receipt.UpdateCustomerDetails();
-		}
-
         private void PurchaseBtn_Click(object sender, EventArgs e)
         {
             //Check if the current transaction is to be a purchase or sale first
@@ -190,16 +172,6 @@ namespace Green_Enviro_App
             else
             {
                 //_receipt.PrintReceipt();
-            }
-        }
-
-        private void customerNumbersList_KeyDown(object sender, KeyEventArgs e)
-        {
-
-			
-			if (e.KeyCode == Keys.Enter)
-            {
-               // _receipt.UpdateCustomerDetails();
             }
         }
 
@@ -271,11 +243,6 @@ namespace Green_Enviro_App
         private void mainTabControl_Deselected(object sender, TabControlEventArgs e)
 		{
             _previous_tab_page = e.TabPage;
-            //_receipt.ResetReceipt();
-            //_purchases.Reset();
-            //_sales.Reset();
-            //_inventory.Reset();
-            //_expenses.Reset();
             resetWages();
             resetSummaries();
             resetDestructionCertificate();

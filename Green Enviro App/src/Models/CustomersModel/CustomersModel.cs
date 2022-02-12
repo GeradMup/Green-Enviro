@@ -92,7 +92,7 @@ namespace Green_Enviro_App
 					Address = customer.Address,
 				};
 
-				newCustomer.IDPicture = (idPicture == null) ? new byte[] { } : imageToByteArray(idPicture);
+				newCustomer.IDPicture = (idPicture == null) ? new byte[] { } : GenericModels.imageToByteArray(idPicture);
 				context.Customers.Add(newCustomer);
 				context.SaveChanges();
 			}
@@ -113,7 +113,7 @@ namespace Green_Enviro_App
 				updateCustomer.Surname = customer.Surname;
 				updateCustomer.Cell = customer.Cell;
 				updateCustomer.Address = customer.Address;
-				updateCustomer.IDPicture = (image == null) ? new byte[] { } : imageToByteArray(image);
+				updateCustomer.IDPicture = (image == null) ? new byte[] { } : GenericModels.imageToByteArray(image);
 				context.SaveChanges();
 			}
 		}
@@ -134,33 +134,6 @@ namespace Green_Enviro_App
 					context.Customers.Remove(customer);
 					context.SaveChanges();
 				}
-			}
-		}
-
-		/// <summary>
-		/// converts an Image to byte array.
-		/// </summary>
-		/// <param name="image">The image.</param>
-		/// <returns>The byte array representation of the image.</returns>
-		private byte[] imageToByteArray(Image image)
-		{
-			using (MemoryStream mStream = new MemoryStream())
-			{
-				image.Save(mStream, image.RawFormat);
-				return mStream.ToArray();
-			}
-		}
-
-		/// <summary>
-		/// Converts byte array to image.
-		/// </summary>
-		/// <param name="imageBytes"></param>
-		/// <returns></returns>
-		private Image byteArrayToImage(byte[] imageBytes)
-		{
-			using (MemoryStream mStream = new MemoryStream(imageBytes))
-			{
-				return Image.FromStream(mStream);
 			}
 		}
 

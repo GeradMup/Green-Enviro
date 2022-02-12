@@ -17,6 +17,7 @@ namespace Green_Enviro_App
 	{
         Form parentForm;
         CustomersModel customersModel;
+        editingCustomersCompleteCallback callback;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CustomersViews"/> class.
@@ -32,8 +33,9 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Activates the Customers form.
 		/// </summary>
-		public void activateForm(Form parent)
+		public void activateForm(Form parent, editingCustomersCompleteCallback cb)
         {
+            callback = cb;
             parentForm = parent;
             this.Activate();
             this.Enabled = true;
@@ -47,6 +49,8 @@ namespace Green_Enviro_App
 		/// </summary>
 		private void Exit()
         {
+            //Callback function on the receipt page when customers have been updated.
+            callback();
             ClearFields();
             this.Hide();
             this.Enabled = false;
@@ -54,5 +58,10 @@ namespace Green_Enviro_App
             parentForm.Enabled = true;
             parentForm.Show();
         }
-	}
+
+		/// <summary>
+		/// Delagate for the callback function when editing customers is completed.
+		/// </summary>
+		public delegate void editingCustomersCompleteCallback();
+    }
 }
