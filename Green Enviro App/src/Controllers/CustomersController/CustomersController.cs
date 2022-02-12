@@ -183,10 +183,18 @@ namespace Green_Enviro_App
 
 			if (warning.actionConfirmed)
 			{
-				List<string> selectedRow = customersDgvOps.getSeletedRow();
-				int customerNumber = int.Parse(selectedRow[0]);
-				customersModel.deleteCustomer(customerNumber);
-				updateDataGrid();
+				try
+				{
+					List<string> selectedRow = customersDgvOps.getSeletedRow();
+					int customerNumber = int.Parse(selectedRow[0]);
+					customersModel.deleteCustomer(customerNumber);
+					GenericControllers.reportSuccess(this, CUSTOMER_DELETED);
+					updateDataGrid();
+				}
+				catch(Exception ex) 
+				{
+					GenericControllers.reportError(this, ex.Message);
+				}
 			}
 			else 
 			{
@@ -240,6 +248,16 @@ namespace Green_Enviro_App
 			editingCustomer = false;
 		}
 
+		/// <summary>
+		/// Clears the fields input fields on the customers form.
+		/// </summary>
+		private void ClearFields()
+		{
+			CustomersName.Text = "";
+			CustomersSurname.Text = "";
+			CustomersIdentification.Text = "";
+		}
+		
 		/// <summary>
 		/// Handles the Click event of the CancelEdit control.
 		/// </summary>

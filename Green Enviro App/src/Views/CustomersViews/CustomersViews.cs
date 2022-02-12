@@ -15,15 +15,6 @@ namespace Green_Enviro_App
 {
 	public partial class CustomersViews : Form
 	{
-        //Here we generate a data table so as to interact with the tables of the database
-        DataTable _data_table = new DataTable();
-        BindingSource _binding_source = new BindingSource();
-        Receipt _receipt;
-
-        /*
-         * Loading the database table for the new users into the class 
-         */
-
         Form parentForm;
         CustomersModel customersModel;
 
@@ -34,7 +25,6 @@ namespace Green_Enviro_App
 		public CustomersViews(CustomersModel cm)
         {
             InitializeComponent();
-
             customersModel = cm;
             initializeCustomers();
         }
@@ -52,22 +42,17 @@ namespace Green_Enviro_App
             parentForm.Hide();
         }
 
-        private void Exit()
+		/// <summary>
+		/// Closes the customers form and reactivats the parent form (Main Form)
+		/// </summary>
+		private void Exit()
         {
             ClearFields();
-            //_receipt.ResetReceipt()
             this.Hide();
             this.Enabled = false;
             parentForm.Activate();
             parentForm.Enabled = true;
             parentForm.Show();
-        }
-
-        private void ClearFields()
-        {
-            CustomersName.Text = "";
-            CustomersSurname.Text = "";
-            CustomersIdentification.Text = "";
         }
 	}
 }
