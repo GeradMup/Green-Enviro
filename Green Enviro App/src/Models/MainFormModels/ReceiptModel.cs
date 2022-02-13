@@ -26,6 +26,7 @@ namespace Green_Enviro_App
 		const string RECEIPT_AMOUNT_COL = "Amount";
 		const string RECEIPT_ITEM_TYPE_COL = "Type";
 		readonly string PURCHASES_FILE_PATH;
+		readonly string SALES_FILE_PATH;
 
 		public static readonly List<string> TRANSACTIONS = new List<string>() { "PURCHASE", "CASUAL SALE", "FORMAL SALE" };
 		/// <summary>Initializes a new instance of the <see cref="ReceiptModel" /> class.</summary>
@@ -36,6 +37,7 @@ namespace Green_Enviro_App
 			fileHandles = fh;
 			csvHandles = csvh;
 			PURCHASES_FILE_PATH = fileHandles.pathToLogs(FileHandles.LogType.Purchases);
+			SALES_FILE_PATH = fileHandles.pathToLogs(FileHandles.LogType.Sales);
 		}
 
 		#region ITEMS
@@ -293,7 +295,7 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
-		/// Checks if there are any items availble for purchasing.
+		/// Checks if there are any items availble for a purchase or a casual sale.
 		/// </summary>
 		/// <returns></returns>
 		public bool itemsAvailable() 
@@ -316,7 +318,7 @@ namespace Green_Enviro_App
 			DateTime date = DateTime.Now;
 			foreach (DataRow entry in receiptTable.Rows) 
 			{
-				entryString = formatRow(customer, entry, date);
+				entryString = formatPurchaseRow(customer, entry, date);
 				entries.Add(entryString);
 			}
 
@@ -328,6 +330,41 @@ namespace Green_Enviro_App
 				editFloat(costOfPurchase);
 			}
 			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+		}
+
+		/// <summary>
+		/// Records a casual sale.
+		/// </summary>
+		/// <exception cref="System.Exception"></exception>
+		public void casualSale() 
+		{
+			string date = DateTime.Now.ToString(Constants.DATE_TIME_FORMAT);
+			string company = "CASUAL SALE";
+			List<string> saleItems = new List<string>();
+			string saleRow;
+			decimal totalSaleAmount = 0;
+			foreach (DataRow entry in receiptTable.Rows) 
+			{
+				saleRow = date + ","
+						+ company + ","
+						+ entry[RECEIPT_QUANTITY_COL].ToString() + ","
+						+ entry[RECEIPT_AMOUNT_COL].ToString() + ","
+						+ entry[RECEIPT_ITEM_TYPE_COL].ToString();
+
+				saleItems.Add(saleRow);
+				totalSaleAmount += decimal.Parse(entry[RECEIPT_AMOUNT_COL].ToString());
+			}
+
+			try
+			{
+				csvHandles.addToCSV(SALES_FILE_PATH, saleItems);
+				editFloat(totalSaleAmount);
+				receiptTable.Clear();
+			}
+			catch (Exception ex) 
 			{
 				throw new Exception(ex.Message);
 			}
@@ -354,7 +391,7 @@ namespace Green_Enviro_App
 		/// <param name="row">The row.</param>
 		/// <param name="date"></param>
 		/// <returns>A formated string ready for insertion.</returns>
-		private string formatRow(Customer customer, DataRow row, DateTime date) 
+		private string formatPurchaseRow(Customer customer, DataRow row, DateTime date) 
 		{
 			string dateString = date.ToString(Constants.DATE_TIME_FORMAT);
 			string customerName = customer.Name;

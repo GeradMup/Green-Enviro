@@ -134,7 +134,6 @@ namespace Green_Enviro_App
 			receiptDGVOps.resetGridView();
 			receiptDGVOps.changeBindingSource(_receiptModel.getAllItems());
 			receiptDGVOps.populateGridView(receiptDGVColumns());
-			receiptDGVOps.clearSelection();
 		}
 
 		/// <summary>
@@ -157,34 +156,58 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void PurchaseBtn_Click(object sender, EventArgs e)
 		{
+			const string USE_DELIVERY_NOTE = "Use the delivery note for formal sales!";
 			const string NO_CUSTOMER_ERROR = "Please select a customer number or select default customer!";
 			const string NO_ITEMS_ERROR = "Please insert items for purchasing!";
 			const string PURCHASE_RECORDED = "Purchase has been recorded!";
-			string customerNumber = CustomerNumbersList.Text.Trim();
-
-			if ((customerNumber == string.Empty) && (UnknownCustomer.CheckState == CheckState.Unchecked)) 
-			{ GenericControllers.reportError(this, NO_CUSTOMER_ERROR); return; }
-
-			if (!_receiptModel.itemsAvailable()) { GenericControllers.reportError(this, NO_ITEMS_ERROR); return; }
+			const string CASUAL_SALE_RECORDED = "Casual sale has been recorded!";
 
 			string purchase = ReceiptModel.TRANSACTIONS[0];
 			string casualSale = ReceiptModel.TRANSACTIONS[1];
 			string formalSale = ReceiptModel.TRANSACTIONS[2];
+
+			//Formal sales are no longer supported. We will now generate delivery notes for formal sales.
+			if (ReceiptTransactionType.Text == formalSale)
+			{ 
+				GenericControllers.reportError(this, USE_DELIVERY_NOTE);
+				ReceiptTransactionType.SelectedIndex = 0;
+				return; 
+			}
+
+			//If no items were added for a purchase or a sale, it is an error.
+			if (!_receiptModel.itemsAvailable()) { GenericControllers.reportError(this, NO_ITEMS_ERROR); return; }
+
+			//If it is a casual sale, there is no need to check for other inputs.
+			if (ReceiptTransactionType.Text == casualSale)
+			{
+				_receiptModel.casualSale();
+				ReceiptTransactionType.SelectedIndex = 0;
+				updateFloat();
+				refreshReceiptGrid();
+				GenericControllers.reportSuccess(this, CASUAL_SALE_RECORDED);
+				return;
+			}
+
+			string customerNumber = CustomerNumbersList.Text.Trim();
+			if ((customerNumber == string.Empty) && (UnknownCustomer.CheckState == CheckState.Unchecked)) 
+			{ GenericControllers.reportError(this, NO_CUSTOMER_ERROR); return; }
+
 			//Check if the current transaction is to be a purchase or sale first
 			if (ReceiptTransactionType.SelectedItem.ToString() == purchase)
 			{
+				bool knownCustomer = (UnknownCustomer.CheckState == CheckState.Unchecked) ? true : false;
+				string unknown = "Unknown";
 				Customer customer = new Customer
 				{
-					CustomerNumber = int.Parse(CustomerNumbersList.Text),
-					Name = CustomerName.Text,
-					Surname = CustomerSurname.Text,
-					ID = CustomerIDNumber.Text,
-					Address = CustomerAddress.Text,
-					Cell = CustomerCellNumber.Text
+					CustomerNumber = (knownCustomer) ? int.Parse(CustomerNumbersList.Text) : 0,
+					Name = (knownCustomer) ? CustomerName.Text : unknown,
+					Surname = (knownCustomer) ? CustomerSurname.Text : unknown,
+					ID = (knownCustomer) ?  CustomerIDNumber.Text : unknown,
+					Address = (knownCustomer) ? CustomerAddress.Text : unknown,
+					Cell = (knownCustomer) ? CustomerCellNumber.Text : unknown
 				};
 
 				decimal remainingFloat = RemainingFloat.Value;
-
 				try
 				{
 					_receiptModel.completePurchase(customer, remainingFloat);
@@ -197,24 +220,6 @@ namespace Green_Enviro_App
 				{
 					GenericControllers.reportError(this, ex.Message);
 				}
-			}
-			else if (ReceiptTransactionType.SelectedItem.ToString() == casualSale)
-			{
-				/*if ((userPermissionLevel == 3) || (userPermissionLevel == 4) || (userPermissionLevel == 5))
-                {
-					_receipt.CompletePurchaseOrSale();
-                }
-                else
-                {
-                    PermissionDenied();
-                }*/
-
-				// _receipt.CompletePurchaseOrSale();
-			}
-			else if (ReceiptTransactionType.SelectedItem.ToString() == formalSale) 
-			{
-				const string USE_DELIVERY_NOTE = "Use the delivery note!";
-				GenericControllers.reportError(this, USE_DELIVERY_NOTE);
 			}
 		}
 
@@ -467,6 +472,7 @@ namespace Green_Enviro_App
 
 			//Do nothing if there is no customer selected.
 			if (CustomerNumbersList.Text == string.Empty) return;
+			UnknownCustomer.CheckState = CheckState.Unchecked;
 
 			int customerNum = int.Parse(CustomerNumbersList.Text);
 			Customer selectedCustomer = _receiptModel.getCustomer(customerNum);

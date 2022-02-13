@@ -402,6 +402,7 @@ namespace Green_Enviro_App
 			}
 
 			dataGridView.Refresh();
+			dataGridView.ClearSelection();
 		}
 
 		/// <summary>
