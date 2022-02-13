@@ -157,6 +157,15 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void PurchaseBtn_Click(object sender, EventArgs e)
 		{
+			const string NO_CUSTOMER_ERROR = "Please select a customer number or select default customer!";
+			const string NO_ITEMS_ERROR = "Please insert items for purchasing!";
+			const string PURCHASE_RECORDED = "Purchase has been recorded!";
+			string customerNumber = CustomerNumbersList.Text.Trim();
+
+			if ((customerNumber == string.Empty) && (UnknownCustomer.CheckState == CheckState.Unchecked)) 
+			{ GenericControllers.reportError(this, NO_CUSTOMER_ERROR); return; }
+
+			if (!_receiptModel.itemsAvailable()) { GenericControllers.reportError(this, NO_ITEMS_ERROR); return; }
 
 			string purchase = ReceiptModel.TRANSACTIONS[0];
 			string casualSale = ReceiptModel.TRANSACTIONS[1];
@@ -164,12 +173,32 @@ namespace Green_Enviro_App
 			//Check if the current transaction is to be a purchase or sale first
 			if (ReceiptTransactionType.SelectedItem.ToString() == purchase)
 			{
-				if(userPermissionLevel == 2){ PermissionDenied(); }
-             
-				//_receipt.CompletePurchaseOrSale();
+				Customer customer = new Customer
+				{
+					CustomerNumber = int.Parse(CustomerNumbersList.Text),
+					Name = CustomerName.Text,
+					Surname = CustomerSurname.Text,
+					ID = CustomerIDNumber.Text,
+					Address = CustomerAddress.Text,
+					Cell = CustomerCellNumber.Text
+				};
+
+				decimal remainingFloat = RemainingFloat.Value;
+
+				try
+				{
+					_receiptModel.completePurchase(customer, remainingFloat);
+					refreshReceiptGrid();
+					clearCustomerFields();
+					GenericControllers.reportSuccess(this, PURCHASE_RECORDED);
+					updateFloat();
+				}
+				catch (Exception ex)
+				{
+					GenericControllers.reportError(this, ex.Message);
+				}
 			}
-			else if ((ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
-				|| (ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale))
+			else if (ReceiptTransactionType.SelectedItem.ToString() == casualSale)
 			{
 				/*if ((userPermissionLevel == 3) || (userPermissionLevel == 4) || (userPermissionLevel == 5))
                 {
@@ -181,6 +210,11 @@ namespace Green_Enviro_App
                 }*/
 
 				// _receipt.CompletePurchaseOrSale();
+			}
+			else if (ReceiptTransactionType.SelectedItem.ToString() == formalSale) 
+			{
+				const string USE_DELIVERY_NOTE = "Use the delivery note!";
+				GenericControllers.reportError(this, USE_DELIVERY_NOTE);
 			}
 		}
 
@@ -408,7 +442,7 @@ namespace Green_Enviro_App
 		private void EditCustomers_Click(object sender, EventArgs e)
 		{
 			CustomersViews.editingCustomersCompleteCallback callback = editingCustomersCompleted;
-			clearCustomersFields();
+			clearCustomerFields();
 			CustomersModel customerModel = new CustomersModel();
 			CustomersViews customersViews = new CustomersViews(customerModel);
 
@@ -463,7 +497,7 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Clears the customers fields.
 		/// </summary>
-		private void clearCustomersFields() 
+		private void clearCustomerFields() 
 		{
 			CustomerNumbersList.SelectedItem = null;
 			CustomerNumbersList.Text = string.Empty;
@@ -473,6 +507,7 @@ namespace Green_Enviro_App
 			CustomerCellNumber.Clear();
 			CustomerIDNumber.Clear();
 			CustomerIDPicture.Image = null;
+			UnknownCustomer.CheckState = CheckState.Unchecked;
 			//CustomerIDPicture.Image.Dispose();
 		}
 		#endregion CUSTOMERS [ END ]

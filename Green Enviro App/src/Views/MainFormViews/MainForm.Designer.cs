@@ -39,6 +39,8 @@ namespace Green_Enviro_App
 			this.mainTabControl = new System.Windows.Forms.TabControl();
 			this.ReceiptPage = new System.Windows.Forms.TabPage();
 			this.receiptDataGrid = new System.Windows.Forms.DataGridView();
+			this.ReceiptGridOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.DeleteItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.EditFloatGroup = new System.Windows.Forms.GroupBox();
 			this.EditFloatCancel = new System.Windows.Forms.Button();
 			this.SaveFloat = new System.Windows.Forms.Button();
@@ -55,7 +57,7 @@ namespace Green_Enviro_App
 			this.ReceiptAddFloatBtn = new System.Windows.Forms.Button();
 			this.ReceiptFloatLabel = new System.Windows.Forms.Label();
 			this.ReceiptReprintBtn = new System.Windows.Forms.Button();
-			this.DefaultCustomer = new System.Windows.Forms.CheckBox();
+			this.UnknownCustomer = new System.Windows.Forms.CheckBox();
 			this.EditCustomersBtn = new System.Windows.Forms.Button();
 			this.ReceiptItemsEditBtn = new System.Windows.Forms.Button();
 			this.ReceiptItemPrice = new System.Windows.Forms.NumericUpDown();
@@ -279,11 +281,10 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.ReceiptGridOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.DeleteItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.receiptDataGrid)).BeginInit();
+			this.ReceiptGridOptions.SuspendLayout();
 			this.EditFloatGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.AddFloatValue)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.RemainingFloat)).BeginInit();
@@ -320,7 +321,6 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-			this.ReceiptGridOptions.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -366,7 +366,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.Controls.Add(this.ReceiptAddFloatBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptFloatLabel);
 			this.ReceiptPage.Controls.Add(this.ReceiptReprintBtn);
-			this.ReceiptPage.Controls.Add(this.DefaultCustomer);
+			this.ReceiptPage.Controls.Add(this.UnknownCustomer);
 			this.ReceiptPage.Controls.Add(this.EditCustomersBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptItemsEditBtn);
 			this.ReceiptPage.Controls.Add(this.ReceiptItemPrice);
@@ -417,6 +417,20 @@ namespace Green_Enviro_App
 			this.receiptDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.receiptDataGrid.Size = new System.Drawing.Size(363, 654);
 			this.receiptDataGrid.TabIndex = 81;
+			// 
+			// ReceiptGridOptions
+			// 
+			this.ReceiptGridOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DeleteItem});
+			this.ReceiptGridOptions.Name = "ReceiptGridOptions";
+			this.ReceiptGridOptions.Size = new System.Drawing.Size(135, 26);
+			this.ReceiptGridOptions.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ReceiptGridOptions_MouseClick);
+			// 
+			// DeleteItem
+			// 
+			this.DeleteItem.Name = "DeleteItem";
+			this.DeleteItem.Size = new System.Drawing.Size(134, 22);
+			this.DeleteItem.Text = "Delete Item";
 			// 
 			// EditFloatGroup
 			// 
@@ -474,11 +488,6 @@ namespace Green_Enviro_App
             0,
             0,
             0});
-			this.AddFloatValue.Minimum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            -2147483648});
 			this.AddFloatValue.Name = "AddFloatValue";
 			this.AddFloatValue.Size = new System.Drawing.Size(170, 26);
 			this.AddFloatValue.TabIndex = 0;
@@ -615,16 +624,16 @@ namespace Green_Enviro_App
 			this.ReceiptReprintBtn.UseVisualStyleBackColor = true;
 			this.ReceiptReprintBtn.Click += new System.EventHandler(this.ReprintReceiptBtn_Click);
 			// 
-			// DefaultCustomer
+			// UnknownCustomer
 			// 
-			this.DefaultCustomer.AutoSize = true;
-			this.DefaultCustomer.Location = new System.Drawing.Point(563, 22);
-			this.DefaultCustomer.Margin = new System.Windows.Forms.Padding(2);
-			this.DefaultCustomer.Name = "DefaultCustomer";
-			this.DefaultCustomer.Size = new System.Drawing.Size(91, 23);
-			this.DefaultCustomer.TabIndex = 30;
-			this.DefaultCustomer.Text = "Default";
-			this.DefaultCustomer.UseVisualStyleBackColor = true;
+			this.UnknownCustomer.AutoSize = true;
+			this.UnknownCustomer.Location = new System.Drawing.Point(563, 22);
+			this.UnknownCustomer.Margin = new System.Windows.Forms.Padding(2);
+			this.UnknownCustomer.Name = "UnknownCustomer";
+			this.UnknownCustomer.Size = new System.Drawing.Size(172, 23);
+			this.UnknownCustomer.TabIndex = 30;
+			this.UnknownCustomer.Text = "Unknown Customer";
+			this.UnknownCustomer.UseVisualStyleBackColor = true;
 			// 
 			// EditCustomersBtn
 			// 
@@ -3278,20 +3287,6 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
-			// ReceiptGridOptions
-			// 
-			this.ReceiptGridOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.DeleteItem});
-			this.ReceiptGridOptions.Name = "ReceiptGridOptions";
-			this.ReceiptGridOptions.Size = new System.Drawing.Size(181, 48);
-			this.ReceiptGridOptions.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ReceiptGridOptions_MouseClick);
-			// 
-			// DeleteItem
-			// 
-			this.DeleteItem.Name = "DeleteItem";
-			this.DeleteItem.Size = new System.Drawing.Size(134, 22);
-			this.DeleteItem.Text = "Delete Item";
-			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3316,6 +3311,7 @@ namespace Green_Enviro_App
 			this.ReceiptPage.ResumeLayout(false);
 			this.ReceiptPage.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.receiptDataGrid)).EndInit();
+			this.ReceiptGridOptions.ResumeLayout(false);
 			this.EditFloatGroup.ResumeLayout(false);
 			this.EditFloatGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.AddFloatValue)).EndInit();
@@ -3362,7 +3358,6 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-			this.ReceiptGridOptions.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -3598,7 +3593,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.CheckBox DefaultCustomer;
+		private System.Windows.Forms.CheckBox UnknownCustomer;
 		private System.Windows.Forms.ComboBox ReceiptTransactionType;
 		private System.Windows.Forms.ComboBox InventoryLogMonth;
 		private System.Windows.Forms.ComboBox InventoryLogEndDate;

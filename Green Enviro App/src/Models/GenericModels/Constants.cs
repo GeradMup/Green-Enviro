@@ -64,6 +64,8 @@ namespace Green_Enviro_App
 		public static readonly string TIME_FORMAT;
 		/// <summary>The date format to use for logging transaction dates.</summary>
 		public static readonly string DATE_FORMAT;
+		/// <summary>The date and time format to use for logging transaction dates and times.</summary>
+		public static readonly string DATE_TIME_FORMAT;
 		/// <summary>Special input characters to be ignored if users input them.</summary>
 		public static readonly string SPECIAL_CHARACTERS;
 		/// <summary>Permission denied error string.</summary>
@@ -103,6 +105,7 @@ namespace Green_Enviro_App
 			SPECIAL_CHARACTERS = ",";
 			TIME_FORMAT = "HH:mm:ss";
 			DATE_FORMAT = "dd MMMM yyyy ";
+			DATE_TIME_FORMAT = "dd MMMM yyyy HH:mm:ss";
 			PERMISSION_DENIED = "Permission Denied!";
 			ADMIN_PERMISSION_LEVEL = 5;
 			ELEVATED_PERMISSION_LEVEL = 3;

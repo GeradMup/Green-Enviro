@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,13 @@ namespace Green_Enviro_App
 		CSVHandles csvHandles;
 		DataTable receiptTable;
 
+		const string RECEIPT_ITEM_NAME_COL = "Name";
+		const string RECEIPT_QUANTITY_COL = "kg";
+		const string RECEIPT_PRICE_COL = "Price";
+		const string RECEIPT_AMOUNT_COL = "Amount";
+		const string RECEIPT_ITEM_TYPE_COL = "Type";
+		readonly string PURCHASES_FILE_PATH;
+
 		public static readonly List<string> TRANSACTIONS = new List<string>() { "PURCHASE", "CASUAL SALE", "FORMAL SALE" };
 		/// <summary>Initializes a new instance of the <see cref="ReceiptModel" /> class.</summary>
 		/// <param name="fh">Object of the file handles class.</param>
@@ -27,6 +35,7 @@ namespace Green_Enviro_App
 		{
 			fileHandles = fh;
 			csvHandles = csvh;
+			PURCHASES_FILE_PATH = fileHandles.pathToLogs(FileHandles.LogType.Purchases);
 		}
 
 		#region ITEMS
@@ -192,40 +201,35 @@ namespace Green_Enviro_App
 		public DataTable receiptGrid()
 		{
 			receiptTable = new DataTable();
-			DataColumn itemNumberCol = new DataColumn
-			{
-				ColumnName = "Item",
-				Caption = "Item"
-			};
 
 			DataColumn itemNameCol = new DataColumn
 			{
-				ColumnName = "Name",
-				Caption = "Name"
+				ColumnName = RECEIPT_ITEM_NAME_COL,
+				Caption = RECEIPT_ITEM_NAME_COL
 			};
 
 			DataColumn quantityCol = new DataColumn
 			{
-				ColumnName = "kg",
-				Caption = "kg"
+				ColumnName = RECEIPT_QUANTITY_COL,
+				Caption = RECEIPT_QUANTITY_COL
 			};
 
 			DataColumn priceCol = new DataColumn
 			{
-				ColumnName = "Price",
-				Caption = "Price"
+				ColumnName = RECEIPT_PRICE_COL,
+				Caption = RECEIPT_PRICE_COL
 			};
 
 			DataColumn amountCol = new DataColumn
 			{
-				ColumnName = "Amount",
-				Caption = "Amount"
+				ColumnName = RECEIPT_AMOUNT_COL,
+				Caption = RECEIPT_AMOUNT_COL
 			};
 
 			DataColumn typeCol = new DataColumn
 			{
-				ColumnName = "Type",
-				Caption = "Type"
+				ColumnName = RECEIPT_ITEM_TYPE_COL,
+				Caption = RECEIPT_ITEM_TYPE_COL
 			};
 
 			//receiptTable.Columns.Add(itemNumberCol);
@@ -283,9 +287,98 @@ namespace Green_Enviro_App
 			receiptTable.AcceptChanges();
 			foreach (DataRow entry in receiptTable.Rows) 
 			{
-				if (entry["Name"].ToString() == itemName) { entry.Delete(); }
+				if (entry[RECEIPT_ITEM_NAME_COL].ToString() == itemName) { entry.Delete(); }
 			}
 			receiptTable.AcceptChanges();
+		}
+
+		/// <summary>
+		/// Checks if there are any items availble for purchasing.
+		/// </summary>
+		/// <returns></returns>
+		public bool itemsAvailable() 
+		{
+			int zeroSize = 0;
+			return (receiptTable.Rows.Count == zeroSize) ? false : true;
+		}
+
+		/// <summary>
+		/// Completes the purchase.
+		/// </summary>
+		public void completePurchase(Customer customer, decimal remainingFloat) 
+		{
+			//First check if we have enough float for the purchase.
+			decimal costOfPurchase = totalCostOfPurchase();
+			if (remainingFloat < costOfPurchase) { throw new InsufficientCashFloatException(remainingFloat, costOfPurchase); }
+
+			List<string> entries = new List<string>();
+			string entryString;
+			DateTime date = DateTime.Now;
+			foreach (DataRow entry in receiptTable.Rows) 
+			{
+				entryString = formatRow(customer, entry, date);
+				entries.Add(entryString);
+			}
+
+			try
+			{
+				csvHandles.addToCSV(PURCHASES_FILE_PATH, entries);
+				receiptTable.Clear();
+				costOfPurchase *= -1;
+				editFloat(costOfPurchase);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+		}
+
+		/// <summary>
+		/// Calculates the total cost of purchase.
+		/// </summary>
+		/// <returns></returns>
+		private decimal totalCostOfPurchase() 
+		{
+			decimal totalCost = 0;
+			foreach (DataRow entry in receiptTable.Rows) 
+			{
+				totalCost += decimal.Parse(entry[RECEIPT_AMOUNT_COL].ToString());
+			}
+			return totalCost;
+		}
+
+		/// <summary>
+		/// Formats an entry row for insertion into the purchases csv file.
+		/// </summary>
+		/// <param name="customer"></param>
+		/// <param name="row">The row.</param>
+		/// <param name="date"></param>
+		/// <returns>A formated string ready for insertion.</returns>
+		private string formatRow(Customer customer, DataRow row, DateTime date) 
+		{
+			string dateString = date.ToString(Constants.DATE_TIME_FORMAT);
+			string customerName = customer.Name;
+			string customerSurname = customer.Surname;
+			string Id = customer.ID;
+			string customerNumber = customer.CustomerNumber.ToString();
+			string itemName = row[RECEIPT_ITEM_NAME_COL].ToString();
+			string quantity = row[RECEIPT_QUANTITY_COL].ToString();
+			string price = row[RECEIPT_PRICE_COL].ToString();
+			string amount = row[RECEIPT_AMOUNT_COL].ToString();
+			string itemType = row[RECEIPT_ITEM_TYPE_COL].ToString();
+
+			string formattedRow = dateString + ","
+								 + customerName + ","
+								 + customerSurname + ","
+								 + Id + ","
+								 + customerNumber + ","
+								 + itemName + ","
+								 + quantity + ","
+								 + price + ","
+								 + amount + ","
+								 + itemType;
+
+			return formattedRow;
 		}
 
 		/// <summary>
@@ -320,5 +413,17 @@ namespace Green_Enviro_App
 			
 		}
 		#endregion RECEIPT GRID [ END ]
+	}
+
+	/// <summary>
+	/// Exception thrown when the total cost of a purchase exceeds the total float available.
+	/// </summary>
+	/// <seealso cref="System.Exception" />
+	class InsufficientCashFloatException : Exception 
+	{
+		const string REMAINING_FLOAT = "Remaining float: R";
+		const string COST_OF_PURCHASE = " is less than total cost of purchase: R";
+		public InsufficientCashFloatException(decimal remainingFloat, decimal costOfPurchase) : 
+			base(REMAINING_FLOAT + remainingFloat.ToString() + COST_OF_PURCHASE + costOfPurchase.ToString()) { }
 	}
 }
