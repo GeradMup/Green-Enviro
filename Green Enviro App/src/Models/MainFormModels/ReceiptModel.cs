@@ -102,7 +102,7 @@ namespace Green_Enviro_App
 			using (DataEntities context = new DataEntities())
 			{
 				Float savedFloat = context.Floats.First();
-				savedFloat.FloatValue = savedFloat.FloatValue + value;
+				savedFloat.FloatValue += value;
 				context.SaveChanges();
 			}
 		}
@@ -192,41 +192,41 @@ namespace Green_Enviro_App
 		public DataTable receiptGrid()
 		{
 			receiptTable = new DataTable();
-			DataColumn itemNumberCol = new DataColumn();
-			//itemNumberCol.DataType = typeof(Int32);
-			itemNumberCol.ColumnName = "Item";
-			itemNumberCol.Caption = "Item";
-			//itemNumberCol.ReadOnly = true; 
+			DataColumn itemNumberCol = new DataColumn
+			{
+				ColumnName = "Item",
+				Caption = "Item"
+			};
 
-			DataColumn itemNameCol = new DataColumn();
-			//itemNameCol.DataType = typeof(string);
-			itemNameCol.ColumnName = "Name";
-			itemNameCol.Caption = "Name";
-			//itemNameCol.ReadOnly = true;
+			DataColumn itemNameCol = new DataColumn
+			{
+				ColumnName = "Name",
+				Caption = "Name"
+			};
 
-			DataColumn quantityCol = new DataColumn();
-			//quantityCol.DataType = typeof(float);
-			quantityCol.ColumnName = "kg";
-			quantityCol.Caption = "kg";
-			//quantityCol.ReadOnly = true;
+			DataColumn quantityCol = new DataColumn
+			{
+				ColumnName = "kg",
+				Caption = "kg"
+			};
 
-			DataColumn priceCol = new DataColumn();
-			//priceCol.DataType = typeof(float);
-			priceCol.ColumnName = "Price";
-			priceCol.Caption = "Price";
-			//priceCol.ReadOnly = true;
+			DataColumn priceCol = new DataColumn
+			{
+				ColumnName = "Price",
+				Caption = "Price"
+			};
 
-			DataColumn amountCol = new DataColumn();
-			//amountCol.DataType = typeof(float);
-			amountCol.ColumnName = "Amount";
-			amountCol.Caption = "Amount";
-			//amountCol.ReadOnly = true;
+			DataColumn amountCol = new DataColumn
+			{
+				ColumnName = "Amount",
+				Caption = "Amount"
+			};
 
-			DataColumn typeCol = new DataColumn();
-			//typeCol.DataType = typeof(string);
-			typeCol.ColumnName = "Type";
-			typeCol.Caption = "Type";
-			//typeCol.ReadOnly = true;
+			DataColumn typeCol = new DataColumn
+			{
+				ColumnName = "Type",
+				Caption = "Type"
+			};
 
 			//receiptTable.Columns.Add(itemNumberCol);
 			receiptTable.Columns.Add(itemNameCol);
@@ -253,12 +253,12 @@ namespace Green_Enviro_App
 							.FirstOrDefault(_item => _item.Name == item.Name)
 							.Type;
 			}
-
+			string decimalFormat = "0.00";
 			DataRow newRow = receiptTable.NewRow();
 			newRow[0] = item.Name;
-			newRow[1] = item.Quantity;
-			newRow[2] = item.Price;
-			newRow[3] = item.Price * item.Quantity;
+			newRow[1] = item.Quantity.ToString(decimalFormat);
+			newRow[2] = item.Price.ToString(decimalFormat);
+			newRow[3] = (item.Price * item.Quantity).ToString(decimalFormat);
 			newRow[4] = itemType;
 
 			receiptTable.Rows.Add(newRow);
@@ -272,6 +272,20 @@ namespace Green_Enviro_App
 		{
 			//Return a copy of the receiptTable because the original one will get modified by DGVOps when adding the totals.
 			return receiptTable.Copy();
+		}
+
+		/// <summary>
+		/// Deletes an item from the list of items to be purchased.
+		/// </summary>
+		/// <param name="itemName">Name of the item.</param>
+		public void deleteItem(string itemName) 
+		{
+			receiptTable.AcceptChanges();
+			foreach (DataRow entry in receiptTable.Rows) 
+			{
+				if (entry["Name"].ToString() == itemName) { entry.Delete(); }
+			}
+			receiptTable.AcceptChanges();
 		}
 
 		/// <summary>

@@ -214,8 +214,6 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// This function sums up the KG's and Amount column on the Data Grid View and adds it as the last row in the DGV
 		/// </summary>
-		/// <param name="kgCol"></param>
-		/// <param name="amountCol"></param>
 		private void addTotalsRow()
 		{
 			//Check if the DGV contains totals first before attempting to add them.
@@ -269,12 +267,12 @@ namespace Green_Enviro_App
 
 			int lastRow = dataGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 			dataGridView.Rows[lastRow].Cells[0].Value = _totals;
-			dataGridView.Rows[lastRow].Cells[kgsColumn].Value = _total_kg;
-			dataGridView.Rows[lastRow].Cells[amountColumn].Value = _total_amount;
+			dataGridView.Rows[lastRow].Cells[kgsColumn].Value = _total_kg.ToString("0.00");
+			dataGridView.Rows[lastRow].Cells[amountColumn].Value = _total_amount.ToString("0.00");
 		}
 
 		/// <summary>
-		/// Sums up the totals column and adds it as the last row of the DataGridView.
+		/// Sums up the Only the amounts column and adds it as the last row of the DataGridView.
 		/// </summary>
 		private void addAmountTotalsRow() 
 		{
@@ -316,7 +314,7 @@ namespace Green_Enviro_App
 			//dataTable.Rows.Add(_last_row);
 			int lastRow = dataGridView.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 			dataGridView.Rows[lastRow].Cells[0].Value = _totals;
-			dataGridView.Rows[lastRow].Cells[amountColumn].Value = totalAmount;
+			dataGridView.Rows[lastRow].Cells[amountColumn].Value = totalAmount.ToString("0.00");
 		}
 
 		/// <summary>Populates the start and end dates used to filter the grid view.</summary>
@@ -413,6 +411,14 @@ namespace Green_Enviro_App
 		{
 			dataGridView.DataSource = null;
 			dataGridView.Refresh();
+		}
+
+		/// <summary>
+		/// Clears the selection on the data grid view.
+		/// </summary>
+		public void clearSelection() 
+		{
+			dataGridView.ClearSelection();
 		}
 
 		/// <summary>

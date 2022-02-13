@@ -53,6 +53,7 @@ namespace Green_Enviro_App.src.Views.CompaniesView
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Location = new System.Drawing.Point(408, 48);
 			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView1.Size = new System.Drawing.Size(875, 559);
 			this.dataGridView1.TabIndex = 1;
 			// 
@@ -66,7 +67,7 @@ namespace Green_Enviro_App.src.Views.CompaniesView
 			this.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "CompaniesView";
 			this.Text = "CompaniesView";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

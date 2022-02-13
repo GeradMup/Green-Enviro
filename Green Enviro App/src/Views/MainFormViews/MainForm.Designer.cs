@@ -279,6 +279,8 @@ namespace Green_Enviro_App
 			this.label46 = new System.Windows.Forms.Label();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.ReceiptGridOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.DeleteItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mainTabControl.SuspendLayout();
 			this.ReceiptPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.receiptDataGrid)).BeginInit();
@@ -318,6 +320,7 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+			this.ReceiptGridOptions.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mainTabControl
@@ -406,10 +409,12 @@ namespace Green_Enviro_App
 			this.receiptDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.receiptDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.receiptDataGrid.ContextMenuStrip = this.ReceiptGridOptions;
 			this.receiptDataGrid.Location = new System.Drawing.Point(1009, 18);
 			this.receiptDataGrid.Name = "receiptDataGrid";
 			this.receiptDataGrid.ReadOnly = true;
 			this.receiptDataGrid.RowHeadersVisible = false;
+			this.receiptDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.receiptDataGrid.Size = new System.Drawing.Size(363, 654);
 			this.receiptDataGrid.TabIndex = 81;
 			// 
@@ -971,6 +976,7 @@ namespace Green_Enviro_App
 			this.PurchasesLogGridView.ReadOnly = true;
 			this.PurchasesLogGridView.RowHeadersWidth = 51;
 			this.PurchasesLogGridView.RowTemplate.Height = 24;
+			this.PurchasesLogGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.PurchasesLogGridView.Size = new System.Drawing.Size(1364, 557);
 			this.PurchasesLogGridView.TabIndex = 17;
 			// 
@@ -1296,6 +1302,7 @@ namespace Green_Enviro_App
 			this.SalesLogGridView.ReadOnly = true;
 			this.SalesLogGridView.RowHeadersWidth = 51;
 			this.SalesLogGridView.RowTemplate.Height = 24;
+			this.SalesLogGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.SalesLogGridView.Size = new System.Drawing.Size(860, 567);
 			this.SalesLogGridView.TabIndex = 15;
 			// 
@@ -1467,6 +1474,7 @@ namespace Green_Enviro_App
 			this.InventoryLogGridView.ReadOnly = true;
 			this.InventoryLogGridView.RowHeadersWidth = 51;
 			this.InventoryLogGridView.RowTemplate.Height = 24;
+			this.InventoryLogGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.InventoryLogGridView.Size = new System.Drawing.Size(1366, 535);
 			this.InventoryLogGridView.TabIndex = 8;
 			// 
@@ -1749,6 +1757,7 @@ namespace Green_Enviro_App
 			this.ExpensesLogGridView.ReadOnly = true;
 			this.ExpensesLogGridView.RowHeadersWidth = 51;
 			this.ExpensesLogGridView.RowTemplate.Height = 24;
+			this.ExpensesLogGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.ExpensesLogGridView.Size = new System.Drawing.Size(837, 560);
 			this.ExpensesLogGridView.TabIndex = 41;
 			// 
@@ -2007,6 +2016,7 @@ namespace Green_Enviro_App
 			this.WageLogGridView.ReadOnly = true;
 			this.WageLogGridView.RowHeadersWidth = 51;
 			this.WageLogGridView.RowTemplate.Height = 24;
+			this.WageLogGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.WageLogGridView.Size = new System.Drawing.Size(824, 562);
 			this.WageLogGridView.TabIndex = 58;
 			// 
@@ -2080,6 +2090,7 @@ namespace Green_Enviro_App
 			this.salesPRDataGridView.Name = "salesPRDataGridView";
 			this.salesPRDataGridView.RowHeadersWidth = 51;
 			this.salesPRDataGridView.RowTemplate.Height = 24;
+			this.salesPRDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.salesPRDataGridView.Size = new System.Drawing.Size(1370, 550);
 			this.salesPRDataGridView.TabIndex = 0;
 			// 
@@ -3267,6 +3278,20 @@ namespace Green_Enviro_App
 			this.label46.TabIndex = 38;
 			this.label46.Text = "Quantity";
 			// 
+			// ReceiptGridOptions
+			// 
+			this.ReceiptGridOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DeleteItem});
+			this.ReceiptGridOptions.Name = "ReceiptGridOptions";
+			this.ReceiptGridOptions.Size = new System.Drawing.Size(181, 48);
+			this.ReceiptGridOptions.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ReceiptGridOptions_MouseClick);
+			// 
+			// DeleteItem
+			// 
+			this.DeleteItem.Name = "DeleteItem";
+			this.DeleteItem.Size = new System.Drawing.Size(134, 22);
+			this.DeleteItem.Text = "Delete Item";
+			// 
 			// Main_Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3337,6 +3362,7 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+			this.ReceiptGridOptions.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -3596,5 +3622,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.NumericUpDown AddFloatValue;
 		private System.Windows.Forms.Button EditFloatCancel;
 		private System.Windows.Forms.DataGridView receiptDataGrid;
+		private System.Windows.Forms.ContextMenuStrip ReceiptGridOptions;
+		private System.Windows.Forms.ToolStripMenuItem DeleteItem;
 	}
 }

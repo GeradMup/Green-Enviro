@@ -74,6 +74,7 @@ namespace Green_Enviro_App
 			this.UsersDataGridView.Name = "UsersDataGridView";
 			this.UsersDataGridView.ReadOnly = true;
 			this.UsersDataGridView.RowHeadersWidth = 51;
+			this.UsersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.UsersDataGridView.Size = new System.Drawing.Size(698, 482);
 			this.UsersDataGridView.TabIndex = 0;
 			this.UsersDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersDataGridView_CellDoubleClick);

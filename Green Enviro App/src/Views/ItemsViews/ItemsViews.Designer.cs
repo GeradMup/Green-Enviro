@@ -36,16 +36,16 @@ namespace Green_Enviro_App
 			this.ItemsDeleteItemBtn = new System.Windows.Forms.Button();
 			this.EditItemsLabel = new System.Windows.Forms.Label();
 			this.EditItemGroupBox = new System.Windows.Forms.GroupBox();
+			this.ItemDealerPriceLabel = new System.Windows.Forms.Label();
+			this.ItemPriceLabel = new System.Windows.Forms.Label();
+			this.ItemTypeLabel = new System.Windows.Forms.Label();
+			this.ItemNameLabel = new System.Windows.Forms.Label();
 			this.ItemDealerPrice = new System.Windows.Forms.NumericUpDown();
 			this.ItemPrice = new System.Windows.Forms.NumericUpDown();
 			this.ItemType = new System.Windows.Forms.ComboBox();
 			this.ItemName = new System.Windows.Forms.TextBox();
 			this.EditPriceCancel = new System.Windows.Forms.Button();
 			this.EditPriceDone = new System.Windows.Forms.Button();
-			this.ItemNameLabel = new System.Windows.Forms.Label();
-			this.ItemTypeLabel = new System.Windows.Forms.Label();
-			this.ItemPriceLabel = new System.Windows.Forms.Label();
-			this.ItemDealerPriceLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.ItemsGrid)).BeginInit();
 			this.EditItemGroupBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ItemDealerPrice)).BeginInit();
@@ -67,6 +67,7 @@ namespace Green_Enviro_App
 			this.ItemsGrid.ReadOnly = true;
 			this.ItemsGrid.RowHeadersWidth = 51;
 			this.ItemsGrid.RowTemplate.Height = 24;
+			this.ItemsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.ItemsGrid.Size = new System.Drawing.Size(910, 454);
 			this.ItemsGrid.TabIndex = 0;
 			this.ItemsGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemsGrid_CellDoubleClick);
@@ -139,6 +140,47 @@ namespace Green_Enviro_App
 			this.EditItemGroupBox.TabStop = false;
 			this.EditItemGroupBox.Text = "Edit Item";
 			// 
+			// ItemDealerPriceLabel
+			// 
+			this.ItemDealerPriceLabel.AutoSize = true;
+			this.ItemDealerPriceLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.ItemDealerPriceLabel.Location = new System.Drawing.Point(627, 30);
+			this.ItemDealerPriceLabel.Name = "ItemDealerPriceLabel";
+			this.ItemDealerPriceLabel.Size = new System.Drawing.Size(117, 19);
+			this.ItemDealerPriceLabel.TabIndex = 12;
+			this.ItemDealerPriceLabel.Text = "Dealer Price";
+			// 
+			// ItemPriceLabel
+			// 
+			this.ItemPriceLabel.AutoSize = true;
+			this.ItemPriceLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.ItemPriceLabel.Location = new System.Drawing.Point(481, 30);
+			this.ItemPriceLabel.Name = "ItemPriceLabel";
+			this.ItemPriceLabel.Size = new System.Drawing.Size(54, 19);
+			this.ItemPriceLabel.TabIndex = 11;
+			this.ItemPriceLabel.Text = "Price";
+			// 
+			// ItemTypeLabel
+			// 
+			this.ItemTypeLabel.AutoSize = true;
+			this.ItemTypeLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.ItemTypeLabel.Location = new System.Drawing.Point(260, 30);
+			this.ItemTypeLabel.Name = "ItemTypeLabel";
+			this.ItemTypeLabel.Size = new System.Drawing.Size(45, 19);
+			this.ItemTypeLabel.TabIndex = 10;
+			this.ItemTypeLabel.Text = "Type";
+			// 
+			// ItemNameLabel
+			// 
+			this.ItemNameLabel.AutoSize = true;
+			this.ItemNameLabel.BackColor = System.Drawing.Color.DarkSlateGray;
+			this.ItemNameLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.ItemNameLabel.Location = new System.Drawing.Point(19, 30);
+			this.ItemNameLabel.Name = "ItemNameLabel";
+			this.ItemNameLabel.Size = new System.Drawing.Size(45, 19);
+			this.ItemNameLabel.TabIndex = 9;
+			this.ItemNameLabel.Text = "Name";
+			// 
 			// ItemDealerPrice
 			// 
 			this.ItemDealerPrice.DecimalPlaces = 2;
@@ -200,47 +242,6 @@ namespace Green_Enviro_App
 			this.EditPriceDone.Text = "Done";
 			this.EditPriceDone.UseVisualStyleBackColor = true;
 			this.EditPriceDone.Click += new System.EventHandler(this.EditPriceDone_Click);
-			// 
-			// ItemNameLabel
-			// 
-			this.ItemNameLabel.AutoSize = true;
-			this.ItemNameLabel.BackColor = System.Drawing.Color.DarkSlateGray;
-			this.ItemNameLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.ItemNameLabel.Location = new System.Drawing.Point(19, 30);
-			this.ItemNameLabel.Name = "ItemNameLabel";
-			this.ItemNameLabel.Size = new System.Drawing.Size(45, 19);
-			this.ItemNameLabel.TabIndex = 9;
-			this.ItemNameLabel.Text = "Name";
-			// 
-			// ItemTypeLabel
-			// 
-			this.ItemTypeLabel.AutoSize = true;
-			this.ItemTypeLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.ItemTypeLabel.Location = new System.Drawing.Point(260, 30);
-			this.ItemTypeLabel.Name = "ItemTypeLabel";
-			this.ItemTypeLabel.Size = new System.Drawing.Size(45, 19);
-			this.ItemTypeLabel.TabIndex = 10;
-			this.ItemTypeLabel.Text = "Type";
-			// 
-			// ItemPriceLabel
-			// 
-			this.ItemPriceLabel.AutoSize = true;
-			this.ItemPriceLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.ItemPriceLabel.Location = new System.Drawing.Point(481, 30);
-			this.ItemPriceLabel.Name = "ItemPriceLabel";
-			this.ItemPriceLabel.Size = new System.Drawing.Size(54, 19);
-			this.ItemPriceLabel.TabIndex = 11;
-			this.ItemPriceLabel.Text = "Price";
-			// 
-			// ItemDealerPriceLabel
-			// 
-			this.ItemDealerPriceLabel.AutoSize = true;
-			this.ItemDealerPriceLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.ItemDealerPriceLabel.Location = new System.Drawing.Point(627, 30);
-			this.ItemDealerPriceLabel.Name = "ItemDealerPriceLabel";
-			this.ItemDealerPriceLabel.Size = new System.Drawing.Size(117, 19);
-			this.ItemDealerPriceLabel.TabIndex = 12;
-			this.ItemDealerPriceLabel.Text = "Dealer Price";
 			// 
 			// ItemsViews
 			// 

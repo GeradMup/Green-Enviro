@@ -118,6 +118,7 @@ namespace Green_Enviro_App
 			this.FixedExpenseDGV.Location = new System.Drawing.Point(606, 79);
 			this.FixedExpenseDGV.Name = "FixedExpenseDGV";
 			this.FixedExpenseDGV.ReadOnly = true;
+			this.FixedExpenseDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.FixedExpenseDGV.Size = new System.Drawing.Size(1195, 814);
 			this.FixedExpenseDGV.TabIndex = 7;
 			// 

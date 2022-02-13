@@ -126,38 +126,6 @@ namespace Green_Enviro_App
             Application.Exit();
         }
 
-        private void PurchaseBtn_Click(object sender, EventArgs e)
-        {
-            //Check if the current transaction is to be a purchase or sale first
-            if (ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.purchase)
-            {
-                /*if ((userPermissionLevel == 2))
-                {
-                    PermissionDenied();
-                }
-                else
-                {
-                    _receipt.CompletePurchaseOrSale();
-                }*/
-
-                //_receipt.CompletePurchaseOrSale();
-            }
-            else if ((ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
-                ||(ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale)) 
-            {
-                /*if ((userPermissionLevel == 3) || (userPermissionLevel == 4) || (userPermissionLevel == 5))
-                {
-					_receipt.CompletePurchaseOrSale();
-                }
-                else
-                {
-                    PermissionDenied();
-                }*/
-
-               // _receipt.CompletePurchaseOrSale();
-            } 
-        }
-
 		private void CancelPurchaseBtn_Click(object sender, EventArgs e)
 		{
             //_receipt.ResetReceipt();
@@ -358,6 +326,5 @@ namespace Green_Enviro_App
 		{
             //_purchasesPR.monthSelected();
 		}
-
 	}
 }

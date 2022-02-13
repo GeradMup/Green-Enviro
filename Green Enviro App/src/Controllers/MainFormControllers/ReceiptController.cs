@@ -111,15 +111,18 @@ namespace Green_Enviro_App
 			const string NO_PRICE_ERROR = "No Price inserted!";
 			const string NO_QUANTITY_ERROR = "No Quantity inserted!";
 
-			if (ReceiptItemList.Text == string.Empty) { GenericControllers.reportError(this, NO_ITEM_ERROR); return; }
+			if (ReceiptItemList.SelectedItem == null) { GenericControllers.reportError(this, NO_ITEM_ERROR); return; }
 			if (ReceiptItemPrice.Value == decimal.Zero) { GenericControllers.reportError(this, NO_PRICE_ERROR); return; }
-			if (ReceiptItemQuantity.Value == decimal.Zero) { GenericControllers.reportError(this, NO_QUANTITY_ERROR); refreshReceiptGrid(); return; }
-
+			if (ReceiptItemPrice.Value.ToString() == string.Empty) { GenericControllers.reportError(this, NO_PRICE_ERROR); return; }
+			if (ReceiptItemQuantity.Value == decimal.Zero) { GenericControllers.reportError(this, NO_QUANTITY_ERROR); return; }
+			if (ReceiptItemQuantity.Value.ToString() == string.Empty) { GenericControllers.reportError(this, NO_QUANTITY_ERROR); return; }
+			
 			PurchaseItem item = new PurchaseItem();
 			item.Name = ReceiptItemList.Text;
 			item.Quantity = ReceiptItemQuantity.Value;
 			item.Price = ReceiptItemPrice.Value;
 			_receiptModel.addItem(item);
+			clearItemFields();
 			refreshReceiptGrid();
 		}
 
@@ -131,6 +134,74 @@ namespace Green_Enviro_App
 			receiptDGVOps.resetGridView();
 			receiptDGVOps.changeBindingSource(_receiptModel.getAllItems());
 			receiptDGVOps.populateGridView(receiptDGVColumns());
+			receiptDGVOps.clearSelection();
+		}
+
+		/// <summary>
+		/// Clears the item fields.
+		/// </summary>
+		private void clearItemFields() 
+		{
+			ReceiptItemPrice.Value = decimal.Zero;
+			ReceiptItemQuantity.Value = decimal.Zero;
+			ReceiptItemList.SelectedItem = null;
+			ReceiptDealerPrice.CheckState = CheckState.Unchecked;
+			ReceiptPriceOverride.CheckState = CheckState.Unchecked;
+			ReceiptItemPrice.ReadOnly = true;
+		}
+
+		/// <summary>
+		/// Handles the Click event of the PurchaseBtn control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void PurchaseBtn_Click(object sender, EventArgs e)
+		{
+
+			string purchase = ReceiptModel.TRANSACTIONS[0];
+			string casualSale = ReceiptModel.TRANSACTIONS[1];
+			string formalSale = ReceiptModel.TRANSACTIONS[2];
+			//Check if the current transaction is to be a purchase or sale first
+			if (ReceiptTransactionType.SelectedItem.ToString() == purchase)
+			{
+				if(userPermissionLevel == 2){ PermissionDenied(); }
+             
+				//_receipt.CompletePurchaseOrSale();
+			}
+			else if ((ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.casualSale)
+				|| (ReceiptTransactionType.SelectedItem.ToString() == _receipt.purchaseOrSaleType.formalSale))
+			{
+				/*if ((userPermissionLevel == 3) || (userPermissionLevel == 4) || (userPermissionLevel == 5))
+                {
+					_receipt.CompletePurchaseOrSale();
+                }
+                else
+                {
+                    PermissionDenied();
+                }*/
+
+				// _receipt.CompletePurchaseOrSale();
+			}
+		}
+
+		/// <summary>
+		/// Handles the MouseClick event of the ReceiptGridOptions control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+		private void ReceiptGridOptions_MouseClick(object sender, MouseEventArgs e)
+		{
+			const string NO_SELECTION_ERROR = "Please select an entry that you'd like to delete!";
+			const string DELETING_TOTALS_ERROR = "You cannot delete the totals row!";
+
+			if (receiptDGVOps.noRowSelected()) { GenericControllers.reportError(this, NO_SELECTION_ERROR); return; }
+			if (receiptDGVOps.totalsRowSelected()) { GenericControllers.reportError(this, DELETING_TOTALS_ERROR); return; }
+
+			List<string> selectedRow = receiptDGVOps.getSeletedRow();
+			string itemName = selectedRow[0];
+
+			_receiptModel.deleteItem(itemName);
+			refreshReceiptGrid();
 		}
 		#endregion RECEIPT GRID [ END ]
 
@@ -238,8 +309,8 @@ namespace Green_Enviro_App
 		/// <param name="e"></param>
 		private void ReceiptItemList_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			const string NO_ITEM_SELECTED = "No item selected!";
-			if (ReceiptItemList.SelectedItem == null) { GenericControllers.reportError(this, NO_ITEM_SELECTED); return; }
+			//Do nothing if no item has been selected.
+			if (ReceiptItemList.SelectedItem == null) return; 
 
 			//We always want to start with the normal proce.
 			ReceiptDealerPrice.CheckState = CheckState.Unchecked;
@@ -302,6 +373,17 @@ namespace Green_Enviro_App
 		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void PriceOverrideCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
+			//First check if we are removing the checkstate of the PriceOverride CheckBox
+			if ((ReceiptItemList.SelectedItem == null) && (ReceiptPriceOverride.CheckState == CheckState.Unchecked)) return;
+
+			const string NO_ITEM_SELECTED = "No item selected!";
+			if (ReceiptItemList.SelectedItem == null)
+			{
+				GenericControllers.reportError(this, NO_ITEM_SELECTED);
+				ReceiptPriceOverride.CheckState = CheckState.Unchecked;
+				return;
+			}
+
 			//Make the price editable when the price override checkbox is checked.
 			if (ReceiptPriceOverride.CheckState == CheckState.Checked) { ReceiptItemPrice.ReadOnly = false; }
 			else { ReceiptItemPrice.ReadOnly = true; }

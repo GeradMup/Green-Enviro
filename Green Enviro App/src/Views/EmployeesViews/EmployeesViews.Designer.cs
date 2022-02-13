@@ -222,6 +222,7 @@ namespace Green_Enviro_App
 			this.EmployeesGridView.Name = "EmployeesGridView";
 			this.EmployeesGridView.RowHeadersWidth = 51;
 			this.EmployeesGridView.RowTemplate.Height = 24;
+			this.EmployeesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.EmployeesGridView.Size = new System.Drawing.Size(805, 502);
 			this.EmployeesGridView.TabIndex = 19;
 			// 

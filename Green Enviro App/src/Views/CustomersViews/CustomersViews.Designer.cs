@@ -78,6 +78,7 @@ namespace Green_Enviro_App
 			this.CustomersDataGrid.ReadOnly = true;
 			this.CustomersDataGrid.RowHeadersWidth = 51;
 			this.CustomersDataGrid.RowTemplate.Height = 24;
+			this.CustomersDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.CustomersDataGrid.Size = new System.Drawing.Size(1153, 738);
 			this.CustomersDataGrid.TabIndex = 0;
 			this.CustomersDataGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomersDataGrid_CellContentDoubleClick);
