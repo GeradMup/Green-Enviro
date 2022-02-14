@@ -218,6 +218,7 @@ namespace Green_Enviro_App
             resetExpenses();
             resetSales();
             resetPurchases();
+            resetReceipt();
         }
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)

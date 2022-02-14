@@ -518,8 +518,54 @@ namespace Green_Enviro_App
 		}
 		#endregion CUSTOMERS [ END ]
 
-		private void clearFields() { }
+		private void clearFields() 
+		{
+		}
+		/// <summary>
+		/// Resets the receipt tab page.
+		/// </summary>
 		private void resetReceipt() 
-		{ }
+		{
+			clearItemFields();
+			clearCustomerFields();
+		}
+
+		#region RECEIPT SLIP
+		private void setupSlip() 
+		{
+			string transaction_time = DateTime.Now.ToString("HH:mm:ss");
+			string transaction_date_and_time = DateTime.Now.ToString("dd MMMM yyyy") + " " + transaction_time;
+			string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + transaction_time + "\n";
+			string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n" + " Cell: 00000000000\n";
+			receiptBox.Clear();
+			receiptBox.AppendText(" \n");
+			receiptBox.AppendText(" ----------------------------\n");
+			receiptBox.AppendText(" 5 Shaft Road, Knights,\n");
+			receiptBox.AppendText(" Germiston, 1401\n");
+			receiptBox.AppendText(" Phone: +27 61 588 7074\n");
+			receiptBox.AppendText(" Tax Number: 9154951249\n");
+			receiptBox.AppendText(" Reg Number: 2019/528743/07\n");
+			receiptBox.AppendText(" ----------------------------\n");
+			receiptBox.AppendText(_date);
+			receiptBox.AppendText(_customer_details);
+			receiptBox.AppendText(" ----------------------------\n ");
+			receiptBox.AppendText(string.Format("{0,-9}", "ITEMS"));
+			receiptBox.AppendText(string.Format("{0,-6}", "KGs"));
+			receiptBox.AppendText(string.Format("{0,-8}", "P/Kg"));
+			receiptBox.AppendText(string.Format("{0,-5}", "R"));
+			receiptBox.AppendText("\n");
+			receiptBox.AppendText(" ----------------------------\n");
+			receiptBox.AppendText(_receipt_content);
+			receiptBox.AppendText("\n");
+			receiptBox.AppendText(" Total:    " + _running_kg_total + " Kgs");
+			receiptBox.AppendText("\n");
+			receiptBox.AppendText(" Total:    R " + _running_total.ToString());
+			receiptBox.AppendText("\n");
+			receiptBox.AppendText(" ----------------------------\n");
+			receiptBox.AppendText(" * * * " + _type_of_transaction + " * * * ");
+			receiptBox.AppendText("\n");
+			receiptBox.AppendText(" * * * THANK YOU! * * * ");
+		}
+		#endregion RECEIPT SLIP [ END ]
 	}
 }

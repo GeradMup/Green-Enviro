@@ -38,6 +38,7 @@ namespace Green_Enviro_App
         string _single_quantity_entry;
         RichTextBox _receipt_print_content = new RichTextBox();
 
+
         float _float_value = 0F;
         static string _month = DateTime.Now.ToString("MMMM yyyy");
         string _path_to_float = @"..//..//resources//Float//" + _month + "_float.csv";
