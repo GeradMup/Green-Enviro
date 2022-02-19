@@ -14,6 +14,7 @@
         <EntityTypeShape EntityType="Green_Enviro_App.Item" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="Green_Enviro_App.User" Width="1.5" PointX="6.875" PointY="3.75" />
         <EntityTypeShape EntityType="Green_Enviro_App.Float" Width="1.5" PointX="8.625" PointY="0.75" />
+        <EntityTypeShape EntityType="Green_Enviro_App.CompanyInfo" Width="1.5" PointX="8.875" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

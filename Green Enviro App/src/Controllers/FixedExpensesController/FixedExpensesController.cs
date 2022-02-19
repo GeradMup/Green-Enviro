@@ -59,9 +59,8 @@ namespace Green_Enviro_App
 		private void closeForm() 
 		{
 			parentForm.Enabled = true;
-			parentForm.Activate();
 			parentForm.Show();
-
+			parentForm.Activate();
 			this.Hide();
 			this.Enabled = false;
 		}

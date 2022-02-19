@@ -60,6 +60,7 @@ namespace Green_Enviro_App
 		{
 			this.Owner.Enabled = true;
 			this.Owner.Show();
+			this.Owner.Activate();
 			this.Hide();
 			this.Enabled = false;
 			this.Close();
@@ -70,7 +71,13 @@ namespace Green_Enviro_App
 		/// </summary>
 		public enum MessageType 
 		{
+			/// <summary>
+			/// error
+			/// </summary>
 			error,
+			/// <summary>
+			/// success
+			/// </summary>
 			success
 		}
 	}

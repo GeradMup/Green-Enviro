@@ -14,6 +14,16 @@ namespace Green_Enviro_App.src.DataAccess
     
     public partial class Customer
     {
+        public Customer() { }
+        public Customer(Customer customer)
+        {
+            this.CustomerNumber = customer.CustomerNumber;
+            this.ID = customer.ID;
+            this.Name = customer.Name;
+            this.Surname = customer.Surname;
+            this.Cell = customer.Cell;
+            this.Address = customer.Address;
+        }
         public int CustomerNumber { get; set; }
         public string ID { get; set; }
         public string Name { get; set; }

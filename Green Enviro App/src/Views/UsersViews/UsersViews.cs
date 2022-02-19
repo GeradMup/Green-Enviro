@@ -52,6 +52,7 @@ namespace Green_Enviro_App
 		{
 			parentForm.Enabled = true;
 			parentForm.Show();
+			parentForm.Activate();
 			this.Close();
 		}
 	}

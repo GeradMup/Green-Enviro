@@ -54,6 +54,7 @@ namespace Green_Enviro_App
 		{
 			this.Owner.Enabled = true;
 			this.Owner.Show();
+			this.Owner.Activate();
 			this.Hide();
 			this.Enabled = false;
 			this.Close();

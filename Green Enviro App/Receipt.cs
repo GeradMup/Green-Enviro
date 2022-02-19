@@ -212,7 +212,7 @@ namespace Green_Enviro_App
             }
             else if (_main_form.ReceiptSaleOrPurchase.SelectedItem.ToString() == _casual_sale)
             {
-                CasualSale newSale = new CasualSale();
+                CasualSale newSale = new completeCasualSale();
                 newSale.item = _item_name;
                 newSale.itemType = _item_type;
                 newSale.price = _amount.ToString();

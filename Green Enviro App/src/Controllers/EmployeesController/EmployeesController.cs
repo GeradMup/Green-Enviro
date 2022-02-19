@@ -95,8 +95,8 @@ namespace Green_Enviro_App
 		{
 			_mainForm.Enabled = true;
 			_mainForm.Show();
-			this.Hide();
 			this.Enabled = false;
+			this.Hide();
 		}
 
 		//* * * * * * * * * * * * * * * * * EVENT HANDLERS * * * * * * * * * * * * * * * * * * * 

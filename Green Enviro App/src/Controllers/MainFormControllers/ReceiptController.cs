@@ -180,11 +180,12 @@ namespace Green_Enviro_App
 			//If it is a casual sale, there is no need to check for other inputs.
 			if (ReceiptTransactionType.Text == casualSale)
 			{
-				_receiptModel.casualSale();
+				_receiptModel.completeCasualSale();
 				ReceiptTransactionType.SelectedIndex = 0;
 				updateFloat();
 				refreshReceiptGrid();
 				GenericControllers.reportSuccess(this, CASUAL_SALE_RECORDED);
+				setupSlip();
 				return;
 			}
 
@@ -215,6 +216,7 @@ namespace Green_Enviro_App
 					clearCustomerFields();
 					GenericControllers.reportSuccess(this, PURCHASE_RECORDED);
 					updateFloat();
+					setupSlip();
 				}
 				catch (Exception ex)
 				{
@@ -533,18 +535,36 @@ namespace Green_Enviro_App
 		#region RECEIPT SLIP
 		private void setupSlip() 
 		{
+			string _receipt_content = "";
+			Customer customer = _receiptModel.latestCustomerDetails();
+			CompanyInfo company = _receiptModel.getCompanyInfo();
+			DataTable receiptTable = _receiptModel.getAllItems();
+			
+			foreach (DataRow item in receiptTable.Rows) 
+			{
+				_receipt_content += string.Format("{0,-11}", " " + item[ReceiptModel.RECEIPT_ITEM_NAME_COL].ToString());
+				_receipt_content += string.Format("{0,-5}", formatValue(item[ReceiptModel.RECEIPT_QUANTITY_COL].ToString()));
+				_receipt_content += string.Format("{0,-7}", formatValue(item[ReceiptModel.RECEIPT_PRICE_COL].ToString()));
+				_receipt_content += string.Format("{0,-6}", formatValue(item[ReceiptModel.RECEIPT_AMOUNT_COL].ToString()));
+				_receipt_content += "\n";
+			}
+			
+			float totalAmount = _receiptModel.totalAmount();
+			float totalQuantity = _receiptModel.totalQuantity();
+			string typeOfTransaction = _receiptModel.latestTransactionType();
+
 			string transaction_time = DateTime.Now.ToString("HH:mm:ss");
-			string transaction_date_and_time = DateTime.Now.ToString("dd MMMM yyyy") + " " + transaction_time;
 			string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + transaction_time + "\n";
-			string _customer_details = " Customer: None, 0\n" + " ID: 0000000000000000\n" + " Cell: 00000000000\n";
+			string _customer_details = String.Format(" Customer: {0}, {1}\n ID: {2}\n Cell: {3}\n", customer.Name, customer.CustomerNumber, customer.ID, customer.Cell);
+			
 			receiptBox.Clear();
 			receiptBox.AppendText(" \n");
 			receiptBox.AppendText(" ----------------------------\n");
-			receiptBox.AppendText(" 5 Shaft Road, Knights,\n");
-			receiptBox.AppendText(" Germiston, 1401\n");
-			receiptBox.AppendText(" Phone: +27 61 588 7074\n");
-			receiptBox.AppendText(" Tax Number: 9154951249\n");
-			receiptBox.AppendText(" Reg Number: 2019/528743/07\n");
+			receiptBox.AppendText(String.Format(" {0}, {1},\n", company.StreetAddress, company.Town));
+			receiptBox.AppendText(String.Format(" {0}, {1}\n", company.City, company.ZipCode));
+			receiptBox.AppendText(String.Format(" Phone: {0}\n", company.PhoneNum));
+			receiptBox.AppendText(String.Format(" Tax Number: {0}\n", company.TaxNum));
+			receiptBox.AppendText(String.Format(" Reg Number: {0}\n", company.RegNum));
 			receiptBox.AppendText(" ----------------------------\n");
 			receiptBox.AppendText(_date);
 			receiptBox.AppendText(_customer_details);
@@ -557,14 +577,29 @@ namespace Green_Enviro_App
 			receiptBox.AppendText(" ----------------------------\n");
 			receiptBox.AppendText(_receipt_content);
 			receiptBox.AppendText("\n");
-			receiptBox.AppendText(" Total:    " + _running_kg_total + " Kgs");
+			receiptBox.AppendText(" Total:    " + totalQuantity + " Kgs");
 			receiptBox.AppendText("\n");
-			receiptBox.AppendText(" Total:    R " + _running_total.ToString());
+			receiptBox.AppendText(" Total:    R " + totalAmount.ToString());
 			receiptBox.AppendText("\n");
 			receiptBox.AppendText(" ----------------------------\n");
-			receiptBox.AppendText(" * * * " + _type_of_transaction + " * * * ");
+			receiptBox.AppendText(" * * * " + typeOfTransaction + " * * * ");
 			receiptBox.AppendText("\n");
 			receiptBox.AppendText(" * * * THANK YOU! * * * ");
+
+			receiptDataGrid.Visible = false;
+		}
+
+		/// <summary>
+		/// Removes trailing zeros from values passed in
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns>A string number without trailing zeroes</returns>
+		private string formatValue(string value) 
+		{
+			MessageBox.Show(value);
+			decimal decimalValue = decimal.Parse(value);
+			decimalValue = decimalValue / 1.000000000000000000000000000000000m;
+			return decimalValue.ToString();
 		}
 		#endregion RECEIPT SLIP [ END ]
 	}

@@ -20,13 +20,15 @@ namespace Green_Enviro_App
 		CSVHandles csvHandles;
 		DataTable receiptTable;
 
-		const string RECEIPT_ITEM_NAME_COL = "Name";
-		const string RECEIPT_QUANTITY_COL = "kg";
-		const string RECEIPT_PRICE_COL = "Price";
-		const string RECEIPT_AMOUNT_COL = "Amount";
-		const string RECEIPT_ITEM_TYPE_COL = "Type";
+		public const string RECEIPT_ITEM_NAME_COL = "Name";
+		public const string RECEIPT_QUANTITY_COL = "kg";
+		public const string RECEIPT_PRICE_COL = "Price";
+		public const string RECEIPT_AMOUNT_COL = "Amount";
+		public const string RECEIPT_ITEM_TYPE_COL = "Type";
 		readonly string PURCHASES_FILE_PATH;
 		readonly string SALES_FILE_PATH;
+		string latestTransaction = "";      //Keeps track of the most recent transaction done. Either Purchase or casual sale.
+		Customer latestCustomer;
 
 		public static readonly List<string> TRANSACTIONS = new List<string>() { "PURCHASE", "CASUAL SALE", "FORMAL SALE" };
 		/// <summary>Initializes a new instance of the <see cref="ReceiptModel" /> class.</summary>
@@ -39,6 +41,25 @@ namespace Green_Enviro_App
 			PURCHASES_FILE_PATH = fileHandles.pathToLogs(FileHandles.LogType.Purchases);
 			SALES_FILE_PATH = fileHandles.pathToLogs(FileHandles.LogType.Sales);
 		}
+
+		#region COMPANY INFO		
+		
+		/// <summary>
+		/// Gets the company information.
+		/// </summary>
+		/// <returns>An object with all the company info</returns>
+		public CompanyInfo getCompanyInfo() 
+		{
+			CompanyInfo companyInfo;
+
+			using (DataEntities context = new DataEntities()) 
+			{
+				companyInfo = context.CompanyInfoes.First();
+			}
+			return companyInfo;
+		}
+		
+		#endregion COMPANY INFO [ END ]
 
 		#region ITEMS
 		/// <summary>
@@ -171,7 +192,6 @@ namespace Green_Enviro_App
 		public Customer getCustomer(int customerNum)
 		{
 			Customer customer;
-
 			using (DataEntities context = new DataEntities())
 			{
 				customer = context.Customers.FirstOrDefault(_customer => _customer.CustomerNumber == customerNum);
@@ -281,6 +301,24 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
+		/// Gets the total amount for the all the items on the receipt.
+		/// </summary>
+		/// <returns>A float representing the total amount.</returns>
+		public float totalAmount() 
+		{
+			return receiptTable.AsEnumerable().Sum(row => float.Parse(row.Field<string>(RECEIPT_AMOUNT_COL)));
+		}
+
+		/// <summary>
+		/// Gets the total quantity for all the items on the receipt page.
+		/// </summary>
+		/// <returns>A Float value representing the total quantity.</returns>
+		public float totalQuantity()
+		{
+			return receiptTable.AsEnumerable().Sum(row => float.Parse(row.Field<string>(RECEIPT_QUANTITY_COL)));
+		}
+
+		/// <summary>
 		/// Deletes an item from the list of items to be purchased.
 		/// </summary>
 		/// <param name="itemName">Name of the item.</param>
@@ -309,6 +347,7 @@ namespace Green_Enviro_App
 		/// </summary>
 		public void completePurchase(Customer customer, decimal remainingFloat) 
 		{
+			latestCustomer = new Customer(customer);
 			//First check if we have enough float for the purchase.
 			decimal costOfPurchase = totalCostOfPurchase();
 			if (remainingFloat < costOfPurchase) { throw new InsufficientCashFloatException(remainingFloat, costOfPurchase); }
@@ -325,9 +364,10 @@ namespace Green_Enviro_App
 			try
 			{
 				csvHandles.addToCSV(PURCHASES_FILE_PATH, entries);
-				receiptTable.Clear();
+				//receiptTable.Clear();
 				costOfPurchase *= -1;
 				editFloat(costOfPurchase);
+				latestTransaction = TRANSACTIONS[0];	//Purchase
 			}
 			catch (Exception ex)
 			{
@@ -339,7 +379,7 @@ namespace Green_Enviro_App
 		/// Records a casual sale.
 		/// </summary>
 		/// <exception cref="System.Exception"></exception>
-		public void casualSale() 
+		public void completeCasualSale() 
 		{
 			string date = DateTime.Now.ToString(Constants.DATE_TIME_FORMAT);
 			string company = "CASUAL SALE";
@@ -362,7 +402,8 @@ namespace Green_Enviro_App
 			{
 				csvHandles.addToCSV(SALES_FILE_PATH, saleItems);
 				editFloat(totalSaleAmount);
-				receiptTable.Clear();
+				//receiptTable.Clear();
+				latestTransaction = TRANSACTIONS[1];	//Casual sale
 			}
 			catch (Exception ex) 
 			{
@@ -450,6 +491,32 @@ namespace Green_Enviro_App
 			
 		}
 		#endregion RECEIPT GRID [ END ]
+
+		/// <summary>
+		/// Gets the type of the transaction that was previously done.
+		/// </summary>
+		/// <returns>A string name of the latest transaction type.</returns>
+		public string latestTransactionType() 
+		{
+			return latestTransaction;
+		}
+
+		/// <summary>
+		/// Gets the details of the most recent customer processed.
+		/// </summary>
+		/// <returns></returns>
+		public Customer latestCustomerDetails() 
+		{
+			return latestCustomer;
+		}
+
+		/// <summary>
+		/// Resets the latest transaction type.
+		/// </summary>
+		public void resetLatestTransaction() 
+		{
+			latestTransaction = "";
+		}
 	}
 
 	/// <summary>
