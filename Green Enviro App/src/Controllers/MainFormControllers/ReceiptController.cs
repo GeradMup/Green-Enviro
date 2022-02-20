@@ -185,7 +185,6 @@ namespace Green_Enviro_App
 				updateFloat();
 				refreshReceiptGrid();
 				GenericControllers.reportSuccess(this, CASUAL_SALE_RECORDED);
-				setupSlip();
 				return;
 			}
 
@@ -216,7 +215,6 @@ namespace Green_Enviro_App
 					clearCustomerFields();
 					GenericControllers.reportSuccess(this, PURCHASE_RECORDED);
 					updateFloat();
-					setupSlip();
 				}
 				catch (Exception ex)
 				{
@@ -522,6 +520,7 @@ namespace Green_Enviro_App
 
 		private void clearFields() 
 		{
+			resetReceipt();
 		}
 		/// <summary>
 		/// Resets the receipt tab page.
@@ -532,75 +531,28 @@ namespace Green_Enviro_App
 			clearCustomerFields();
 		}
 
-		#region RECEIPT SLIP
-		private void setupSlip() 
+		#region RECEIPT SLIP		
+		
+		#endregion RECEIPT SLIP [ END ]
+
+		/// <summary>
+		/// Handles the Click event of the CancelPurchaseBtn control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void CancelPurchaseBtn_Click(object sender, EventArgs e)
 		{
-			string _receipt_content = "";
-			Customer customer = _receiptModel.latestCustomerDetails();
-			CompanyInfo company = _receiptModel.getCompanyInfo();
-			DataTable receiptTable = _receiptModel.getAllItems();
-			
-			foreach (DataRow item in receiptTable.Rows) 
-			{
-				_receipt_content += string.Format("{0,-11}", " " + item[ReceiptModel.RECEIPT_ITEM_NAME_COL].ToString());
-				_receipt_content += string.Format("{0,-5}", formatValue(item[ReceiptModel.RECEIPT_QUANTITY_COL].ToString()));
-				_receipt_content += string.Format("{0,-7}", formatValue(item[ReceiptModel.RECEIPT_PRICE_COL].ToString()));
-				_receipt_content += string.Format("{0,-6}", formatValue(item[ReceiptModel.RECEIPT_AMOUNT_COL].ToString()));
-				_receipt_content += "\n";
-			}
-			
-			float totalAmount = _receiptModel.totalAmount();
-			float totalQuantity = _receiptModel.totalQuantity();
-			string typeOfTransaction = _receiptModel.latestTransactionType();
-
-			string transaction_time = DateTime.Now.ToString("HH:mm:ss");
-			string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + transaction_time + "\n";
-			string _customer_details = String.Format(" Customer: {0}, {1}\n ID: {2}\n Cell: {3}\n", customer.Name, customer.CustomerNumber, customer.ID, customer.Cell);
-			
-			receiptBox.Clear();
-			receiptBox.AppendText(" \n");
-			receiptBox.AppendText(" ----------------------------\n");
-			receiptBox.AppendText(String.Format(" {0}, {1},\n", company.StreetAddress, company.Town));
-			receiptBox.AppendText(String.Format(" {0}, {1}\n", company.City, company.ZipCode));
-			receiptBox.AppendText(String.Format(" Phone: {0}\n", company.PhoneNum));
-			receiptBox.AppendText(String.Format(" Tax Number: {0}\n", company.TaxNum));
-			receiptBox.AppendText(String.Format(" Reg Number: {0}\n", company.RegNum));
-			receiptBox.AppendText(" ----------------------------\n");
-			receiptBox.AppendText(_date);
-			receiptBox.AppendText(_customer_details);
-			receiptBox.AppendText(" ----------------------------\n ");
-			receiptBox.AppendText(string.Format("{0,-9}", "ITEMS"));
-			receiptBox.AppendText(string.Format("{0,-6}", "KGs"));
-			receiptBox.AppendText(string.Format("{0,-8}", "P/Kg"));
-			receiptBox.AppendText(string.Format("{0,-5}", "R"));
-			receiptBox.AppendText("\n");
-			receiptBox.AppendText(" ----------------------------\n");
-			receiptBox.AppendText(_receipt_content);
-			receiptBox.AppendText("\n");
-			receiptBox.AppendText(" Total:    " + totalQuantity + " Kgs");
-			receiptBox.AppendText("\n");
-			receiptBox.AppendText(" Total:    R " + totalAmount.ToString());
-			receiptBox.AppendText("\n");
-			receiptBox.AppendText(" ----------------------------\n");
-			receiptBox.AppendText(" * * * " + typeOfTransaction + " * * * ");
-			receiptBox.AppendText("\n");
-			receiptBox.AppendText(" * * * THANK YOU! * * * ");
-
-			receiptDataGrid.Visible = false;
+			resetReceipt();
 		}
 
 		/// <summary>
-		/// Removes trailing zeros from values passed in
+		/// Handles the Click event of the ReprintReceiptBtn control.
 		/// </summary>
-		/// <param name="value"></param>
-		/// <returns>A string number without trailing zeroes</returns>
-		private string formatValue(string value) 
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void ReprintReceiptBtn_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show(value);
-			decimal decimalValue = decimal.Parse(value);
-			decimalValue = decimalValue / 1.000000000000000000000000000000000m;
-			return decimalValue.ToString();
+			_receiptModel.reprintReceipt();
 		}
-		#endregion RECEIPT SLIP [ END ]
 	}
 }

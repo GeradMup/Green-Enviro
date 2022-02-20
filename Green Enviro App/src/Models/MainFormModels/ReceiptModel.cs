@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Green_Enviro_App.src.DataAccess;
 
@@ -29,6 +32,10 @@ namespace Green_Enviro_App
 		readonly string SALES_FILE_PATH;
 		string latestTransaction = "";      //Keeps track of the most recent transaction done. Either Purchase or casual sale.
 		Customer latestCustomer;
+		Image companyLogoImage;
+		CompanyInfo company;
+		string latestReceiptContent;
+		int latestReceiptLines;
 
 		public static readonly List<string> TRANSACTIONS = new List<string>() { "PURCHASE", "CASUAL SALE", "FORMAL SALE" };
 		/// <summary>Initializes a new instance of the <see cref="ReceiptModel" /> class.</summary>
@@ -40,25 +47,27 @@ namespace Green_Enviro_App
 			csvHandles = csvh;
 			PURCHASES_FILE_PATH = fileHandles.pathToLogs(FileHandles.LogType.Purchases);
 			SALES_FILE_PATH = fileHandles.pathToLogs(FileHandles.LogType.Sales);
+			companyLogoImage = getCompanyLogo();
+			company = getCompanyInfo();
 		}
 
 		#region COMPANY INFO		
-		
+
 		/// <summary>
 		/// Gets the company information.
 		/// </summary>
 		/// <returns>An object with all the company info</returns>
-		public CompanyInfo getCompanyInfo() 
+		public CompanyInfo getCompanyInfo()
 		{
 			CompanyInfo companyInfo;
 
-			using (DataEntities context = new DataEntities()) 
+			using (DataEntities context = new DataEntities())
 			{
 				companyInfo = context.CompanyInfoes.First();
 			}
 			return companyInfo;
 		}
-		
+
 		#endregion COMPANY INFO [ END ]
 
 		#region ITEMS
@@ -269,11 +278,11 @@ namespace Green_Enviro_App
 		/// </summary>
 		/// <param name="item">The item.</param>
 		/// <returns></returns>
-		public void addItem(PurchaseItem item) 
+		public void addItem(PurchaseItem item)
 		{
 			string itemType;
-			
-			using (DataEntities context = new DataEntities()) 
+
+			using (DataEntities context = new DataEntities())
 			{
 				itemType = context.Items
 							.FirstOrDefault(_item => _item.Name == item.Name)
@@ -294,7 +303,7 @@ namespace Green_Enviro_App
 		/// Gets all items to be purchased.
 		/// </summary>
 		/// <returns></returns>
-		public DataTable getAllItems() 
+		public DataTable getAllItems()
 		{
 			//Return a copy of the receiptTable because the original one will get modified by DGVOps when adding the totals.
 			return receiptTable.Copy();
@@ -304,7 +313,7 @@ namespace Green_Enviro_App
 		/// Gets the total amount for the all the items on the receipt.
 		/// </summary>
 		/// <returns>A float representing the total amount.</returns>
-		public float totalAmount() 
+		public float totalAmount()
 		{
 			return receiptTable.AsEnumerable().Sum(row => float.Parse(row.Field<string>(RECEIPT_AMOUNT_COL)));
 		}
@@ -322,10 +331,10 @@ namespace Green_Enviro_App
 		/// Deletes an item from the list of items to be purchased.
 		/// </summary>
 		/// <param name="itemName">Name of the item.</param>
-		public void deleteItem(string itemName) 
+		public void deleteItem(string itemName)
 		{
 			receiptTable.AcceptChanges();
-			foreach (DataRow entry in receiptTable.Rows) 
+			foreach (DataRow entry in receiptTable.Rows)
 			{
 				if (entry[RECEIPT_ITEM_NAME_COL].ToString() == itemName) { entry.Delete(); }
 			}
@@ -336,7 +345,7 @@ namespace Green_Enviro_App
 		/// Checks if there are any items availble for a purchase or a casual sale.
 		/// </summary>
 		/// <returns></returns>
-		public bool itemsAvailable() 
+		public bool itemsAvailable()
 		{
 			int zeroSize = 0;
 			return (receiptTable.Rows.Count == zeroSize) ? false : true;
@@ -345,7 +354,7 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Completes the purchase.
 		/// </summary>
-		public void completePurchase(Customer customer, decimal remainingFloat) 
+		public void completePurchase(Customer customer, decimal remainingFloat)
 		{
 			latestCustomer = new Customer(customer);
 			//First check if we have enough float for the purchase.
@@ -355,7 +364,7 @@ namespace Green_Enviro_App
 			List<string> entries = new List<string>();
 			string entryString;
 			DateTime date = DateTime.Now;
-			foreach (DataRow entry in receiptTable.Rows) 
+			foreach (DataRow entry in receiptTable.Rows)
 			{
 				entryString = formatPurchaseRow(customer, entry, date);
 				entries.Add(entryString);
@@ -367,7 +376,10 @@ namespace Green_Enviro_App
 				//receiptTable.Clear();
 				costOfPurchase *= -1;
 				editFloat(costOfPurchase);
-				latestTransaction = TRANSACTIONS[0];	//Purchase
+				latestTransaction = TRANSACTIONS[0];    //Purchase
+				setupSlip();
+				printReceipt(latestReceiptContent, latestReceiptLines);
+				receiptTable.Clear();
 			}
 			catch (Exception ex)
 			{
@@ -379,14 +391,14 @@ namespace Green_Enviro_App
 		/// Records a casual sale.
 		/// </summary>
 		/// <exception cref="System.Exception"></exception>
-		public void completeCasualSale() 
+		public void completeCasualSale()
 		{
 			string date = DateTime.Now.ToString(Constants.DATE_TIME_FORMAT);
 			string company = "CASUAL SALE";
 			List<string> saleItems = new List<string>();
 			string saleRow;
 			decimal totalSaleAmount = 0;
-			foreach (DataRow entry in receiptTable.Rows) 
+			foreach (DataRow entry in receiptTable.Rows)
 			{
 				saleRow = date + ","
 						+ company + ","
@@ -403,9 +415,12 @@ namespace Green_Enviro_App
 				csvHandles.addToCSV(SALES_FILE_PATH, saleItems);
 				editFloat(totalSaleAmount);
 				//receiptTable.Clear();
-				latestTransaction = TRANSACTIONS[1];	//Casual sale
+				latestTransaction = TRANSACTIONS[1];    //Casual sale
+				setupSlip();
+				printReceipt(latestReceiptContent, latestReceiptLines);
+				receiptTable.Clear();
 			}
-			catch (Exception ex) 
+			catch (Exception ex)
 			{
 				throw new Exception(ex.Message);
 			}
@@ -415,10 +430,10 @@ namespace Green_Enviro_App
 		/// Calculates the total cost of purchase.
 		/// </summary>
 		/// <returns></returns>
-		private decimal totalCostOfPurchase() 
+		private decimal totalCostOfPurchase()
 		{
 			decimal totalCost = 0;
-			foreach (DataRow entry in receiptTable.Rows) 
+			foreach (DataRow entry in receiptTable.Rows)
 			{
 				totalCost += decimal.Parse(entry[RECEIPT_AMOUNT_COL].ToString());
 			}
@@ -432,7 +447,7 @@ namespace Green_Enviro_App
 		/// <param name="row">The row.</param>
 		/// <param name="date"></param>
 		/// <returns>A formated string ready for insertion.</returns>
-		private string formatPurchaseRow(Customer customer, DataRow row, DateTime date) 
+		private string formatPurchaseRow(Customer customer, DataRow row, DateTime date)
 		{
 			string dateString = date.ToString(Constants.DATE_TIME_FORMAT);
 			string customerName = customer.Name;
@@ -472,7 +487,7 @@ namespace Green_Enviro_App
 			/// The name.
 			/// </value>
 			public string Name { get; set; }
-			
+
 			/// <summary>
 			/// Gets or sets the quantity.
 			/// </summary>
@@ -480,7 +495,7 @@ namespace Green_Enviro_App
 			/// The quantity.
 			/// </value>
 			public decimal Quantity { get; set; }
-			
+
 			/// <summary>
 			/// Gets or sets the price.
 			/// </summary>
@@ -488,15 +503,17 @@ namespace Green_Enviro_App
 			/// The price.
 			/// </value>
 			public decimal Price { get; set; }
-			
+
 		}
 		#endregion RECEIPT GRID [ END ]
+
+		#region RECEIPT SLIP
 
 		/// <summary>
 		/// Gets the type of the transaction that was previously done.
 		/// </summary>
 		/// <returns>A string name of the latest transaction type.</returns>
-		public string latestTransactionType() 
+		public string latestTransactionType()
 		{
 			return latestTransaction;
 		}
@@ -505,7 +522,7 @@ namespace Green_Enviro_App
 		/// Gets the details of the most recent customer processed.
 		/// </summary>
 		/// <returns></returns>
-		public Customer latestCustomerDetails() 
+		public Customer latestCustomerDetails()
 		{
 			return latestCustomer;
 		}
@@ -513,10 +530,169 @@ namespace Green_Enviro_App
 		/// <summary>
 		/// Resets the latest transaction type.
 		/// </summary>
-		public void resetLatestTransaction() 
+		public void resetLatestTransaction()
 		{
 			latestTransaction = "";
 		}
+
+		/// <summary>
+		/// Gets the company logo.
+		/// </summary>
+		/// <returns>An Image of the company logo.</returns>
+		private Image getCompanyLogo()
+		{
+			byte[] imageBytes;
+			using (DataEntities context = new DataEntities()) 
+			{
+				imageBytes = context.CompanyInfoes.First().Logo;
+			}
+			return GenericModels.byteArrayToImage(imageBytes);
+		}
+
+		/// <summary>
+		/// Setups the slip for printing.
+		/// </summary>
+		private void setupSlip()
+		{
+			string _receipt_content = "";
+			foreach (DataRow item in receiptTable.Rows)
+			{
+				_receipt_content += string.Format("{0,-11}", " " + item[ReceiptModel.RECEIPT_ITEM_NAME_COL].ToString());
+				_receipt_content += string.Format("{0,-5}", formatValue(item[ReceiptModel.RECEIPT_QUANTITY_COL].ToString()));
+				_receipt_content += string.Format("{0,-7}", formatValue(item[ReceiptModel.RECEIPT_PRICE_COL].ToString()));
+				_receipt_content += string.Format("{0,-6}", formatValue(item[ReceiptModel.RECEIPT_AMOUNT_COL].ToString()));
+				_receipt_content += "\n";
+			}
+
+			float totalTransactionAmount = totalAmount();
+			float totalTransactionQuantity = totalQuantity();
+			string typeOfTransaction = latestTransactionType();
+
+			string transaction_time = DateTime.Now.ToString("HH:mm:ss");
+			string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + transaction_time + "\n";
+			string _customer_details = String.Format(" Customer: {0}, {1}\n ID: {2}\n Cell: {3}\n", latestCustomer.Name, latestCustomer.CustomerNumber, latestCustomer.ID, latestCustomer.Cell);
+
+			latestReceiptContent = string.Empty;
+			latestReceiptContent += " \n";
+			latestReceiptContent += " ----------------------------\n";
+			latestReceiptContent += String.Format(" {0}, {1},\n", company.StreetAddress, company.Town);
+			latestReceiptContent += String.Format(" {0}, {1}\n", company.City, company.ZipCode);
+			latestReceiptContent += String.Format(" Phone: {0}\n", company.PhoneNum);
+			latestReceiptContent += String.Format(" Tax Number: {0}\n", company.TaxNum);
+			latestReceiptContent += String.Format(" Reg Number: {0}\n", company.RegNum);
+			latestReceiptContent += " ----------------------------\n";
+			latestReceiptContent += _date;
+			latestReceiptContent += _customer_details;
+			latestReceiptContent += " ----------------------------\n ";
+			latestReceiptContent += string.Format("{0,-9}", "ITEMS");
+			latestReceiptContent += string.Format("{0,-6}", "KGs");
+			latestReceiptContent += string.Format("{0,-8}", "P/Kg");
+			latestReceiptContent += string.Format("{0,-5}", "R");
+			latestReceiptContent += "\n";
+			latestReceiptContent += " ----------------------------\n";
+			latestReceiptContent += _receipt_content;
+			latestReceiptContent += "\n";
+			latestReceiptContent += " Total:    " + totalTransactionQuantity + " Kgs";
+			latestReceiptContent += "\n";
+			latestReceiptContent += " Total:    R " + totalTransactionAmount.ToString();
+			latestReceiptContent += "\n";
+			latestReceiptContent += " ----------------------------\n";
+			latestReceiptContent += " * * * " + typeOfTransaction + " * * * ";
+			latestReceiptContent += "\n";
+			latestReceiptContent += " * * * THANK YOU! * * * ";
+
+			//receiptDataGrid.Visible = false;
+			latestReceiptLines = Regex.Matches(latestReceiptContent, "\n").Count;
+		}
+
+		/// <summary>
+		/// Removes trailing zeros from values passed in
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns>A string number without trailing zeroes</returns>
+		private string formatValue(string value)
+		{
+			decimal decimalValue = decimal.Parse(value);
+			decimalValue = decimalValue / 1.000000000000000000000000000000000m;
+			return decimalValue.ToString();
+		}
+
+		/// <summary>
+		/// Prints the receipt.
+		/// </summary>
+		public void printReceipt(string receiptData, int receiptTotalLines)
+		{
+			int _width_offset = 35;
+			//int _content_height = receiptBox.Lines.Count() * 20;
+
+			int _content_height = receiptTotalLines * 20;
+			int _header_height = 120;
+			int receiptWidth = 346;
+			PrintDocument _receipt_content = new PrintDocument();
+			PrintDocument _receipt_header = new PrintDocument();
+
+			_receipt_header.DefaultPageSettings.PaperSize = new PaperSize("Custom", receiptWidth - _width_offset, _header_height);
+			_receipt_header.PrintPage += (sender, args) => printReceiptHeader(args);
+
+			_receipt_content.DefaultPageSettings.PaperSize = new PaperSize("Custom", receiptWidth - _width_offset, _content_height);
+			//_receipt_content.PrintPage += new PrintPageEventHandler(this.PrintDocument_PrintPage);
+			_receipt_content.PrintPage += (sender, args) => printReceiptContent(receiptData, args);
+
+			_receipt_header.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+			_receipt_content.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+
+			_receipt_header.Print();
+			_receipt_content.Print();
+
+		}
+
+		/// <summary>
+		/// Reprints the latest receipt.
+		/// </summary>
+		public void reprintReceipt() 
+		{
+			printReceipt(latestReceiptContent, latestReceiptLines); 
+		}
+
+		/// <summary>
+		/// Prints the content of the receipt.
+		/// </summary>
+		/// <param name="receiptData">The receipt data.</param>
+		/// <param name="e">The <see cref="PrintPageEventArgs"/> instance containing the event data.</param>
+		private void printReceiptContent(string receiptData, PrintPageEventArgs e)
+		{
+			float _font_size = 9.1F;
+			e.Graphics.DrawString(receiptData, new Font("Consolas", _font_size), Brushes.Black, -10, -5);
+		}
+
+		/// <summary>
+		/// Prints the receipt header.
+		/// </summary>
+		/// <param name="logo">The Company Logo.</param>
+		/// <param name="e">The <see cref="PrintPageEventArgs"/> instance containing the event data.</param>
+		private void printReceiptHeader(PrintPageEventArgs e)
+		{
+			float _font_size = 15F;
+			e.Graphics.DrawImage(companyLogoImage, 0, 0, 190, 80);
+		}
+
+		/// <summary>
+		/// Resizes the logo image for the purpose of prriting it on the receipt.
+		/// </summary>
+		/// <param name="image">The image.</param>
+		/// <param name="new_height">The new height.</param>
+		/// <param name="new_width">The new width.</param>
+		/// <returns></returns>
+		public static Image ResizeLogoImage(Image image, int new_height, int new_width)
+		{
+			Bitmap new_image = new Bitmap(new_width, new_height);
+			Graphics g = Graphics.FromImage((Image)new_image);
+			g.InterpolationMode = InterpolationMode.High;
+			g.DrawImage(image, 0, 0, new_width, new_height);
+			return new_image;
+		}
+
+		#endregion RECEIPT SLIP [ END ]
 	}
 
 	/// <summary>
@@ -531,3 +707,20 @@ namespace Green_Enviro_App
 			base(REMAINING_FLOAT + remainingFloat.ToString() + COST_OF_PURCHASE + costOfPurchase.ToString()) { }
 	}
 }
+
+/*
+ * 
+ * CUSTOMER CONSTRUCTERS FOR THE CUSTOMER CLASS
+public Customer() { }
+
+public Customer(Customer customer)
+{
+	this.CustomerNumber = customer.CustomerNumber;
+	this.ID = customer.ID;
+	this.Name = customer.Name;
+	this.Surname = customer.Surname;
+	this.Cell = customer.Cell;
+	this.Address = customer.Address;
+}
+
+*/

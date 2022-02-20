@@ -50,7 +50,6 @@ namespace Green_Enviro_App
 				infoToDelete += column + ",";
 			}
 
-			MessageBox.Show(infoToDelete);
 			//Remove the last comma inserted at the end of the string
 			infoToDelete = infoToDelete.Remove(infoToDelete.Length - 1, 1);
 			startingSubstringForLineToBeDeleted = infoToDelete;

@@ -40,6 +40,7 @@
           <Property Name="PhoneNum" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="TaxNum" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="RegNum" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Logo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -240,6 +241,7 @@
           <Property Name="PhoneNum" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="TaxNum" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="RegNum" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -349,6 +351,7 @@
           <EntitySetMapping Name="CompanyInfoes">
             <EntityTypeMapping TypeName="Green_Enviro_App.CompanyInfo">
               <MappingFragment StoreEntitySet="CompanyInfo">
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="RegNum" ColumnName="RegNum" />
                 <ScalarProperty Name="TaxNum" ColumnName="TaxNum" />
                 <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />

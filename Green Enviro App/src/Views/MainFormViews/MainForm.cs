@@ -126,23 +126,6 @@ namespace Green_Enviro_App
             Application.Exit();
         }
 
-		private void CancelPurchaseBtn_Click(object sender, EventArgs e)
-		{
-            //_receipt.ResetReceipt();
-		}
-
-        private void ReprintReceiptBtn_Click(object sender, EventArgs e)
-        {
-            if ((userPermissionLevel == 2))
-            {
-                PermissionDenied();
-            }
-            else
-            {
-                //_receipt.PrintReceipt();
-            }
-        }
-
         //******************************************************************************************************************************
         //PURCHASE LOG RELATED CALLS
         //******************************************************************************************************************************

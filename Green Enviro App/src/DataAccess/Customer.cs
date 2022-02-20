@@ -12,10 +12,13 @@ namespace Green_Enviro_App.src.DataAccess
     using System;
     using System.Collections.Generic;
     
+
     public partial class Customer
     {
+
         public Customer() { }
-        public Customer(Customer customer)
+
+        public Customer(Customer customer) 
         {
             this.CustomerNumber = customer.CustomerNumber;
             this.ID = customer.ID;
@@ -24,6 +27,7 @@ namespace Green_Enviro_App.src.DataAccess
             this.Cell = customer.Cell;
             this.Address = customer.Address;
         }
+
         public int CustomerNumber { get; set; }
         public string ID { get; set; }
         public string Name { get; set; }

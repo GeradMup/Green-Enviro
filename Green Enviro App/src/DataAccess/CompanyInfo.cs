@@ -23,5 +23,6 @@ namespace Green_Enviro_App.src.DataAccess
         public string PhoneNum { get; set; }
         public string TaxNum { get; set; }
         public string RegNum { get; set; }
+        public byte[] Logo { get; set; }
     }
 }

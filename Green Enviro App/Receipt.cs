@@ -461,40 +461,7 @@ namespace Green_Enviro_App
             return new_image;
         }
 
-        public void EditFloat() 
-        {
-            _float.Activate();
-            _float.Show();
-            _float.Enabled = true;
-            _main_form.Enabled = false;
-        }
 
-
-		/// <summary>
-        /// Sales or purchase option changed.
-        /// Function to change how the colours are updated when the transaction type changes
-        /// Green represents a normal purchase
-        /// Yellow represents a formal sale
-        /// Red represents a casual sale
-        /// </summary>
-		public void SaleOrPurchaseChanged() 
-        {
-            _main_form.purchaseOrSaleIndicator.Text = _main_form.ReceiptSaleOrPurchase.SelectedItem.ToString();
-            if (_main_form.purchaseOrSaleIndicator.Text == _purchase) 
-            {
-                _main_form.purchaseOrSaleIndicator.BackColor = Color.GreenYellow;
-            }
-            if (_main_form.purchaseOrSaleIndicator.Text == _casual_sale) 
-            {
-                _main_form.purchaseOrSaleIndicator.BackColor = Color.Red;
-            }
-            if (_main_form.purchaseOrSaleIndicator.Text == _formal_sale) 
-            {
-                _main_form.purchaseOrSaleIndicator.BackColor = Color.Yellow;
-            }
-            
-            
-        }
         */
 	}
     
