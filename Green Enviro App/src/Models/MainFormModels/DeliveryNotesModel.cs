@@ -81,8 +81,8 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>Inserts the information of the company to which the delivery is to be made.</summary>
-		/// <param name="companyInfo">The company information.</param>
-		private void insertCompanyInfo(Company companyInfo) 
+		/// <param name="buyerInfo">The company information.</param>
+		private void insertCompanyInfo(Buyer buyerInfo) 
 		{
 			double y_coordinate = 230;
 			
@@ -91,19 +91,19 @@ namespace Green_Enviro_App
 			insertKeyValueLine("Date :", date, ref y_coordinate, x_offset);
 
 			x_offset = 53.5;
-			insertKeyValueLine("Company :", companyInfo.Name, ref y_coordinate, x_offset);
+			insertKeyValueLine("Company :", buyerInfo.Company, ref y_coordinate, x_offset);
 
 			x_offset = 80;
-			insertKeyValueLine("Contact Person :", companyInfo.ContactPerson, ref y_coordinate, x_offset);
+			insertKeyValueLine("Contact Person :", buyerInfo.ContactPerson, ref y_coordinate, x_offset);
 
 			x_offset = 36;
-			insertKeyValueLine("Email :", companyInfo.Email, ref y_coordinate, x_offset);
+			insertKeyValueLine("Email :", buyerInfo.Email, ref y_coordinate, x_offset);
 
 			x_offset = 91;
-			insertKeyValueLine("Contact Numbers :", companyInfo.ContactNumbers, ref y_coordinate, x_offset);
+			insertKeyValueLine("Contact Numbers :", buyerInfo.ContactNumber, ref y_coordinate, x_offset);
 
 			x_offset = 46;
-			insertKeyValueLine("Address :", companyInfo.Address, ref y_coordinate, x_offset);
+			insertKeyValueLine("Address :", buyerInfo.Address, ref y_coordinate, x_offset);
 
 			drawHorizontalLine(LineColours.black);
 
@@ -324,10 +324,10 @@ namespace Green_Enviro_App
 
 				//GenericModels.CompanyInfo companyInfo = dataTableToCompanyInfo(companyData);
 
-				Company company;
+				Buyer company;
 				using (DataEntities context = new DataEntities()) 
 				{
-					company = context.Companies.Where(_company => _company.Name == companyName).FirstOrDefault<Company>();
+					company = context.Buyers.Where(_company => _company.Company == companyName).FirstOrDefault<Buyer>();
 				}
 
 				PdfDocument document = new PdfDocument();
@@ -344,7 +344,7 @@ namespace Green_Enviro_App
 
 				
 
-				pathToDeliveryNote = generateSavePath(company.Name);
+				pathToDeliveryNote = generateSavePath(company.Company);
 				document.Save(pathToDeliveryNote);
 			}
 			catch (Exception ex) 

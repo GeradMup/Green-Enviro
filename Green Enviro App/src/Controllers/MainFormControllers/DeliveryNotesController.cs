@@ -135,7 +135,7 @@ namespace Green_Enviro_App
 			if (DeliveryVehicleReg.Text == Constants.EMPTY_TEXT) { GenericControllers.reportError(_mainForm, VEHICLE_REG_NOT_INSERTED_ERROR); return; }
 			if (DeliveryVehicleType.SelectedItem == null) { GenericControllers.reportError(_mainForm, VECHICLE_TYPE_NOT_SELECTED_ERROR); return; }
 
-			string companyName = DeliveryCompaniesList.SelectedItem.ToString();
+			string companyName = DeliveryCompaniesList.Text;
 			DeliveryNotesModel.CollectorInformation collectorInfo = new DeliveryNotesModel.CollectorInformation();
 
 			collectorInfo.name = DeliveryDriverName.Text;
@@ -143,17 +143,18 @@ namespace Green_Enviro_App
 			collectorInfo.vehicleRegistration = DeliveryVehicleReg.Text;
 			collectorInfo.vehicleType = DeliveryVehicleType.Text;
 
+			
 			try
 			{
 				string path = _deliveryNotesModel.generateDeliveryNote(companyName, collectorInfo);
 				clearCollectorFields();
 				displayDeliveryNote(path);
-				GenericControllers.reportSuccess(_mainForm, DELIVERY_NOTE_GENERATED_SUCCESSFULLY);
+				GenericControllers.reportSuccess(this, DELIVERY_NOTE_GENERATED_SUCCESSFULLY);
 				deliveryNotesDgvOps.clearGridView();
 			}
 			catch (Exception ex) 
 			{
-				GenericControllers.reportError(_mainForm, ex.Message);
+				GenericControllers.reportError(this, ex.InnerException.Message);
 			}
 		}
 
