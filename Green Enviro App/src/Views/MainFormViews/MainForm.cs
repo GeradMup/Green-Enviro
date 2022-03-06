@@ -43,6 +43,7 @@ namespace Green_Enviro_App
         SalesModel _salesModel;
         PurchasesModel _purchasesModel;
         ReceiptModel _receiptModel;
+        PoliceRegistersModel _policeRegModel;
 
         //Other Models
         FixedExpensesModel _fixedExpensesModel;
@@ -78,6 +79,7 @@ namespace Green_Enviro_App
             _salesModel = new SalesModel(_fileHandles, _csvHandles);
             _purchasesModel = new PurchasesModel(_fileHandles, _csvHandles);
             _receiptModel = new ReceiptModel(_fileHandles, _csvHandles);
+            _policeRegModel = new PoliceRegistersModel(_fileHandles, _csvHandles);
             
             _fixedExpensesModel = new FixedExpensesModel();
             _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);

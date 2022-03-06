@@ -19,15 +19,6 @@ namespace Green_Enviro_App
 		DataGridView dataGridView;
 		int numberOfColumns;
 
-		/// <summary>Initializes a new instance of the <see cref="CSVHandles" /> class.</summary>
-		/// <param name="grid">The DataGridView Where the CSV contents will go</param>
-		/// <param name="unqCols">The number of unique columns in the DataGridView.</param>
-		public CSVHandles(DataGridView grid, int unqCols = 0) 
-		{
-			dataGridView = grid;
-			numberOfColumns = unqCols;
-		}
-
 		public CSVHandles() { }
 
 		/// <summary>
@@ -108,12 +99,18 @@ namespace Green_Enviro_App
 			File.WriteAllText(path, _csv_content.ToString());
 		}
 
-		
+		/// <summary>
+		/// The substring used to pickout the row to be deleted.
+		/// </summary>
+		/// <param name="rowInfo">The row information.</param>
 		public void setRowToDelete(string rowInfo) 
 		{
 			startingSubstringForLineToBeDeleted = rowInfo;
 		}
 
+		/// <summary>
+		/// Predicate to check if the passed row starts with the required substring.
+		/// </summary>
 		private Predicate<string> startsWithRequiredString = delegate (string line)
 		{
 			//return true if the given line starts with the given condition
@@ -241,6 +238,24 @@ namespace Green_Enviro_App
 			return _dates;
 		}
 
+		/// <summary>
+		/// Checks if a given entry exists in the csv file with the given path
+		/// </summary>
+		/// <param name="path">The path.</param>
+		/// <param name="entry">The information row.</param>
+		/// <returns>Returns True if row exists, otherwise False.</returns>
+		public bool entryExistsInCSV(string path, string entry) 
+		{
+			string[] lines = System.IO.File.ReadAllLines(path);
+			if (lines.Contains(entry))
+			{
+				return true;
+			}
+			else 
+			{
+				return false;
+			}
+		}
 	}
 
 	/// <summary>The exception to be thrown when adding lines to a CSV file have failed.</summary>

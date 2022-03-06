@@ -212,6 +212,9 @@ namespace Green_Enviro_App
 			resetDeliveryNotes();
 		}
 
+		/// <summary>
+		/// Resetes the delivery notes tab page.
+		/// </summary>
 		private void resetDeliveryNotes() 
 		{
 			clearProductFields();

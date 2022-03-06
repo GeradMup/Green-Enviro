@@ -142,9 +142,34 @@ namespace Green_Enviro_App
 
 		}
 
+		/// <summary>
+		/// Handles the Click event of the AddToPRBtn control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
 		private void AddToPRBtn_Click(object sender, EventArgs e)
 		{
-			//_purchases.addToPRRequest();
+			const string ENTRY_ADDED_TO_PR = "Entry has been added to the police register!";
+			//First check if something is selected. 
+			if (purchasesDgvOps.noRowSelected()) return;
+
+			//Make sure that the totals row is not selected.
+			if (purchasesDgvOps.totalsRowSelected()) return;
+
+			//Make sure that the selected row has something in it.
+			if (purchasesDgvOps.selectedRowEmpty()) return;
+
+			string selectedItemInfo = purchasesDgvOps.getSelectedRowInfo();
+			
+			try
+			{
+				_policeRegModel.addToPurchasesPoliceRegister(selectedItemInfo);
+				GenericControllers.reportSuccess(this, ENTRY_ADDED_TO_PR);
+			}
+			catch (Exception ex) 
+			{
+				GenericControllers.reportError(this, ex.Message);
+			}
 		}
 	}
 }

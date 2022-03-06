@@ -475,6 +475,7 @@ namespace Green_Enviro_App
 			string rowInfo = "";
 			string columnValue = "";
 			int numberOfColumns = dataGridView.Columns.Count;
+			selectedRow = dataGridView.CurrentCell.RowIndex;
 			//Here we try to extract the entire row that is to be deleted. We want to get all the column entries into a
 			//comma seperated string
 			for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)

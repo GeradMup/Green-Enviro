@@ -32,7 +32,7 @@ namespace Green_Enviro_App
 		private void createLogFiles() 
 		{
 			string purchasesLogHeaders = GenericModels.enumFieldsToString<PurchaseLogHeaders>();
-			fileHandles.createCSVFile(FileHandles.LogType.Purchases, purchasesLogHeaders);
+			fileHandles.createCSVFile(FileHandles.LogType.Purchases, purchasesLogHeaders); 
 		}
 
 		/// <summary>Gets the column number for the amount in the log file.</summary>
@@ -102,9 +102,18 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
+		/// Adds a purchased entry to the police register.
+		/// </summary>
+		/// <param name="purchaseInfo">The purchase information.</param>
+		public void addToPoliceRegister(string purchaseInfo) 
+		{
+			
+		}
+
+		/// <summary>
 		/// An Enum class describing headers for the Purchases log file.
 		/// </summary>
-		enum PurchaseLogHeaders 
+		public enum PurchaseLogHeaders 
 		{
 			/// <summary>The date. </summary>
 			Date,
