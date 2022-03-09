@@ -391,7 +391,8 @@ namespace Green_Enviro_App
 		/// Records a casual sale.
 		/// </summary>
 		/// <exception cref="System.Exception"></exception>
-		public void completeCasualSale()
+		/// <param></param>
+		public void completeCasualSale(Customer customer)
 		{
 			string date = DateTime.Now.ToString(Constants.DATE_TIME_FORMAT);
 			string company = "CASUAL SALE";
@@ -414,8 +415,8 @@ namespace Green_Enviro_App
 			{
 				csvHandles.addToCSV(SALES_FILE_PATH, saleItems);
 				editFloat(totalSaleAmount);
-				//receiptTable.Clear();
 				latestTransaction = TRANSACTIONS[1];    //Casual sale
+				latestCustomer = new Customer(customer);
 				setupSlip();
 				printReceipt(latestReceiptContent, latestReceiptLines);
 				receiptTable.Clear();
@@ -554,6 +555,7 @@ namespace Green_Enviro_App
 		/// </summary>
 		private void setupSlip()
 		{
+			
 			string _receipt_content = "";
 			foreach (DataRow item in receiptTable.Rows)
 			{
@@ -564,6 +566,7 @@ namespace Green_Enviro_App
 				_receipt_content += "\n";
 			}
 
+			
 			float totalTransactionAmount = totalAmount();
 			float totalTransactionQuantity = totalQuantity();
 			string typeOfTransaction = latestTransactionType();
@@ -571,7 +574,8 @@ namespace Green_Enviro_App
 			string transaction_time = DateTime.Now.ToString("HH:mm:ss");
 			string _date = " Date: " + DateTime.Now.ToString("dd MMMM yyyy       ") + "\n Time: " + transaction_time + "\n";
 			string _customer_details = String.Format(" Customer: {0}, {1}\n ID: {2}\n Cell: {3}\n", latestCustomer.Name, latestCustomer.CustomerNumber, latestCustomer.ID, latestCustomer.Cell);
-
+			
+			
 			latestReceiptContent = string.Empty;
 			latestReceiptContent += " \n";
 			latestReceiptContent += " ----------------------------\n";
@@ -603,6 +607,7 @@ namespace Green_Enviro_App
 
 			//receiptDataGrid.Visible = false;
 			latestReceiptLines = Regex.Matches(latestReceiptContent, "\n").Count;
+			
 		}
 
 		/// <summary>
@@ -709,9 +714,16 @@ namespace Green_Enviro_App
 }
 
 /*
- * 
- * CUSTOMER CONSTRUCTERS FOR THE CUSTOMER CLASS
-public Customer() { }
+ CUSTOMER CONSTRUCTERS FOR THE CUSTOMER CLASS
+public Customer() 
+{
+    this.CustomerNumber = -1;
+    this.ID = "";
+    this.Name = "";
+    this.Surname = "";
+    this.Cell = "";
+    this.Address = "";
+}
 
 public Customer(Customer customer)
 {

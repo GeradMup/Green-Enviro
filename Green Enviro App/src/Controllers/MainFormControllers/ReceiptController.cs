@@ -176,11 +176,27 @@ namespace Green_Enviro_App
 
 			//If no items were added for a purchase or a sale, it is an error.
 			if (!_receiptModel.itemsAvailable()) { GenericControllers.reportError(this, NO_ITEMS_ERROR); return; }
+			
+			string customerNumber = CustomerNumbersList.Text.Trim();
+			if ((customerNumber == string.Empty) && (UnknownCustomer.CheckState == CheckState.Unchecked))
+			{ GenericControllers.reportError(this, NO_CUSTOMER_ERROR); return; }
+
+			bool knownCustomer = (UnknownCustomer.CheckState == CheckState.Unchecked) ? true : false;
+			string unknown = "Unknown";
+			Customer customer = new Customer
+			{
+				CustomerNumber = (knownCustomer) ? int.Parse(CustomerNumbersList.Text) : 0,
+				Name = (knownCustomer) ? CustomerName.Text : unknown,
+				Surname = (knownCustomer) ? CustomerSurname.Text : unknown,
+				ID = (knownCustomer) ? CustomerIDNumber.Text : unknown,
+				Address = (knownCustomer) ? CustomerAddress.Text : unknown,
+				Cell = (knownCustomer) ? CustomerCellNumber.Text : unknown
+			};
 
 			//If it is a casual sale, there is no need to check for other inputs.
 			if (ReceiptTransactionType.Text == casualSale)
 			{
-				_receiptModel.completeCasualSale();
+				_receiptModel.completeCasualSale(customer);
 				ReceiptTransactionType.SelectedIndex = 0;
 				updateFloat();
 				refreshReceiptGrid();
@@ -188,25 +204,9 @@ namespace Green_Enviro_App
 				return;
 			}
 
-			string customerNumber = CustomerNumbersList.Text.Trim();
-			if ((customerNumber == string.Empty) && (UnknownCustomer.CheckState == CheckState.Unchecked)) 
-			{ GenericControllers.reportError(this, NO_CUSTOMER_ERROR); return; }
-
 			//Check if the current transaction is to be a purchase or sale first
 			if (ReceiptTransactionType.SelectedItem.ToString() == purchase)
 			{
-				bool knownCustomer = (UnknownCustomer.CheckState == CheckState.Unchecked) ? true : false;
-				string unknown = "Unknown";
-				Customer customer = new Customer
-				{
-					CustomerNumber = (knownCustomer) ? int.Parse(CustomerNumbersList.Text) : 0,
-					Name = (knownCustomer) ? CustomerName.Text : unknown,
-					Surname = (knownCustomer) ? CustomerSurname.Text : unknown,
-					ID = (knownCustomer) ?  CustomerIDNumber.Text : unknown,
-					Address = (knownCustomer) ? CustomerAddress.Text : unknown,
-					Cell = (knownCustomer) ? CustomerCellNumber.Text : unknown
-				};
-
 				decimal remainingFloat = RemainingFloat.Value;
 				try
 				{

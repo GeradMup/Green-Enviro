@@ -62,6 +62,7 @@ namespace Green_Enviro_App
 			SummariesExpensesBox.Clear();
 			SummariesProfitBox.Clear();
 			SummariesProfitBox.BackColor = Color.White;
+			SummariesMonths.SelectedItem = null;
 		}
 	}
 }

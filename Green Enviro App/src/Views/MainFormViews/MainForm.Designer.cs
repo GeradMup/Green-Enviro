@@ -121,20 +121,6 @@ namespace Green_Enviro_App
 			this.SaleQuantityLabel = new System.Windows.Forms.Label();
 			this.SaleCompanyLabel = new System.Windows.Forms.Label();
 			this.SaleDateLabel = new System.Windows.Forms.Label();
-			this.Inventory = new System.Windows.Forms.TabPage();
-			this.label63 = new System.Windows.Forms.Label();
-			this.label62 = new System.Windows.Forms.Label();
-			this.InventoryLogType = new System.Windows.Forms.ComboBox();
-			this.InvetorySummedOrNot = new System.Windows.Forms.ComboBox();
-			this.InventoryLogGridView = new System.Windows.Forms.DataGridView();
-			this.InventoryLogRmvFilterBtn = new System.Windows.Forms.Button();
-			this.InventoryLogFilterBtn = new System.Windows.Forms.Button();
-			this.label60 = new System.Windows.Forms.Label();
-			this.label59 = new System.Windows.Forms.Label();
-			this.label58 = new System.Windows.Forms.Label();
-			this.InventoryLogEndDate = new System.Windows.Forms.ComboBox();
-			this.InventoryLogStartDate = new System.Windows.Forms.ComboBox();
-			this.InventoryLogMonth = new System.Windows.Forms.ComboBox();
 			this.Expenses = new System.Windows.Forms.TabPage();
 			this.EditFixedExpensesBtn = new System.Windows.Forms.Button();
 			this.ExpensesDeleteBtn = new System.Windows.Forms.Button();
@@ -155,7 +141,7 @@ namespace Green_Enviro_App
 			this.ExpenseAmountLabel = new System.Windows.Forms.Label();
 			this.ExpenseDescriptionLabel = new System.Windows.Forms.Label();
 			this.ExpenseDateLabel = new System.Windows.Forms.Label();
-			this.WagesNewEmployee = new System.Windows.Forms.TabPage();
+			this.Wages = new System.Windows.Forms.TabPage();
 			this.WagesEndDateLabel = new System.Windows.Forms.Label();
 			this.WagesLogRemoveFilterBtn = new System.Windows.Forms.Button();
 			this.WageLogEndDate = new System.Windows.Forms.ComboBox();
@@ -176,22 +162,6 @@ namespace Green_Enviro_App
 			this.WageAmountLabel = new System.Windows.Forms.Label();
 			this.WageEmployeeLabel = new System.Windows.Forms.Label();
 			this.WagesDateLabel = new System.Windows.Forms.Label();
-			this.SalesPR = new System.Windows.Forms.TabPage();
-			this.salesPRDataGridView = new System.Windows.Forms.DataGridView();
-			this.PurchasesPR = new System.Windows.Forms.TabPage();
-			this.button6 = new System.Windows.Forms.Button();
-			this.PrintPRBtn = new System.Windows.Forms.Button();
-			this.RemovePRFiltersBtn = new System.Windows.Forms.Button();
-			this.FilterPRBtn = new System.Windows.Forms.Button();
-			this.label66 = new System.Windows.Forms.Label();
-			this.PurchasesPRMonth = new System.Windows.Forms.ComboBox();
-			this.label67 = new System.Windows.Forms.Label();
-			this.label68 = new System.Windows.Forms.Label();
-			this.label69 = new System.Windows.Forms.Label();
-			this.PurchasePRType = new System.Windows.Forms.ComboBox();
-			this.PurchasePREndDate = new System.Windows.Forms.ComboBox();
-			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
-			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.Summaries = new System.Windows.Forms.TabPage();
 			this.SummariesTotalSalesLabel = new System.Windows.Forms.Label();
 			this.SummariesTotalSales = new System.Windows.Forms.RichTextBox();
@@ -262,6 +232,36 @@ namespace Green_Enviro_App
 			this.DeliveryQuantityLabel = new System.Windows.Forms.Label();
 			this.DeliveryItemsList = new System.Windows.Forms.ComboBox();
 			this.DeliveryItemsLabel = new System.Windows.Forms.Label();
+			this.PurchasesPR = new System.Windows.Forms.TabPage();
+			this.button6 = new System.Windows.Forms.Button();
+			this.PrintPRBtn = new System.Windows.Forms.Button();
+			this.RemovePRFiltersBtn = new System.Windows.Forms.Button();
+			this.FilterPRBtn = new System.Windows.Forms.Button();
+			this.label66 = new System.Windows.Forms.Label();
+			this.PurchasesPRMonth = new System.Windows.Forms.ComboBox();
+			this.label67 = new System.Windows.Forms.Label();
+			this.label68 = new System.Windows.Forms.Label();
+			this.label69 = new System.Windows.Forms.Label();
+			this.PurchasePRType = new System.Windows.Forms.ComboBox();
+			this.PurchasePREndDate = new System.Windows.Forms.ComboBox();
+			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
+			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
+			this.SalesPR = new System.Windows.Forms.TabPage();
+			this.salesPRDataGridView = new System.Windows.Forms.DataGridView();
+			this.Inventory = new System.Windows.Forms.TabPage();
+			this.label63 = new System.Windows.Forms.Label();
+			this.label62 = new System.Windows.Forms.Label();
+			this.InventoryLogType = new System.Windows.Forms.ComboBox();
+			this.InvetorySummedOrNot = new System.Windows.Forms.ComboBox();
+			this.InventoryLogGridView = new System.Windows.Forms.DataGridView();
+			this.InventoryLogRmvFilterBtn = new System.Windows.Forms.Button();
+			this.InventoryLogFilterBtn = new System.Windows.Forms.Button();
+			this.label60 = new System.Windows.Forms.Label();
+			this.label59 = new System.Windows.Forms.Label();
+			this.label58 = new System.Windows.Forms.Label();
+			this.InventoryLogEndDate = new System.Windows.Forms.ComboBox();
+			this.InventoryLogStartDate = new System.Windows.Forms.ComboBox();
+			this.InventoryLogMonth = new System.Windows.Forms.ComboBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -298,18 +298,12 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.SaleAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SaleQuantity)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).BeginInit();
-			this.Inventory.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.InventoryLogGridView)).BeginInit();
 			this.Expenses.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ExpensesLogGridView)).BeginInit();
-			this.WagesNewEmployee.SuspendLayout();
+			this.Wages.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).BeginInit();
-			this.SalesPR.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).BeginInit();
-			this.PurchasesPR.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
 			this.Summaries.SuspendLayout();
 			this.DestructionCertificates.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DestructionCertQntty)).BeginInit();
@@ -319,6 +313,12 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryNoteGrid)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryVehicleTypePicture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).BeginInit();
+			this.PurchasesPR.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).BeginInit();
+			this.SalesPR.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).BeginInit();
+			this.Inventory.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.InventoryLogGridView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
@@ -331,14 +331,14 @@ namespace Green_Enviro_App
 			this.mainTabControl.Controls.Add(this.ReceiptPage);
 			this.mainTabControl.Controls.Add(this.PurchasesPage);
 			this.mainTabControl.Controls.Add(this.SalesPage);
-			this.mainTabControl.Controls.Add(this.Inventory);
 			this.mainTabControl.Controls.Add(this.Expenses);
-			this.mainTabControl.Controls.Add(this.WagesNewEmployee);
-			this.mainTabControl.Controls.Add(this.SalesPR);
-			this.mainTabControl.Controls.Add(this.PurchasesPR);
+			this.mainTabControl.Controls.Add(this.Wages);
 			this.mainTabControl.Controls.Add(this.Summaries);
 			this.mainTabControl.Controls.Add(this.DestructionCertificates);
 			this.mainTabControl.Controls.Add(this.DeliveryNote);
+			this.mainTabControl.Controls.Add(this.PurchasesPR);
+			this.mainTabControl.Controls.Add(this.SalesPR);
+			this.mainTabControl.Controls.Add(this.Inventory);
 			this.mainTabControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mainTabControl.HotTrack = true;
 			this.mainTabControl.Location = new System.Drawing.Point(0, 0);
@@ -1402,174 +1402,6 @@ namespace Green_Enviro_App
 			this.SaleDateLabel.TabIndex = 4;
 			this.SaleDateLabel.Text = "Date";
 			// 
-			// Inventory
-			// 
-			this.Inventory.Controls.Add(this.label63);
-			this.Inventory.Controls.Add(this.label62);
-			this.Inventory.Controls.Add(this.InventoryLogType);
-			this.Inventory.Controls.Add(this.InvetorySummedOrNot);
-			this.Inventory.Controls.Add(this.InventoryLogGridView);
-			this.Inventory.Controls.Add(this.InventoryLogRmvFilterBtn);
-			this.Inventory.Controls.Add(this.InventoryLogFilterBtn);
-			this.Inventory.Controls.Add(this.label60);
-			this.Inventory.Controls.Add(this.label59);
-			this.Inventory.Controls.Add(this.label58);
-			this.Inventory.Controls.Add(this.InventoryLogEndDate);
-			this.Inventory.Controls.Add(this.InventoryLogStartDate);
-			this.Inventory.Controls.Add(this.InventoryLogMonth);
-			this.Inventory.Location = new System.Drawing.Point(4, 28);
-			this.Inventory.Margin = new System.Windows.Forms.Padding(2);
-			this.Inventory.Name = "Inventory";
-			this.Inventory.Size = new System.Drawing.Size(1378, 690);
-			this.Inventory.TabIndex = 7;
-			this.Inventory.Text = "Inventory";
-			this.Inventory.UseVisualStyleBackColor = true;
-			// 
-			// label63
-			// 
-			this.label63.AutoSize = true;
-			this.label63.Location = new System.Drawing.Point(31, 21);
-			this.label63.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label63.Name = "label63";
-			this.label63.Size = new System.Drawing.Size(162, 19);
-			this.label63.TabIndex = 12;
-			this.label63.Text = "Summed/Not Summed";
-			// 
-			// label62
-			// 
-			this.label62.AutoSize = true;
-			this.label62.Location = new System.Drawing.Point(1171, 21);
-			this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label62.Name = "label62";
-			this.label62.Size = new System.Drawing.Size(45, 19);
-			this.label62.TabIndex = 11;
-			this.label62.Text = "Type";
-			// 
-			// InventoryLogType
-			// 
-			this.InventoryLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.InventoryLogType.FormattingEnabled = true;
-			this.InventoryLogType.Items.AddRange(new object[] {
-            "Ferrous",
-            "Non-Ferrous"});
-			this.InventoryLogType.Location = new System.Drawing.Point(1174, 42);
-			this.InventoryLogType.Margin = new System.Windows.Forms.Padding(2);
-			this.InventoryLogType.Name = "InventoryLogType";
-			this.InventoryLogType.Size = new System.Drawing.Size(164, 27);
-			this.InventoryLogType.TabIndex = 10;
-			// 
-			// InvetorySummedOrNot
-			// 
-			this.InvetorySummedOrNot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.InvetorySummedOrNot.FormattingEnabled = true;
-			this.InvetorySummedOrNot.Location = new System.Drawing.Point(34, 42);
-			this.InvetorySummedOrNot.Margin = new System.Windows.Forms.Padding(2);
-			this.InvetorySummedOrNot.Name = "InvetorySummedOrNot";
-			this.InvetorySummedOrNot.Size = new System.Drawing.Size(213, 27);
-			this.InvetorySummedOrNot.TabIndex = 9;
-			this.InvetorySummedOrNot.SelectedIndexChanged += new System.EventHandler(this.InvetorySummedOrNot_SelectedIndexChanged);
-			// 
-			// InventoryLogGridView
-			// 
-			this.InventoryLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.InventoryLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.InventoryLogGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-			this.InventoryLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.InventoryLogGridView.Location = new System.Drawing.Point(6, 152);
-			this.InventoryLogGridView.Margin = new System.Windows.Forms.Padding(2);
-			this.InventoryLogGridView.Name = "InventoryLogGridView";
-			this.InventoryLogGridView.ReadOnly = true;
-			this.InventoryLogGridView.RowHeadersWidth = 51;
-			this.InventoryLogGridView.RowTemplate.Height = 24;
-			this.InventoryLogGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.InventoryLogGridView.Size = new System.Drawing.Size(1366, 535);
-			this.InventoryLogGridView.TabIndex = 8;
-			// 
-			// InventoryLogRmvFilterBtn
-			// 
-			this.InventoryLogRmvFilterBtn.Location = new System.Drawing.Point(614, 92);
-			this.InventoryLogRmvFilterBtn.Margin = new System.Windows.Forms.Padding(2);
-			this.InventoryLogRmvFilterBtn.Name = "InventoryLogRmvFilterBtn";
-			this.InventoryLogRmvFilterBtn.Size = new System.Drawing.Size(259, 42);
-			this.InventoryLogRmvFilterBtn.TabIndex = 7;
-			this.InventoryLogRmvFilterBtn.Text = "Remove Filter";
-			this.InventoryLogRmvFilterBtn.UseVisualStyleBackColor = true;
-			this.InventoryLogRmvFilterBtn.Click += new System.EventHandler(this.InventoryLogRmvFilterBtn_Click);
-			// 
-			// InventoryLogFilterBtn
-			// 
-			this.InventoryLogFilterBtn.Location = new System.Drawing.Point(333, 92);
-			this.InventoryLogFilterBtn.Margin = new System.Windows.Forms.Padding(2);
-			this.InventoryLogFilterBtn.Name = "InventoryLogFilterBtn";
-			this.InventoryLogFilterBtn.Size = new System.Drawing.Size(260, 42);
-			this.InventoryLogFilterBtn.TabIndex = 6;
-			this.InventoryLogFilterBtn.Text = "Filter";
-			this.InventoryLogFilterBtn.UseVisualStyleBackColor = true;
-			this.InventoryLogFilterBtn.Click += new System.EventHandler(this.InventoryLogFilterBtn_Click);
-			// 
-			// label60
-			// 
-			this.label60.AutoSize = true;
-			this.label60.Location = new System.Drawing.Point(610, 21);
-			this.label60.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label60.Name = "label60";
-			this.label60.Size = new System.Drawing.Size(99, 19);
-			this.label60.TabIndex = 5;
-			this.label60.Text = "Start Date";
-			// 
-			// label59
-			// 
-			this.label59.AutoSize = true;
-			this.label59.Location = new System.Drawing.Point(890, 21);
-			this.label59.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label59.Name = "label59";
-			this.label59.Size = new System.Drawing.Size(81, 19);
-			this.label59.TabIndex = 4;
-			this.label59.Text = "End Date";
-			// 
-			// label58
-			// 
-			this.label58.AutoSize = true;
-			this.label58.Location = new System.Drawing.Point(330, 21);
-			this.label58.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label58.Name = "label58";
-			this.label58.Size = new System.Drawing.Size(54, 19);
-			this.label58.TabIndex = 3;
-			this.label58.Text = "Month";
-			// 
-			// InventoryLogEndDate
-			// 
-			this.InventoryLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.InventoryLogEndDate.FormattingEnabled = true;
-			this.InventoryLogEndDate.Location = new System.Drawing.Point(893, 42);
-			this.InventoryLogEndDate.Margin = new System.Windows.Forms.Padding(2);
-			this.InventoryLogEndDate.Name = "InventoryLogEndDate";
-			this.InventoryLogEndDate.Size = new System.Drawing.Size(261, 27);
-			this.InventoryLogEndDate.TabIndex = 2;
-			// 
-			// InventoryLogStartDate
-			// 
-			this.InventoryLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.InventoryLogStartDate.FormattingEnabled = true;
-			this.InventoryLogStartDate.Location = new System.Drawing.Point(614, 42);
-			this.InventoryLogStartDate.Margin = new System.Windows.Forms.Padding(2);
-			this.InventoryLogStartDate.Name = "InventoryLogStartDate";
-			this.InventoryLogStartDate.Size = new System.Drawing.Size(260, 27);
-			this.InventoryLogStartDate.TabIndex = 1;
-			// 
-			// InventoryLogMonth
-			// 
-			this.InventoryLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.InventoryLogMonth.FormattingEnabled = true;
-			this.InventoryLogMonth.Location = new System.Drawing.Point(333, 42);
-			this.InventoryLogMonth.Margin = new System.Windows.Forms.Padding(2);
-			this.InventoryLogMonth.Name = "InventoryLogMonth";
-			this.InventoryLogMonth.Size = new System.Drawing.Size(261, 27);
-			this.InventoryLogMonth.TabIndex = 0;
-			this.InventoryLogMonth.SelectedIndexChanged += new System.EventHandler(this.InventoryLogMonth_SelectedIndexChanged);
-			// 
 			// Expenses
 			// 
 			this.Expenses.Controls.Add(this.EditFixedExpensesBtn);
@@ -1819,35 +1651,35 @@ namespace Green_Enviro_App
 			this.ExpenseDateLabel.TabIndex = 33;
 			this.ExpenseDateLabel.Text = "Date";
 			// 
-			// WagesNewEmployee
+			// Wages
 			// 
-			this.WagesNewEmployee.Controls.Add(this.WagesEndDateLabel);
-			this.WagesNewEmployee.Controls.Add(this.WagesLogRemoveFilterBtn);
-			this.WagesNewEmployee.Controls.Add(this.WageLogEndDate);
-			this.WagesNewEmployee.Controls.Add(this.WagesMonthLabel);
-			this.WagesNewEmployee.Controls.Add(this.WagesEditEmployeesBtn);
-			this.WagesNewEmployee.Controls.Add(this.WagesStartDateLabel);
-			this.WagesNewEmployee.Controls.Add(this.WagesLogFilterBtn);
-			this.WagesNewEmployee.Controls.Add(this.WageLogStartDate);
-			this.WagesNewEmployee.Controls.Add(this.WageLogMonths);
-			this.WagesNewEmployee.Controls.Add(this.WagePartTimeEmployeeCheckBox);
-			this.WagesNewEmployee.Controls.Add(this.WagesEmployeeName);
-			this.WagesNewEmployee.Controls.Add(this.WageAmount);
-			this.WagesNewEmployee.Controls.Add(this.WageDeleteBtn);
-			this.WagesNewEmployee.Controls.Add(this.WageDate);
-			this.WagesNewEmployee.Controls.Add(this.WageLogGridView);
-			this.WagesNewEmployee.Controls.Add(this.WageClearFieldsBtn);
-			this.WagesNewEmployee.Controls.Add(this.WageAddBtn);
-			this.WagesNewEmployee.Controls.Add(this.WageAmountLabel);
-			this.WagesNewEmployee.Controls.Add(this.WageEmployeeLabel);
-			this.WagesNewEmployee.Controls.Add(this.WagesDateLabel);
-			this.WagesNewEmployee.Location = new System.Drawing.Point(4, 28);
-			this.WagesNewEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.WagesNewEmployee.Name = "WagesNewEmployee";
-			this.WagesNewEmployee.Size = new System.Drawing.Size(1378, 690);
-			this.WagesNewEmployee.TabIndex = 4;
-			this.WagesNewEmployee.Text = "Wages";
-			this.WagesNewEmployee.UseVisualStyleBackColor = true;
+			this.Wages.Controls.Add(this.WagesEndDateLabel);
+			this.Wages.Controls.Add(this.WagesLogRemoveFilterBtn);
+			this.Wages.Controls.Add(this.WageLogEndDate);
+			this.Wages.Controls.Add(this.WagesMonthLabel);
+			this.Wages.Controls.Add(this.WagesEditEmployeesBtn);
+			this.Wages.Controls.Add(this.WagesStartDateLabel);
+			this.Wages.Controls.Add(this.WagesLogFilterBtn);
+			this.Wages.Controls.Add(this.WageLogStartDate);
+			this.Wages.Controls.Add(this.WageLogMonths);
+			this.Wages.Controls.Add(this.WagePartTimeEmployeeCheckBox);
+			this.Wages.Controls.Add(this.WagesEmployeeName);
+			this.Wages.Controls.Add(this.WageAmount);
+			this.Wages.Controls.Add(this.WageDeleteBtn);
+			this.Wages.Controls.Add(this.WageDate);
+			this.Wages.Controls.Add(this.WageLogGridView);
+			this.Wages.Controls.Add(this.WageClearFieldsBtn);
+			this.Wages.Controls.Add(this.WageAddBtn);
+			this.Wages.Controls.Add(this.WageAmountLabel);
+			this.Wages.Controls.Add(this.WageEmployeeLabel);
+			this.Wages.Controls.Add(this.WagesDateLabel);
+			this.Wages.Location = new System.Drawing.Point(4, 28);
+			this.Wages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.Wages.Name = "Wages";
+			this.Wages.Size = new System.Drawing.Size(1378, 690);
+			this.Wages.TabIndex = 4;
+			this.Wages.Text = "Wages";
+			this.Wages.UseVisualStyleBackColor = true;
 			// 
 			// WagesEndDateLabel
 			// 
@@ -2077,199 +1909,6 @@ namespace Green_Enviro_App
 			this.WagesDateLabel.Size = new System.Drawing.Size(45, 19);
 			this.WagesDateLabel.TabIndex = 53;
 			this.WagesDateLabel.Text = "Date";
-			// 
-			// SalesPR
-			// 
-			this.SalesPR.Controls.Add(this.salesPRDataGridView);
-			this.SalesPR.Location = new System.Drawing.Point(4, 28);
-			this.SalesPR.Margin = new System.Windows.Forms.Padding(2);
-			this.SalesPR.Name = "SalesPR";
-			this.SalesPR.Size = new System.Drawing.Size(1378, 690);
-			this.SalesPR.TabIndex = 8;
-			this.SalesPR.Text = "Sales PR";
-			this.SalesPR.UseVisualStyleBackColor = true;
-			// 
-			// salesPRDataGridView
-			// 
-			this.salesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-			this.salesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.salesPRDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.salesPRDataGridView.Location = new System.Drawing.Point(2, 137);
-			this.salesPRDataGridView.Margin = new System.Windows.Forms.Padding(2);
-			this.salesPRDataGridView.Name = "salesPRDataGridView";
-			this.salesPRDataGridView.RowHeadersWidth = 51;
-			this.salesPRDataGridView.RowTemplate.Height = 24;
-			this.salesPRDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.salesPRDataGridView.Size = new System.Drawing.Size(1370, 550);
-			this.salesPRDataGridView.TabIndex = 0;
-			// 
-			// PurchasesPR
-			// 
-			this.PurchasesPR.Controls.Add(this.button6);
-			this.PurchasesPR.Controls.Add(this.PrintPRBtn);
-			this.PurchasesPR.Controls.Add(this.RemovePRFiltersBtn);
-			this.PurchasesPR.Controls.Add(this.FilterPRBtn);
-			this.PurchasesPR.Controls.Add(this.label66);
-			this.PurchasesPR.Controls.Add(this.PurchasesPRMonth);
-			this.PurchasesPR.Controls.Add(this.label67);
-			this.PurchasesPR.Controls.Add(this.label68);
-			this.PurchasesPR.Controls.Add(this.label69);
-			this.PurchasesPR.Controls.Add(this.PurchasePRType);
-			this.PurchasesPR.Controls.Add(this.PurchasePREndDate);
-			this.PurchasesPR.Controls.Add(this.PurchasePRStartDate);
-			this.PurchasesPR.Controls.Add(this.PurchasesPRDataGridView);
-			this.PurchasesPR.Location = new System.Drawing.Point(4, 28);
-			this.PurchasesPR.Margin = new System.Windows.Forms.Padding(2);
-			this.PurchasesPR.Name = "PurchasesPR";
-			this.PurchasesPR.Size = new System.Drawing.Size(1378, 690);
-			this.PurchasesPR.TabIndex = 9;
-			this.PurchasesPR.Text = "Purchases PR";
-			this.PurchasesPR.UseVisualStyleBackColor = true;
-			// 
-			// button6
-			// 
-			this.button6.Location = new System.Drawing.Point(876, 88);
-			this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(212, 46);
-			this.button6.TabIndex = 31;
-			this.button6.Text = "Print Register";
-			this.button6.UseVisualStyleBackColor = true;
-			// 
-			// PrintPRBtn
-			// 
-			this.PrintPRBtn.Location = new System.Drawing.Point(589, 88);
-			this.PrintPRBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PrintPRBtn.Name = "PrintPRBtn";
-			this.PrintPRBtn.Size = new System.Drawing.Size(212, 46);
-			this.PrintPRBtn.TabIndex = 30;
-			this.PrintPRBtn.Text = "Print Register";
-			this.PrintPRBtn.UseVisualStyleBackColor = true;
-			// 
-			// RemovePRFiltersBtn
-			// 
-			this.RemovePRFiltersBtn.Location = new System.Drawing.Point(297, 88);
-			this.RemovePRFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.RemovePRFiltersBtn.Name = "RemovePRFiltersBtn";
-			this.RemovePRFiltersBtn.Size = new System.Drawing.Size(238, 46);
-			this.RemovePRFiltersBtn.TabIndex = 29;
-			this.RemovePRFiltersBtn.Text = "Remove Filters";
-			this.RemovePRFiltersBtn.UseVisualStyleBackColor = true;
-			// 
-			// FilterPRBtn
-			// 
-			this.FilterPRBtn.Location = new System.Drawing.Point(29, 88);
-			this.FilterPRBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.FilterPRBtn.Name = "FilterPRBtn";
-			this.FilterPRBtn.Size = new System.Drawing.Size(212, 46);
-			this.FilterPRBtn.TabIndex = 28;
-			this.FilterPRBtn.Text = "Print Register";
-			this.FilterPRBtn.UseVisualStyleBackColor = true;
-			// 
-			// label66
-			// 
-			this.label66.AutoSize = true;
-			this.label66.Location = new System.Drawing.Point(25, 14);
-			this.label66.Name = "label66";
-			this.label66.Size = new System.Drawing.Size(54, 19);
-			this.label66.TabIndex = 27;
-			this.label66.Text = "Month";
-			// 
-			// PurchasesPRMonth
-			// 
-			this.PurchasesPRMonth.DropDownHeight = 300;
-			this.PurchasesPRMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.PurchasesPRMonth.FormattingEnabled = true;
-			this.PurchasesPRMonth.IntegralHeight = false;
-			this.PurchasesPRMonth.ItemHeight = 19;
-			this.PurchasesPRMonth.Location = new System.Drawing.Point(29, 39);
-			this.PurchasesPRMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PurchasesPRMonth.Name = "PurchasesPRMonth";
-			this.PurchasesPRMonth.Size = new System.Drawing.Size(216, 27);
-			this.PurchasesPRMonth.TabIndex = 26;
-			this.PurchasesPRMonth.SelectedIndexChanged += new System.EventHandler(this.PurchasesPRMonth_SelectedIndexChanged);
-			// 
-			// label67
-			// 
-			this.label67.AutoSize = true;
-			this.label67.Location = new System.Drawing.Point(873, 14);
-			this.label67.Name = "label67";
-			this.label67.Size = new System.Drawing.Size(45, 19);
-			this.label67.TabIndex = 25;
-			this.label67.Text = "Type";
-			// 
-			// label68
-			// 
-			this.label68.AutoSize = true;
-			this.label68.Location = new System.Drawing.Point(586, 14);
-			this.label68.Name = "label68";
-			this.label68.Size = new System.Drawing.Size(81, 19);
-			this.label68.TabIndex = 24;
-			this.label68.Text = "End Date";
-			// 
-			// label69
-			// 
-			this.label69.AutoSize = true;
-			this.label69.Location = new System.Drawing.Point(294, 14);
-			this.label69.Name = "label69";
-			this.label69.Size = new System.Drawing.Size(99, 19);
-			this.label69.TabIndex = 23;
-			this.label69.Text = "Start Date";
-			// 
-			// PurchasePRType
-			// 
-			this.PurchasePRType.DropDownHeight = 300;
-			this.PurchasePRType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.PurchasePRType.FormattingEnabled = true;
-			this.PurchasePRType.IntegralHeight = false;
-			this.PurchasePRType.ItemHeight = 19;
-			this.PurchasePRType.Location = new System.Drawing.Point(876, 39);
-			this.PurchasePRType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PurchasePRType.Name = "PurchasePRType";
-			this.PurchasePRType.Size = new System.Drawing.Size(216, 27);
-			this.PurchasePRType.TabIndex = 22;
-			// 
-			// PurchasePREndDate
-			// 
-			this.PurchasePREndDate.DropDownHeight = 300;
-			this.PurchasePREndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.PurchasePREndDate.FormattingEnabled = true;
-			this.PurchasePREndDate.IntegralHeight = false;
-			this.PurchasePREndDate.ItemHeight = 19;
-			this.PurchasePREndDate.Location = new System.Drawing.Point(589, 39);
-			this.PurchasePREndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PurchasePREndDate.Name = "PurchasePREndDate";
-			this.PurchasePREndDate.Size = new System.Drawing.Size(232, 27);
-			this.PurchasePREndDate.TabIndex = 21;
-			// 
-			// PurchasePRStartDate
-			// 
-			this.PurchasePRStartDate.DropDownHeight = 300;
-			this.PurchasePRStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.PurchasePRStartDate.FormattingEnabled = true;
-			this.PurchasePRStartDate.IntegralHeight = false;
-			this.PurchasePRStartDate.ItemHeight = 19;
-			this.PurchasePRStartDate.Location = new System.Drawing.Point(297, 39);
-			this.PurchasePRStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.PurchasePRStartDate.Name = "PurchasePRStartDate";
-			this.PurchasePRStartDate.Size = new System.Drawing.Size(238, 27);
-			this.PurchasePRStartDate.TabIndex = 20;
-			// 
-			// PurchasesPRDataGridView
-			// 
-			this.PurchasesPRDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.PurchasesPRDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.PurchasesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.PurchasesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.PurchasesPRDataGridView.Location = new System.Drawing.Point(29, 158);
-			this.PurchasesPRDataGridView.Margin = new System.Windows.Forms.Padding(2);
-			this.PurchasesPRDataGridView.Name = "PurchasesPRDataGridView";
-			this.PurchasesPRDataGridView.RowHeadersWidth = 51;
-			this.PurchasesPRDataGridView.RowTemplate.Height = 24;
-			this.PurchasesPRDataGridView.Size = new System.Drawing.Size(1324, 529);
-			this.PurchasesPRDataGridView.TabIndex = 0;
 			// 
 			// Summaries
 			// 
@@ -3101,6 +2740,367 @@ namespace Green_Enviro_App
 			this.DeliveryItemsLabel.TabIndex = 1;
 			this.DeliveryItemsLabel.Text = "Items";
 			// 
+			// PurchasesPR
+			// 
+			this.PurchasesPR.Controls.Add(this.button6);
+			this.PurchasesPR.Controls.Add(this.PrintPRBtn);
+			this.PurchasesPR.Controls.Add(this.RemovePRFiltersBtn);
+			this.PurchasesPR.Controls.Add(this.FilterPRBtn);
+			this.PurchasesPR.Controls.Add(this.label66);
+			this.PurchasesPR.Controls.Add(this.PurchasesPRMonth);
+			this.PurchasesPR.Controls.Add(this.label67);
+			this.PurchasesPR.Controls.Add(this.label68);
+			this.PurchasesPR.Controls.Add(this.label69);
+			this.PurchasesPR.Controls.Add(this.PurchasePRType);
+			this.PurchasesPR.Controls.Add(this.PurchasePREndDate);
+			this.PurchasesPR.Controls.Add(this.PurchasePRStartDate);
+			this.PurchasesPR.Controls.Add(this.PurchasesPRDataGridView);
+			this.PurchasesPR.Location = new System.Drawing.Point(4, 28);
+			this.PurchasesPR.Margin = new System.Windows.Forms.Padding(2);
+			this.PurchasesPR.Name = "PurchasesPR";
+			this.PurchasesPR.Size = new System.Drawing.Size(1378, 690);
+			this.PurchasesPR.TabIndex = 9;
+			this.PurchasesPR.Text = "Purchases PR";
+			this.PurchasesPR.UseVisualStyleBackColor = true;
+			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(1027, 73);
+			this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(310, 46);
+			this.button6.TabIndex = 31;
+			this.button6.Text = "Print Register";
+			this.button6.UseVisualStyleBackColor = true;
+			// 
+			// PrintPRBtn
+			// 
+			this.PrintPRBtn.Location = new System.Drawing.Point(701, 73);
+			this.PrintPRBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.PrintPRBtn.Name = "PrintPRBtn";
+			this.PrintPRBtn.Size = new System.Drawing.Size(313, 46);
+			this.PrintPRBtn.TabIndex = 30;
+			this.PrintPRBtn.Text = "Print Register";
+			this.PrintPRBtn.UseVisualStyleBackColor = true;
+			// 
+			// RemovePRFiltersBtn
+			// 
+			this.RemovePRFiltersBtn.Location = new System.Drawing.Point(356, 73);
+			this.RemovePRFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.RemovePRFiltersBtn.Name = "RemovePRFiltersBtn";
+			this.RemovePRFiltersBtn.Size = new System.Drawing.Size(333, 46);
+			this.RemovePRFiltersBtn.TabIndex = 29;
+			this.RemovePRFiltersBtn.Text = "Remove Filters";
+			this.RemovePRFiltersBtn.UseVisualStyleBackColor = true;
+			// 
+			// FilterPRBtn
+			// 
+			this.FilterPRBtn.Location = new System.Drawing.Point(8, 73);
+			this.FilterPRBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.FilterPRBtn.Name = "FilterPRBtn";
+			this.FilterPRBtn.Size = new System.Drawing.Size(336, 46);
+			this.FilterPRBtn.TabIndex = 28;
+			this.FilterPRBtn.Text = "Print Register";
+			this.FilterPRBtn.UseVisualStyleBackColor = true;
+			// 
+			// label66
+			// 
+			this.label66.AutoSize = true;
+			this.label66.Location = new System.Drawing.Point(3, 18);
+			this.label66.Name = "label66";
+			this.label66.Size = new System.Drawing.Size(54, 19);
+			this.label66.TabIndex = 27;
+			this.label66.Text = "Month";
+			// 
+			// PurchasesPRMonth
+			// 
+			this.PurchasesPRMonth.DropDownHeight = 300;
+			this.PurchasesPRMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasesPRMonth.FormattingEnabled = true;
+			this.PurchasesPRMonth.IntegralHeight = false;
+			this.PurchasesPRMonth.ItemHeight = 19;
+			this.PurchasesPRMonth.Location = new System.Drawing.Point(8, 39);
+			this.PurchasesPRMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.PurchasesPRMonth.Name = "PurchasesPRMonth";
+			this.PurchasesPRMonth.Size = new System.Drawing.Size(336, 27);
+			this.PurchasesPRMonth.TabIndex = 26;
+			this.PurchasesPRMonth.SelectedIndexChanged += new System.EventHandler(this.PurchasesPRMonth_SelectedIndexChanged);
+			// 
+			// label67
+			// 
+			this.label67.AutoSize = true;
+			this.label67.Location = new System.Drawing.Point(1023, 18);
+			this.label67.Name = "label67";
+			this.label67.Size = new System.Drawing.Size(45, 19);
+			this.label67.TabIndex = 25;
+			this.label67.Text = "Type";
+			// 
+			// label68
+			// 
+			this.label68.AutoSize = true;
+			this.label68.Location = new System.Drawing.Point(697, 18);
+			this.label68.Name = "label68";
+			this.label68.Size = new System.Drawing.Size(81, 19);
+			this.label68.TabIndex = 24;
+			this.label68.Text = "End Date";
+			// 
+			// label69
+			// 
+			this.label69.AutoSize = true;
+			this.label69.Location = new System.Drawing.Point(352, 18);
+			this.label69.Name = "label69";
+			this.label69.Size = new System.Drawing.Size(99, 19);
+			this.label69.TabIndex = 23;
+			this.label69.Text = "Start Date";
+			// 
+			// PurchasePRType
+			// 
+			this.PurchasePRType.DropDownHeight = 300;
+			this.PurchasePRType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasePRType.FormattingEnabled = true;
+			this.PurchasePRType.IntegralHeight = false;
+			this.PurchasePRType.ItemHeight = 19;
+			this.PurchasePRType.Location = new System.Drawing.Point(1027, 39);
+			this.PurchasePRType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.PurchasePRType.Name = "PurchasePRType";
+			this.PurchasePRType.Size = new System.Drawing.Size(310, 27);
+			this.PurchasePRType.TabIndex = 22;
+			// 
+			// PurchasePREndDate
+			// 
+			this.PurchasePREndDate.DropDownHeight = 300;
+			this.PurchasePREndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasePREndDate.FormattingEnabled = true;
+			this.PurchasePREndDate.IntegralHeight = false;
+			this.PurchasePREndDate.ItemHeight = 19;
+			this.PurchasePREndDate.Location = new System.Drawing.Point(701, 39);
+			this.PurchasePREndDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.PurchasePREndDate.Name = "PurchasePREndDate";
+			this.PurchasePREndDate.Size = new System.Drawing.Size(313, 27);
+			this.PurchasePREndDate.TabIndex = 21;
+			// 
+			// PurchasePRStartDate
+			// 
+			this.PurchasePRStartDate.DropDownHeight = 300;
+			this.PurchasePRStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.PurchasePRStartDate.FormattingEnabled = true;
+			this.PurchasePRStartDate.IntegralHeight = false;
+			this.PurchasePRStartDate.ItemHeight = 19;
+			this.PurchasePRStartDate.Location = new System.Drawing.Point(356, 39);
+			this.PurchasePRStartDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.PurchasePRStartDate.Name = "PurchasePRStartDate";
+			this.PurchasePRStartDate.Size = new System.Drawing.Size(333, 27);
+			this.PurchasePRStartDate.TabIndex = 20;
+			// 
+			// PurchasesPRDataGridView
+			// 
+			this.PurchasesPRDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.PurchasesPRDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.PurchasesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.PurchasesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.PurchasesPRDataGridView.Location = new System.Drawing.Point(8, 123);
+			this.PurchasesPRDataGridView.Margin = new System.Windows.Forms.Padding(2);
+			this.PurchasesPRDataGridView.Name = "PurchasesPRDataGridView";
+			this.PurchasesPRDataGridView.RowHeadersWidth = 51;
+			this.PurchasesPRDataGridView.RowTemplate.Height = 24;
+			this.PurchasesPRDataGridView.Size = new System.Drawing.Size(1363, 564);
+			this.PurchasesPRDataGridView.TabIndex = 0;
+			// 
+			// SalesPR
+			// 
+			this.SalesPR.Controls.Add(this.salesPRDataGridView);
+			this.SalesPR.Location = new System.Drawing.Point(4, 28);
+			this.SalesPR.Margin = new System.Windows.Forms.Padding(2);
+			this.SalesPR.Name = "SalesPR";
+			this.SalesPR.Size = new System.Drawing.Size(1378, 690);
+			this.SalesPR.TabIndex = 8;
+			this.SalesPR.Text = "Sales PR";
+			this.SalesPR.UseVisualStyleBackColor = true;
+			// 
+			// salesPRDataGridView
+			// 
+			this.salesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+			this.salesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.salesPRDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.salesPRDataGridView.Location = new System.Drawing.Point(2, 137);
+			this.salesPRDataGridView.Margin = new System.Windows.Forms.Padding(2);
+			this.salesPRDataGridView.Name = "salesPRDataGridView";
+			this.salesPRDataGridView.RowHeadersWidth = 51;
+			this.salesPRDataGridView.RowTemplate.Height = 24;
+			this.salesPRDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.salesPRDataGridView.Size = new System.Drawing.Size(1370, 550);
+			this.salesPRDataGridView.TabIndex = 0;
+			// 
+			// Inventory
+			// 
+			this.Inventory.Controls.Add(this.label63);
+			this.Inventory.Controls.Add(this.label62);
+			this.Inventory.Controls.Add(this.InventoryLogType);
+			this.Inventory.Controls.Add(this.InvetorySummedOrNot);
+			this.Inventory.Controls.Add(this.InventoryLogGridView);
+			this.Inventory.Controls.Add(this.InventoryLogRmvFilterBtn);
+			this.Inventory.Controls.Add(this.InventoryLogFilterBtn);
+			this.Inventory.Controls.Add(this.label60);
+			this.Inventory.Controls.Add(this.label59);
+			this.Inventory.Controls.Add(this.label58);
+			this.Inventory.Controls.Add(this.InventoryLogEndDate);
+			this.Inventory.Controls.Add(this.InventoryLogStartDate);
+			this.Inventory.Controls.Add(this.InventoryLogMonth);
+			this.Inventory.Location = new System.Drawing.Point(4, 28);
+			this.Inventory.Margin = new System.Windows.Forms.Padding(2);
+			this.Inventory.Name = "Inventory";
+			this.Inventory.Size = new System.Drawing.Size(1378, 690);
+			this.Inventory.TabIndex = 7;
+			this.Inventory.Text = "Inventory";
+			this.Inventory.UseVisualStyleBackColor = true;
+			// 
+			// label63
+			// 
+			this.label63.AutoSize = true;
+			this.label63.Location = new System.Drawing.Point(31, 21);
+			this.label63.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label63.Name = "label63";
+			this.label63.Size = new System.Drawing.Size(162, 19);
+			this.label63.TabIndex = 12;
+			this.label63.Text = "Summed/Not Summed";
+			// 
+			// label62
+			// 
+			this.label62.AutoSize = true;
+			this.label62.Location = new System.Drawing.Point(1171, 21);
+			this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label62.Name = "label62";
+			this.label62.Size = new System.Drawing.Size(45, 19);
+			this.label62.TabIndex = 11;
+			this.label62.Text = "Type";
+			// 
+			// InventoryLogType
+			// 
+			this.InventoryLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InventoryLogType.FormattingEnabled = true;
+			this.InventoryLogType.Items.AddRange(new object[] {
+            "Ferrous",
+            "Non-Ferrous"});
+			this.InventoryLogType.Location = new System.Drawing.Point(1174, 42);
+			this.InventoryLogType.Margin = new System.Windows.Forms.Padding(2);
+			this.InventoryLogType.Name = "InventoryLogType";
+			this.InventoryLogType.Size = new System.Drawing.Size(164, 27);
+			this.InventoryLogType.TabIndex = 10;
+			// 
+			// InvetorySummedOrNot
+			// 
+			this.InvetorySummedOrNot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InvetorySummedOrNot.FormattingEnabled = true;
+			this.InvetorySummedOrNot.Location = new System.Drawing.Point(34, 42);
+			this.InvetorySummedOrNot.Margin = new System.Windows.Forms.Padding(2);
+			this.InvetorySummedOrNot.Name = "InvetorySummedOrNot";
+			this.InvetorySummedOrNot.Size = new System.Drawing.Size(213, 27);
+			this.InvetorySummedOrNot.TabIndex = 9;
+			this.InvetorySummedOrNot.SelectedIndexChanged += new System.EventHandler(this.InvetorySummedOrNot_SelectedIndexChanged);
+			// 
+			// InventoryLogGridView
+			// 
+			this.InventoryLogGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.InventoryLogGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.InventoryLogGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+			this.InventoryLogGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.InventoryLogGridView.Location = new System.Drawing.Point(6, 152);
+			this.InventoryLogGridView.Margin = new System.Windows.Forms.Padding(2);
+			this.InventoryLogGridView.Name = "InventoryLogGridView";
+			this.InventoryLogGridView.ReadOnly = true;
+			this.InventoryLogGridView.RowHeadersWidth = 51;
+			this.InventoryLogGridView.RowTemplate.Height = 24;
+			this.InventoryLogGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.InventoryLogGridView.Size = new System.Drawing.Size(1366, 535);
+			this.InventoryLogGridView.TabIndex = 8;
+			// 
+			// InventoryLogRmvFilterBtn
+			// 
+			this.InventoryLogRmvFilterBtn.Location = new System.Drawing.Point(614, 92);
+			this.InventoryLogRmvFilterBtn.Margin = new System.Windows.Forms.Padding(2);
+			this.InventoryLogRmvFilterBtn.Name = "InventoryLogRmvFilterBtn";
+			this.InventoryLogRmvFilterBtn.Size = new System.Drawing.Size(259, 42);
+			this.InventoryLogRmvFilterBtn.TabIndex = 7;
+			this.InventoryLogRmvFilterBtn.Text = "Remove Filter";
+			this.InventoryLogRmvFilterBtn.UseVisualStyleBackColor = true;
+			this.InventoryLogRmvFilterBtn.Click += new System.EventHandler(this.InventoryLogRmvFilterBtn_Click);
+			// 
+			// InventoryLogFilterBtn
+			// 
+			this.InventoryLogFilterBtn.Location = new System.Drawing.Point(333, 92);
+			this.InventoryLogFilterBtn.Margin = new System.Windows.Forms.Padding(2);
+			this.InventoryLogFilterBtn.Name = "InventoryLogFilterBtn";
+			this.InventoryLogFilterBtn.Size = new System.Drawing.Size(260, 42);
+			this.InventoryLogFilterBtn.TabIndex = 6;
+			this.InventoryLogFilterBtn.Text = "Filter";
+			this.InventoryLogFilterBtn.UseVisualStyleBackColor = true;
+			this.InventoryLogFilterBtn.Click += new System.EventHandler(this.InventoryLogFilterBtn_Click);
+			// 
+			// label60
+			// 
+			this.label60.AutoSize = true;
+			this.label60.Location = new System.Drawing.Point(610, 21);
+			this.label60.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label60.Name = "label60";
+			this.label60.Size = new System.Drawing.Size(99, 19);
+			this.label60.TabIndex = 5;
+			this.label60.Text = "Start Date";
+			// 
+			// label59
+			// 
+			this.label59.AutoSize = true;
+			this.label59.Location = new System.Drawing.Point(890, 21);
+			this.label59.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label59.Name = "label59";
+			this.label59.Size = new System.Drawing.Size(81, 19);
+			this.label59.TabIndex = 4;
+			this.label59.Text = "End Date";
+			// 
+			// label58
+			// 
+			this.label58.AutoSize = true;
+			this.label58.Location = new System.Drawing.Point(330, 21);
+			this.label58.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label58.Name = "label58";
+			this.label58.Size = new System.Drawing.Size(54, 19);
+			this.label58.TabIndex = 3;
+			this.label58.Text = "Month";
+			// 
+			// InventoryLogEndDate
+			// 
+			this.InventoryLogEndDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InventoryLogEndDate.FormattingEnabled = true;
+			this.InventoryLogEndDate.Location = new System.Drawing.Point(893, 42);
+			this.InventoryLogEndDate.Margin = new System.Windows.Forms.Padding(2);
+			this.InventoryLogEndDate.Name = "InventoryLogEndDate";
+			this.InventoryLogEndDate.Size = new System.Drawing.Size(261, 27);
+			this.InventoryLogEndDate.TabIndex = 2;
+			// 
+			// InventoryLogStartDate
+			// 
+			this.InventoryLogStartDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InventoryLogStartDate.FormattingEnabled = true;
+			this.InventoryLogStartDate.Location = new System.Drawing.Point(614, 42);
+			this.InventoryLogStartDate.Margin = new System.Windows.Forms.Padding(2);
+			this.InventoryLogStartDate.Name = "InventoryLogStartDate";
+			this.InventoryLogStartDate.Size = new System.Drawing.Size(260, 27);
+			this.InventoryLogStartDate.TabIndex = 1;
+			// 
+			// InventoryLogMonth
+			// 
+			this.InventoryLogMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.InventoryLogMonth.FormattingEnabled = true;
+			this.InventoryLogMonth.Location = new System.Drawing.Point(333, 42);
+			this.InventoryLogMonth.Margin = new System.Windows.Forms.Padding(2);
+			this.InventoryLogMonth.Name = "InventoryLogMonth";
+			this.InventoryLogMonth.Size = new System.Drawing.Size(261, 27);
+			this.InventoryLogMonth.TabIndex = 0;
+			this.InventoryLogMonth.SelectedIndexChanged += new System.EventHandler(this.InventoryLogMonth_SelectedIndexChanged);
+			// 
 			// checkBox1
 			// 
 			this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -3328,22 +3328,14 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.SaleAmount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SaleQuantity)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SalesLogGridView)).EndInit();
-			this.Inventory.ResumeLayout(false);
-			this.Inventory.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.InventoryLogGridView)).EndInit();
 			this.Expenses.ResumeLayout(false);
 			this.Expenses.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ExpenseAmount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ExpensesLogGridView)).EndInit();
-			this.WagesNewEmployee.ResumeLayout(false);
-			this.WagesNewEmployee.PerformLayout();
+			this.Wages.ResumeLayout(false);
+			this.Wages.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.WageAmount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.WageLogGridView)).EndInit();
-			this.SalesPR.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).EndInit();
-			this.PurchasesPR.ResumeLayout(false);
-			this.PurchasesPR.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
 			this.Summaries.ResumeLayout(false);
 			this.Summaries.PerformLayout();
 			this.DestructionCertificates.ResumeLayout(false);
@@ -3356,6 +3348,14 @@ namespace Green_Enviro_App
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryNoteGrid)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryVehicleTypePicture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.DeliveryQuantityBox)).EndInit();
+			this.PurchasesPR.ResumeLayout(false);
+			this.PurchasesPR.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
+			this.SalesPR.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).EndInit();
+			this.Inventory.ResumeLayout(false);
+			this.Inventory.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.InventoryLogGridView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
@@ -3417,7 +3417,7 @@ namespace Green_Enviro_App
         private System.Windows.Forms.Label DestructionCertDescripOfPrdctLabel;
         private System.Windows.Forms.Label DestructionCertCompanyLabel;
         private System.Windows.Forms.Label DestructionCertQnttyLabel;
-		private System.Windows.Forms.TabPage WagesNewEmployee;
+		private System.Windows.Forms.TabPage Wages;
 		private System.Windows.Forms.TabPage Expenses;
 		private System.Windows.Forms.TabPage Summaries;
 		private System.Windows.Forms.Button ReceiptItemsEditBtn;

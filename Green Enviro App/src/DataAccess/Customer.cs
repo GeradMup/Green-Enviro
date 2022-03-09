@@ -16,7 +16,15 @@ namespace Green_Enviro_App.src.DataAccess
     public partial class Customer
     {
 
-        public Customer() { }
+        public Customer() 
+        {
+            this.CustomerNumber = -1;
+            this.ID = "";
+            this.Name = "";
+            this.Surname = "";
+            this.Cell = "";
+            this.Address = "";
+        }
 
         public Customer(Customer customer) 
         {
