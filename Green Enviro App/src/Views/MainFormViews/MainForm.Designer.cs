@@ -233,9 +233,9 @@ namespace Green_Enviro_App
 			this.DeliveryItemsList = new System.Windows.Forms.ComboBox();
 			this.DeliveryItemsLabel = new System.Windows.Forms.Label();
 			this.PurchasesPR = new System.Windows.Forms.TabPage();
-			this.button6 = new System.Windows.Forms.Button();
+			this.DeletePREntry = new System.Windows.Forms.Button();
 			this.PrintPRBtn = new System.Windows.Forms.Button();
-			this.RemovePRFiltersBtn = new System.Windows.Forms.Button();
+			this.AddToSalesRegister = new System.Windows.Forms.Button();
 			this.FilterPRBtn = new System.Windows.Forms.Button();
 			this.label66 = new System.Windows.Forms.Label();
 			this.PurchasesPRMonth = new System.Windows.Forms.ComboBox();
@@ -2742,9 +2742,9 @@ namespace Green_Enviro_App
 			// 
 			// PurchasesPR
 			// 
-			this.PurchasesPR.Controls.Add(this.button6);
+			this.PurchasesPR.Controls.Add(this.DeletePREntry);
 			this.PurchasesPR.Controls.Add(this.PrintPRBtn);
-			this.PurchasesPR.Controls.Add(this.RemovePRFiltersBtn);
+			this.PurchasesPR.Controls.Add(this.AddToSalesRegister);
 			this.PurchasesPR.Controls.Add(this.FilterPRBtn);
 			this.PurchasesPR.Controls.Add(this.label66);
 			this.PurchasesPR.Controls.Add(this.PurchasesPRMonth);
@@ -2763,15 +2763,16 @@ namespace Green_Enviro_App
 			this.PurchasesPR.Text = "Purchases PR";
 			this.PurchasesPR.UseVisualStyleBackColor = true;
 			// 
-			// button6
+			// DeletePREntry
 			// 
-			this.button6.Location = new System.Drawing.Point(1027, 73);
-			this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(310, 46);
-			this.button6.TabIndex = 31;
-			this.button6.Text = "Print Register";
-			this.button6.UseVisualStyleBackColor = true;
+			this.DeletePREntry.Location = new System.Drawing.Point(356, 73);
+			this.DeletePREntry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.DeletePREntry.Name = "DeletePREntry";
+			this.DeletePREntry.Size = new System.Drawing.Size(333, 46);
+			this.DeletePREntry.TabIndex = 31;
+			this.DeletePREntry.Text = "Delete Entry";
+			this.DeletePREntry.UseVisualStyleBackColor = true;
+			this.DeletePREntry.Click += new System.EventHandler(this.DeletePREntry_Click);
 			// 
 			// PrintPRBtn
 			// 
@@ -2783,25 +2784,27 @@ namespace Green_Enviro_App
 			this.PrintPRBtn.Text = "Print Register";
 			this.PrintPRBtn.UseVisualStyleBackColor = true;
 			// 
-			// RemovePRFiltersBtn
+			// AddToSalesRegister
 			// 
-			this.RemovePRFiltersBtn.Location = new System.Drawing.Point(356, 73);
-			this.RemovePRFiltersBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.RemovePRFiltersBtn.Name = "RemovePRFiltersBtn";
-			this.RemovePRFiltersBtn.Size = new System.Drawing.Size(333, 46);
-			this.RemovePRFiltersBtn.TabIndex = 29;
-			this.RemovePRFiltersBtn.Text = "Remove Filters";
-			this.RemovePRFiltersBtn.UseVisualStyleBackColor = true;
+			this.AddToSalesRegister.Location = new System.Drawing.Point(7, 73);
+			this.AddToSalesRegister.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.AddToSalesRegister.Name = "AddToSalesRegister";
+			this.AddToSalesRegister.Size = new System.Drawing.Size(337, 46);
+			this.AddToSalesRegister.TabIndex = 29;
+			this.AddToSalesRegister.Text = "Add To Sales Register";
+			this.AddToSalesRegister.UseVisualStyleBackColor = true;
 			// 
 			// FilterPRBtn
 			// 
-			this.FilterPRBtn.Location = new System.Drawing.Point(8, 73);
+			this.FilterPRBtn.BackColor = System.Drawing.Color.Transparent;
+			this.FilterPRBtn.Location = new System.Drawing.Point(1027, 73);
 			this.FilterPRBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.FilterPRBtn.Name = "FilterPRBtn";
-			this.FilterPRBtn.Size = new System.Drawing.Size(336, 46);
+			this.FilterPRBtn.Size = new System.Drawing.Size(310, 46);
 			this.FilterPRBtn.TabIndex = 28;
-			this.FilterPRBtn.Text = "Print Register";
-			this.FilterPRBtn.UseVisualStyleBackColor = true;
+			this.FilterPRBtn.Text = "---";
+			this.FilterPRBtn.UseVisualStyleBackColor = false;
+			this.FilterPRBtn.Visible = false;
 			// 
 			// label66
 			// 
@@ -2834,6 +2837,7 @@ namespace Green_Enviro_App
 			this.label67.Size = new System.Drawing.Size(45, 19);
 			this.label67.TabIndex = 25;
 			this.label67.Text = "Type";
+			this.label67.Visible = false;
 			// 
 			// label68
 			// 
@@ -2843,6 +2847,7 @@ namespace Green_Enviro_App
 			this.label68.Size = new System.Drawing.Size(81, 19);
 			this.label68.TabIndex = 24;
 			this.label68.Text = "End Date";
+			this.label68.Visible = false;
 			// 
 			// label69
 			// 
@@ -2852,6 +2857,7 @@ namespace Green_Enviro_App
 			this.label69.Size = new System.Drawing.Size(99, 19);
 			this.label69.TabIndex = 23;
 			this.label69.Text = "Start Date";
+			this.label69.Visible = false;
 			// 
 			// PurchasePRType
 			// 
@@ -2865,6 +2871,7 @@ namespace Green_Enviro_App
 			this.PurchasePRType.Name = "PurchasePRType";
 			this.PurchasePRType.Size = new System.Drawing.Size(310, 27);
 			this.PurchasePRType.TabIndex = 22;
+			this.PurchasePRType.Visible = false;
 			// 
 			// PurchasePREndDate
 			// 
@@ -2878,6 +2885,7 @@ namespace Green_Enviro_App
 			this.PurchasePREndDate.Name = "PurchasePREndDate";
 			this.PurchasePREndDate.Size = new System.Drawing.Size(313, 27);
 			this.PurchasePREndDate.TabIndex = 21;
+			this.PurchasePREndDate.Visible = false;
 			// 
 			// PurchasePRStartDate
 			// 
@@ -2891,6 +2899,7 @@ namespace Green_Enviro_App
 			this.PurchasePRStartDate.Name = "PurchasePRStartDate";
 			this.PurchasePRStartDate.Size = new System.Drawing.Size(333, 27);
 			this.PurchasePRStartDate.TabIndex = 20;
+			this.PurchasePRStartDate.Visible = false;
 			// 
 			// PurchasesPRDataGridView
 			// 
@@ -2903,6 +2912,7 @@ namespace Green_Enviro_App
 			this.PurchasesPRDataGridView.Location = new System.Drawing.Point(8, 123);
 			this.PurchasesPRDataGridView.Margin = new System.Windows.Forms.Padding(2);
 			this.PurchasesPRDataGridView.Name = "PurchasesPRDataGridView";
+			this.PurchasesPRDataGridView.ReadOnly = true;
 			this.PurchasesPRDataGridView.RowHeadersWidth = 51;
 			this.PurchasesPRDataGridView.RowTemplate.Height = 24;
 			this.PurchasesPRDataGridView.Size = new System.Drawing.Size(1363, 564);
@@ -2921,6 +2931,8 @@ namespace Green_Enviro_App
 			// 
 			// salesPRDataGridView
 			// 
+			this.salesPRDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.salesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
 			this.salesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.salesPRDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -3475,7 +3487,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.TabPage SalesPR;
 		private System.Windows.Forms.TabPage PurchasesPR;
 		private System.Windows.Forms.Button PrintPRBtn;
-		private System.Windows.Forms.Button RemovePRFiltersBtn;
+		private System.Windows.Forms.Button AddToSalesRegister;
 		private System.Windows.Forms.Button FilterPRBtn;
 		private System.Windows.Forms.Label label66;
 		private System.Windows.Forms.Label label67;
@@ -3485,7 +3497,7 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.Button PurchaseDeleteBtn;
 		private System.Windows.Forms.Button ExpensesDeleteBtn;
 		private System.Windows.Forms.Button SalesLogDeleteBtn;
-		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.Button DeletePREntry;
 		private System.Windows.Forms.TabPage DeliveryNote;
 		private System.Windows.Forms.ComboBox DeliveryItemsList;
 		private System.Windows.Forms.Label DeliveryItemsLabel;

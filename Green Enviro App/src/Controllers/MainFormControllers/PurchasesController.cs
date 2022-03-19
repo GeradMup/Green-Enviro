@@ -163,7 +163,7 @@ namespace Green_Enviro_App
 			
 			try
 			{
-				_policeRegModel.addToPurchasesPoliceRegister(selectedItemInfo);
+				_purchasesPrModel.addToPurchasesPoliceRegister(selectedItemInfo);
 				GenericControllers.reportSuccess(this, ENTRY_ADDED_TO_PR);
 			}
 			catch (Exception ex) 

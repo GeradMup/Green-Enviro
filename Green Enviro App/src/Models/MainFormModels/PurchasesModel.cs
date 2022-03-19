@@ -102,15 +102,6 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
-		/// Adds a purchased entry to the police register.
-		/// </summary>
-		/// <param name="purchaseInfo">The purchase information.</param>
-		public void addToPoliceRegister(string purchaseInfo) 
-		{
-			
-		}
-
-		/// <summary>
 		/// An Enum class describing headers for the Purchases log file.
 		/// </summary>
 		public enum PurchaseLogHeaders 

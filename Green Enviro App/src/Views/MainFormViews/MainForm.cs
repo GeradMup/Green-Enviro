@@ -43,7 +43,7 @@ namespace Green_Enviro_App
         SalesModel _salesModel;
         PurchasesModel _purchasesModel;
         ReceiptModel _receiptModel;
-        PoliceRegistersModel _policeRegModel;
+        PurchasesPrModel _purchasesPrModel;
 
         //Other Models
         FixedExpensesModel _fixedExpensesModel;
@@ -79,7 +79,7 @@ namespace Green_Enviro_App
             _salesModel = new SalesModel(_fileHandles, _csvHandles);
             _purchasesModel = new PurchasesModel(_fileHandles, _csvHandles);
             _receiptModel = new ReceiptModel(_fileHandles, _csvHandles);
-            _policeRegModel = new PoliceRegistersModel(_fileHandles, _csvHandles);
+            _purchasesPrModel = new PurchasesPrModel(_fileHandles, _csvHandles);
             
             _fixedExpensesModel = new FixedExpensesModel();
             _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);
@@ -98,6 +98,7 @@ namespace Green_Enviro_App
             initializeSalesTab();
             initializePurchasesTab();
             initialiseReceiptTab();
+            initialisePurchasesPr();
         }
 
 		/// <summary>
@@ -204,6 +205,7 @@ namespace Green_Enviro_App
             resetSales();
             resetPurchases();
             resetReceipt();
+            resetPurchasesPoliceRegister();
         }
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
@@ -305,12 +307,6 @@ namespace Green_Enviro_App
 		private void Main_Form_FormClosed(object sender, FormClosedEventArgs e)
 		{
             Application.Exit();
-		}
-
-
-		private void PurchasesPRMonth_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            //_purchasesPR.monthSelected();
 		}
 	}
 }
