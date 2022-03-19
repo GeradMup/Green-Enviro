@@ -104,6 +104,30 @@ namespace Green_Enviro_App
 		}
 
 		/// <summary>
+		/// Handles the Click event of the AddToSalesRegister control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void AddToSalesRegister_Click(object sender, EventArgs e)
+		{
+			const string ENTRY_ADDED_TO_REGISTER = "Entry has been added to the sales police register!";
+
+			if (purchasesPrDgvOps.noRowSelected()) return;
+			if (purchasesPrDgvOps.selectedRowEmpty()) return;
+
+			string selectedRow = purchasesPrDgvOps.getSelectedRowInfo();
+			try
+			{
+				_salesPrModel.addToSalesRegister(selectedRow);
+				GenericControllers.reportSuccess(this, ENTRY_ADDED_TO_REGISTER);
+			}
+			catch (Exception ex) 
+			{
+				GenericControllers.reportError(this, ex.Message);
+			}
+		}
+
+		/// <summary>
 		/// Resets the purchases police register.
 		/// </summary>
 		private void resetPurchasesPoliceRegister() 

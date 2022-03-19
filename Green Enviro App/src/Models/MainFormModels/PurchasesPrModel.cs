@@ -65,8 +65,6 @@ namespace Green_Enviro_App
 			{
 				throw new Exception(ex.Message);
 			}
-
-
 			return gridData;
 		}
 
@@ -76,21 +74,28 @@ namespace Green_Enviro_App
 		private void createLogFiles() 
 		{
 			//For the log files, we will use the same header files that are used in the purchases log file.
-			string purchasesLogHeaders = GenericModels.enumFieldsToString<PurchasesModel.PurchaseLogHeaders>();
-			fileHandles.createCSVFile(FileHandles.LogType.PurchasesPoliceRegisters, purchasesLogHeaders);
+			string purchasesPRLogHeaders = GenericModels.enumFieldsToString<PurchasesModel.PurchaseLogHeaders>();
+			fileHandles.createCSVFile(FileHandles.LogType.PurchasesPoliceRegisters, purchasesPRLogHeaders);
 		}
 
 		/// <summary>
 		/// Adds the given item to the purchases police register.
 		/// </summary>
-		public void addToPurchasesPoliceRegister(string entry) 
+		public void addToPurchasesPoliceRegister(string entry)
 		{
 			string path = fileHandles.pathToLogs(FileHandles.LogType.PurchasesPoliceRegisters);
 			bool entryAlreadyAdded = csvHandles.entryExistsInCSV(path, entry);
 
-			if (entryAlreadyAdded) throw new EntryAlreadyAddedException();
-
-			csvHandles.addToCSV(path, new List<string>() { entry });
+			try
+			{
+				if (entryAlreadyAdded) throw new EntryAlreadyAddedException();
+				csvHandles.addToCSV(path, new List<string>() { entry });
+			}
+			catch (Exception ex) 
+			{
+				throw new Exception(ex.Message);
+			}	
+			
 		}
 
 		/// <summary>
@@ -113,6 +118,10 @@ namespace Green_Enviro_App
 		}
 	}
 
+	/// <summary>
+	/// Exception to be thrown if you try to add an entry that already exists to the police register.
+	/// </summary>
+	/// <seealso cref="System.Exception" />
 	class EntryAlreadyAddedException : Exception 
 	{
 		const string message = "This entry has already been added to the police register!";

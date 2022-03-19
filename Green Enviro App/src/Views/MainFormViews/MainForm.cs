@@ -44,6 +44,7 @@ namespace Green_Enviro_App
         PurchasesModel _purchasesModel;
         ReceiptModel _receiptModel;
         PurchasesPrModel _purchasesPrModel;
+        SalesPrModel _salesPrModel;
 
         //Other Models
         FixedExpensesModel _fixedExpensesModel;
@@ -80,6 +81,7 @@ namespace Green_Enviro_App
             _purchasesModel = new PurchasesModel(_fileHandles, _csvHandles);
             _receiptModel = new ReceiptModel(_fileHandles, _csvHandles);
             _purchasesPrModel = new PurchasesPrModel(_fileHandles, _csvHandles);
+            _salesPrModel = new SalesPrModel(_fileHandles, _csvHandles);
             
             _fixedExpensesModel = new FixedExpensesModel();
             _fixedExpensesViews = new FixedExpensesViews(_mainForm, _fixedExpensesModel);
@@ -99,6 +101,7 @@ namespace Green_Enviro_App
             initializePurchasesTab();
             initialiseReceiptTab();
             initialisePurchasesPr();
+            initialiseSalesPr();
         }
 
 		/// <summary>
@@ -206,6 +209,7 @@ namespace Green_Enviro_App
             resetPurchases();
             resetReceipt();
             resetPurchasesPoliceRegister();
+            resetSalesPoliceRegister();
         }
 
 		private void mainTabControl_Selected(object sender, TabControlEventArgs e)
@@ -265,45 +269,11 @@ namespace Green_Enviro_App
         }
 
 
-
-		private void PrintPolice()
-		{
-            //Do nothing when this button is pressed
-            //return;
-
-            if (this.PurchaseLogMonth.SelectedItem == null) 
-            {
-                return;
-            }
-
-            DGVPrinter printer = new DGVPrinter();
-            printer.Title = "Police Register";
-            printer.SubTitle = DateTime.Now.ToString("dddd, dd MMMM yyyy, HH:mm ") + DateTime.Now.ToString("tt").ToUpper();
-            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-            printer.PageNumbers = true;
-            printer.PageNumberInHeader = false;
-            printer.PorportionalColumns = true;
-            //printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.CellWidth;
-            printer.HeaderCellAlignment = StringAlignment.Near;
-            printer.Footer = "Green Enviro SA Recycling";
-            printer.FooterSpacing = 5;
-            printer.PageSettings.PrinterSettings.DefaultPageSettings.Landscape = true;
-
-            IEnumerable<PaperSize> paperSizes = printer.PageSettings.PrinterSettings.PaperSizes.Cast<PaperSize>();
-            PaperSize sizeA3 = new PaperSize();
-            sizeA3.RawKind = (int)PaperKind.A3;
-            printer.PageSettings.PrinterSettings.DefaultPageSettings.PaperSize = sizeA3;
-
-
-            PurchasesLogGridView.Rows[PurchasesLogGridView.Rows.Count - 1].Visible = false;
-            var fontInfo = PurchasesLogGridView.Font;
-            PurchasesLogGridView.DefaultCellStyle.Font = new Font("Consolas", 10);
-            printer.PrintDataGridView(this.PurchasesLogGridView);
-            PurchasesLogGridView.Rows[PurchasesLogGridView.Rows.Count - 1].Visible = true;
-
-            PurchasesLogGridView.DefaultCellStyle.Font = fontInfo;
-        }
-
+		/// <summary>
+		/// Handles the FormClosed event of the Main_Form control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="FormClosedEventArgs"/> instance containing the event data.</param>
 		private void Main_Form_FormClosed(object sender, FormClosedEventArgs e)
 		{
             Application.Exit();

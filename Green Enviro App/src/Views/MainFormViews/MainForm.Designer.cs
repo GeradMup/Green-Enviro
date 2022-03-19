@@ -247,6 +247,10 @@ namespace Green_Enviro_App
 			this.PurchasePRStartDate = new System.Windows.Forms.ComboBox();
 			this.PurchasesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.SalesPR = new System.Windows.Forms.TabPage();
+			this.PrintSPR = new System.Windows.Forms.Button();
+			this.SalesPRMonth = new System.Windows.Forms.ComboBox();
+			this.SalesPRDeleteEntry = new System.Windows.Forms.Button();
+			this.SalesPRMonthLabel = new System.Windows.Forms.Label();
 			this.salesPRDataGridView = new System.Windows.Forms.DataGridView();
 			this.Inventory = new System.Windows.Forms.TabPage();
 			this.label63 = new System.Windows.Forms.Label();
@@ -2793,6 +2797,7 @@ namespace Green_Enviro_App
 			this.AddToSalesRegister.TabIndex = 29;
 			this.AddToSalesRegister.Text = "Add To Sales Register";
 			this.AddToSalesRegister.UseVisualStyleBackColor = true;
+			this.AddToSalesRegister.Click += new System.EventHandler(this.AddToSalesRegister_Click);
 			// 
 			// FilterPRBtn
 			// 
@@ -2915,11 +2920,16 @@ namespace Green_Enviro_App
 			this.PurchasesPRDataGridView.ReadOnly = true;
 			this.PurchasesPRDataGridView.RowHeadersWidth = 51;
 			this.PurchasesPRDataGridView.RowTemplate.Height = 24;
+			this.PurchasesPRDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.PurchasesPRDataGridView.Size = new System.Drawing.Size(1363, 564);
 			this.PurchasesPRDataGridView.TabIndex = 0;
 			// 
 			// SalesPR
 			// 
+			this.SalesPR.Controls.Add(this.PrintSPR);
+			this.SalesPR.Controls.Add(this.SalesPRMonth);
+			this.SalesPR.Controls.Add(this.SalesPRDeleteEntry);
+			this.SalesPR.Controls.Add(this.SalesPRMonthLabel);
 			this.SalesPR.Controls.Add(this.salesPRDataGridView);
 			this.SalesPR.Location = new System.Drawing.Point(4, 28);
 			this.SalesPR.Margin = new System.Windows.Forms.Padding(2);
@@ -2929,20 +2939,59 @@ namespace Green_Enviro_App
 			this.SalesPR.Text = "Sales PR";
 			this.SalesPR.UseVisualStyleBackColor = true;
 			// 
+			// PrintSPR
+			// 
+			this.PrintSPR.Location = new System.Drawing.Point(386, 71);
+			this.PrintSPR.Name = "PrintSPR";
+			this.PrintSPR.Size = new System.Drawing.Size(288, 43);
+			this.PrintSPR.TabIndex = 4;
+			this.PrintSPR.Text = "Print Register";
+			this.PrintSPR.UseVisualStyleBackColor = true;
+			// 
+			// SalesPRMonth
+			// 
+			this.SalesPRMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.SalesPRMonth.FormattingEnabled = true;
+			this.SalesPRMonth.Location = new System.Drawing.Point(8, 38);
+			this.SalesPRMonth.Name = "SalesPRMonth";
+			this.SalesPRMonth.Size = new System.Drawing.Size(372, 27);
+			this.SalesPRMonth.TabIndex = 3;
+			this.SalesPRMonth.SelectedIndexChanged += new System.EventHandler(this.SalesPRMonth_SelectedIndexChanged);
+			// 
+			// SalesPRDeleteEntry
+			// 
+			this.SalesPRDeleteEntry.Location = new System.Drawing.Point(7, 71);
+			this.SalesPRDeleteEntry.Name = "SalesPRDeleteEntry";
+			this.SalesPRDeleteEntry.Size = new System.Drawing.Size(373, 43);
+			this.SalesPRDeleteEntry.TabIndex = 2;
+			this.SalesPRDeleteEntry.Text = "Delete Entry";
+			this.SalesPRDeleteEntry.UseVisualStyleBackColor = true;
+			this.SalesPRDeleteEntry.Click += new System.EventHandler(this.SalesPRDeleteEntry_Click);
+			// 
+			// SalesPRMonthLabel
+			// 
+			this.SalesPRMonthLabel.AutoSize = true;
+			this.SalesPRMonthLabel.Location = new System.Drawing.Point(4, 16);
+			this.SalesPRMonthLabel.Name = "SalesPRMonthLabel";
+			this.SalesPRMonthLabel.Size = new System.Drawing.Size(54, 19);
+			this.SalesPRMonthLabel.TabIndex = 1;
+			this.SalesPRMonthLabel.Text = "Month";
+			// 
 			// salesPRDataGridView
 			// 
-			this.salesPRDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.salesPRDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.salesPRDataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
 			this.salesPRDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.salesPRDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.salesPRDataGridView.Location = new System.Drawing.Point(2, 137);
+			this.salesPRDataGridView.Location = new System.Drawing.Point(7, 119);
 			this.salesPRDataGridView.Margin = new System.Windows.Forms.Padding(2);
 			this.salesPRDataGridView.Name = "salesPRDataGridView";
+			this.salesPRDataGridView.ReadOnly = true;
 			this.salesPRDataGridView.RowHeadersWidth = 51;
 			this.salesPRDataGridView.RowTemplate.Height = 24;
 			this.salesPRDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.salesPRDataGridView.Size = new System.Drawing.Size(1370, 550);
+			this.salesPRDataGridView.Size = new System.Drawing.Size(1365, 568);
 			this.salesPRDataGridView.TabIndex = 0;
 			// 
 			// Inventory
@@ -3364,6 +3413,7 @@ namespace Green_Enviro_App
 			this.PurchasesPR.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PurchasesPRDataGridView)).EndInit();
 			this.SalesPR.ResumeLayout(false);
+			this.SalesPR.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.salesPRDataGridView)).EndInit();
 			this.Inventory.ResumeLayout(false);
 			this.Inventory.PerformLayout();
@@ -3631,5 +3681,9 @@ namespace Green_Enviro_App
 		private System.Windows.Forms.DataGridView receiptDataGrid;
 		private System.Windows.Forms.ContextMenuStrip ReceiptGridOptions;
 		private System.Windows.Forms.ToolStripMenuItem DeleteItem;
+		private System.Windows.Forms.ComboBox SalesPRMonth;
+		private System.Windows.Forms.Button SalesPRDeleteEntry;
+		private System.Windows.Forms.Label SalesPRMonthLabel;
+		private System.Windows.Forms.Button PrintSPR;
 	}
 }
