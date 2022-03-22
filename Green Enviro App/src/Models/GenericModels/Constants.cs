@@ -36,6 +36,8 @@ namespace Green_Enviro_App
 		public static readonly string SALES_BASE_PATH;
 		/// <summary>The wages base path</summary>
 		public static readonly string WAGES_BASE_PATH;
+		/// <summary>The path to store the police registers after converting them to PDF.</summary>
+		public static readonly string POLICE_REGISTERS_PATH;
 		/// <summary>The current month and year</summary>
 		public static readonly string CURRENT_MONTH_AND_YEAR;
 		/// <summary>The ferrous material label.</summary>
@@ -88,6 +90,7 @@ namespace Green_Enviro_App
 			INVENTORY_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Inventory\";
 			PURCHASE_POLICE_REG_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Police Registers\Purchases\";
 			SALES_POLICE_REG_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Police Registers\Sales\";
+			POLICE_REGISTERS_PATH = PROJECT_PATH + @"\resources\Logs\Police Registers\Printed Registers\";
 			SALES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Sales\";
 			WAGES_BASE_PATH = PROJECT_PATH + @"\resources\Logs\Wages\";
 			CURRENT_MONTH_AND_YEAR = DateTime.Now.ToString("MMMM yyyy");
